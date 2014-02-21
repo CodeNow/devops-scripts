@@ -1,0 +1,1 @@
+sudo rsync -havzP --stats --bwlimit=7000 -e "ssh -i /home/ubuntu/.ssh/runnablevpc.pem" ubuntu@54.241.154.140:/prod /
