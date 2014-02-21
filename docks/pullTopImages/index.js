@@ -1,12 +1,35 @@
 var mongo = require('mongoskin');
 var hex64 = require('hex64');
 var async = require('async');
-var spawn = require('child_process').spawn;
-
+var Docker = require('dockerode');
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
 function log (data) {
   console.log(data.toString());
 }
+function dockerCallback (cb) {
+  return function (err, stream) {
+    if (err) {
+      throw err;
+    } else {
+      stream.on('data', dockerOnData);
+      stream.on('error', dockerOnError);
+      stream.on('end', cb);
+    }
+  };
+  function dockerOnData (raw) {
+    var data = JSON.parse(raw);
+    if (data.error) {
+      console.log('data err', data.error);
+      throw new Error('data err');
+    }
+  }
+  function dockerOnError (err) {
+    console.log('res err', err);
+    throw err;
+  }
+}
 
+// PULL IMAGES FROM DB
 // function pullTopImagesFromDb () {
 //   var db = mongo.db("mongodb://localhost:27017/runnable2", {native_parser:true});
 //   db.bind('images');
@@ -42,22 +65,10 @@ function pullTopImagesFromFile () {
 }
 
 function pullImageUrls (imageUrls) {
-  async.eachSeries(imageUrls, dockerPull, done);
-    function dockerPull (url, cb) {
-      var pullCmd = 'sudo docker pull '+url;
-      console.log('<<< '+pullCmd+' >>>');
-      var dockerPull = spawn(pullCmd);
-      dockerPull.stdout.on('data', log);
-      dockerPull.stderr.on('data', log);
-      dockerPull.on('close', function (code) {
-        if (code !== 0) {
-          cb(new Error('docker pull fail code: '+code));
-        }
-        else {
-          console.log('....SUCCESS');
-          cb();
-        }
-      });
+  async.eachSeries(imageUrls, dockerPullUrl, done);
+    function dockerPullUrl (url, cb) {
+      console.log('<<< '+url+' >>>');
+      docker.pull(url, dockerCallback(cb));
     }
     function done (err) {
       if (err) throw err;
