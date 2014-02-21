@@ -1,7 +1,7 @@
 var mongo = require('mongoskin');
 var hex64 = require('hex64');
 var async = require('async');
-var exec = require('child_process').spawn;
+var spawn = require('child_process').spawn;
 
 function log (data) {
   console.log(data.toString());
@@ -51,7 +51,7 @@ function pullImageUrls (imageUrls) {
       dockerPull.stderr.on('data', log);
       dockerPull.on('close', function (code) {
         if (code !== 0) {
-          cb(new Error('docker pull fail code: '+code))
+          cb(new Error('docker pull fail code: '+code));
         }
         else {
           console.log('....SUCCESS');
