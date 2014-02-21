@@ -20,12 +20,12 @@ function dockerCallback (cb) {
     var data = JSON.parse(raw);
     if (data.error) {
       console.log('data err', data.error);
-      throw new Error('data err');
+      // throw new Error('data err');
     }
   }
   function dockerOnError (err) {
     console.log('res err', err);
-    throw err;
+    // throw err;
   }
 }
 
