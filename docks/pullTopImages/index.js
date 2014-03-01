@@ -61,14 +61,21 @@ function dockerCallback (cb) {
 pullTopImagesFromFile();
 
 function pullTopImagesFromFile () {
-  pullImageUrls(require('./imageUrls'));
+  pullImageUrls(require('./imageUrls').map(function (url) {
+    var parts = url.split('/');
+    var id = parts.pop();
+    parts.push(hex64.decode(id));
+    return parts.join('/');
+  }));
 }
 
 function pullImageUrls (imageUrls) {
   async.eachSeries(imageUrls, dockerPullUrl, done);
     function dockerPullUrl (url, cb) {
       console.log('<<< '+url+' >>>');
-      docker.pull(url, dockerCallback(cb));
+      docker.pull(url, {
+        registry: 'http://registry.runnable.com:5000'
+      }, dockerCallback(cb));
     }
     function done (err) {
       if (err) throw err;
