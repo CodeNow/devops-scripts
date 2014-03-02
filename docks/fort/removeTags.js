@@ -22,7 +22,7 @@ docker.listImages(function (err, images) {
     }).map(function (repo) {
       return repo.replace(':latest', '');
     }).filter(function (repo) {
-      return repo.split('/').pop().length === 16;
+      return repo.split('/').pop().length !== 24;
     });
     console.log(repos);
     async.eachSeries(repos, function (repo, cb) {
@@ -31,7 +31,7 @@ docker.listImages(function (err, images) {
     }, function (err) {
       if (err) {
         throw err;
-      } 
+      }
       console.log('DONE');
     });
   }
