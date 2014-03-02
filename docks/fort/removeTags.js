@@ -26,7 +26,7 @@ docker.listImages(function (err, images) {
     });
     console.log(repos);
     async.eachSeries(repos, function (repo, cb) {
-      var image = docker.getImage(repo.old);
+      var image = docker.getImage(repo);
       image.remove(cb);
     }, function (err) {
       if (err) {
