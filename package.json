@@ -1,0 +1,28 @@
+{
+  "name": "devops-scripts",
+  "version": "0.0.0",
+  "description": "devops-scripts ==============",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/CodeNow/devops-scripts"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/CodeNow/devops-scripts/issues"
+  },
+  "homepage": "https://github.com/CodeNow/devops-scripts",
+  "devDependencies": {
+    "should": "~3.1.3",
+    "dockerode": "~1.2.8",
+    "mocha": "~1.17.1",
+    "supertest": "~0.9.0"
+  }
+}
