@@ -1,4 +1,4 @@
-https://www.doordash.com/cart/tfZfiOyJdQHNZ50
+sudo docker run -d --name redis-cache dockerfile/redis
 
 sudo docker run -d \
   -e "SETTINGS_FLAVOR=prod" \
