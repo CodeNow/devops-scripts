@@ -7,7 +7,7 @@ sudo docker run -d \
   -name registry-s3 \
   -p 80:5000 registry
 
-sudo docker run -d -v=/prod:/tmp/registry:rw -p 80:5000 registry 
+sudo docker run -d -v=/prod:/tmp/registry:rw -p 80:5000 -name registry registry 
 
 runnableimages
 AKIAJA3VH6N377FCXOAQ
