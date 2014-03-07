@@ -39,7 +39,7 @@ function removeMem (image) {
   var new_service_cmds = image.service_cmds
     .replace('memcached -d -u www-data;', '')
     .trim();
-  print(['update',image._id,new_service_cmds].join(' '));
+  print(['remove memcached:',image._id,new_service_cmds].join(' '));
   db.images.update({ _id: image._id }, {
     $set: {
       service_cmds: new_service_cmds

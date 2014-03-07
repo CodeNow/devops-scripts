@@ -46,7 +46,7 @@ function removeRedis (image) {
   var new_service_cmds = image.service_cmds
     .replace('redis-server;', '')
     .trim();
-  print(['update',image._id,new_service_cmds].join(' '));
+  print(['remove redis:',image._id,new_service_cmds].join(' '));
   db.images.update({ _id: image._id }, {
     $set: {
       service_cmds: new_service_cmds

@@ -61,7 +61,7 @@ function removeMySQL (image) {
     .replace('mysqld;', '')
     .replace('mysqld', '')
     .trim();
-  print(['update',image._id,new_service_cmds].join(' '));
+  print(['remove mysql:',image._id,new_service_cmds].join(' '));
   db.images.update({ _id: image._id }, {
     $set: {
       service_cmds: new_service_cmds
