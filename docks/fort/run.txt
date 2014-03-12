@@ -3,8 +3,8 @@ sudo docker run -d -name redis-cache dockerfile/redis
 sudo docker run -d \
   -e "SETTINGS_FLAVOR=prod" \
   -v /home/ubuntu/registryConfig/:/docker-registry/config/:rw \
-  -link redis-cache:db \
-  -name registry-s3 \
+  --link redis-cache:db \
+  --name registry-s3 \
   -p 80:5000 registry
 
 sudo docker run -d -v=/prod:/tmp/registry:rw -p 80:5000 -name registry registry 
