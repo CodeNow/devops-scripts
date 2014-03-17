@@ -1,0 +1,19 @@
+{
+  "name": "pushAllImages",
+  "private": true,
+  "version": "0.0.0",
+  "description": "pushes all local images to the registry",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js test",
+    "push": "node index.js push",
+    "help": "node index.js help"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "async": "~0.2.10",
+    "dockerode": "~1.2.8",
+    "lodash": "~2.4.1"
+  }
+}
