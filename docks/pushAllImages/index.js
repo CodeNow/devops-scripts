@@ -32,7 +32,7 @@ function pushTag (name, callback) {
     return callback();
   } else {
     var image = docker.getImage(name); // sync call to use image
-    image.push(callback);
+    image.push({}, callback);
   }
 }
 
