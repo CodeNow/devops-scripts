@@ -14,6 +14,7 @@
   "dependencies": {
     "async": "~0.2.10",
     "dockerode": "~1.2.8",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "request": "~2.34.0"
   }
 }

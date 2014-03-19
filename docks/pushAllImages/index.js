@@ -23,17 +23,35 @@ var opts = {
 
 main();
 
+function checkHistory (image, callback) {
+  request('http://registry.runnable.com/v1/repositories/runnable/' + image.Id + '/tags',
+    function (err, res, body) {
+      if (err) {
+        return callback(err);
+      }
+      if (res.statusCode === 200) {
+        console.log('need to check');
+        callback();
+      }
+      else {
+        console.log('need to push');
+        callback();
+      }
+    });
+}
+
 function pushTag (name, callback) {
   if (!name || name === none_string) {
     return callback();
   }
-  if (opts.testing) {
-    console.log('TESTING: PUSHING IMAGE', name);
-    return callback();
-  } else {
-    var image = docker.getImage(name); // sync call to use image
-    image.push({}, callback);
-  }
+  var image = docker.getImage(name); // sync call to use image
+  checkHistory(image, callback);
+  // if (opts.testing) {
+  //   console.log('TESTING: PUSHING IMAGE', name);
+  //   return callback();
+  // } else {
+  //   image.push({}, callback);
+  // }
 }
 
 function dockerPush(image, callback) {
@@ -41,12 +59,15 @@ function dockerPush(image, callback) {
     return callback();
   }
 
-  pushTag(
-    _.findWhere(image.RepoTags, { length: 55 }),
-    callback);
+  var tag = _.findWhere(image.RepoTags, { length: 62 });
+  if (!tag) {
+    return callback();
+  }
+  pushTag(tag.split(':')[0], callback);
 }
 
 function pushImages(images, callback) {
+  var images = images.slice(0, 5);
   async.eachLimit(
     images,
     5,
