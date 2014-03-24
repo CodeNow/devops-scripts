@@ -1,20 +1,19 @@
 var _ = require('lodash');
 var async = require('async');
+var request = require('request');
+var url = require('url');
 var Docker = require('dockerode');
 var docker_connection = {
   socketPath: process.env.DOCKER_HOST
 };
 if (process.env.DOCKER_HOST) {
-  var host = process.env.DOCKER_HOST;
-  var tcp_test = /(.+):\/\/(.+):([0-9]+)/;
-  if (tcp_test.test(host)) {
-    host = host.split(':');
-    docker_connection = {
-      host: host[0] + ':' + host[1],
-      port: host[2]
-    };
-  }
+  var url = url.parse(process.env.DOCKER_HOST);
+  docker_connection = {
+    host: url.protocol + '//' + url.hostname,
+    port: url.port
+  };
 }
+
 var docker = new Docker(docker_connection);
 var none_string = '<none>:<none>';
 var opts = {
@@ -23,63 +22,101 @@ var opts = {
 
 main();
 
-function checkHistory (image, callback) {
-  request('http://registry.runnable.com/v1/repositories/runnable/' + image.Id + '/tags',
+function pushAllImages(callback) {
+  async.waterfall([
+    docker.listImages.bind(docker),
+    filterImagesNotLatestInRegistry,
+    pushImagesToRegistry
+  ], callback);
+}
+
+function filterImagesNotLatestInRegistry(images, callback) {
+  async.filterSeries(
+    images,
+    imageRegistryCheck,
+    function (results) {
+      callback(null, results);
+    });
+}
+
+function checkAncestry(image, registry, name, callback) {
+  // return callback(true) if the image needs to be sync'd.
+  request('http://' + registry + '/v1/repositories/' + name + '/tags',
+    function (err, res, body) {
+      if (err || res.statusCode !== 200) {
+        console.log('could not pull up tags for', res.statusCode, name);
+        return callback(false);
+      }
+      body = JSON.parse(body);
+      if (body.length === 0 || body.latest !== image.Id) {
+        console.log('no remote ancestry or latest does not match', body[0], image.Id);
+        return callback(true);
+      }
+      // if we're here, the latest tag does match, and we shouldn't push
+      console.log('ancestry matches. go us!');
+      callback(false);
+    });
+}
+
+function imageRegistryCheck(image, callback) {
+  // return callback(true) if the image needs to be sync'd.
+  if (image.RepoTags.length === 0) {
+    return callback(false);
+  }
+
+  // var fullTag = _.findWhere(image.RepoTags, { length: 62 });
+  var fullTag = _.findWhere(image.RepoTags, function (tag) {
+    return tag.indexOf('localhost') !== -1;
+  });
+  if (!fullTag) {
+    return callback();
+  }
+
+  var tag = fullTag.substr(0, fullTag.lastIndexOf(':'));
+  var registry = tag.substr(0, tag.indexOf('/'));
+  var name = tag.substr(tag.indexOf('/') + 1);
+
+  request('http://' + registry + '/v1/images/' + image.Id + '/json',
     function (err, res, body) {
       if (err) {
-        return callback(err);
+        console.log('could not check tags for', image.Id);
+        return callback(false);
       }
       if (res.statusCode === 200) {
-        console.log('need to check');
-        callback();
+        console.log('need to check more:', image.Id);
+        checkAncestry(image, registry, name, callback);
       }
-      else {
-        console.log('need to push');
-        callback();
+      else if (res.statusCode === 404) {
+        console.log('need to push to registry', res.statusCode, image.Id);
+        callback(true);
+      } else {
+        console.error('something went really wrong...');
+        callback(false);
       }
     });
 }
 
-function pushTag (name, callback) {
-  if (!name || name === none_string) {
-    return callback();
-  }
-  var image = docker.getImage(name); // sync call to use image
-  checkHistory(image, callback);
-  // if (opts.testing) {
-  //   console.log('TESTING: PUSHING IMAGE', name);
-  //   return callback();
-  // } else {
-  //   image.push({}, callback);
-  // }
-}
-
-function dockerPush(image, callback) {
-  if (image.RepoTags.length === 0) {
-    return callback();
-  }
-
-  var tag = _.findWhere(image.RepoTags, { length: 62 });
-  if (!tag) {
-    return callback();
-  }
-  pushTag(tag.split(':')[0], callback);
-}
-
-function pushImages(images, callback) {
-  var images = images.slice(0, 5);
-  async.eachLimit(
+function pushImagesToRegistry(images, callback) {
+  async.eachSeries(
     images,
-    5,
-    dockerPush,
+    dockerRegistryPush,
     callback);
 }
 
-function pushAllImages(callback) {
-  async.waterfall([
-    docker.listImages.bind(docker),
-    pushImages
-  ], callback);
+function dockerRegistryPush(image, callback) {
+  var fullTag = _.findWhere(image.RepoTags, function (tag) {
+    return tag.indexOf('localhost') !== -1;
+  });
+  var tag = fullTag.substr(0, fullTag.lastIndexOf(':'));
+  var registry = tag.substr(0, tag.indexOf('/'));
+  var name = tag.substr(tag.indexOf('/') + 1);
+
+  console.log((opts.testing ? '[test]' : ''), 'PUSHING IMAGE:', name);
+  if (opts.testing) {
+    return callback();
+  } else {
+    docker.getImage(image).push({}, callback);
+  }
 }
 
 function processArgs(callback) {
