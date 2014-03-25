@@ -148,7 +148,7 @@ function imageRegistryCheck(image, callback) {
         if (opts.verbose) console.log('need to push to registry', res.statusCode, name);
         callback(true);
       } else {
-        console.error('something went really wrong...');
+        console.error('something went really wrong...', res.statusCode, res.body, name, image.Id);
         callback(false);
       }
     });
