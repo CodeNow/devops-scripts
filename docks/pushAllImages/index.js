@@ -121,10 +121,11 @@ function imageRegistryCheck(image, callback) {
     return callback(false);
   }
 
-  // var fullTag = _.findWhere(image.RepoTags, { length: 62 });
-  var fullTag = _.findWhere(image.RepoTags, function (tag) {
-    return tag.indexOf('localhost') !== -1;
-  });
+  // this switch this out for testing localhost images
+  var fullTag = _.findWhere(image.RepoTags, { length: 62 });
+  // var fullTag = _.findWhere(image.RepoTags, function (tag) {
+  //   return tag.indexOf('localhost') !== -1;
+  // });
   if (!fullTag) {
     return callback(false);
   }
@@ -167,9 +168,11 @@ function dockerRegistryPush(image, callback) {
   if (opts.verbose) {
     console.log('dockerRegistryPush()...');
   }
-  var fullTag = _.findWhere(image.RepoTags, function (tag) {
-    return tag.indexOf('localhost') !== -1;
-  });
+  // this switch this out for testing localhost images
+  var fullTag = _.findWhere(image.RepoTags, { length: 62 });
+  // var fullTag = _.findWhere(image.RepoTags, function (tag) {
+  //   return tag.indexOf('localhost') !== -1;
+  // });
   var tag = fullTag.substr(0, fullTag.lastIndexOf(':'));
   var registry = tag.substr(0, tag.indexOf('/'));
   var name = tag.substr(tag.indexOf('/') + 1);
