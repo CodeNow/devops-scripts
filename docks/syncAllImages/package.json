@@ -1,12 +1,12 @@
 {
-  "name": "pushAllImages",
+  "name": "syncAllImages",
   "private": true,
-  "version": "0.0.0",
-  "description": "pushes all local images to the registry",
+  "version": "0.0.1",
+  "description": "syncs all images with the registry",
   "main": "index.js",
   "scripts": {
     "test": "node index.js test",
-    "push": "node index.js push",
+    "sync": "node index.js sync",
     "help": "node index.js help"
   },
   "author": "",
