@@ -2,7 +2,13 @@ var mongo = require('mongoskin');
 var hex64 = require('hex64');
 var async = require('async');
 var Docker = require('dockerode');
-var docker = new Docker({socketPath: '/var/run/docker.sock'});
+
+var dockerHost = 'http://localhost';
+var dockerPort = 4242;
+var docker = new Docker({
+    host: dockerHost,
+    port: dockerPort
+  });
 function log (data) {
   console.log(data.toString());
 }
