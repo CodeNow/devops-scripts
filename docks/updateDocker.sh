@@ -1,6 +1,6 @@
-WAIT_TIME_MIN=10 # time to wait after we take out of redis to restart
-DOCKER_RESTART_TIME_MIN=10 #how log we should wait for box to restart
-DOCKER_UP_TIME_MIN=30 #how log to wait for box to register in redis
+#!/bin/bash
+WAIT_TIME_MIN=5 # time to wait after we take out of redis to restart
+DOCKER_UP_TIME_MIN=60 #how log to wait for box to register in redis
 alias getAttachedDocklets="ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
 
 
@@ -18,20 +18,23 @@ function isDockeletInRedis
 #first get list of docklets
 DOCKLET_LIST=$(getAttachedDocklets)
 
-#now iterate through them and do the following
-# 1. remove from redis  
-# 2. wait 1 hr while checking if a server went down every min and abort if so
-# 3. ssh into machine and reboot
-# 4. wait till it is online and sudo pm2 restart
-# 5. wait untill it is online and repeat
-
-
 DOCKS=$(getAttachedDocklets)
 NUM_DOCKS=`echo $DOCKS | wc -w`
 echo "attached docklets: $DOCKS, num = $NUM_DOCKS"
 CUR_NUM_DOCKS=$NUM_DOCKS
 NUM_DOCKS_REDIS=$NUM_DOCKS
 for DOCK in $DOCKS; do
+
+	# continue only if docker version is not this
+
+	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
+	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep dc9c28f | wc -l'`
+	if [[ "$VERSION" -eq "2" ]]; then
+		echo "skiping $DOCK. at docker version=$VERSION"
+		continue
+	fi
+	echo "have to restart $DOCK. at docker version @ $VERSION"
+
 	# 1. remove from redis
 	echo "removing $DOCK from redis, you have 5 seconds to quit"
 	sleep 5
@@ -41,60 +44,58 @@ for DOCK in $DOCKS; do
 	# make sure we removed
 	if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
 		echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
-		return 
+		exit 
 	fi
 	echo "dock: $DOCK removed from redis"
-	echo $(date) " waiting for 1hr before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
+	echo $(date) " waiting for $WAIT_TIME_MIN min before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
 	# 2. wait 1 hr while ensuring rest of docks stay up
 	for (( i = 0; i < $WAIT_TIME_MIN; i++ )); do
+		echo "$i out of $WAIT_TIME_MIN"
 		TDOCKS=$(getAttachedDocklets)
 		TNUM_DOCKS=`echo $TDOCKS | wc -w`
 		#exit if another box goes down
 		if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
 			echo "some other docklet box went down!! abourting"
-			return 
+			exit 
 		fi
 		sleep 60
 	done
 
-	# 3. ssh into box and reboot it
-	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
-
-	echo "killing pm2"
+	# 3. ssh into box and update docker
+	echo "kill pm2"
 	ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 kill'
+
+	echo "killing current containers"
+	ssh ubuntu@docker-2-$BOX_NUM 'docker kill `docker ps -q`'
 	
-	echo "rebooting"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo reboot'
+	echo "stoping docker"
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker stop'
+	echo "installing docker"
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9'
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"'
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-get update'
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-get install lxc-docker'
 
-	# 4. wait for box to come online and start pm2 services
-	DONE=0
-	for (( i = 0; i < $DOCKER_RESTART_TIME_MIN; i++ )); do
-		sleep 60
-		# ensure we have access again
-		ssh ubuntu@docker-2-$BOX_NUM 'echo ABCDEFGHI'
-		if [[ "$?" -eq "0" ]]; then
-			TMP=$(ssh ubuntu@docker-2-$BOX_NUM 'echo ABCDEFGHI' | wc -w)
-			if [[ "$TMP" -eq "1" ]]; then
-				echo "starting start script"
-				ssh ubuntu@docker-2-$BOX_NUM '/home/ubuntu/devops-scripts/docks/startDockletAndBouncer.sh production'
-				DONE=1
-				break
-			else
-				echo "docker $DOCK did not restart . abourting"
-				return
-			fi
-		fi
-	done
+	sleep 10
 
+	echo "waiting for docker to load"
+	ssh ubuntu@docker-2-$BOX_NUM 'docker ps'
+	ssh ubuntu@docker-2-$BOX_NUM 'docker version'
+
+	echo "resetart pm2"
+	ssh ubuntu@docker-2-$BOX_NUM '/home/ubuntu/devops-scripts/docks/startDockletAndBouncer.sh production'
+
+	# 4. wait for box to come online
 	# wait untill box registers itself
 	echo "wait untill box comes back online"
 	CNT=0
 	while [[ "$(isDockeletInRedis $DOCK)" -ne "1" ]]; do
+		echo "$CNT out of $DOCKER_UP_TIME_MIN"
 		sleep 60
 		CNT=$((CNT + 1))
 		if [[ "$CNT" -eq "DOCKER_UP_TIME_MIN" ]]; then
 			echo "server did not register after $DOCKER_UP_TIME_MIN min, abourting"
-			return
+			exit
 		fi
 	done
 	echo "$DOCK is back up! moving on"

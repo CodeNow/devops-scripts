@@ -1,6 +1,6 @@
 WAIT_TIME_MIN=10 # time to wait after we take out of redis to restart
 DOCKER_RESTART_TIME_MIN=10 #how log we should wait for box to restart
-DOCKER_UP_TIME_MIN=30 #how log to wait for box to register in redis
+DOCKER_UP_TIME_MIN=60 #how log to wait for box to register in redis
 alias getAttachedDocklets="ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
 
 
@@ -32,6 +32,17 @@ echo "attached docklets: $DOCKS, num = $NUM_DOCKS"
 CUR_NUM_DOCKS=$NUM_DOCKS
 NUM_DOCKS_REDIS=$NUM_DOCKS
 for DOCK in $DOCKS; do
+
+	# continue only if number > 65000
+
+	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
+	PORT=`ssh ubuntu@docker-2-$BOX_NUM 'docker ps | head -n 2 | grep -o ".....->80" | sed s/-.*//'`
+	if [[ "$PORT" -lt "65000" ]]; then
+		echo "skiping $DOCK. at port=$PORT"
+		continue
+	fi
+	echo "have to restart $DOCK. at port @ $PORT"
+
 	# 1. remove from redis
 	echo "removing $DOCK from redis, you have 5 seconds to quit"
 	sleep 5
@@ -41,10 +52,10 @@ for DOCK in $DOCKS; do
 	# make sure we removed
 	if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
 		echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
-		return 
+		exit 
 	fi
 	echo "dock: $DOCK removed from redis"
-	echo $(date) " waiting for 1hr before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
+	echo $(date) " waiting for $WAIT_TIME_MIN min before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
 	# 2. wait 1 hr while ensuring rest of docks stay up
 	for (( i = 0; i < $WAIT_TIME_MIN; i++ )); do
 		TDOCKS=$(getAttachedDocklets)
@@ -52,40 +63,22 @@ for DOCK in $DOCKS; do
 		#exit if another box goes down
 		if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
 			echo "some other docklet box went down!! abourting"
-			return 
+			exit 
 		fi
 		sleep 60
 	done
 
-	# 3. ssh into box and reboot it
-	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
+	# 3. ssh into box and restart docker
 
-	echo "killing pm2"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 kill'
+	echo "killing current containers"
+	ssh ubuntu@docker-2-$BOX_NUM 'docker kill `docker ps -q`'
 	
-	echo "rebooting"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo reboot'
+	echo "restarting docker"
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker stop'
+	sleep 10  
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker start'
 
-	# 4. wait for box to come online and start pm2 services
-	DONE=0
-	for (( i = 0; i < $DOCKER_RESTART_TIME_MIN; i++ )); do
-		sleep 60
-		# ensure we have access again
-		ssh ubuntu@docker-2-$BOX_NUM 'echo ABCDEFGHI'
-		if [[ "$?" -eq "0" ]]; then
-			TMP=$(ssh ubuntu@docker-2-$BOX_NUM 'echo ABCDEFGHI' | wc -w)
-			if [[ "$TMP" -eq "1" ]]; then
-				echo "starting start script"
-				ssh ubuntu@docker-2-$BOX_NUM '/home/ubuntu/devops-scripts/docks/startDockletAndBouncer.sh production'
-				DONE=1
-				break
-			else
-				echo "docker $DOCK did not restart . abourting"
-				return
-			fi
-		fi
-	done
-
+	# 4. wait for box to come online
 	# wait untill box registers itself
 	echo "wait untill box comes back online"
 	CNT=0
@@ -94,7 +87,7 @@ for DOCK in $DOCKS; do
 		CNT=$((CNT + 1))
 		if [[ "$CNT" -eq "DOCKER_UP_TIME_MIN" ]]; then
 			echo "server did not register after $DOCKER_UP_TIME_MIN min, abourting"
-			return
+			exit
 		fi
 	done
 	echo "$DOCK is back up! moving on"
