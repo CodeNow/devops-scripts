@@ -28,7 +28,7 @@ for DOCK in $DOCKS; do
 	# continue only if docker version is not this
 
 	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
-	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep dc9c28f | wc -l'`
+	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep 12a09a8 | wc -l'`
 	if [[ "$VERSION" -eq "2" ]]; then
 		echo "skiping $DOCK. at docker version=$VERSION"
 		continue
@@ -44,7 +44,7 @@ for DOCK in $DOCKS; do
 	# make sure we removed
 	if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
 		echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
-		exit 
+		return 
 	fi
 	echo "dock: $DOCK removed from redis"
 	echo $(date) " waiting for $WAIT_TIME_MIN min before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
@@ -53,10 +53,9 @@ for DOCK in $DOCKS; do
 		echo "$i out of $WAIT_TIME_MIN"
 		TDOCKS=$(getAttachedDocklets)
 		TNUM_DOCKS=`echo $TDOCKS | wc -w`
-		#exit if another box goes down
+		#return if another box goes down
 		if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
-			echo "some other docklet box went down!! abourting"
-			exit 
+			echo "some other docklet box went down!!" 
 		fi
 		sleep 60
 	done
@@ -79,7 +78,7 @@ for DOCK in $DOCKS; do
 	ssh ubuntu@docker-2-$BOX_NUM 'docker version'
 
 	echo "resetart pm2"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 restart'
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 restart all'
 
 	# 4. wait for box to come online
 	# wait untill box registers itself
@@ -91,7 +90,7 @@ for DOCK in $DOCKS; do
 		CNT=$((CNT + 1))
 		if [[ "$CNT" -eq "DOCKER_UP_TIME_MIN" ]]; then
 			echo "server did not register after $DOCKER_UP_TIME_MIN min, abourting"
-			exit
+			return
 		fi
 	done
 	echo "$DOCK is back up! moving on"
