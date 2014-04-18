@@ -52,8 +52,17 @@ Host bastion
 Host hipache
   HostName 54.215.162.220
 
-Host docker
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.217 22
+Host dock1
+  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.157 22
+
+Host dock2
+  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.168 22
+
+Host dock3
+  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.174 22
+
+Host dock4
+  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.173 22
 
 Host docker-2-234
   ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.234 22
@@ -75,9 +84,6 @@ Host docker-2-31
 
 Host docker-2-210
   ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.210 22
-
-Host docker-2-215
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.215 22
 
 Host docker-2-78
   ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.78 22
