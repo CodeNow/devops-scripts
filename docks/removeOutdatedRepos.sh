@@ -24,17 +24,6 @@ echo "attached docklets: $DOCKS, num = $NUM_DOCKS"
 CUR_NUM_DOCKS=$NUM_DOCKS
 NUM_DOCKS_REDIS=$NUM_DOCKS
 for DOCK in $DOCKS; do
-
-  # continue only if docker version is not this
-
-  BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
-  VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep 12a09a8 | wc -l'`
-  if [[ "$VERSION" -eq "2" ]]; then
-    echo "skiping $DOCK. at docker version=$VERSION"
-    continue
-  fi
-  echo "have to restart $DOCK. at docker version @ $VERSION"
-
   # 1. remove from redis
   echo "removing $DOCK from redis, you have 5 seconds to quit"
   sleep 5
@@ -45,6 +34,7 @@ for DOCK in $DOCKS; do
   if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
     echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
     return
+    exit
   fi
   echo "dock: $DOCK removed from redis"
   echo $(date) " waiting for $WAIT_TIME_MIN min before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
@@ -55,29 +45,19 @@ for DOCK in $DOCKS; do
     TNUM_DOCKS=`echo $TDOCKS | wc -w`
     #return if another box goes down
     if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
-      echo "some other docklet box went down!!"
+      echo "some dock was delisted!!"
     fi
     sleep 60
   done
 
   # 3. ssh into box and update docker
   echo "killing pm2"
-  ssh ubuntu@docker-2-$BOX_NUM 'pm2 kill'
+  ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 kill'
   echo "killing current containers"
   ssh ubuntu@docker-2-$BOX_NUM 'docker kill `docker ps -q`'
-
-  echo "stopping docker"
-  ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker stop'
   echo "updating repos"
   ssh ubuntu@docker-2-$BOX_NUM 'cd /home/ubuntu/docklet && sudo NODE_ENV=production node scripts/removeOutdatedRepos.js'
   sleep 10
-  echo "starting docker"
-  ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker start'
-
-
-  echo "waiting for docker to load"
-  ssh ubuntu@docker-2-$BOX_NUM 'docker ps'
-  ssh ubuntu@docker-2-$BOX_NUM 'docker version'
 
   echo "starting pm2"
   ssh ubuntu@docker-2-$BOX_NUM '/home/ubuntu/devops-scripts/docks/startDockletAndBouncer.sh production'
