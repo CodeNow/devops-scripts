@@ -1,9 +1,9 @@
 // migrate docklet ip of containers form one IP to another 
 var redis = require('redis').createClient("6379", "localhost");
 var count = 0;
-var key_count = 0;
-var NEW_DOCK_IP = "10.0.2.000";
-var OLD_DOCK_IP = "10.0.2.140";
+var keyCount = 0;
+var newDockIp = "10.0.2.000";
+var oldDockIp = "10.0.2.140";
 
 function getSessionsKeys() {
   redis.keys("harbourmasterSession:*", function (err, keys) {
@@ -16,13 +16,13 @@ function getSessionsKeys() {
 }
 
 function gotKeys(keys) {
-  key_count = keys.length;
+  keyCount = keys.length;
   keys.forEach(function (key, i) {
-    redis.hgetall(key, gotSession(key));
+    redis.hgetall(key, gotKey(key));
   });
 }
 
-function gotSession(key) {
+function gotKey(key) {
   return function (err, data) {
     count++;
     if (err) {
@@ -30,12 +30,12 @@ function gotSession(key) {
     } else if (data === null) {
       console.error('error: Session not found ' + err);
     } else {
-      if (data.docklet === OLD_DOCK_IP) {
+      if (data.docklet === oldDockIp) {
         console.log("updating: "+key);
-        redis.HMSET(key, "docklet", NEW_DOCK_IP);
+        redis.HMSET(key, "docklet", newDockIp);
       }
     }
-    if(count === key_count) {
+    if(count === keyCount) {
       redis.quit();
     }
   };
