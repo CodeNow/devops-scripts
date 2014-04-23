@@ -1,0 +1,4 @@
+git pull && ./removeLostContainers.js >> goodContainers
+#git add goodContainers
+#git commit -m "update goodContainers"
+#git push origin master
