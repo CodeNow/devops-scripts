@@ -43,7 +43,7 @@ for DOCK in $DOCKS; do
     echo "$i out of $WAIT_TIME_MIN"
     TDOCKS=$(getAttachedDocklets)
     TNUM_DOCKS=`echo $TDOCKS | wc -w`
-    #return if another box goes down
+    #notify if another box goes down
     if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
       echo "some dock was delisted!!"
     fi
