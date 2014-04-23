@@ -4,7 +4,7 @@ NUM_RM=0
 for CONT in `ls /var/lib/docker/containers`; do
   CUR_CNT=$((CUR_CNT+1))
   echo "processing $CUR_CNT out of $TOTAL_NUM_CONT"
-  COUNT=$(grep $CONT ./goodContaienrs | wc -l)
+  COUNT=$(grep $CONT ./goodContainers | wc -l)
   if [[ "$COUNT" -eq "0" ]]; then
     NUM_RM=$((NUM_RM+1))
     docker rm $CONT
