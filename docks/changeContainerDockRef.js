@@ -32,7 +32,6 @@ function gotSession(key) {
     } else {
       if (data.docklet === OLD_DOCK_IP) {
         console.log("updating: "+key);
-        console.dir(data);
         redis.HMSET(key, "docklet", NEW_DOCK_IP);
       }
     }
