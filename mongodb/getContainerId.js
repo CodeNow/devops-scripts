@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 
-var getServicetokens = function(cb) { 
-  MongoClient.connect('mongodb://10.0.1.47:27017/runnable2', function(err, db) {
+var getServicesToken = function(host, cb) { 
+  MongoClient.connect(host, function(err, db) {
     if(err) {
       console.error("err"+err);
       cb(err);
@@ -10,7 +10,6 @@ var getServicetokens = function(cb) {
     var collection = db.collection('containers');
     // Locate all the entries using find
     collection.find({},{_id:0,servicesToken:1}).toArray(function(err, results) {
-      // console.dir(results);
       // Let's close the db
       db.close();
       cb(err, results);
@@ -18,4 +17,4 @@ var getServicetokens = function(cb) {
   });
 };
 
-module.exports.getServicetokens = getServicetokens;
+module.exports.getServicesToken = getServicesToken;
