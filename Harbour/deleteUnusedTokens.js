@@ -29,7 +29,12 @@ function gotKeys(err, keys) {
         multi.del(key);
     }
   });
-  multi.end(function (err) {
+  multi.exec(function (err, replies) {
+    if(err) {
+      console.dir(err);
+      return;
+    }
+    console.log("finshed. num replies: "+replies.length);
     redis.quit();
   });
 }
