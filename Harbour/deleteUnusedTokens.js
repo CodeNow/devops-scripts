@@ -20,10 +20,13 @@ function gotKeys(err, keys) {
     console.dir(err);
     return;
   }
+  var multi = redis.multi();
   keys.forEach(function (key, i) {
     if (mongoServicesTokens.indexOf(key) <= -1) {
-        redis.del(key);
+        multi.del(key);
     }
   });
-  redis.quit();
+  multi.end(function (err) {
+    redis.quit();
+  });
 }
