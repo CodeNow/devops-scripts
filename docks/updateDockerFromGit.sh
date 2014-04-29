@@ -1,5 +1,5 @@
 #!/bin/bash
-WAIT_TIME_MIN=5 # time to wait after we take out of redis to restart
+WAIT_TIME_MIN=10 # time to wait after we take out of redis to restart
 DOCKER_UP_TIME_MIN=60 #how log to wait for box to register in redis
 alias getAttachedDocklets="ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
 
@@ -11,38 +11,38 @@ function rmAttachedDocklet #docklet
 
 function isDockeletInRedis 
 {
-	RE=`ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep $1`
+	RE=`ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep '$1'`
 	echo $RE
 }
 
 #first get list of docklets
-DOCKLET_LIST=$(getAttachedDocklets)
+DOCKS=(dock1 dock2 dock3 dock4 dock5 dock6 dock7 dock8 dock9 dock10 dock11 dock12)
 
-DOCKS=$(getAttachedDocklets)
-NUM_DOCKS=`echo $DOCKS | wc -w`
+NUM_DOCKS=`echo ${DOCKS[*]} | wc -w`
 echo "attached docklets: $DOCKS, num = $NUM_DOCKS"
 CUR_NUM_DOCKS=$NUM_DOCKS
 NUM_DOCKS_REDIS=$NUM_DOCKS
-for DOCK in $DOCKS; do
+for DOCK in ${DOCKS[*]}; do
 
 	# continue only if docker version is not this
-
-	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
-	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep 12a09a8 | wc -l'`
+	BOX_IP=$(ssh ubuntu@$DOCK 'hostname' | sed s/ip-// | sed s/-/./g)
+	REDIS_NAME=`echo http://$BOX_IP:4244`
+	VERSION=`ssh ubuntu@$DOCK 'docker -H=127.0.0.1:4242 version | grep 1dc4c07 | wc -l'`
 	if [[ "$VERSION" -eq "2" ]]; then
 		echo "skiping $DOCK. at docker version=$VERSION"
 		continue
 	fi
+
 	echo "have to restart $DOCK. at docker version @ $VERSION"
 
 	# 1. remove from redis
 	echo "removing $DOCK from redis, you have 5 seconds to quit"
 	sleep 5
-	rmAttachedDocklet $DOCK
+	rmAttachedDocklet $REDIS_NAME
 	DOCKS_REDIS=$(getAttachedDocklets)
 	NUM_DOCKS_REDIS=`echo $DOCKS_REDIS | wc -w`
 	# make sure we removed
-	if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
+	if [[ "$(isDockeletInRedis $REDIS_NAME)" -eq "1"  ]]; then
 		echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
 		return 
 	fi
@@ -62,29 +62,29 @@ for DOCK in $DOCKS; do
 
 	# 3. ssh into box and update docker
 	echo "killing current containers"
-	ssh ubuntu@docker-2-$BOX_NUM 'docker kill `docker ps -q`'
+	ssh ubuntu@$DOCK 'docker -H=127.0.0.1:4242 kill `docker -H=127.0.0.1:4242 ps -q`'
 	
 	echo "stoping docker"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker stop'
+	ssh ubuntu@$DOCK 'sudo service docker stop'
 	echo "installing docker"
-	ssh ubuntu@docker-2-$BOX_NUM 'cd dockworker && git pull'
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo cp /home/ubuntu/dockworker/bin/docker010 $(which docker)'
+	ssh ubuntu@$DOCK 'cd dockworker && git pull'
+	ssh ubuntu@$DOCK 'sudo cp /home/ubuntu/dockworker/bin/docker010_rw_restart $(which docker)'
 	sleep 10
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker start'
+	ssh ubuntu@$DOCK 'sudo service docker start'
 
 
 	echo "waiting for docker to load"
-	ssh ubuntu@docker-2-$BOX_NUM 'docker ps'
-	ssh ubuntu@docker-2-$BOX_NUM 'docker version'
+	ssh ubuntu@$DOCK 'docker -H=127.0.0.1:4242 ps'
+	ssh ubuntu@$DOCK 'docker -H=127.0.0.1:4242 version'
 
 	echo "resetart pm2"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo pm2 restart all'
+	ssh ubuntu@$DOCK 'sudo pm2 restart all'
 
 	# 4. wait for box to come online
 	# wait untill box registers itself
 	echo "wait untill box comes back online"
 	CNT=0
-	while [[ "$(isDockeletInRedis $DOCK)" -ne "1" ]]; do
+	while [[ "$(isDockeletInRedis '$REDIS_NAME')" -ne "1" ]]; do
 		echo "$CNT out of $DOCKER_UP_TIME_MIN"
 		sleep 60
 		CNT=$((CNT + 1))
