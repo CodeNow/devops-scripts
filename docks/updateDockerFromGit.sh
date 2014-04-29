@@ -16,7 +16,7 @@ function isDockeletInRedis
 }
 
 #first get list of docklets
-DOCKS=(dock1 dock2 dock3 dock4 dock5 dock6 dock7 dock8 dock9 dock10 dock11 dock12)
+DOCKS=(prod-dock1 prod-dock2 prod-dock3 prod-dock4 prod-dock5 prod-dock6 prod-dock7 prod-dock8 prod-dock9 prod-dock10 prod-dock11 prod-dock12)
 
 NUM_DOCKS=`echo ${DOCKS[*]} | wc -w`
 echo "attached docklets: $DOCKS, num = $NUM_DOCKS"
