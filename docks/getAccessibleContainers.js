@@ -1,7 +1,8 @@
 // remove orphen containers
 var tokens = require('../mongodb/getContainerId.js');
 var redis = require('redis').createClient("6379", "localhost");
-tokens.getServicetokens(gotTokens);
+var mongoHost = 'mongodb://10.0.1.47:27017/runnable2';
+tokens.getServicesToken(mongoHost, gotTokens);
 
 var count = 0;
 var tcount = 0;
