@@ -85,50 +85,50 @@ Host prod-hipache
   HostName 54.215.162.220
 
 Host prod-dock1
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.157 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.10 22
 Host prod-dock2
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.168 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.20 22
 Host prod-dock3
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.174 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.30 22
 Host prod-dock4
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.40 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.40 22
 Host prod-dock5
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.148 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.50 22
 Host prod-dock6
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.4 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.60 22
 Host prod-dock7
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.32 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.70 22
 Host prod-dock8
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.188 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.80 22
 Host prod-dock9
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.7 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.90 22
 Host prod-dock10
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.88 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.100 22
 Host prod-dock11
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.18 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.110 22
 Host prod-dock12
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.101 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.120 22
 
 Host prod-mongodb
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.47 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.47 22
 
 Host prod-redis
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.20 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.20 22
 
 Host prod-web
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.42 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.42 22
 
 Host prod-api
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.54 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.54 22
 
 Host prod-harbour
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.243 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.243 22
 
 Host prod-Lebowski
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.2.55 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.2.55 22
 
 Host prod-frontdoor
-  ProxyCommand ssh -q ubuntu@bastion nc 10.0.1.153 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.153 22
 
 ################################################################################
 # other
