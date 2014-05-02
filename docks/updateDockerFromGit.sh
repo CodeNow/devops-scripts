@@ -1,17 +1,17 @@
 #!/bin/bash
 WAIT_TIME_MIN=10 # time to wait after we take out of redis to restart
 DOCKER_UP_TIME_MIN=60 #how log to wait for box to register in redis
-alias getAttachedDocklets="ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
+alias getAttachedDocklets="ssh ubuntu@prod-redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
 
 
 function rmAttachedDocklet #docklet
 {
-	ssh ubuntu@redis "redis-cli -h 10.0.1.20 lrem frontend:docklet.runnable.com 1 $1"
+	ssh ubuntu@prod-redis "redis-cli -h 10.0.1.20 lrem frontend:docklet.runnable.com 1 $1"
 }
 
 function isDockeletInRedis 
 {
-	RE=`ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep '$1'`
+	RE=`ssh ubuntu@prod-redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -m 1 "$1" | wc -l`
 	echo $RE
 }
 
@@ -84,7 +84,7 @@ for DOCK in ${DOCKS[*]}; do
 	# wait untill box registers itself
 	echo "wait untill box comes back online"
 	CNT=0
-	while [[ "$(isDockeletInRedis '$REDIS_NAME')" -ne "1" ]]; do
+	while [[ "$(isDockeletInRedis $REDIS_NAME)" -ne "1" ]]; do
 		echo "$CNT out of $DOCKER_UP_TIME_MIN"
 		sleep 60
 		CNT=$((CNT + 1))
