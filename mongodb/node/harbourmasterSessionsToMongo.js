@@ -1,24 +1,27 @@
 var async = require('async');
-var domain = 'runnable.pw';
+var domain;
 
 var redisInfo;
 if (process.env.NODE_ENV === 'integration') {
-redisInfo = {
-  "ipaddress": "10.0.1.191",
-  "port": "6379"
-};
+  domain = 'cloudcosmos.com';
+  redisInfo = {
+    "ipaddress": "10.0.1.191",
+    "port": "6379"
+  };
 }
 if (process.env.NODE_ENV === 'staging') {
-redisInfo = {
-  "ipaddress": "10.0.1.9", // harbourmaster!!
-  "port": "6379"
-};
+  domain = 'runnable.pw';
+  redisInfo = {
+    "ipaddress": "10.0.1.9", // harbourmaster!!
+    "port": "6379"
+  };
 }
 if (process.env.NODE_ENV === 'production') {
-redisInfo = {
-  "ipaddress": "10.0.1.243", // harbourmaster!!
-  "port": "6379"
-};
+  domain = 'runnable.com';
+  redisInfo = {
+    "ipaddress": "10.0.1.243", // harbourmaster!!
+    "port": "6379"
+  };
 }
 
 // DATABASES
