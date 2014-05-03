@@ -28,6 +28,7 @@
     "ws": "~0.4.31"
   },
   "dependencies": {
-    "mux-demux": "~3.7.8"
+    "mux-demux": "~3.7.8",
+    "mongojs": "~0.13.0"
   }
 }
