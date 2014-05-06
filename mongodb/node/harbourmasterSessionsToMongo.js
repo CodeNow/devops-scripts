@@ -42,6 +42,11 @@ var sessRedis = require('redis').createClient(sessRedisInfo.port, sessRedisInfo.
 var redis = require('redis').createClient(redisInfo.port, redisInfo.ipaddress);
 console.log('sessions redis');
 
+if (DRYRUN) {
+  console.log('DRYRUN!!');
+  console.log('DRYRUN!!');
+  console.log('DRYRUN!!');
+}
 
 async.waterfall([
   containers.find.bind(containers, {}, {servicesToken:1}),
@@ -79,9 +84,15 @@ function setHostAndContainerInfo (container, cb) {
     if (err) {
       if (err.deleteContainerAndContinue) {
         console.error(err.message);
-        container.remove({ servicesToken: servicesToken }, function (err) {
-          cb(err, null);
-        });
+        console.log('delete container', container._id);
+        if (dryrun) {
+          cb(null, null);
+        }
+        else {
+          container.remove({ servicesToken: servicesToken }, function (err) {
+            cb(err, null);
+          });
+        }
       }
       else {
         cb(err);
