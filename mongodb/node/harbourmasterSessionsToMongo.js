@@ -4,6 +4,7 @@
 
 var async = require('async');
 var hex64 = require('hex64');
+var dryrun = process.env.DRYRUN;
 var sessRedisInfo = {
   "ipaddress": "127.0.0.1", // harbourmaster!!
   "port": "6379"
@@ -60,25 +61,39 @@ function setHostAndContainerInfo (container, cb) {
   ], cb);
 
   function updateContainer (data, cb) {
+    var err;
     if (!data.ports) {
-      cb(new Error(container._id+' missing ports'));
+      err = new Error(container._id+' missing ports');
+      err.deleteContainerAndContinue = true;
     }
     else if (!data.session) {
-      cb(new Error(container._id+' missing session'));
+      err = new Error(container._id+' missing session');
+      err.deleteContainerAndContinue = true;
     }
     else if (!data.session.docklet) {
-      cb(new Error(container._id+' missing dockIp'));
+      err = new Error(container._id+' missing dockIp');
     }
     else if (!data.session.containerId) {
-      cb(new Error(container._id+' missing containerId'));
+      err = new Error(container._id+' missing containerId');
+    }
+    if (err) {
+      if (err.deleteContainerAndContinue) {
+        console.error(err.message);
+        container.remove({ servicesToken: servicesToken }, function (err) {
+          cb(err, null);
+        });
+      }
+      else {
+        cb(err);
+      }
     }
     else {
       // parse ports string to json!
       try {
         data.ports = JSON.parse(data.ports);
       }
-      catch (err) {
-        return cb(err);
+      catch (error) {
+        return cb(error);
       }
       // update mongo
       var session = data.session;
@@ -89,12 +104,17 @@ function setHostAndContainerInfo (container, cb) {
         webPort: ports.webPort,
         servicesPort: ports.servicesPort
       };
-      data.container = container;
-      containers.update({ _id: container._id }, {
-        $set: $set
-      }, function (err, numDocs) {
-        cb(err, data); // pass through data
-      });
+      if (dryrun) {
+        console.log('\n', container._id, $set, '\n');
+        cb(null, data);
+      }
+      else {
+        containers.update({ _id: container._id }, {
+          $set: $set
+        }, function (err, numDocs) {
+          cb(err, data); // pass through data
+        });
+      }
     }
   }
 }
@@ -103,8 +123,8 @@ function updateFrontdoorStartUrl (container) {
   var servicesToken = container.servicesToken;
   var hipacheKey = getHipacheKey(container);
   return function (data, cb) {
+    if (!data || dryrun) { return cb(); }
     data.ports.startUrl = containerStartUrl(container);
-    // cb();
     redis.lset(hipacheKey, 0, JSON.stringify(data.ports), cb);
   };
 }
@@ -113,6 +133,8 @@ function getSessionAndPorts (container) {
   var servicesToken = container.servicesToken;
   var sessionKey = getSessionKey(container);
   var hipacheKey = getHipacheKey(container);
+  console.log('hipacheKey', hipacheKey);
+  console.log('sessionKey', sessionKey);
   return function (cb) {
     async.parallel({
       session: sessRedis.hgetall.bind(sessRedis, sessionKey),
@@ -138,6 +160,7 @@ function getSessionKey (container) {
   return 'harbourmasterSession:'+container.servicesToken;
 }
 function getHipacheKey (container) {
+  console.log('frontend:'+container.servicesToken+'.'+domain);
   return 'frontend:'+container.servicesToken+'.'+domain;
 }
 function containerStartUrl (container) {
