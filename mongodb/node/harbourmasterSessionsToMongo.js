@@ -42,7 +42,7 @@ var sessRedis = require('redis').createClient(sessRedisInfo.port, sessRedisInfo.
 var redis = require('redis').createClient(redisInfo.port, redisInfo.ipaddress);
 console.log('sessions redis');
 
-if (DRYRUN) {
+if (dryrun) {
   console.log('DRYRUN!!');
   console.log('DRYRUN!!');
   console.log('DRYRUN!!');
