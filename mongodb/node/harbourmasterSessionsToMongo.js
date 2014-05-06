@@ -67,7 +67,10 @@ function setHostAndContainerInfo (container, cb) {
 
   function updateContainer (data, cb) {
     var err;
-    if (!data.ports) {
+    if (!data) {
+      cb(null, null); // skip
+    }
+    else if (!data.ports) {
       err = new Error(container._id+' missing ports');
       err.deleteContainerAndContinue = true;
     }
@@ -134,16 +137,22 @@ function updateFrontdoorStartUrl (container) {
 
 function getSessionAndPorts (container) {
   var servicesToken = container.servicesToken;
-  var sessionKey = getSessionKey(container);
-  var hipacheKey = getHipacheKey(container);
-  console.log('hipacheKey', hipacheKey);
-  console.log('sessionKey', sessionKey);
-  return function (cb) {
-    async.parallel({
-      session: sessRedis.hgetall.bind(sessRedis, sessionKey),
-      ports  : redis.lindex.bind(redis, hipacheKey, 0)
-    }, cb);
-  };
+  if (!servicesToken) {
+    console.log('missing servicesToken!!');
+    cb(null, null); // skip missing services token
+  }
+  else {
+    var sessionKey = getSessionKey(container);
+    var hipacheKey = getHipacheKey(container);
+    console.log('hipacheKey', hipacheKey);
+    console.log('sessionKey', sessionKey);
+    return function (cb) {
+      async.parallel({
+        session: sessRedis.hgetall.bind(sessRedis, sessionKey),
+        ports  : redis.lindex.bind(redis, hipacheKey, 0)
+      }, cb);
+    };
+  }
 }
 
 function done (err) {
