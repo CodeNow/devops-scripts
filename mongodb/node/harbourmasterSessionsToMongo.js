@@ -71,18 +71,18 @@ function setHostAndContainerInfo (container, cb) {
       cb(null, null); // skip
     }
     else if (!data.ports) {
-      err = new Error(container._id+' missing ports');
+      err = new Error(container._id+' missing ports', container.servicesToken);
       err.deleteContainerAndContinue = true;
     }
     else if (!data.session) {
-      err = new Error(container._id+' missing session');
+      err = new Error(container._id+' missing session', container.servicesToken);
       err.deleteContainerAndContinue = true;
     }
     else if (!data.session.docklet) {
-      err = new Error(container._id+' missing dockIp');
+      err = new Error(container._id+' missing dockIp', container.servicesToken);
     }
     else if (!data.session.containerId) {
-      err = new Error(container._id+' missing containerId');
+      err = new Error(container._id+' missing containerId', container.servicesToken);
     }
     if (err) {
       if (err.deleteContainerAndContinue) {
