@@ -83,16 +83,8 @@ function setHostAndContainerInfo (container, cb) {
     }
     if (err) {
       if (err.deleteContainerAndContinue) {
-        console.error(err.message);
-        console.log('delete container', container._id);
-        if (dryrun) {
-          cb(null, null);
-        }
-        else {
-          container.remove({ servicesToken: servicesToken }, function (err) {
-            cb(err, null);
-          });
-        }
+        console.log('DELETE THIS CONTAINER', container._id, err.message);
+        cb(null, null);
       }
       else {
         cb(err);
