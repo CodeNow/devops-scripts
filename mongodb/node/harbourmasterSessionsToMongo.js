@@ -49,7 +49,7 @@ if (dryrun) {
 }
 
 async.waterfall([
-  containers.find.bind(containers, {}, {servicesToken:1}),
+  containers.find.bind(containers, {}, {servicesToken:1, webToken:1}),
   setEachHostAndContainerInfo
 ], done);
 
