@@ -70,8 +70,12 @@ function setHostAndContainerInfo (container, cb) {
     if (!data) {
       cb(null, null); // skip
     }
-    else if (!data.ports) {
-      err = new Error(container._id+' missing ports', container.servicesToken);
+    else if (!data.sessionPorts) {
+      err = new Error(container._id+' missing session ports', container.servicesToken);
+      err.deleteContainerAndContinue = true;
+    }
+    else if (!data.webPorts) {
+      err = new Error(container._id+' missing web ports', container.webToken);
       err.deleteContainerAndContinue = true;
     }
     else if (!data.session) {
@@ -96,14 +100,15 @@ function setHostAndContainerInfo (container, cb) {
     else {
       // parse ports string to json!
       try {
-        data.ports = JSON.parse(data.ports);
+        data.webPorts = JSON.parse(data.webPorts);
+        data.sessionPorts = JSON.parse(data.sessionPorts);
       }
       catch (error) {
         return cb(error);
       }
       // update mongo
       var session = data.session;
-      var ports = data.ports;
+      var ports = data.sessionPorts;
       var $set = {
         host: session.docklet,
         containerId: session.containerId,
@@ -127,11 +132,16 @@ function setHostAndContainerInfo (container, cb) {
 
 function updateFrontdoorStartUrl (container) {
   var servicesToken = container.servicesToken;
-  var hipacheKey = getHipacheKey(container);
+  var hipacheSessionKey = getSessionHipacheKey(container);
+  var hipacheWebKey = getWebHipacheKey(container);
   return function (data, cb) {
     if (!data || dryrun) { return cb(); }
-    data.ports.startUrl = containerStartUrl(container);
-    redis.lset(hipacheKey, 0, JSON.stringify(data.ports), cb);
+    data.sessionPorts.startUrl = containerStartUrl(container);
+    data.webPorts.startUrl = containerStartUrl(container);
+    redis.multi()
+      .lset(hipacheSessionKey, 0, JSON.stringify(data.sessionPorts))
+      .lset(hipacheWebKey, 0, JSON.stringify(data.webPorts))
+      .exec(cb);
   };
 }
 
@@ -143,13 +153,16 @@ function getSessionAndPorts (container) {
   }
   else {
     var sessionKey = getSessionKey(container);
-    var hipacheKey = getHipacheKey(container);
-    console.log('hipacheKey', hipacheKey);
+    var hipacheSessionKey = getSessionHipacheKey(container);
+    var hipacheWebKey = getWebHipacheKey(container);
+    console.log('hipacheSessionKey', hipacheSessionKey);
+    console.log('hipacheWebKey', hipacheWebKey);
     console.log('sessionKey', sessionKey);
     return function (cb) {
       async.parallel({
         session: sessRedis.hgetall.bind(sessRedis, sessionKey),
-        ports  : redis.lindex.bind(redis, hipacheKey, 0)
+        sessionPorts  : redis.lindex.bind(redis, hipacheSessionKey, 0),
+        webPorts  : redis.lindex.bind(redis, hipacheWebKey, 0)
       }, cb);
     };
   }
@@ -171,9 +184,13 @@ function done (err) {
 function getSessionKey (container) {
   return 'harbourmasterSession:'+container.servicesToken;
 }
-function getHipacheKey (container) {
+function getSessionHipacheKey (container) {
   console.log('frontend:'+container.servicesToken+'.'+domain);
   return 'frontend:'+container.servicesToken+'.'+domain;
+}
+function getWebHipacheKey (container) {
+  console.log('frontend:'+container.webToken+'.'+domain);
+  return 'frontend:'+container.webToken+'.'+domain;
 }
 function containerStartUrl (container) {
   return [
