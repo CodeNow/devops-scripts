@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 
 module.exports = function(cb) { 
-  MongoClient.connect('mongodb://10.0.1.47:27017/runnable2', function(err, db) {
+  MongoClient.connect('mongodb://10.0.1.34:27017/runnable2', function(err, db) {
     if(err) {
       console.error("err"+err);
       cb(err);
