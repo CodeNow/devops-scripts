@@ -8,7 +8,7 @@ var removalCnt = 0;
 var dry = false;
 // [{ "containerId" : "7b1e9782500c8e98df512e065ca19e25e3464b542a1917157b04ca776680970b" }, ...]
 var gotContainerIds = function (err, goodContainerIds)  {
-  console.log("num good containers: ", goodContainerIds.length, goodContainerIds);
+  console.log("num good containers: ", goodContainerIds.length);
   docker.listContainers({
     all: true
   }, function (err, containers) {
