@@ -5,10 +5,10 @@ var docker = new Docker({
   port: "4242"
 });
 var removalCnt = 0;
-var dry = true;
+var dry = false;
 // [{ "containerId" : "7b1e9782500c8e98df512e065ca19e25e3464b542a1917157b04ca776680970b" }, ...]
 var gotContainerIds = function (err, goodContainerIds)  {
-  console.log("num good containers: ", goodContainerIds.length);
+  console.log("num good containers: ", goodContainerIds.length, goodContainerIds);
   docker.listContainers({
     all: true
   }, function (err, containers) {
@@ -19,9 +19,9 @@ var gotContainerIds = function (err, goodContainerIds)  {
     containers.forEach(function (containerInfo) {
       if (!isInArray(containerInfo.Id, goodContainerIds)) {
         removalCnt++;
-        console.log("removing ", containerInfo.Id);
         if (!dry) {
-          docker.getContainer(containerInfo.Id).remove();
+          console.log("removing ", containerInfo.Id);
+          docker.getContainer(containerInfo.Id).remove(onRemoveError);
         }  
       }
     });
@@ -45,4 +45,10 @@ function isInArray(value, array) {
     }
   }
   return false;
+}
+
+function onRemoveError(err) {
+  if(err) {
+    console.log("removeerr: ", err);
+  }
 }
