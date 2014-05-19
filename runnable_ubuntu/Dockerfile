@@ -1,18 +1,30 @@
 #
-# api_repo_main Dockerfile
+# RUNNABLE_UBUNTU Dockerfile
 #
 #
 # Pull base image.
-FROM sandipsingh/api_repo_base
+FROM ubuntu:12.04
 RUN apt-get update 
-RUN eval $(ssh-agent) > /dev/null && ssh-add /.ssh/id_rsa
-# Download API-Server Repo
-RUN git clone git@github.com:CodeNow/api-server.git 
+RUN apt-get install -y build-essential wget make git
+RUN apt-get update 
+#ssh_key 
+RUN mkdir -p /.ssh
+RUN mkdir -p /root/.ssh
+ADD id_rsa /.ssh/id_rsa
+ADD id_rsa.pub /.ssh/id_rsa.pub
+RUN chmod 400 /.ssh/id_rsa 
+RUN chmod 400 /.ssh/id_rsa.pub
+ADD config /.ssh/config
+ADD known_hosts /root/.ssh/known_hosts
+RUN chmod 600 /root/.ssh/known_hosts
 
-WORKDIR api-server RUN npm install 
-WORKDIR api-server make 
-WORKDIR api-server npm build 
+# ssh-key add Permanently 
+RUN git clone https://github.com/wwalker/ssh-find-agent
+RUN echo "source /ssh-find-agent/ssh-find-agent.bash" >> /root/.bashrc
+RUN echo "set_ssh_agent_socket" >> /root/.bashrc
+RUN echo "ssh-add /.ssh/id_rsa" >> /root/.bashrc
+RUN chmod +x /ssh-find-agent/ssh-find-agent.bash
+RUN eval $(ssh-agent) > /dev/null && ssh-add /.ssh/id_rsa
 
 # Define default command.
-CMD ["NODE_ENV=staging pm2 start server.js -n API-Server", "pm2 logs"]
-
+# CMD ["git"]
