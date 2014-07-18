@@ -4,7 +4,7 @@ FROM ubuntu
 RUN apt-get update
 
 # Install software
-RUN apt-get install -y git
+RUN apt-get install -y build-essential wget make git
 
 # Make ssh dir
 RUN mkdir /root/.ssh/
