@@ -1,17 +1,17 @@
 #!/bin/bash
 WAIT_TIME_MIN=5 # time to wait after we take out of redis to restart
 DOCKER_UP_TIME_MIN=60 #how log to wait for box to register in redis
-alias getAttachedDocklets="ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
+alias getAttachedDocklets="ssh ubuntu@prod-redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep -v docklets"
 
 
 function rmAttachedDocklet #docklet
 {
-	ssh ubuntu@redis "redis-cli -h 10.0.1.20 lrem frontend:docklet.runnable.com 1 $1"
+	ssh ubuntu@prod-redis "redis-cli -h 10.0.1.20 lrem frontend:docklet.runnable.com 1 $1"
 }
 
-function isDockeletInRedis 
+function isDockeletInRedis
 {
-	RE=`ssh ubuntu@redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep $1`
+	RE=`ssh ubuntu@prod-redis 'redis-cli -h 10.0.1.20 lrange frontend:docklet.runnable.com 0 -1' | grep $1`
 	echo $RE
 }
 
@@ -28,7 +28,7 @@ for DOCK in $DOCKS; do
 	# continue only if docker version is not this
 
 	BOX_NUM=$(echo $DOCK | awk -F "." '{print $4}' | sed s/:.*//)
-	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep dc9c28f | wc -l'`
+	VERSION=`ssh ubuntu@docker-2-$BOX_NUM 'docker version | grep 63fe64c | wc -l'`
 	if [[ "$VERSION" -eq "2" ]]; then
 		echo "skiping $DOCK. at docker version=$VERSION"
 		continue
@@ -44,7 +44,6 @@ for DOCK in $DOCKS; do
 	# make sure we removed
 	if [[ "$(isDockeletInRedis $DOCK)" -eq "1"  ]]; then
 		echo "error removing from redis! abourting num_docks-1=$((NUM_DOCKS-1)) in redis = $NUM_DOCKS_REDIS"
-		exit 
 	fi
 	echo "dock: $DOCK removed from redis"
 	echo $(date) " waiting for $WAIT_TIME_MIN min before restarting $DOCK. num docks in redis: $NUM_DOCKS_REDIS"
@@ -53,10 +52,8 @@ for DOCK in $DOCKS; do
 		echo "$i out of $WAIT_TIME_MIN"
 		TDOCKS=$(getAttachedDocklets)
 		TNUM_DOCKS=`echo $TDOCKS | wc -w`
-		#exit if another box goes down
 		if [[ "$TNUM_DOCKS" -ne "$NUM_DOCKS_REDIS" ]]; then
 			echo "some other docklet box went down!! abourting"
-			exit 
 		fi
 		sleep 60
 	done
@@ -67,14 +64,11 @@ for DOCK in $DOCKS; do
 
 	echo "killing current containers"
 	ssh ubuntu@docker-2-$BOX_NUM 'docker kill `docker ps -q`'
-	
+
 	echo "stoping docker"
 	ssh ubuntu@docker-2-$BOX_NUM 'sudo service docker stop'
 	echo "installing docker"
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9'
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"'
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-get update'
-	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-get install lxc-docker'
+	ssh ubuntu@docker-2-$BOX_NUM 'sudo apt-get install lxc-docker -y'
 
 	sleep 10
 
@@ -95,7 +89,6 @@ for DOCK in $DOCKS; do
 		CNT=$((CNT + 1))
 		if [[ "$CNT" -eq "DOCKER_UP_TIME_MIN" ]]; then
 			echo "server did not register after $DOCKER_UP_TIME_MIN min, abourting"
-			exit
 		fi
 	done
 	echo "$DOCK is back up! moving on"
