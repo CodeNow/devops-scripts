@@ -1,0 +1,19 @@
+---
+# kill current container then start
+- shell: docker ps | grep "{{container_image}}" | awk '{print $1}'
+  register: old_containers_ids
+
+# get latest images
+- command: docker pull "{{container_image}}"
+
+# get id of new image
+- shell: docker images --no-trunc | grep {{container_image}}.*{{container_tag}} | awk '{print $3}'
+  register: new_image_id
+
+# if there are other containres on system other then on we want kill them
+- script: normalize.sh {{new_image_id.stdout}} {{container_image}}
+  register: kill_out
+
+- name: start container
+  command: docker run {{container_run_cmd}}
+  when: kill_out.stdout.find('kill') != -1 or old_containers_ids.stdout == ""

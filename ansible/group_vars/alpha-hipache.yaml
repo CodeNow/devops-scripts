@@ -1,0 +1,5 @@
+container_image: hipache
+container_tag: "latest"
+container_run_cmd: "-d -e NODE_ENV=production -v /hipache-conf/:/host:rw -p 80:80 hipache /usr/local/bin/hipache --config /host/config.json"
+deploy_host: "alpha-hipache"
+stop_time: 5

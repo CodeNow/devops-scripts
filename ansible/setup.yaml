@@ -1,0 +1,4 @@
+---
+- hosts: '{{ host }}'
+  roles:
+    - { role: base, when: "ansible_distribution == 'CentOS'" }

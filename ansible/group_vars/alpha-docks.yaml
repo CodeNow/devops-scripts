@@ -1,0 +1,3 @@
+# for redis
+redis_host: "10.0.1.79"
+replace_key: "dockerHosts"

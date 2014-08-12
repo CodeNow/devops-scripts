@@ -1,0 +1,10 @@
+---
+- hosts: registry
+  vars_files:
+    - "group_vars/alpha-registry.yaml"
+  roles:
+  - { role: base, tags: "setup" }
+  - { role: docker, tags: "setup" }
+  - { role: registry, tags: "deploy" }
+  - { role: container_kill_start, container_image: "redis", container_run_cmd: "{{container_run_cmd_1}}", tags: "deploy" }
+  - { role: container_kill_start, container_image: "registry", container_run_cmd: "{{container_run_cmd_2}}", tags: "deploy" }

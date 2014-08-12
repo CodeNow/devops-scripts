@@ -1,0 +1,14 @@
+container_image: registry.runnable.com/runnableio/web_main
+container_tag: "v1"
+container_envs: "-e NODE_ENV=production -e PORT=3000"
+container_run_cmd: "-d -P {{container_envs}} {{container_image}}:{{container_tag}}"
+deploy_host: "alpha-web"
+num_containers: 1
+stop_time: 5
+name: "web"
+
+dockerfile: "/Users/anand/run/runnable-angular/docker-files/main/Dockerfile"
+# for redis
+redis_host: "10.0.1.79"
+is_redis_update_required: 'yes'
+replace_key: "frontend:runnable.io"

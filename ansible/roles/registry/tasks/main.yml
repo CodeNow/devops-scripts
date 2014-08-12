@@ -1,0 +1,4 @@
+---
+- file: path=/registry-conf/ state=directory
+- name: copy configs
+  copy: src=config.yml dest=/registry-conf/

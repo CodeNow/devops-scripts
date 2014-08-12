@@ -1,0 +1,5 @@
+container_image: redis
+container_tag: "latest"
+container_run_cmd: "-d --name redis -p 6379:6379 redis"
+deploy_host: "alpha-redis"
+stop_time: 5

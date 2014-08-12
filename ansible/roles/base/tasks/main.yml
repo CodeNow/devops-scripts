@@ -1,0 +1,13 @@
+---
+- name: upgrade all packages
+  yum: name=* state=present
+  tags: update
+
+- name: install epel
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+
+- name: install remi
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
+
+- name: install libselinux-python
+  yum: name=libselinux-python state=present

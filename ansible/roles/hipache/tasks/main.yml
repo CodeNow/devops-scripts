@@ -1,0 +1,4 @@
+---
+- file: path=/hipache-conf/ state=directory
+- name: copy configs
+  copy: src=config.json dest=/hipache-conf/

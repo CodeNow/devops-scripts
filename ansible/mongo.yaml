@@ -1,0 +1,8 @@
+---
+- hosts: mongodb
+  vars_files:
+    - "group_vars/alpha-mongo.yaml"
+  roles:
+  - { role: base, tags: "setup" }
+  - { role: docker, tags: "setup" }
+  - { role: container_kill_start, tags: "deploy" }

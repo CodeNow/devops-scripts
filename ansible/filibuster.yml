@@ -1,0 +1,5 @@
+---
+- hosts: docks
+  roles:
+  - { role: base, tags: "setup" }
+  - { role: filibuster, tags: "deploy" }

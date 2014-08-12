@@ -1,0 +1,10 @@
+---
+# tasks file for docker-centos
+
+- name: Install Docker on CentOS
+  yum: name={{ item.package }}
+       state=latest
+  with_items: docker_centos_package
+  notify:
+   - start docker
+  when: ansible_os_family == 'RedHat' and ansible_distribution == 'CentOS' and ansible_distribution_major_version == '6.5'

@@ -1,0 +1,9 @@
+---
+# commands to build an image
+- file: path=/dockerBuild/ state=directory
+- name: copy dockerfile
+  copy: src="{{ dockerfile }}" dest=/dockerBuild/
+- command: docker build --no-cache --tag="{{container_image}}" /dockerBuild
+- command: docker push {{container_image}}
+- command: docker tag "{{container_image}}" "{{container_image}}":"{{container_tag}}"
+- command: docker push {{container_image}}

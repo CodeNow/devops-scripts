@@ -1,0 +1,10 @@
+---
+- hosts: web
+  vars_files:
+    - "group_vars/alpha-web.yaml"
+  roles:
+  - { role: base, tags: "setup" }
+  - { role: docker, tags: "setup" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: builder, tags: "build" }
+  - { role: containerStart, tags: "deploy" }

@@ -1,0 +1,23 @@
+---
+- name: copy config file
+  copy: src=filibuster dest=/etc/init.d/filibuster
+
+- name: install node
+  yum: name=nodejs state=present
+
+- name: install npm
+  yum: name=npm state=present
+
+- file: path=/root/Filibuster/ state=directory
+
+- git: repo=git@github.com:Runnable/Filibuster.git
+   dest=/root/Filibuster
+   version=master
+   update=yes
+
+# npm install
+- npm: path=/root/Filibuster
+
+- name: start filibuster service
+  service: name=filibuster state=restarted
+

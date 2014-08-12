@@ -1,0 +1,9 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-krain.yaml"
+  roles:
+  - { role: base, tags: "setup" }
+  - { role: docker, tags: "setup" }
+  - { role: builder, tags: "build" }
+  - { role: container_kill_start, tags: "deploy" }

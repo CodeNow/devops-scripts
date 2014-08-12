@@ -1,0 +1,24 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-docks.yaml"
+  tasks:
+  #check if dockhost already in redis
+  - command: docker run --rm redis redis-cli -h {{redis_host}} lrange {{replace_key}} 0 -1
+    register: key_length
+
+  # create key if not exist
+  - command: docker run --rm redis redis-cli -h {{redis_host}} rpush {{replace_key}} http://{{ansible_default_ipv4.address}}:4242
+    when: key_length.stdout.find("{{ansible_default_ipv4.address}}") == -1
+
+  # check keys
+  - command: docker run --rm redis redis-cli -h {{redis_host}} hlen http://{{ansible_default_ipv4.address}}:4242
+    register: key_length
+  - debug: var=key_length
+
+  # create key if not exist
+  - command: docker run --rm redis redis-cli -h {{redis_host}} hmset http://{{ansible_default_ipv4.address}}:4242 numContainers, 0, numBuilds, 0, host, http://{{ansible_default_ipv4.address}}:4242
+    when: key_length.stdout == "0"
+
+- include: krain.yaml
+- include: filibuster.yml
