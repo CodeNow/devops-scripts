@@ -125,7 +125,7 @@ Host prod-redis
   ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.20 22
 
 Host prod-web
-  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.4 22
+  ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.42 22
 
 Host prod-api
   ProxyCommand ssh -q ubuntu@prod-bastion nc 10.0.1.54 22
