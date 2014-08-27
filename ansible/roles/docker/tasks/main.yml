@@ -2,9 +2,25 @@
 # tasks file for docker-centos
 
 - name: Install Docker on CentOS
-  yum: name={{ item.package }}
+  when: ansible_distribution == 'CentOS'
+  tags: ["docker"]
+  yum: name=docker-io
        state=latest
-  with_items: docker_centos_package
   notify:
    - start docker
-  when: ansible_os_family == 'RedHat' and ansible_distribution == 'CentOS' and ansible_distribution_major_version == '6.5'
+
+- name: Install Docker on Ubuntu
+  shell: curl -sSL https://get.docker.io/ubuntu/ | sudo sh
+  tags: ["docker"]
+  when: ansible_distribution == 'Ubuntu'
+  notify:
+    - start docker
+
+- name: copy docker config file
+  when: "ansible_distribution == 'Ubuntu'"
+  sudo: yes
+  copy:
+    src=docker-defaults
+    dest=/etc/default/docker
+  notify:
+    - restart docker

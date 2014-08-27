@@ -1,23 +1,23 @@
 ---
 # get current running containers
-- shell: docker ps | grep "{{container_image}}" | awk '{print $1}'
+- shell: sudo docker ps | grep "{{container_image}}" | awk '{print $1}'
   register: old_containers_ids
 
 - name: get latest images
-  command: docker pull "{{container_image}}"
+  command: sudo docker pull "{{container_image}}"
 
 - name: get id of latest image
-  shell: docker images --no-trunc | grep {{container_image}}.*{{container_tag}} | awk '{print $3}'
+  shell: sudo docker images --no-trunc | grep {{container_image}}.*{{container_tag}} | awk '{print $3}'
   register: new_image_id
 
 # ASSUME ONLY 1 KIND OF CONTAINER CAN RUN
 - name: get current running container image id
-  shell: docker inspect {{old_containers_ids.stdout_lines[0]}} | grep Image | grep -v {{container_image}} | awk -F '"' '{print $4}'
+  shell: sudo docker inspect {{old_containers_ids.stdout_lines[0]}} | grep Image | grep -v {{container_image}} | awk -F '"' '{print $4}'
   register: running_container_image_id
   when: old_containers_ids.stdout_lines[0] is defined
 
 - name: start container
-  command: docker run {{container_run_cmd}}
+  command: sudo docker run {{container_run_cmd}}
   when: old_containers_ids.stdout_lines[0] is not defined or running_container_image_id.stdout != new_image_id.stdout
   register: new_container_id
   notify:

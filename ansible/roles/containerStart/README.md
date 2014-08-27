@@ -1,7 +1,7 @@
 Role Name
 ========
 
-Ansible Role to Install base deps
+Ansible Role to Install base_centos deps
 
 Author Information
 ------------------

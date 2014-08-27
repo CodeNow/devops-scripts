@@ -1,8 +1,8 @@
 ---
 - name: check keys
-  command: docker run --rm redis redis-cli -h {{redis_host}} LLEN {{replace_key}}
+  command: sudo docker run --rm redis redis-cli -h {{redis_host}} LLEN {{replace_key}}
   register: key_length
 
 - name: create key if not exist
-  command: docker run --rm redis redis-cli -h {{redis_host}} RPUSH {{replace_key}} {{name}} {{name}}
+  command: sudo docker run --rm redis redis-cli -h {{redis_host}} RPUSH {{replace_key}} {{name}} {{name}}
   when: key_length.stdout == "0"

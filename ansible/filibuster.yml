@@ -1,5 +1,6 @@
 ---
 - hosts: docks
+  vars_files:
+    - "group_vars/alpha-filibuster.yaml"
   roles:
-  - { role: base, tags: "setup" }
-  - { role: filibuster, tags: "deploy" }
+  - { role: git_node_service, tags: "deploy" }

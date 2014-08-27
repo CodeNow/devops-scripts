@@ -1,5 +1,0 @@
----
-# vars file for docker-centos
-
-docker_centos_packages:
- - { package: "docker" }
