@@ -1,0 +1,4 @@
+---
+node_env: default
+app_name: "filibuster"
+app_repo: "git@github.com:Runnable/Filibuster.git"

@@ -1,0 +1,28 @@
+---
+# UBUNTU setup
+- name: copy config file
+  sudo: yes
+  template:
+    src=upstart.conf
+    dest=/etc/init/{{ app_name }}.conf
+    backup=yes
+  notify:
+    - restart service
+
+- name: create {{ app_name }} dir
+  sudo: yes
+  file:
+    path=/runnable/{{ app_name }}/
+    state=directory
+    owner=ubuntu
+
+- name: git pull repo
+  git:
+    repo={{ app_repo }}
+    dest=/runnable/{{ app_name }}/
+    version=master
+    update=yes
+    accept_hostkey=True
+  notify:
+    - npm install
+    - restart service

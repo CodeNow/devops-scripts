@@ -1,0 +1,22 @@
+---
+- name: create node-hello-world dir
+  sudo: yes
+  file:
+    path=/runnable/node-hello-world/
+    state=directory
+    owner=ubuntu
+
+- name: git pull repo
+  git:
+    repo=https://github.com/anandkumarpatel/node-hello-world.git
+    dest=/runnable/node-hello-world
+    version=master
+    update=yes
+    accept_hostkey=True
+
+- script: test.sh
+  register: out
+  tags: run
+
+- debug: var=out
+  tags: run

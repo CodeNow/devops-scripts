@@ -1,0 +1,6 @@
+---
+- hosts: test
+  roles:
+    - { role: git, tags: "setup" }
+    - { role: docker, tags: "setup" }
+    - { role: load, tags: "test" }

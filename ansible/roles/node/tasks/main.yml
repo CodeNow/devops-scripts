@@ -1,0 +1,13 @@
+---
+- name: install node
+  yum: name=nodejs state=present
+  when: "ansible_os_family == 'CentOs'"
+
+- name: install npm
+  yum: name=npm state=present
+  when: "ansible_os_family == 'CentOs'"
+
+- name: Install node.js
+  sudo: yes
+  nodejs:
+    version={{node_version|default('0.10.31')}}
