@@ -17,7 +17,7 @@
   when: old_containers_ids.stdout_lines[0] is defined
 
 - name: start container
-  command: sudo docker run {{container_run_cmd}}
+  command: sudo docker run --restart=always {{container_run_cmd}}
   when: old_containers_ids.stdout_lines[0] is not defined or running_container_image_id.stdout != new_image_id.stdout
   register: new_container_id
   notify:
