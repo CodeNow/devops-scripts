@@ -51,16 +51,14 @@ def check():
 
 @parallel
 def clean():
-  run('sudo service docker stop')
+
+  run('sudo docker kill `sudo docker ps -q` || echo done')
+  run('sudo docker rm `sudo docker ps -aq` || echo done')
+  run('sudo docker rmi `sudo docker images -q` || echo done')
+  run('sudo service docker stop || echo done ')
   run('sudo rm -rf /docker/* || echo done')
   run('sudo rm -rf /docker/.* || echo done')
   run('sudo reboot')
-  run('sudo service docker stop')
-  run('sudo rm -rf /docker/* || echo done')
-  run('sudo rm -rf /docker/.* || echo done')
-  run('sudo reboot')
-  run('sudo docker ps')
-  run('sudo docker images')
 
 @parallel
 def tail():

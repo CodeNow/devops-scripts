@@ -11,5 +11,4 @@ lineReader.eachLine('./parallel_test_dmag', function(line, last) {
   if (!~line.indexOf('TIME')) {
      console.log(print);
   }
-
 });
