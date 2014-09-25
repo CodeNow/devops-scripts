@@ -51,7 +51,6 @@ def check():
 
 @parallel
 def clean():
-
   run('sudo docker kill `sudo docker ps -q` || echo done')
   run('sudo docker rm `sudo docker ps -aq` || echo done')
   run('sudo docker rmi `sudo docker images -q` || echo done')
