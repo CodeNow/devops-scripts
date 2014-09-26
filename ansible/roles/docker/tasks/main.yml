@@ -1,5 +1,9 @@
 ---
 # tasks file for docker-centos
+- name: Install AUFS
+  apt: name=linux-image-extra-{{ansible_kernel}} state=latest
+  sudo: yes
+  tags: setup
 
 - name: Install Docker on CentOS
   when: ansible_distribution == 'CentOS'

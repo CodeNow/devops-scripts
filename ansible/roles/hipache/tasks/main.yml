@@ -1,4 +1,7 @@
 ---
 - file: path=/hipache-conf/ state=directory
+  sudo: yes
+
 - name: copy configs
+  sudo: yes
   copy: src=config.json dest=/hipache-conf/

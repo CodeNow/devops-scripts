@@ -1,6 +1,6 @@
 container_image: registry.runnable.com/runnableio/api_main
 container_tag: "v1"
-container_envs: "-e DEBUG=* -e NODE_ENV=io -e DATADOG_HOST=datadog.runnable.io -e DATADOG_PORT=80"
+container_envs: "-e DEBUG=* -e NODE_ENV=io -e DATADOG_HOST=10.0.1.239 -e DATADOG_PORT=8125"
 container_run_cmd: "-d -P {{container_envs}} {{container_image}}:{{container_tag}}"
 deploy_host: "alpha-api"
 num_containers: 1
