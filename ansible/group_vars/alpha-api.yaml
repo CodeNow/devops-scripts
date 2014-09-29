@@ -7,7 +7,7 @@ num_containers: 1
 stop_time: 5
 name: "api"
 # for build
-dockerfile: "/Users/anand/run/api/docker-files/api_main/Dockerfile"
+dockerfile: "{{ lookup('env','REPO_BASE') }}/api/docker-files/api_main/Dockerfile"
 
 # for redis
 redis_host: "10.0.1.79"

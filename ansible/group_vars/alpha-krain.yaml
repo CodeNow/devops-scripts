@@ -2,7 +2,7 @@ container_image: registry.runnable.com/runnableio/krain_main
 container_tag: "v1"
 container_envs: "-e NODE_ENV=default"
 container_run_cmd: "--privileged -d -v /docker:/docker:rw -p 3100:3100 {{container_envs}} {{container_image}}:{{container_tag}}"
-dockerfile: "/Users/anand/run/krain/docker-files/main/Dockerfile"
+dockerfile: "{{ lookup('env','REPO_BASE') }}/krain/docker-files/main/Dockerfile"
 deploy_host: "alpha-dock1"
 stop_time: 5
 node_env: default

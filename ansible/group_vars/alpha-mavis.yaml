@@ -12,4 +12,4 @@ deploy_host: "alpha-api"
 num_containers: 1
 stop_time: 5
 # for build
-dockerfile: "/Users/anand/run/mavis/docker-files/main/Dockerfile"
+dockerfile: "{{ lookup('env','REPO_BASE') }}/mavis/docker-files/main/Dockerfile"
