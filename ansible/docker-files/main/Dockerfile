@@ -1,6 +1,5 @@
-from runnable/ansible_base
+FROM registry.runnable.com/runnable/ansible_base
 
-#clone all repos
 ENV REPO_BASE /repos
 
 RUN mkdir $REPO_BASE && cd $REPO_BASE && \
