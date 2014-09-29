@@ -14,8 +14,5 @@ ADD ./runnablevpc.pem /root/.ssh/runnablevpc.pem
 # Copy over private key,
 ADD id_rsa /root/.ssh/id_rsa
 
-# add .ssh config file
-ADD config /root/.ssh/config
-
 # set correct permissions
 RUN chmod 600 /root/.ssh/id_rsa
