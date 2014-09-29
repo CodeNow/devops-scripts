@@ -3,12 +3,16 @@ Host github.com
 
 Host prod*
   ForwardAgent yes
+  IdentityFile ~/.ssh/runnablevpc.pem
 Host stage*
   ForwardAgent yes
+  IdentityFile ~/.ssh/Test-runnable.pem
 Host int*
   ForwardAgent yes
+  IdentityFile ~/.ssh/Test-runnable.pem
 Host alpha*
   ForwardAgent yes
+  IdentityFile ~/.ssh/Test-runnable.pem
 
 ################################################################################
 # alpha
@@ -183,3 +187,4 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
+

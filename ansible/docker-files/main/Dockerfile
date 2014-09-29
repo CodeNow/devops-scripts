@@ -11,9 +11,10 @@ RUN git clone git@github.com:CodeNow/runnable-angular.git
 RUN git clone git@github.com:CodeNow/mavis.git
 RUN git clone git@github.com:CodeNow/devops-scripts.git
 # copy things into places
-RUN mv ./devops-scripts/ansible/hosts /etc/ansible/hosts
-RUN mv ./devops-scripts/ssh /root/.ssh
+RUN mv $REPO_BASE/devops-scripts/ssh/config /root/.ssh/config
+ENV ANSIBLE_HOSTS /repos/devops-scripts/ansible/hosts
 
 WORKDIR /repos/devops-scripts/ansible
 
 CMD ansible-playbook
+
