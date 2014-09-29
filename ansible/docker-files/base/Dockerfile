@@ -11,6 +11,9 @@ RUN mkdir /root/.ssh/
 ADD ./Test-runnable.pem /root/.ssh/Test-runnable.pem
 ADD ./runnablevpc.pem /root/.ssh/runnablevpc.pem
 
+# add .ssh config file
+ADD config /root/.ssh/config
+
 # Copy over private key,
 ADD id_rsa /root/.ssh/id_rsa
 
