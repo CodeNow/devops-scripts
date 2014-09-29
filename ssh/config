@@ -1,4 +1,6 @@
-#setup forwarding for github keys
+Host github.com
+  StrictHostKeyChecking no
+
 Host prod*
   ForwardAgent yes
 Host stage*
@@ -181,19 +183,3 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
-
-Host d1
-  User ubuntu
-  HostName 54.176.163.179
-Host d2
-  User ubuntu
-  HostName 184.169.255.221
-Host d4
-  User ubuntu
-  HostName 54.219.69.64
-Host dgp2
-  User ubuntu
-  HostName 54.219.114.241
-Host dmag
-  User ubuntu
-  HostName 54.176.251.74
