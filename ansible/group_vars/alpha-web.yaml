@@ -9,6 +9,6 @@ name: "web"
 
 dockerfile: "{{ lookup('env','REPO_BASE') }}/runnable-angular/docker-files/main/Dockerfile"
 # for redis
-redis_host: "10.0.1.79"
+redis_host: "10.0.1.172"
 is_redis_update_required: 'yes'
 replace_key: "frontend:runnable.io"

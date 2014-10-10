@@ -10,5 +10,5 @@
         "deadBackendOn500": false,
         "httpKeepAlive": false
     },
-    "driver": ["redis://10.0.1.79:6379"]
+    "driver": ["redis://10.0.1.172:6379"]
 }
