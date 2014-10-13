@@ -1,0 +1,6 @@
+---
+- name: send hipchat message for deploy end
+  hipchat: token=c33f7a2f84b34150e930158c1cf674 room=BugTalk msg="finished deploying {{container_image}}"
+
+- name: send hipchat message for deploy end
+  hipchat: token=c33f7a2f84b34150e930158c1cf674 room=Development msg="finished deploying {{container_image}}"

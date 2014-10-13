@@ -3,5 +3,7 @@
   vars_files:
     - "group_vars/alpha-hipache.yml"
   roles:
+  - { role: notify_start, tags: "notify" }
   - { role: hipache, tags: "deploy" }
   - { role: container_kill_start, tags: "deploy" }
+  - { role: notify_end, tags: "notify" }

@@ -3,6 +3,8 @@
   vars_files:
     - "group_vars/alpha-mavis.yml"
   roles:
+  - { role: notify_start, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
   - { role: container_start, tags: "deploy" }
+  - { role: notify_end, tags: "notify" }

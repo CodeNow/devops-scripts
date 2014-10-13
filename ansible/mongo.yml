@@ -3,5 +3,7 @@
   vars_files:
     - "group_vars/alpha-mongo.yml"
   roles:
+  - { role: notify_start, tags: "notify" }
   - { role: mongo }
   - { role: container_kill_start, tags: "deploy" }
+  - { role: notify_end, tags: "notify" }
