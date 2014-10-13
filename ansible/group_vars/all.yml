@@ -4,6 +4,9 @@ registry_host: "10.0.1.254"
 datadog_host: "10.0.1.239"
 datadog_port: "8125"
 
+# registry settings
+registry_env: "prod"
+
 # for docker stop old container
 stop_time: 5
 
