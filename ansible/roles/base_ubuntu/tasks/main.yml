@@ -1,7 +1,8 @@
 ---
-- name: upgrade all packages
-  apt: name=* state=latest
-  when: do_update is defined
-  tags: update
-
-- shell: sudo sh -c 'grep -q -F "10.0.1.254 registry.runnable.com" /etc/hosts || echo "10.0.1.254 registry.runnable.com" >> /etc/hosts'
+- name: ensure registry.runnable in /etc/hosts
+  sudo: yes
+  lineinfile:
+    dest=/etc/hosts
+    line="{{ registry_host }} registry.runnable.com"
+    state=present
+    regexp=".+ registry\.runnable\.com"

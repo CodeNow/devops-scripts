@@ -1,8 +1,0 @@
----
-- hosts: web
-  vars_files:
-    - "group_vars/alpha-web.yaml"
-  roles:
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: containerStart, tags: "deploy" }

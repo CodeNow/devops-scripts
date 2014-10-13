@@ -1,0 +1,17 @@
+# hosts
+redis_host: "10.0.1.172"
+registry_host: "10.0.1.254"
+datadog_host: "10.0.1.239"
+datadog_port: "8125"
+
+# registry settings
+registry_env: "prod"
+
+# for docker stop old container
+stop_time: 5
+
+# default for container args (which are optional)
+container_run_args: ""
+
+# REPO_BASE for getting dockerfiles
+repo_base: "{{ lookup('env','REPO_BASE') }}"

@@ -1,30 +1,43 @@
 ---
-# tasks file for docker-centos
-- name: Install AUFS
-  apt: name=linux-image-extra-{{ansible_kernel}} state=latest
-  sudo: yes
-  tags: setup
-
-- name: Install Docker on CentOS
-  when: ansible_distribution == 'CentOS'
-  tags: ["docker"]
-  yum: name=docker-io
-       state=latest
-  notify:
-   - start docker
-
-- name: Install Docker on Ubuntu
-  shell: curl -sSL https://get.docker.io/ubuntu/ | sudo sh
-  tags: ["docker"]
+- name: check if docker is installed
+  shell: "[ -f /usr/bin/docker  ] && echo 'Found' || echo ''"
   when: ansible_distribution == 'Ubuntu'
-  notify:
-    - start docker
+  register: docker_installed
+  changed_when: docker_installed.stdout != 'Found'
+
+- name: add docker apt key
+  when: not docker_installed.stdout
+  sudo: yes
+  action: apt_key url=https://get.docker.io/gpg state=present 
+
+- name: add docker repository
+  when: not docker_installed.stdout
+  sudo: yes
+  action: apt_repository repo='deb http://get.docker.io/ubuntu docker main' state=present update_cache=yes 
+
+- name: install docker
+  when: not docker_installed.stdout
+  sudo: yes
+  action: apt pkg="{{item}}" state=present update_cache=yes
+  with_items: docker_package_name
 
 - name: copy docker config file
-  when: "ansible_distribution == 'Ubuntu'"
+  when: ansible_distribution == 'Ubuntu'
   sudo: yes
   copy:
     src=docker-defaults
     dest=/etc/default/docker
-  notify:
-    - restart docker
+  register: copied_config
+
+- name: restart docker
+  when: copied_config.changed
+  command: sudo echo 'hi'
+
+- name: check for docker-enter
+  shell: "[ -f /usr/local/bin/docker-enter ] && echo 'Found' || echo ''"
+  register: docker_enter
+  changed_when: docker_enter.stdout != 'Found'
+
+- name: install docker-enter
+  when: docker_enter.changed
+  command: sudo docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter

@@ -1,7 +1,12 @@
 ---
-- file: path=/hipache-conf/ state=directory
+- name: create hipache config directory
   sudo: yes
+  file:
+    path=/opt/hipache-conf
+    state=directory
 
 - name: copy configs
   sudo: yes
-  copy: src=config.json dest=/hipache-conf/
+  template:
+    src=config.json
+    dest=/opt/hipache-conf

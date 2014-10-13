@@ -1,4 +1,3 @@
 ---
 dependencies:
-  - { role: base_centos, when: "ansible_os_family == 'CentOs'"}
   - { role: base_ubuntu, when: "ansible_distribution == 'Ubuntu'"}

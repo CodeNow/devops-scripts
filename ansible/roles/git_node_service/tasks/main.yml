@@ -1,5 +1,4 @@
 ---
-# UBUNTU setup
 - name: copy config file
   sudo: yes
   template:
@@ -9,17 +8,17 @@
   notify:
     - restart service
 
-- name: create {{ app_name }} dir
+- name: create {{ app_name }} repository dir
   sudo: yes
   file:
-    path=/runnable/{{ app_name }}/
+    path=/opt/runnable/{{ app_name }}
     state=directory
-    owner=ubuntu
+    owner={{ ansible_env.USER }}
 
-- name: git pull repo
+- name: pull the git repository
   git:
     repo={{ app_repo }}
-    dest=/runnable/{{ app_name }}/
+    dest=/opt/runnable/{{ app_name }}
     version=master
     update=yes
     accept_hostkey=True

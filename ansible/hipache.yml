@@ -1,7 +1,7 @@
 ---
 - hosts: hipache
   vars_files:
-    - "group_vars/alpha-hipache.yaml"
+    - "group_vars/alpha-hipache.yml"
   roles:
   - { role: hipache, tags: "deploy" }
   - { role: container_kill_start, tags: "deploy" }

@@ -1,6 +1,0 @@
----
-- hosts: redis
-  vars_files:
-    - "group_vars/alpha-redis.yaml"
-  roles:
-  - { role: container_kill_start, tags: "deploy" }

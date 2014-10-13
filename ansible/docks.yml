@@ -1,0 +1,9 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-docks.yml"
+  roles:
+    - docker
+
+- include: krain.yml
+- include: filibuster.yml

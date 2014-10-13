@@ -17,7 +17,8 @@ common:
 
 # This is the default configuration when no flavor is specified
 dev:
-    storage: local
+    standalone: true
+    storage: file
     storage_path: /tmp/registry
     loglevel: debug
 

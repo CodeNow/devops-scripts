@@ -1,0 +1,19 @@
+---
+# commands to build an image
+- name: create build folder
+  sudo: yes
+  file:
+    path={{build_dir}}
+    state=directory
+
+- name: copy dockerfile to build folder
+  sudo: yes
+  copy:
+    src={{dockerfile}}
+    dest={{build_dir}}
+
+- name: build docker image and tag
+  command: sudo docker build --no-cache --tag="{{container_image}}:{{container_tag}}" "{{build_dir}}"
+
+- name: push docker image
+  command: sudo docker push {{container_image}}:{{container_tag}}

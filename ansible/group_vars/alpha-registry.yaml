@@ -1,5 +1,0 @@
-container_tag: "latest"
-container_run_cmd_1: "-d --name redis-cache redis"
-container_run_cmd_2: "-d -e SETTINGS_FLAVOR=prod -v /registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml --link redis-cache:db --name registry-s3 -p 80:5000 {{container_image}}"
-deploy_host: "alpha-registry"
-stop_time: 5

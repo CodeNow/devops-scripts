@@ -1,5 +1,0 @@
-container_image: mongo
-container_tag: "latest"
-container_run_cmd: "-d --name mongodb -p 27017:27017 mongo"
-deploy_host: "alpha-mongo"
-stop_time: 5

@@ -1,0 +1,13 @@
+---
+- name: get new container ports
+  shell: sudo docker ps --no-trunc | grep {{new_container_id.stdout}} | grep -o :[0-9]*\-\> | sed s/:// | sed s/\-\>//
+  register: container_ports
+
+# this assumes only one container is running, ever
+- name: update redis key
+  command: sudo docker run --rm redis redis-cli -h {{redis_host}} lset {{redis_key}} 1 http://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
+  when: is_redis_update_required is defined
+
+- name: stop old containers
+  command: sudo docker stop --time={{stop_time}} {{item}}
+  with_items: old_containers_ids.stdout_lines
