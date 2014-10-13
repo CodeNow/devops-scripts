@@ -1,9 +1,8 @@
 ---
-# handlers for filibuser
-- name: npm install
-  npm: path=/runnable/{{ app_name }}/
+- name: npm install {{ app_name }}
+  npm: path=/opt/runnable/{{ app_name }}
 
-- name: restart service
+- name: restart service {{ app_name }}
   sudo: yes
   service:
     name={{ app_name }}

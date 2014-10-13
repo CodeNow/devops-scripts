@@ -1,6 +1,0 @@
----
-- hosts: docks
-  vars_files:
-    - "group_vars/alpha-krain.yaml"
-  roles:
-  - { role: git_node_service, tags: "deploy" }

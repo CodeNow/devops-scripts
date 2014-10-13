@@ -1,4 +1,12 @@
 ---
-- file: path=/registry-conf/ state=directory
-- name: copy configs
-  copy: src=config.yml dest=/registry-conf/
+- name: create directy for registry config
+  sudo: yes
+  file:
+    path=/opt/registry
+    state=directory
+
+- name: copy config
+  sudo: yes
+  copy:
+    src=config.yml
+    dest=/opt/registry

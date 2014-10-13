@@ -1,0 +1,6 @@
+# container start
+container_tag: "latest"
+container_run_opts_redis: "-d --name redis-cache"
+container_run_args_redis: ""
+container_run_opts_registry: "-d -e SETTINGS_FLAVOR=dev -v /opt/registry:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml --link redis-cache:db --name registry-s3 -p 80:5000"
+container_run_args_registry: ""

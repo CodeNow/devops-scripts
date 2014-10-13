@@ -1,0 +1,7 @@
+---
+- hosts: mongodb
+  vars_files:
+    - "group_vars/alpha-mongo.yml"
+  roles:
+  - { role: mongo }
+  - { role: container_kill_start, tags: "deploy" }
