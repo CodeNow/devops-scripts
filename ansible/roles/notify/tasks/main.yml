@@ -4,6 +4,8 @@
     token=c33f7a2f84b34150e930158c1cf674
     room="{{ item }}"
     msg="{{ deploy_message }}"
-  with_items: hipchat_rooms
+  with_items:
+    - "{{hipchat_rooms}}"
+    - "{{extra_rooms}}"
   notify:
     - notify end
