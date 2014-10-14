@@ -1,0 +1,7 @@
+# sauron env
+sauron_env: default
+
+# upstart template variables
+app_name: "sauron"
+app_repo: "git@github.com:CodeNow/sauron.git"
+node_env: "{{ sauron_env }}"

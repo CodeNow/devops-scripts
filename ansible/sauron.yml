@@ -1,8 +1,8 @@
 ---
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-krain.yml"
+    - "group_vars/alpha-sauron.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: build_essential }
+  - { role: sauron, tags: "notify" }
   - { role: git_node_service, tags: "deploy" }

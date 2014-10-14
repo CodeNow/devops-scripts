@@ -7,3 +7,4 @@
 
 - include: krain.yml
 - include: filibuster.yml
+- include: sauron.yml

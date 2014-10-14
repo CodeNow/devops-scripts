@@ -6,7 +6,7 @@
     dest=/etc/init/{{ app_name }}.conf
     backup=yes
   notify:
-    - restart service
+    - restart service {{ app_name }}
 
 - name: create {{ app_name }} repository dir
   sudo: yes
@@ -23,5 +23,5 @@
     update=yes
     accept_hostkey=True
   notify:
-    - npm install
-    - restart service
+    - npm install {{ app_name }}
+    - restart service {{ app_name }}

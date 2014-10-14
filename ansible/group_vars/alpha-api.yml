@@ -11,3 +11,7 @@ container_tag: "v1"
 redis_key: "frontend:api.runnable.io"
 is_redis_update_required: 'yes'
 name: "api"
+
+# notify API room
+extra_rooms: ["API"]
+

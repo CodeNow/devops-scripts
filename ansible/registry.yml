@@ -3,6 +3,7 @@
   vars_files:
     - "group_vars/alpha-registry.yml"
   roles:
+  - { role: notify, tags: "notify" }
   - { role: registry, tags: "deploy" }
   - { role: container_kill_start,
       container_image: "redis",

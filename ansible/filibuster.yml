@@ -3,5 +3,6 @@
   vars_files:
     - "group_vars/alpha-filibuster.yml"
   roles:
+  - { role: notify, tags: "notify" }
   - { role: git_node_service, tags: "deploy" }
 
