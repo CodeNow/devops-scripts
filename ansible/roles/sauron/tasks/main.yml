@@ -1,0 +1,15 @@
+---
+- name: install ethtool
+  sudo: yes
+  action: apt pkg="ethtool" state=latest update_cache=yes
+
+- name: install conntrack
+  sudo: yes
+  action: apt pkg="conntrack" state=latest update_cache=yes
+
+- name: install weave
+  command: sudo wget -O /usr/local/bin/weave https://raw.githubusercontent.com/zettio/weave/master/weaver/weave
+
+- name: make weave runnable
+  file: path=/usr/local/bin/weave mode=0777
+  sudo: yes
