@@ -7,9 +7,16 @@
   sudo: yes
   action: apt pkg="conntrack" state=latest update_cache=yes
 
+- name: check if docker is installed
+  shell: "[ -f {{weave_path}} ] && echo 'Found' || echo ''"
+  register: weave_installed
+  changed_when: weave_installed.stdout != 'Found'
+
 - name: install weave
-  command: sudo wget -O /usr/local/bin/weave https://raw.githubusercontent.com/zettio/weave/master/weaver/weave
+  command: sudo wget -O "{{weave_path}}" https://raw.githubusercontent.com/zettio/weave/master/weaver/weave
+  when: not weave_installed.stdout
+  sudo: yes
 
 - name: make weave runnable
-  file: path=/usr/local/bin/weave mode=0777
+  file: path="{{weave_path}}" mode=0777
   sudo: yes

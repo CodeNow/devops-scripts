@@ -6,6 +6,6 @@
     msg="{{ deploy_message }}"
   with_items:
     - "{{hipchat_rooms}}"
-    - "{{extra_rooms}}"
+    - "{{extra_rooms|default([])}}"
   notify:
     - notify end
