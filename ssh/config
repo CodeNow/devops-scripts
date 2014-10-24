@@ -37,6 +37,18 @@ Host alpha-mongodb
   User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.32 22
 
+Host alpha-mongodb01
+  User ubuntu
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.244 22
+
+Host alpha-mongodb02
+  User ubuntu
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.9 22
+
+Host alpha-mongodb03
+  User ubuntu
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.251 22
+
 Host alpha-api
   User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
