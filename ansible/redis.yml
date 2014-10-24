@@ -4,4 +4,5 @@
     - "group_vars/alpha-redis.yml"
   roles:
   - { role: notify, tags: "notify" }
+  - { role: redis, tags: "deploy" }
   - { role: container_kill_start, tags: "deploy" }
