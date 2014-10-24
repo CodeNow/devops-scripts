@@ -16,6 +16,9 @@ alpha-web
 [redis]
 alpha-redis
 
+[redis-slave]
+alpha-redis-slave
+
 [docks]
 alpha-dock1
 alpha-dock2
