@@ -21,7 +21,7 @@ alpha-redis
 alpha-redis-slave
 
 [docks]
-alpha-dock1
+alpha-dock2
 
 [registry]
 alpha-registry
@@ -37,4 +37,4 @@ docks
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
-
+node_env=production
