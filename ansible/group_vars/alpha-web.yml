@@ -13,4 +13,4 @@ is_redis_update_required: 'yes'
 name: "web"
 
 # notify web room room
-extra_rooms: ["Front-End"]
+# extra_rooms: ["Front-End"]
