@@ -2,18 +2,22 @@ Host github.com
   StrictHostKeyChecking no
 
 Host prod*
+  User ubuntu
   ForwardAgent yes
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/runnablevpc.pem
 Host stage*
+  User ubuntu
   ForwardAgent yes
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/Test-runnable.pem
 Host int*
+  User ubuntu
   ForwardAgent yes
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/Test-runnable.pem
 Host alpha*
+  User ubuntu
   ForwardAgent yes
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/Test-runnable.pem
@@ -22,64 +26,53 @@ Host alpha*
 # alpha
 ################################################################################
 Host alpha-bastion
-  User ubuntu
   HostName 54.193.117.212
 
 Host alpha-hipache
-  User ubuntu
   HostName 54.183.97.64
-
-Host alpha-stage-hipache
-  User ubuntu
-  HostName 54.219.130.96
 
 Host alpha-registry
   User root
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.254 22
 
 Host alpha-mongodb
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.32 22
 
 Host alpha-mongodb01
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.244 22
 
 Host alpha-mongodb02
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.9 22
 
 Host alpha-mongodb03
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.251 22
 
 Host alpha-api
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
 
 Host alpha-web
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.85 22
 
 Host alpha-redis-slave
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.181 22
 
 Host alpha-redis
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.172 22
 
 Host alpha-dock1
-  User ubuntu
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
-
-Host alpha-dock2
-  User ubuntu
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.41 22
 
-Host alpha-stage-dock
-  User ubuntu
-  HostName 54.177.1.44
+################################################################################
+# alpha-stage
+################################################################################
+Host alpha-stage-hipache
+  HostName 54.219.130.96
+
+Host alpha-stage-dock1
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
+
+Host alpha-stage-dock2
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.240 22
 
 ################################################################################
 # integration
@@ -215,3 +208,7 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
+
+Host devbox-3
+  User ubuntu
+  HostName 54.177.1.44
