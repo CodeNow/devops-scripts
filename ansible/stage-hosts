@@ -2,7 +2,8 @@
 alpha-stage-hipache
 
 [docks]
-alpha-dock1 ansible_ssh_user=ubuntu
+alpha-stage-dock1
+alpha-stage-dock2
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
