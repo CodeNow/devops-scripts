@@ -4,20 +4,19 @@
 # start with DB's
 # - include: registry.yml
 # redis
-# - include: redis.yml
-# # mongo
-# - include: mongo.yml
+- include: redis.yml
+# mongo
+- include: mongo.yml
 
 # Now do app servers
 
 # docks
-- include: krain.yml
-# - include: filibuster.yml
+- include: docks.yml
 # api
 - include: api.yml
 # web
-# - include: mavis.yml
+- include: mavis.yml
 # web
 - include: web.yml
 # hipache
-# - include: hipache.yml
+- include: hipache.yml

@@ -6,3 +6,8 @@
     line="{{ registry_host }} registry.runnable.com"
     state=present
     regexp=".+ registry\.runnable\.com"
+
+- name: set hostname
+  sudo: yes
+  hostname: name="{{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
+  tags: "hostname"
