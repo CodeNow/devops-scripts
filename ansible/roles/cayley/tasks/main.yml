@@ -1,0 +1,10 @@
+---
+- name: create config directory
+  sudo: yes
+  file: path=/opt/cayley state=directory
+
+- name: copy cayley config
+  sudo: yes
+  template:
+    src=cayley.cfg
+    dest=/opt/cayley
