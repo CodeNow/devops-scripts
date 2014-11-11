@@ -9,4 +9,5 @@
   roles:
   - { role: notify, tags: "notify" }
   - { role: cayley }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: container_kill_start, tags: "deploy" }

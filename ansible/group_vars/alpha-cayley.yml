@@ -2,3 +2,8 @@
 container_image: bkendall/cayley
 container_tag: "latest"
 container_run_opts: "-d --name cayley -p 64210:64210 -v /opt/cayley:/opt/cayley:r"
+
+# for redis
+redis_key: "frontend:cayley.runnable.io"
+is_redis_update_required: 'yes'
+name: "cayley"
