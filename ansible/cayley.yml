@@ -1,0 +1,12 @@
+---
+- hosts: mongodb
+  tasks:
+    - name: gather facts about mongo
+      setup: filter=*
+- hosts: cayley
+  vars_files:
+    - "group_vars/alpha-cayley.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: cayley }
+  - { role: container_kill_start, tags: "deploy" }

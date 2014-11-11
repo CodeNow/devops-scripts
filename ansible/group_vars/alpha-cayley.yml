@@ -1,0 +1,4 @@
+# container_kill_start settings
+container_image: bkendall/cayley
+container_tag: "latest"
+container_run_opts: "-d --name cayley -p 64210:64210 -v /opt/cayley:/opt/cayley:r"
