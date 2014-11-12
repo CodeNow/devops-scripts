@@ -62,6 +62,9 @@ Host alpha-redis
 Host alpha-dock1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.41 22
 
+Host alpha-dock2
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.210 22
+
 ################################################################################
 # alpha-stage
 ################################################################################

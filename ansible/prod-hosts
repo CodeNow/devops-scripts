@@ -27,6 +27,7 @@ alpha-redis-slave
 
 [docks]
 alpha-dock1
+alpha-dock2
 
 [registry]
 alpha-registry

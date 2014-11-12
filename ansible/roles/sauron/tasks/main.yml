@@ -13,6 +13,6 @@
   changed_when: weave_installed.stdout != 'Found'
 
 - name: install weave
-  get_url: url=https://raw.githubusercontent.com/zettio/weave/master/weave dest="{{weave_path}}" mode=0777
+  get_url: url=https://raw.githubusercontent.com/zettio/weave/418578a986bd21279ccaf15be819bf222a795dc0/weave dest="{{weave_path}}" mode=0777
   sudo: yes
   register: weave_update
