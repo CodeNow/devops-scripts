@@ -1,7 +1,15 @@
 ---
+- hosts: redis
+  tasks:
+    - name: gather facts about redis
+      setup: filter=*
+      tags: deploy
+- hosts: registry
+  tasks:
+    - name: gather facts about the registry
+      setup: filter=*
+      tags: deploy
 - hosts: hipache
-  vars_files:
-    - "group_vars/alpha-hipache.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: hipache, tags: "deploy" }

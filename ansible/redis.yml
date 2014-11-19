@@ -1,7 +1,9 @@
 ---
+- hosts: registry
+  tasks:
+    - name: gather facts about the registry
+      setup: filter=*
 - hosts: redis
-  vars_files:
-    - "group_vars/alpha-redis.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: redis, tags: "deploy" }

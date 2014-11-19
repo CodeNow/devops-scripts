@@ -1,7 +1,5 @@
 ---
 - hosts: registry
-  vars_files:
-    - "group_vars/alpha-registry.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: registry, tags: "deploy" }

@@ -1,43 +1,49 @@
 # The `common' part is automatically included (and possibly overriden by all
 # other flavors)
-common:
-    # Bucket for storage
-    boto_bucket: runnableimages
+common: &common
+    loglevel: _env:LOGLEVEL:info
 
-    # Amazon S3 Storage Configuration
+s3: &s3
+    <<: *common
+    storage: s3
+    # s3_region: _env:AWS_REGION
+    s3_bucket: {{ runnable_registry_bucket }}
+    boto_bucket: {{ runnable_registry_bucket }}
+    storage_path: "/"
+    s3_encrypt: true
+    s3_secure: true
     s3_access_key: AKIAJA3VH6N377FCXOAQ
     s3_secret_key: 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
-    s3_bucket: runnableimages
-    s3_encrypt: false
-    s3_secure: false
-
-    # Set a random string here
-    secret_key: Clv5YubyeygNzi7oabxbcpsIH0cmTM9O
+    # s3_use_sigv4: _env:AWS_USE_SIGV4
+    # boto_host: _env:AWS_HOST
+    # boto_port: _env:AWS_PORT
+    # boto_calling_format: _env:AWS_CALLING_FORMAT
 
 
 # This is the default configuration when no flavor is specified
-dev:
-    standalone: true
-    storage: file
-    storage_path: /tmp/registry
-    loglevel: debug
+# dev:
+#     standalone: true
+#     storage: file
+#     storage_path: /tmp/registry
+#     loglevel: debug
 
 # To specify another flavor, set the environment variable SETTINGS_FLAVOR
 # $ export SETTINGS_FLAVOR=prod
 prod:
-    storage: s3
-    storage_path: "/"
+    <<: *s3
     # Enabling LRU cache for small files. This speeds up read/write on small files
     # when using a remote storage backend (like S3).
     standalone: True
     cache:
         host: _env:DB_PORT_6379_TCP_ADDR
         port: 6379
+        db: 0
     cache_lru:
         host: _env:DB_PORT_6379_TCP_ADDR
         port: 6379
+        db: 0
 
 # This flavor is automatically used by unit tests
-test:
-    storage: local
-    storage_path: /tmp/test
+# test:
+#     storage: local
+#     storage_path: /tmp/test

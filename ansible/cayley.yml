@@ -1,12 +1,20 @@
 ---
+- hosts: registry
+  tasks:
+    - name: gather facts about the registry
+      setup: filter=*
+- hosts: redis
+  tasks:
+    - name: gather facts about redis
+      setup: filter=*
 - hosts: mongodb
   tasks:
     - name: gather facts about mongo
       setup: filter=*
+
 - hosts: cayley
-  vars_files:
-    - "group_vars/alpha-cayley.yml"
   roles:
   - { role: notify, tags: "notify" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: cayley }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: container_start, tags: "deploy" }

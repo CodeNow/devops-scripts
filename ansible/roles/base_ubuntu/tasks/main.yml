@@ -1,11 +1,11 @@
 ---
-- name: ensure registry.runnable in /etc/hosts
+- name: ensure registry domain is in /etc/hosts
   sudo: yes
   lineinfile:
     dest=/etc/hosts
-    line="{{ registry_host }} registry.runnable.com"
+    line="{% for host in groups['registry'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} {{ registry_domain }}"
     state=present
-    regexp=".+ registry\.runnable\.com"
+    regexp=".+ registry(-pw)?\.runnable\..+"
 
 - name: set hostname
   sudo: yes

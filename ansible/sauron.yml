@@ -1,7 +1,5 @@
 ---
 - hosts: docks
-  vars_files:
-    - "group_vars/alpha-sauron.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: sauron, tags: "notify" }

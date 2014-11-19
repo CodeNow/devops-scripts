@@ -5,7 +5,7 @@
 
 # this assumes only one container is running, ever
 - name: update redis key
-  command: sudo docker run --rm redis redis-cli -h {{redis_host}} lset {{redis_key}} 1 http://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
+  command: sudo docker run --rm redis redis-cli -h {% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} lset {{redis_key}} 1 http://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
   when: is_redis_update_required is defined
 
 - name: stop old containers

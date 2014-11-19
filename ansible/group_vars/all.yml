@@ -1,8 +1,5 @@
 # hosts
-redis_host: "10.0.1.172"
 redis_port: "6379"
-registry_host: "10.0.1.254"
-datadog_host: "10.0.1.239"
 datadog_port: "8125"
 
 # registry settings

@@ -5,8 +5,51 @@
     path=/opt/registry
     state=directory
 
-- name: copy config
+- name: create and copy config
   sudo: yes
-  copy:
+  template:
     src=config.yml
     dest=/opt/registry
+
+- name: install nginx
+  sudo: yes
+  apt:
+    pkg="nginx"
+    state=present
+    update_cache=yes
+
+- name: install nginx-extras
+  sudo: yes
+  apt:
+    pkg="nginx-extras"
+    state=present
+    update_cache=yes
+
+- name: remove nginx default config
+  sudo: yes
+  file:
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+
+- name: install nginx-config
+  sudo: yes
+  template:
+    src=registry
+    dest=/etc/nginx/sites-available/registry
+
+- name: link registry config
+  sudo: yes
+  file:
+    path=/etc/nginx/sites-enabled/registry
+    src=/etc/nginx/sites-available/registry
+    state=link
+
+- name: test nginx config
+  sudo: yes
+  command: nginx -t
+
+- name: reload nginx
+  sudo: yes
+  service:
+    name=nginx
+    state=restarted
