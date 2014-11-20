@@ -1,0 +1,3 @@
+# upstart template variables
+app_name: "docker-listener"
+app_repo: "git@github.com:CodeNow/docker-listener.git"
