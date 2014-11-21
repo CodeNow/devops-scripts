@@ -63,6 +63,9 @@ Host alpha-dock1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.41 22
 
 Host alpha-dock2
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.10 22
+
+Host alpha-dock3
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.210 22
 
 ################################################################################
