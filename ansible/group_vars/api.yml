@@ -1,5 +1,5 @@
 # for container settings
-container_envs: "-e DEBUG=* -e NODE_ENV={{ node_env }} -e DATADOG_HOST={% for host in groups['datadog'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha -e DATADOG_PORT={{ datadog_port }}"
+container_envs: "-e DEBUG=* -e NODE_ENV={{ node_env }} -e DATADOG_HOST={% for host in groups['datadog'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} -e DATADOG_PORT={{ datadog_port }} -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha"
 container_run_opts: "-d -P {{container_envs}}"
 
 # for build

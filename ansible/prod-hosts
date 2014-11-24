@@ -26,7 +26,7 @@ alpha-redis-slave
 alpha-dock1
 
 [registry]
-alpha-registry
+alpha-registry-0.9 runnable_registry_bucket=runnable.images.io
 
 [cayley]
 alpha-cayley cayley_mongo_password=VM9K8iw2(BiW6F9GvtWv@
@@ -40,6 +40,7 @@ web
 redis
 redis-slave
 docks
+registry
 cayley
 
 [alpha:vars]

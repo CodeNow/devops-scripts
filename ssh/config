@@ -35,6 +35,10 @@ Host alpha-registry
   User root
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.254 22
 
+Host alpha-registry-0.9
+  User root
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.231 22
+
 Host alpha-mongodb01
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.244 22
 
