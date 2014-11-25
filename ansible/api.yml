@@ -1,28 +1,14 @@
 ---
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      tags: "deploy"
-      setup: filter=*
 - hosts: redis
-  tasks:
-    - name: gather facts about redis
-      tags: "deploy"
-      setup: filter=*
 - hosts: datadog
-  tasks:
-    - name: gather facts about datadog hosts
-      tags: "deploy"
-      setup: filter=*
 - hosts: mongodb
-  tasks:
-    - name: gather facts about mongo hosts
-      tags: "deploy"
-      setup: filter=*
 
 - hosts: api
+  vars_files:
+    - group_vars/_api.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: container_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis_key, tags: [setup, redis_key] }
+  - { role: builder, tags: build }
+  - { role: container_start, tags: deploy }

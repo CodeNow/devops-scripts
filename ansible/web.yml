@@ -1,18 +1,10 @@
 ---
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      tags: "deploy"
-      setup: filter=*
 - hosts: redis
-  tasks:
-    - name: gather facts about redis
-      tags: "deploy"
-      setup: filter=*
 
 - hosts: web
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: container_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis_key, tags: [setup, redis_key] }
+  - { role: builder, tags: build }
+  - { role: container_start, tags: deploy }

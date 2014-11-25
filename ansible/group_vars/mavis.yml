@@ -1,13 +1,14 @@
+---
 # container settings
-container_envs: "-e PORT=3000 -e REDIS_PORT=6379 -e REDIS_IPADDRESS={% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %}"
-container_run_opts: "-d -P {{ container_envs }}"
+container_envs: -e PORT=3000 -e REDIS_PORT=6379 -e REDIS_IPADDRESS={% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}{% endif %}{% endfor %}
+container_run_opts: -d -P {{ container_envs }}
 
 # for build
-dockerfile: "mavis_main/Dockerfile"
+dockerfile: mavis_main/Dockerfile
 container_image: "{{ registry_domain }}/runnableio/mavis_main"
-container_tag: "v1"
+container_tag: v1
 
 # for redis
-redis_key: "frontend:mavis.{{ domain }}"
-is_redis_update_required: 'yes'
-name: "mavis"
+redis_key: frontend:mavis.{{ domain }}
+is_redis_update_required: yes
+name: mavis

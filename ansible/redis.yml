@@ -1,10 +1,8 @@
 ---
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      setup: filter=*
+
 - hosts: redis
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis, tags: "deploy" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis, tags: deploy }
+  - { role: container_kill_start, tags: deploy }

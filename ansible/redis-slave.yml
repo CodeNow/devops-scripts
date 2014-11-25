@@ -1,18 +1,13 @@
 ---
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      setup: filter=*
 - hosts: redis
-  tasks:
-    - name: gather facts about the redis master
-      setup: filter=*
+
 - hosts: redis-slave
   vars_files:
-    - "group_vars/redis.yml"
+    - group_vars/redis.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_slave, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis_slave, tags: deploy }
   - { role: container_kill_start,
       container_run_args: "redis-server --slaveof {% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} 6379",
-      tags: "deploy" }
+      tags: deploy }

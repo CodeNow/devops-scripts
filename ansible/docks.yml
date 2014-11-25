@@ -1,15 +1,10 @@
 ---
-- hosts: redis
-  tasks:
-    - name: gather facts about redis
-      setup: filter=*
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      setup: filter=*
+- hosts: redis
+
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-docks.yml"
+    - group_vars/_docks.yml
   roles:
     - docker
 

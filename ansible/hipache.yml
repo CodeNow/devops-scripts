@@ -1,16 +1,9 @@
 ---
 - hosts: redis
-  tasks:
-    - name: gather facts about redis
-      setup: filter=*
-      tags: deploy
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      setup: filter=*
-      tags: deploy
+
 - hosts: hipache
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: hipache, tags: "deploy" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: hipache, tags: deploy }
+  - { role: container_kill_start, tags: deploy }

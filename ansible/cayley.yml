@@ -14,7 +14,7 @@
 
 - hosts: cayley
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: notify, tags: notify }
+  - { role: redis_key, tags: [setup, redis_key] }
   - { role: cayley }
-  - { role: container_start, tags: "deploy" }
+  - { role: container_start, tags: deploy }

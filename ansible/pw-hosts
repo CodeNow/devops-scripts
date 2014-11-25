@@ -33,7 +33,6 @@ stage-registry runnable_registry_bucket=runnable.images.pw
 
 [cayley]
 stage-cayley cayley_mongo_password=aJhDz9c8r0ZiZeIJW0fi2TBy54BtfR8ycSmGeL8mYFQ=
-stage-cayley
 
 [stage:children]
 bastion
