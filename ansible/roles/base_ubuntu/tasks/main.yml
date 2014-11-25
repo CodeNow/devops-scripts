@@ -11,3 +11,11 @@
   sudo: yes
   hostname: name="{{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
   tags: "hostname"
+
+- name: put hostname in /etc/hosts
+  sudo: yes
+  lineinfile:
+    dest=/etc/hosts
+    regexp="127.0.0.1 {{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
+    line="127.0.0.1 {{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
+  tags: "hostname"

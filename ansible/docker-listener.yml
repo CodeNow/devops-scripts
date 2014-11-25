@@ -1,0 +1,7 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-docker-listener.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: git_node_service, tags: "deploy" }

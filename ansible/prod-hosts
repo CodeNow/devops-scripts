@@ -10,6 +10,9 @@ alpha-mongodb01
 alpha-mongodb02
 alpha-mongodb03
 
+[cayley]
+alpha-cayley
+
 [api]
 alpha-api
 
@@ -24,6 +27,7 @@ alpha-redis-slave
 
 [docks]
 alpha-dock1
+alpha-dock2
 
 [registry]
 alpha-registry-0.9 runnable_registry_bucket=runnable.images.io
