@@ -6,5 +6,5 @@
     - group_vars/sauron.yml
   roles:
   - { role: notify, tags: notify }
-  - { role: sauron, tags: notify }
+  - { role: sauron }
   - { role: git_node_service, tags: deploy }

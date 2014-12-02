@@ -1,16 +1,7 @@
 ---
 - hosts: registry
-  tasks:
-    - name: gather facts about the registry
-      setup: filter=*
 - hosts: redis
-  tasks:
-    - name: gather facts about redis
-      setup: filter=*
 - hosts: mongodb
-  tasks:
-    - name: gather facts about mongo
-      setup: filter=*
 
 - hosts: cayley
   roles:
