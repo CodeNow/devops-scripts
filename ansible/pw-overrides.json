@@ -1,0 +1,6 @@
+{
+  "registry_host": "10.0.1.213",
+  "redis_host": "10.0.1.125",
+  "datadog_host": "10.0.1.93",
+  "repo_base": "/Users/bkendall/Repositories"
+}
