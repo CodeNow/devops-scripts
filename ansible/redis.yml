@@ -1,8 +1,8 @@
 ---
+- hosts: registry
+
 - hosts: redis
-  vars_files:
-    - "group_vars/alpha-redis.yml"
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis, tags: "deploy" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis, tags: deploy }
+  - { role: container_kill_start, tags: deploy }

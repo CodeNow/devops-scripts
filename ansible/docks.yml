@@ -1,7 +1,10 @@
 ---
+- hosts: registry
+- hosts: redis
+
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-docks.yml"
+    - group_vars/_docks.yml
   roles:
     - docker
 

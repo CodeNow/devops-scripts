@@ -1,8 +1,9 @@
 ---
+- hosts: redis
+- hosts: registry
+
 - hosts: hipache
-  vars_files:
-    - "group_vars/alpha-hipache.yml"
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: hipache, tags: "deploy" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: hipache, tags: deploy }
+  - { role: container_kill_start, tags: deploy }

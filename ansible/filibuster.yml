@@ -1,8 +1,10 @@
 ---
+- hosts: registry
+
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-filibuster.yml"
+    - group_vars/filibuster.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: git_node_service, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: git_node_service, tags: deploy }
 

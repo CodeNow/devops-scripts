@@ -1,10 +1,14 @@
 ---
+- hosts: registry
+- hosts: redis
+
 - hosts: redis-slave
   vars_files:
-    - "group_vars/alpha-redis.yml"
+    - group_vars/redis.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_slave, tags: "deploy" }
+  - { role: notify, tags: notify }
+  - { role: redis_slave, tags: deploy }
+  # sorry, this line has to be this long...
   - { role: container_kill_start,
-      container_run_args: "redis-server --slaveof {{ redis_host }} 6379",
-      tags: "deploy" }
+      container_run_args: "redis-server --slaveof {% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} 6379",
+      tags: deploy }

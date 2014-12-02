@@ -11,14 +11,14 @@
   with_items: stopped_containers.stdout_lines
 
 # get current running container with this image
-- name: look for running containers running {{container_image}}
+- name: look for running containers running the container image
   shell: sudo docker ps | grep {{container_image}} | awk '{print $1}'
   register: old_containers_id
   changed_when: old_containers_id.stdout != ''
 
 # get latest image
 # tag will default to latest
-- name: pull down docker image {{container_image}}:{{container_tag}}
+- name: pull down docker image
   command: sudo docker pull {{container_image}}:{{container_tag}}
 
 # get id of new image

@@ -10,5 +10,16 @@
         "deadBackendOn500": false,
         "httpKeepAlive": false
     },
-    "driver": ["redis://{{ redis_host }}:{{ redis_port }}"]
+    "http": {
+        "port": 80,
+        "bind": "0.0.0.0"
+    },
+    "https": {
+        "port": 443,
+        "bind": "0.0.0.0",
+        "key": "/etc/ssl/private/{{ domain }}.key",
+        "cert": "/etc/ssl/certs/{{ domain }}/{{ domain }}.crt",
+        "ca": "/etc/ssl/certs/{{ domain }}/ca.crt"
+    },
+    "driver": ["redis://{% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %}:6379"]
 }

@@ -30,7 +30,10 @@ alpha-dock1
 alpha-dock2
 
 [registry]
-alpha-registry
+alpha-registry-0.9 runnable_registry_bucket=runnable.images.io
+
+[cayley]
+alpha-cayley cayley_mongo_password=VM9K8iw2(BiW6F9GvtWv@
 
 [alpha:children]
 bastion
@@ -39,8 +42,13 @@ mongodb
 api
 web
 redis
+redis-slave
 docks
+registry
+cayley
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 node_env=production
+domain=registry.io
+registry_domain=registry.runnable.io

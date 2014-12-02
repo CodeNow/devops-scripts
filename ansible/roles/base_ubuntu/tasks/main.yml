@@ -1,20 +1,21 @@
 ---
-- name: ensure registry.runnable in /etc/hosts
+- name: ensure registry domain is in /etc/hosts
   sudo: yes
   lineinfile:
     dest=/etc/hosts
-    line="{{ registry_host }} registry.runnable.com"
+    line="{% for host in groups['registry'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %} {{ registry_domain }}"
     state=present
-    regexp=".+ registry\.runnable\.com"
+    regexp=".+ registry(-pw)?\.runnable\..+"
 
 - name: set hostname
   sudo: yes
   hostname: name="{{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
   tags: "hostname"
 
-- lineinfile:
+- name: put hostname in /etc/hosts
+  sudo: yes
+  lineinfile:
     dest=/etc/hosts
     regexp="127.0.0.1 {{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
     line="127.0.0.1 {{inventory_hostname}}--{{ansible_default_ipv4.address|replace(".", "-")}}"
   tags: "hostname"
-  sudo: yes

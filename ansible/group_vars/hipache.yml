@@ -1,0 +1,11 @@
+# container_kill_start settings
+container_image: "{{ registry_domain }}/runnable/hipache"
+container_tag: latest
+container_run_opts: >
+  -d
+  -v /opt/hipache-conf:/host:rw
+  -p 80:80
+  -p 443:443
+  -v /etc/ssl/certs/{{ domain }}:/etc/ssl/certs/{{ domain }}
+  -v /etc/ssl/private/{{ domain }}.key:/etc/ssl/private/{{ domain }}.key
+container_run_args: /usr/local/bin/hipache --config /host/config.json

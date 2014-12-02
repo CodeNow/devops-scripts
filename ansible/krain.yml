@@ -1,8 +1,10 @@
 ---
+- hosts: registry
+
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-krain.yml"
+    - group_vars/krain.yml
   roles:
-  - { role: notify, tags: "notify" }
+  - { role: notify, tags: notify }
   - { role: build_essential }
-  - { role: git_node_service, tags: "deploy" }
+  - { role: git_node_service, tags: deploy }
