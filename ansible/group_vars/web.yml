@@ -1,16 +1,18 @@
 # for container settings
-container_envs: "-e NODE_ENV=production -e PORT=3000"
-container_run_opts: "-d -P {{container_envs}}"
+container_envs: >
+  -e NODE_ENV=production
+  -e PORT=3000
+container_run_opts: -d -P {{ container_envs }}
 
 # for build
-dockerfile: "web_main/Dockerfile"
+dockerfile: web_main/Dockerfile
 container_image: "{{ registry_domain }}/runnableio/web_main"
-container_tag: "v1"
+container_tag: v1
 
 # for redis
-redis_key: "frontend:{{ domain }}"
-is_redis_update_required: 'yes'
-name: "web"
+redis_key: frontend:{{ domain }}
+is_redis_update_required: yes
+name: web
 
 # notify web room room
 # extra_rooms: ["Front-End"]

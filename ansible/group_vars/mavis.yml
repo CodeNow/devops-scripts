@@ -1,6 +1,9 @@
 ---
 # container settings
-container_envs: -e PORT=3000 -e REDIS_PORT=6379 -e REDIS_IPADDRESS={% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}{% endif %}{% endfor %}
+container_envs: >
+  -e PORT=3000
+  -e REDIS_PORT=6379
+  -e REDIS_IPADDRESS={% for host in groups['redis'] %}{% if loop.first %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}{% endif %}{% endfor %}
 container_run_opts: -d -P {{ container_envs }}
 
 # for build

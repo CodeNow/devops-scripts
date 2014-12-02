@@ -1,2 +1,2 @@
 # for redis
-dock_hosts_key: "dockerHosts"
+dock_hosts_key: dockerHosts
