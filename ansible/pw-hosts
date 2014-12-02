@@ -32,7 +32,7 @@ stage-dock2
 stage-registry
 
 [cayley]
-stage-cayley cayley_mongo_password=aJhDz9c8r0ZiZeIJW0fi2TBy54BtfR8ycSmGeL8mYFQ=
+stage-cayley cayley_mongo_password=aJhDz9c8r0ZiZeIJW0fi2TBy54BtfR8ycSmGeL8mYFQ
 
 [stage:children]
 bastion
