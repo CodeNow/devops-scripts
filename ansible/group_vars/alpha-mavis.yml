@@ -3,11 +3,11 @@ container_envs: "-e PORT=3000 -e REDIS_PORT=6379 -e REDIS_IPADDRESS={{redis_host
 container_run_opts: "-d -P {{container_envs}}"
 
 # for build
-dockerfile: "{{ repo_base }}/mavis/docker-files/main/Dockerfile"
+dockerfile: mavis_main/Dockerfile
 container_image: registry.runnable.com/runnableio/mavis_main
 container_tag: "v1"
 
 # for redis
-redis_key: "frontend:mavis.runnable.io"
+redis_key: "frontend:mavis.{{ domain }}"
 is_redis_update_required: 'yes'
 name: "mavis"
