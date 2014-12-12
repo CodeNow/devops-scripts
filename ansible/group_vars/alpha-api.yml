@@ -1,5 +1,6 @@
 # for container settings
 container_envs: >
+  -h api
   -e DEBUG=*
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
