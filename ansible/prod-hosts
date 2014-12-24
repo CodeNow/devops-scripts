@@ -30,7 +30,7 @@ alpha-dock1
 alpha-dock2
 
 [registry]
-alpha-registry
+root@alpha-registry
 
 [alpha:children]
 bastion
