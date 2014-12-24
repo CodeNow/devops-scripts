@@ -3,3 +3,6 @@ container_image: registry.runnable.com/runnable/hipache
 container_tag: "latest"
 container_run_opts: "-d -v /opt/hipache-conf:/host:rw -p 80:80"
 container_run_args: "/usr/local/bin/hipache --config /host/config.json"
+
+# hipache settings
+retry_on_error: 0
