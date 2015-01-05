@@ -1,0 +1,20 @@
+---
+- name: create image-builder repository dir
+  sudo: yes
+  file:
+    path=/opt/runnable/image-builder
+    state=directory
+    owner={{ ansible_env.USER }}
+
+- name: pull the image-builder repository
+  git:
+    repo=git@github.com:CodeNow/image-builder.git
+    dest=/opt/runnable/image-builder
+    version={{ image_builder_git_tag | default("master") }}
+    update=yes
+    accept_hostkey=True
+    register=repo_updated
+
+- name: build the image-builder
+  when: repo_updated.changed
+  command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag | default("latest") }}" /opt/runnable/image-builder
