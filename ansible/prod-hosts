@@ -28,6 +28,7 @@ alpha-redis-slave
 [docks]
 alpha-dock1
 alpha-dock2
+alpha-dock3
 
 [registry]
 root@alpha-registry
