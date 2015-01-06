@@ -13,8 +13,6 @@
     version={{ image_builder_git_tag | default("master") }}
     update=yes
     accept_hostkey=True
-    register=repo_updated
 
 - name: build the image-builder
-  when: repo_updated.changed
   command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag | default("latest") }}" /opt/runnable/image-builder
