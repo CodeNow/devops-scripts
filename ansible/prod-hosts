@@ -3,7 +3,6 @@ alpha-bastion
 
 [hipache]
 alpha-hipache
-alpha-stage-hipache
 
 [mongodb]
 alpha-mongodb01
