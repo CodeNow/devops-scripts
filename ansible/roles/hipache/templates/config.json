@@ -1,7 +1,6 @@
 {
     "server": {
         "accessLog": "/host/access.log",
-        "port": 80,
         "workers": 10,
         "maxSockets": 10000,
         "deadBackendTTL": 30,
