@@ -1,0 +1,99 @@
+FROM registry.runnable.com/runnable/api_base:28
+EXPOSE 80
+
+RUN npm install -g npm@2.1.17
+
+WORKDIR /
+FROM registry.runnable.com/runnableio/web_base:latest
+# Download Runnable-web Repo
+# hacks for SASS
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# Ruby and Sass needed for grunt
+RUN apt-get install -y ruby
+RUN gem install sass
+
+# HACK for stage  deploy
+RUN apt-get install redis-server -y
+
+ADD ./runnable-angular /runnable-angular
+
+WORKDIR /runnable-angular
+
+ENV API_HOST http://anands-api.codenow.runnable.io
+ENV PORT 80
+
+# Expose port to Host
+EXPOSE 80
+# Define default command.
+RUN npm install
+RUN npm run grunt
+ADD ./start.sh /start.sh
+RUN chmod 777 /start.sh
+CMD /start.sh
+FROM registry.runnable.com/runnableio/web_base:latest
+# Download Runnable-web Repo
+# hacks for SASS
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# Ruby and Sass needed for grunt
+RUN apt-get install -y ruby
+RUN gem install sass
+
+# HACK for stage  deploy
+RUN apt-get install redis-server -y
+
+ADD ./runnable-angular /runnable-angular
+
+WORKDIR /runnable-angular
+
+ENV API_HOST http://anands-api.codenow.runnable.io
+ENV PORT 80
+
+# Expose port to Host
+EXPOSE 80
+# Define default command.
+RUN npm install
+RUN npm run grunt
+ADD ./start.sh /start.sh
+RUN chmod 777 /start.sh
+CMD /start.sh
+FROM registry.runnable.com/runnableio/web_base:latest
+# Download Runnable-web Repo
+# hacks for SASS
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# Ruby and Sass needed for grunt
+RUN apt-get install -y ruby
+RUN gem install sass
+
+# HACK for stage  deploy
+RUN apt-get install redis-server -y
+
+ADD ./runnable-angular /runnable-angular
+
+WORKDIR /runnable-angular
+
+ENV API_HOST http://anands-api.codenow.runnable.io
+ENV PORT 80
+
+# Expose port to Host
+EXPOSE 80
+# Define default command.
+RUN npm install
+RUN npm run grunt
+ADD ./start.sh /start.sh
+RUN chmod 777 /start.sh
+CMD /start.sh
+FROM registry.runnable.com/runnableio/web_base:latest
+# Download Runnable-web Repo
+# hacks for SASS
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# Ruby and Sass needed for grunt
+RUN apt-get install -y ruby
+RUN gem install sass
