@@ -1,7 +1,7 @@
 # for container settings
 container_envs: >
   -h api
-  -e DEBUG=*
+  -e CAYLEY="http://10.0.1.107:49154/"
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
