@@ -1,5 +1,10 @@
 # container settings
-container_envs: "-e PORT=3000 -e REDIS_PORT=6379 -e REDIS_IPADDRESS={{redis_host}}"
+container_envs: >
+  -e PORT=3000
+  -e REDIS_PORT=6379
+  -e REDIS_IPADDRESS={{redis_host}}
+  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_PORT={{ datadog_port }}
 container_run_opts: "-d -P {{container_envs}}"
 
 # for build
