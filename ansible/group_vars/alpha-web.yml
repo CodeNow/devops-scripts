@@ -8,6 +8,7 @@ container_image: registry.runnable.com/runnableio/web_main
 container_tag: "v1"
 
 # for redis
+hosted_protocol: https
 redis_key: "frontend:{{ domain }}"
 is_redis_update_required: 'yes'
 name: "web"
