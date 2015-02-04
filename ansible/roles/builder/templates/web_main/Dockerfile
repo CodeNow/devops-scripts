@@ -19,7 +19,8 @@ RUN npm install
 RUN npm run grunt
 
 # Expose port to Host
-EXPOSE 3000
+# Expose port for https
+EXPOSE 3000 443
 
 # Define default command.
 CMD ["/usr/local/bin/npm", "start"]
