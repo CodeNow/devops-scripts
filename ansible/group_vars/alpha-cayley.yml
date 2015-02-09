@@ -4,6 +4,7 @@ container_tag: latest
 container_run_opts: -d -p 64210 -v /opt/cayley:/opt/cayley:r
 
 # for redis
+hosted_port: 64210
 redis_key: frontend:cayley.{{ domain }}
 is_redis_update_required: yes
 name: cayley

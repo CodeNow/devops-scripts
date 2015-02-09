@@ -14,6 +14,7 @@ container_image: registry.runnable.com/runnableio/api_main
 container_tag: "v1"
 
 # for redis
+hosted_port: 3000
 redis_key: "frontend:api.{{ domain }}"
 is_redis_update_required: 'yes'
 name: "api"

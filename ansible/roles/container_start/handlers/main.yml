@@ -1,6 +1,6 @@
 ---
 - name: get new container ports
-  shell: sudo docker ps --no-trunc | grep {{new_container_id.stdout}} | grep -o :[0-9]*\-\> | sed s/:// | sed s/\-\>//
+  shell: sudo docker port {{new_container_id.stdout}} {{ hosted_port }} | awk --field-separator ':' '{print $2}'
   register: container_ports
 
 # this assumes only one container is running, ever
