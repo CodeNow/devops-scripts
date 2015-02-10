@@ -68,6 +68,17 @@ Host alpha-dock2
 Host alpha-dock3
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.210 22
 
+Host alpha-dock4
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.4 22
+
+################################################################################
+# alpha-stage
+################################################################################
+Host alpha-stage-hipache
+  HostName 54.219.130.96
+
+Host alpha-stage-dock1
+
 ################################################################################
 # alpha-stage
 ################################################################################
