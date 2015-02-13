@@ -31,6 +31,9 @@ Host alpha-bastion
 Host alpha-hipache
   HostName 54.183.97.64
 
+Host alpha-userland-hipache
+  HostName 54.183.142.56
+
 Host alpha-registry
   User root
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.254 22
@@ -73,6 +76,9 @@ Host alpha-dock3
 ################################################################################
 Host alpha-stage-hipache
   HostName 54.219.130.96
+
+Host alpha-stage-userland-hipache
+  HostName 54.153.38.172
 
 Host alpha-stage-dock1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
