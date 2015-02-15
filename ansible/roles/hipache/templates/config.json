@@ -1,5 +1,7 @@
 {
     "server": {
+        "prependPort": {{ prependIncomingPort | default("false") }},
+        "subDomainDepth": {{ subDomainDepth }},
         "accessLog": "/host/access.log",
         "workers": 10,
         "maxSockets": 10000,
@@ -18,7 +20,8 @@
         "bind": "0.0.0.0",
         "key": "/etc/ssl/private/{{ domain }}.key",
         "cert": "/etc/ssl/certs/{{ domain }}/{{ domain }}.crt",
-        "ca": "/etc/ssl/certs/{{ domain }}/ca.crt"
+        "ca": "/etc/ssl/certs/{{ domain }}/ca.crt",
+        "checkForBackend80": {{ httpsCheckForBackend80 | default("false") }}
     },
     "driver": ["redis://{{ redis_host }}:{{ redis_port }}"]
 }
