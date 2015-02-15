@@ -14,6 +14,7 @@ RUN git clone git@github.com:CodeNow/runnable-angular.git
 WORKDIR /runnable-angular
 
 ENV API_HOST //api.{{ domain }}
+ENV USER_CONTENT_DOMAIN {{ user_content_domain | default("runnableapp.com") }}
 ENV ENVIRONMENT production
 RUN npm install
 RUN npm run grunt
