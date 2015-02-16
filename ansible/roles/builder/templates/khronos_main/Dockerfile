@@ -10,6 +10,7 @@ FROM registry.runnable.com/runnable/base:latest
 
 RUN wget http://nodejs.org/dist/v0.10.35/node-v0.10.35.tar.gz \
   && tar xvf node-v*.tar.gz \
+  && rm -rf node-v*.tar.gz \
   && cd node-v0.10.35 \
   && ./configure \
   && make -j16 \
