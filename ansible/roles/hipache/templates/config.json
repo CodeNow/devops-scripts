@@ -1,5 +1,7 @@
 {
     "server": {
+        "datadogHost": "{{ ansible_default_ipv4.address }}",
+        "datadogPort": "8125",
         "prependPort": {{ prependIncomingPort | default("false") }},
         "subDomainDepth": {{ subDomainDepth }},
         "accessLog": "/host/access.log",
