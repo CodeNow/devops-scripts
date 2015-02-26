@@ -5,6 +5,8 @@ container_envs: >
   -e REDIS_IPADDRESS={{redis_host}}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e CONTAINER_WEIGHT=0
+  -e NEWRELIC_KEY=338516e0826451c297d44dc60aeaf0a0ca4bfead
 container_run_opts: "-d -P {{container_envs}}"
 
 # for build
