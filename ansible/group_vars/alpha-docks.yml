@@ -1,2 +1,12 @@
 # for redis
-dock_hosts_key: "dockerHosts"
+dock_hosts_key: dockerHosts
+
+# for image-builder
+# one may want to override these when running the playbook via:
+# --extra-vars "image_builder_docker_namespace=runnable/image-builder image_builder_docker_tag:d1.3.1-v1.4.3 image_builder_git_tag:d1.3.1-v1.4.3"
+# git tag/branch
+image_builder_git_tag: master
+# namespace (can include "registry.runnable.com:")
+image_builder_docker_namespace: runnable/image-builder
+# docker tag (to be appended w/ ":" to the namespace)
+image_builder_docker_tag: latest
