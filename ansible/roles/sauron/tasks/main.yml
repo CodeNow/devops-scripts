@@ -1,18 +1,20 @@
 ---
-- name: install ethtool
-  sudo: yes
-  action: apt pkg="ethtool" state=latest update_cache=yes
-
-- name: install conntrack
-  sudo: yes
-  action: apt pkg="conntrack" state=latest update_cache=yes
-
-- name: check if weave is installed
-  shell: "[ -f {{weave_path}} ] && echo 'Found' || echo ''"
-  register: weave_installed
-  changed_when: weave_installed.stdout != 'Found'
-
 - name: install weave
-  get_url: url=https://raw.githubusercontent.com/zettio/weave/418578a986bd21279ccaf15be819bf222a795dc0/weave dest="{{weave_path}}" mode=0777
+  get_url: url=https://github.com/zettio/weave/releases/download/v0.9.0/weave
+    dest="{{weave_path}}"
+    mode=0777
+    force=yes
   sudo: yes
-  register: weave_update
+  register: weave_install
+
+- name: setup weave
+  command: "{{weave_path}} setup"
+  when: weave_install.changed
+  sudo: yes
+
+- name: stop previous weave
+  shell: "docker kill `docker ps | grep weave | awk '{print $1}'` || echo"
+  when: weave_install.changed
+  sudo: yes
+  notify:
+    - restart service {{ app_name }}
