@@ -10,9 +10,9 @@
   git:
     repo=git@github.com:CodeNow/image-builder.git
     dest=/opt/runnable/image-builder
-    version={{ image_builder_git_tag | default("master") }}
+    version={{ image_builder_git_tag }}
     update=yes
     accept_hostkey=True
 
 - name: build the image-builder
-  command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag | default("latest") }}" /opt/runnable/image-builder
+  command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag }}" /opt/runnable/image-builder
