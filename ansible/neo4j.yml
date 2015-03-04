@@ -1,0 +1,9 @@
+---
+- hosts: registry
+
+- hosts: neo4j
+  roles:
+  # - { role: notify, tags: notify }
+  - { role: builder, tags: "build" }
+  - { role: neo4j }
+  - { role: container_kill_start, tags: deploy }
