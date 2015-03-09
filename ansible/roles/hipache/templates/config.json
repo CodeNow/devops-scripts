@@ -8,7 +8,7 @@
         "workers": 10,
         "maxSockets": 10000,
         "deadBackendTTL": 30,
-        "tcpTimeout": 30,
+        "tcpTimeout": 120,
         "retryOnError": {{ retry_on_error }},
         "deadBackendOn500": false,
         "httpKeepAlive": false
