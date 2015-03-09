@@ -21,4 +21,4 @@ VOLUME /neo4j-data
 
 EXPOSE 7474
 
-CMD ["./bin/neo4j", "console"]
+CMD ["bash", "start.sh"]

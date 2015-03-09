@@ -8,3 +8,9 @@
   template:
     src=neo4j-server.properties
     dest=/opt/neo4j/conf/
+
+- name: copy neo4j start.sh
+  sudo: yes
+  template:
+    src=start.sh
+    dest=/opt/neo4j/
