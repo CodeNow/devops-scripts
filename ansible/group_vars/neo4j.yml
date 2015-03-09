@@ -1,0 +1,12 @@
+# container settings
+container_run_opts: >
+  -d
+  -p 7474:7474
+  -v /neo4j:/neo4j-data:rw
+  -v /opt/neo4j/conf/neo4j-server.properties:/neo4j/conf/neo4j-server.properties
+  -v /opt/neo4j/start.sh:/neo4j/start.sh
+
+# for build
+dockerfile: neo4j/Dockerfile
+container_image: registry.runnable.com/runnable/neo4j
+container_tag: latest

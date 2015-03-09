@@ -2,6 +2,7 @@
 container_envs: >
   -h api
   -e CAYLEY="http://10.0.1.107:49154/"
+  -e NEO4J="{% for host in groups['neo4j'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %}:7474"
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}

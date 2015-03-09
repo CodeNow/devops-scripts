@@ -1,5 +1,6 @@
 ---
 - hosts: mongodb
+- hosts: neo4j
 
 - hosts: api
   vars_files:
