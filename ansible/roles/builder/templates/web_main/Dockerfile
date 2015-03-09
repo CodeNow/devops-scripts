@@ -16,7 +16,7 @@ WORKDIR /runnable-angular
 ENV API_HOST //api.{{ domain }}
 ENV USER_CONTENT_DOMAIN {{ user_content_domain | default("runnableapp.com") }}
 ENV ENVIRONMENT production
-RUN npm install
+RUN npm install --production
 RUN npm run grunt
 
 # Expose port to Host
