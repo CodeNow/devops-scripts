@@ -5,8 +5,8 @@ common:
     boto_bucket: runnableimages
 
     # Amazon S3 Storage Configuration
-    s3_access_key: AKIAJA3VH6N377FCXOAQ
-    s3_secret_key: 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
+    s3_access_key: AKIAJKCSFJCHFDITLBUQ
+    s3_secret_key: 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
     s3_bucket: runnableimages
     s3_encrypt: false
     s3_secure: false
