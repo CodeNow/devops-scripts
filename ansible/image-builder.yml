@@ -1,0 +1,8 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-image-builder.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: node, tags: "setup"  }
+  - { role: image-builder, tags: "deploy" }

@@ -14,5 +14,8 @@
     update=yes
     accept_hostkey=True
 
+- name: npm install
+  npm: path=/opt/runnable/image-builder
+
 - name: build the image-builder
   command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag }}" /opt/runnable/image-builder

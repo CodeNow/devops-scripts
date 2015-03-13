@@ -4,8 +4,8 @@
     - "group_vars/alpha-docks.yml"
   roles:
     - docker
-    - { role: image-builder, tags: image-builder }
 
 - include: krain.yml
 - include: filibuster.yml
 - include: sauron.yml
+- include: image-builder.yml
