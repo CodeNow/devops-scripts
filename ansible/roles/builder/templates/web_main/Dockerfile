@@ -9,15 +9,15 @@ FROM registry.runnable.com/runnableio/web_base:latest
 # Download Runnable-web Repo
 WORKDIR /
 
-RUN git clone git@github.com:CodeNow/runnable-angular.git
+RUN git clone -b {{ git_branch }} --single-branch git@github.com:CodeNow/runnable-angular.git
 
 WORKDIR /runnable-angular
 
 ENV API_HOST //api.{{ domain }}
 ENV USER_CONTENT_DOMAIN {{ user_content_domain | default("runnableapp.com") }}
-ENV ENVIRONMENT production
+ENV NODE_ENV production
 RUN npm install --production
-RUN npm run grunt
+RUN npm run gruntDeploy
 
 # Expose port to Host
 # Expose port for https
