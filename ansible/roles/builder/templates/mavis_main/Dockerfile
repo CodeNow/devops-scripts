@@ -9,7 +9,7 @@ FROM registry.runnable.com/runnableio/mavis_base:latest
 WORKDIR /
 
 # Download Repo
-RUN git clone git@github.com:CodeNow/mavis.git
+RUN git clone -b {{ git_branch }} --single-branch git@github.com:CodeNow/mavis.git
 
 WORKDIR /mavis
 RUN npm install --production

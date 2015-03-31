@@ -1,6 +1,5 @@
 # for container settings
 container_envs: >
-  -e NODE_ENV=production
   -e PORT=3000
   -e HTTPS=true
   -e HTTPS_PORT=443

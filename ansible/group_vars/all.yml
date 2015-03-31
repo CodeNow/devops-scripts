@@ -17,5 +17,7 @@ container_run_args: ""
 # REPO_BASE for getting dockerfiles
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
+git_branch: "master"
+
 # hipchat rooms to notify
 hipchat_rooms: ['Development', 'BugTalk']
