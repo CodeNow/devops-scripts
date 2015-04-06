@@ -19,6 +19,12 @@ alpha-neo4j
 [api]
 alpha-api
 
+[navi]
+alpha-api
+
+[charon]
+alpha-api
+
 [web]
 alpha-web
 
@@ -49,6 +55,7 @@ docks
 registry
 cayley
 neo4j
+navi
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem

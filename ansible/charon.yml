@@ -1,0 +1,8 @@
+---
+- hosts: charon
+  vars_files:
+    - "group_vars/charon.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: builder, tags: "build" }
+  - { role: container_start, tags: "deploy" }

@@ -1,0 +1,6 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/node-base.yml"
+  roles:
+  - { role: builder, tags: "build" }
