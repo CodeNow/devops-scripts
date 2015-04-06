@@ -3,7 +3,7 @@
 
 - hosts: navi
   vars_files:
-    - "group_vars/navi.yml"
+    - "group_vars/alpha-navi.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
