@@ -1,0 +1,21 @@
+name: "charon"
+
+container_image: "registry.runnable.com/runnable/charon"
+container_tag: "latest"
+dockerfile: "basic_node/Dockerfile"
+repo: "git@github.com:CodeNow/charon.git"
+hosted_port: "53"
+node_version: "0.12.0"
+npm_version: "2.1.18"
+
+container_envs: >
+  -h charon
+  -e NODE_ENV={{ node_env }}
+  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_PORT={{ datadog_port }}
+  -e HOST=0.0.0.0
+  -e PORT={{ hosted_port }}
+  -e API_HOST=http://api.runnable.io
+  -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
+
+container_run_opts: "-d -p 53:53 {{container_envs}}"
