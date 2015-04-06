@@ -18,4 +18,4 @@ container_envs: >
   -e API_HOST=http://api.runnable.io
   -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
 
-container_run_opts: "-d -P 53:53 {{container_envs}}"
+container_run_opts: "-d -p 53:53 {{container_envs}}"
