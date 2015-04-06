@@ -1,4 +1,4 @@
 devops-scripts
 ==============
 
-devops-scripts
+Scripts for managing our deployments. 
