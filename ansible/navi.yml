@@ -1,10 +1,8 @@
 ---
-- hosts: redis
-
 - hosts: navi
   vars_files:
-    - "group_vars/navi.yml"
+    - "group_vars/alpha-navi.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
-  - { role: container_start, tags: "deploy" }
+  - { role: container_kill_start, tags: "deploy" }

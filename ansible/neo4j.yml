@@ -2,8 +2,9 @@
 - hosts: registry
 
 - hosts: neo4j
+  vars_files:
+    - "group_vars/alpha-neo4j.yml"
   roles:
-  # - { role: notify, tags: notify }
   - { role: builder, tags: "build" }
   - { role: neo4j }
   - { role: container_kill_start, tags: deploy }

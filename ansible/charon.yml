@@ -1,7 +1,7 @@
 ---
 - hosts: charon
   vars_files:
-    - "group_vars/charon.yml"
+    - "group_vars/alpha-charon.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }

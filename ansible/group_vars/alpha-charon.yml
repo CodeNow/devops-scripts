@@ -13,9 +13,8 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e HOST=0.0.0.0
   -e PORT={{ hosted_port }}
-  -e API_HOST=http://api.runnable.io
   -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
+  -e DEBUG=charon*
 
-container_run_opts: "-d -p 53:53 {{container_envs}}"
+container_run_opts: "-d -p {{ hosted_port }}:{{ hosted_port }} {{container_envs}}"
