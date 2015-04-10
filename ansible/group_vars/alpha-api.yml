@@ -1,25 +1,28 @@
+name: "api"
+
+container_image: registry.runnable.com/runnable/api
+container_tag: "latest"
+dockerfile: "basic_node/Dockerfile"
+repo: "git@github.com:CodeNow/api.git"
+hosted_port: "3000"
+node_version: "0.10.28"
+npm_version: "2.1.18"
+
+# for redis
+redis_key: "frontend:api.{{ domain }}"
+is_redis_update_required: 'yes'
+
 # for container settings
 container_envs: >
   -h api
-  -e CAYLEY="http://10.0.1.107:49154/"
-  -e NEO4J="{% for host in groups['neo4j'] %}{% if loop.first %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% endif %}{% endfor %}:7474"
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
+  -e NAVI_HOST=http://{{ ansible_default_ipv4.address }}:3567
+  -e CHARON_HOST={{ ansible_default_ipv4.address }}
+
 container_run_opts: "-d -P {{container_envs}}"
-
-# for build
-dockerfile: api_main/Dockerfile
-container_image: registry.runnable.com/runnableio/api_main
-container_tag: "v1"
-
-# for redis
-hosted_port: 3000
-redis_key: "frontend:api.{{ domain }}"
-is_redis_update_required: 'yes'
-name: "api"
 
 # notify API room
 extra_rooms: ["API"]
-
