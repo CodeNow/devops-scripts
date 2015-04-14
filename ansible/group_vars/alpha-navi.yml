@@ -14,5 +14,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DEBUG=*
+  -e HTTP_PORT={{ hosted_port }}
 
 container_run_opts: "-d -p {{hosted_port}}:{{hosted_port}} {{container_envs}}"
