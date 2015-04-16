@@ -16,4 +16,4 @@ container_envs: >
   -e DEBUG=*
   -e HTTP_PORT={{ hosted_port }}
 
-container_run_opts: "-d -p {{hosted_port}}:{{hosted_port}} {{container_envs}}"
+container_run_opts: "-d --restart=always -p {{hosted_port}}:{{hosted_port}} {{container_envs}}"

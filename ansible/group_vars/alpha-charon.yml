@@ -17,4 +17,4 @@ container_envs: >
   -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
   -e DEBUG=charon*
 
-container_run_opts: "-d -p {{ hosted_port }}:{{ hosted_port }} -p {{ hosted_port }}:{{ hosted_port }}/udp {{container_envs}}"
+container_run_opts: "-d --restart=always -p {{ hosted_port }}:{{ hosted_port }} -p {{ hosted_port }}:{{ hosted_port }}/udp {{container_envs}}"
