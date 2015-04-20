@@ -5,7 +5,7 @@ container_tag: "latest"
 dockerfile: "basic_node/Dockerfile"
 repo: "git@github.com:CodeNow/api.git"
 hosted_port: "3000"
-node_version: "0.10.28"
+node_version: "0.10.38"
 npm_version: "2.1.18"
 
 # for redis
