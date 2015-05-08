@@ -1,23 +1,30 @@
-# for container settings
-container_envs: >
-  -e PORT=3000
-  -e HTTPS=true
-  -e HTTPS_PORT=443
-container_run_opts: "-d -P {{container_envs}}"
+name: "runnable-angular"
 
-# for build
-dockerfile: web_main/Dockerfile
-container_image: registry.runnable.com/runnableio/web_main
-container_tag: "v1"
-user_content_domain: runnableapp.com
+container_image: registry.runnable.com/runnable/{{ name }}
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["443", "3000"]
+node_version: "0.10.38"
+npm_version: "2.1.18"
+
+dockerfile_enviroment: [
+  "API_HOST //api.{{ domain }}",
+  "USER_CONTENT_DOMAIN runnableapp.com",
+  "NODE_ENV production"
+]
+
+dockerfile_post_install_commands: [
+  "npm run gruntDeploy"
+]
 
 # for redis
 # HTTPS is set above, so use HTTPS here! <3
 hosted_protocol: https
-hosted_port: 443
 redis_key: "frontend:{{ domain }}"
 is_redis_update_required: 'yes'
-name: "web"
 
-# notify web room room
-# extra_rooms: ["Front-End"]
+# for container settings
+container_envs: >
+  -e PORT={{ hosted_ports[1] }}
+  -e HTTPS=true
+  -e HTTPS_PORT={{ hosted_ports[0] }}
+container_run_opts: "-d -P {{container_envs}}"

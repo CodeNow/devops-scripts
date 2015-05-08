@@ -18,6 +18,9 @@ container_run_args: ""
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
 git_branch: "master"
+container_tag: "{{ git_branch }}"
+dockerfile: "basic_node/Dockerfile"
+base_dockerfile: "node_base"
 
 # hipchat rooms to notify
 hipchat_rooms: ['Development', 'BugTalk']

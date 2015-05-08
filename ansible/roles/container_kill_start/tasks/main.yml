@@ -40,4 +40,4 @@
 
 # start our new container with options and args
 - name: start container
-  command: sudo docker run {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}
+  command: sudo docker run --restart=always  --log-driver=syslog {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}

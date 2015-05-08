@@ -1,10 +1,8 @@
 name: "charon"
 
-container_image: "registry.runnable.com/runnable/charon"
-container_tag: "latest"
-dockerfile: "basic_node/Dockerfile"
-repo: "git@github.com:CodeNow/charon.git"
-hosted_port: "53"
+container_image: "registry.runnable.com/runnable/{{ name }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["53"]
 node_version: "0.10.31"
 npm_version: "2.1.18"
 
@@ -13,8 +11,8 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e PORT={{ hosted_port }}
+  -e PORT={{ hosted_ports[0] }}
   -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
   -e DEBUG=charon*
 
-container_run_opts: "-d --restart=always -p {{ hosted_port }}:{{ hosted_port }} -p {{ hosted_port }}:{{ hosted_port }}/udp {{container_envs}}"
+container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}/udp {{container_envs}}"

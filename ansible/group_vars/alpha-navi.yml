@@ -1,10 +1,8 @@
 name: "navi"
 
-container_image: "registry.runnable.com/runnable/navi"
-container_tag: "latest"
-dockerfile: "basic_node/Dockerfile"
-repo: "git@github.com:CodeNow/navi.git"
-hosted_port: "3567"
+container_image: "registry.runnable.com/runnable/{{ name }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["3567"]
 node_version: "0.12.0"
 npm_version: "2.1.18"
 
@@ -14,6 +12,7 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DEBUG=*
-  -e HTTP_PORT={{ hosted_port }}
+  -e HTTP_PORT={{ hosted_ports[0] }}
+  -e REDIS_IPADDRESS={{redis_host}}
 
-container_run_opts: "-d --restart=always -p {{hosted_port}}:{{hosted_port}} {{container_envs}}"
+container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
