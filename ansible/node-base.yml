@@ -1,5 +1,5 @@
 ---
-- hosts: docks
+- hosts: "{{ target_host }}"
   vars_files:
     - "group_vars/node-base.yml"
   roles:

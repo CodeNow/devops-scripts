@@ -1,3 +1,4 @@
-container_image: "registry.runnable.com/runnable/node_base"
+name: "node_base"
+container_image: "registry.runnable.com/runnable/{{ name }}"
 dockerfile: "node_base/Dockerfile"
 container_tag: "latest"

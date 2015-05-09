@@ -1,23 +1,24 @@
 name: "mavis"
 
+container_image: "registry.runnable.com/runnable/{{ name }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["3000"]
+node_version: "0.10.38"
+npm_version: "2.1.18"
+
+# for redis
+redis_key: "frontend:mavis.{{ domain }}"
+is_redis_update_required: 'yes'
+
 # container settings
 container_envs: >
-  -e PORT=3000
+  -e PORT={{ hosted_ports[0] }}
   -e REDIS_PORT=6379
-  -e REDIS_IPADDRESS={{redis_host}}
+  -e REDIS_IPADDRESS={{ redis_host }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e CONTAINER_WEIGHT=0
   -e NEWRELIC_KEY=338516e0826451c297d44dc60aeaf0a0ca4bfead
   --hostname={{ name }}
+
 container_run_opts: "-d -P {{container_envs}}"
-
-# for build
-dockerfile: mavis_main/Dockerfile
-container_image: registry.runnable.com/runnableio/mavis_main
-container_tag: "v1"
-
-# for redis
-hosted_port: 3000
-redis_key: "frontend:mavis.{{ domain }}"
-is_redis_update_required: 'yes'
