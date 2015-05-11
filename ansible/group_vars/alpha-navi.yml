@@ -14,5 +14,6 @@ container_envs: >
   -e DEBUG=*
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e REDIS_IPADDRESS={{redis_host}}
+  -e HELLO_RUNNABLE_GITHUB_TOKEN=0e55b73c0146f033e361ed327d088d30e2804869
 
 container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"

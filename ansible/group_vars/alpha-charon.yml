@@ -12,7 +12,7 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e PORT={{ hosted_ports[0] }}
-  -e API_TOKEN=3f9e8ae1f24396382100b39e1ed7b5ba8dfe35d2
+  -e API_TOKEN=0e55b73c0146f033e361ed327d088d30e2804869
   -e DEBUG=charon*
 
 container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}/udp {{container_envs}}"
