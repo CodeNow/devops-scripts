@@ -53,8 +53,11 @@ Host alpha-mongodb02
 Host alpha-mongodb03
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.251 22
 
-Host alpha-api
+Host alpha-api-old
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
+
+Host alpha-api
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.142 22
 
 Host alpha-web
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.85 22
@@ -77,13 +80,8 @@ Host alpha-dock3
 Host alpha-dock4
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.4 22
 
-################################################################################
-# alpha-stage
-################################################################################
-Host alpha-stage-hipache
-  HostName 54.219.130.96
-
-Host alpha-stage-dock1
+Host alpha-git
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.243 22
 
 ################################################################################
 # alpha-stage
@@ -99,6 +97,9 @@ Host alpha-stage-dock1
 
 Host alpha-stage-dock2
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.240 22
+
+Host alpha-stage-dock-test
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.213 22
 
 ################################################################################
 # integration
