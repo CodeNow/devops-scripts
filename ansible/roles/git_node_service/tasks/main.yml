@@ -19,7 +19,7 @@
   git:
     repo={{ app_repo }}
     dest=/opt/runnable/{{ app_name }}
-    version=master
+    version={{ git_branch }}
     update=yes
     accept_hostkey=True
   notify:

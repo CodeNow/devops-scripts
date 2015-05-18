@@ -1,5 +1,5 @@
 ---
-- hosts: api
+- hosts: mavis
   vars_files:
     - "group_vars/alpha-mavis.yml"
   roles:

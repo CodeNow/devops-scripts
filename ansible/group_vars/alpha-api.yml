@@ -17,8 +17,8 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
-  -e NAVI_HOST=http://{{ ansible_default_ipv4.address }}:3567
-  -e CHARON_HOST={{ ansible_default_ipv4.address }}
+  -e NAVI_HOST=http://{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}:3567
+  -e CHARON_HOST={{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}
   -e DEBUG=runnable-api:*
 
 container_run_opts: "-d -P {{container_envs}}"
