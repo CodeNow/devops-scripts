@@ -10,9 +10,6 @@ alpha-mongodb01
 alpha-mongodb02
 alpha-mongodb03
 
-[cayley]
-alpha-cayley cayley_mongo_password=e262GzHnUGtrhj3nc2aiVIZHPwXaLBh8n4sKfVGyC78
-
 [neo4j]
 alpha-neo4j
 
@@ -20,10 +17,16 @@ alpha-neo4j
 alpha-api
 
 [navi]
-alpha-api
+alpha-api-old
 
 [charon]
-alpha-api
+alpha-api-old
+
+[khronos]
+alpha-api-old
+
+[mavis]
+alpha-api-old
 
 [web]
 alpha-web
@@ -53,10 +56,11 @@ redis
 redis-slave
 docks
 registry
-cayley
 neo4j
 navi
 charon
+khronos
+mavis
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem

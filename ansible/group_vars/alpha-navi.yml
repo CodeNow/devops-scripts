@@ -11,7 +11,7 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e DEBUG=*
+  -e DEBUG=*lib*
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e REDIS_IPADDRESS={{redis_host}}
   -e HELLO_RUNNABLE_GITHUB_TOKEN=0e55b73c0146f033e361ed327d088d30e2804869
