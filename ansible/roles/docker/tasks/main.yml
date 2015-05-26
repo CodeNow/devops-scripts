@@ -24,10 +24,10 @@
 - name: copy docker config file
   sudo: yes
   template:
-    src='docker-defaults'
+    src={{ docker_config }}
     dest=/etc/default/docker
   register: copied_config
-  tags: 'genDockerDefaults'
+  tags: 'genDockerConfig'
 
 - name: restart docker
   when: copied_config.changed and restart is defined
