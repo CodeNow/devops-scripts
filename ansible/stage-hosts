@@ -5,9 +5,13 @@ alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true pr
 alpha-stage-dock1
 alpha-stage-dock2
 
+[charon]
+alpha-stage-hipache
+
 [alpha:children]
 hipache
 docks
+charon
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
