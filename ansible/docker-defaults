@@ -1,1 +1,1 @@
-DOCKER_OPTS="-H=0.0.0.0:4242 -H=unix:///var/run/docker.sock -g /docker --insecure-registry registry.runnable.com --icc=false"
+DOCKER_OPTS="-H=0.0.0.0:4242 -H=unix:///var/run/docker.sock -g /docker --tlsverify --tlscacert=/etc/ssl/docker/ca.pem --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem --insecure-registry registry.runnable.com --icc=false"
