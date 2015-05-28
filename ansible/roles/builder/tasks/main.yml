@@ -17,5 +17,4 @@
   command: sudo docker build --no-cache --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
-  when: image_push is defined
   command: sudo docker push {{ container_image }}:{{ container_tag }}
