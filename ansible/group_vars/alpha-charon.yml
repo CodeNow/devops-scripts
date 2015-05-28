@@ -14,5 +14,7 @@ container_envs: >
   -e PORT={{ hosted_ports[0] }}
   -e API_TOKEN=0e55b73c0146f033e361ed327d088d30e2804869
   -e DEBUG=charon*
+  -e API_HOST={{ api_host | default('http://api.runnable.io')}}
+  -e DOMAIN_FILTER=runnable2.net
 
 container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}/udp {{container_envs}}"

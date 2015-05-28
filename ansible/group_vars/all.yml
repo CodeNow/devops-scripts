@@ -22,5 +22,7 @@ container_tag: "{{ git_branch }}"
 dockerfile: "basic_node/Dockerfile"
 base_dockerfile: "node_base"
 
+docker_config: runnable
+
 # hipchat rooms to notify
 hipchat_rooms: ['Development', 'BugTalk']
