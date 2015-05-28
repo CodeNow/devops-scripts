@@ -21,4 +21,8 @@ container_envs: >
   -e CHARON_HOST={{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}
   -e DEBUG=runnable-api:*
 
-container_run_opts: "-d -P {{container_envs}}"
+container_run_opts: <
+  -d
+  -P
+  -v /etc/ssl/docker:/etc/ssl/docker:ro
+  {{ container_envs }}
