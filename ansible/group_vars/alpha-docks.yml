@@ -1,2 +1,1 @@
-# for redis
-dock_hosts_key: dockerHosts
+docker_config: docks

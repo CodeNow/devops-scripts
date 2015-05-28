@@ -1,9 +1,11 @@
 ---
+- hosts: charon
+
 - hosts: docks
   vars_files:
     - "group_vars/alpha-docks.yml"
   roles:
-    - docker
+    - { role: docker, tags: "docker" }
 
 - include: krain.yml
 - include: filibuster.yml

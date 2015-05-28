@@ -8,12 +8,12 @@
 - name: add docker apt key
   when: not docker_installed.stdout
   sudo: yes
-  action: apt_key url=https://get.docker.io/gpg state=present 
+  action: apt_key url=https://get.docker.io/gpg state=present
 
 - name: add docker repository
   when: not docker_installed.stdout
   sudo: yes
-  action: apt_repository repo='deb http://get.docker.io/ubuntu docker main' state=present update_cache=yes 
+  action: apt_repository repo='deb http://get.docker.io/ubuntu docker main' state=present update_cache=yes
 
 - name: install docker
   when: not docker_installed.stdout
@@ -22,22 +22,13 @@
   with_items: docker_package_name
 
 - name: copy docker config file
-  when: ansible_distribution == 'Ubuntu'
   sudo: yes
-  copy:
-    src=docker-defaults
+  template:
+    src={{ docker_config }}
     dest=/etc/default/docker
   register: copied_config
+  tags: 'genDockerConfig'
 
 - name: restart docker
-  when: copied_config.changed
-  command: sudo echo 'hi'
-
-- name: check for docker-enter
-  shell: "[ -f /usr/local/bin/docker-enter ] && echo 'Found' || echo ''"
-  register: docker_enter
-  changed_when: docker_enter.stdout != 'Found'
-
-- name: install docker-enter
-  when: docker_enter.changed
-  command: sudo docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+  when: copied_config.changed and restart is defined
+  command: sudo service docker restart
