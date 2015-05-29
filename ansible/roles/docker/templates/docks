@@ -1,1 +1,5 @@
-DOCKER_OPTS="-H=unix:///var/run/docker.sock -H=0.0.0.0:4242 --tlsverify --tlscacert=/etc/ssl/docker/ca.pem --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem -g /docker --insecure-registry registry.runnable.com --icc=false --dns={{ charon_host | default(hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'])}} --dns=8.8.8.8"
+DOCKER_OPTS="-H=unix:///var/run/docker.sock -H=0.0.0.0:4242"
+DOCKER_OPTS="$DOCKER_OPTS --tlsverify --tlscacert=/etc/ssl/docker/ca.pem"
+DOCKER_OPTS="$DOCKER_OPTS --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem"
+DOCKER_OPTS="$DOCKER_OPTS -g /docker --insecure-registry registry.runnable.com --icc=false"
+DOCKER_OPTS="$DOCKER_OPTS --dns={{ charon_host | default(hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'])}} --dns=8.8.8.8"
