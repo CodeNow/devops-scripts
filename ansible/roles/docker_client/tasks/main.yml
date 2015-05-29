@@ -1,7 +1,9 @@
 ---
 - name: create docker cert directory
   sudo: yes
-  file: path=/opt/ssl/docker state=directory
+  file:
+    path=/etc/ssl/docker
+    state=directory
 
 - name: copy docker CA
   sudo: yes

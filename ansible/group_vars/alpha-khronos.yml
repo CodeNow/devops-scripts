@@ -1,4 +1,4 @@
-name: "khronos"
+name: khronos
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
