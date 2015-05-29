@@ -24,5 +24,5 @@ container_envs: >
 container_run_opts: <
   -d
   -P
-  -v /etc/ssl/docker:/etc/ssl/docker:ro
+  -v /opt/ssl/docker:/etc/ssl/docker:ro
   {{ container_envs }}
