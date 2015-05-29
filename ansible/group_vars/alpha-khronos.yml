@@ -14,4 +14,7 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
 
-container_run_opts: "-d {{container_envs}}"
+container_run_opts: >
+  -d
+  -v /etc/ssl/docker:/etc/ssl/docker:ro
+  {{container_envs}}
