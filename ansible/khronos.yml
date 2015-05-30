@@ -1,10 +1,11 @@
 ---
 - hosts: mongodb
 
-- hosts: api
+- hosts: khronos
   vars_files:
     - "group_vars/alpha-khronos.yml"
   roles:
   - { role: notify, tags: "notify" }
+  - { role: docker_client }
   - { role: builder, tags: "build" }
   - { role: container_kill_start, tags: "deploy" }

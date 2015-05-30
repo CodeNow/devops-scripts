@@ -4,4 +4,5 @@
     - "group_vars/alpha-docker-listener.yml"
   roles:
   - { role: notify, tags: "notify" }
+  - { role: docker_client }
   - { role: git_node_service, tags: "deploy" }
