@@ -19,7 +19,7 @@ openssl req \
 chmod 400 "server-$HOST.csr"
 
 # put host IP in alternate names
-echo "subjectAltName = IP:$HOST,IP:127.0.0.1" > "extfile-$HOST.cnf"
+echo "subjectAltName = IP:$HOST,IP:127.0.0.1,DNS:localhost" > "extfile-$HOST.cnf"
 
 # generate host certificate
 openssl x509 \

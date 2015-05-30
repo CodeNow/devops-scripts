@@ -1,7 +1,7 @@
 ---
 - hosts: mongodb
 
-- hosts: api
+- hosts: khronos
   vars_files:
     - "group_vars/alpha-khronos.yml"
   roles:
