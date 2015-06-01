@@ -97,12 +97,17 @@
 
 # Stops container to access our local infra
 {% if group_names is defined and 'docks' in group_names %}
--D FORWARD -s 172.17.0.0/16 -d 10.0.0.0/8 -j DROP
--I FORWARD -s 172.17.0.0/16 -d 10.0.0.0/8 -j DROP
+-D FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP
+-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP
+-D FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 --destination-port 6783 -j ACCEPT
+-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 --destination-port 6783 -j ACCEPT
+# FIXME: this line will not work if charon host changed
+-D FORWARD -s 172.0.0.0/8 -d {{ charon_host_ip }} --destination-port 53 -j ACCEPT
+-I FORWARD -s 172.0.0.0/8 -d {{ charon_host_ip }} --destination-port 53 -j ACCEPT
 
 # Drop all containers to container connection
--D FORWARD -s 172.17.0.0/16 -d 172.17.0.0/16 -j DROP
--I FORWARD -s 172.17.0.0/16 -d 172.17.0.0/16 -j DROP
+-D FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP
+-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP
 {% endif %}
 
 # don't delete the 'COMMIT' line or these rules won't be processed

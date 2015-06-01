@@ -2,7 +2,12 @@
 
 script_temp_path: "/tmp/iptables_update.sh"
 docker_network: "172.17.0.0/16"
+charon_host_ip: "{{ charon_host | default(hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'])}}"
+dock_ips: "{% for host in groups['docks'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
 
-iptables_rule: 
-  - '-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP'
-  - '-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP'
+iptables_rule:
+  - '-I FORWARD -s 172.17.0.0/16 -d 10.0.1.0/24 -j DROP'
+  - '-I FORWARD -s 172.17.0.0/16 -d 172.17.0.0/16 -j DROP'
+  - '-I FORWARD -s 172.17.0.0/16 -d {{ dock_ips }} -j ACCEPT'
+  - '-I FORWARD -s 172.17.0.0/16 -d {{ charon_host_ip }} -p tcp --destination-port 53 -j ACCEPT'
+  - '-I FORWARD -s 172.17.0.0/16 -d {{ charon_host_ip }} -p udp --destination-port 53 -j ACCEPT'
