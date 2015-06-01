@@ -6,6 +6,7 @@
     - "group_vars/alpha-docks.yml"
   roles:
     - { role: docker, tags: "docker" }
+    - { role: iptables, tags: "iptables, security" }
 
 - include: krain.yml
 - include: filibuster.yml

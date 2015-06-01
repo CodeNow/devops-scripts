@@ -1,0 +1,8 @@
+---
+
+script_temp_path: "/tmp/iptables_update.sh"
+docker_network: "172.17.0.0/16"
+
+iptables_rule: 
+  - '-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP'
+  - '-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP'
