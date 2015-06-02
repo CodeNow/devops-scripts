@@ -1,5 +1,9 @@
 ---
 - hosts: charon
+- hosts: redis
+- hosts: redis-slave
+- hosts: neo4j
+- hosts: mongodb
 
 - hosts: docks
   vars_files:
