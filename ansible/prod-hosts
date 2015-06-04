@@ -1,6 +1,9 @@
 [bastion]
 alpha-bastion
 
+[migration-router]
+migration-router
+
 [hipache]
 alpha-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 alpha-userland-hipache domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3

@@ -1,0 +1,4 @@
+---
+- hosts: migration-router
+  roles:
+  - { role: nginx, tags: deploy }
