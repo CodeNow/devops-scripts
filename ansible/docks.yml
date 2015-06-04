@@ -1,11 +1,16 @@
 ---
 - hosts: charon
+- hosts: redis
+- hosts: redis-slave
+- hosts: neo4j
+- hosts: mongodb
 
 - hosts: docks
   vars_files:
     - "group_vars/alpha-docks.yml"
   roles:
     - { role: docker, tags: "docker" }
+    - { role: iptables, tags: "iptables, security" }
 
 - include: krain.yml
 - include: filibuster.yml

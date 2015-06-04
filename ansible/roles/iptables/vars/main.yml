@@ -1,0 +1,14 @@
+---
+
+script_temp_path: "/tmp/iptables_update.sh"
+docker_network: "172.17.0.0/16"
+# not these must be commented out for staging
+block_ips1: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
+block_ips2: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+block_ips3: "{{ hostvars[groups['redis-slave'][0]]['ansible_default_ipv4']['address'] }}"
+block_ips4: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
+block_ips: "{{ block_ips1 }},{{ block_ips2 }},{{ block_ips3 }},{{ block_ips4 }}"
+
+iptables_rule:
+  - '-I FORWARD -i docker0 -o eth0 -s 172.17.0.0/16 -d {{ block_ips }} -j DROP'
+  - '-I FORWARD -i docker0 -o docker0 -s 172.17.0.0/16 -d 172.17.0.0/16 -j DROP'
