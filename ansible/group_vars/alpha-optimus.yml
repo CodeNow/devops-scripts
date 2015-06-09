@@ -16,7 +16,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e PORT={{ hosted_ports[0] }}
-  -e DEBUG=optimus*
   -e S3_CONTEXT_RESOURCE_BUCKET=runnable.context.resources.production
   -e AWS_ACCESS_KEY_ID=AKIAJWSSSJYUXKNW2ZDA
   -e AWS_SECRET_ACCESS_KEY=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
