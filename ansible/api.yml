@@ -3,6 +3,7 @@
 - hosts: neo4j
 - hosts: navi
 - hosts: charon
+- hosts: optimus
 
 - hosts: api
   vars_files:
