@@ -4,4 +4,4 @@ db_path: "/opt/rabbitmq/db"
 # container_kill_start settings
 container_image: rabbitmq
 container_tag: "3.5"
-container_run_opts: "-d -e RABBITMQ_NODENAME=prod-rabbit --name prod-rabbit -v {{ db_path }}:/var/lib/rabbitmq:rw"
+container_run_opts: "-d -e RABBITMQ_NODENAME=prod-rabbit --name prod-rabbit -v {{ db_path }}:/var/lib/rabbitmq:rw -p 54326:5672"
