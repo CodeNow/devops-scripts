@@ -1,4 +1,0 @@
----
-- name: create database directory
-  sudo: yes
-  file: path=/opt/mongodb/db state=directory

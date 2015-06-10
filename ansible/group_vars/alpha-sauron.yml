@@ -1,3 +1,8 @@
 # upstart template variables
 app_name: "sauron"
 app_repo: "git@github.com:CodeNow/sauron.git"
+
+enviroment_vars: {
+  "REDIS_IPADDRESS": "{{ redis_host }}",
+  "REDIS_PORT": "{{ redis_port }}"
+}

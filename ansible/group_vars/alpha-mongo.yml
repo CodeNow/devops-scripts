@@ -1,4 +1,7 @@
+# database vars
+db_path: "/opt/mongodb/db"
+
 # container_kill_start settings
 container_image: mongo
 container_tag: "latest"
-container_run_opts: "-d --name mongodb -p 27017:27017 -v /opt/mongodb/db:/data/db:rw"
+container_run_opts: "-d --name mongodb -p 27017:27017 -v {{ db_path }}:/data/db:rw"

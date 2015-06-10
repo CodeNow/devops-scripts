@@ -4,7 +4,7 @@
     - "group_vars/alpha-redis.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: redis_slave, tags: "deploy" }
+  - { role: database, tags: "deploy" }
   - { role: container_kill_start,
       container_run_args: "redis-server --slaveof {{ redis_host }} 6379",
       tags: "deploy" }

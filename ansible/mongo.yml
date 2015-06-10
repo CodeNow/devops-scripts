@@ -4,5 +4,5 @@
     - "group_vars/alpha-mongo.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: mongo }
+  - { role: database }
   - { role: container_kill_start, tags: "deploy" }
