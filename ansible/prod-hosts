@@ -35,7 +35,7 @@ alpha-api-old
 alpha-api-old
 
 [rabbitmq]
-alpha-api
+alpha-rabbit
 
 [web]
 alpha-web
