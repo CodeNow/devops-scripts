@@ -14,6 +14,7 @@ var paths = {
 };
 
 async.waterfall([
+  nginxWebServicesRewrite,
   nginxConfigHeader,
   nginxManualLocations,
   fs.readFile.bind(fs, 'sitemap.xml'),
@@ -58,6 +59,25 @@ async.waterfall([
   }
   process.exit(0);
 });
+
+function nginxWebServicesRewrite (cb) {
+  console.log([
+    'server {',
+    '\tserver_name ~^web-(?<token>.+)\.runnable.com$;',
+    '\tlocation = / {',
+    '\t\treturn 301 "$scheme://web-$token.runnablecodesnippets.com$request_uri";',
+    '\t}',
+    '}',
+    'server {',
+    '\t server_name ~^services-(?<token>.+)\.runnable.com$;',
+    '\tlocation = / {',
+    '\t\treturn 301 "$scheme://services-$token.runnablecodesnippets.com$request_uri";',
+    '\t}',
+    '}',
+    ''
+  ].join('\n'));
+  cb();
+}
 
 function nginxConfigHeader (cb) {
   console.log([
