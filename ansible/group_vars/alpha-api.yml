@@ -21,6 +21,10 @@ container_envs: >
   -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
   -e OPTIMUS_HOST=http://{{ hostvars[groups['optimus'][0]]['ansible_default_ipv4']['address'] }}
   -e DEBUG=runnable-api:*
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
 
 container_run_opts: >
   -d

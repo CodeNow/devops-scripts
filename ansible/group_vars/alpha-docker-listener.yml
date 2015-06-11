@@ -9,7 +9,7 @@ enviroment_vars: {
   "REDIS_PORT": "{{ redis_port }}",
   "DOCKER_CERT_PATH": "/opt/ssl/docker",
   "RABBITMQ_PORT": "{{ rabbit_port }}",
-  "RABBITMQ_HOSTNAME": "{{ rabbit_host }}",
-  "RABBITMQ_USERNAME": "{{ rabbit_username | default('guest') }}",
-  "RABBITMQ_PASSWORD": "{{ rabbit_password| default('guest') }}"
+  "RABBITMQ_HOSTNAME": "{{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}",
+  "RABBITMQ_USERNAME": "{{ rabbit_username }}",
+  "RABBITMQ_PASSWORD": "{{ rabbit_password }}"
 }

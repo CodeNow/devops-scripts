@@ -1,4 +1,6 @@
 ---
+- hosts: rabbitmq
+
 - hosts: docks
   vars_files:
     - "group_vars/alpha-docker-listener.yml"

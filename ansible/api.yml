@@ -4,6 +4,7 @@
 - hosts: navi
 - hosts: charon
 - hosts: optimus
+- hosts: rabbitmq
 
 - hosts: api
   vars_files:
