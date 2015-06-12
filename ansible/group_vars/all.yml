@@ -3,7 +3,7 @@ registry_host: "10.0.1.254"
 registry_env: "prod"
 
 # for docker stop old container
-stop_time: 5
+stop_time: 60
 
 # default for container args (which are optional)
 container_run_args: ""
