@@ -4,12 +4,11 @@ name: docker-listener
 app_name: "docker-listener"
 app_repo: "git@github.com:CodeNow/docker-listener.git"
 
-enviroment_vars: {
-  "REDIS_IPADDRESS": "{{ redis_host }}",
-  "REDIS_PORT": "{{ redis_port }}",
-  "DOCKER_CERT_PATH": "/opt/ssl/docker",
-  "RABBITMQ_PORT": "{{ rabbit_port }}",
-  "RABBITMQ_HOSTNAME": "{{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}",
-  "RABBITMQ_USERNAME": "{{ rabbit_username }}",
-  "RABBITMQ_PASSWORD": "{{ rabbit_password }}"
-}
+enviroment_vars:
+  REDIS_IPADDRESS: "{{ redis_host }}"
+  REDIS_PORT: "{{ redis_port }}"
+  DOCKER_CERT_PATH: "/opt/ssl/docker"
+  RABBITMQ_PORT: "{{ rabbit_port }}"
+  RABBITMQ_HOSTNAME: "{{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}"
+  RABBITMQ_USERNAME: "{{ rabbit_username }}"
+  RABBITMQ_PASSWORD: "{{ rabbit_password }}"
