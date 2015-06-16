@@ -42,14 +42,14 @@
     src=genNginxConf.js
     dest=/tmp/genNginxConf.js
 
-- name: download sitemap
-  sudo: yes
-  get_url:
-    url=http://runnable.com/sitemap.xml
-    dest=/tmp/sitemap.xml
-    mode=444
-    timeout=30
-    force=yes
+# - name: download sitemap
+#   sudo: yes
+#   get_url:
+#     url=http://runnable.com/sitemap.xml
+#     dest=/tmp/sitemap.xml
+#     mode=444
+#     timeout=30
+#     force=yes
 
 - name: install packages
   sudo: yes
