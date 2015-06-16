@@ -4,4 +4,4 @@ krain_env: default
 # upstart template variables
 app_name: "krain"
 app_repo: "git@github.com:CodeNow/krain.git"
-node_env: "{{krain_env}}"
+node_env: "{{ krain_env }}"

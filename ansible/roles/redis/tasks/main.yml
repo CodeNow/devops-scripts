@@ -1,4 +1,0 @@
----
-- name: create data directory
-  sudo: yes
-  file: path=/opt/redis/db state=directory

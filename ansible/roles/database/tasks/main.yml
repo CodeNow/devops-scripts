@@ -1,4 +1,4 @@
 ---
 - name: create database directory
   sudo: yes
-  file: path=/opt/mongodb/db state=directory
+  file: path={{ db_path }} state=directory

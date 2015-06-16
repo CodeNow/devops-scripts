@@ -34,6 +34,9 @@ alpha-api-old
 [optimus]
 alpha-api-old
 
+[rabbitmq]
+alpha-rabbit
+
 [web]
 alpha-web
 
@@ -68,8 +71,16 @@ charon
 khronos
 mavis
 optimus
+rabbitmq
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 node_env=production
 domain=runnable.io
+rabbit_username=a4c1ac709c3bc685a6665fc1d23d737d
+rabbit_password=6df7983b76a22bbbffee11a29860cda8
+rabbit_port=54321
+redis_host=10.0.1.172
+redis_port=6379
+datadog_host=10.0.1.239
+datadog_port=8125

@@ -1,4 +1,7 @@
+# database vars
+db_path: "/opt/redis/db"
+
 # container_kill_start settings
 container_image: redis
 container_tag: "latest"
-container_run_opts: "-d --name redis -v /opt/redis/db:/data -p 6379:6379"
+container_run_opts: "-d --name redis -v {{ db_path }}:/data -p 6379:6379"

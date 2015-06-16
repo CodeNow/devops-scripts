@@ -62,8 +62,8 @@ Host alpha-dock3
 Host alpha-dock4
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.4 22
 
-Host alpha-git
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.243 22
+Host alpha-rabbit
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.253 22
 
 ################################################################################
 # staging runnable.io
