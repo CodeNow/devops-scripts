@@ -1,0 +1,10 @@
+---
+- hosts: registry
+
+- hosts: kibana
+  vars_files:
+    - "group_vars/kibana.yml"
+  roles:
+  - { role: builder, tags: "build" }
+  - { role: kibana }
+  - { role: container_kill_start, tags: deploy }

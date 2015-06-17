@@ -1,0 +1,30 @@
+---
+- name: create logstash config directory
+  sudo: yes
+  file: path=/etc/logstash/conf.d state=directory
+
+- name: copy logstash config
+  sudo: yes
+  template:
+    src=01-lumberjack-input.conf
+    dest=/etc/logstash/conf.d/
+
+- name: create tls certs directory
+  sudo: yes
+  file: path=/etc/pki/tls/certs
+
+- name: copy tls cert
+  sudo: yes
+  template:
+    src=logstash-forwarder.crt
+    dest=/etc/pki/tls/certs
+
+- name: create tls private key directory
+  sudo: yes
+  file: path=/etc/pki/tls/private
+
+- name: copy tls private key
+  sudo: yes
+  template:
+    src=logstash-forwarder.key
+    dest=/etc/pki/tls/private
