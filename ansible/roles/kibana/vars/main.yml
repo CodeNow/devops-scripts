@@ -1,0 +1,7 @@
+---
+cert_file: /etc/pki/tls/certs/logstash-forwarder.crt
+key_file: /etc/pki/tls/private/logstash-forwarder.key
+logstash_conf: /etc/logstash/conf.d/01-lumberjack-input.conf
+cert_dir: /etc/pki/tls/certs
+key_dir: /etc/pki/tls/private
+logstash_conf_dir: /etc/logstash/conf.d
