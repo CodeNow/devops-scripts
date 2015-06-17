@@ -3,7 +3,7 @@
 
 - hosts: kibana
   vars_files:
-    - "group_vars/kibana.yml"
+    - "group_vars/alpha-kibana.yml"
   roles:
   - { role: builder, tags: "build" }
   - { role: kibana }
