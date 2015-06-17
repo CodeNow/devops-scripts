@@ -98,6 +98,12 @@ Host migration-router
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
 
+Host elk
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.1.222 22
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
+
 ################################################################################
 # other
 ################################################################################
