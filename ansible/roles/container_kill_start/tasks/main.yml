@@ -19,6 +19,7 @@
 # get latest image
 # tag will default to latest
 - name: pull down docker image {{container_image}}:{{container_tag}}
+  when: not do_not_push
   command: sudo docker pull {{container_image}}:{{container_tag}}
 
 # get id of new image

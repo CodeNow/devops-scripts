@@ -1,3 +1,13 @@
+name: kibana
+
+# anti-anand setting
+stop_time: 5
+
+# for builder
+container_image: registry.runnable.com/runnable/{{ name }}
+do_not_push: true
+
+# for container kill_start (in particular)
 container_run_opts: >
   -d
   -v {{elk_config_dir}}/{{cert_file}}:{{cert_dir}}/{{cert_file}}:rw
