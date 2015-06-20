@@ -1,8 +1,0 @@
----
-cert_dir: /etc/pki/tls/certs
-cert_file: logstash-forwarder.crt
-key_dir: /etc/pki/tls/private
-key_file: logstash-forwarder.key
-logstash_conf_dir: /etc/logstash/conf.d
-logstash_conf_file: 01-lumberjack-input.conf
-elk_config_dir: /opt/elk-config

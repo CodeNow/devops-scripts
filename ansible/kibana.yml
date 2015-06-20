@@ -1,10 +1,11 @@
 ---
-- hosts: registry
+- hosts: logstash-broker
 
 - hosts: kibana
   vars_files:
     - "group_vars/alpha-kibana.yml"
   roles:
+  - { role: notify, tags: "notify" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
-  - { role: kibana }
   - { role: container_kill_start, tags: deploy }

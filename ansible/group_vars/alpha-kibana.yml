@@ -1,7 +1,13 @@
 name: kibana
 
+hosted_ports: ["5601"]
+
 # anti-anand setting
 stop_time: 5
+
+# For master redis (allows us to hit kibana from the outside)
+redis_key: "frontend:{{ name }}.{{ domain }}"
+is_redis_update_required: 'yes'
 
 # for builder
 container_image: registry.runnable.com/runnable/{{ name }}
@@ -10,11 +16,10 @@ do_not_push: true
 # for container kill_start (in particular)
 container_run_opts: >
   -d
-  -v {{elk_config_dir}}/{{cert_file}}:{{cert_dir}}/{{cert_file}}:rw
-  -v {{elk_config_dir}}/{{key_file}}:{{key_dir}}/{{key_file}}:rw
-  -v {{elk_config_dir}}/{{logstash_conf_file}}:{{logstash_conf_dir}}/{{logstash_conf_file}}:rw
-  -p 5601:5601
+  -e REDIS_HOST={{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}
+  -e REDIS_PORT=6379
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
   -p 9200:9200
-  -p 5000:5000
+  --name kibana
 
 dockerfile: kibana/Dockerfile
