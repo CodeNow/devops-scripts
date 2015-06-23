@@ -16,6 +16,7 @@ do_not_push: true
 # for container kill_start (in particular)
 container_run_opts: >
   -d
+  -v /opt/elk/elasticsearch:/var/lib/elasticsearch
   -e REDIS_HOST={{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}
   -e REDIS_PORT=6379
   -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
