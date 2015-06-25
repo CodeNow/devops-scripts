@@ -1,4 +1,6 @@
 ---
+- hosts: logstash-broker
+
 - hosts: mavis
   vars_files:
     - "group_vars/alpha-mavis.yml"
