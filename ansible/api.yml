@@ -4,6 +4,7 @@
 - hosts: navi
 - hosts: charon
 - hosts: rabbitmq
+- hosts: logstash-broker
 
 - hosts: api
   vars_files:
