@@ -1,4 +1,6 @@
 ---
+- hosts: logstash-broker
+
 - hosts: optimus
   vars_files:
     - "group_vars/alpha-optimus.yml"

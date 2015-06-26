@@ -20,6 +20,7 @@
 # tag will default to latest
 - name: pull down docker image {{container_image}}:{{container_tag}}
   command: sudo docker pull {{container_image}}:{{container_tag}}
+  when: not do_not_push
 
 # get id of new image
 - name: get id of the docker image
@@ -41,3 +42,7 @@
 # start our new container with options and args
 - name: start container
   command: sudo docker run --restart=always  --log-driver=syslog {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}
+  register: new_container_id
+  notify:
+    - get new container ports
+    - update redis key

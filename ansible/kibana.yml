@@ -1,11 +1,10 @@
 ---
 - hosts: logstash-broker
 
-- hosts: mavis
+- hosts: kibana
   vars_files:
-    - "group_vars/alpha-mavis.yml"
+    - "group_vars/alpha-kibana.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: container_start, tags: "deploy" }
+  - { role: container_kill_start, tags: deploy }
