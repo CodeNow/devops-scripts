@@ -12,3 +12,5 @@ enviroment_vars:
   RABBITMQ_HOSTNAME: "{{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}"
   RABBITMQ_USERNAME: "{{ rabbit_username }}"
   RABBITMQ_PASSWORD: "{{ rabbit_password }}"
+  LOG_REDIS_HOST: "{% if staging_logstash_broker_host is defined %}{{ staging_logstash_broker_host }}{% else %}{{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}{% endif %}"
+  LOG_REDIS_PORT: "{% if staging_logstash_broker_port is defined %}{{ staging_logstash_broker_port }}{% else %}{{ 6379 }}{% endif %}"
