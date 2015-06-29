@@ -5,8 +5,8 @@ alpha-bastion
 migration-router
 
 [hipache]
-alpha-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-alpha-userland-hipache domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+alpha-hipache elkName=hipache-main httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
+alpha-userland-hipache elkName=hipache-userland domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
 alpha-mongodb01

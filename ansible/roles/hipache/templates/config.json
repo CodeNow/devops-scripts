@@ -1,7 +1,10 @@
 {
     "server": {
-        "datadogHost": "{{ ansible_default_ipv4.address }}",
-        "datadogPort": "8125",
+        "elkRedisHost": "{% if staging_logstash_broker_host is defined %}{{ staging_logstash_broker_host }}{% else %}{{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}{% endif %}",
+        "elkRedisPort": "{% if staging_logstash_broker_port is defined %}{{ staging_logstash_broker_port }}{% else %}{{ 6379 }}{% endif %}",
+        "elkLoggerName": "{{ elkName }}",
+        "elkLoggerLevel": "{{ elkLevel | default('info') }}",
+        "elkLoggerKey": "logstash:redis",
         "prependPort": {{ prependIncomingPort | default("false") }},
         "subDomainDepth": {{ subDomainDepth }},
         "accessLog": "/host/access.log",
