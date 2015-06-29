@@ -1,5 +1,5 @@
 [hipache]
-alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+alpha-stage-userland-hipache elkName=hipache-staging-userland domain=runnable2.net httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [docks]
 alpha-stage-dock1
