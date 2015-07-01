@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+  - { role: ssh-keys, tags: ["ssh-keys"] }

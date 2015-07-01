@@ -1,0 +1,35 @@
+---
+- include_vars: users.yml
+
+- name: ensure runnable admin group exists
+  sudo: yes
+  group:
+    name={{ runnable_admin_group }}
+    state=present
+
+- name: ensure 'sudoers' has runnable admin group
+  sudo: yes
+  lineinfile: "
+    dest=/etc/sudoers
+    regexp='^%{{ runnable_admin_group }}'
+    line='%{{ runnable_admin_group }}  ALL=(ALL) NOPASSWD: ALL'
+    state=present
+    "
+
+- name: make users
+  sudo: yes
+  with_dict: users
+  user:
+    name={{ item.key }}
+    append=yes
+    groups={{ item.value.groups | default("") }}
+    shell=/bin/bash
+    state=present
+
+- name: set user's keys
+  sudo: yes
+  with_dict: users
+  authorized_key:
+    exclusive=yes
+    user={{ item.key }}
+    key="{{ item.value.pub_key }}"
