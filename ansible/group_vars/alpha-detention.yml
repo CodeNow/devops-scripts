@@ -1,0 +1,20 @@
+name: "detention"
+
+container_image: "registry.runnable.com/runnable/{{ name }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["80"]
+node_version: "0.12.0"
+npm_version: "2.1.18"
+
+redis_key: "frontend:{{ name }}.{{ domain }}"
+
+dockerfile_post_install_commands: [
+  "npm run grunt"
+]
+
+container_envs: >
+  -h {{ name }}
+  -e NODE_ENV={{ node_env }}
+  -e PORT={{ hosted_ports[0] }}
+
+container_run_opts: "-d -P {{container_envs}}"
