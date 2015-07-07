@@ -6,7 +6,9 @@ hosted_ports: ["80"]
 node_version: "0.12.0"
 npm_version: "2.1.18"
 
+# for redis
 redis_key: "frontend:{{ name }}.{{ domain }}"
+is_redis_update_required: 'yes'
 
 dockerfile_post_install_commands: [
   "npm run grunt"
