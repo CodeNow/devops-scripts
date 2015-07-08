@@ -2,7 +2,7 @@ name: "detention"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["80"]
+hosted_ports: ["9123"]
 node_version: "0.12.0"
 npm_version: "2.1.18"
 
@@ -19,4 +19,4 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e PORT={{ hosted_ports[0] }}
 
-container_run_opts: "-d -P {{container_envs}}"
+container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} {{container_envs}}"
