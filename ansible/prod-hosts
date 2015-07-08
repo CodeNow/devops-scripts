@@ -53,7 +53,7 @@ alpha-dock3
 alpha-dock4
 
 [registry]
-root@alpha-registry
+alpha-registry
 
 [logstash-broker]
 alpha-api-old

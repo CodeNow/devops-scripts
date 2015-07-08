@@ -1,7 +1,17 @@
 # container start
-container_tag_redis: "latest"
-container_tag_registry: "0.7.3"
-container_run_opts_redis: "-d --name redis-cache"
-container_run_args_redis: ""
-container_run_opts_registry: "-d -e SETTINGS_FLAVOR={{registry_env}} -v /opt/registry:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml --link redis-cache:db --name registry-s3 -p 80:5000"
-container_run_args_registry: ""
+name: "registry"
+
+container_image: "registry"
+container_tag: "2"
+hosted_ports: ["80"]
+
+container_envs: >
+  -e REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/registry
+  -e REGISTRY_STORAGE_S3_ACCESSKEY=AKIAJKCSFJCHFDITLBUQ
+  -e REGISTRY_STORAGE_S3_ACCESSKEY=LXxpb4F7Kxum1HvYkG0P20Yb/9Qpr+e5Gtt/0bIY
+  -e REGISTRY_STORAGE_S3_REGION=us-west-1
+  -e REGISTRY_STORAGE_S3_REGION=runnableimages
+  -e REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR=runnableimages
+  -e REGISTRY_ENVIRONMENT=production
+
+container_run_opts: "-d -p {{ hosted_ports[0] }}:5000 {{container_envs}}"
