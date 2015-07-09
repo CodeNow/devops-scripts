@@ -21,5 +21,6 @@ base_dockerfile: "node_base"
 
 docker_config: runnable
 
-# hipchat rooms to notify
-hipchat_rooms: ['Development', 'BugTalk']
+# slack rooms to send notifications
+slack_token: T029DEC10/B07DM0YBB/IvbJO2i8ROojkW9IDeVYSM4J
+slack_channels: [ '#ops' ]
