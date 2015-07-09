@@ -20,3 +20,8 @@ users:
     pub_key: >
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtaCZTriyt5xsjIfKMqwimK+IgtSe8AokOcMnaAMMZ6LB9zeaq42/oWe0J6GqpqBAJ2EPFQkmdT5qVKbf5ragGhpNkkFFLzziMibeDXauc9aIryox2KoZBv8E8g3zPmV7caOrrLqz7NR9Gf4P3xYv5drUNUWsrDaUD0E022PEJHwmTa86PCcHmguI56KyicNi2MRFa4J+E4yIHcIZ3fHMXtvh7DxQnmRyDuZFjGb+Xl00HbyPzSBychq92cN49S3XupEPH7xtEkmar2DlOZaW3wDXgQ2VD+2ax11hefV/XgfI/ToXCNnR9gf+F5sLOpCrqszM57HoA0GWAkiNwrjmD kahn@runnable.com
 
+  casey:
+    name: Casey Flynn
+    groups: runnadmin
+    pub_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM4RSPDDfYE3N0fBpL9PwwshjDiA2Ul7EPIVcfCLj31qeJg4JlLooGkUU9pWUp7UDaoKdL+nN71wolDAzxsS2/XD9gMcKWt/5T//Gml7UDNhd5HIPPTy2/tF9JnDw4u2cuNOSoUMp4LDmZpI3Rt1jyIMRNwoxtokG2cHozpLfKSpHTw3xYHD5pTvI9xX/AAFlGgDuPWLwQ/YSzkPrMH+DFlKZA4ARSoequ400TO9DBeRBp02NHlwIImL1EqHE8yaL/ZT84OxaSp1SPfI1SsX9EeHkz0YuGXrAHoGbXCNVJRcGhqIqrlKNAorNiZz17qmTfQo/XPliTGa5I1mbX/m35 casey@caseys-mbp
