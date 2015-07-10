@@ -107,6 +107,12 @@ Host elk
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
 
+Host hubot
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.230 22
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
+
 ################################################################################
 # other
 ################################################################################

@@ -1,0 +1,9 @@
+---
+- hosts: detention
+  vars_files:
+    - "group_vars/alpha-detention.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: builder, tags: "build" }
+  - { role: container_kill_start, tags: "deploy" }

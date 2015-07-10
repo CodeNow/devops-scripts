@@ -1,10 +1,10 @@
 ---
-- name: notify end
-  hipchat:
-    token=c33f7a2f84b34150e930158c1cf674
-    room="{{ item }}"
+- name: send done message
+  slack:
+    token={{ slack_token }}
+    channel={{ item }}
     msg="{{ notify_end_message }}"
   with_items:
-    - "{{hipchat_rooms}}"
-    - "{{extra_rooms|default([])}}"
+    - "{{ slack_channels }}"
+    - "{{ extra_channels | default([]) }}"
 

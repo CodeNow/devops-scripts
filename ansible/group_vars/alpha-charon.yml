@@ -15,8 +15,8 @@ container_envs: >
   -e API_TOKEN=51c61b779f3de616a9639cfc44a22c79fbd8e328
   -e DEBUG=charon*
   -e API_HOST={{ api_host | default('http://api.runnable.io')}}
-  -e LOG_REDIS_HOST="{% if staging_logstash_broker_host is defined %}{{ staging_logstash_broker_host }}{% else %}{{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}{% endif %}"
-  -e LOG_REDIS_PORT="{% if staging_logstash_broker_port is defined %}{{ staging_logstash_broker_port }}{% else %}{{ 6379 }}{% endif %}"
+  -e REDIS_HOST={{ redis_host }}
+  -e REDIS_PORT={{ redis_port }}
   --name charon
 
 container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}/udp {{container_envs}}"
