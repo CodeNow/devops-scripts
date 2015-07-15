@@ -26,8 +26,6 @@ container_envs: >
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e LOG_REDIS_HOST="{% if staging_logstash_broker_host is defined %}{{ staging_logstash_broker_host }}{% else %}{{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}{% endif %}"
-  -e LOG_REDIS_PORT="{% if staging_logstash_broker_port is defined %}{{ staging_logstash_broker_port }}{% else %}{{ 6379 }}{% endif %}"
 
 container_run_opts: >
   -d

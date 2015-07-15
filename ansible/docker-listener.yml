@@ -1,6 +1,5 @@
 ---
 - hosts: rabbitmq
-- hosts: logstash-broker
 
 - hosts: docks
   vars_files:

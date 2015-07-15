@@ -19,7 +19,5 @@ container_envs: >
   -e AWS_ACCESS_KEY_ID=AKIAJWSSSJYUXKNW2ZDA
   -e AWS_SECRET_ACCESS_KEY=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
   -e S3_DEPLOY_KEY_BUCKET=runnable.deploykeys.production
-  -e LOG_REDIS_HOST="{% if staging_logstash_broker_host is defined %}{{ staging_logstash_broker_host }}{% else %}{{ hostvars[groups['logstash-broker'][0]]['ansible_default_ipv4']['address'] }}{% endif %}"
-  -e LOG_REDIS_PORT="{% if staging_logstash_broker_port is defined %}{{ staging_logstash_broker_port }}{% else %}{{ 6379 }}{% endif %}"
 
 container_run_opts: "-d -P {{container_envs}}"
