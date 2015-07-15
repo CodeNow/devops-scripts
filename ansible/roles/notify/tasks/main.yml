@@ -1,5 +1,6 @@
 ---
 - name: send start message
+  changed_when: True
   slack:
     token={{ slack_token }}
     channel={{ item }}
