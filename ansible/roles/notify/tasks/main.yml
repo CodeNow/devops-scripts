@@ -15,7 +15,6 @@
   local_action: command whoami
   register: local_username
   delegate_to: 127.0.0.1
-  tags: [ notify ]
 
 - name: send rollbar message for deploy
   rollbar_deployment:
@@ -23,5 +22,4 @@
     environment={{node_env}}
     revision={{git_branch}}
     rollbar_user={{local_username.stdout}}
-  tags: [ notify ]
   when: rollbar_token is defined and node_env is defined and git_branch is defined
