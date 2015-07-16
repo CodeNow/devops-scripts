@@ -26,6 +26,7 @@ container_envs: >
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e LOGGLY_TOKEN={{ loggly_token }}
 
 container_run_opts: >
   -d

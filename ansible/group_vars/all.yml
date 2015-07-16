@@ -24,3 +24,5 @@ docker_config: runnable
 # slack rooms to send notifications
 slack_token: T029DEC10/B07DM0YBB/IvbJO2i8ROojkW9IDeVYSM4J
 slack_channels: [ '#ops' ]
+
+loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
