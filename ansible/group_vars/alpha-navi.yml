@@ -3,7 +3,7 @@ name: "navi"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["3567"]
-node_version: "0.12.0"
+node_version: "0.10.38"
 npm_version: "2.1.18"
 
 container_envs: >
