@@ -13,4 +13,4 @@ enviroment_vars:
   RABBITMQ_USERNAME: "{{ rabbit_username }}"
   RABBITMQ_PASSWORD: "{{ rabbit_password }}"
   HOST_TAGS: "{{ host_tags | default('default')  }}"
-  LOGGLY_TOKEN: "{ loggly_token }"
+  LOGGLY_TOKEN: "{{ loggly_token }}"
