@@ -1,14 +1,13 @@
 ---
 - hosts: charon
 - hosts: redis
-- hosts: redis-slave
-- hosts: neo4j
-- hosts: mongodb
 
 - hosts: docks
   vars_files:
     - "group_vars/alpha-docks.yml"
   roles:
+    - { role: provision, when: provision is defined, tags: "provision"}
+    - { role: dock, tags: "setup" }
     - { role: docker, tags: "docker" }
     - { role: iptables, tags: "iptables, security" }
 
