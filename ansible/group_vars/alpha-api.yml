@@ -11,22 +11,48 @@ redis_key: "frontend:api.{{ domain }}"
 is_redis_update_required: 'yes'
 datadog_host: "{{ ansible_default_ipv4.address }}"
 
+# TODO Needed for production-beta:
+# GITHUB_CLIENT_ID=baa5c868b6d17d7ae002
+# GITHUB_CLIENT_SECRET=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
+# DATADOG_HOST=datadog.runnable-beta.com
+# AWS_ACCESS_KEY_ID= ???
+# AWS_SECRET_ACCESS_KEY= ???
+# LOGGLY_TOKEN= ???
+# MIXPANEL_APP_ID= ???
+# ROLLBAR_KEY= ???
+# MONGO=mongodb://.../{beta} <-- This should be configurable via db name var
+# MONGO_REPLSET_NAME={beta}-0 <-- this should also be configurable via db name var
+# USER_CONTENT_DOMAIN= ???
+
 # for container settings
 container_envs: >
   -h api
   -e NODE_ENV={{ node_env }}
+  -e AWS_ACCESS_KEY_ID=AKIAJWSSSJYUXKNW2ZDA
+  -e AWS_SECRET_ACCESS_KEY=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
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e DEBUG=runnable-api:*
   -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
+  -e MONGO_REPLSET_NAME=alpha-0
   -e NAVI_HOST=http://{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}:3567
   -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
   -e OPTIMUS_HOST=http://optimus.runnable.io
-  -e DEBUG=runnable-api:*
+  -e NEO4J=http://neo4j:oqGlRV1KTpaqbHDkdlJz@10.0.1.101:7474
+  -e REDIS_IPADDRESS=10.0.1.172
+  -e REDIS_PORT=6379
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e LOGGLY_TOKEN={{ loggly_token }}
+  -e GITHUB_CLIENT_ID=d42d6634d4070c9d9bf9
+  -e GITHUB_CLIENT_SECRET=d6cfde38fef5723e25e52629e3d25825c8a704c9
+  -e GITHUB_HOOK_SECRET=3V3RYTHINGisAW3S0ME!
+  -e LOGGLY_TOKEN=f673760d-e0b3-4a93-a15e-2862ea074f91
+  -e MIXPANEL_APP_ID=57260a5b6fc972e9c69184882efd009e
+  -e ROLLBAR_KEY=a90d9c262c7c48cfabbd32fd0a1bc61c
+  -e USER_CONTENT_DOMAIN=runnableapp.com
 
 container_run_opts: >
   -d
