@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+  - name: generate host key
+    command: certs/scripts/genHostCert.sh {{ host_ip }} ./certs
+  - lineinfile:
+      dest=../ssh/config
+      regexp='Host {{ host_name }}'
+      line='Host {{ host_name }}'
