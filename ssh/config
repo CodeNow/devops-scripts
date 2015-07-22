@@ -142,6 +142,30 @@ Host beta-registry
 Host beta-redis
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.56 22
 
+Host beta-redis-slave
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.57 22
+
+Host beta-hipache
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.100 22
+
+Host beta-userland-hipache
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.101 22
+
+Host beta-api
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.58 22
+
+Host beta-services
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
+
+Host beta-rabbit
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22
+
+Host beta-web
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
+
+Host beta-dock1
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
+
 ################################################################################
 # other
 ################################################################################
