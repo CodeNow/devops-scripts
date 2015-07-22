@@ -1,4 +1,5 @@
 ---
+- hosts: api
 - hosts: redis
 
 - hosts: charon
