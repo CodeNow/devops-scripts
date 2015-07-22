@@ -1,4 +1,6 @@
 ---
+- hosts: redis
+
 - hosts: charon
   vars_files:
     - "group_vars/alpha-charon.yml"

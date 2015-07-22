@@ -6,6 +6,9 @@ hosted_ports: ["53"]
 node_version: "0.10.31"
 npm_version: "2.1.18"
 
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_port: 6379
+
 container_envs: >
   -h charon
   -e NODE_ENV={{ node_env }}
