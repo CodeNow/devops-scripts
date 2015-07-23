@@ -5,14 +5,11 @@
 - hosts: neo4j
 - hosts: mongodb
 
-- hosts: docks
+- hosts: "{{ host_name }}"
   vars_files:
     - "group_vars/alpha-docks.yml"
   roles:
+    # - { role: provision, when: provision is defined, tags: "provision"}
+    - { role: dock, tags: "setup" }
     - { role: docker, tags: "docker" }
     - { role: iptables, tags: "iptables, security" }
-
-- include: krain.yml
-- include: filibuster.yml
-- include: sauron.yml
-- include: image-builder.yml

@@ -1,0 +1,91 @@
+---
+- name: generate host key
+  local_action: command certs/scripts/genHostCert.sh {{ host_ip }} ./certs
+
+- name: add host to invatory
+  add_host:
+    name="{{ host_name }}"
+    groups=docks
+
+- name: format docker
+  sudo: yes
+  filesystem: fstype=ext4 dev=/dev/xvdb
+- name: format git cache
+  sudo: yes
+  filesystem: fstype=ext4 dev=/dev/xvdc
+- name: format layer cache
+  sudo: yes
+  filesystem: fstype=ext4 dev=/dev/xvdd
+
+- name: Mount docker
+  sudo: yes
+  tags: "mounts"
+  mount:
+    src=/dev/xvdb
+    name=/docker
+    fstype=ext4
+    opts="defaults,discard"
+    dump=0
+    passno=0
+    state=mounted
+
+- name: Mount git cache
+  sudo: yes
+  tags: "mounts"
+  mount:
+    src=/dev/xvdc
+    name=/git-cache
+    fstype=ext4
+    opts="defaults,discard"
+    dump=0
+    passno=0
+    state=mounted
+
+- name: Mount layer cache
+  sudo: yes
+  tags: "mounts"
+  mount:
+    src=/dev/xvdd
+    name=/layer-cache
+    fstype=ext4
+    opts="defaults,discard"
+    dump=0
+    passno=0
+    state=mounted
+
+- name: create docker cert directory
+  sudo: yes
+  tags: "certs"
+  file:
+    path=/etc/ssl/docker
+    state=directory
+
+- name: copy docker CA
+  sudo: yes
+  tags: "certs"
+  copy:
+    src=certs/ca.pem
+    dest=/etc/ssl/docker
+    mode=0440
+    owner=root
+    group=root
+
+- name: copy docker client key and cert
+  sudo: yes
+  tags: "certs"
+  copy:
+    src=certs/server-cert-{{ host_ip }}.pem
+    dest=/etc/ssl/docker/cert.pem
+    mode=0440
+    owner=root
+    group=root
+
+- name: copy docker client key and cert
+  sudo: yes
+  tags: "certs"
+  copy:
+    src=certs/server-key-{{ host_ip }}.pem
+    dest=/etc/ssl/docker/key.pem
+    mode=0440
+    owner=root
+    group=root
