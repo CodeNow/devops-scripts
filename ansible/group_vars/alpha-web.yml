@@ -6,6 +6,7 @@ hosted_ports: ["443", "3000"]
 node_version: "0.10.38"
 npm_version: "2.1.18"
 rollbar_token: "162a053bebd34e9eb6e2860543c7ae79"
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 
 dockerfile_enviroment: [
   "API_HOST //api.{{ domain }}",
