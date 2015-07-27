@@ -3,8 +3,16 @@
   slack:
     token={{ slack_token }}
     channel={{ item }}
-    msg="{{ notify_end_message }}"
+    msg="{{ local_username.stdout }} is {{ notify_end_message }}"
   with_items:
     - "{{ slack_channels }}"
     - "{{ extra_channels | default([]) }}"
 
+- name: send rollbar message for deploy
+  tags: [ rollbar ]
+  rollbar_deployment:
+    token={{ rollbar_token }}
+    environment={{ node_env }}
+    revision={{ git_branch }}
+    rollbar_user={{ local_username.stdout }}
+  when: rollbar_token is defined and node_env is defined and git_branch is defined

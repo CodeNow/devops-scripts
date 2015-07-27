@@ -1,5 +1,8 @@
 name: "api"
 
+# for rollbar deploy info
+rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
+
 container_image: registry.runnable.com/runnable/{{ name }}
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["80"]
