@@ -7,6 +7,7 @@ node_version: "0.10.38"
 npm_version: "2.8.3"
 
 # for redis
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_key: "frontend:{{ name }}.{{ domain }}"
 is_redis_update_required: 'yes'
 

@@ -1,4 +1,6 @@
 ---
+- hosts: redis
+
 - hosts: mavis
   vars_files:
     - "group_vars/alpha-mavis.yml"

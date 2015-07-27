@@ -1,4 +1,6 @@
 ---
+- hosts: redis
+
 - hosts: navi
   vars_files:
     - "group_vars/alpha-navi.yml"

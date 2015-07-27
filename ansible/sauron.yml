@@ -1,4 +1,6 @@
 ---
+- hosts: redis
+
 - hosts: docks
   vars_files:
     - "group_vars/alpha-sauron.yml"
