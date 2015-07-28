@@ -1,5 +1,8 @@
 name: "api"
 
+# for rollbar deploy info
+rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
+
 container_image: registry.runnable.com/runnable/{{ name }}
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["80"]
@@ -11,22 +14,45 @@ redis_key: "frontend:api.{{ domain }}"
 is_redis_update_required: 'yes'
 datadog_host: "{{ ansible_default_ipv4.address }}"
 
+mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
+neo4j_host: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+
 # for container settings
 container_envs: >
   -h api
   -e NODE_ENV={{ node_env }}
+  -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
+  -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
+  -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
-  -e NAVI_HOST=http://{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}:3567
-  -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
-  -e OPTIMUS_HOST=http://optimus.runnable.io
-  -e DEBUG=runnable-api:*
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e DEBUG=*
+  -e DOMAIN={{ domain }}
+  -e FULL_API_DOMAIN=http://api.{{ domain }}
+  -e GITHUB_CALLBACK_URL=https://api.{{ domain }}/auth/github/callback
+  -e GITHUB_CLIENT_ID={{ api_github_client_id }}
+  -e GITHUB_CLIENT_SECRET={{ api_github_client_secret }}
+  -e GITHUB_DEPLOY_KEYS_BUCKET={{ api_github_deploy_keys_bucket }}
+  -e GITHUB_HOOK_URL=https://api.{{ domain }}/actions/github
   -e LOGGLY_TOKEN={{ loggly_token }}
+  -e MAVIS_HOST=http://mavis.{{ domain }}:80
+  -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}
+  -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
+  -e MONGO_REPLSET_NAME={{ api_mongo_replset_name }}
+  -e NAVI_HOST=http://navi.{{ domain }}
+  -e NAVI_HOST=http://{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}:3567
+  -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host }}:{{ api_neo4j_port }}
+  -e OPTIMUS_HOST=http://optimus.runnable.io
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e REDIS_IPADDRESS={{ redis_host }}
+  -e REDIS_PORT=6379
+  -e ROLLBAR_KEY={{ api_rollbar_key }}
+  -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
 
 container_run_opts: >
   -d

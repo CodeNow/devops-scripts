@@ -4,6 +4,11 @@ Host alpha*
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/Test-runnable.pem
 
+Host beta*
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
+
 ################################################################################
 # production runnable.io
 ################################################################################
@@ -62,6 +67,9 @@ Host alpha-dock3
 Host alpha-dock4
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.4 22
 
+Host alpha-dock5
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.206 22
+
 Host alpha-runnable1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.5 22
 
@@ -82,6 +90,9 @@ Host alpha-stage-dock1
 
 Host alpha-stage-dock2
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.240 22
+
+Host alpha-stage-runnable
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.220 22
 
 Host alpha-stage-dock-test
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.213 22
@@ -112,6 +123,54 @@ Host hubot
   User ubuntu
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
+
+################################################################################
+# beta
+################################################################################
+Host beta-bastion
+  HostName 52.25.33.149
+
+Host beta-mongodb01
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.51 22
+
+Host beta-mongodb02
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.52 22
+
+Host beta-mongodb03
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.53 22
+
+Host beta-neo4j
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.54 22
+
+Host beta-registry
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.55 22
+
+Host beta-redis
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.56 22
+
+Host beta-redis-slave
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.57 22
+
+Host beta-hipache
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.100 22
+
+Host beta-userland-hipache
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.101 22
+
+Host beta-api
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.58 22
+
+Host beta-services
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
+
+Host beta-rabbit
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22
+
+Host beta-web
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
+
+Host beta-dock1
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
 
 ################################################################################
 # other

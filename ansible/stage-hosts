@@ -3,7 +3,8 @@ alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true pr
 
 [docks]
 alpha-stage-dock1
-alpha-stage-dock2
+alpha-stage-dock2 host_tags=2335750,build
+alpha-stage-runnable host_tags=2335750,run
 
 [charon]
 alpha-stage-hipache

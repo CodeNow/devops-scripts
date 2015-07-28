@@ -7,3 +7,4 @@ container_image: rabbitmq
 container_tag: "3.5.3-management"
 container_run_opts: "-d --name prod-rabbit -v {{ db_path }}:/var/lib/rabbitmq:rw -v {{ config_path }}/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro -p 54320:15672 -p 54321:5672"
 
+hosted_ports: [ 5672, 15672 ]

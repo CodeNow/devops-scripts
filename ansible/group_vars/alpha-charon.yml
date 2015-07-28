@@ -6,17 +6,20 @@ hosted_ports: ["53"]
 node_version: "0.10.31"
 npm_version: "2.1.18"
 
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_port: 6379
+
 container_envs: >
   -h charon
   -e NODE_ENV={{ node_env }}
+  -e API_HOST=api.{{ domain }}
+  -e API_TOKEN=51c61b779f3de616a9639cfc44a22c79fbd8e328
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e PORT={{ hosted_ports[0] }}
-  -e API_TOKEN=51c61b779f3de616a9639cfc44a22c79fbd8e328
   -e DEBUG=charon*
-  -e API_HOST={{ api_host | default('http://api.runnable.io')}}
+  -e DOMAIN_FILTER={{ user_content_domain }}
+  -e PORT={{ hosted_ports[0] }}
   -e REDIS_HOST={{ redis_host }}
   -e REDIS_PORT={{ redis_port }}
-  --name charon
 
 container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}/udp {{container_envs}}"

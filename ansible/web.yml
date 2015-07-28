@@ -1,4 +1,6 @@
 ---
+- hosts: redis
+
 - hosts: web
   vars_files:
     - "group_vars/alpha-web.yml"

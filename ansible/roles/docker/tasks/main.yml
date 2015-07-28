@@ -1,25 +1,31 @@
 ---
 - name: check if docker is installed
   shell: "[ -f /usr/bin/docker  ] && echo 'Found' || echo ''"
-  when: ansible_distribution == 'Ubuntu'
   register: docker_installed
   changed_when: docker_installed.stdout != 'Found'
 
+- name: install apt-transport-https
+  when: docker_installed.changed
+  sudo: yes
+  apt:
+    pkg="apt-transport-https"
+    state=present
+    update_cache=yes
+
 - name: add docker apt key
-  when: not docker_installed.stdout
+  when: docker_installed.changed
   sudo: yes
   action: apt_key url=https://get.docker.io/gpg state=present
 
 - name: add docker repository
-  when: not docker_installed.stdout
+  when: docker_installed.changed
   sudo: yes
-  action: apt_repository repo='deb http://get.docker.io/ubuntu docker main' state=present update_cache=yes
+  action: apt_repository repo='deb https://get.docker.com/ubuntu docker main' state=present update_cache=yes
 
 - name: install docker
-  when: not docker_installed.stdout
+  when: docker_installed.changed
   sudo: yes
-  action: apt pkg="{{item}}" state=present update_cache=yes
-  with_items: docker_package_name
+  action: apt pkg="{{ docker_package_name }}" state=present update_cache=yes
 
 - name: copy docker config file
   sudo: yes
@@ -27,7 +33,7 @@
     src={{ docker_config }}
     dest=/etc/default/docker
   register: copied_config
-  tags: 'genDockerConfig'
+  tags: genDockerConfig
 
 - name: restart docker
   when: copied_config.changed and restart is defined

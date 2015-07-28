@@ -7,11 +7,11 @@ hosted_ports: ["80"]
 
 container_envs: >
   -e REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/registry
-  -e REGISTRY_STORAGE_S3_ACCESSKEY=AKIAJKCSFJCHFDITLBUQ
-  -e REGISTRY_STORAGE_S3_ACCESSKEY=LXxpb4F7Kxum1HvYkG0P20Yb/9Qpr+e5Gtt/0bIY
+  -e REGISTRY_STORAGE_S3_ACCESSKEY={{ registry_s3_access_key }}
+  -e REGISTRY_STORAGE_S3_ACCESSKEY={{ registry_s3_secret_key }}
   -e REGISTRY_STORAGE_S3_REGION=us-west-1
-  -e REGISTRY_STORAGE_S3_REGION=runnableimages
-  -e REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR=runnableimages
+  -e REGISTRY_STORAGE_S3_BUCKET={{ registry_s3_bucket }}
+  -e REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR=runnableimages.beta
   -e REGISTRY_ENVIRONMENT=production
 
 container_run_opts: "-d -p {{ hosted_ports[0] }}:5000 {{container_envs}}"

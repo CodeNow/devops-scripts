@@ -1,4 +1,4 @@
-registry_host: "10.0.1.254"
+---
 # registry settings
 registry_env: "prod"
 
