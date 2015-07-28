@@ -1,11 +1,15 @@
 ---
 - name: get the username running the deploy
+  tags:
+    - always
   local_action: command whoami
   register: local_username
   delegate_to: 127.0.0.1
 
 - name: send start message
   changed_when: True
+  tags:
+    - always
   slack:
     token={{ slack_token }}
     channel={{ item }}

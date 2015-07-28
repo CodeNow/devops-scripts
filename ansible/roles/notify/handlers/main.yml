@@ -1,5 +1,7 @@
 ---
 - name: send done message
+  tags:
+    - always
   slack:
     token={{ slack_token }}
     channel={{ item }}
@@ -9,7 +11,9 @@
     - "{{ extra_channels | default([]) }}"
 
 - name: send rollbar message for deploy
-  tags: [ rollbar ]
+  tags:
+    - rollbar
+    - always
   rollbar_deployment:
     token={{ rollbar_token }}
     environment={{ node_env }}
