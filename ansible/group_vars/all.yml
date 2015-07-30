@@ -14,8 +14,6 @@ container_run_args: ""
 # REPO_BASE for getting dockerfiles
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
-git_branch: "master"
-container_tag: "{{ git_branch }}"
 dockerfile: "basic_node/Dockerfile"
 base_dockerfile: "node_base"
 

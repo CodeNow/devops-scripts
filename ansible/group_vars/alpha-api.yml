@@ -4,6 +4,7 @@ name: "api"
 rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
 
 container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["80"]
 node_version: "0.10.38"
