@@ -55,6 +55,11 @@ Host alpha-redis-slave
 Host alpha-redis
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.172 22
 
+## do not change below line, it is referenced in ansible scripts
+# prod-hosts docks
+Host alpha-demo
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.92 22
+
 Host alpha-dock1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.41 22
 
@@ -84,6 +89,9 @@ Host alpha-stage-hipache
 
 Host alpha-stage-userland-hipache
   HostName 54.153.38.172
+
+## do not change below line, it is referenced in ansible scripts
+# stage-hosts docks
 
 Host alpha-stage-dock1
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
@@ -168,6 +176,9 @@ Host beta-rabbit
 
 Host beta-web
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
+
+## do not change below line, it is referenced in ansible scripts
+# beta-hosts docks
 
 Host beta-dock1
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
