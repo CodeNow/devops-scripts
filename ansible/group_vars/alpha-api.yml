@@ -43,10 +43,10 @@ container_envs: >
   -e NAVI_HOST=http://navi.{{ domain }}
   -e NAVI_HOST=http://{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}:3567
   -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host }}:{{ api_neo4j_port }}
-  -e NEW_RELIC_APP_NAME={{ new_relic_app_name }}
+  -e NEW_RELIC_APP_NAME=alpha-api-production
   -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
-  -e NEW_RELIC_LOG_LEVEL={{ new_relic_log_level }}
-  -e NEW_RELIC_NO_CONFIG_FILE={{ new_relic_no_config_file }}
+  -e NEW_RELIC_LOG_LEVEL=fatal
+  -e NEW_RELIC_NO_CONFIG_FILE=true
   -e NODE_ENV={{ node_env }}
   -e OPTIMUS_HOST=http://optimus.runnable.io
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
