@@ -89,7 +89,6 @@ optimus
 rabbitmq
 
 [beta:vars]
-ansible_ssh_private_key_file=~/.ssh/oregon.pem
 datadog_host=10.20.1.59
 datadog_port=8125
 datadog_tags=env:beta
