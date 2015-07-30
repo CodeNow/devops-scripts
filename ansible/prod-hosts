@@ -100,6 +100,7 @@ rabbitmq
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 datadog_host=10.0.1.239
 datadog_port=8125
+datadog_tags=env:alpha
 domain=runnable.io
 node_env=production
 rabbit_password=6df7983b76a22bbbffee11a29860cda8

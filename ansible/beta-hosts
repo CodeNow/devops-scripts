@@ -92,6 +92,7 @@ rabbitmq
 ansible_ssh_private_key_file=~/.ssh/oregon.pem
 datadog_host=10.20.1.59
 datadog_port=8125
+datadog_tags=env:beta
 domain=runnable-beta.com
 node_env=production-beta
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
