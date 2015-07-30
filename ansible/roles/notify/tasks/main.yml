@@ -20,4 +20,5 @@
   notify:
     - send done message
     - send rollbar message for deploy
+    - send datadog message for deploy
 

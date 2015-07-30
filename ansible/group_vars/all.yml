@@ -26,3 +26,6 @@ slack_token: T029DEC10/B07DM0YBB/IvbJO2i8ROojkW9IDeVYSM4J
 slack_channels: [ '#ops' ]
 
 loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
+
+# datadog key
+datadog_api_key: 6488896fe0c811965ef233b96809d70d
