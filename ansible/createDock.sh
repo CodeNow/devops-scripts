@@ -2,6 +2,22 @@
 # $1 = type
 # $2 = org
 # $3 = env (prod/stage)
+if [[ $1 = '' ]]; then
+  echo 'script requires EC2 server type (m1.micro)'
+  exit 1
+fi
+if [[ $2 = '' ]]; then
+  echo 'script requires org name (runnable-run)'
+  exit 1
+fi
+if [[ $3 = '' ]]; then
+  echo 'script requires env (prod/stage)'
+  exit 1
+fi
+if [[ $4 = '' ]]; then
+  echo 'script requires tags to be added to the dock'
+  exit 1
+fi
 #
 # test out
 # {
@@ -129,6 +145,4 @@ echo "tags done, adding entry to config file"
 echo "Host alpha-$2" >> ~/.ssh/config
 echo "  ProxyCommand ssh -q ubuntu@alpha-bastion nc $PRIVATE_IP 22" >> ~/.ssh/config
 
-ansible-playbook -i ./$3-hosts -e host_ip=$PRIVATE_IP -e host_name=alpha-$2 createDock.yml
-echo "add alpha-$2 to host file $3-hosts with tag"
-echo "alpha-$2 tag: host_tags=$2"
+ansible-playbook -i ./$3-hosts -e restart=true -e host_tags=$TAGS -e host_ip=$PRIVATE_IP -e host_name=alpha-$2 createDock.yml

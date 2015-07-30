@@ -5,6 +5,10 @@
 - hosts: neo4j
 - hosts: mongodb
 
+- hosts: localhost
+  roles:
+  - { role: update-local-inventory}
+
 - hosts: "{{ host_name }}"
   vars_files:
     - "group_vars/alpha-docks.yml"
