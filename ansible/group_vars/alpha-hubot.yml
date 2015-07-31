@@ -1,0 +1,25 @@
+name: hubot
+
+# container settings
+container_run_opts: >
+  -d
+  -e PYTHONUNBUFFERED=1
+  -e HUBOT_HEROKU_KEEPALIVE_URL=http://localhost
+  -e PORT=80
+  -e HUBOT_AUTH_ADMIN=U02SXDQ5G
+  -e HUBOT_SLACK_TOKEN=xoxb-3895260507-TgbeRSpqsBt4iDAb1bIDoNY8
+  -e HUBOT_GITHUB_TOKEN=c06a7125abecf633b4fde6f16f6fede865b1b57f
+  -e REDIS_URL=redis://10.2.0.230:6379
+  -v /home/ubuntu/.ssh/config:/root/.ssh/config
+  -v /home/ubuntu/.ssh/Test-runnable.pem:/root/.ssh/Test-runnable.pem
+  --restart=always
+  -p 0.0.0.0:80:80
+
+# container_kill_start
+stop_time: 5
+do_not_push: true
+hosted_ports: [ 80 ]
+
+# for build
+container_image: registry.runnable.com/runnable/hubot
+container_tag: "{{ git_branch }}"
