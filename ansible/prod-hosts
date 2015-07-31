@@ -69,7 +69,6 @@ alpha-redis-slave
 
 [docks]
 alpha-demo host_tags=1085792,1617343,run,build
-alpha-dock1
 alpha-dock2
 alpha-dock3
 alpha-dock4
