@@ -27,7 +27,6 @@ api_github_client_secret=d6cfde38fef5723e25e52629e3d25825c8a704c9
 api_github_deploy_keys_bucket=runnable.deploykeys.production
 api_github_hook_secret=3V3RYTHINGisAW3S0ME!
 api_loggly_token=f673760d-e0b3-4a93-a15e-2862ea074f91
-api_new_relic_app_name=alpha-api-production
 api_mixpanel_app_id=57260a5b6fc972e9c69184882efd009e
 api_mongo_auth=api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=
 api_mongo_database=alpha
@@ -35,6 +34,7 @@ api_mongo_replset_name=alpha-0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_neo4j_port=7474
 api_neo4j_protocol=http://
+api_new_relic_app_name=alpha-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production
 
