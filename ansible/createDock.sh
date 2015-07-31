@@ -1,23 +1,35 @@
 #!/bin/bash
 # $1 = type
 # $2 = org
-# $3 = env (prod/stage)
+# $3 = env (prod/stage/beta)
+# $4 = tags for host tags
 if [[ $1 = '' ]]; then
-  echo 'script requires EC2 server type (m1.micro)'
+  echo 'requires EC2 server type (m1.micro)'
   exit 1
 fi
+TYPE=$1
 if [[ $2 = '' ]]; then
-  echo 'script requires org name (runnable-run)'
+  echo 'requires org name (runnable-run)'
   exit 1
 fi
+ORG=$2
 if [[ $3 = '' ]]; then
-  echo 'script requires env (prod/stage)'
+  echo 'requires env (prod/stage/beta)'
   exit 1
+fi
+ENV=$3
+if [[ $ENV = 'prod' ]]; then
+  PLACE=alpha
+elif [[ $ENV = 'stage' ]]; then
+  PLACE=alpha
+elif [[ $ENV = 'beta' ]]; then
+  PLACE=beta
 fi
 if [[ $4 = '' ]]; then
-  echo 'script requires tags to be added to the dock'
+  echo 'requires tags to be added to the dock'
   exit 1
 fi
+TAGS=$4
 #
 # test out
 # {
@@ -113,7 +125,7 @@ fi
 INSTANCE_INFO=`aws ec2 run-instances \
   --image-id ami-d16a8b95 \
   --count 1 \
-  --instance-type $1 \
+  --instance-type $TYPE \
   --key-name Test-runnable \
   --security-group-ids sg-cb8e7dae \
   --subnet-id subnet-bfb646da \
@@ -131,18 +143,18 @@ aws ec2 wait instance-running --instance-ids $INSTANCE_ID
 echo "instance up, adding tags"
 # tag instance
 # name
-aws ec2 create-tags --resources $INSTANCE_ID --tags Key=Name,Value=alpha-$2
+aws ec2 create-tags --resources $INSTANCE_ID --tags Key=Name,Value=$PLACE-$ORG
 # org
-aws ec2 create-tags --resources $INSTANCE_ID --tags Key=org,Value=$2
+aws ec2 create-tags --resources $INSTANCE_ID --tags Key=org,Value=$ORG
 # type
 aws ec2 create-tags --resources $INSTANCE_ID --tags Key=type,Value=dock
 # env
-aws ec2 create-tags --resources $INSTANCE_ID --tags Key=env,Value=$3
+aws ec2 create-tags --resources $INSTANCE_ID --tags Key=env,Value=$ENV
 
 ## install docker, and our stuff
 echo "tags done, adding entry to config file"
 
-echo "Host alpha-$2" >> ~/.ssh/config
-echo "  ProxyCommand ssh -q ubuntu@alpha-bastion nc $PRIVATE_IP 22" >> ~/.ssh/config
+echo "Host $PLACE-$ORG" >> ~/.ssh/config
+echo "  ProxyCommand ssh -q ubuntu@$PLACE-bastion nc $PRIVATE_IP 22" >> ~/.ssh/config
 
-ansible-playbook -i ./$3-hosts -e restart=true -e host_tags=$TAGS -e host_ip=$PRIVATE_IP -e host_name=alpha-$2 createDock.yml
+ansible-playbook -i ./$ENV-hosts -e restart=true -e host_tags=$TAGS -e host_ip=$PRIVATE_IP -e host_name=$PLACE-$ORG createDock.yml
