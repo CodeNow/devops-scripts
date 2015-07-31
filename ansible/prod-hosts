@@ -69,12 +69,12 @@ alpha-redis
 alpha-redis-slave
 
 [docks]
-alpha-dock1
+alpha-demo host_tags=1085792,1617343,run,build
 alpha-dock2
 alpha-dock3
 alpha-dock4
 alpha-dock5
-alpha-runnable1 host_tags=2335750
+alpha-runnable1 host_tags=2335750,build,run
 
 [registry]
 alpha-registry
@@ -113,3 +113,6 @@ registry_s3_access_key=AKIAJKCSFJCHFDITLBUQ
 registry_s3_bucket=runnableimages
 registry_s3_secret_key=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
 user_content_domain=runnableapp.com
+
+[targets]
+localhost ansible_connection=local bastion_name=alpha-bastion

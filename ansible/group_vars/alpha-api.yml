@@ -48,7 +48,7 @@ container_envs: >
   -e NEW_RELIC_LOG_LEVEL=fatal
   -e NEW_RELIC_NO_CONFIG_FILE=true
   -e NODE_ENV={{ node_env }}
-  -e OPTIMUS_HOST=http://optimus.runnable.io
+  -e OPTIMUS_HOST=http://optimus.{{ domain }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
