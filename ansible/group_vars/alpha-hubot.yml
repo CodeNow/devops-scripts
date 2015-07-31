@@ -12,6 +12,7 @@ container_run_opts: >
   -e REDIS_URL=redis://10.2.0.230:6379
   -v /home/ubuntu/.ssh/config:/root/.ssh/config
   -v /home/ubuntu/.ssh/Test-runnable.pem:/root/.ssh/Test-runnable.pem
+  -v /home/ubuntu/.ssh/oregon.pem:/root/.ssh/oregon.pem
   --restart=always
   -p 0.0.0.0:80:80
 
