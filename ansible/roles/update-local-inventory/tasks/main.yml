@@ -28,7 +28,7 @@
     state=present
     dest="../ssh/config"
     regexp="ProxyCommand ssh -q ubuntu@{{ bastion_name }} nc {{ host_ip }} 22"
-    insertafter="{{ host_name }}"
+    insertafter="^Host {{ host_name }}"
     line="  ProxyCommand ssh -q ubuntu@{{ bastion_name }} nc {{ host_ip }} 22"
 
 - name: add host to in memory inventory

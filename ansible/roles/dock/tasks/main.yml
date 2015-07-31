@@ -1,5 +1,11 @@
 ---
+- name: check if certs exist
+  stat: path="certs/server-cert-{{ host_ip }}.pem"
+  register: cert_check
+  delegate_to: localhost
+
 - name: generate host key
+  when: cert_check.stat.exists == False
   local_action: command certs/scripts/genHostCert.sh {{ host_ip }} ./certs
 
 - name: add host to invatory

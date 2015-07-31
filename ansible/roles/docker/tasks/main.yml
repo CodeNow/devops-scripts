@@ -1,5 +1,5 @@
 ---
-- name: install aufs
+- name: install aufs with linux-image-extra-{{ ansible_kernel }}
   sudo: yes
   tags: aufs
   apt:
