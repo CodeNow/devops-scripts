@@ -179,7 +179,10 @@ Host beta-web
 
 ## do not change below line, it is referenced in ansible scripts
 # beta-hosts docks
-
+Host beta-runnable-build
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.209 22
+Host beta-runnable-run
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.26 22
 Host beta-dock1
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
 

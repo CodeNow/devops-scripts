@@ -65,6 +65,8 @@ beta-redis
 beta-redis-slave
 
 [docks]
+beta-runnable-run host_tags=2335750,run
+beta-runnable-build host_tags=2335750,build
 beta-dock1
 
 [registry]
