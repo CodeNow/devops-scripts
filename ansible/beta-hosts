@@ -31,6 +31,7 @@ api_mongo_replset_name=beta
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_neo4j_port=7474
 api_neo4j_protocol=http://
+api_new_relic_app_name=beta-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production-beta
 
@@ -65,6 +66,8 @@ beta-redis
 beta-redis-slave
 
 [docks]
+beta-runnable-run host_tags=2335750,run
+beta-runnable-build host_tags=2335750,build
 beta-dock1
 
 [registry]
@@ -94,6 +97,7 @@ datadog_host=10.20.1.59
 datadog_port=8125
 datadog_tags=env:beta
 domain=runnable-beta.com
+new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-beta
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_port=54321
