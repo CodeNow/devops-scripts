@@ -35,6 +35,14 @@ api_new_relic_app_name=beta-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production-beta
 
+[eru]
+beta-services
+
+[eru:vars]
+eru_api_host=api.{{ domain }}
+eru_github_id=8abb08f83f6d1c52bd1a
+eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
+
 [navi]
 beta-services
 
@@ -90,6 +98,7 @@ khronos
 mavis
 optimus
 rabbitmq
+eru
 
 [beta:vars]
 ansible_ssh_private_key_file=~/.ssh/oregon.pem
