@@ -39,7 +39,7 @@ api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production
 
 [eru]
-beta-services
+alpha-api-old
 
 [eru:vars]
 eru_api_host=api.{{ domain }}
