@@ -1,2 +1,2 @@
 ---
-docker_package_name: lxc-docker
+docker_package_name: lxc-docker-1.6.2
