@@ -38,6 +38,14 @@ api_new_relic_app_name=alpha-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production
 
+[eru]
+alpha-api-old
+
+[eru:vars]
+eru_api_host=api.{{ domain }}
+eru_github_id=46a23f5f99f0aa9460f8
+eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
+
 [navi]
 alpha-api-old
 
@@ -97,6 +105,7 @@ mavis
 optimus
 rabbitmq
 detention
+eru
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
