@@ -1,6 +1,9 @@
 [bastion]
 alpha-bastion
 
+[hubot]
+hubot
+
 [migration-router]
 migration-router
 
@@ -105,6 +108,7 @@ mavis
 optimus
 rabbitmq
 detention
+hubot
 eru
 
 [alpha:vars]
