@@ -41,7 +41,7 @@
 
 # start our new container with options and args
 - name: start container
-  command: sudo docker run -v /var/log:/var/log:rw --restart=always {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}
+  command: sudo docker run --log-driver=none -v /var/log:/var/log:rw --restart=always {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}
   register: new_container_id
   notify:
     - get new container ports
