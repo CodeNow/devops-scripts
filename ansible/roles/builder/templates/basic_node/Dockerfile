@@ -35,4 +35,4 @@ RUN {{ command }}
 {% endif %}
 
 # Define default command.
-CMD ["/usr/local/bin/npm", "start"]
+CMD /usr/local/bin/npm start > /var/log/{{ name }}.log 2>&1
