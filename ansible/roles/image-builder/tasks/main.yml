@@ -15,7 +15,9 @@
     accept_hostkey=True
 
 - name: npm install
-  npm: path=/opt/runnable/image-builder
+  npm:
+    path=/opt/runnable/image-builder
+    state=latest
 
 - name: build the image-builder
   command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
