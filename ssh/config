@@ -9,6 +9,11 @@ Host beta*
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
 
+Host mesos*
+  User core
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
+
 ################################################################################
 # production runnable.io
 ################################################################################
@@ -185,6 +190,24 @@ Host beta-runnable-run
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.26 22
 Host beta-dock1
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
+
+## beta mesos
+Host mesos-master
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.4.196 22
+Host mesos-private-slave1
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.159 22
+Host mesos-private-slave2
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.157 22
+Host mesos-private-slave3
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.158 22
+Host mesos-private-slave4
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.160 22
+Host mesos-private-slave5
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.156 22
+Host mesos-public-slave1
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.4.178 22
+Host mesos-admin
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.5.195 22
 
 ################################################################################
 # other
