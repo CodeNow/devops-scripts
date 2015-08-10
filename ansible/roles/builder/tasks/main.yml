@@ -14,7 +14,7 @@
   tags: 'genDockerfile'
 
 - name: build docker image and tag
-  command: sudo docker build --no-cache --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+  command: sudo docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
   when: not do_not_push
