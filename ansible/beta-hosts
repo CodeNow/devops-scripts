@@ -52,6 +52,11 @@ beta-services
 [khronos]
 beta-services
 
+[khronos:vars]
+khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
+khronos_mongo_database=beta
+khronos_mongo_replset_name=beta
+
 [mavis]
 beta-services
 
