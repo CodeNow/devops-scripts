@@ -10,12 +10,14 @@
   git:
     repo=git@github.com:CodeNow/image-builder.git
     dest=/opt/runnable/image-builder
-    version={{ image_builder_git_tag }}
+    version={{ git_branch }}
     update=yes
     accept_hostkey=True
 
 - name: npm install
-  npm: path=/opt/runnable/image-builder
+  npm:
+    path=/opt/runnable/image-builder
+    state=latest
 
 - name: build the image-builder
-  command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ image_builder_docker_tag }}" /opt/runnable/image-builder
+  command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder

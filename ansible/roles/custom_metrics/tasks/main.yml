@@ -1,0 +1,22 @@
+---
+- name: create scripts directory
+  sudo: yes
+  file: path=/opt/scripts state=directory
+
+- name: put script in place
+  sudo: yes
+  copy:
+    src={{ item }}.sh
+    dest=/opt/scripts/{{ item }}.sh
+    mode=0500
+  with_items:
+    - docker_rss
+
+- name: put cron in place
+  sudo: yes
+  cron:
+    name="{{ item }}"
+    state=present
+    job="/opt/scripts/{{ item }}.sh > /dev/null"
+  with_items:
+    - docker_rss

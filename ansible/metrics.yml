@@ -1,0 +1,4 @@
+---
+- hosts: docks
+  roles:
+    - { role: custom_metrics }

@@ -1,6 +1,9 @@
 [bastion]
 alpha-bastion
 
+[hubot]
+hubot
+
 [migration-router]
 migration-router
 
@@ -34,8 +37,17 @@ api_mongo_replset_name=alpha-0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_neo4j_port=7474
 api_neo4j_protocol=http://
+api_new_relic_app_name=alpha-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production
+
+[eru]
+alpha-api-old
+
+[eru:vars]
+eru_api_host=api.{{ domain }}
+eru_github_id=46a23f5f99f0aa9460f8
+eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 
 [navi]
 alpha-api-old
@@ -69,7 +81,6 @@ alpha-redis-slave
 
 [docks]
 alpha-demo host_tags=1085792,1617343,run,build
-alpha-dock1
 alpha-dock2
 alpha-dock3
 alpha-dock4
@@ -96,6 +107,9 @@ khronos
 mavis
 optimus
 rabbitmq
+detention
+hubot
+eru
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
@@ -103,6 +117,7 @@ datadog_host=10.0.1.239
 datadog_port=8125
 datadog_tags=env:alpha
 domain=runnable.io
+new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production
 rabbit_password=6df7983b76a22bbbffee11a29860cda8
 rabbit_port=54321

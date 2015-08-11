@@ -1,0 +1,25 @@
+name: eru
+
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+repo: git@github.com:CodeNow/{{ name }}.git
+hosted_ports: [57831]
+node_version: "0.12.0"
+npm_version: "2.1.18"
+stop_time: 5
+
+# for redis
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_key: frontend:admin.{{ domain }}
+is_redis_update_required: yes
+
+container_envs: >
+  -h {{ name }}
+  -e ADMIN_DOMAIN=admin.{{ domain }}
+  -e ADMIN_GITHUB_ID={{ eru_github_id }}
+  -e ADMIN_GITHUB_SECRET={{ eru_github_secret }}
+  -e API_HOST={{ eru_api_host }}
+  -e RUNNABLE_HOST={{ domain }}
+  -e PORT={{ hosted_ports[0] }}
+
+container_run_opts: -d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} {{ container_envs }}
