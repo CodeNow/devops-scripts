@@ -58,6 +58,11 @@ alpha-api-old
 [khronos]
 alpha-api-old
 
+[khronos:vars]
+khronos_mongo_auth=api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=
+khronos_mongo_database=alpha
+khronos_mongo_replset_name=alpha
+
 [mavis]
 alpha-api-old
 
