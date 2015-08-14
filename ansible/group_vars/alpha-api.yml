@@ -35,7 +35,7 @@ container_envs: >
   -e GITHUB_CLIENT_SECRET={{ api_github_client_secret }}
   -e GITHUB_DEPLOY_KEYS_BUCKET={{ api_github_deploy_keys_bucket }}
   -e GITHUB_HOOK_URL=https://api.{{ domain }}/actions/github
-  -e HELLO_RUNNABLE_GITHUB_TOKEN= {{ api_hello_runnable_github_token }}
+  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
   -e LOGGLY_TOKEN={{ loggly_token }}
   -e MAVIS_HOST=http://mavis.{{ domain }}:80
   -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}
