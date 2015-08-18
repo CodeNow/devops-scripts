@@ -3,7 +3,7 @@ name: "api"
 # for rollbar deploy info
 rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: registry.runnable.com/runnable/{{ name }}-worker
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["80"]
@@ -58,7 +58,7 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_rollbar_key }}
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e IS_QUEUE_WORKER=false
+  -e IS_QUEUE_WORKER=true
 
 container_run_opts: >
   -d
