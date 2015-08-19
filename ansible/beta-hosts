@@ -63,6 +63,11 @@ beta-services
 [optimus]
 beta-services
 
+[optimus:vars]
+optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
+optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
+
 [detention]
 beta-services
 
