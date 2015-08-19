@@ -69,6 +69,11 @@ alpha-api-old
 [optimus]
 alpha-api-old
 
+[optimus:vars]
+optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
+optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production
+
 [detention]
 alpha-api-old
 
