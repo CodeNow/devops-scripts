@@ -127,3 +127,6 @@ registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
 registry_s3_bucket=runnableimages.beta
 registry_s3_secret_key=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
 user_content_domain=runnablecloud.com
+
+[targets]
+localhost ansible_connection=local bastion_name=beta-bastion

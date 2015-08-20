@@ -1,0 +1,38 @@
+---
+- name: add host to inventory
+  tags: inventory_update
+  delegate_to: localhost
+  lineinfile:
+    state="present"
+    dest="{{inventory_file}}"
+    regexp="^{{ host_name }}"
+    insertafter="^\[docks\]"
+    line="{{ host_name }} host_tags={{ host_tags }}"
+
+- name: add hostname to config file
+  tags: config_update
+  delegate_to: localhost
+  register: add_config
+  lineinfile:
+    state="present"
+    dest="../ssh/config"
+    regexp="^Host {{ host_name }}"
+    insertafter="^# {{inventory_file}} docks"
+    line="Host {{ host_name }}"
+
+- name: add bastion proxy to config
+  tags: config_update
+  when: add_config.changed
+  delegate_to: localhost
+  lineinfile:
+    state=present
+    dest="../ssh/config"
+    regexp="ProxyCommand ssh -q ubuntu@{{ bastion_name }} nc {{ host_ip }} 22"
+    insertafter="^Host {{ host_name }}"
+    line="  ProxyCommand ssh -q ubuntu@{{ bastion_name }} nc {{ host_ip }} 22"
+
+- name: add host to in memory inventory
+  add_host:
+    name="{{ host_name }}"
+    groups="docks"
+    host_tags="{{ host_tags }}"
