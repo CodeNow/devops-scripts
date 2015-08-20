@@ -6,6 +6,8 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.12.0"
 npm_version: "2.1.18"
 
+mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
+
 # for container settings
 container_envs: >
   -h khronos
@@ -13,7 +15,7 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e KHRONOS_MONGO=mongodb://api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=@{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}/alpha
+  -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOGGLY_TOKEN={{ loggly_token }}
 
 container_run_opts: >
