@@ -70,6 +70,11 @@ alpha-api-old
 [optimus]
 alpha-api-old
 
+[optimus:vars]
+optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
+optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production
+
 [detention]
 alpha-api-old
 
@@ -92,6 +97,9 @@ alpha-dock3
 alpha-dock4
 alpha-dock5
 alpha-runnable1 host_tags=2335750,build,run
+alpha-runnable2 host_tags=2335750,build,run
+alpha-intercom1 host_tags=6585,build,run
+alpha-intercom2 host_tags=6585,build,run
 
 [registry]
 alpha-registry

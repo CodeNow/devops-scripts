@@ -6,6 +6,7 @@
   changed_when: old_containers_ids.stdout != ''
 
 - name: get latest images
+  when: not do_not_push
   command: sudo docker pull {{container_image}}:{{container_tag}}
 
 - name: get id of latest image
