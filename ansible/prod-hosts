@@ -29,6 +29,7 @@ api_github_client_id=d42d6634d4070c9d9bf9
 api_github_client_secret=d6cfde38fef5723e25e52629e3d25825c8a704c9
 api_github_deploy_keys_bucket=runnable.deploykeys.production
 api_github_hook_secret=3V3RYTHINGisAW3S0ME!
+api_hello_runnable_github_token=7ae2c176371fccfa17a26f2e44ea8cc77a9e07e5
 api_loggly_token=f673760d-e0b3-4a93-a15e-2862ea074f91
 api_mixpanel_app_id=57260a5b6fc972e9c69184882efd009e
 api_mongo_auth=api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=
@@ -91,6 +92,11 @@ alpha-api-old
 [optimus]
 alpha-api-old
 
+[optimus:vars]
+optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
+optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production
+
 [detention]
 alpha-api-old
 
@@ -113,6 +119,9 @@ alpha-dock3
 alpha-dock4
 alpha-dock5
 alpha-runnable1 host_tags=2335750,build,run
+alpha-runnable2 host_tags=2335750,build,run
+alpha-intercom1 host_tags=6585,build,run
+alpha-intercom2 host_tags=6585,build,run
 
 [registry]
 alpha-registry

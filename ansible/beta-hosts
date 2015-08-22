@@ -23,6 +23,7 @@ api_github_client_id=baa5c868b6d17d7ae002
 api_github_client_secret=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
 api_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 api_github_hook_secret=3V3RYTHINGisAW3S0ME!
+api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 api_loggly_token=f673760d-e0b3-4a93-a15e-2862ea074f91
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
@@ -85,6 +86,11 @@ beta-services
 [optimus]
 beta-services
 
+[optimus:vars]
+optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
+optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
+
 [detention]
 beta-services
 
@@ -143,3 +149,6 @@ registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
 registry_s3_bucket=runnableimages.beta
 registry_s3_secret_key=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
 user_content_domain=runnablecloud.com
+
+[targets]
+localhost ansible_connection=local bastion_name=beta-bastion

@@ -1,4 +1,12 @@
 ---
+- name: install aufs with linux-image-extra-{{ ansible_kernel }}
+  sudo: yes
+  tags: aufs
+  apt:
+    pkg="linux-image-extra-{{ ansible_kernel }}"
+    state=present
+    update_cache=yes
+
 - name: install apt-transport-https
   sudo: yes
   apt:

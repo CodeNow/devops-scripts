@@ -21,3 +21,6 @@ node_env=stage
 rabbit_password=3ad4d0546425efe40c6c1592d2d266cc
 rabbit_username=e07e0f51a2afa8c94a34bc252c8eeea7
 registry_host=10.0.1.254
+
+[targets]
+localhost ansible_connection=local bastion_name=alpha-bastion
