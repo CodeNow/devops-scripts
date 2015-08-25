@@ -1,0 +1,23 @@
+name: "shiva"
+
+container_image: "registry.runnable.com/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "0.10.38"
+npm_version: "2.1.18"
+
+# Not actually needed, just allows container-kill-start to work
+hosted_ports: ["3000"]
+
+# container settings
+container_envs: >
+  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_PORT={{ datadog_port }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e POSTGRES_CONNECT_STRING=postgres://shiva:QBjSpAXVYwmGHu4Y@beta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com/shiva
+  --hostname={{ name }}
+
+container_run_opts: "-d -P {{container_envs}}"

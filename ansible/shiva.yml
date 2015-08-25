@@ -1,0 +1,10 @@
+---
+- hosts: rabbitmq
+
+- hosts: shiva
+  vars_files:
+    - "group_vars/alpha-shiva.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: builder, tags: "build" }
+  - { role: container_start, tags: "deploy" }

@@ -89,6 +89,9 @@ beta-runnable-run host_tags=2335750,run
 beta-runnable-build host_tags=2335750,build
 beta-dock1
 
+[shiva]
+beta-services
+
 [registry]
 beta-registry
 
