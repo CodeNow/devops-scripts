@@ -12,7 +12,6 @@ redis_port: 6379
 
 container_envs: >
   -h navi
-  -e NODE_ENV={{ node_env }}
   -e API_HOST=http://api.{{ domain }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
@@ -20,6 +19,8 @@ container_envs: >
   -e ERROR_URL=http://{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}:9123
   -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
+  -e LOGGLY_TOKEN={{ loggly_token }}
+  -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{redis_host}}
 
 container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
