@@ -14,9 +14,9 @@
     state=present
     update_cache=yes
 
-# - name: add docker apt key
-#   sudo: yes
-#   action: apt_key url=https://get.docker.io/gpg state=present
+- name: add docker apt key
+  sudo: yes
+  action: apt_key url=https://get.docker.io/gpg state=present
 
 - name: add docker repository
   sudo: yes
