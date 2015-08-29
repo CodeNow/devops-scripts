@@ -14,14 +14,13 @@
     state=present
     update_cache=yes
 
-- name: add docker apt key
-  sudo: yes
-  action: apt_key url=https://get.docker.io/gpg state=present
+# - name: add docker apt key
+#   sudo: yes
+#   action: apt_key url=https://get.docker.io/gpg state=present
 
 - name: add docker repository
   sudo: yes
   action: apt_repository repo='deb https://get.docker.com/ubuntu docker main' state=present update_cache=yes
-
 
 - name: copy docker config file
   sudo: yes

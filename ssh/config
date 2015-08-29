@@ -7,6 +7,7 @@ Host alpha*
 Host beta*
   User ubuntu
   ForwardAgent yes
+  StrictHostKeyChecking no
   IdentityFile ~/.ssh/oregon.pem
 
 Host mesos*
@@ -19,6 +20,13 @@ Host mesos*
 ################################################################################
 Host alpha-bastion
   HostName 54.193.117.212
+
+Host 10.0.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc %h %p
+  IdentityFile ~/.ssh/Test-runnable.pem
 
 Host alpha-hipache
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.0.68 22
@@ -151,6 +159,13 @@ Host hubot
 ################################################################################
 Host beta-bastion
   HostName 52.25.33.149
+
+Host 10.20.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@beta-bastion nc %h %p
+  IdentityFile ~/.ssh/oregon.pem
 
 Host beta-mongodb01
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.51 22
