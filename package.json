@@ -29,7 +29,8 @@
     "lab": "^4.2.0"
   },
   "dependencies": {
-    "mux-demux": "~3.7.8",
-    "mongojs": "~0.13.0"
+    "aws-sdk": "^2.1.48",
+    "mongojs": "~0.13.0",
+    "mux-demux": "~3.7.8"
   }
 }

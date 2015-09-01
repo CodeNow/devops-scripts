@@ -1,12 +1,10 @@
 ---
-- hosts: redis
 - hosts: rabbitmq
 
-- hosts: mavis
+- hosts: shiva
   vars_files:
-    - "group_vars/alpha-mavis.yml"
+    - "group_vars/alpha-shiva.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
   - { role: container_start, tags: "deploy" }

@@ -1,30 +1,24 @@
-name: "mavis"
+name: "shiva"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["3000"]
 node_version: "0.10.38"
 npm_version: "2.1.18"
 
-# for redis
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_key: "frontend:mavis.{{ domain }}"
-is_redis_update_required: 'yes'
+# Not actually needed, just allows container-kill-start to work
+hosted_ports: ["3000"]
 
 # container settings
 container_envs: >
-  -e PORT={{ hosted_ports[0] }}
-  -e REDIS_PORT=6379
-  -e REDIS_IPADDRESS={{ redis_host }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e CONTAINER_WEIGHT=0
-  -e NEWRELIC_KEY=338516e0826451c297d44dc60aeaf0a0ca4bfead
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e POSTGRES_CONNECT_STRING=postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}
+  -e NODE_ENV={{ node_env }}
   --hostname={{ name }}
 
 container_run_opts: "-d -P {{container_envs}}"
