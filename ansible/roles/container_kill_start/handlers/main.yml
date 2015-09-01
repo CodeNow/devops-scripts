@@ -1,5 +1,6 @@
 ---
 - name: get new container ports
+  when: hosted_ports is defined
   shell: sudo docker port {{new_container_id.stdout}} {{ hosted_ports[0] }} | awk --field-separator ':' '{print $2}'
   register: container_ports
 
