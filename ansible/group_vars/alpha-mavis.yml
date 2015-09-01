@@ -21,6 +21,10 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e CONTAINER_WEIGHT=0
   -e NEWRELIC_KEY=338516e0826451c297d44dc60aeaf0a0ca4bfead
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
   --hostname={{ name }}
 
 container_run_opts: "-d -P {{container_envs}}"
