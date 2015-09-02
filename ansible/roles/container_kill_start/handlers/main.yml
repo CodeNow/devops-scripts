@@ -1,9 +1,11 @@
 ---
 - name: get new container ports
+  when: hosted_ports is defined
   shell: sudo docker port {{new_container_id.stdout}} {{ hosted_ports[0] }} | awk --field-separator ':' '{print $2}'
   register: container_ports
 
 # this assumes only one container is running, ever
 - name: update redis key
+  when: container_ports is defined
   command: sudo docker run --rm redis redis-cli -h {{redis_host}} lset {{redis_key}} 1 {{hosted_protocol | default('http') }}://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
   when: is_redis_update_required is defined
