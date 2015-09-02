@@ -58,5 +58,29 @@ alpha-redis-slave
 [registry]
 alpha-registry
 
+[shiva]
+alpha-api-old
+
+[alpha:children]
+bastion
+hipache
+mongodb
+api
+web
+redis
+redis-slave
+registry
+neo4j
+navi
+charon
+khronos
+mavis
+optimus
+rabbitmq
+detention
+hubot
+eru
+shiva
+
 [targets]
 localhost ansible_connection=local bastion_name=alpha-bastion

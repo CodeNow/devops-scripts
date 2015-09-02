@@ -18,6 +18,8 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e POSTGRES_CONNECT_STRING=postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}
+  -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
+  -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
   -e NODE_ENV={{ node_env }}
   --hostname={{ name }}
 
