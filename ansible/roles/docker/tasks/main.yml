@@ -1,4 +1,12 @@
 ---
+- name: change core dump path
+  lineinfile:
+    backrefs=yes
+    state=present
+    dest=/proc/sys/kernel/core_pattern
+    regexp='*'
+    line=/var/log/core.%h.%e.%t
+
 - name: install aufs with linux-image-extra-{{ ansible_kernel }}
   sudo: yes
   tags: aufs
