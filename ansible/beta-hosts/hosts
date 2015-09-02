@@ -75,6 +75,7 @@ mavis
 optimus
 rabbitmq
 eru
+shiva
 
 [targets]
 localhost ansible_connection=local bastion_name=beta-bastion
