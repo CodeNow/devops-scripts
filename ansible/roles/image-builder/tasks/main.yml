@@ -22,6 +22,10 @@
 - name: build the image-builder
   command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
 
+- name: tag image-builder with registry host
+  run_once: true
+  command: sudo docker tag "{{ image_builder_docker_namespace }}:{{ git_branch }}" registry.runnable.com/"{{ image_builder_docker_namespace }}:{{ git_branch }}"
+  
 - name: push image-builder
   run_once: true
-  command: sudo docker push "{{ image_builder_docker_namespace }}:{{ git_branch }}"
+  command: sudo docker push registry.runnable.com/"{{ image_builder_docker_namespace }}:{{ git_branch }}"
