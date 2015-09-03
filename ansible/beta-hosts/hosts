@@ -13,14 +13,7 @@ beta-mongodb03
 [neo4j]
 beta-neo4j
 
-[api_group:children]
-worker
-api
-
 [api]
-beta-api
-
-[worker]
 beta-api
 
 [eru]

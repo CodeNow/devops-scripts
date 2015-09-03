@@ -1,2 +1,17 @@
-- include: api-core.yml
-- include: workers.yml
+---
+- hosts: mongodb
+- hosts: neo4j
+- hosts: navi
+- hosts: charon
+- hosts: rabbitmq
+- hosts: redis
+
+- hosts: api
+  vars_files:
+    - "group_vars/alpha-api.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: builder, tags: "build" }
+  - { role: docker_client }
+  - { role: container_start, tags: "deploy" }

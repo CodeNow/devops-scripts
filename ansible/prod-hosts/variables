@@ -1,4 +1,4 @@
-[api_group:vars]
+[api:vars]
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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
 api_github_client_id=d42d6634d4070c9d9bf9

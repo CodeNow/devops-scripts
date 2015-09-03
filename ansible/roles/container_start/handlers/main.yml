@@ -6,6 +6,7 @@
 
 # this assumes only one container is running, ever
 - name: update redis key
+  when: hosted_ports is defined
   command: sudo docker run --rm redis redis-cli -h {{redis_host}} lset {{redis_key}} 1 {{hosted_protocol | default('http') }}://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
   when: is_redis_update_required is defined
 
