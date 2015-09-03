@@ -8,7 +8,7 @@
 
 - hosts: api
   vars_files:
-    - "group_vars/alpha-api.yml"
+    - "group_vars/alpha-workers.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
