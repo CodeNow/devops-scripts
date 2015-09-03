@@ -24,4 +24,4 @@
 
 - name: push image-builder
   run_once: true
-  command: sudo docker push registry.runnable.com/"{{ image_builder_docker_namespace }}:{{ git_branch }}"
+  command: sudo docker push "registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}"
