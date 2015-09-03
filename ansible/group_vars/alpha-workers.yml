@@ -20,7 +20,7 @@ redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] 
 
 # for container settings
 container_envs: >
-  -h api
+  -h api-worker
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
   -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
