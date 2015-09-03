@@ -63,4 +63,5 @@ container_run_opts: >
   -d
   -P
   -v /opt/ssl/docker:/etc/ssl/docker:ro
+  --restart=always
   {{ container_envs }}

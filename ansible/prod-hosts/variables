@@ -1,27 +1,3 @@
-[bastion]
-alpha-bastion
-
-[hubot]
-hubot
-
-[migration-router]
-migration-router
-
-[hipache]
-alpha-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-alpha-userland-hipache domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
-
-[mongodb]
-alpha-mongodb01
-alpha-mongodb02
-alpha-mongodb03
-
-[neo4j]
-alpha-neo4j
-
-[api]
-alpha-api
-
 [api:vars]
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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
@@ -72,80 +48,19 @@ eru_api_host=api.{{ domain }}
 eru_github_id=46a23f5f99f0aa9460f8
 eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 
-[navi]
-alpha-api-old
-
-[charon]
-alpha-api-old
-
-[khronos]
-alpha-api-old
-
 [khronos:vars]
 khronos_mongo_auth=api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=
 khronos_mongo_database=alpha
 khronos_mongo_replset_name=alpha
-
-[mavis]
-alpha-api-old
-
-[optimus]
-alpha-api-old
 
 [optimus:vars]
 optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
 optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 
-[detention]
-alpha-api-old
-
-[rabbitmq]
-alpha-rabbit
-
-[web]
-alpha-web
-
-[redis]
-alpha-redis
-
-[redis-slave]
-alpha-redis-slave
-
-[docks]
-alpha-demo host_tags=1085792,1617343,run,build
-alpha-dock2
-alpha-dock3
-alpha-dock4
-alpha-dock5
-alpha-runnable1 host_tags=2335750,build,run
-alpha-runnable2 host_tags=2335750,build,run
-alpha-intercom1 host_tags=6585,build,run
-alpha-intercom2 host_tags=6585,build,run
-
-[registry]
-alpha-registry
-
-[alpha:children]
-bastion
-hipache
-mongodb
-api
-web
-redis
-redis-slave
-docks
-registry
-neo4j
-navi
-charon
-khronos
-mavis
-optimus
-rabbitmq
-detention
-hubot
-eru
+[shiva:vars]
+aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
+aws_secret_access_key=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
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
@@ -155,6 +70,10 @@ datadog_tags=env:alpha
 domain=runnable.io
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production
+pg_database=shiva
+pg_host=alpha-production-db.czw5moz6rmpp.us-west-1.rds.amazonaws.com:30573
+pg_pass=wCJGCfCWE9CKmQwa2XUKj6d8WYcEZAb9
+pg_user=shiva
 rabbit_password=6df7983b76a22bbbffee11a29860cda8
 rabbit_port=54321
 rabbit_username=a4c1ac709c3bc685a6665fc1d23d737d
@@ -163,6 +82,3 @@ registry_s3_access_key=AKIAJKCSFJCHFDITLBUQ
 registry_s3_bucket=runnableimages
 registry_s3_secret_key=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
 user_content_domain=runnableapp.com
-
-[targets]
-localhost ansible_connection=local bastion_name=alpha-bastion
