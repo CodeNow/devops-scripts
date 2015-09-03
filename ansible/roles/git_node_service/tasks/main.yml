@@ -16,7 +16,6 @@
     owner={{ ansible_env.USER }}
 
 - name: pull the git repository
-  sudo: yes
   git:
     repo={{ app_repo }}
     dest=/opt/runnable/{{ app_name }}

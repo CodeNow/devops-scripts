@@ -19,14 +19,7 @@ alpha-mongodb03
 [neo4j]
 alpha-neo4j
 
-[api_group:children]
-worker
-api
-
 [api]
-alpha-api
-
-[workers]
 alpha-api
 
 [eru]
