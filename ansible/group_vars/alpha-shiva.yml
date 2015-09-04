@@ -9,6 +9,10 @@ npm_version: "2.1.18"
 # Not actually needed, just allows container-kill-start to work
 hosted_ports: ["3000"]
 
+# Needed for the UserData script in shiva
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_port: 6379
+
 # container settings
 container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
@@ -21,6 +25,8 @@ container_envs: >
   -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
   -e NODE_ENV={{ node_env }}
+  -e REDIS_PORT={{ redis_port }}
+  -e REDIS_IPADDRESS={{ redis_host }}
   --hostname={{ name }}
 
 container_run_opts: "-d -P {{container_envs}}"
