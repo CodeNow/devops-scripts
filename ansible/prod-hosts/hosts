@@ -68,6 +68,8 @@ alpha-registry
 [shiva]
 alpha-api-old
 
+[docks]
+
 [alpha:children]
 bastion
 hipache
@@ -76,6 +78,7 @@ api
 web
 redis
 redis-slave
+docks
 registry
 neo4j
 navi
