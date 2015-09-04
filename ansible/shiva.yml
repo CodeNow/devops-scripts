@@ -1,4 +1,5 @@
 ---
+- hosts: redis
 - hosts: rabbitmq
 
 - hosts: shiva
