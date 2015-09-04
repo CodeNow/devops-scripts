@@ -37,6 +37,9 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
+[sauron:vars]
+sauron_new_relic_app_name=alpha-sauron
+
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 datadog_host=10.0.1.239
