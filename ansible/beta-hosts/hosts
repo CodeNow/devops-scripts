@@ -44,6 +44,9 @@ beta-services
 [detention]
 beta-services
 
+[palantiri]
+beta-services
+
 [rabbitmq]
 beta-rabbit
 
