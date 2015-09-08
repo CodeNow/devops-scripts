@@ -59,6 +59,9 @@ Host alpha-api-old
 Host alpha-api
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.142 22
 
+Host alpha-khronos
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.217 22
+
 Host alpha-web
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.85 22
 
