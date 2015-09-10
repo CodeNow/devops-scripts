@@ -11,7 +11,7 @@
     mode=0500
   with_items:
     - docker_rss
-    - docker_log_lines
+    # - docker_log_lines
     - docker_proc_status
 
 - name: put cron in place
@@ -23,5 +23,5 @@
     job="/opt/scripts/{{ item.name }}.sh > /dev/null"
   with_items:
     - { name: docker_rss, minutes: '*' }
-    - { name: docker_log_lines, minutes: '*/5', state: absent }
+    # - { name: docker_log_lines, minutes: '*/5', state: absent }
     - { name: docker_proc_status, minutes: '*' }
