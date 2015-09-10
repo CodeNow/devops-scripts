@@ -6,6 +6,8 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
 
+stop_time: "0"
+
 # container settings
 container_envs: >
   -e NODE_ENV={{ node_env }}
