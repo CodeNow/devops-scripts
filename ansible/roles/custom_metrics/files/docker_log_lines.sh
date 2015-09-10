@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+echo "don't use this script. change it (and test) with filesize, not length"
+# du -d /docker/containers/$id/$id-json.log ?? -- anand
+exit 0
+
 # don't run this if datadog is not installed
 if [ ! -e /usr/bin/dd-agent ]; then exit 0; fi
 
