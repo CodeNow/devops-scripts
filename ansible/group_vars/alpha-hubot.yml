@@ -18,7 +18,6 @@ container_run_opts: >
 
 # container_kill_start
 stop_time: 5
-do_not_push: true
 hosted_ports: [ 80 ]
 
 # for build
