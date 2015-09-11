@@ -20,6 +20,12 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e ROLLBAR_KEY={{ palantiri_rollbar_key }}
+  -e RSS_LIMIT=999999
+  -e LOG_LEVEL_STDOUT=trace
   --hostname={{ name }}
 
-container_run_opts: "-d --restart=always {{ container_envs }}"
+container_run_opts: >
+  -d
+  --restart=always
+  -v /opt/ssl/docker:/etc/ssl/docker:ro
+  {{ container_envs }}
