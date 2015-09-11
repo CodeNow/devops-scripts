@@ -5,8 +5,8 @@ registry_env: "prod"
 # for docker stop old container
 stop_time: 60
 
-# For docker container kill start
-do_not_push: false
+# For docker built containers
+do_not_push: true
 
 # default for container args (which are optional)
 container_run_args: ""
