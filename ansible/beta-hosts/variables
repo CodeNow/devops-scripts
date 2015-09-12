@@ -23,15 +23,18 @@ eru_api_host=api.{{ domain }}
 eru_github_id=8abb08f83f6d1c52bd1a
 eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 
+[khronos:vars]
+khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
+khronos_mongo_database=beta
+khronos_mongo_replset_name=beta
+
 [optimus:vars]
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
 optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 
-[khronos:vars]
-khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
-khronos_mongo_database=beta
-khronos_mongo_replset_name=beta
+[palantiri:vars]
+palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q

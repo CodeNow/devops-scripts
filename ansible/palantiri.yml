@@ -1,0 +1,10 @@
+---
+- hosts: rabbitmq
+
+- hosts: palantiri
+  vars_files:
+    - "group_vars/alpha-palantiri.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: builder, tags: "build" }
+  - { role: container_kill_start, tags: "deploy" }

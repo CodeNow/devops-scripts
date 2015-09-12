@@ -33,6 +33,9 @@ optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
 optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 
+[palantiri:vars]
+palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
+
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
