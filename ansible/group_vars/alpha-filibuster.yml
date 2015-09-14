@@ -1,5 +1,6 @@
 # filibuster env
 filibuster_env: default
+name: filibuster
 
 # upstart template variables
 app_name: "filibuster"
