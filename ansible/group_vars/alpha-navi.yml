@@ -22,5 +22,6 @@ container_envs: >
   -e LOGGLY_TOKEN={{ loggly_token }}
   -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{redis_host}}
+  -e LOG_LEVEL_STDOUT=trace
 
 container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
