@@ -62,7 +62,6 @@ ec2.describeInstances(params, function (err, data) {
   hosts.push('alpha-dock4');
   hosts.push('alpha-dock5');
   hosts.push('alpha-demo');
-  hosts.push('alpha-runnable1');
   hosts.push('alpha-runnable2');
   hosts.push('alpha-intercom1');
   hosts.push('alpha-intercom2');
@@ -78,9 +77,6 @@ ec2.describeInstances(params, function (err, data) {
   };
   hostVars['alpha-demo'] = {
     host_tags: '1085792,1617343,run,build'
-  };
-  hostVars['alpha-runnable1'] = {
-    host_tags: '2335750,build,run'
   };
   hostVars['alpha-runnable2'] = {
     host_tags: '2335750,build,run'
