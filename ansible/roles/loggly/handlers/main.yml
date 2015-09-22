@@ -1,0 +1,4 @@
+---
+- name: restart rsyslog
+  sudo: yes
+  shell: sudo service rsyslog restart
