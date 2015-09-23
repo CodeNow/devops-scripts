@@ -17,7 +17,6 @@ container_envs: >
   -e API_TOKEN=51c61b779f3de616a9639cfc44a22c79fbd8e328
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e DEBUG=charon*
   -e DOMAIN_FILTER={{ user_content_domain }}
   -e PORT={{ hosted_ports[0] }}
   -e REDIS_HOST={{ redis_host }}

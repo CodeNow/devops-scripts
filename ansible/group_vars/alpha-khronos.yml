@@ -11,7 +11,6 @@ mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_defa
 # for container settings
 container_envs: >
   -h khronos
-  -e DEBUG=khronos*
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
