@@ -1,4 +1,4 @@
 ---
-- hosts: docks
+- hosts: [docks, api, eru]
   roles:
     - { role: custom_metrics }
