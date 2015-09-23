@@ -24,5 +24,5 @@ RUN apt-get update && \
     locale-gen en_US.UTF-8 && \
     gem install sass && \
     npm install -g n && \
-    npm install -g npm@2.1.18 && \
-    n 0.10.28
+    n 0.10.28 && \
+    npm install -g npm@2.1.18

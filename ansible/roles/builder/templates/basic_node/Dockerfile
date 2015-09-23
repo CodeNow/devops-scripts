@@ -13,8 +13,7 @@ ENV {{ env }}
 {% endif %}
 
 # setup node and npm versions
-RUN npm install -g npm@{{ npm_version }} && \
-    n {{ node_version }}
+RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
 # Download Repo
 RUN git clone -b {{ git_branch }} --single-branch {{ repo }}
