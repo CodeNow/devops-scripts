@@ -1,11 +1,12 @@
-name: "api"
+name: "api-worker"
 
 # for rollbar deploy info
 rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
 
-container_image: registry.runnable.com/runnable/{{ name }}-worker
+container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
-repo: "git@github.com:CodeNow/{{ name }}.git"
+repo: "git@github.com:CodeNow/api.git"
+
 node_version: "0.10.38"
 npm_version: "2.8.3"
 
@@ -17,7 +18,7 @@ redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] 
 
 # for container settings
 container_envs: >
-  -h api-worker
+  -h {{ name }}
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
   -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
