@@ -24,7 +24,7 @@
     update=yes
     accept_hostkey=True
     force=yes
-    key_file=/opt/runnable/dock-init/key/id_rsa_{{ app_name | replace("-","_")}}
+    key_file=/opt/runnable/dock-init/key/id_rsa_runnabledock
   notify:
     - npm install {{ app_name }}
     - restart service {{ app_name }}
