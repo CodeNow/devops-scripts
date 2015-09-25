@@ -16,7 +16,7 @@ ENV {{ env }}
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
 # Download Repo
-RUN git clone -b {{ git_branch }} --single-branch {{ repo }}
+RUN git clone -b {{ git_branch }} --single-branch {{ repo }} /{{ name }}
 
 WORKDIR /{{ name }}
 {% if dockerfile_pre_install_commands is defined %}
