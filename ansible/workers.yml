@@ -13,4 +13,4 @@
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
   - { role: docker_client }
-  - { role: container_start, tags: "deploy" }
+  - { role: container_kill_start, tags: "deploy" }

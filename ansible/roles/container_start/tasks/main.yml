@@ -1,7 +1,6 @@
 ---
-# get current running containers
 - name: get old running containers
-  shell: sudo docker ps | grep {{container_image}} | awk '{print $1}'
+  shell: "sudo docker ps | grep {{container_image}}: | awk '{print $1}'"
   register: old_containers_ids
   changed_when: old_containers_ids.stdout != ''
 
