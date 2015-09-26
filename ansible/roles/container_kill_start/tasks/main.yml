@@ -1,5 +1,4 @@
 ---
-# remove any stopped containers
 - name: look for stopped containers
   shell: sudo docker ps -a | grep Exited | awk '{print $1}'
   register: stopped_containers
@@ -12,7 +11,7 @@
 
 # get current running container with this image
 - name: look for running containers running {{container_image}}
-  shell: sudo docker ps | grep {{container_image}} | awk '{print $1}'
+  shell: "sudo docker ps | grep {{container_image}}: | awk '{print $1}'"
   register: old_containers_id
   changed_when: old_containers_id.stdout != ''
 
