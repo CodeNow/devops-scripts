@@ -7,8 +7,6 @@
     dest=/etc/rsyslog.d/22-loggly.conf
     owner=root
     group=root
-  notify:
-    - restart rsyslog
 
 - name: copy app config
   tags: loggly
@@ -18,5 +16,18 @@
     dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
     owner=root
     group=root
+
+# for some reason using ansible service module fails, using shell
+- name: stop rsyslog
+  tags: [loggly, deploy]
+  sudo: yes
+  shell: sudo service rsyslog restart || echo done
+
+- name: clear rsyslog state file
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/spool/rsyslog/stat-{{ name }}
+    state=absent
   notify:
     - restart rsyslog

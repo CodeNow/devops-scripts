@@ -1,4 +1,6 @@
 ---
+# for some reason using ansible service module fails, using shell
 - name: restart rsyslog
+  tags: [loggly, deploy]
   sudo: yes
   shell: sudo service rsyslog restart
