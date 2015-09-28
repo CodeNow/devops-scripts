@@ -15,7 +15,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
-  -e LOGGLY_TOKEN={{ loggly_token }}
 
 container_run_opts: >
   -d
