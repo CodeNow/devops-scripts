@@ -10,11 +10,6 @@ Host beta*
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/oregon.pem
 
-Host mesos*
-  User core
-  ForwardAgent yes
-  IdentityFile ~/.ssh/oregon.pem
-
 ################################################################################
 # production runnable.io
 ################################################################################
@@ -71,35 +66,6 @@ Host alpha-redis-slave
 Host alpha-redis
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.172 22
 
-## do not change below line, it is referenced in ansible scripts
-# prod-hosts docks
-Host alpha-demo
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.92 22
-
-Host alpha-dock1
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.41 22
-
-Host alpha-dock2
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.10 22
-
-Host alpha-dock3
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.210 22
-
-Host alpha-dock4
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.4 22
-
-Host alpha-dock5
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.206 22
-
-Host alpha-runnable2
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.93 22
-
-Host alpha-intercom1
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.79 22
-
-Host alpha-intercom2
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.117 22
-
 Host alpha-rabbit
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.253 22
 
@@ -138,12 +104,6 @@ Host oregon-bastion
 
 Host migration-router
   ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.254 22
-  User ubuntu
-  ForwardAgent yes
-  IdentityFile ~/.ssh/oregon.pem
-
-Host elk
-  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.1.222 22
   User ubuntu
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
@@ -206,33 +166,6 @@ Host beta-rabbit
 Host beta-web
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
 
-## do not change below line, it is referenced in ansible scripts
-# beta-hosts docks
-Host beta-runnable-build
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.209 22
-Host beta-runnable-run
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.26 22
-Host beta-dock1
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.201 22
-
-## beta mesos
-Host mesos-master
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.4.196 22
-Host mesos-private-slave1
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.159 22
-Host mesos-private-slave2
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.157 22
-Host mesos-private-slave3
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.158 22
-Host mesos-private-slave4
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.160 22
-Host mesos-private-slave5
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.3.156 22
-Host mesos-public-slave1
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.4.178 22
-Host mesos-admin
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.0.5.195 22
-
 ################################################################################
 # other
 ################################################################################
@@ -241,7 +174,3 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
-
-Host devbox-3
-  User ubuntu
-  HostName 54.177.1.44
