@@ -38,4 +38,4 @@
 
 - name: move old log file
   when: log_file.stat.exists
-  command: mv /var/log/{{ name }} /var/log/{{ name }}.old
+  command: mv /var/log/{{ name }}.log /var/log/{{ name }}.log.old
