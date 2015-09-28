@@ -21,7 +21,9 @@
 - name: stop rsyslog
   tags: [loggly, deploy]
   sudo: yes
-  shell: sudo service rsyslog restart || echo done
+  shell: sudo service rsyslog stop || echo done
+  notify:
+    - restart rsyslog
 
 - name: clear rsyslog state file
   tags: [loggly, deploy]
@@ -29,13 +31,16 @@
   file:
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
-  notify:
-    - restart rsyslog
 
 - name: check for current log file
+  tags: [loggly, deploy]
   stat: path=/var/log/{{ name }}
   register: log_file
 
-- name: move old log file
+- name: remove old log file
   when: log_file.stat.exists
-  command: mv /var/log/{{ name }}.log /var/log/{{ name }}.log.old
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/log/{{ name }}.log
+    state=absent
