@@ -21,7 +21,6 @@ container_envs: >
   -h {{ name }}
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
-  -e CHARON_HOST={{ hostvars[groups['charon'][0]]['ansible_default_ipv4']['address'] }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOMAIN={{ domain }}

@@ -1,10 +1,9 @@
 ---
 - hosts: redis
 
-- hosts: charon
+- hosts: docks
   vars_files:
     - "group_vars/alpha-charon.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: git_node_service, tags: "deploy" }
