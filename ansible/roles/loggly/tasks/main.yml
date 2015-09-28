@@ -31,3 +31,11 @@
     state=absent
   notify:
     - restart rsyslog
+
+- name: check for current log file
+  stat: path=/var/log/{{ name }}
+  register: log_file
+
+- name: move old log file
+  when: log_file.stat.exists
+  command: mv /var/log/{{ name }} /var/log/{{ name }}.old
