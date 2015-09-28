@@ -55,21 +55,6 @@ ec2.describeInstances(params, function (err, data) {
     }
   });
 
-  // Add Static docks
-  // TODO Eventually we should no longer need these
-  hosts.push('beta-runnable-build');
-  hosts.push('beta-runnable-run');
-  hosts.push('beta-dock1');
-  hostVars['beta-runnable-build'] = {
-    host_tags: '2335750,build,run'
-  };
-  hostVars['beta-runnable-run'] = {
-    host_tags: '2335750,build,run'
-  };
-  hostVars['beta-dock1'] = {
-    host_tags: 'default'
-  };
-
   // Output the resulting JSON
   // NOTE http://docs.ansible.com/ansible/developing_inventory.html
   console.log(JSON.stringify(

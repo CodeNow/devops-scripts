@@ -6,7 +6,7 @@ var aws = require('aws-sdk');
 var ec2 = new aws.EC2({
   accessKeyId: 'AKIAJ3RCYU6FCULAJP2Q',
   secretAccessKey: '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',
-  region: 'us-west-2'
+  region: 'us-west-1'
 });
 
 var params = {
@@ -54,39 +54,6 @@ ec2.describeInstances(params, function (err, data) {
       }
     }
   });
-
-  // Add Static docks
-  // TODO Eventually we should no longer need these
-  hosts.push('alpha-dock2');
-  hosts.push('alpha-dock3');
-  hosts.push('alpha-dock4');
-  hosts.push('alpha-dock5');
-  hosts.push('alpha-demo');
-  hosts.push('alpha-runnable2');
-  hosts.push('alpha-intercom1');
-  hosts.push('alpha-intercom2');
-
-  hostVars['alpha-dock3'] = {
-    host_tags: 'default'
-  };
-  hostVars['alpha-dock4'] = {
-    host_tags: 'default'
-  };
-  hostVars['alpha-dock5'] = {
-    host_tags: 'default'
-  };
-  hostVars['alpha-demo'] = {
-    host_tags: '1085792,1617343,run,build'
-  };
-  hostVars['alpha-runnable2'] = {
-    host_tags: '2335750,build,run'
-  };
-  hostVars['alpha-intercom1'] = {
-    host_tags: '6585,build,run'
-  };
-  hostVars['alpha-intercom2'] = {
-    host_tags: '6585,build,run'
-  };
 
   // Output the resulting JSON
   // NOTE http://docs.ansible.com/ansible/developing_inventory.html
