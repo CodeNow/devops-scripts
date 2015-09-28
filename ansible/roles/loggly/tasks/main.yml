@@ -7,8 +7,6 @@
     dest=/etc/rsyslog.d/22-loggly.conf
     owner=root
     group=root
-  notify:
-    - restart rsyslog
 
 - name: copy app config
   tags: loggly
@@ -18,5 +16,30 @@
     dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
     owner=root
     group=root
+
+- name: stop rsyslog
+  tags: [loggly, deploy]
+  sudo: yes
+  service: name=rsyslog state=stopped
+
+- name: clear rsyslog state file
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/spool/rsyslog/stat-{{ name }}
+    state=absent
+
+- name: check for current log file
+  tags: [loggly, deploy]
+  stat: path=/var/log/{{ name }}
+  register: log_file
   notify:
-    - restart rsyslog
+  - restart rsyslog
+
+- name: remove old log file
+  when: log_file.stat.exists
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/log/{{ name }}.log
+    state=absent
