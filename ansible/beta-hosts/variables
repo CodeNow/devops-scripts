@@ -36,6 +36,12 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 [palantiri:vars]
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
+[registry:vars]
+registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
+registry_s3_bucket=runnableimages.beta
+registry_s3_secret_key=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
+registry_s3_region=us-east-1
+
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
@@ -56,7 +62,4 @@ rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_port=54321
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.20.1.55
-registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
-registry_s3_bucket=runnableimages.beta
-registry_s3_secret_key=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
 user_content_domain=runnablecloud.com
