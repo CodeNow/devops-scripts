@@ -21,6 +21,8 @@
   tags: [loggly, deploy]
   sudo: yes
   service: name=rsyslog state=stopped
+  notify:
+  - restart rsyslog
 
 - name: clear rsyslog state file
   tags: [loggly, deploy]
