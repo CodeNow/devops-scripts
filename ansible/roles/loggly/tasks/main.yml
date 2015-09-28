@@ -17,13 +17,10 @@
     owner=root
     group=root
 
-# for some reason using ansible service module fails, using shell
 - name: stop rsyslog
   tags: [loggly, deploy]
   sudo: yes
-  shell: sudo service rsyslog stop || echo done
-  notify:
-    - restart rsyslog
+  service: name=rsyslog state=stopped
 
 - name: clear rsyslog state file
   tags: [loggly, deploy]
@@ -36,6 +33,8 @@
   tags: [loggly, deploy]
   stat: path=/var/log/{{ name }}
   register: log_file
+  notify:
+  - restart rsyslog
 
 - name: remove old log file
   when: log_file.stat.exists
