@@ -17,6 +17,17 @@
     owner=root
     group=root
 
+- name: copy rsyslog config
+  tags: loggly
+  sudo: yes
+  template:
+    src=rsyslog.conf.j2
+    dest=/etc/rsyslog.conf
+    owner=root
+    group=root
+  notify:
+  - restart rsyslog
+
 - name: stop rsyslog
   tags: [loggly, deploy]
   sudo: yes
