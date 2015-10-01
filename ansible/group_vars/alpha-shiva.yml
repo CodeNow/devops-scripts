@@ -28,6 +28,7 @@ container_envs: >
   -e REDIS_PORT={{ redis_port }}
   -e REDIS_IPADDRESS={{ redis_host }}
   -e REGISTRY_HOST={{ registry_host }}
+  -e ROLLBAR_KEY={{ shiva_rollbar_key }}
   --hostname={{ name }}
 
 container_run_opts: "-d -P {{container_envs}}"
