@@ -3,7 +3,7 @@ name: khronos
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "0.12.0"
+node_version: "0.12.7"
 npm_version: "2.1.18"
 
 mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
@@ -11,10 +11,17 @@ mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_defa
 # for container settings
 container_envs: >
   -h khronos
-  -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e KHRONOS_DOCKS=http://10.20.171.34:4242
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
+  -e LOG_LEVEL_STDOUT=trace
+  -e LOGGLY_TOKEN={{ loggly_token }}
+  -e NODE_ENV={{ node_env }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
 
 container_run_opts: >
   -d
