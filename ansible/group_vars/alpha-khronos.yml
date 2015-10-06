@@ -13,7 +13,6 @@ container_envs: >
   -h khronos
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e KHRONOS_DOCKS=http://10.20.171.34:4242
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL_STDOUT=trace
   -e LOGGLY_TOKEN={{ loggly_token }}
@@ -28,3 +27,5 @@ container_run_opts: >
   -d
   -v /opt/ssl/docker:/etc/ssl/docker:ro
   {{container_envs}}
+
+npm_command: run start-json-output

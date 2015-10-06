@@ -34,4 +34,4 @@ RUN {{ command }}
 {% endif %}
 
 # Define default command.
-CMD ulimit -c unlimited && /usr/local/bin/npm start > /var/log/{{ name }}.log 2>&1
+CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_command | default('start') }} > /var/log/{{ name }}.log 2>&1
