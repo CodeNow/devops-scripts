@@ -27,7 +27,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOMAIN={{ domain }}
-  -e FULL_API_DOMAIN=https://api.{{ domain }}
   -e GITHUB_CALLBACK_URL=https://api.{{ domain }}/auth/github/callback
   -e GITHUB_CLIENT_ID={{ api_github_client_id }}
   -e GITHUB_CLIENT_SECRET={{ api_github_client_secret }}
