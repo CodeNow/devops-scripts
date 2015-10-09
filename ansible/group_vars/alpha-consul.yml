@@ -1,0 +1,23 @@
+name: "consul-server"
+
+container_image: "progrium/consul"
+container_tag: "master"
+
+container_run_opts: >
+  -d
+  -h $HOSTNAME
+  -v /consul:/data
+  -p 8300:8300
+  -p 8301:8301
+  -p 8301:8301/udp
+  -p 8302:8302
+  -p 8302:8302/udp
+  -p 8400:8400
+  -p 8500:8500
+  --restart=always
+
+container_run_args: >
+  -server
+  -advertise {{ ansible_default_ipv4.address }}
+  -bootstrap-expect {{ groups['palantiri'] | length }}
+  {% if hostvars[groups['palantiri'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['palantiri'][0]]['ansible_default_ipv4']['address'] }}{% endif %}
