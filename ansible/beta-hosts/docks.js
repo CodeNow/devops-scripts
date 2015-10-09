@@ -20,6 +20,11 @@ var params = {
     {
       Name: 'tag:role',
       Values: ['dock']
+    },
+    // Only fetch running instances
+    {
+      Name: 'instance-state-name',
+      Values: ['running']
     }
   ]
 };
