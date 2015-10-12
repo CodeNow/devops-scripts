@@ -1,4 +1,0 @@
----
-- hosts: '{{ host }}'
-  roles:
-    - { role: base_ubuntu, when: "ansible_distribution == 'Ubuntu'"}
