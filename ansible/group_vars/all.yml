@@ -47,14 +47,14 @@ docker_key_path: /etc/ssl/docker/key.pem
 docker_ca_path: /etc/ssl/docker/ca.pem
 
 # eru
-eru_api_host=api.{{ domain }}
+eru_api_host: api.{{ domain }}
 
 # rabbit
-rabbit_port=54321
+rabbit_port: 54321
 
 # shiva
-pg_database=shiva
-pg_user=shiva
+pg_database: shiva
+pg_user: shiva
 
 # swarm
-swarm_master_port=2375
+swarm_master_port: 2375

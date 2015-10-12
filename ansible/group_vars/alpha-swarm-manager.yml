@@ -3,6 +3,13 @@ name: "swarm"
 # container_kill_start settings
 container_image: swarm
 container_tag: 0.4.0
+
+# for redis
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_key: "frontend:swarm.{{ domain }}"
+is_redis_update_required: 'yes'
+
+# container_kill_start vars
 container_run_opts: >
   -d
   -p {{ swarm_master_port }}:2375
@@ -16,6 +23,3 @@ container_run_args: >
   manage
   token://{{ discovery_token }}
 
-# for redis
-redis_key: "frontend:swarm.{{ domain }}"
-is_redis_update_required: 'yes'
