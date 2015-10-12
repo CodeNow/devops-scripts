@@ -10,9 +10,9 @@ container_run_opts: >
 
 container_run_args: >
   --tlsverify
-  --tlscacert=<CACERT>
-  --tlscert=<CERT>
-  --tlskey=<KEY>
+  --tlscacert={{ docker_ca_path }}
+  --tlscert={{ docker_cert_path }}
+  --tlskey={{ docker_key_path }}
   manage
   token://{{ discovery_token }}
 
