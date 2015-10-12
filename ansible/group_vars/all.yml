@@ -25,8 +25,36 @@ slack_channels: [ '#ops' ]
 
 loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
 loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
-loggly_account_name: sandboxes
 loggly_username: ops
 
-# datadog key
+##
+## shared application configs
+##
+
+# api
+api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
+api_neo4j_port: 7474
+api_neo4j_protocol: http://
+
+# datadog
+datadog_port: 8125
 datadog_api_key: 6488896fe0c811965ef233b96809d70d
+
+# docker
+docker_port: 4242
+docker_cert_path: /etc/ssl/docker/cert.pem
+docker_key_path: /etc/ssl/docker/key.pem
+docker_ca_path: /etc/ssl/docker/ca.pem
+
+# eru
+eru_api_host=api.{{ domain }}
+
+# rabbit
+rabbit_port=54321
+
+# shiva
+pg_database=shiva
+pg_user=shiva
+
+# swarm
+swarm_master_port=2375

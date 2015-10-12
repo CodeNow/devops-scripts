@@ -4,22 +4,17 @@ api_aws_secret_access_key=A6XOpeEElvvIulfAzVLohqKtpKij5ZE8h0FFx0Jn
 api_github_client_id=baa5c868b6d17d7ae002
 api_github_client_secret=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
 api_github_deploy_keys_bucket=runnable.deploykeys.production-beta
-api_github_hook_secret=3V3RYTHINGisAW3S0ME!
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-api_loggly_token=f673760d-e0b3-4a93-a15e-2862ea074f91
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
 api_mongo_database=beta
 api_mongo_replset_name=beta
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
-api_neo4j_port=7474
-api_neo4j_protocol=http://
 api_new_relic_app_name=beta-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production-beta
 
 [eru:vars]
-eru_api_host=api.{{ domain }}
 eru_github_id=8abb08f83f6d1c52bd1a
 eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 
@@ -47,24 +42,16 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
-[swarm-master:vars]
-swarm_master_port=2375
-
 [beta:vars]
 ansible_ssh_private_key_file=~/.ssh/oregon.pem
 datadog_host=10.20.1.59
-datadog_port=8125
 datadog_tags=env:beta
-docker_port=4242
 domain=runnable-beta.com
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-beta
-pg_database=shiva
 pg_host=beta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=QBjSpAXVYwmGHu4Y
-pg_user=shiva
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
-rabbit_port=54321
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.20.1.55
 swarm_token=d363b783f03a845a2c82b081bfe8443e
