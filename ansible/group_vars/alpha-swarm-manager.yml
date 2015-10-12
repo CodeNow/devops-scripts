@@ -1,0 +1,21 @@
+name: "swarm"
+
+# container_kill_start settings
+container_image: swarm
+container_tag: 0.4.0
+container_run_opts: >
+  -d
+  -p {{ swarm_master_port }}:2375
+  -v /opt/ssl/docker:/etc/ssl/docker:ro
+
+container_run_args: >
+  --tlsverify
+  --tlscacert=<CACERT>
+  --tlscert=<CERT>
+  --tlskey=<KEY>
+  manage
+  token://{{ discovery_token }}
+
+# for redis
+redis_key: "frontend:swarm.{{ domain }}"
+is_redis_update_required: 'yes'

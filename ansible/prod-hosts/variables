@@ -47,11 +47,15 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
+[swarm-master:vars]
+swarm_master_port=2375
+
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 datadog_host=10.0.1.239
 datadog_port=8125
 datadog_tags=env:alpha
+docker_port=4242
 domain=runnable.io
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production
@@ -63,4 +67,5 @@ rabbit_password=6df7983b76a22bbbffee11a29860cda8
 rabbit_port=54321
 rabbit_username=a4c1ac709c3bc685a6665fc1d23d737d
 registry_host=10.0.1.254
+swarm_token=40ec138a1b478aaf84aca2a1c21c70fe
 user_content_domain=runnableapp.com

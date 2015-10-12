@@ -1,0 +1,12 @@
+name: "swarm"
+
+# container_kill_start settings
+container_image: swarm
+container_tag: latest
+container_run_opts: >
+  -d
+
+container_run_args: >
+  join
+  --addr={{ ansible_default_ipv4.address }}:{{ docker_port }}
+  token://{{ discovery_token }}
