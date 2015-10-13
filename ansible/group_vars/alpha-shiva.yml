@@ -1,10 +1,12 @@
 name: "shiva"
-
-container_image: "registry.runnable.com/runnable/{{ name }}"
+container_image: "registry.runnable.com/runnable/shiva"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
+
+# Overrides the start command in the builder role
+npm_start_command: "run shiva-start"
 
 # Not actually needed, just allows container-kill-start to work
 hosted_ports: ["3000"]
