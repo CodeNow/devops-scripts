@@ -1,6 +1,4 @@
 ---
-- hosts: redis
-
 - hosts: swarm
   vars_files:
     - "group_vars/alpha-swarm-manager.yml"
