@@ -25,6 +25,5 @@ container_envs: >
 
 container_run_opts: >
   -d
-  --restart=always
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{ container_envs }}

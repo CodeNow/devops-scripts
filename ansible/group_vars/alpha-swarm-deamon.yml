@@ -9,7 +9,6 @@ log_driver: json-file
 
 container_run_opts: >
   -d
-  --restart=always
 
 container_run_args: >
   join
