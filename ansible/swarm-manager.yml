@@ -1,5 +1,5 @@
 ---
-- hosts: swarm
+- hosts: swarm-manager
   vars_files:
     - "group_vars/alpha-swarm-manager.yml"
   roles:

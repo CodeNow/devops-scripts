@@ -71,7 +71,7 @@ alpha-registry
 [shiva]
 alpha-api-old
 
-[swarm]
+[swarm-manager]
 alpha-api-old
 
 [docks]
@@ -97,7 +97,7 @@ detention
 hubot
 eru
 shiva
-swarm
+swarm-manager
 
 [targets]
 localhost ansible_connection=local bastion_name=alpha-bastion

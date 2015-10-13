@@ -65,7 +65,7 @@ beta-services
 [registry]
 beta-registry
 
-[swarm]
+[swarm-manager]
 beta-services
 
 [docks]
@@ -89,7 +89,7 @@ optimus
 rabbitmq
 eru
 shiva
-swarm
+swarm-manager
 
 [targets]
 localhost ansible_connection=local bastion_name=beta-bastion
