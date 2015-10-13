@@ -9,4 +9,4 @@ container_run_opts: >
 container_run_args: >
   join
   --addr={{ ansible_default_ipv4.address }}:{{ docker_port }}
-  token://{{ discovery_token }}
+  token://{{ swarm_token }}

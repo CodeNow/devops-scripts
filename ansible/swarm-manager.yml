@@ -6,6 +6,5 @@
     - "group_vars/alpha-swarm-manager.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: docker_client, tags: "docker_client" }
   - { role: container_kill_start, tags: "deploy" }

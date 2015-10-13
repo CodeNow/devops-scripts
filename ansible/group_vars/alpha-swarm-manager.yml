@@ -1,25 +1,21 @@
-name: "swarm"
+name: "swarm-manager"
 
 # container_kill_start settings
 container_image: swarm
 container_tag: 0.4.0
 
-# for redis
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_key: "frontend:swarm.{{ domain }}"
-is_redis_update_required: 'yes'
-
 # container_kill_start vars
+log_driver: json-file
+
 container_run_opts: >
   -d
   -p {{ swarm_master_port }}:2375
-  -v /opt/ssl/docker:/etc/ssl/docker:ro
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
 
 container_run_args: >
+  manage
   --tlsverify
   --tlscacert={{ docker_ca_path }}
   --tlscert={{ docker_cert_path }}
   --tlskey={{ docker_key_path }}
-  manage
-  token://{{ discovery_token }}
-
+  token://{{ swarm_token }}
