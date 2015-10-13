@@ -32,6 +32,3 @@ openssl x509 \
   -extfile "$CLIENT-extfile.cnf"
 chmod 400 "$CLIENT-cert.pem"
 
-# cleanup files we do not need
-rm $CLIENT-extfile.cnf
-rm $CLIENT-client.csr
