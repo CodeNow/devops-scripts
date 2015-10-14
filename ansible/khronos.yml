@@ -1,4 +1,5 @@
 ---
+- hosts: rabbitmq
 - hosts: mongodb
 
 - hosts: khronos
