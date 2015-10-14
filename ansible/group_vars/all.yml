@@ -52,8 +52,10 @@ eru_api_host: api.{{ domain }}
 # rabbit
 rabbit_port: 54321
 
+# astral
+pg_database: astral
+
 # shiva
-pg_database: shiva
 pg_user: shiva
 
 # swarm
