@@ -95,4 +95,8 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [shiva: FFXIV Shiva Theme](https://www.youtube.com/watch?v=noJiH8HLZw4)
 
+[swarm-manager: Eric Prydz VS Pink Floyd - 'Proper Education'](https://www.youtube.com/watch?v=IttkDYE33aU)
+
+[swarm-deamon: Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q)
+
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!
