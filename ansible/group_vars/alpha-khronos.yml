@@ -27,4 +27,4 @@ container_run_opts: >
   -v /opt/ssl/docker:/etc/ssl/docker:ro
   {{container_envs}}
 
-npm_command: run start-json-output
+npm_start_command: run start-json-output
