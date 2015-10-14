@@ -2,14 +2,14 @@
 - name: create docker cert directory
   sudo: yes
   file:
-    path=/opt/ssl/docker
+    path=/opt/ssl/docker/{{ name }}
     state=directory
 
 - name: copy docker CA
   sudo: yes
   copy:
     src=certs/ca.pem
-    dest=/opt/ssl/docker
+    dest=/opt/ssl/docker/{{ name }}
     mode=0440
     owner=root
     group=root
@@ -18,7 +18,7 @@
   sudo: yes
   copy:
     src=certs/{{ name }}/
-    dest=/opt/ssl/docker
+    dest=/opt/ssl/docker/{{ name }}
     mode=0440
     owner=root
     group=root
