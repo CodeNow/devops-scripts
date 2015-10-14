@@ -1,0 +1,16 @@
+name: "swarm-deamon"
+
+# container_kill_start settings
+container_image: swarm
+container_tag: 0.4.0
+
+# container_kill_start vars
+log_driver: json-file
+
+container_run_opts: >
+  -d
+
+container_run_args: >
+  join
+   --addr={{ ansible_default_ipv4.address }}:{{ docker_port }}
+  token://{{ swarm_token }}

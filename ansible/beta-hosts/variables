@@ -14,6 +14,9 @@ api_new_relic_app_name=beta-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production-beta
 
+[docks:vars]
+docker_config=docks
+
 [eru:vars]
 eru_github_id=8abb08f83f6d1c52bd1a
 eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
