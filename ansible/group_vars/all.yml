@@ -27,6 +27,8 @@ loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
 loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
 loggly_username: ops
 
+weave_path: "/usr/local/bin/weave"
+
 ##
 ## shared application configs
 ##
