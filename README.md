@@ -60,7 +60,7 @@ ansible-playbook -i ./[stage-hosts, prod-hosts] [appname].yml -t deploy -e git_b
 This will redeploy the current deploy without rebuilding
 
 ```
-ansible-playbook -i./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=”--no-cache”
+ansible-playbook -i./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=--no-cache
 ```
 
 deploy latest version of the branch
