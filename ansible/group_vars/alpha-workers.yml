@@ -54,6 +54,8 @@ container_envs: >
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e DOCKER_IMAGE_BUILDER_WEAVE_PATH={{ weave_path }}
+  -e SWARM_HOST=http://{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}:2375
+  -e CONTAINER_MEMORY_LIMIT_BYTES=100000000
 
 container_run_opts: >
   -d
