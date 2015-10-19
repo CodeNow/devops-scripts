@@ -4,3 +4,4 @@ DOCKER_OPTS="$DOCKER_OPTS --tlscert={{ docker_cert_path }} --tlskey={{ docker_ke
 DOCKER_OPTS="$DOCKER_OPTS -g /docker --insecure-registry registry.runnable.com --icc=false"
 DOCKER_OPTS="$DOCKER_OPTS --bip 172.17.42.1/16"
 DOCKER_OPTS="$DOCKER_OPTS --dns=172.17.42.1 --dns=8.8.8.8"
+DOCKER_OPTS="$DOCKER_OPTS --label org={{ org_id.stdout }}"

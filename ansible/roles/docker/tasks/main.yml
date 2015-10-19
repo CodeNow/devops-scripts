@@ -1,6 +1,7 @@
 ---
 - name: change core dump path
   sudo: yes
+  when: docker_config == "runnable"
   tags: coreDump
   sysctl:
     name=kernel.core_pattern
@@ -36,6 +37,12 @@
    repo: "deb https://get.docker.com/ubuntu docker main"
    update_cache: yes
    state: present
+
+- name: get org id
+  sudo: yes
+  when: docker_config == "docks"
+  shell: "cut -d, -f 1 /opt/runnable/host_tags"
+  register: org_id
 
 - name: copy docker config file
   sudo: yes
