@@ -1,42 +1,43 @@
 ---
-- name: add datadog source
-  sudo: yes
-  lineinfile:
-    state=present
-    create=yes
-    dest=/etc/apt/sources.list.d/datadog.list
-    line='deb http://apt.datadoghq.com/ stable main'
-
-- name: add datadog apt key
-  sudo: yes
-  apt_key:
-    keyserver=keyserver.ubuntu.com
-    id=C7A7DA52
-
-- name: install datadog via apt
+- name: add https transport
+  tags: ['datadog']
   sudo: yes
   apt:
+    name=apt-transport-https
+    state=latest
+  notify: restart datadog-agent
+
+- name: add datadog apt key
+  tags: ['datadog']
+  sudo: yes
+  apt_key:
+    id=C7A7DA52
+    keyserver=keyserver.ubuntu.com
+    state=present
+  notify: restart datadog-agent
+
+- name: add datadog repository
+  tags: ['datadog']
+  sudo: yes
+  apt_repository:
+    repo='deb http://apt.datadoghq.com/ stable main'
+    state=present
     update_cache=yes
-    name=datadog-agent
-    state=present
+  notify: restart datadog-agent
 
-- name: copy datadog example config into place
+- name: Create main Datadog agent configuration file
+  tags: ['datadog']
   sudo: yes
-  command: cp datadog.conf.example datadog.conf
-    chdir=/etc/dd-agent
-    creates=/etc/dd-agent/datadog.conf
-
-- name: set API key for datadog
-  sudo: yes
-  lineinfile: "
-    state=present
+  template:
+    src=datadog.conf.j2
     dest=/etc/dd-agent/datadog.conf
-    regexp='^api_key:.*$'
-    line='api_key: 6488896fe0c811965ef233b96809d70d'"
+  notify: restart datadog-agent
 
-- name: (re)start datadog
+- name: install network checks for dock services
+  tags: ['datadog']
   sudo: yes
-  service:
-    name=datadog-agent
-    state=restarted
-  
+  when: docker_config == "docks"
+  template:
+    src=tcp_check.yaml.j2
+    dest=/etc/dd-agent/conf.d/tcp_check.yaml
+  notify: restart datadog-agent

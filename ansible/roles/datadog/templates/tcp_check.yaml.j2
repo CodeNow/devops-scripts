@@ -1,0 +1,32 @@
+init_config:
+
+instances:
+  - name: docker-listener
+    host: 127.0.0.1
+    port: 3000
+    collect_response_time: true
+    skip_event: true
+
+  - name: krain
+    host: 127.0.0.1
+    port: 3100
+    collect_response_time: true
+    skip_event: true
+
+  - name: sauron
+    host: 127.0.0.1
+    port: 3200
+    collect_response_time: true
+    skip_event: true
+
+  - name: filibuster
+    host: 127.0.0.1
+    port: 3112
+    collect_response_time: true
+    skip_event: true
+
+  - name: weave
+    host: 127.0.0.1
+    port: 6783
+    collect_response_time: true
+    skip_event: true
