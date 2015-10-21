@@ -5,7 +5,6 @@
   apt:
     name=apt-transport-https
     state=latest
-  notify: restart datadog-agent
 
 - name: add datadog apt key
   tags: ['datadog']
@@ -14,7 +13,6 @@
     id=C7A7DA52
     keyserver=keyserver.ubuntu.com
     state=present
-  notify: restart datadog-agent
 
 - name: add datadog repository
   tags: ['datadog']
@@ -23,7 +21,6 @@
     repo='deb http://apt.datadoghq.com/ stable main'
     state=present
     update_cache=yes
-  notify: restart datadog-agent
 
 - name: Create main Datadog agent configuration file
   tags: ['datadog']
@@ -40,4 +37,10 @@
   template:
     src=tcp_check.yaml.j2
     dest=/etc/dd-agent/conf.d/tcp_check.yaml
+  notify: restart datadog-agent
+
+- name: force notify
+  tags: ['datadogg']
+  command: echo restart datadog
+  when: force_restart is defined
   notify: restart datadog-agent
