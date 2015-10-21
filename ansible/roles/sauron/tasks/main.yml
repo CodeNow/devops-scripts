@@ -1,19 +1,19 @@
 ---
 - name: reset weave
-  command: "{{weave_path}} reset"
+  command: "{{ weave_path }} reset"
   when: weave_reset is defined
   sudo: yes
 
 - name: install weave
-  get_url: url=https://github.com/zettio/weave/releases/download/v0.11.1/weave
-    dest="{{weave_path}}"
+  get_url: url=https://github.com/weaveworks/weave/releases/download/v1.1.2/weave
+    dest="{{ weave_path }}"
     mode=0777
     force=yes
   sudo: yes
   register: weave_install
 
 - name: setup weave
-  command: "{{weave_path}} setup"
+  command: "{{ weave_path }} setup"
   when: weave_install.changed
   sudo: yes
 
