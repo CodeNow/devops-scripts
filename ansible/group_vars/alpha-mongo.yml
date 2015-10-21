@@ -1,4 +1,6 @@
 # database vars
+name: mongo
+
 db_path: "/opt/mongodb/db"
 
 # container_kill_start settings
