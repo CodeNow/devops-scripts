@@ -62,6 +62,9 @@ beta-redis-slave
 [shiva]
 beta-services
 
+[metis]
+beta-services
+
 [registry]
 beta-registry
 

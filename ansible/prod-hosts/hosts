@@ -71,6 +71,9 @@ alpha-registry
 [shiva]
 alpha-api-old
 
+[metis]
+alpha-api-old
+
 [swarm-manager]
 alpha-api-old
 

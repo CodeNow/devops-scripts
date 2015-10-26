@@ -1,4 +1,6 @@
 # database vars
+name: rabbitmq
+
 db_path: "/opt/rabbitmq/db"
 config_path: "/opt/rabbitmq/config"
 
