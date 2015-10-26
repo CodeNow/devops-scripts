@@ -1,5 +1,6 @@
 ---
 - name: npm install {{ app_name }}
+  sudo: yes
   npm: path=/opt/runnable/{{ app_name }}
 
 - name: restart service {{ app_name }}

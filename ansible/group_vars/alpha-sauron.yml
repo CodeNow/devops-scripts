@@ -1,7 +1,7 @@
 # upstart template variables
 name: sauron
 
-app_name: {{ name }}
+app_name: "{{ name }}"
 app_repo: "git@github.com:CodeNow/{{ name }}.git"
 
 redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"

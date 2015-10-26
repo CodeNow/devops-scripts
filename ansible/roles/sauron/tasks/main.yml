@@ -5,7 +5,7 @@
   sudo: yes
 
 - name: install weave
-  get_url: url=https://github.com/weaveworks/weave/releases/download/v1.1.2/weave
+  get_url: url=https://github.com/weaveworks/weave/releases/download/v1.2.0/weave
     dest="{{ weave_path }}"
     mode=0777
     force=yes
