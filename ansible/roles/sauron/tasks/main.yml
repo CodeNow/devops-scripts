@@ -23,3 +23,9 @@
   sudo: yes
   notify:
     - restart service {{ app_name }}
+
+- name: get org id
+  sudo: yes
+  when: docker_config == "docks"
+  shell: "cut -d, -f 1 /opt/runnable/host_tags"
+  register: org_id
