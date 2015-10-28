@@ -191,7 +191,7 @@ Host 10.4.*.*
 	User ubuntu
 	ForwardAgent yes
 	StrictHostKeyChecking no
-	ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@beta-bastion nc %h %p
+	ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
 	IdentityFile ~/.ssh/gamma.pem
 
 ## Gamma Userland Hipache
