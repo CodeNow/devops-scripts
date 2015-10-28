@@ -1,0 +1,103 @@
+[?1l>[1Bkansible-playbook\[0;31mERROR: the playbook: ansible/sauron.yml could not be found[0m
+[1m[3m%[23m[1m[0m                                                                                                                                                                k..ripts/ansible\]7;file://Christophers-MacBook-Pro.local/Users/cneill/git/devops-scripts/ansible[0m[23m[24m[J[01;34m[ [31m 1:01AM [01;34m] [01;34m [ [31mcneill@Christophers-MacBook-Pro:~/git/devops-scripts/ansible[01;32m(master✗)[33m[01;34m ][00m
+ $ [K[?1h=ansible-playbook -i ansible/prod-hosts -e stop_time=5 -e git_branch=v0.1.0 ansible/sauron.yml -e name=sauron[P[25C [26D[P[25C [26D[P[25C [26D[P[25C [26D[P[25C [26D[P[24C [26D[P[25C [26D[P[25C [26D[P[72C [73D[P[72C [73D[P[72C [73D[P[72C [73D[P[72C [73D[P[72C [73D[P[72C [73D[P[72C [73D[?1l>
+kansible-playbook\
+PLAY [redis] ****************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+[0;31mfatal: [alpha-redis] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+
+PLAY [docks] ****************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+[0;31mfatal: [10.0.228.236] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.209.251] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.176.211] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.178.49] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.192.107] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.160.58] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.141.168] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.151.155] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.221.177] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.148.61] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.242.213] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.190.92] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.233.186] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.206.60] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.155.249] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.141.148] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.202.22] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.200.182] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.209.65] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.246.239] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.146.147] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.179.217] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.249.26] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.237.33] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.164.183] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+[0;31mfatal: [10.0.242.120] => SSH Error: Connection timed out during banner exchange
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.[0m
+
+TASK: [notify | get the username running the deploy] ************************** 
+[0;31mFATAL: no hosts matched or all hosts have already failed -- aborting
+[0m
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/Users/cneill/sauron.retry
+
+[0;31m10.0.141.148[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.141.168[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.146.147[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.148.61[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.151.155[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.155.249[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.160.58[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.164.183[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.176.211[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.178.49[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.179.217[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.190.92[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.192.107[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.200.182[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.202.22[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.206.60[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.209.251[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.209.65[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.221.177[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.228.236[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.233.186[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.237.33[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.242.120[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.242.213[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.246.239[0m               : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31m10.0.249.26[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+[0;31malpha-redis[0m                : ok=0    changed=0    [0;31munreachable[0m[0;31m=[0m[0;31m1[0m    failed=0   
+
+[1m[3m%[23m[1m[0m                                                                                                                                                                k..ripts/ansible\]7;file://Christophers-MacBook-Pro.local/Users/cneill/git/devops-scripts/ansible[0m[23m[24m[J[01;34m[ [31m 1:05AM [01;34m] [01;34m [ [31mcneill@Christophers-MacBook-Pro:~/git/devops-scripts/ansible[01;32m(master✗)[33m[01;34m ][00m
+ $ [K[?1h=
