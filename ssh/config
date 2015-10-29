@@ -190,7 +190,7 @@ Host 10.4.*.*
 	IdentityFile ~/.ssh/gamma.pem
 
 ## Gamma Userland Hipache
-Host gamma-user
+Host gamma-userland-hipache
     ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 Host gamma-user-us-west-2a
@@ -222,10 +222,10 @@ Host gamma-mongo-us-west-2c
 
 ## Gamma Redis
 Host gamma-redis
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.103 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
 Host gamma-redis-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.103 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
 ## Gamma Neo4J
 Host gamma-neo4j
@@ -234,7 +234,15 @@ Host gamma-neo4j
 Host gamma-neo4j-us-west-2a
     ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
+## Gamma Services
+Host gamma-services-us-west-2a
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+
+## Gamma Registry
 Host gamma-registry-us-west-2a
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+
+Host gamma-registry
     ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 ################################################################################

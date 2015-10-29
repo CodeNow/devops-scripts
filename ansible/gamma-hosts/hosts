@@ -1,76 +1,76 @@
 [bastion]
-beta-bastion
+gamma-bastion
 
 [hipache]
-beta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-beta-userland-hipache domain=runnablecloud.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
+gamma-userland-hipache domain=runnablecloud.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
-beta-mongodb01
-beta-mongodb02
-beta-mongodb03
+gamma-mongo-us-west-2a
+gamma-mongo-us-west-2b
+gamma-mongo-us-west-2c
 
 [neo4j]
-beta-neo4j
+gamma-neo4j
 
 [api_group:children]
 worker
 api
 
 [api]
-beta-api
+gamma-api
 
 [worker]
-beta-api
+gamma-api
 
 [eru]
-beta-services
+gamma-services
 
 [navi]
-beta-services
+gamma-services
 
 [charon]
-beta-services
+gamma-services
 
 [khronos]
-beta-services
+gamma-services
 
 [mavis]
-beta-services
+gamma-services
 
 [optimus]
-beta-services
+gamma-services
 
 [detention]
-beta-services
+gamma-services
 
 [palantiri]
-beta-services
+gamma-services
 
 [rabbitmq]
-beta-rabbit
+gamma-rabbit
 
 [web]
-beta-web
+gamma-web
 
 [redis]
-beta-redis
+gamma-redis
 
 [redis-slave]
-beta-redis-slave
+gamma-redis-slave
 
 [shiva]
-beta-services
+gamma-services
 
 [registry]
-beta-registry
+gamma-registry
 
 [swarm-manager]
-beta-services
+gamma-services
 
 [docks]
 
-[beta:children]
+[gamma:children]
 bastion
 hipache
 mongodb
@@ -92,4 +92,4 @@ shiva
 swarm-manager
 
 [targets]
-localhost ansible_connection=local bastion_name=beta-bastion
+localhost ansible_connection=local bastion_name=gamma-bastion

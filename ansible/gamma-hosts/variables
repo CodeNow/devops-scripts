@@ -3,16 +3,16 @@ api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
 api_github_client_id=baa5c868b6d17d7ae002
 api_github_client_secret=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
-api_github_deploy_keys_bucket=runnable.deploykeys.production-beta
+api_github_deploy_keys_bucket=runnable.deploykeys.production-gamma
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
-api_mongo_database=beta
-api_mongo_replset_name=beta
+api_mongo_database=gamma
+api_mongo_replset_name=gamma
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
-api_new_relic_app_name=beta-api-production
+api_new_relic_app_name=gamma-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
-api_s3_context_bucket=runnable.context.resources.production-beta
+api_s3_context_bucket=runnable.context.resources.production-gamma
 
 [docks:vars]
 docker_config=docks
@@ -23,20 +23,20 @@ eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 
 [khronos:vars]
 khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
-khronos_mongo_database=beta
-khronos_mongo_replset_name=beta
+khronos_mongo_database=gamma
+khronos_mongo_replset_name=gamma
 
 [optimus:vars]
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
-optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production-gamma
 
 [palantiri:vars]
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [registry:vars]
 registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
-registry_s3_bucket=runnableimages.beta
+registry_s3_bucket=runnableimages.gamma
 registry_s3_secret_key=ZFLePZdrHUNhTzuV4Ir/NgwPWOnU41Ur9DbH6UAp
 registry_s3_region=us-east-1
 
@@ -45,17 +45,17 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
-[beta:vars]
+[gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/oregon.pem
-datadog_host=10.20.1.59
-datadog_tags=env:beta
-domain=runnable-beta.com
+datadog_host=10.4.6.251
+datadog_tags=env:gamma
+domain=runnable-gamma.com
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
-node_env=production-beta
-pg_host=beta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
+node_env=production-gamma
+pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=QBjSpAXVYwmGHu4Y
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-registry_host=10.20.1.55
+registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnablecloud.com
