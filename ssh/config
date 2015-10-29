@@ -181,11 +181,6 @@ Host beta-web
 
 Host gamma-bastion
     HostName 54.69.34.161
-    # HostName <IP-for-UW2B-bastion>
-    # HostName <IP-for-UW2C-bastion>
-
-Host gamma-bastion-us-west-2a
-    #HostName 54.69.34.161
 
 Host 10.4.*.*
 	User ubuntu
@@ -196,57 +191,48 @@ Host 10.4.*.*
 
 ## Gamma Userland Hipache
 Host gamma-user
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.0.141 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 Host gamma-user-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.0.141 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 ## Gamma App Hipache
 Host gamma-hipache
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.0.209 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
 
 Host gamma-hipache-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.0.209 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
 
 ## Gamma API
 Host gamma-api
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.188 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
 
 Host gamma-api-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.188 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
 
 ## Gamma MongoDB
 Host gamma-mongo-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.7.144 22
-
-Host gmdb2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.7.144 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.144 22
 
 Host gamma-mongo-us-west-2b
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.10.57 22
-
-Host gmdb2b
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.10.57 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.57 22
 
 Host gamma-mongo-us-west-2c
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.15.18 22
-
-Host gmdb2c
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.15.18 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
 
 ## Gamma Redis
 Host gamma-redis
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.5.103 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.103 22
 
 Host gamma-redis-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.5.103 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.103 22
 
 ## Gamma Neo4J
 Host gamma-neo4j
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.210 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
 Host gamma-neo4j-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.210 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
 ################################################################################
 # other
