@@ -234,6 +234,9 @@ Host gamma-neo4j
 Host gamma-neo4j-us-west-2a
     ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
+Host gamma-registry-us-west-2a
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+
 ################################################################################
 # other
 ################################################################################
