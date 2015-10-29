@@ -216,11 +216,23 @@ Host gamma-api-us-west-2a
     ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.188 22
 
 ## Gamma MongoDB
-Host gamma-mongo
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.28 22
-
 Host gamma-mongo-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.4.28 22
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.7.144 22
+
+Host gmdb2a
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.7.144 22
+
+Host gamma-mongo-us-west-2b
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.10.57 22
+
+Host gmdb2b
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.10.57 22
+
+Host gamma-mongo-us-west-2c
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.15.18 22
+
+Host gmdb2c
+    ProxyCommand ssh -q ubuntu@gamma-bastion-us-west-2a nc 10.4.15.18 22
 
 ## Gamma Redis
 Host gamma-redis
