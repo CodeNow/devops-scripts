@@ -245,6 +245,13 @@ Host gamma-registry-us-west-2a
 Host gamma-registry
     ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
+## Gamma Web
+Host gamma-web-us-west-2a
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+
+Host gamma-web
+    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+
 ################################################################################
 # other
 ################################################################################

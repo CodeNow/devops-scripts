@@ -1,5 +1,6 @@
 ---
 - hosts: hipache
+- hosts: redis
   vars_files:
     - "group_vars/alpha-hipache.yml"
   roles:
