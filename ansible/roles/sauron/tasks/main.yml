@@ -1,8 +1,21 @@
 ---
+- name: stop sauron on reset
+  sudo: yes
+  when: weave_reset is defined
+  service:
+    name={{ app_name }}
+    state=stopped
+    enabled=yes
+
 - name: reset weave
   command: "{{ weave_path }} reset"
   when: weave_reset is defined
   sudo: yes
+
+- name: save and kill containers on weave reset
+  sudo: yes
+  when: weave_reset is defined
+  shell: "sudo docker ps -q > ./good; cat ./good | xargs sudo docker kill"
 
 - name: install weave
   get_url: url=https://github.com/weaveworks/weave/releases/download/v1.2.0/weave
@@ -21,8 +34,6 @@
   shell: "docker kill `docker ps | grep weave | awk '{print $1}'` || echo"
   when: weave_install.changed
   sudo: yes
-  notify:
-    - restart service {{ app_name }}
 
 - name: get org id
   sudo: yes
