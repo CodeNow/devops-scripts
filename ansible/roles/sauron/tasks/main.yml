@@ -12,10 +12,15 @@
   when: weave_reset is defined
   sudo: yes
 
-- name: save and kill containers on weave reset
+- name: save non weave / image builder containers
   sudo: yes
   when: weave_reset is defined
-  shell: "sudo docker ps -q > ./good; cat ./good | xargs sudo docker kill"
+  shell: "sudo docker ps | grep -v weaveworks | grep -v image-builder > ./good"
+
+- name: kill all containers
+  sudo: yes
+  when: weave_reset is defined
+  shell: "sudo docker ps -q | xargs sudo docker kill"
 
 - name: install weave
   get_url: url=https://github.com/weaveworks/weave/releases/download/v1.2.0/weave
