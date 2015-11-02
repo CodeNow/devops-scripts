@@ -18,7 +18,6 @@ container_run_opts: >
   -p {{ ansible_default_ipv4.address }}:8302:8302/udp
   -p {{ ansible_default_ipv4.address }}:8400:8400
   -p {{ ansible_default_ipv4.address }}:8500:8500
-  -p 172.17.42.1:53:53/udp
   --restart=always
 
 container_run_args: >
