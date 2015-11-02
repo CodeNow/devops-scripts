@@ -1,23 +1,29 @@
-name: "consul-server"
+name: consul
 
-container_image: "progrium/consul"
-container_tag: "master"
+container_image: progrium/consul
+container_tag: latest
 
 container_run_opts: >
   -d
-  -h $HOSTNAME
+  -h {{ inventory_hostname }}
   -v /consul:/data
-  -p 8300:8300
-  -p 8301:8301
-  -p 8301:8301/udp
-  -p 8302:8302
-  -p 8302:8302/udp
-  -p 8400:8400
-  -p 8500:8500
+  -v /etc/consul.d:/etc/consul.d:ro
+  -p {{ ansible_default_ipv4.address }}:8300:8300
+  -p {{ ansible_default_ipv4.address }}:8301:8301
+  -p {{ ansible_default_ipv4.address }}:8301:8301/udp
+  -p {{ ansible_default_ipv4.address }}:8302:8302
+  -p {{ ansible_default_ipv4.address }}:8302:8302/udp
+  -p {{ ansible_default_ipv4.address }}:8400:8400
+  -p {{ ansible_default_ipv4.address }}:8500:8500
+  -p 172.17.42.1:53:53/udp
   --restart=always
 
 container_run_args: >
   -server
+  -node {{ inventory_hostname }}
   -advertise {{ ansible_default_ipv4.address }}
-  -bootstrap-expect {{ groups['palantiri'] | length }}
-  {% if hostvars[groups['palantiri'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['palantiri'][0]]['ansible_default_ipv4']['address'] }}{% endif %}
+  -config-dir /etc/consul.d
+  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-bootstrap-expect {{ groups['consul'] | length }}{% endif %}
+  -data-dir /data
+  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
+  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}{% endif %}

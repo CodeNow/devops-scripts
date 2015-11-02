@@ -1,0 +1,8 @@
+---
+- hosts: consul
+  vars_files:
+    - group_vars/alpha-consul.yml
+  roles:
+  - { role: notify, tags: notify }
+  - { role: consul }
+  - { role: container_start, tags: deploy }
