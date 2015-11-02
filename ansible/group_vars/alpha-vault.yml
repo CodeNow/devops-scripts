@@ -1,5 +1,8 @@
 name: vault
 
+# for database role
+db_path: /opt/runnable/vault
+
 container_image: runnable/vault
 container_tag: v0.3.1
 

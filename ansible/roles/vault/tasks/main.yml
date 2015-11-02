@@ -1,13 +1,5 @@
-- name: make vault folder
-  sudo: yes
-  file:
-    state=directory
-    name=/opt/runnable/vault
-
 - name: copy vault config
   sudo: yes
   template:
     src=vault.hcl
     dest=/opt/runnable/vault/vault.hcl
-  register: copied_config
-  tags: genDockerConfig

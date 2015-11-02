@@ -4,5 +4,6 @@
     - group_vars/alpha-vault.yml
   roles:
   - { role: notify, tags: notify }
+  - { role: database }
   - { role: vault }
   - { role: container_start, tags: deploy }
