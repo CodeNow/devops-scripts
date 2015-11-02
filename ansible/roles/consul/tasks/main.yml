@@ -1,5 +1,0 @@
-- name: make config directory
-  sudo: yes
-  file:
-    state=directory
-    name=/etc/consul.d

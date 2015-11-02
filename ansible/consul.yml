@@ -4,5 +4,5 @@
     - group_vars/alpha-consul.yml
   roles:
   - { role: notify, tags: notify }
-  - { role: consul }
+  - { role: database }
   - { role: container_start, tags: deploy }

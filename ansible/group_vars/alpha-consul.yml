@@ -1,5 +1,8 @@
 name: consul
 
+# for database role
+db_path: /etc/consul.d
+
 container_image: progrium/consul
 container_tag: latest
 
