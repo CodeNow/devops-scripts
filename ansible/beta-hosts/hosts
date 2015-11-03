@@ -20,7 +20,7 @@ api
 [api]
 beta-api
 
-[consul-server]
+[consul]
 beta-services
 beta-api
 beta-web

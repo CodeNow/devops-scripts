@@ -10,19 +10,19 @@
   with_items: stopped_containers.stdout_lines
 
 # get current running container with this image
-- name: look for running containers running {{container_image}}
+- name: look for running containers running target image
   shell: "sudo docker ps | grep {{container_image}}: | awk '{print $1}'"
   register: old_containers_id
   changed_when: old_containers_id.stdout != ''
 
 # get latest image
 # tag will default to latest
-- name: pull down docker image {{container_image}}:{{container_tag}}
+- name: pull down target docker image
   command: sudo docker pull {{container_image}}:{{container_tag}}
   when: not do_not_push
 
 # get id of new image
-- name: get id of the docker image
+- name: get id of the target docker image
   shell: sudo docker images --no-trunc | grep {{container_image}}.*{{container_tag}} | awk '{print $3}'
   register: new_image_id
 
@@ -37,6 +37,10 @@
   when: old_containers_id.changed
   command: sudo docker rm {{item}}
   with_items: old_containers_id.stdout_lines
+
+- name: pause to allow for any odd conditions in system caching tables
+  when: pause_length_minutes is defined and old_containers_id.changed
+  pause: minutes={{pause_length_minutes}}
 
 # start our new container with options and args
 - name: start container
