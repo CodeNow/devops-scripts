@@ -1,11 +1,11 @@
 ---
+- hosts: redis
 - hosts: rabbitmq
-- hosts: mongodb
 
-- hosts: khronos
+- hosts: metis
   vars_files:
-    - "group_vars/alpha-khronos.yml"
+    - "group_vars/alpha-metis.yml"
   roles:
-  - { role: docker_client }
+  - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
   - { role: container_kill_start, tags: "deploy" }

@@ -56,9 +56,10 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_rollbar_key }}
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
+  -e DOCKER_IMAGE_BUILDER_WEAVE_PATH={{ weave_path }}
 
 container_run_opts: >
   -d
   -P
-  -v /opt/ssl/docker:/etc/ssl/docker:ro
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{ container_envs }}

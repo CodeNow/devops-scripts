@@ -4,4 +4,4 @@ name: "{{ app_name }}"
 image_builder_docker_namespace: runnable/image-builder
 
 # we need to push this
-do_not_push=false
+do_not_push: false

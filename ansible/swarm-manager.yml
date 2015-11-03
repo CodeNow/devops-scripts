@@ -1,0 +1,8 @@
+---
+- hosts: swarm-manager
+  vars_files:
+    - "group_vars/alpha-swarm-manager.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: docker_client, tags: "docker_client" }
+  - { role: container_kill_start, tags: "deploy" }

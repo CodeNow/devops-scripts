@@ -70,8 +70,14 @@ beta-redis-slave
 [shiva]
 beta-services
 
+[metis]
+beta-services
+
 [registry]
 beta-registry
+
+[swarm-manager]
+beta-services
 
 [docks]
 
@@ -94,6 +100,7 @@ optimus
 rabbitmq
 eru
 shiva
+swarm-manager
 
 [targets]
 localhost ansible_connection=local bastion_name=beta-bastion

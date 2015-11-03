@@ -1,4 +1,5 @@
 # database vars
+name: redis
 db_path: "/opt/redis/db"
 
 # container_kill_start settings

@@ -25,15 +25,11 @@
     dest=/etc/rsyslog.conf
     owner=root
     group=root
-  notify:
-  - restart rsyslog
 
 - name: stop rsyslog
   tags: [loggly, deploy]
   sudo: yes
   service: name=rsyslog state=stopped
-  notify:
-  - restart rsyslog
 
 - name: clear rsyslog state file
   tags: [loggly, deploy]
@@ -46,8 +42,6 @@
   tags: [loggly, deploy]
   stat: path=/var/log/{{ name }}
   register: log_file
-  notify:
-  - restart rsyslog
 
 - name: remove old log file
   when: log_file.stat.exists
@@ -56,3 +50,8 @@
   file:
     path=/var/log/{{ name }}.log
     state=absent
+
+- name: restart rsyslog
+  tags: [loggly, deploy]
+  sudo: yes
+  service: name=rsyslog state=restarted

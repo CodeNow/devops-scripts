@@ -1,4 +1,6 @@
 # krain options
+name: krain
+
 krain_env: default
 
 # upstart template variables

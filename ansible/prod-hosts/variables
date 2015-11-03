@@ -4,22 +4,20 @@ api_aws_secret_access_key=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
 api_github_client_id=d42d6634d4070c9d9bf9
 api_github_client_secret=d6cfde38fef5723e25e52629e3d25825c8a704c9
 api_github_deploy_keys_bucket=runnable.deploykeys.production
-api_github_hook_secret=3V3RYTHINGisAW3S0ME!
 api_hello_runnable_github_token=7ae2c176371fccfa17a26f2e44ea8cc77a9e07e5
-api_loggly_token=f673760d-e0b3-4a93-a15e-2862ea074f91
 api_mixpanel_app_id=57260a5b6fc972e9c69184882efd009e
 api_mongo_auth=api:uK8W84j7oU1BYi3ocsEvvJ2Fax9FxeYISla3PoQdvRg=
 api_mongo_database=alpha
 api_mongo_replset_name=alpha-0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
-api_neo4j_port=7474
-api_neo4j_protocol=http://
 api_new_relic_app_name=alpha-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_s3_context_bucket=runnable.context.resources.production
 
+[docks:vars]
+docker_config=docks
+
 [eru:vars]
-eru_api_host=api.{{ domain }}
 eru_github_id=46a23f5f99f0aa9460f8
 eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 
@@ -50,17 +48,14 @@ shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 datadog_host=10.0.1.239
-datadog_port=8125
 datadog_tags=env:alpha
 domain=runnable.io
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production
-pg_database=shiva
 pg_host=alpha-production-db.czw5moz6rmpp.us-west-1.rds.amazonaws.com:30573
 pg_pass=wCJGCfCWE9CKmQwa2XUKj6d8WYcEZAb9
-pg_user=shiva
 rabbit_password=6df7983b76a22bbbffee11a29860cda8
-rabbit_port=54321
 rabbit_username=a4c1ac709c3bc685a6665fc1d23d737d
 registry_host=10.0.1.254
+swarm_token=40ec138a1b478aaf84aca2a1c21c70fe
 user_content_domain=runnableapp.com

@@ -1,5 +1,0 @@
----
-- name: restart rsyslog
-  tags: [loggly, deploy]
-  sudo: yes
-  service: name=rsyslog state=restarted

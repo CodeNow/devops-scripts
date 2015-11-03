@@ -60,7 +60,7 @@ ansible-playbook -i ./[stage-hosts, prod-hosts] [appname].yml -t deploy -e git_b
 This will redeploy the current deploy without rebuilding
 
 ```
-ansible-playbook -i./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=”--no-cache”
+ansible-playbook -i./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=--no-cache
 ```
 
 deploy latest version of the branch
@@ -77,7 +77,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [runnable-angular: Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA)
 
-[mavis: Fairy Tail theme song](https://www.youtube.com/watch?v=kIwmrk7LoDk)
+[mavis: Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o)
 
 [khronos: Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU)
 
@@ -94,5 +94,9 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 [filibuster: He's a Pirate - Pirates Of The Caribbean](https://www.youtube.com/watch?v=yRh-dzrI4Z4)
 
 [shiva: FFXIV Shiva Theme](https://www.youtube.com/watch?v=noJiH8HLZw4)
+
+[swarm-manager: Eric Prydz VS Pink Floyd - 'Proper Education'](https://www.youtube.com/watch?v=IttkDYE33aU)
+
+[swarm-deamon: Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q)
 
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!

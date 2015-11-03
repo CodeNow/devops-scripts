@@ -13,7 +13,6 @@ container_run_opts: >
   -v /home/ubuntu/.ssh/config:/root/.ssh/config
   -v /home/ubuntu/.ssh/Test-runnable.pem:/root/.ssh/Test-runnable.pem
   -v /home/ubuntu/.ssh/oregon.pem:/root/.ssh/oregon.pem
-  --restart=always
   -p 0.0.0.0:80:80
 
 # container_kill_start
