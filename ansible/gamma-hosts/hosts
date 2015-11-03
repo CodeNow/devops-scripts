@@ -3,7 +3,7 @@ gamma-bastion
 
 [hipache]
 gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-gamma-userland-hipache domain=runnablecloud.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+gamma-userland-hipache domain=runnable.ninja httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
 gamma-mongo-us-west-2a

@@ -1,262 +1,268 @@
 Host alpha*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	IdentityFile ~/.ssh/Test-runnable.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/Test-runnable.pem
 
 Host beta*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	IdentityFile ~/.ssh/oregon.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/oregon.pem
 
 Host gamma*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	Identityfile ~/.ssh/gamma.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/gamma.pem
 
 ################################################################################
 # production runnable.io
 ################################################################################
 Host alpha-bastion
-	HostName 54.193.117.212
+  HostName 54.193.117.212
 
 Host alpha-bastion-2
-	HostName 54.183.80.150
+  HostName 54.183.80.150
 
 Host 10.0.*.*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	ProxyCommand ssh -q ubuntu@alpha-bastion-2 nc %h %p
-	IdentityFile ~/.ssh/Test-runnable.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -q ubuntu@alpha-bastion-2 nc %h %p
+  IdentityFile ~/.ssh/Test-runnable.pem
 
 Host alpha-hipache
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.0.68 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.0.68 22
 
 Host alpha-userland-hipache
-	HostName 54.183.142.56
+  HostName 54.183.142.56
 
 Host alpha-registry
-	User root
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.254 22
+  User root
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.254 22
 
 Host alpha-cayley
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.107 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.107 22
 
 Host alpha-neo4j
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.101 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.101 22
 
 Host alpha-mongodb01
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.244 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.244 22
 
 Host alpha-mongodb02
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.9 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.9 22
 
 Host alpha-mongodb03
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.251 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.251 22
 
 Host alpha-api-old
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
 
 Host alpha-api
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.142 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.142 22
 
 Host alpha-khronos
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.217 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.217 22
 
 Host alpha-web
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.85 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.85 22
 
 Host alpha-redis-slave
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.181 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.181 22
 
 Host alpha-redis
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.172 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.172 22
 
 Host alpha-rabbit
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.253 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.253 22
 
 ################################################################################
 # staging runnable.io
 ################################################################################
 Host alpha-stage-hipache
-	HostName 54.219.130.96
+  HostName 54.219.130.96
 
 Host alpha-stage-userland-hipache
-	HostName 54.153.38.172
+  HostName 54.153.38.172
 
 ## do not change below line, it is referenced in ansible scripts
 # stage-hosts docks
 
 Host alpha-stage-dock1
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.219 22
 
 Host alpha-stage-dock2
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.240 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.240 22
 
 Host alpha-stage-runnable
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.220 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.220 22
 
 Host alpha-stage-dock-test
-	ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.213 22
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.213 22
 
 ################################################################################
 # oregon
 ################################################################################
 Host oregon-bastion
-	HostName 52.25.121.228
-	User ubuntu
-	ForwardAgent yes
-	IdentityFile ~/.ssh/oregon.pem
+  HostName 52.25.121.228
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
 
 Host migration-router
-	ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.254 22
-	User ubuntu
-	ForwardAgent yes
-	IdentityFile ~/.ssh/oregon.pem
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.254 22
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
 
 Host hubot
-	ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.230 22
-	User ubuntu
-	ForwardAgent yes
-	IdentityFile ~/.ssh/oregon.pem
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.230 22
+  User ubuntu
+  ForwardAgent yes
+  IdentityFile ~/.ssh/oregon.pem
 
 ################################################################################
 # beta
 ################################################################################
 Host beta-bastion
-	HostName 52.25.33.149
+  HostName 52.25.33.149
 
 Host 10.20.*.*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@beta-bastion nc %h %p
-	IdentityFile ~/.ssh/oregon.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@beta-bastion nc %h %p
+  IdentityFile ~/.ssh/oregon.pem
 
 Host beta-mongodb01
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.51 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.51 22
 
 Host beta-mongodb02
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.52 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.52 22
 
 Host beta-mongodb03
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.53 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.53 22
 
 Host beta-neo4j
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.54 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.54 22
 
 Host beta-registry
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.55 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.55 22
 
 Host beta-redis
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.56 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.56 22
 
 Host beta-redis-slave
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.57 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.57 22
 
 Host beta-hipache
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.100 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.100 22
 
 Host beta-userland-hipache
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.101 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.101 22
 
 Host beta-api
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.58 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.58 22
 
 Host beta-services
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
 
 Host beta-rabbit
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22
 
 Host beta-web
-	ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
 
 ################################################################################
 # Gamma
 ################################################################################
 
 Host gamma-bastion
-    HostName 54.69.34.161
+  HostName 54.69.34.161
 
 Host 10.4.*.*
-	User ubuntu
-	ForwardAgent yes
-	StrictHostKeyChecking no
-	ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
-	IdentityFile ~/.ssh/gamma.pem
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
+  IdentityFile ~/.ssh/gamma.pem
 
 ## Gamma Userland Hipache
 Host gamma-userland-hipache
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 Host gamma-user-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 ## Gamma App Hipache
 Host gamma-hipache
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
 
 Host gamma-hipache-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
 
 ## Gamma API
 Host gamma-api
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
 
 Host gamma-api-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
 
 ## Gamma MongoDB
 Host gamma-mongo-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.144 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.144 22
 
 Host gamma-mongo-us-west-2b
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.57 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.57 22
 
 Host gamma-mongo-us-west-2c
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
 
 ## Gamma Redis
 Host gamma-redis
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
 Host gamma-redis-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
+
+Host gamma-redis-slave
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
+
+Host gamma-redis-us-west-2b
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
 
 ## Gamma Neo4J
 Host gamma-neo4j
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
 Host gamma-neo4j-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
 ## Gamma Services
 Host gamma-services-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
 
 ## Gamma Registry
 Host gamma-registry-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 Host gamma-registry
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 ## Gamma Web
 Host gamma-web-us-west-2a
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
 
 Host gamma-web
-    ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
 
 ################################################################################
 # other
 ################################################################################
 Host 127.0.0.1
-	StrictHostKeyChecking no
-	UserKnownHostsFile /dev/null
-	User core
-	LogLevel QUIET
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User core
+  LogLevel QUIET
