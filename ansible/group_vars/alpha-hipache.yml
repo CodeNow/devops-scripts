@@ -1,6 +1,7 @@
 # container_kill_start settings
 name: hipache
 redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_port: 6379
 
 container_image: registry.runnable.com/runnable/hipache
 container_tag: latest

@@ -220,6 +220,10 @@ Host gamma-mongo-us-west-2b
 Host gamma-mongo-us-west-2c
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
 
+## Gamma Rabbit
+Host gamma-rabbit
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.19.17 22
+
 ## Gamma Redis
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
@@ -242,6 +246,9 @@ Host gamma-neo4j-us-west-2a
 
 ## Gamma Services
 Host gamma-services-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+
+Host gamma-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
 
 ## Gamma Registry
