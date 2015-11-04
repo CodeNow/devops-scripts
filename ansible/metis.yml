@@ -1,10 +1,11 @@
 ---
 - hosts: redis
+- hosts: rabbitmq
 
-- hosts: hipache
+- hosts: metis
   vars_files:
-    - "group_vars/alpha-hipache.yml"
+    - "group_vars/alpha-metis.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: hipache, tags: "deploy" }
+  - { role: builder, tags: "build" }
   - { role: container_kill_start, tags: "deploy" }

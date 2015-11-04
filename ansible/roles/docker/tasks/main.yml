@@ -55,7 +55,7 @@
 - name: install docker
   sudo: yes
   when: restart is defined
-  action: apt pkg="{{ docker_package_name }}" state=present update_cache=yes
+  apt: pkg="{{ docker_package_name }}" state=present update_cache=yes force=yes
 
 - name: restart docker
   when: copied_config.changed and restart is defined

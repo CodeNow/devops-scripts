@@ -77,7 +77,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [runnable-angular: Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA)
 
-[mavis: Fairy Tail theme song](https://www.youtube.com/watch?v=kIwmrk7LoDk)
+[mavis: Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o)
 
 [khronos: Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU)
 

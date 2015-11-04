@@ -10,17 +10,26 @@ Host beta*
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/oregon.pem
 
+Host gamma*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/gamma.pem
+
 ################################################################################
 # production runnable.io
 ################################################################################
 Host alpha-bastion
   HostName 54.193.117.212
 
+Host alpha-bastion-2
+  HostName 54.183.80.150
+
 Host 10.0.*.*
   User ubuntu
   ForwardAgent yes
   StrictHostKeyChecking no
-  ProxyCommand ssh -q ubuntu@alpha-bastion nc %h %p
+  ProxyCommand ssh -q ubuntu@alpha-bastion-2 nc %h %p
   IdentityFile ~/.ssh/Test-runnable.pem
 
 Host alpha-hipache
@@ -165,6 +174,96 @@ Host beta-rabbit
 
 Host beta-web
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
+
+################################################################################
+# Gamma
+################################################################################
+
+Host gamma-bastion
+  HostName 54.69.34.161
+
+Host 10.4.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
+  IdentityFile ~/.ssh/gamma.pem
+
+## Gamma Userland Hipache
+Host gamma-userland-hipache
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
+
+Host gamma-user-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
+
+## Gamma App Hipache
+Host gamma-hipache
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
+
+Host gamma-hipache-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
+
+## Gamma API
+Host gamma-api
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
+
+Host gamma-api-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.188 22
+
+## Gamma MongoDB
+Host gamma-mongo-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.144 22
+
+Host gamma-mongo-us-west-2b
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.57 22
+
+Host gamma-mongo-us-west-2c
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
+
+## Gamma Rabbit
+Host gamma-rabbit
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.19.17 22
+
+## Gamma Redis
+Host gamma-redis
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
+
+Host gamma-redis-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
+
+Host gamma-redis-slave
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
+
+Host gamma-redis-us-west-2b
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
+
+## Gamma Neo4J
+Host gamma-neo4j
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
+
+Host gamma-neo4j-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
+
+## Gamma Services
+Host gamma-services-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+
+Host gamma-services
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+
+## Gamma Registry
+Host gamma-registry-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+
+Host gamma-registry
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
+
+## Gamma Web
+Host gamma-web-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+
+Host gamma-web
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
 
 ################################################################################
 # other
