@@ -5,8 +5,6 @@
     src=upstart.conf
     dest=/etc/init/{{ app_name }}.conf
     backup=yes
-  notify:
-    - restart service {{ app_name }}
 
 - name: create {{ app_name }} repository dir
   sudo: yes
@@ -25,6 +23,23 @@
     accept_hostkey=True
     force=yes
     key_file=/opt/runnable/dock-init/key/id_rsa_runnabledock
-  notify:
-    - npm install {{ app_name }}
-    - restart service {{ app_name }}
+
+- name: remove node_modules
+  sudo: yes
+  file:
+    path=/opt/runnable/{{ app_name }}/node_modules
+    state=absent
+
+- name: npm install {{ app_name }}
+  sudo: yes
+  npm:
+    path=/opt/runnable/{{ app_name }}
+    state=latest
+    production=yes
+
+- name: restart service {{ app_name }}
+  sudo: yes
+  service:
+    name={{ app_name }}
+    state=restarted
+    enabled=yes
