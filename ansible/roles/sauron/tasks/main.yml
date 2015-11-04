@@ -1,19 +1,37 @@
 ---
+- name: stop sauron on reset
+  sudo: yes
+  when: weave_reset is defined
+  service:
+    name={{ app_name }}
+    state=stopped
+    enabled=yes
+
 - name: reset weave
-  command: "{{weave_path}} reset"
+  command: "{{ weave_path }} reset"
   when: weave_reset is defined
   sudo: yes
 
+- name: save non weave / image builder containers
+  sudo: yes
+  when: weave_reset is defined
+  shell: "sudo docker ps | grep -v weaveworks | grep -v image-builder > ./good"
+
+- name: kill all containers
+  sudo: yes
+  when: weave_reset is defined
+  shell: "sudo docker ps -q | xargs sudo docker kill"
+
 - name: install weave
-  get_url: url=https://github.com/zettio/weave/releases/download/v0.11.1/weave
-    dest="{{weave_path}}"
+  get_url: url=https://github.com/weaveworks/weave/releases/download/v1.2.0/weave
+    dest="{{ weave_path }}"
     mode=0777
     force=yes
   sudo: yes
   register: weave_install
 
 - name: setup weave
-  command: "{{weave_path}} setup"
+  command: "{{ weave_path }} setup"
   when: weave_install.changed
   sudo: yes
 
@@ -21,5 +39,9 @@
   shell: "docker kill `docker ps | grep weave | awk '{print $1}'` || echo"
   when: weave_install.changed
   sudo: yes
-  notify:
-    - restart service {{ app_name }}
+
+- name: get org id
+  sudo: yes
+  when: docker_config == "docks"
+  shell: "cut -d, -f 1 /opt/runnable/host_tags"
+  register: org_id
