@@ -1,6 +1,7 @@
 # database vars
 name: redis
 db_path: "/opt/redis/db"
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 
 # container_kill_start settings
 container_image: redis

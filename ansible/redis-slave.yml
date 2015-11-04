@@ -1,4 +1,5 @@
 ---
+- hosts: redis
 - hosts: redis-slave
   vars_files:
     - "group_vars/alpha-redis.yml"
