@@ -39,7 +39,7 @@
     dest=/etc/dd-agent/conf.d/tcp_check.yaml
   notify: restart datadog-agent
 
-- name: force notify
+- name: force restart
   tags: ['datadogg']
   command: echo restart datadog
   when: force_restart is defined
