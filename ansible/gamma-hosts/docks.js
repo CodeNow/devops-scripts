@@ -14,7 +14,7 @@ var params = {
     // Only search for docks in the cluster security group
     {
       Name: 'instance.group-id',
-      Values: ['sg-87ca04e3']
+      Values: ['sg-577a0d33']
     },
     // Only fetch instances that are tagged as docks
     {
