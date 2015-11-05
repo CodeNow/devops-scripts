@@ -1,0 +1,9 @@
+---
+- hosts: vault
+  vars_files:
+    - group_vars/alpha-vault.yml
+  roles:
+  - { role: notify, tags: notify }
+  - { role: database }
+  - { role: vault }
+  - { role: container_kill_start, tags: deploy }

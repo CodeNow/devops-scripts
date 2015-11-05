@@ -1,0 +1,20 @@
+name: vault
+
+# for database role
+db_path: /opt/runnable/vault
+
+container_image: runnable/vault
+container_tag: v0.3.1
+
+container_run_opts: >
+  -d
+  -h {{ inventory_hostname }}
+  -v /opt/runnable/vault/vault.hcl:/vault.hcl:ro
+  -p {{ ansible_default_ipv4.address }}:8200:8200
+  --cap-add IPC_LOCK
+  --restart=always
+
+container_run_args: >
+  server
+  -log-level=warn
+  -config=/vault.hcl

@@ -20,6 +20,14 @@ api
 [api]
 beta-api
 
+[consul]
+beta-services
+beta-api
+beta-web
+
+[vault]
+beta-services
+
 [worker]
 beta-api
 
