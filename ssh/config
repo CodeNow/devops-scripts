@@ -60,6 +60,9 @@ Host alpha-mongodb03
 Host alpha-api-old
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.239 22
 
+Host alpha-navi
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.39 22
+
 Host alpha-api
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.142 22
 
@@ -168,6 +171,9 @@ Host beta-api
 
 Host beta-services
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
+
+Host beta-navi
+  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.232 22
 
 Host beta-rabbit
   ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22

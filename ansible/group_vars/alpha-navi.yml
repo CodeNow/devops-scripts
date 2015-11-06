@@ -21,5 +21,6 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{redis_host}}
   -e LOG_LEVEL_STDOUT=trace
+  -e CLUSTER_WORKERS=20
 
 container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
