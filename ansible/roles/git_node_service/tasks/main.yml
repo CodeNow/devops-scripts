@@ -1,11 +1,4 @@
 ---
-- name: copy config file
-  sudo: yes
-  template:
-    src=upstart.conf
-    dest=/etc/init/{{ app_name }}.conf
-    backup=yes
-
 - name: create {{ app_name }} repository dir
   sudo: yes
   file:
