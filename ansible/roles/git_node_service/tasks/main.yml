@@ -19,7 +19,7 @@
 
 - name: remove node_modules
   sudo: yes
-  when: do_not_remove is not defined
+  when: remove_node_modules is defined
   file:
     path=/opt/runnable/{{ app_name }}/node_modules
     state=absent
