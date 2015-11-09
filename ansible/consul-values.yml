@@ -1,0 +1,15 @@
+---
+- hosts: "{{ target }}"
+  tasks:
+  - name: make sure `jq` is present
+    apt:
+      name=jq
+      state=present
+
+  - name: get versions in ansible
+    script: getVersions {{ ansible_default_ipv4.address }}
+    register: versions_result
+
+  - name: print versions to stdout
+    debug:
+      msg="Versions in Consul\n{{ versions_result.stdout }}"

@@ -46,6 +46,10 @@
   command: sudo docker rm {{ item }}
   with_items: old_containers_id.stdout_lines
 
+- name: pause to allow for any odd conditions in system caching tables
+  when: pause_length_minutes is defined and old_containers_id.changed
+  pause: minutes={{pause_length_minutes}}
+
 # start our new container with options and args
 - name: start container
   command: >

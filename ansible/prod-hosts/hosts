@@ -26,6 +26,14 @@ api
 [api]
 alpha-api
 
+[consul]
+alpha-api-old
+alpha-api
+alpha-web
+
+[vault]
+alpha-api-old
+
 [worker]
 alpha-api
 
@@ -33,7 +41,7 @@ alpha-api
 alpha-api-old
 
 [navi]
-alpha-api-old
+alpha-navi
 
 [charon]
 alpha-api-old

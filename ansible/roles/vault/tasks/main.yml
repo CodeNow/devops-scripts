@@ -1,0 +1,5 @@
+- name: copy vault config
+  sudo: yes
+  template:
+    src=vault.hcl
+    dest=/opt/runnable/vault/vault.hcl

@@ -1,11 +1,4 @@
 ---
-- name: copy config file
-  sudo: yes
-  template:
-    src=upstart.conf
-    dest=/etc/init/{{ app_name }}.conf
-    backup=yes
-
 - name: create {{ app_name }} repository dir
   sudo: yes
   file:
@@ -26,6 +19,7 @@
 
 - name: remove node_modules
   sudo: yes
+  when: remove_node_modules is defined
   file:
     path=/opt/runnable/{{ app_name }}/node_modules
     state=absent

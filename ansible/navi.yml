@@ -1,5 +1,6 @@
 ---
 - hosts: redis
+- hosts: detention
 
 - hosts: navi
   vars_files:
