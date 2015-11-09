@@ -1,0 +1,2 @@
+# Run Cronjob once every day at UTC 0400.
+- cron: name="Khronos CLI Daily" minute="0" hour="4" job="/khronos/bin/cli.js --queue khronos:queue:name --job '{}' --host {{ rabbit_host }}:{{ rabbit_port }} --username {{ rabbit_user }} --passwword {{ rabbit_password }} | tee -a /var/log/khronos_cron.log" 
