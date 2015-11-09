@@ -39,9 +39,3 @@
   shell: "docker kill `docker ps | grep weave | awk '{print $1}'` || echo"
   when: weave_install.changed
   sudo: yes
-
-- name: get org id
-  sudo: yes
-  when: docker_config == "docks"
-  shell: "cut -d, -f 1 /opt/runnable/host_tags"
-  register: org_id
