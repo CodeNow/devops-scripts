@@ -43,6 +43,12 @@ alpha-api-old
 [navi]
 alpha-navi
 
+[link]
+alpha-navi
+
+[mongodb-navi]
+alpha-navi
+
 [charon]
 alpha-api-old
 
@@ -88,27 +94,29 @@ alpha-api-old
 [docks]
 
 [alpha:children]
-bastion
-hipache
-mongodb
 api
-web
-redis
-redis-slave
-docks
-registry
-neo4j
-navi
+bastion
 charon
+detention
+docks
+eru
+hipache
+hubot
 khronos
+link
 mavis
+mongodb
+mongodb-navi
+navi
+neo4j
 optimus
 rabbitmq
-detention
-hubot
-eru
+redis
+redis-slave
+registry
 shiva
 swarm-manager
+web
 
 [targets]
 localhost ansible_connection=local bastion_name=alpha-bastion

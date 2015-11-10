@@ -37,6 +37,12 @@ beta-services
 [navi]
 beta-navi
 
+[link]
+beta-navi
+
+[mongodb-navi]
+beta-navi
+
 [charon]
 beta-services
 
@@ -82,25 +88,27 @@ beta-services
 [docks]
 
 [beta:children]
-bastion
-hipache
-mongodb
 api
-web
-redis
-redis-slave
-docks
-registry
-neo4j
-navi
+bastion
 charon
+docks
+eru
+hipache
 khronos
+link
 mavis
+mongodb
+mongodb-navi
+navi
+neo4j
 optimus
 rabbitmq
-eru
+redis
+redis-slave
+registry
 shiva
 swarm-manager
+web
 
 [targets]
 localhost ansible_connection=local bastion_name=beta-bastion

@@ -1,11 +1,10 @@
 ---
-- hosts: redis
-- hosts: detention
 - hosts: mongodb-navi
+- hosts: rabbitmq
 
-- hosts: navi
+- hosts: link
   vars_files:
-    - "group_vars/alpha-navi.yml"
+    - "group_vars/alpha-link.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
