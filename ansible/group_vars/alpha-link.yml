@@ -6,7 +6,7 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.1"
 npm_version: "2.14.7"
 
-mongodb_host: "{{ hostvars[groups['mongodb-navi'][0]]['ansible_default_ipv4']['address'] }}"
+mongodb_host: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
 
 container_envs: >
   -e API_HOST=http://api.{{ domain }}

@@ -1,7 +1,7 @@
 ---
 - hosts: redis
 - hosts: detention
-- hosts: mongodb-navi
+- hosts: mongo-navi
 
 - hosts: navi
   vars_files:
