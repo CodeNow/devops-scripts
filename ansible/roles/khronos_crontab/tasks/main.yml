@@ -1,8 +1,0 @@
-# Run Cronjob once every day at UTC 0400.
-- name: "Put Khronos CLI job in place."
-  sudo: yes
-  cron:
-    name="Khronos CLI Daily"
-    minute="0"
-    hour="4"
-    job="/khronos/bin/cli.js --queue khronos:queue:name --job '{}' --host {{ rabbit_host }}:{{ rabbit_port }} --username {{ rabbit_user }} --password {{ rabbit_password }} > /var/log/khronos_cron.log 2>&1"
