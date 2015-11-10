@@ -62,3 +62,6 @@ pg_user: shiva
 
 # swarm
 swarm_master_port: 2375
+
+# navi/link
+navi_mongo_database: navi
