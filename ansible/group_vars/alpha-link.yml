@@ -3,8 +3,8 @@ name: "link"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "4.1.0"
-npm_version: "2.8.3"
+node_version: "4.2.1"
+npm_version: "2.14.7"
 
 redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_port: 6379
