@@ -16,7 +16,6 @@ container_envs: >
   -e CLUSTER_WORKERS=20
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e ERROR_URL=http://{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}:9123
   -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e NODE_ENV={{ node_env }}
