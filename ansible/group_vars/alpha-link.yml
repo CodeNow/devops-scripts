@@ -3,7 +3,6 @@ name: "link"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["3567"]
 node_version: "4.1.0"
 npm_version: "2.8.3"
 
@@ -14,14 +13,17 @@ mongodb_host: "{{ hostvars[groups['mongodb-navi'][0]]['ansible_default_ipv4']['a
 
 container_envs: >
   -e API_HOST=http://api.{{ domain }}
+  -e API_HOST=http://api.{{ domain }}
+  -e CLUSTER_WORKERS=20
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e ERROR_URL=http://{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}:9123
   -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e NODE_ENV={{ node_env }}
-  -e REDIS_IPADDRESS={{redis_host}}
-  -e LOG_LEVEL_STDOUT=trace
-  -e CLUSTER_WORKERS=20
+  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
 
-container_run_opts: "-h link -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
+container_run_opts: "-h link -d {{container_envs}}"
