@@ -1,5 +1,5 @@
 ---
-- hosts: mongodb-navi
+- hosts: mongo-navi
 - hosts: rabbitmq
 
 - hosts: link
