@@ -1,0 +1,8 @@
+---
+- hosts: mongo-navi
+  vars_files:
+    - "group_vars/alpha-mongo-navi.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: database }
+  - { role: container_kill_start, tags: "deploy" }
