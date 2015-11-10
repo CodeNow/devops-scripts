@@ -46,7 +46,7 @@ alpha-navi
 [link]
 alpha-navi
 
-[mongodb-navi]
+[mongo-navi]
 alpha-navi
 
 [charon]
@@ -106,7 +106,7 @@ khronos
 link
 mavis
 mongodb
-mongodb-navi
+mongo-navi
 navi
 neo4j
 optimus

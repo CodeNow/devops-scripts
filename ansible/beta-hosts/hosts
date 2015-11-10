@@ -40,7 +40,7 @@ beta-navi
 [link]
 beta-navi
 
-[mongodb-navi]
+[mongo-navi]
 beta-navi
 
 [charon]
@@ -98,7 +98,7 @@ khronos
 link
 mavis
 mongodb
-mongodb-navi
+mongo-navi
 navi
 neo4j
 optimus
