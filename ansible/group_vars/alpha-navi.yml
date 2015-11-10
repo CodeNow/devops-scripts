@@ -10,6 +10,8 @@ npm_version: "2.8.3"
 redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_port: 6379
 
+mongodb_host: "{{ hostvars[groups['mongodb-navi'][0]]['ansible_default_ipv4']['address'] }}"
+
 container_envs: >
   -h navi
   -e API_HOST=http://api.{{ domain }}
