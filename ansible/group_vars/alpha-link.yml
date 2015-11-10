@@ -6,9 +6,6 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.1"
 npm_version: "2.14.7"
 
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_port: 6379
-
 mongodb_host: "{{ hostvars[groups['mongodb-navi'][0]]['ansible_default_ipv4']['address'] }}"
 
 container_envs: >
