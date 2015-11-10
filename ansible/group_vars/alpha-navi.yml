@@ -16,10 +16,9 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e ERROR_URL=http://{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}:9123
-  -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
+  -e MONGO=mongodb://{{ mongo_host }}:27017/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{redis_host}}
-  -e MONGO=mongodb://{{ mongo_host }}:27017/{{ navi_mongo_database }}
 
 container_run_opts: "-h navi -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
