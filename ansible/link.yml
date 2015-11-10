@@ -2,7 +2,7 @@
 - hosts: mongodb-navi
 - hosts: rabbitmq
 
-- hosts: navi
+- hosts: link
   vars_files:
     - "group_vars/alpha-link.yml"
   roles:

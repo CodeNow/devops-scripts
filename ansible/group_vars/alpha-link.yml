@@ -1,4 +1,4 @@
-name: "navi"
+name: "link"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
@@ -24,4 +24,4 @@ container_envs: >
   -e LOG_LEVEL_STDOUT=trace
   -e CLUSTER_WORKERS=20
 
-container_run_opts: "-h navi -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
+container_run_opts: "-h link -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
