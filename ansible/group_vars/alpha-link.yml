@@ -19,5 +19,6 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
 
 container_run_opts: "-h link -d {{container_envs}}"
