@@ -14,4 +14,4 @@
     name="Khronos CLI Daily"
     minute="0"
     hour="4"
-    job="/opt/runnable/khronos-cron.sh > /var/log/khronos_cron.log 2>&1"
+    job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
