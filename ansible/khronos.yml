@@ -9,4 +9,4 @@
   - { role: docker_client }
   - { role: builder, tags: "build" }
   - { role: container_kill_start, tags: "deploy" }
-  - { role: khronos_cronjob }
+  - { role: khronos, tags: ["deploy"] }
