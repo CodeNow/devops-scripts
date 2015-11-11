@@ -14,7 +14,7 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
-  -e LOG_LEVEL_STDOUT=trace
+  -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
