@@ -33,6 +33,7 @@
 - name: add env to configs
   tags: 'update_configs'
   sudo: yes
+  when: enviroment_vars is defined
   with_dict: "{{ enviroment_vars }}"
   lineinfile:
     dest=/etc/init/{{ app_name }}.conf
