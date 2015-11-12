@@ -20,6 +20,14 @@ api
 [api]
 gamma-api
 
+[consul]
+gamma-services
+gamma-api
+gamma-web
+
+[vault]
+gamma-services
+
 [worker]
 gamma-api
 

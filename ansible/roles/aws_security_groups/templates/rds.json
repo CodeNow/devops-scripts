@@ -1,0 +1,51 @@
+{
+    "SecurityGroups": [
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "PrefixListIds": []
+                }
+            ], 
+            "Description": "{{ env_uc }} Postgres RDS Security Policy", 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 5432, 
+                    "IpRanges": [], 
+                    "ToPort": 5432, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_services }}"
+                        }
+                    ]
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 22, 
+                    "IpRanges": [], 
+                    "ToPort": 22, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_bastion }}"
+                        }
+                    ]
+                }
+            ], 
+            "GroupName": "{{ env_lc }}-rds", 
+            "VpcId": "{{ vpc_id }}", 
+            "OwnerId": "{{ aws_accountid }}", 
+            "GroupId": "{{ sgid_rds }}"
+        }
+    ]
+}

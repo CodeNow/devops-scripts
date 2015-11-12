@@ -1,0 +1,72 @@
+{
+    "SecurityGroups": [
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "PrefixListIds": []
+                }
+            ], 
+            "Description": "http services", 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 32768, 
+                    "IpRanges": [], 
+                    "ToPort": 65535, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_hipache }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_api }}"
+                        }
+                    ]
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 22, 
+                    "IpRanges": [], 
+                    "ToPort": 22, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_bastion }}"
+                        }
+                    ]
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 8300, 
+                    "IpRanges": [], 
+                    "ToPort": 8500, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_services }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_api }}"
+                        }
+                    ]
+                }
+            ], 
+            "GroupName": "{{ env_lc }}-http-service", 
+            "VpcId": "{{ vpc_id }}", 
+            "OwnerId": "{{ aws_accountid }}", 
+            "GroupId": "{{ sgid_http_service }}"
+        }
+    ]
+}

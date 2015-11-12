@@ -1,0 +1,71 @@
+{
+    "SecurityGroups": [
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "PrefixListIds": []
+                }
+            ], 
+            "Description": "redis ports", 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 22, 
+                    "IpRanges": [], 
+                    "ToPort": 22, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_bastion }}"
+                        }
+                    ]
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 6379, 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "10.20.1.0/24"
+                        }
+                    ], 
+                    "ToPort": 6379, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_hipache }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_redis }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_services }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_api }}"
+                        }, 
+                        {
+                            "UserId": "{{ aws_accountid }}", 
+                            "GroupId": "{{ sgid_docks }}"
+                        }
+                    ]
+                }
+            ], 
+            "GroupName": "{{ env_lc }}-redis", 
+            "VpcId": "{{ vpc_id }}", 
+            "OwnerId": "{{ aws_accountid }}", 
+            "GroupId": "{{ sgid_redis }}"
+        }
+    ]
+}
