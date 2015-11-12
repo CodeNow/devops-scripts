@@ -3,28 +3,30 @@ name: "mavis"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["3000"]
+hosted_ports: ["{{ mavis_port }}"]
 node_version: "0.10.38"
 npm_version: "2.1.18"
 
 # for redis
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_key: "frontend:mavis.{{ domain }}"
+redis_key: "frontend:{{ mavis_url }}"
 is_redis_update_required: 'yes'
 
 # container settings
 container_envs: >
   -e PORT={{ hosted_ports[0] }}
-  -e REDIS_PORT=6379
+  -e REDIS_PORT={{ redis_port }}
   -e REDIS_IPADDRESS={{ redis_host }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
   -e CONTAINER_WEIGHT=0
-  -e NEWRELIC_KEY=338516e0826451c297d44dc60aeaf0a0ca4bfead
-  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e NEWRELIC_KEY={{ new_relic_license_key }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  --hostname={{ name }}
 
-container_run_opts: "-d -P {{container_envs}}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -P
+  {{container_envs}}

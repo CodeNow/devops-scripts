@@ -2,9 +2,7 @@
 alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [docks]
-alpha-stage-dock1
-alpha-stage-dock2 host_tags=2335750,build
-alpha-stage-runnable host_tags=2335750,run
+10.0.1.120
 
 [charon]
 alpha-stage-hipache
@@ -24,3 +22,6 @@ registry_host=10.0.1.254
 
 [targets]
 localhost ansible_connection=local bastion_name=alpha-bastion
+
+[redis]
+beta-redis

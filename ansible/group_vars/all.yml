@@ -3,7 +3,7 @@
 registry_env: "prod"
 
 # for docker stop old container
-stop_time: 60
+stop_time: 5
 
 # For docker built containers
 do_not_push: true
@@ -27,8 +27,6 @@ loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
 loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
 loggly_username: ops
 
-weave_path: "/usr/local/bin/weave"
-
 ##
 ## shared application configs
 ##
@@ -37,28 +35,71 @@ weave_path: "/usr/local/bin/weave"
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
-
-# datadog
-datadog_port: 8125
-datadog_api_key: 6488896fe0c811965ef233b96809d70d
-
-# docker
-docker_port: 4242
-docker_cert_path: /etc/ssl/docker/cert.pem
-docker_key_path: /etc/ssl/docker/key.pem
-docker_ca_path: /etc/ssl/docker/ca.pem
-
-# eru
-eru_api_host: api.{{ domain }}
-
-# rabbit
-rabbit_port: 54321
+api_url: api.{{ domain }}
+api_port: 80
 
 # astral
 pg_database: astral
 
+# charon
+charon_port: 53
+
+# datadog
+datadog_api_key: 6488896fe0c811965ef233b96809d70d
+datadog_host: "{{ ansible_default_ipv4.address }}"
+datadog_port: 8125
+
+# detention
+detention_host: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
+detention_port: 9123
+detention_url: "detention.{{ domain }}"
+
+# docker
+docker_ca_path: /etc/ssl/docker/ca.pem
+docker_cert_path: /etc/ssl/docker/cert.pem
+docker_key_path: /etc/ssl/docker/key.pem
+docker_port: 4242
+
+# eru
+eru_port: 57831
+eru_url: "admin.{{ domain }}"
+
+# mavis
+mavis_url: "mavis.{{ domain }}"
+mavis_port: 3000
+
+# metis
+metis_port: 3000
+
+# mongo
+mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
+
+# navi
+navi_host: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
+navi_port: 3567
+
+# neo4j
+neo4j_host: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
+
+# optimus
+optimus_port: 80
+optimus_url: optimus.{{ domain }}
+
+# rabbit
+rabbit_host: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
+rabbit_port: 54321
+
+# redis
+redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_port: 6379
+
+# sauron
+weave_path: "/usr/local/bin/weave"
+
 # shiva
 pg_user: shiva
+shiva_port: 3000
 
 # swarm
 swarm_master_port: 2375
+

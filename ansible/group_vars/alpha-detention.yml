@@ -3,13 +3,12 @@ name: "detention"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["9123"]
+hosted_ports: ["{{ detention_port }}"]
 node_version: "0.12.0"
 npm_version: "2.1.18"
 
 # for redis
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_key: "frontend:{{ name }}.{{ domain }}"
+redis_key: "frontend:{{ detention_url }}"
 is_redis_update_required: 'yes'
 
 dockerfile_post_install_commands: [
@@ -17,9 +16,12 @@ dockerfile_post_install_commands: [
 ]
 
 container_envs: >
-  -h {{ name }}
   -e NODE_ENV={{ node_env }}
-  -e ABSOLUTE_URL=detention.{{ domain }}
+  -e ABSOLUTE_URL={{ detention_url }}
   -e PORT={{ hosted_ports[0] }}
 
-container_run_opts: "-d -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }} {{container_envs}}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
+  {{ container_envs }}

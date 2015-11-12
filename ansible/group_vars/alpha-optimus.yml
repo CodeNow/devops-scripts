@@ -3,17 +3,15 @@ name: "optimus"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["80"]
+hosted_ports: ["{{ optimus_port }}"]
 node_version: "0.10.38"
 npm_version: "2.8.3"
 
 # for redis
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_key: "frontend:{{ name }}.{{ domain }}"
+redis_key: "frontend:{{ optimus_url }}"
 is_redis_update_required: 'yes'
 
 container_envs: >
-  -h {{ name }}
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host }}
   -e DATADOG_PORT={{ datadog_port }}
@@ -22,4 +20,8 @@ container_envs: >
   -e AWS_SECRET_ACCESS_KEY={{ optimus_aws_secret_id }}
   -e S3_DEPLOY_KEY_BUCKET={{ optimus_github_deploy_keys_bucket }}
 
-container_run_opts: "-d -P {{container_envs}}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -P
+  {{container_envs}}

@@ -1,13 +1,10 @@
 name: "charon"
-app_name: "charon"
+app_name: "{{ name }}"
 app_repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["53"]
-
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_port: 6379
+hosted_ports: ["{{ charon_port }}"]
 
 enviroment_vars:
-  API_HOST: "api.{{ domain }}"
+  API_HOST: "{{ api_url }}"
   API_TOKEN: "51c61b779f3de616a9639cfc44a22c79fbd8e328"
   DATADOG_HOST: "{{ datadog_host }}"
   DATADOG_PORT: "{{ datadog_port }}"
