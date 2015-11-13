@@ -28,7 +28,7 @@ container_envs: >
   -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}
   -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
   -e MONGO_REPLSET_NAME={{ api_mongo_replset_name }}
-  -e NAVI_HOST=http://{{ navi_host_addressname }}:{{ navi_port }}
+  -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_port }}
   -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host_address }}:{{ api_neo4j_port }}
   -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }}
   -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
