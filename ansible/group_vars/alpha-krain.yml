@@ -7,3 +7,5 @@ krain_env: default
 app_name: "krain"
 app_repo: "git@github.com:CodeNow/krain.git"
 node_env: "{{ krain_env }}"
+
+enviroment_vars: {}
