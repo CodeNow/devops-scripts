@@ -8,19 +8,19 @@ node_version: "0.10.38"
 npm_version: "2.1.18"
 
 # for redis
-redis_key: "frontend:{{ mavis_url }}"
+redis_key: "frontend:{{ mavis_hostname }}"
 is_redis_update_required: 'yes'
 
 # container settings
 container_envs: >
   -e PORT={{ hosted_ports[0] }}
   -e REDIS_PORT={{ redis_port }}
-  -e REDIS_IPADDRESS={{ redis_host }}
-  -e DATADOG_HOST={{ datadog_host }}
+  -e REDIS_IPADDRESS={{ redis_host_address }}
+  -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e CONTAINER_WEIGHT=0
   -e NEWRELIC_KEY={{ new_relic_license_key }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}

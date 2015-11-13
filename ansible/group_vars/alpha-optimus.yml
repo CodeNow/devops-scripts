@@ -8,12 +8,12 @@ node_version: "0.10.38"
 npm_version: "2.8.3"
 
 # for redis
-redis_key: "frontend:{{ optimus_url }}"
+redis_key: "frontend:{{ optimus_hostname }}"
 is_redis_update_required: 'yes'
 
 container_envs: >
   -e NODE_ENV={{ node_env }}
-  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e PORT={{ hosted_ports[0] }}
   -e AWS_ACCESS_KEY_ID={{ optimus_aws_access_id }}

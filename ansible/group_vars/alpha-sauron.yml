@@ -6,9 +6,9 @@ app_repo: "git@github.com:CodeNow/{{ name }}.git"
 
 enviroment_vars:
   LOGGLY_TOKEN: "{{ loggly_token }}"
-  RABBITMQ_HOSTNAME: "{{ rabbit_host }}"
+  RABBITMQ_HOSTNAME: "{{ rabbit_host_address }}"
   RABBITMQ_PASSWORD: "{{ rabbit_password }}"
   RABBITMQ_PORT: "{{ rabbit_port }}"
   RABBITMQ_USERNAME: "{{ rabbit_username }}"
-  REDIS_IPADDRESS: "{{ redis_host }}"
+  REDIS_IPADDRESS: "{{ redis_host_address }}"
   REDIS_PORT: "{{ redis_port }}"

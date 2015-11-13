@@ -35,7 +35,7 @@ loggly_username: ops
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
-api_url: api.{{ domain }}
+api_hostname: api.{{ domain }}
 api_port: 80
 
 # astral
@@ -46,13 +46,13 @@ charon_port: 53
 
 # datadog
 datadog_api_key: 6488896fe0c811965ef233b96809d70d
-datadog_host: "{{ ansible_default_ipv4.address }}"
+datadog_host_address: "{{ ansible_default_ipv4.address }}"
 datadog_port: 8125
 
 # detention
-detention_host: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
+detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
 detention_port: 9123
-detention_url: "detention.{{ domain }}"
+detention_hostname: "detention.{{ domain }}"
 
 # docker
 docker_ca_path: /etc/ssl/docker/ca.pem
@@ -62,10 +62,10 @@ docker_port: 4242
 
 # eru
 eru_port: 57831
-eru_url: "admin.{{ domain }}"
+eru_hostname: "admin.{{ domain }}"
 
 # mavis
-mavis_url: "mavis.{{ domain }}"
+mavis_hostname: "mavis.{{ domain }}"
 mavis_port: 3000
 
 # metis
@@ -75,18 +75,18 @@ metis_port: 3000
 mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
 
 # navi
-navi_host: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
+navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_port: 3567
 
 # neo4j
-neo4j_host: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
+neo4j_host_address: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
 
 # optimus
 optimus_port: 80
-optimus_url: optimus.{{ domain }}
+optimus_hostname: optimus.{{ domain }}
 
 # rabbit
-rabbit_host: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
+rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
 rabbit_port: 54321
 
 # redis

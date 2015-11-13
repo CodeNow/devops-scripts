@@ -8,14 +8,14 @@ node_version: "0.12.0"
 npm_version: "2.1.18"
 
 # for redis
-redis_key: frontend:{{ eru_url }}
+redis_key: frontend:{{ eru_hostname }}
 is_redis_update_required: yes
 
 container_envs: >
-  -e ADMIN_DOMAIN={{ eru_url }}
+  -e ADMIN_DOMAIN={{ eru_hostname }}
   -e ADMIN_GITHUB_ID={{ eru_github_id }}
   -e ADMIN_GITHUB_SECRET={{ eru_github_secret }}
-  -e API_HOST={{ api_url }}
+  -e API_HOST={{ api_hostname }}
   -e RUNNABLE_HOST={{ domain }}
   -e PORT={{ hosted_ports[0] }}
 

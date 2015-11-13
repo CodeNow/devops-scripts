@@ -13,9 +13,9 @@ hosted_ports: ["{{ metis_port }}"]
 
 # container settings
 container_envs: >
-  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
@@ -23,9 +23,9 @@ container_envs: >
   -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
   -e NODE_ENV={{ node_env }}
-  -e REDIS_HOST={{ redis_host }}
+  -e REDIS_HOST={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
-  -e REDIS_IPADDRESS={{ redis_host }}
+  -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REGISTRY_HOST={{ registry_host }}
   -e ROLLBAR_KEY={{ shiva_rollbar_key }}
   -e DOCKER_PORT={{ docker_port }}
