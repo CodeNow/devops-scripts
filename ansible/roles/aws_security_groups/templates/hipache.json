@@ -40,7 +40,7 @@
                         }, 
                         {
                             "UserId": "{{ aws_accountid }}", 
-                            "GroupId": "{{ sgid_http_service }}"
+                            "GroupId": "{{ sgid_web }}"
                         }, 
                         {
                             "UserId": "{{ aws_accountid }}", 

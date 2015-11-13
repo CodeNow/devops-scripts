@@ -32,10 +32,6 @@
                         }, 
                         {
                             "UserId": "{{ aws_accountid }}", 
-                            "GroupId": "sg-d03671b4"
-                        }, 
-                        {
-                            "UserId": "{{ aws_accountid }}", 
                             "GroupId": "{{ sgid_docks }}"
                         }
                     ]
@@ -83,10 +79,6 @@
                         }, 
                         {
                             "UserId": "{{ aws_accountid }}", 
-                            "GroupId": "sg-d03671b4"
-                        }, 
-                        {
-                            "UserId": "{{ aws_accountid }}", 
                             "GroupId": "{{ sgid_docks }}"
                         }
                     ]
@@ -105,10 +97,6 @@
                         {
                             "UserId": "{{ aws_accountid }}", 
                             "GroupId": "{{ sgid_api }}"
-                        }, 
-                        {
-                            "UserId": "{{ aws_accountid }}", 
-                            "GroupId": "sg-d03671b4"
                         }, 
                         {
                             "UserId": "{{ aws_accountid }}", 
