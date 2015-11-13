@@ -27,7 +27,7 @@ gamma-api
 gamma-services
 
 [navi]
-gamma-services
+gamma-navi
 
 [charon]
 gamma-services

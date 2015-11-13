@@ -257,6 +257,12 @@ Host gamma-services-us-west-2a
 Host gamma-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
 
+Host gamma-navi-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
+
+Host gamma-navi
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
+
 ## Gamma Registry
 Host gamma-registry-us-west-2a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
