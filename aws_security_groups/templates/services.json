@@ -1,0 +1,204 @@
+{
+  "SecurityGroups": [
+    {
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "Description": "{{ env_uc }} Security Policy for Navi, Khronos, Web, Detention, Metis, etc.",
+      "IpPermissions": [
+        {
+          "PrefixListIds": [],
+          "FromPort": 80,
+          "IpRanges": [],
+          "ToPort": 80,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_hipache }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_api }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "sg-d03671b4"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 3567,
+          "IpRanges": [],
+          "ToPort": 3567,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_hipache }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 8200,
+          "IpRanges": [],
+          "ToPort": 8200,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 5432,
+          "IpRanges": [],
+          "ToPort": 5432,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_services }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 32768,
+          "IpRanges": [],
+          "ToPort": 65535,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_hipache }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_services }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 22,
+          "IpRanges": [],
+          "ToPort": 22,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_bastion }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 53,
+          "IpRanges": [],
+          "ToPort": 53,
+          "IpProtocol": "udp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 53,
+          "IpRanges": [],
+          "ToPort": 53,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 8301,
+          "IpRanges": [],
+          "ToPort": 8301,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_api }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "sg-d03671b4"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [], 
+          "FromPort": 443,
+          "IpRanges": [],
+          "ToPort": 443,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_hipache }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_api }}"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "sg-d03671b4"
+            },
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        },
+        {
+          "PrefixListIds": [],
+          "FromPort": 8500,
+          "IpRanges": [],
+          "ToPort": 8500,
+          "IpProtocol": "tcp",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "{{ aws_accountid }}",
+              "GroupId": "{{ sgid_docks }}"
+            }
+          ]
+        }
+      ],
+      "GroupName": "{{ env_lc }}-services",
+      "VpcId": "{{ vpc_id }}",
+      "OwnerId": "{{ aws_accountid }}",
+      "GroupId": "{{ sgid_services }}"
+    }
+  ]
+}
