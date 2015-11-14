@@ -1,9 +1,13 @@
 # database vars
 name: mongo-navi
 
-db_path: "/opt/mongodb/db"
+db_path: /opt/mongodb/db
 
 # container_kill_start settings
 container_image: mongo
-container_tag: "latest"
-container_run_opts: "-d --name {{ name }} -p 27017:27017 -v {{ db_path }}:/data/db:rw"
+container_tag: latest
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -p 27017:27017
+  -v {{ db_path }}:/data/db:rw

@@ -21,4 +21,5 @@ container_envs: >
 
 container_run_opts: >
   -h {{ name }}
-  -d {{ container_envs }}
+  -d
+  {{ container_envs }}
