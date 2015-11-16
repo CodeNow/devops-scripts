@@ -1,0 +1,17 @@
+- name: Put khronos cron script in place
+  sudo: yes
+  tags: cron
+  template:
+    src="khronos-cron.sh"
+    mode=0744
+    dest="/opt/runnable/khronos-cron.sh"
+
+# Run Cronjob once every day at UTC 0400.
+- name: Put Khronos CLI job in place
+  sudo: yes
+  tags: cron
+  cron:
+    name="Khronos CLI Daily"
+    minute="0"
+    hour="4"
+    job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"

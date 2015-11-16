@@ -7,5 +7,5 @@
   - { role: notify, tags: "notify" }
   - { role: database, tags: "deploy" }
   - { role: container_kill_start,
-      container_run_args: "redis-server --slaveof {{ redis_host }} 6379",
+      container_run_args: "redis-server --slaveof {{ redis_host_address }} 6379",
       tags: "deploy" }

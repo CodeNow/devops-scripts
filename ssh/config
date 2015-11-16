@@ -130,7 +130,7 @@ Host hubot
 # beta
 ################################################################################
 Host beta-bastion
-  HostName 52.25.33.149
+  HostName 52.24.221.234
 
 Host 10.20.*.*
   User ubuntu
@@ -256,6 +256,12 @@ Host gamma-services-us-west-2a
 
 Host gamma-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+
+Host gamma-navi-us-west-2a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
+
+Host gamma-navi
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
 
 ## Gamma Registry
 Host gamma-registry-us-west-2a
