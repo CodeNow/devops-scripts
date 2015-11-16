@@ -38,14 +38,9 @@
    update_cache: yes
    state: present
 
-- name: get org id
-  sudo: yes
-  when: docker_config == "docks"
-  shell: "cut -d, -f 1 /opt/runnable/host_tags"
-  register: org_id
-
 - name: copy docker config file
   sudo: yes
+  when: docker_config == "runnable"
   template:
     src={{ docker_config }}
     dest=/etc/default/docker

@@ -44,6 +44,10 @@ pg_database: astral
 # charon
 charon_port: 53
 
+# consul
+consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
+consul_api_port: 8500
+
 # datadog
 datadog_api_key: 6488896fe0c811965ef233b96809d70d
 datadog_host_address: "{{ ansible_default_ipv4.address }}"
@@ -102,4 +106,4 @@ shiva_port: 3000
 
 # swarm
 swarm_master_port: 2375
-
+swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}"
