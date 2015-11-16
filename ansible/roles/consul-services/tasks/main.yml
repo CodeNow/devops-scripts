@@ -18,7 +18,7 @@
     - name: 'datadog'
       host_address: '{{ datadog_host_address }}'
       tags: ['master']
-      port: 8125
+      port: '{{ datadog_port }}'
     - name: 'rabbitmq'
       host_address: '{{ rabbit_host_address }}'
       tags: ['master']
@@ -30,7 +30,7 @@
     - name: 'registry'
       host_address: '{{ registry_host }}'
       tags: ['master']
-      port: 80
+      port: '{{ registry_port }}'
 
 - name: send consul SIGUP to reload services
   sudo: yes

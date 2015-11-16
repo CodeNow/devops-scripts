@@ -1,6 +1,7 @@
 ---
 # registry settings
 registry_env: "prod"
+registry_port: 80
 
 # for docker stop old container
 stop_time: 5
@@ -102,4 +103,3 @@ shiva_port: 3000
 
 # swarm
 swarm_master_port: 2375
-
