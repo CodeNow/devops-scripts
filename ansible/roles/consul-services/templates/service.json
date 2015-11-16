@@ -1,0 +1,8 @@
+{
+  "service": {
+    "name": "{{ item.name }}",
+    "tags": [ "{{ item.tags | join('","') }}" ],
+    "address": "{{ item.host_address }}",
+    "port": {{ item.port }}
+  }
+}
