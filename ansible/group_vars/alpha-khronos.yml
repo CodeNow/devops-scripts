@@ -6,33 +6,31 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.12.7"
 npm_version: "2.1.18"
 
-mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
-
 # for cron job
 # this is the list of queues we want to enqueue a job into
 cron_queues: khronos:containers:image-builder:prune khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
 # a nice version of the rabbitmq host
-cron_rabbit_host: "{{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}:{{ rabbit_port }}"
+cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
 cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password }}
 # this is the command we want to run in the container.
-cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host }} {{ cron_rabbit_auth }}; done\""
+cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
 
 # for container settings
 container_envs: >
-  -h khronos
-  -e DATADOG_HOST={{ datadog_host }}
+  -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host | default(hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address']) }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e WORKER_MAX_RETRY_DELAY=3600000
 
 container_run_opts: >
+  -h {{ name }}
   -d
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{container_envs}}

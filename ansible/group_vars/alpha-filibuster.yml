@@ -6,3 +6,5 @@ name: filibuster
 app_name: "filibuster"
 app_repo: "git@github.com:Runnable/Filibuster.git"
 node_env: "{{ filibuster_env }}"
+
+enviroment_vars: {}

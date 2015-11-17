@@ -1,11 +1,10 @@
 # database vars
 name: redis
 db_path: "/opt/redis/db"
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 
 # container_kill_start settings
 container_image: redis
 container_tag: "latest"
-container_run_opts: "-d --name redis -v {{ db_path }}:/data -p 6379:6379"
+container_run_opts: "-d --name redis -v {{ db_path }}:/data -p {{ redis_port }}:{{ redis_port }}"
 
-hosted_ports: [ "6379" ]
+hosted_ports: [ "{{ redis_port }}" ]

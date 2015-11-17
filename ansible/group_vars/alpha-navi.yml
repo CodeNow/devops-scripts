@@ -3,24 +3,24 @@ name: "navi"
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["3567"]
+hosted_ports: ["{{ navi_port }}"]
 node_version: "4.1.0"
 npm_version: "2.8.3"
 
-redis_host: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_port: 6379
-
 container_envs: >
-  -h navi
-  -e API_HOST=http://api.{{ domain }}
-  -e DATADOG_HOST={{ datadog_host }}
+  -e API_HOST=http://{{ api_hostname }}
+  -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e ERROR_URL=http://{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}:9123
+  -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e NODE_ENV={{ node_env }}
-  -e REDIS_IPADDRESS={{redis_host}}
+  -e REDIS_IPADDRESS={{ redis_host_address }}
   -e LOG_LEVEL_STDOUT=trace
   -e CLUSTER_WORKERS=20
 
-container_run_opts: "-d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
+  {{ container_envs }}

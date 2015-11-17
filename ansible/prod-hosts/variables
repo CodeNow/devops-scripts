@@ -47,7 +47,7 @@ shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
 [alpha:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
-datadog_host=10.0.1.239
+datadog_host_address=10.0.1.239
 datadog_tags=env:alpha
 domain=runnable.io
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead

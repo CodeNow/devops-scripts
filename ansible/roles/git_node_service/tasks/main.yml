@@ -30,6 +30,18 @@
     state=latest
     production=yes
 
+- name: add env to configs
+  tags: 'update_configs'
+  sudo: yes
+  when: enviroment_vars is defined
+  with_dict: "{{ enviroment_vars }}"
+  lineinfile:
+    dest=/etc/init/{{ app_name }}.conf
+    regexp="env {{ item.key }}"
+    insertafter="env NPM_BIN"
+    line="env {{ item.key }}={{ item.value }}"
+    state=present
+
 - name: restart service {{ app_name }}
   sudo: yes
   service:
