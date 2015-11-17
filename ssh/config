@@ -105,6 +105,10 @@ Host alpha-stage-runnable
 Host alpha-stage-dock-test
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.213 22
 
+Host alpha-stage-data
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.134 22
+
+
 ################################################################################
 # oregon
 ################################################################################

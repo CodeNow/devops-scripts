@@ -1,0 +1,19 @@
+[hipache]
+alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+
+[targets]
+localhost ansible_connection=local bastion_name=alpha-bastion
+
+[redis]
+alpha-stage-data
+
+[rabbitmq]
+alpha-stage-data
+
+[alpha:children]
+hipache
+docks
+
+[docks]
+10.0.1.120
+10.0.1.109
