@@ -17,5 +17,16 @@
       with_items: "{{ consul_seed }}"
 
     - name: get values from consul
-      when: read-values is defined
-      debug: todo
+      run_once: true
+      when: read_values is defined
+      uri:
+        method=GET
+        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+      with_items: "{{ consul_seed }}"
+      register: values
+
+    - name: print values to screen
+      run_once: true
+      when: read_values is defined
+      debug: msg='{{ item.item.key }}: {{ item.json[0].Value | b64decode }}'
+      with_items: "{{ values.results }}"
