@@ -34,4 +34,4 @@ container_run_opts: >
   -h {{ name }}
   -d
   -P
-  {{ container_envs }}"
+  {{ container_envs }}
