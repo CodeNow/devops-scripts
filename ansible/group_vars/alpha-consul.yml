@@ -32,3 +32,23 @@ container_run_args: >
   -data-dir /data
   {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
   {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}{% endif %}
+
+# some seed values
+# pulled 2015/16/11 - Bryan
+consul_seed:
+  - key: node/env
+    value: "{{ node_env }}"
+  - key: api/hostname
+    value: "{{ api_hostname }}"
+  - key: image-builder/version
+    value: d1.6.2-v4.0.0
+  - key: docker-listener/version
+    value: v1.0.0
+  - key: filibuster/version
+    value: v0.1.6
+  - key: krain/version
+    value: v0.1.0
+  - key: sauron/version
+    value: v2.0.3
+  - key: charon/version
+    value: v2.0.2

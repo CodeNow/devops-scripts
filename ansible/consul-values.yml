@@ -1,15 +1,21 @@
 ---
-- hosts: "{{ target }}"
+- hosts: consul
+  vars_files:
+    - "group_vars/alpha-consul.yml"
   tasks:
-  - name: make sure `jq` is present
-    apt:
-      name=jq
-      state=present
+    - name: make sure httplib2 is installed
+      sudo: yes
+      apt: package=python-httplib2 state=present
 
-  - name: get versions in ansible
-    script: getVersions {{ ansible_default_ipv4.address }}
-    register: versions_result
+    - name: put values into consul
+      run_once: true
+      when: write_values is defined
+      uri:
+        method=PUT
+        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+        body="{{ item.value }}"
+      with_items: "{{ consul_seed }}"
 
-  - name: print versions to stdout
-    debug:
-      msg="Versions in Consul\n{{ versions_result.stdout }}"
+    - name: get values from consul
+      when: read-values is defined
+      debug: todo
