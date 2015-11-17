@@ -19,6 +19,7 @@ container_envs: >
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e MONGO=mongodb://{{ mongo_host }}:27017/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
-  -e REDIS_IPADDRESS={{redis_host}}
+  -e REDIS_IPADDRESS={{ redis_host }}
+  -e ROLLBAR_KEY={{ navi_rollbar_key }}
 
 container_run_opts: "-h navi -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
