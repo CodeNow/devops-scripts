@@ -21,5 +21,6 @@ container_envs: >
   -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{ redis_host }}
   -e ROLLBAR_KEY={{ navi_rollbar_key }}
+  -e NEWRELIC_KEY={{ navi_newrelic_key }}
 
 container_run_opts: "-h navi -d -p {{hosted_ports[0]}}:{{hosted_ports[0]}} {{container_envs}}"
