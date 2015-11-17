@@ -1,12 +1,8 @@
 ---
-- hosts: redis
-- hosts: detention
 - hosts: mongo-navi
-
-- hosts: navi
   vars_files:
-    - "group_vars/alpha-navi.yml"
+    - "group_vars/alpha-mongo-navi.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
+  - { role: database }
   - { role: container_kill_start, tags: "deploy" }

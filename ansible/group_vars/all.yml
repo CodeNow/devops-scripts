@@ -103,3 +103,8 @@ shiva_port: 3000
 
 # swarm
 swarm_master_port: 2375
+
+# navi/link
+navi_mongo_database: navi
+navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
+navi_mongo_port: 27017

@@ -8,16 +8,15 @@ node_version: "4.1.0"
 npm_version: "2.8.3"
 
 container_envs: >
-  -e API_HOST=http://{{ api_hostname }}
+  -e CLUSTER_WORKERS=20
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
   -e HTTP_PORT={{ hosted_ports[0] }}
+  -e LOG_LEVEL_STDOUT=trace
+  -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
-  -e LOG_LEVEL_STDOUT=trace
-  -e CLUSTER_WORKERS=20
 
 container_run_opts: >
   -h {{ name }}
