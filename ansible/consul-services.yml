@@ -1,0 +1,7 @@
+---
+- hosts: rabbitmq
+- hosts: redis
+
+- hosts: vault
+  roles:
+  - { role: consul-services }
