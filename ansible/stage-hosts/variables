@@ -1,14 +1,8 @@
-[redis:vars]
-registry_host=10.0.1.254
 
-[rabbitmq:vars]
-rabbit_username=5WE5wsEQmfw9sLsppJ4CEq9Auea8mPC4kgVt3xYqKxbYHPfP
-rabbit_password=h7n972sPLs5tWGCWe6QPSCnaxDWjvnpEFEA9c9mBqauH3f22
-
-[alpha:vars]
+[stage:vars]
 ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 domain=runnable3.net
 node_env=stage
-rabbit_password=3ad4d0546425efe40c6c1592d2d266cc
-rabbit_username=e07e0f51a2afa8c94a34bc252c8eeea7
+rabbit_username=5WE5wsEQmfw9sLsppJ4CEq9Auea8mPC4kgVt3xYqKxbYHPfP
+rabbit_password=h7n972sPLs5tWGCWe6QPSCnaxDWjvnpEFEA9c9mBqauH3f22
 registry_host=10.0.1.254
