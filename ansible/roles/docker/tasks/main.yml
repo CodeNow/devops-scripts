@@ -8,8 +8,6 @@
     state=present
     value="/var/log/core.%h.%e.%t"
 
-# - debug: msg="ansible_kernel = {{ ansible_kernel }}"
-
 - name: install aufs with linux-image-extra-{{ ansible_kernel }}
   sudo: yes
   tags: aufs
