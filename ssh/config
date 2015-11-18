@@ -211,10 +211,10 @@ Host gamma-hipache-us-west-2a
 
 ## Gamma API
 Host gamma-api
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.67 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.170 22
 
 Host gamma-api-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.67 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.170 22
 
 ## Gamma MongoDB
 Host gamma-mongo-us-west-2a
