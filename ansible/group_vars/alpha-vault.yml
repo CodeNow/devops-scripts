@@ -26,7 +26,7 @@ container_run_args: >
 vault_seed_values:
   - key: secret/loggly
     data:
-      token: f673760d-e0b3-4a93-a15e-2862ea074f91
+      token: "{{ loggly_token }}"
   - key: secret/rabbitmq
     data:
       username: "{{ rabbit_username }}"
