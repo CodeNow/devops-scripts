@@ -50,6 +50,7 @@ ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 datadog_host_address=10.0.1.239
 datadog_tags=env:alpha
 domain=runnable.io
+mongo_port=27000
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production
 pg_host=alpha-production-db.czw5moz6rmpp.us-west-1.rds.amazonaws.com:30573
