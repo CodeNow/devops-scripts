@@ -6,14 +6,15 @@ db_path: /etc/consul.d
 # for container_kill_start
 pause_length_minutes: 3
 
-container_image: progrium/consul
-container_tag: latest
+container_image: runnable/consul
+container_tag: v0.5.2
 
 container_run_opts: >
   -d
   -h {{ inventory_hostname }}
   -v /consul:/data
   -v /etc/consul.d:/etc/consul.d:ro
+  -v /var/log:/var/log
   -p {{ ansible_default_ipv4.address }}:8300:8300
   -p {{ ansible_default_ipv4.address }}:8301:8301
   -p {{ ansible_default_ipv4.address }}:8301:8301/udp
@@ -24,11 +25,35 @@ container_run_opts: >
   --restart=always
 
 container_run_args: >
+  consul agent
   -server
   -node {{ inventory_hostname }}
   -advertise {{ ansible_default_ipv4.address }}
   -config-dir /etc/consul.d
+  -client 0.0.0.0
+  -recursor 8.8.8.8
   {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-bootstrap-expect {{ groups['consul'] | length }}{% endif %}
   -data-dir /data
   {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
   {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}{% endif %}
+  > /var/log/consul.log 2>&1
+
+# some seed values
+# pulled 2015/16/11 - Bryan
+consul_seed:
+  - key: node/env
+    value: "{{ node_env }}"
+  - key: api/hostname
+    value: "{{ api_hostname }}"
+  - key: image-builder/version
+    value: d1.6.2-v4.0.0
+  - key: docker-listener/version
+    value: v1.0.0
+  - key: filibuster/version
+    value: v0.1.6
+  - key: krain/version
+    value: v0.1.0
+  - key: sauron/version
+    value: v2.0.3
+  - key: charon/version
+    value: v2.0.2

@@ -10,11 +10,33 @@ container_run_opts: >
   -d
   -h {{ inventory_hostname }}
   -v /opt/runnable/vault/vault.hcl:/vault.hcl:ro
+  -v /var/log:/var/log:rw
   -p {{ ansible_default_ipv4.address }}:8200:8200
   --cap-add IPC_LOCK
   --restart=always
 
 container_run_args: >
-  server
+  vault server
   -log-level=warn
   -config=/vault.hcl
+  > /var/log/vault.log 2>&1
+
+# vault seed data
+# pulled 2015/16/12 - Bryan
+vault_seed_values:
+  - key: secret/loggly
+    data:
+      token: "{{ loggly_token }}"
+  - key: secret/rabbitmq
+    data:
+      username: "{{ rabbit_username }}"
+      password: "{{ rabbit_password }}"
+  - key: secret/github/hellorunnable
+    data:
+      token: "{{ vault_hello_runnable_github_token }}"
+  - key: secret/swarm
+    data:
+      token: "{{ swarm_token }}"
+
+# for the love of all that you find holy, don't change the following unless you _KNOW WHAT YOU ARE DOING_.
+vault_seed_policy: "{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Action\\\": [\\\"ec2:DescribeInstances\\\", \\\"ec2:DescribeTags\\\"], \\\"Resource\\\": [\\\"*\\\"], \\\"Effect\\\": \\\"Allow\\\", \\\"Sid\\\": \\\"Stmt1445655064000\\\"}]}"

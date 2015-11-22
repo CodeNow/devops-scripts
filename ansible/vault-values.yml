@@ -1,0 +1,116 @@
+---
+- hosts: vault
+  vars_files:
+    - group_vars/alpha-vault.yml
+  tasks:
+    - name: make sure httplib2 is installed
+      sudo: yes
+      apt: package=python-httplib2 state=present
+
+    - name: get seal status
+      tags: [unseal]
+      run_once: true
+      uri:
+        method=GET
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/seal-status
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        return_content=yes
+      register: seal_status
+
+    - name: unseal vault
+      tags: [unseal]
+      run_once: true
+      when: seal_status.json.sealed
+      uri:
+        method=PUT
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/unseal
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+      with_items:
+        - key: "{{ vault_token_01 }}"
+        - key: "{{ vault_token_02 }}"
+        - key: "{{ vault_token_03 }}"
+
+    - name: put values into vault
+      run_once: true
+      when: write_values is defined
+      uri:
+        method=PUT
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/{{ item.key }}
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item.data | to_json }}'
+        status_code=200,204
+      with_items: "{{ vault_seed_values }}"
+
+    - name: check for aws backend in vault
+      run_once: true
+      when: write_values is defined
+      uri:
+        method=GET
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/mounts
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        return_content=yes
+      register: mounts
+
+    - name: mount aws backend in vault
+      run_once: true
+      when: write_values is defined and mounts.json['aws/'] is not defined
+      uri:
+        method=POST
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/mounts/aws
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+        status_code=204
+      with_items:
+        - type: "aws"
+
+    - name: configure aws root credentials
+      run_once: true
+      when: (write_values is defined and write_root_creds is defined) or (write_values is defined and mounts.json['aws/'] is not defined)
+      uri:
+        method=POST
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/aws/config/root
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+        status_code=204
+      register: creds
+      with_items:
+        - access_key: "{{ vault_aws_access_key_id }}"
+          secret_key: "{{ vault_aws_secret_key }}"
+          region: "{{ vault_aws_region }}"
+
+    - name: check for the dock-init role
+      run_once: true
+      when: write_values is defined
+      uri:
+        method=GET
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/aws/roles/dock-init
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        status_code=200,404
+      register: role
+
+    - name: write the dock-init role
+      run_once: true
+      when: write_values is defined and role.status == 404
+      uri:
+        method=POST
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/aws/roles/dock-init
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json | replace("\\\\", "") }}'
+        status_code=204
+      register: creds
+      with_items:
+        - policy: "{{ vault_seed_policy }}"
+
+    - name: seal vault
+      run_once: true
+      uri:
+        method=PUT
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/seal
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        status_code=204

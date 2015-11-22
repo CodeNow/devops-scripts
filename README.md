@@ -99,4 +99,6 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [swarm-deamon: Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q)
 
+[vault / vault-values: Seal - Kiss From A Rose](https://www.youtube.com/watch?v=zP3so2hY4CM)
+
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!
