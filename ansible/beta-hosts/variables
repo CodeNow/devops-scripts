@@ -50,6 +50,7 @@ ansible_ssh_private_key_file=~/.ssh/oregon.pem
 datadog_host_address=10.20.1.59
 datadog_tags=env:beta
 domain=runnable-beta.com
+mongo_port=27000
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-beta
 pg_host=beta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
