@@ -1,4 +1,6 @@
 ---
+- hosts: consul
+
 - hosts: docks
   vars_files:
     - "group_vars/alpha-image-builder.yml"
@@ -6,3 +8,4 @@
   - { role: notify, tags: "notify" }
   - { role: node, tags: "setup"  }
   - { role: image-builder, tags: "deploy" }
+  - { role: consul_value, tags: [deploy, consul_value] }
