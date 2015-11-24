@@ -1,11 +1,11 @@
 ---
 - hosts: rabbitmq
-- hosts: redis
 
-- hosts: docks
+- hosts: sauron
   vars_files:
     - "group_vars/alpha-sauron.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: sauron, tags: "notify" }
-  - { role: git_node_service, tags: "deploy" }
+  - { role: docker_client }
+  - { role: builder, tags: "build" }
+  - { role: container_kill_start, tags: "deploy" }

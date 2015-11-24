@@ -73,6 +73,9 @@ beta-redis
 [redis-slave]
 beta-redis-slave
 
+[sauron]
+beta-services
+
 [shiva]
 beta-services
 
@@ -106,6 +109,7 @@ rabbitmq
 redis
 redis-slave
 registry
+sauron
 shiva
 swarm-manager
 web

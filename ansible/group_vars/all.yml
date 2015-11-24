@@ -94,9 +94,6 @@ rabbit_port: 54321
 redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_port: 6379
 
-# sauron
-weave_path: "/usr/local/bin/weave"
-
 # shiva
 pg_user: shiva
 shiva_port: 3000
