@@ -1,0 +1,48 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} Postgres RDS Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-rds"
+          Key: "Name"
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+        - 
+          Value: "rds"
+          Key: "Service"
+      IpPermissions: 
+        - 
+          PrefixListIds: []
+          FromPort: 5432
+          IpRanges: []
+          ToPort: 5432
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+      GroupName: "{{ env }}-rds"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_rds }}"
+

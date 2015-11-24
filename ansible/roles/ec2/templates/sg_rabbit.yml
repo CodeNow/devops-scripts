@@ -1,0 +1,57 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} RabbitMQ Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-rabbit"
+          Key: "Name"
+        - 
+          Value: "rabbit"
+          Key: "Service"
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+      IpPermissions: 
+        - 
+          PrefixListIds: []
+          FromPort: 54320
+          IpRanges: []
+          ToPort: 54321
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_navi }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+      GroupName: "{{ env }}-rabbit"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_rabbit }}"
+

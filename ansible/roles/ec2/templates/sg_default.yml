@@ -1,0 +1,35 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} Default Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-default"
+          Key: "Name"
+        -
+          Value: "default"
+          Key: "Service"
+        -
+          Value: "{{ ENV }}"
+          Key: "Environment"
+      IpPermissions: 
+        - 
+          IpProtocol: "-1"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_default }}"
+          PrefixListIds: []
+      GroupName: "default"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_default }}"
+

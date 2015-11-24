@@ -60,3 +60,40 @@ rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.20.1.55
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnablecloud.com
+
+[ec2:vars]
+env=beta
+aws_custid=437258487404
+vpc_id=vpc-9e84e1fb
+security_groups:
+- sg_api
+- sg_bastion
+- default
+- sg_dock
+- sg_hipache
+- sg_mongo
+- sg_nat
+- sg_navi
+- sg_neo4j
+- sg_rabbit
+- sg_rds
+- sg_redis
+- sg_services
+- sg_userland
+- sg_web
+sg_api=sg-a6e684c2
+sg_bastion=sg-6bc8060f
+sg_default=sg-87ca04e3
+sg_dock=sg-d6e684b2
+sg_hipache=sg-1935727d
+sg_mongo=sg-13c30d77
+sg_nat=sg-4f07742b
+sg_navi=sg-8de684e9
+sg_neo4j=sg-78dd131c
+sg_rabbit=sg-42a76e26
+sg_rds=sg-a27f36c6
+sg_redis=sg-81d01ee5
+sg_services=sg-950172f1
+sg_userland=sg-5a28663e
+sg_web=sg-58da143c
+

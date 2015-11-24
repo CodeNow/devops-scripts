@@ -70,3 +70,39 @@ rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
+
+[ec2:vars]
+env=gamma
+aws_custid=437258487404
+vpc_id=vpc-c53464a0
+security_groups:
+- sg_api
+- sg_bastion
+- default
+- sg_dock
+- sg_hipache
+- sg_mongo
+- sg_nat
+- sg_navi
+- sg_neo4j
+- sg_rabbit
+- sg_rds
+- sg_redis
+- sg_services
+- sg_userland
+- sg_web
+sg_api=sg-3b0c7b5f
+sg_bastion=sg-91eb81f5
+sg_default=sg-08412b6c
+sg_dock=sg-577a0d33
+sg_hipache=sg-e70c7883
+sg_mongo=sg-977a0df3
+sg_nat=sg-b595ffd1
+sg_navi=sg-45633421
+sg_neo4j=sg-ff60179b
+sg_rabbit=sg-44b7cb201
+sg_rds=sg-081e596c
+sg_redis=sg-477b0c23
+sg_services=sg-8c6710e8
+sg_userland=sg-12ce9876
+sg_web=sg-fe8bf49a

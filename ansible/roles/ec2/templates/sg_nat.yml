@@ -1,0 +1,54 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} NAT Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-nat"
+          Key: "Name"
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+        - 
+          Value: "nat"
+          Key: "Service"
+      IpPermissions: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "{{ vpn_cidr }}"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+        - 
+          PrefixListIds: []
+          FromPort: -1
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          ToPort: -1
+          IpProtocol: "icmp"
+          UserIdGroupPairs: []
+      GroupName: "{{ env }}-nat"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_nat }}"
+

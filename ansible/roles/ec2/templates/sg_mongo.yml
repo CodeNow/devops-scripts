@@ -1,0 +1,60 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} MongoDB Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-mongo"
+          Key: "Name"
+        - 
+          Value: "mongo"
+          Key: "Service"
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+      IpPermissions: 
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+        - 
+          PrefixListIds: []
+          FromPort: 27000
+          IpRanges: []
+          ToPort: 27020
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_mongo }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_hipache }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+      GroupName: "{{ env }}-mongodb"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_mongo }}"
+

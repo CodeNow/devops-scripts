@@ -1,0 +1,115 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} Web Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+        - 
+          Value: "{{ env }}-web"
+          Key: "Name"
+        - 
+          Value: "web"
+          Key: "Service"
+      IpPermissions: 
+        - 
+          PrefixListIds: []
+          FromPort: 8400
+          IpRanges: []
+          ToPort: 8400
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+        - 
+          PrefixListIds: []
+          FromPort: 32768
+          IpRanges: []
+          ToPort: 65535
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_hipache }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+        - 
+          PrefixListIds: []
+          FromPort: 8301
+          IpRanges: []
+          ToPort: 8302
+          IpProtocol: "udp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+        - 
+          PrefixListIds: []
+          FromPort: 8500
+          IpRanges: []
+          ToPort: 8500
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+        - 
+          PrefixListIds: []
+          FromPort: 8300
+          IpRanges: []
+          ToPort: 8302
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_dock }}"
+      GroupName: "{{ env }}-http-service"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_web }}"
+

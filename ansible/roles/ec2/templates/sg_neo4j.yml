@@ -1,0 +1,51 @@
+---
+  SecurityGroups: 
+    - 
+      IpPermissionsEgress: 
+        - 
+          IpProtocol: "-1"
+          IpRanges: 
+            - 
+              CidrIp: "0.0.0.0/0"
+          UserIdGroupPairs: []
+          PrefixListIds: []
+      Description: "{{ env }} Neo4j Security Policy"
+      Tags: 
+        - 
+          Value: "{{ env }}-neo4j"
+          Key: "Name"
+        - 
+          Value: "{{ env }}"
+          Key: "Environment"
+        - 
+          Value: "neo4j"
+          Key: "Service"
+      IpPermissions: 
+        - 
+          PrefixListIds: []
+          FromPort: 22
+          IpRanges: []
+          ToPort: 22
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_bastion }}"
+        - 
+          PrefixListIds: []
+          FromPort: 7473
+          IpRanges: []
+          ToPort: 7474
+          IpProtocol: "tcp"
+          UserIdGroupPairs: 
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_services }}"
+            - 
+              UserId: "{{ aws_custid }}"
+              GroupId: "{{ sg_api }}"
+      GroupName: "{{ env }}-neo4j"
+      VpcId: "{{ vpc_id }}"
+      OwnerId: "{{ aws_custid }}"
+      GroupId: "{{ sg_neo4j }}"
+
