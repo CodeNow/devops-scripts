@@ -5,9 +5,9 @@
 
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-sauron.yml"
+    - group_vars/alpha-sauron.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: sauron, tags: "notify" }
-  - { role: git_node_service, tags: "deploy" }
+  - { role: notify, tags: [notify] }
+  - { role: sauron, tags: [notify] }
+  - { role: git_node_service, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }

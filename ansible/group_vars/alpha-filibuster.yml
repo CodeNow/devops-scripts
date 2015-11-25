@@ -3,8 +3,8 @@ filibuster_env: default
 name: filibuster
 
 # upstart template variables
-app_name: "filibuster"
-app_repo: "git@github.com:Runnable/Filibuster.git"
+app_name: filibuster
+app_repo: git@github.com:Runnable/Filibuster.git
 node_env: "{{ filibuster_env }}"
 
 enviroment_vars: {}

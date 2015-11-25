@@ -4,8 +4,8 @@
 
 - hosts: docks
   vars_files:
-    - "group_vars/alpha-charon.yml"
+    - group_vars/alpha-charon.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: git_node_service, tags: "deploy" }
+  - { role: notify, tags: [notify] }
+  - { role: git_node_service, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }
