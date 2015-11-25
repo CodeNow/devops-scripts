@@ -1,4 +1,6 @@
 ---
+- hosts: consul
+
 - hosts: docks
   vars_files:
     - "group_vars/alpha-swarm-deamon.yml"
