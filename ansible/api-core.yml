@@ -5,6 +5,7 @@
 - hosts: charon
 - hosts: rabbitmq
 - hosts: redis
+- hosts: swarm-manager
 
 - hosts: api
   vars_files:
