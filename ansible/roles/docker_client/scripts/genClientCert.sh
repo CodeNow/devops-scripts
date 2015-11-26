@@ -6,10 +6,11 @@ if [[ $1 = '' ]]; then
 fi
 CLIENT=./files/certs/$1
 
-if [[ $2 = '' ]]; then
-  echo 'script requires a client ip address'
-  exit 1
-fi
+echo 'WARN: hard coded alpha-api-old and beta services for SWARM'
+# if [[ $2 = '' ]]; then
+#   echo 'script requires a client ip address'
+#   exit 1
+# fi
 
 mkdir $CLIENT
 
@@ -27,7 +28,7 @@ openssl req \
 chmod 400 "$CLIENT/client.csr"
 
 echo extendedKeyUsage=clientAuth,serverAuth > "$CLIENT/extfile.cnf"
-echo subjectAltName=IP:$2,IP:127.0.0.1,DNS:localhost >> "$CLIENT/extfile.cnf"
+echo subjectAltName=IP:10.20.1.59,IP:10.0.1.239,IP:127.0.0.1,DNS:localhost >> "$CLIENT/extfile.cnf"
 
 # generate cert for client
 openssl x509 \
