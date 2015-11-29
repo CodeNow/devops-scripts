@@ -69,6 +69,10 @@ docker_port: 4242
 eru_port: 57831
 eru_hostname: "admin.{{ domain }}"
 
+# fluffy
+fluffy_port: 80
+fluffy_hostname: "fluffy.{{ domain }}"
+
 # mavis
 mavis_hostname: "mavis.{{ domain }}"
 mavis_port: 3000

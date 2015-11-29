@@ -40,6 +40,9 @@ alpha-api
 [eru]
 alpha-api-old
 
+[fluffy]
+alpha-api-old
+
 [navi]
 alpha-navi
 
@@ -100,6 +103,7 @@ charon
 detention
 docks
 eru
+fluffy
 hipache
 hubot
 khronos
