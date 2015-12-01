@@ -1,0 +1,21 @@
+{
+    "_id" : "gamma-rs0",
+        "version" : 121054,
+        "members" : [
+        {
+            "_id" : 10,
+            "host" : "mongo-us-west-2a:27017",
+            "priority" : 1000
+        },
+        {
+            "_id" : 20,
+            "host" : "mongo-us-west-2b:27017",
+            "priority" : 100
+        },
+        {
+            "_id" : 30,
+            "host" : "mongo-us-west-2c:27017",
+            "priority" : 100
+        }
+    ]
+}
