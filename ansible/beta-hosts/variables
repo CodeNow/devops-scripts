@@ -59,6 +59,4 @@ rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.20.1.55
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnablecloud.com
-
-[detention:vars]
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
