@@ -15,7 +15,7 @@ redis_key: "frontend:{{ api_hostname }}"
 is_redis_update_required: 'yes'
 
 # for sendGrid
-sendgrid_key: "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"
+sendgrid_key: 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
 
 # for container settings
 container_envs: >
