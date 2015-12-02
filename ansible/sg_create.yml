@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars_files:
+    - "group_vars/delta.yml"
+  roles:
+  - { role: create_sg }
