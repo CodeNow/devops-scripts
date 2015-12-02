@@ -14,6 +14,9 @@ npm_version: "2.8.3"
 redis_key: "frontend:{{ api_hostname }}"
 is_redis_update_required: 'yes'
 
+# for sendGrid
+sendgrid_key: "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"
+
 # for container settings
 container_envs: >
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
@@ -48,6 +51,7 @@ container_envs: >
   -e REDIS_PORT={{ redis_port }}
   -e ROLLBAR_KEY={{ api_rollbar_key }}
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
+  -e SENDGRID_KEY={{ sendgrid_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e DOCKER_IMAGE_BUILDER_WEAVE_PATH={{ weave_path }}
   -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
