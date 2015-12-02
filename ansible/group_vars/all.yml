@@ -34,7 +34,6 @@ loggly_username: ops
 
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
-api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 api_hostname: api.{{ domain }}
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
