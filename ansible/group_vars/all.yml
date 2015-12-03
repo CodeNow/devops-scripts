@@ -34,9 +34,9 @@ loggly_username: ops
 
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
+api_hostname: api.{{ domain }}
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
-api_hostname: api.{{ domain }}
 api_port: 80
 
 # astral
@@ -68,6 +68,10 @@ docker_port: 4242
 # eru
 eru_port: 57831
 eru_hostname: "admin.{{ domain }}"
+
+# fluffy
+fluffy_port: 80
+fluffy_hostname: "fluffy.{{ domain }}"
 
 # mavis
 mavis_hostname: "mavis.{{ domain }}"

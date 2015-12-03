@@ -34,6 +34,9 @@ beta-api
 [eru]
 beta-services
 
+[fluffy]
+beta-services
+
 [navi]
 beta-navi
 
@@ -93,6 +96,7 @@ bastion
 charon
 docks
 eru
+fluffy
 hipache
 khronos
 link
