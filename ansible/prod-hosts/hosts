@@ -85,6 +85,9 @@ alpha-redis-slave
 [registry]
 alpha-registry
 
+[sauron]
+alpha-api-old
+
 [shiva]
 alpha-api-old
 
@@ -118,6 +121,7 @@ rabbitmq
 redis
 redis-slave
 registry
+sauron
 shiva
 swarm-manager
 web
