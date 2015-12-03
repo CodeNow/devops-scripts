@@ -15,17 +15,21 @@ ENV {{ env }}
 # setup node and npm versions
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
-# Download Repo
-RUN git clone -b {{ git_branch }} --single-branch {{ repo }} /{{ name }}
-
-WORKDIR /{{ name }}
 {% if dockerfile_pre_install_commands is defined %}
 {% for command in dockerfile_pre_install_commands %}
 RUN {{ command }}
 {% endfor %}
 {% endif %}
 
+# Add Package json first
+ADD ./package.json /{{ name }}/package.json
+
+# install, should will skip if no package.json change
+WORKDIR /{{ name }}
 RUN npm install --production
+
+# Add the rest of the repo
+ADD . /{{ name }}
 
 {% if dockerfile_post_install_commands is defined %}
 {% for command in dockerfile_post_install_commands %}
