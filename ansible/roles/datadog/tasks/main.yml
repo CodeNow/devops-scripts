@@ -20,7 +20,6 @@
   apt_repository:
     repo='deb http://apt.datadoghq.com/ stable main'
     state=present
-    update_cache=yes
 
 - name: Create main Datadog agent configuration file
   tags: ['datadog']

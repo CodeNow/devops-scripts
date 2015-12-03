@@ -2,7 +2,6 @@
 - name: install nginx
   sudo: yes
   apt:
-    update_cache=yes
     pkg=nginx
     state=present
 
@@ -35,7 +34,7 @@
   apt:
     pkg=nodejs
     state=present
-  
+
 - name: copy node script for nginx
   sudo: yes
   copy:

@@ -15,14 +15,12 @@
   apt:
     pkg="linux-image-extra-{{ ansible_kernel }}"
     state=present
-    update_cache=yes
 
 - name: install apt-transport-https
   sudo: yes
   apt:
     pkg="apt-transport-https"
     state=present
-    update_cache=yes
 
 - name: add docker repository key
   sudo: yes
@@ -35,7 +33,6 @@
   sudo: yes
   apt_repository:
    repo: "deb https://get.docker.com/ubuntu docker main"
-   update_cache: yes
    state: present
 
 - name: copy docker config file
@@ -50,7 +47,7 @@
 - name: install docker
   sudo: yes
   when: restart is defined
-  apt: pkg="{{ docker_package_name }}" state=present update_cache=yes force=yes
+  apt: pkg="{{ docker_package_name }}" state=present force=yes
 
 - name: restart docker
   when: copied_config.changed and restart is defined
