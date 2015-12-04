@@ -14,7 +14,6 @@ container_run_opts: >
   -h {{ inventory_hostname }}
   -v /consul:/data
   -v /etc/consul.d:/etc/consul.d:ro
-  -v /var/log:/var/log
   -p {{ ansible_default_ipv4.address }}:8300:8300
   -p {{ ansible_default_ipv4.address }}:8301:8301
   -p {{ ansible_default_ipv4.address }}:8301:8301/udp
