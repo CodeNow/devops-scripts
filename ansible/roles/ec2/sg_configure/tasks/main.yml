@@ -408,6 +408,7 @@
         from_port: -1
         to_port: -1
         group_id: "{{ sg_rds }}"
+      - proto: tcp
 
 - name: Redis SG
   tags:
@@ -424,7 +425,6 @@
         from_port: 22
         to_port: 22
         group_id: "{{ sg_bastion }}"
-      - proto: tcp
         from_port: 6379
         to_port: 6379
         group_id: "{{ sg_api }}"
@@ -454,3 +454,98 @@
         to_port: -1
         group_id: "{{ sg_redis }}"
 
+- name: Services SG
+  tags:
+    - services
+  ec2_group:
+    name: "{{ env }}-services"
+    description: "{{ env }} Services Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: us-west-2
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        group_id: "{{ sg_bastion }}"
+      - proto: udp
+        from_port: 53
+        to_port: 53
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 53
+        to_port: 53
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 2375
+        to_port: 2375
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 3567
+        to_port: 3567
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 8200
+        to_port: 8200
+        group_id: "{{ sg_dock }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_api }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_web }}"
