@@ -2,12 +2,16 @@
 - name: install nginx
   sudo: yes
   apt:
+    update_cache=yes
+    cache_valid_time=604800
     pkg=nginx
     state=present
 
 - name: install node dependencies (build-essential)
   sudo: yes
   apt:
+    update_cache=yes
+    cache_valid_time=604800
     pkg=build-essential
     state=present
 
@@ -32,6 +36,8 @@
 - name: install node
   sudo: yes
   apt:
+    update_cache=yes
+    cache_valid_time=604800
     pkg=nodejs
     state=present
 
