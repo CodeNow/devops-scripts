@@ -15,6 +15,7 @@
     update=yes
     accept_hostkey=True
     force=yes
+    depth=1
 
 - name: copy dockerfile to build folder
   sudo: yes

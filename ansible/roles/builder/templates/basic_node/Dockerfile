@@ -21,14 +21,14 @@ RUN {{ command }}
 {% endfor %}
 {% endif %}
 
-# Add Package json first
+# Add package.json from the current build context (`.` is the repo) first
 ADD ./package.json /{{ name }}/package.json
 
 # install, should will skip if no package.json change
 WORKDIR /{{ name }}
 RUN npm install --production
 
-# Add the rest of the repo
+# move the current build context (`.` is the repo) to /{{ name }}
 ADD . /{{ name }}
 
 {% if dockerfile_post_install_commands is defined %}
@@ -39,4 +39,3 @@ RUN {{ command }}
 
 # Define default command.
 CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }} > /var/log/{{ name }}.log 2>&1
-
