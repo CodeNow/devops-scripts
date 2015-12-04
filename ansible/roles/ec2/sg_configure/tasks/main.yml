@@ -1,0 +1,126 @@
+#- name: install Python Boto
+#  sudo: yes
+#  apt: name=python-boto state=latest
+  
+- name: Bastion
+  tags:
+    - bastion
+  ec2_group:
+    name: "{{ env }}-bastion"
+    description: "{{ env }} Bastion Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: us-west-2
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        from_port: -1
+        to_port: -1
+        cidr_ip: 0.0.0.0/0
+
+- name: API SG
+  tags:
+    - api
+  ec2_group:
+    name: "{{ env }}-api"
+    description: "{{ env }} API Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: us-west-2
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_hipache }}"
+    rules_egress:
+      - proto: all
+        from_port: -1
+        to_port: -1
+        group_id: "{{ sg_api }}"
+
+- name: MongoDB SG
+  tags:
+    - mongo
+  ec2_group:
+    name: "{{ env }}-mongo"
+    description: "{{ env }} MongoDB Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: us-west-2
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_mongo }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_dock }}"
+    rules_egress:
+      - proto: all
+        from_port: -1
+        to_port: -1
+        group_id: "{{ sg_mongo }}"
