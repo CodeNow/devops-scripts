@@ -54,7 +54,7 @@ ec2.describeInstances(params, function (err, data) {
     for (var i = 0; i < instance.Tags.length; i++) {
       if (instance.Tags[i].Key === 'org') {
         hostVars[instance.PrivateIpAddress] = {
-          host_tags: instance.Tags[i].Value + ',build,run'
+          host_tags: instance.Tags[i].Value
         };
       }
     }
