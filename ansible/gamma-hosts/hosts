@@ -67,6 +67,9 @@ gamma-redis
 [redis-slave]
 gamma-redis-slave
 
+[sauron]
+gamma-services
+
 [shiva]
 gamma-services
 
@@ -96,6 +99,7 @@ mavis
 optimus
 rabbitmq
 eru
+sauron
 shiva
 swarm-manager
 

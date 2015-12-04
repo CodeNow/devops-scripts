@@ -34,9 +34,9 @@ loggly_username: ops
 
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
+api_hostname: api.{{ domain }}
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
-api_hostname: api.{{ domain }}
 api_port: 80
 
 # astral
@@ -44,6 +44,10 @@ pg_database: astral
 
 # charon
 charon_port: 53
+
+# consul
+consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
+consul_api_port: 8500
 
 # datadog
 datadog_api_key: 6488896fe0c811965ef233b96809d70d
@@ -65,6 +69,10 @@ docker_port: 4242
 eru_port: 57831
 eru_hostname: admin.{{ domain }}
 
+# fluffy
+fluffy_port: 80
+fluffy_hostname: "fluffy.{{ domain }}"
+
 # mavis
 mavis_hostname: mavis.{{ domain }}
 mavis_port: 3000
@@ -73,7 +81,7 @@ mavis_port: 3000
 metis_port: 3000
 
 # mongo
-mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:27000{% if not loop.last %},{% endif %}{% endfor %}"
+mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"
 
 # navi
 navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
@@ -94,15 +102,13 @@ rabbit_port: 54321
 redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_port: 6379
 
-# sauron
-weave_path: /usr/local/bin/weave
-
 # shiva
 pg_user: shiva
 shiva_port: 3000
 
 # swarm
 swarm_master_port: 2375
+swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}"
 
 # navi/link
 navi_mongo_database: navi

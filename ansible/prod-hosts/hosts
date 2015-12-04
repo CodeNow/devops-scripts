@@ -40,6 +40,9 @@ alpha-api
 [eru]
 alpha-api-old
 
+[fluffy]
+alpha-api-old
+
 [navi]
 alpha-navi
 
@@ -82,6 +85,9 @@ alpha-redis-slave
 [registry]
 alpha-registry
 
+[sauron]
+alpha-api-old
+
 [shiva]
 alpha-api-old
 
@@ -100,6 +106,7 @@ charon
 detention
 docks
 eru
+fluffy
 hipache
 hubot
 khronos
@@ -114,6 +121,7 @@ rabbitmq
 redis
 redis-slave
 registry
+sauron
 shiva
 swarm-manager
 web

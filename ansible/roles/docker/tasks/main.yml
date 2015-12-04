@@ -1,6 +1,7 @@
 ---
 - name: change core dump path
   sudo: yes
+  when: docker_config == "runnable"
   tags: coreDump
   sysctl:
     name=kernel.core_pattern
@@ -39,6 +40,7 @@
 
 - name: copy docker config file
   sudo: yes
+  when: docker_config == "runnable"
   template:
     src={{ docker_config }}
     dest=/etc/default/docker

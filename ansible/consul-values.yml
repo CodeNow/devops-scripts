@@ -28,5 +28,5 @@
     - name: print values to screen
       run_once: true
       when: read_values is defined
-      debug: msg='{{ item.item.key }}: {{ item.json[0].Value | b64decode }}'
+      debug: msg="{{ item.item.key }}" -> "{{ item.json[0].Value | b64decode }}"
       with_items: "{{ values.results }}"
