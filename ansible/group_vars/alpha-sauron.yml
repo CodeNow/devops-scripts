@@ -17,6 +17,11 @@ dockerfile_pre_install_commands: [
   "chmod a+x {{ weave_path }}"
 ]
 
+# consul values
+consul_values:
+  - key: "{{ name }}/version"
+    value: "{{ git_branch }}"
+
 container_envs: >
   -e LOGGLY_TOKEN="{{ loggly_token }}"
   -e MAVIS_URL="http://{{ mavis_hostname }}"

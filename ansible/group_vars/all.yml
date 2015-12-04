@@ -1,6 +1,6 @@
 ---
 # registry settings
-registry_env: "prod"
+registry_env: prod
 registry_port: 80
 
 # for docker stop old container
@@ -15,8 +15,8 @@ container_run_args: ""
 # REPO_BASE for getting dockerfiles
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
-dockerfile: "basic_node/Dockerfile"
-base_dockerfile: "node_base"
+dockerfile: basic_node/Dockerfile
+base_dockerfile: node_base
 
 docker_config: runnable
 
@@ -57,7 +57,7 @@ datadog_port: 8125
 # detention
 detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
 detention_port: 9123
-detention_hostname: "detention.{{ domain }}"
+detention_hostname: detention.{{ domain }}
 
 # docker
 docker_ca_path: /etc/ssl/docker/ca.pem
@@ -67,14 +67,14 @@ docker_port: 4242
 
 # eru
 eru_port: 57831
-eru_hostname: "admin.{{ domain }}"
+eru_hostname: admin.{{ domain }}
 
 # fluffy
 fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
 
 # mavis
-mavis_hostname: "mavis.{{ domain }}"
+mavis_hostname: mavis.{{ domain }}
 mavis_port: 3000
 
 # metis
@@ -114,3 +114,7 @@ swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ip
 navi_mongo_database: navi
 navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_mongo_port: 27017
+
+# consul
+consul_hostname: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
+consul_port: 8500

@@ -31,10 +31,10 @@ container_run_args: >
   -config-dir /etc/consul.d
   -client 0.0.0.0
   -recursor 8.8.8.8
-  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-bootstrap-expect {{ groups['consul'] | length }}{% endif %}
+  {% if consul_hostname == ansible_default_ipv4.address %}-bootstrap-expect {{ groups['consul'] | length }}{% endif %}
   -data-dir /data
-  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
-  {% if hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] != ansible_default_ipv4.address %}-retry-join {{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}{% endif %}
+  {% if consul_hostname == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
+  {% if consul_hostname != ansible_default_ipv4.address %}-retry-join {{ consul_hostname }}{% endif %}
   > /var/log/consul.log 2>&1
 
 # some seed values
@@ -44,15 +44,3 @@ consul_seed:
     value: "{{ node_env }}"
   - key: api/hostname
     value: "{{ api_hostname }}"
-  - key: image-builder/version
-    value: d1.6.2-v4.0.0
-  - key: docker-listener/version
-    value: v1.0.0
-  - key: filibuster/version
-    value: v0.1.6
-  - key: krain/version
-    value: v0.1.0
-  - key: sauron/version
-    value: v2.0.3
-  - key: charon/version
-    value: v2.0.2
