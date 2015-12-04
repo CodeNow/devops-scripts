@@ -1,7 +1,11 @@
 ---
 - name: make sure httplib2 is installed
   sudo: yes
-  apt: package=python-httplib2 state=present
+  apt:
+    package=python-httplib2
+    state=present
+    update_cache=yes
+    cache_valid_time=604800
 
 - name: put values into consul
   run_once: true
