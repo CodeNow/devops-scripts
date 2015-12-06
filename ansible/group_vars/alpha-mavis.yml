@@ -4,8 +4,8 @@ container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ mavis_port }}"]
-node_version: "0.10.38"
-npm_version: "2.1.18"
+node_version: "4.2.2"
+npm_version: "2.14.7"
 
 # for redis
 redis_key: "frontend:{{ mavis_hostname }}"
