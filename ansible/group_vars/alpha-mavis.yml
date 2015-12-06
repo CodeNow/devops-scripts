@@ -24,9 +24,13 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e CONSUL_HOST={{ consul_host_address }}
+  -e CONSUL_PORT={{ consul_api_port }}
+  -e DOCKER_CERT_PATH=/etc/ssl/docker
 
 container_run_opts: >
   -h {{ name }}
   -d
   -P
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{container_envs}}
