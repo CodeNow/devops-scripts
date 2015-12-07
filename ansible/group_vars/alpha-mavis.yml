@@ -27,6 +27,7 @@ container_envs: >
   -e CONSUL_HOST={{ consul_host_address }}
   -e CONSUL_PORT={{ consul_api_port }}
   -e DOCKER_CERT_PATH=/etc/ssl/docker
+  -e SWARM_CONTAINER_NAME={{ swarm_container_name }}
 
 container_run_opts: >
   -h {{ name }}

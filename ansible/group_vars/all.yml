@@ -109,6 +109,7 @@ shiva_port: 3000
 # swarm
 swarm_master_port: 2375
 swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}"
+swarm_container_name: swarm
 
 # navi/link
 navi_mongo_database: navi
