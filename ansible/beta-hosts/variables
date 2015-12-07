@@ -68,7 +68,6 @@ vpc_id=vpc-9e84e1fb
 security_groups:
 - sg_api
 - sg_bastion
-- default
 - sg_dock
 - sg_hipache
 - sg_mongo
@@ -83,7 +82,6 @@ security_groups:
 - sg_web
 sg_api=sg-a6e684c2
 sg_bastion=sg-6bc8060f
-sg_default=sg-87ca04e3
 sg_dock=sg-d6e684b2
 sg_hipache=sg-1935727d
 sg_mongo=sg-13c30d77
