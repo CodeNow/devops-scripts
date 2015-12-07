@@ -6,17 +6,6 @@
     path="{{ build_dir }}/{{ name }}"
     state=directory
 
-- name: pull the git repository
-  sudo: yes
-  git:
-    repo="{{ repo }}"
-    dest="{{ build_dir }}/{{ name }}"
-    version="{{ git_branch }}"
-    update=yes
-    accept_hostkey=True
-    force=yes
-    depth=1
-
 - name: copy dockerfile to build folder
   sudo: yes
   template:
