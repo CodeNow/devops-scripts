@@ -16,6 +16,10 @@ container_envs: >
   -e LOG_LEVEL_STDOUT=trace
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
 
 container_run_opts: >
