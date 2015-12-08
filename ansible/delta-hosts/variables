@@ -91,3 +91,6 @@ sg_nat=sg-3082cc54
 sg_rabbit=sg-92d1fdf6
 sg_redis=sg-6ed2fe0a
 sg_navi=sg-e5d7fb81
+env=delta
+region=us-west-2
+vpc_id=vpc-864c6be3

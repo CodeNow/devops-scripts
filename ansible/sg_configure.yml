@@ -2,6 +2,7 @@
 - hosts: 127.0.0.1
   connection: local
   vars_files:
-    - "group_vars/delta.yml"
+    - "group_vars/ec2_sg.yml"
   roles:
+  - { role: notify, tags: "notify" }
   - { role: ec2/sg_configure }
