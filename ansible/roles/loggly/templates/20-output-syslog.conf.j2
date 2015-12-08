@@ -1,15 +1,14 @@
-$ModLoad imfile
-$InputFilePollInterval 10
 $WorkDirectory /var/spool/rsyslog
 $PrivDropToGroup adm
 
+# start log rotation via outchannel
+# outchannel definition
+$outchannel log_rotation,/var/log/log_rotation.log, 52428800,/home/me/./log_rotation_script
+#  activate the channel and log everything to it
+*.* :omfile:$log_rotation
+# end log rotation via outchannel
+
 # {{ name }} access file:
-$InputFileName /var/log/{{ name }}.log
-$InputFileTag {{ name }}:
-$InputFileStateFile stat-{{ name }}
-$InputFileSeverity info
-$InputFilePersistStateInterval 20000
-$InputRunFileMonitor
 #Add a tag for {{ name }} events
 $template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [f673760d-e0b3-4a93-a15e-2862ea074f91@41058  tag=\"file\" ] %msg%\n"
 if $programname == '{{ name }}' then @@logs-01.loggly.com:514;LogglyFormatFile{{ name }}
