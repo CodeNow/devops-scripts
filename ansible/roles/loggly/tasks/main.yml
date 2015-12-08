@@ -8,12 +8,31 @@
     owner=root
     group=root
 
+- name: create ubuntu bindir
+  tags: loggly
+  file:
+    path=/home/ubuntu/bin
+    state=directory
+    owner=ubuntu
+    group=ubuntu
+    mode=0755
+
+- name: copy rotate util script
+  tags: loggly
+  sudo: yes
+  file:
+    src=rotate-logs.sh
+    dest=/home/ubuntu/bin/rotate-logs.sh
+    owner=ubuntu
+    group=ubuntu
+    mode=0755
+
 - name: copy app config
   tags: loggly
   sudo: yes
   template:
-    src=21-filemonitoring-app.conf.j2
-    dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
+    src=20-output-syslog.conf.j2
+    dest=/etc/rsyslog.d/20-output-{{ name }}.conf
     owner=root
     group=root
 
