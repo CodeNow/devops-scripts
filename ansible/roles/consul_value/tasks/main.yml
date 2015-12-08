@@ -1,5 +1,6 @@
 ---
 - name: make sure httplib2 is installed
+  run_once: true
   sudo: yes
   apt:
     package=python-httplib2
