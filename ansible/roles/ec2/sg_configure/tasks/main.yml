@@ -259,11 +259,7 @@
       - proto: all
         from_port: -1
         to_port: -1
-        group_id: "{{ sg_hipache }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
+        cidr_ip: 0.0.0.0/0
 
 - name: MongoDB SG
   tags:
@@ -623,6 +619,11 @@
         from_port: 80
         to_port: 65535
         cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        from_port: -1
+        to_port: -1
+        cidr_ip: 0.0.0.0/0
   
 - name: Web
   tags:
@@ -683,8 +684,4 @@
       - proto: all
         from_port: -1
         to_port: -1
-        group_id: "{{ sg_web }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
+        cidr_ip: 0.0.0.0/0
