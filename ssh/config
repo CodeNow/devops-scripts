@@ -329,6 +329,9 @@ Host delta-neo4j
 Host delta-hipache
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.135 22
 
+Host delta-userland
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.244 22
+
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
 
@@ -343,6 +346,9 @@ Host delta-mongo-b
 
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
+
+Host delta-web
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
 
 ################################################################################
 # other
