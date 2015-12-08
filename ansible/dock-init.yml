@@ -1,0 +1,7 @@
+---
+- hosts: consul
+  vars_files:
+    - group_vars/alpha-dock-init.yml
+  roles:
+  - { role: notify, tags: [notify] }
+  - { role: consul_value, tags: [deploy, consul_value] }
