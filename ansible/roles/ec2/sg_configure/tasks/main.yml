@@ -457,6 +457,7 @@
         from_port: 22
         to_port: 22
         group_id: "{{ sg_bastion }}"
+      - proto: tcp
         from_port: 6379
         to_port: 6379
         group_id: "{{ sg_api }}"
