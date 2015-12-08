@@ -3,9 +3,9 @@ $PrivDropToGroup adm
 
 # start log rotation via outchannel
 # outchannel definition
-$outchannel log_rotation,/var/log/log_rotation.log, 52428800,/home/me/./log_rotation_script
+$outchannel log_rotation,/var/log/{{ name }}.log, 52428800,/home/ubuntu/bin/rotate-logs.sh
 #  activate the channel and log everything to it
-*.* :omfile:$log_rotation
+local7.* :omfile:$log_rotation
 # end log rotation via outchannel
 
 # {{ name }} access file:
