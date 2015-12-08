@@ -7,6 +7,7 @@
   delegate_to: 127.0.0.1
 
 - name: send start message
+  run_once: yes
   changed_when: True
   tags:
     - always
