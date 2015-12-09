@@ -27,6 +27,13 @@
     group=ubuntu
     mode=0755
 
+- name: remove file monitor config
+  tags: loggly
+  sudo: yes
+  file:
+    dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
+    state=absent
+
 - name: copy app config
   tags: loggly
   sudo: yes
