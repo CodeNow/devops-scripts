@@ -10,13 +10,19 @@ alpha-stage-data
 [rabbitmq]
 alpha-stage-data
 
-[docks]
-10.0.1.120
-10.0.1.109
+[consul]
+alpha-stage-data
+alpha-stage-data-2
+
+[vault]
+alpha-stage-data
+
+[swarm-manager]
+alpha-stage-data
 
 [stage:children]
+consul
+docks
 hipache
-docks
-redis
 rabbitmq
-docks
+redis

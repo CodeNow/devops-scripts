@@ -11,11 +11,6 @@ var ec2 = new aws.EC2({
 
 var params = {
   Filters: [
-    // Only search for docks in the cluster security group
-    {
-      Name: 'instance.group-id',
-      Values: ['sg-cb8e7dae']
-    },
     // Only fetch instances that are tagged as docks
     {
       Name: 'tag:role',
@@ -25,6 +20,11 @@ var params = {
     {
       Name: 'instance-state-name',
       Values: ['running']
+    },
+    // Only fetch docks with the tag "env" equal to "staging"
+    {
+      Name: 'tag:env',
+      Values: ['staging']
     }
   ]
 };
@@ -43,13 +43,6 @@ ec2.describeInstances(params, function (err, data) {
     });
   });
 
-  // Filter out staging docks
-  instances = instances.filter(function (instance) {
-    return !instance.Tags.some(function (tag) {
-      return tag.Key === 'env' && tag.Value === 'staging';
-    });
-  })
-
   // Map the instances to their private ip addresses
   // NOTE This will work locally because of the wilcard ssh proxy in the config
   var hosts = instances.map(function (instance) {
@@ -61,7 +54,7 @@ ec2.describeInstances(params, function (err, data) {
     for (var i = 0; i < instance.Tags.length; i++) {
       if (instance.Tags[i].Key === 'org') {
         hostVars[instance.PrivateIpAddress] = {
-          host_tags: instance.Tags[i].Value + ',build,run'
+          host_tags: instance.Tags[i].Value
         };
       }
     }

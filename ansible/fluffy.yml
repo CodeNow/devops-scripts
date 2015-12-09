@@ -1,18 +1,12 @@
 ---
-- hosts: mongodb
-- hosts: neo4j
-- hosts: navi
-- hosts: charon
-- hosts: rabbitmq
 - hosts: redis
-- hosts: swarm-manager
 
-- hosts: api
+- hosts: fluffy
   vars_files:
-    - "group_vars/alpha-api.yml"
+    - "group_vars/alpha-fluffy.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
-  - { role: docker_client }
   - { role: container_start, tags: "deploy" }
+

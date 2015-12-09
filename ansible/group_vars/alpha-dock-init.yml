@@ -1,0 +1,7 @@
+name: dock-init
+app_name: "{{ name }}"
+
+# consul values
+consul_values:
+  - key: "{{ name }}/version"
+    value: "{{ git_branch }}"

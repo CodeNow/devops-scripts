@@ -1,10 +1,7 @@
 ---
 - hosts: consul
-
-- hosts: docks
   vars_files:
-    - group_vars/alpha-filibuster.yml
+    - group_vars/alpha-dock-init.yml
   roles:
   - { role: notify, tags: [notify] }
-  - { role: git_node_service, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }

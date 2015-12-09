@@ -1,5 +1,6 @@
 ---
 - hosts: redis
+- hosts: consul
 - hosts: rabbitmq
 
 - hosts: mavis
@@ -8,5 +9,6 @@
   roles:
   - { role: notify, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: docker_client }
   - { role: builder, tags: "build" }
   - { role: container_start, tags: "deploy" }

@@ -4,7 +4,6 @@ api_aws_secret_access_key=A6XOpeEElvvIulfAzVLohqKtpKij5ZE8h0FFx0Jn
 api_github_client_id=baa5c868b6d17d7ae002
 api_github_client_secret=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
 api_github_deploy_keys_bucket=runnable.deploykeys.production-beta
-api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
 api_mongo_database=beta
@@ -60,6 +59,7 @@ rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.20.1.55
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnablecloud.com
+api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 
 [ec2:vars]
 env=beta
@@ -94,4 +94,3 @@ sg_redis=sg-81d01ee5
 sg_services=sg-950172f1
 sg_userland=sg-5a28663e
 sg_web=sg-58da143c
-
