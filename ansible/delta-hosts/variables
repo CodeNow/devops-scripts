@@ -56,7 +56,7 @@ vault_aws_region=us-east-1
 
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
-datadog_host_address=10.4.6.251
+datadog_host_address=10.8.5.63
 datadog_tags=env:delta
 domain=runnable-delta.com
 mongo_port=27017
@@ -66,7 +66,7 @@ pg_host=delta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-registry_host=10.4.4.82
+registry_host=10.8.4.126
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
