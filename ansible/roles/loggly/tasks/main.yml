@@ -38,8 +38,8 @@
   tags: loggly
   sudo: yes
   template:
-    src=20-output-syslog.conf.j2
-    dest=/etc/rsyslog.d/20-output-{{ name }}.conf
+    src=21-output-syslog.conf.j2
+    dest=/etc/rsyslog.d/21-output-{{ name }}.conf
     owner=root
     group=root
 
