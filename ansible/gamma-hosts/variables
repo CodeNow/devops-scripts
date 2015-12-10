@@ -75,25 +75,8 @@ api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 env=gamma
 aws_custid=437258487404
 vpc_id=vpc-c53464a0
-security_groups:
-- sg_api
-- sg_bastion
-- default
-- sg_dock
-- sg_hipache
-- sg_mongo
-- sg_nat
-- sg_navi
-- sg_neo4j
-- sg_rabbit
-- sg_rds
-- sg_redis
-- sg_services
-- sg_userland
-- sg_web
 sg_api=sg-3b0c7b5f
 sg_bastion=sg-91eb81f5
-sg_default=sg-08412b6c
 sg_dock=sg-577a0d33
 sg_hipache=sg-e70c7883
 sg_mongo=sg-977a0df3
