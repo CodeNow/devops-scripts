@@ -13,21 +13,20 @@ is_redis_update_required: 'yes'
 
 # container settings
 container_envs: >
-  -e PORT={{ hosted_ports[0] }}
-  -e REDIS_PORT={{ redis_port }}
-  -e REDIS_IPADDRESS={{ redis_host_address }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e CONTAINER_WEIGHT=0
+  -e DOCKER_CERT_PATH=/etc/ssl/docker
   -e NEWRELIC_KEY={{ new_relic_license_key }}
+  -e PORT={{ hosted_ports[0] }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e CONSUL_HOST={{ consul_host_address }}
-  -e CONSUL_PORT={{ consul_api_port }}
-  -e DOCKER_CERT_PATH=/etc/ssl/docker
+  -e REDIS_IPADDRESS={{ redis_host_address }}
+  -e REDIS_PORT={{ redis_port }}
   -e SWARM_CONTAINER_NAME={{ swarm_container_name }}
+  -e SWARM_HOSTNAME={{ swarm_host_address }}
+  -e SWARM_PORT={{ swarm_master_port }
 
 container_run_opts: >
   -h {{ name }}
