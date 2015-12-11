@@ -26,7 +26,7 @@ container_envs: >
   -e REDIS_PORT={{ redis_port }}
   -e SWARM_CONTAINER_NAME={{ swarm_container_name }}
   -e SWARM_HOSTNAME={{ swarm_host_address }}
-  -e SWARM_PORT={{ swarm_master_port }
+  -e SWARM_PORT={{ swarm_master_port }}
 
 container_run_opts: >
   -h {{ name }}
