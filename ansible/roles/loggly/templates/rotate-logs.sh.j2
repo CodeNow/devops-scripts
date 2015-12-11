@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+find /var/log -type f -name '{{ name }}.log.bz' -mtime +3 -exec rm -f {} \;
+bzip2 -9 /var/log/{{ name }}.log > /var/log/{{ name }}.log.bz
