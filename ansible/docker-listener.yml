@@ -7,6 +7,7 @@
   vars_files:
     - group_vars/alpha-docker-listener.yml
   roles:
+  - { role: loggly }
   - { role: notify, tags: [notify] }
   - { role: build_essential }
   - { role: docker_client }
