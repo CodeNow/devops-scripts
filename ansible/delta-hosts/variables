@@ -74,7 +74,6 @@ api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 [ec2:vars]
 aws_access_key=AKIAIB3IJCCJZQWQMVSQ
 aws_secret_key=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
-env=delta
 aws_custid=437258487404
 sg_hipache=sg-7fd7fb1b
 sg_api=sg-0bf7db6f
