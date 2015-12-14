@@ -76,7 +76,6 @@ aws_access_key=AKIAIB3IJCCJZQWQMVSQ
 aws_secret_key=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
 env=delta
 aws_custid=437258487404
-vpc_id=vpc-864c6be3
 sg_hipache=sg-7fd7fb1b
 sg_api=sg-0bf7db6f
 sg_neo4j=sg-a9d0fccd
