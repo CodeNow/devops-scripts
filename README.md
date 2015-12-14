@@ -101,4 +101,6 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [vault / vault-values: Seal - Kiss From A Rose](https://www.youtube.com/watch?v=zP3so2hY4CM)
 
+[Sauron: Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY)
+
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!
