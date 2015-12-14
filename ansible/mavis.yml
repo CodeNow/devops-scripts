@@ -1,6 +1,6 @@
 ---
 - hosts: redis
-- hosts: consul
+- hosts: swarm-manager
 - hosts: rabbitmq
 
 - hosts: mavis
