@@ -10,10 +10,13 @@
 
 - name: create runnable bin directory
   tags: loggly
+  sudo: yes
   file:
     path=/opt/runnable/bin
     state=directory
     mode=0755
+    owner=ubuntu
+    group=ubuntu
 
 - name: copy rotate util script
   tags: loggly
