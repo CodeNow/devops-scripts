@@ -25,6 +25,7 @@
     state=absent
 
 - name: npm install {{ app_name }}
+  sudo: yes
   npm:
     path=/opt/runnable/{{ app_name }}
     state=latest

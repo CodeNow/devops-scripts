@@ -1,7 +1,9 @@
 node_modules
-ca-key.pem
+*.pem
 pass
 hellorunnable
 dump.rdb
 erl_crash.dump
 npm-debug.log
+ca.srl
+.DS_Store

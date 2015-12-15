@@ -60,7 +60,7 @@ ansible-playbook -i ./[stage-hosts, prod-hosts] [appname].yml -t deploy -e git_b
 This will redeploy the current deploy without rebuilding
 
 ```
-ansible-playbook -i./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=--no-cache
+ansible-playbook -i ./[stage-hosts, prod-hosts] [appname].yml -e git_branch=some-branch-name -e build_args=--no-cache
 ```
 
 deploy latest version of the branch
@@ -100,5 +100,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 [swarm-deamon: Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q)
 
 [vault / vault-values: Seal - Kiss From A Rose](https://www.youtube.com/watch?v=zP3so2hY4CM)
+
+[Sauron: Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY)
 
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!

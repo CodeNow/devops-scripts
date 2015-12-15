@@ -1,0 +1,12 @@
+---
+- hosts: redis
+
+- hosts: fluffy
+  vars_files:
+    - "group_vars/alpha-fluffy.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - { role: builder, tags: "build" }
+  - { role: container_start, tags: "deploy" }
+

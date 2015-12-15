@@ -43,6 +43,13 @@ ec2.describeInstances(params, function (err, data) {
     });
   });
 
+  // Filter out staging docks
+  instances = instances.filter(function (instance) {
+    return !instance.Tags.some(function (tag) {
+      return tag.Key === 'env' && tag.Value === 'staging';
+    });
+  })
+
   // Map the instances to their private ip addresses
   // NOTE This will work locally because of the wilcard ssh proxy in the config
   var hosts = instances.map(function (instance) {

@@ -16,6 +16,12 @@ Host gamma*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/gamma.pem
 
+Host delta*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/delta.pem
+
 ################################################################################
 # production runnable.io
 ################################################################################
@@ -107,6 +113,9 @@ Host alpha-stage-dock-test
 
 Host alpha-stage-data
   ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.134 22
+
+Host alpha-stage-data-2
+  ProxyCommand ssh -q ubuntu@alpha-bastion nc 10.0.1.90 22
 
 
 ################################################################################
@@ -280,6 +289,69 @@ Host gamma-web-us-west-2a
 
 Host gamma-web
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
+
+################################################################################
+# Delta
+################################################################################
+
+Host delta-bastion
+  HostName 52.34.60.110
+
+Host 10.8.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@delta-bastion nc %h %p
+  IdentityFile ~/.ssh/delta.pem
+
+Host delta-admin
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.146 22
+
+## Delta API
+Host delta-api
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.212 22
+
+Host delta-services
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
+
+Host delta-registry
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
+
+Host delta-redis
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.9 22
+
+Host delta-redis-slave
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.9.0 22
+
+Host delta-rabbit
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.195 22
+
+Host delta-neo4j
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.7.191 22
+
+Host delta-hipache
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.135 22
+
+Host delta-userland
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.244 22
+
+Host delta-navi
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
+
+Host delta-mongo-a
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.216 22
+
+Host delta-mongo-b
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.10.254 22
+
+Host delta-mongo-c
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.15.34 22
+
+Host delta-navi
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
+
+Host delta-web
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
 
 ################################################################################
 # other
