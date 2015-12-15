@@ -1,0 +1,20 @@
+{
+    "_id" : "{{ replica_set_name }}",
+        "members" : [
+        {
+            "_id" : 10,
+            "host" : "{{ mongo_server_prefix }}{{ region }}a:27017",
+            "priority" : 1000
+        },
+        {
+            "_id" : 20,
+            "host" : "{{ mongo_server_prefix }}{{ region }}b:27017",
+            "priority" : 100
+        },
+        {
+            "_id" : 30,
+            "host" : "{{ mongo_server_prefix }}{{ region }}c:27017",
+            "priority" : 100
+        }
+    ]
+}

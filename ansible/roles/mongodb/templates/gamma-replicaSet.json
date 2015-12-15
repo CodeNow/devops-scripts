@@ -1,0 +1,20 @@
+{
+    "_id" : "gamma-rs0",
+        "members" : [
+        {
+            "_id" : 10,
+            "host" : "ip-10-4-7-144.us-west-2.compute.internal",
+            "priority" : 1000
+        },
+        {
+            "_id" : 20,
+            "host" : "ip-10-4-10-57.us-west-2.compute.internal",
+            "priority" : 100
+        },
+        {
+            "_id" : 30,
+            "host" : "ip-10-4-15-18.us-west-2.compute.internal",
+            "priority" : 100
+        }
+    ]
+}

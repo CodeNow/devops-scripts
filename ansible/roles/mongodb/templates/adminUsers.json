@@ -1,0 +1,11 @@
+{
+    "_id" : "admin.r00t",
+        "user" : "r00t",
+        "db" : "admin",
+        "roles" : [
+        {
+            "role" : "root",
+            "db" : "admin"
+        }
+    ]
+}

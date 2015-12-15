@@ -1,0 +1,22 @@
+{
+    "_id" : "{{ env }}.r00t",
+        "user" : "r00t",
+        "db" : "{{ env }}",
+        "roles" : [
+        {
+            "role" : "dbOwner",
+            "db" : "{{ env }}"
+        }
+    ]
+}
+{
+    "_id" : "{{ env }}.api",
+        "user" : "api",
+        "db" : "{{ env }}",
+        "roles" : [
+        {
+            "role" : "dbOwner",
+            "db" : "{{ env }}"
+        }
+    ]
+}
