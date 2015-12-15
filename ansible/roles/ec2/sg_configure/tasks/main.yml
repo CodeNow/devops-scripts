@@ -296,6 +296,10 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_dock }}"
+      - proto: icmp
+        from_port: -1
+        to_port: -1
+        group_id: "{{ sg_mongo }}"
     rules_egress:
       - proto: all
         from_port: -1
