@@ -76,6 +76,15 @@
     path=/var/log/{{ name }}.log
     state=absent
 
+- name: touch the log file
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/log/{{ name }}.log
+    state=touch
+    owner=syslog
+    group=adm
+
 - name: restart rsyslog
   tags: [loggly, deploy]
   sudo: yes
