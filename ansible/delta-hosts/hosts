@@ -6,9 +6,9 @@ delta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDep
 delta-userland-hipache domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
-delta-mongo-us-west-2a
-delta-mongo-us-west-2b
-delta-mongo-us-west-2c
+delta-mongo-a
+delta-mongo-b
+delta-mongo-c
 
 [neo4j]
 delta-neo4j
