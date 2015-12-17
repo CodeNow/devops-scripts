@@ -1,8 +1,7 @@
 ---
-- hosts: 127.0.0.1
+- hosts: ec2
   connection: local
   vars_files:
-    - "group_vars/all.yml"
     - "group_vars/ec2_sg.yml"
   roles:
   - { role: notify, tags: "notify" }

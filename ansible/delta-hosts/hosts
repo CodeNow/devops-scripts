@@ -99,15 +99,10 @@ eru
 shiva
 swarm-manager
 
-[admin]
-delta-admin
-
 [local]
-localhost,
 127.0.0.1
 
-[ec2:children]
-admin
+[ec2]
 local
 
 [targets]

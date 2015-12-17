@@ -1,3 +1,5 @@
 ---
 app_name: "ec2"
 git_branch: "null"
+aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
+aws_secret_key: "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"
