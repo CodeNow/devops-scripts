@@ -103,5 +103,8 @@ sauron
 shiva
 swarm-manager
 
+[ec2]
+127.0.0.1
+
 [targets]
 localhost ansible_connection=local bastion_name=gamma-bastion
