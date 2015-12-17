@@ -119,3 +119,7 @@ navi_mongo_port: 27017
 # consul
 consul_hostname: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
 consul_port: 8500
+
+# ec2
+aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
+aws_secret_key: "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"
