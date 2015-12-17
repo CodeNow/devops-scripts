@@ -13,5 +13,6 @@ container_run_opts: >
 
 container_run_args: >
   join
+  --heartbeat 15s --ttl 30s
    --addr={{ ansible_default_ipv4.address }}:{{ docker_port }}
   consul://{{ consul_host_address }}:{{ consul_api_port }}/swarm
