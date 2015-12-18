@@ -3,7 +3,7 @@ $PrivDropToGroup adm
 
 # start log rotation via outchannel
 # outchannel definition
-$outchannel log_rotation_{{ name }},/var/log/{{ name }}.log,52428800,/opt/runnable/bin/rotate-{{ name }}-logs.sh
+$outchannel log_rotation_{{ name }},/var/log/{{ name }}-daemon.log,52428800,/opt/runnable/bin/rotate-{{ name }}-logs.sh
 #  activate the channel and log everything to it
 if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then :omfile:$log_rotation_{{ name }}
 # end log rotation via outchannel
