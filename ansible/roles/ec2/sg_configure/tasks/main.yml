@@ -77,15 +77,6 @@
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_hipache }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_api }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Docker Container Service SG
   tags:
@@ -178,15 +169,6 @@
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_services }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_dock }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Hipache SG
   tags:
@@ -255,11 +237,6 @@
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_web }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        cidr_ip: 0.0.0.0/0
 
 - name: MongoDB SG
   tags:
@@ -296,15 +273,6 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_dock }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_mongo }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Navi SG
   tags:
@@ -325,15 +293,6 @@
         from_port: 3567
         to_port: 3567
         group_id: "{{ sg_hipache }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_navi }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Neo4J SG
   tags:
@@ -358,15 +317,6 @@
         from_port: 7473
         to_port: 7474
         group_id: "{{ sg_services }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_neo4j }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: RabbitMQ SG
   tags:
@@ -399,15 +349,6 @@
         from_port: 54320
         to_port: 54321
         group_id: "{{ sg_services }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_rabbit }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: RDS SG
   tags:
@@ -428,15 +369,6 @@
         from_port: 5432
         to_port: 5432
         group_id: "{{ sg_services }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_rds }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Redis SG
   tags:
@@ -477,15 +409,6 @@
         from_port: 6379
         to_port: 6379
         group_id: "{{ sg_web }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_redis }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
 
 - name: Services SG
   tags:
@@ -594,15 +517,6 @@
         from_port: 32768
         to_port: 63353
         group_id: "{{ sg_services }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_services }}"
-      - proto: all
-        from_port: -1
-        to_port: -1
-        group_id: "{{ sg_nat }}"
   
 - name: Userland Hipache
   tags:
@@ -618,11 +532,6 @@
       - proto: tcp
         from_port: 80
         to_port: 65535
-        cidr_ip: 0.0.0.0/0
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
         cidr_ip: 0.0.0.0/0
   
 - name: Web
@@ -680,8 +589,3 @@
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_hipache }}"
-    rules_egress:
-      - proto: all
-        from_port: -1
-        to_port: -1
-        cidr_ip: 0.0.0.0/0
