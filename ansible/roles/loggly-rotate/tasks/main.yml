@@ -56,26 +56,11 @@
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
 
-- name: check for current log file
-  tags: [loggly, deploy]
-  stat: path=/var/log/{{ name }}
-  register: log_file
-
-- name: remove old log file
-  when: log_file.stat.exists
-  tags: [loggly, deploy]
-  sudo: yes
-  file:
-    path=/var/log/{{ name }}.log
-    state=absent
-
-# outside of ansible, upstart will write to logfile as root; this is a bandaid until we change upstart's behavior - TODO, cneill 12/16/2015
-# the log destination for npm is set inside the dock-init repo.
 - name: touch the log file
   tags: [loggly, deploy]
   sudo: yes
   file:
-    path=/var/log/{{ name }}.log
+    path=/var/log/{{ name }}-daemon.log
     state=touch
     owner=syslog
     group=adm
