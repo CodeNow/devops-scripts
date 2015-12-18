@@ -8,12 +8,30 @@
     owner=root
     group=root
 
+- name: create runnable bin directory
+  tags: loggly
+  sudo: yes
+  file:
+    path=/opt/runnable/bin
+    state=directory
+    mode=0755
+    owner=ubuntu
+    group=ubuntu
+
+- name: copy rotate util script
+  tags: loggly
+  sudo: yes
+  template:
+    src=rotate-logs.sh.j2
+    dest=/opt/runnable/bin/rotate-{{ name }}-logs.sh
+    mode=0755
+
 - name: copy app config
   tags: loggly
   sudo: yes
   template:
-    src=21-filemonitoring-app.conf.j2
-    dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
+    src=21-output-syslog.conf.j2
+    dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
     owner=root
     group=root
 
@@ -50,6 +68,17 @@
   file:
     path=/var/log/{{ name }}.log
     state=absent
+
+# outside of ansible, upstart will write to logfile as root; this is a bandaid until we change upstart's behavior - TODO, cneill 12/16/2015
+# the log destination for npm is set inside the dock-init repo.
+- name: touch the log file
+  tags: [loggly, deploy]
+  sudo: yes
+  file:
+    path=/var/log/{{ name }}.log
+    state=touch
+    owner=syslog
+    group=adm
 
 - name: restart rsyslog
   tags: [loggly, deploy]
