@@ -11,4 +11,5 @@
   - { role: build_essential }
   - { role: docker_client }
   - { role: git_node_service, tags: [deploy] }
+  - { role: loggly-rotate }
   - { role: consul_value, tags: [deploy, consul_value] }
