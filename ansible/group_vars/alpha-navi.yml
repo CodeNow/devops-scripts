@@ -11,6 +11,7 @@ container_envs: >
   -e CLUSTER_WORKERS=20
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e ENABLE_LRU_CACHE=1
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e LOG_LEVEL_STDOUT=trace
