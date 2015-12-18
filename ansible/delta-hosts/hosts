@@ -37,6 +37,12 @@ delta-services
 [navi]
 delta-navi
 
+[mongo-navi]
+delta-navi
+
+[link]
+delta-navi
+
 [charon]
 delta-services
 
