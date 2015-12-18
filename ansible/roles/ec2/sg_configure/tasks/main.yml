@@ -446,6 +446,10 @@
         to_port: 80
         group_id: "{{ sg_hipache }}"
       - proto: tcp
+        from_port: 80
+        to_port: 80
+        group_id: "{{ sg_services }}"
+      - proto: tcp
         from_port: 443
         to_port: 443
         group_id: "{{ sg_api }}"
@@ -457,6 +461,10 @@
         from_port: 443
         to_port: 443
         group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: 2375
         to_port: 2375
