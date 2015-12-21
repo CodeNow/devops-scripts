@@ -1,10 +1,10 @@
 [api_group:vars]
-api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
-api_aws_secret_access_key=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
-api_github_client_id=b6072dc57062faca7fcb
-api_github_client_secret=ba73a9294dc4bfaa7ed02ba187f73918506e4293
+api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
+api_aws_secret_access_key=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
+api_github_client_id=d42d6634d4070c9d9bf9
+api_github_client_secret=d6cfde38fef5723e25e52629e3d25825c8a704c9
 api_github_deploy_keys_bucket=runnable.deploykeys.production
-api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
+api_mixpanel_app_id=57260a5b6fc972e9c69184882efd009e
 api_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 api_mongo_database=delta
 api_mongo_replset_name=delta-rs0
@@ -17,8 +17,8 @@ api_s3_context_bucket=runnable.context.resources.production
 docker_config=docks
 
 [eru:vars]
-eru_github_id=8abb08f83f6d1c52bd1a
-eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
+eru_github_id=46a23f5f99f0aa9460f8
+eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 
 [khronos:vars]
 khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
@@ -26,18 +26,18 @@ khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
 [optimus:vars]
-optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
-optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
+optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
+optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
 optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 
 [palantiri:vars]
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [registry:vars]
-registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
+registry_s3_access_key=AKIAJKCSFJCHFDITLBUQ
 registry_s3_bucket=runnableimages.alpha
-registry_s3_secret_key=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
-registry_s3_region=us-east-1
+registry_s3_secret_key=LXxpb4F7Kxum1HvYkG0P20Yb/9Qpr+e5Gtt/0bIY
+registry_s3_region=us-west-2
 
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
@@ -56,9 +56,10 @@ vault_aws_region=us-east-1
 
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
+api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 datadog_host_address=10.8.5.63
 datadog_tags=env:delta
-domain=runnable-delta.com
+domain=runnable.io
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-delta
@@ -67,9 +68,7 @@ pg_pass=59a5524e-a772-11e5-bedc-1bdc0db458b3
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.8.4.126
-swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnableapp.com
-api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 
 [ec2:vars]
 aws_custid=437258487404
