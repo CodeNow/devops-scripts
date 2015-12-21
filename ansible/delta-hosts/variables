@@ -34,10 +34,10 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [registry:vars]
-registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
+registry_s3_access_key=AKIAJKCSFJCHFDITLBUQ
 registry_s3_bucket=runnableimages.alpha
-registry_s3_secret_key=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
-registry_s3_region=us-east-1
+registry_s3_secret_key=LXxpb4F7Kxum1HvYkG0P20Yb/9Qpr+e5Gtt/0bIY
+registry_s3_region=us-west-2
 
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
@@ -58,7 +58,7 @@ vault_aws_region=us-east-1
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 datadog_host_address=10.8.5.63
 datadog_tags=env:delta
-domain=runnable-delta.com
+domain=runnable.io
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-delta
