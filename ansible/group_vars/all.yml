@@ -65,13 +65,23 @@ docker_cert_path: /etc/ssl/docker/cert.pem
 docker_key_path: /etc/ssl/docker/key.pem
 docker_port: 4242
 
+# ec2
+aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
+aws_secret_key: "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"
+
 # eru
 eru_port: 57831
 eru_hostname: admin.{{ domain }}
 
+# filibuster
+filibuster_port: 3112
+
 # fluffy
 fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
+
+# krain
+krain_port: 3100
 
 # mavis
 mavis_hostname: mavis.{{ domain }}
@@ -115,11 +125,3 @@ swarm_container_name: swarm
 navi_mongo_database: navi
 navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_mongo_port: 27017
-
-# consul
-consul_hostname: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
-consul_port: 8500
-
-# ec2
-aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
-aws_secret_key: "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"
