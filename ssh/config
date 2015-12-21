@@ -140,7 +140,7 @@ Host hubot
 # beta
 ################################################################################
 Host beta-bastion
-  HostName 52.24.221.234
+  HostName 52.32.129.96
 
 Host 10.20.*.*
   User ubuntu
