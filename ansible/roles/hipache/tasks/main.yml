@@ -22,13 +22,13 @@
   sudo: yes
   template:
     src={{ domain }}.crt
-    dest=/etc/ssl/certs/{ domain }}.crt
+    dest=/etc/ssl/certs/{{ domain }}.crt
 
 - name: copy private ssl key
   sudo: yes
   template:
     src={{ domain }}.key
-    dest=/etc/ssl/private/{{ domain }}.key
+   dest=/etc/ssl/private/{{ domain }}.key
 
 - name: create hipache config directory
   sudo: yes
