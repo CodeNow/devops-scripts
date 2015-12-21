@@ -16,13 +16,13 @@
   sudo: yes
   template:
     src={{ domain }}-ca.crt
-    dest=/etc/ssl/certs/ca.crt
+    dest=/etc/ssl/certs/{{ domain }}/ca.crt
 
 - name: copy {{ domain }}.crt
   sudo: yes
   template:
     src={{ domain }}.crt
-    dest=/etc/ssl/certs/{{ domain }}.crt
+    dest=/etc/ssl/certs/{{ domain }}/{{ domain }}.crt
 
 - name: copy private ssl key
   sudo: yes
