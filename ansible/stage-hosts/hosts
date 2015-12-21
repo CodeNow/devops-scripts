@@ -5,20 +5,21 @@ alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true pr
 localhost ansible_connection=local bastion_name=alpha-bastion
 
 [redis]
-alpha-stage-data
+delta-staging-data
 
 [rabbitmq]
-alpha-stage-data
+delta-staging-data
 
 [consul]
-alpha-stage-data
-alpha-stage-data-2
+delta-staging-data
 
 [vault]
-alpha-stage-data
+delta-staging-data
 
 [swarm-manager]
-alpha-stage-data
+delta-staging-data
+
+[docks]
 
 [stage:children]
 consul
