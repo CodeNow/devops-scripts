@@ -79,10 +79,11 @@ delta-services
 [registry]
 delta-registry
 
-[swarm-manager]
+[sauron]
 delta-services
 
-[docks]
+[swarm-manager]
+delta-services
 
 [delta:children]
 bastion
