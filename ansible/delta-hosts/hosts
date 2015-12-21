@@ -87,6 +87,9 @@ delta-services
 [swarm-manager]
 delta-services
 
+[metis]
+delta-services
+
 [delta:children]
 bastion
 hipache
@@ -107,6 +110,7 @@ rabbitmq
 eru
 sauron
 shiva
+metis
 swarm-manager
 
 [local]
