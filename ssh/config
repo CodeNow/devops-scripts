@@ -279,9 +279,6 @@ Host delta-hipache
 Host delta-userland
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.244 22
 
-Host delta-navi
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
-
 Host delta-mongo-a
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.216 22
 
