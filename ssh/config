@@ -4,12 +4,6 @@ Host alpha*
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/Test-runnable.pem
 
-Host beta*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  IdentityFile ~/.ssh/oregon.pem
-
 Host gamma*
   User ubuntu
   ForwardAgent yes
@@ -143,61 +137,6 @@ Host hubot
   User ubuntu
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
-
-################################################################################
-# beta
-################################################################################
-Host beta-bastion
-  HostName 52.11.219.63
-
-Host 10.20.*.*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@beta-bastion nc %h %p
-  IdentityFile ~/.ssh/oregon.pem
-
-Host beta-mongodb01
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.51 22
-
-Host beta-mongodb02
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.52 22
-
-Host beta-mongodb03
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.53 22
-
-Host beta-neo4j
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.54 22
-
-Host beta-registry
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.55 22
-
-Host beta-redis
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.56 22
-
-Host beta-redis-slave
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.57 22
-
-Host beta-hipache
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.100 22
-
-Host beta-userland-hipache
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.0.101 22
-
-Host beta-api
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.58 22
-
-Host beta-services
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.59 22
-
-Host beta-navi
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.232 22
-
-Host beta-rabbit
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.60 22
-
-Host beta-web
-  ProxyCommand ssh -q ubuntu@beta-bastion nc 10.20.1.61 22
 
 ################################################################################
 # Gamma
