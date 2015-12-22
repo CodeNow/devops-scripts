@@ -3,7 +3,7 @@ delta-bastion
 
 [hipache]
 delta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-delta-userland-hipache domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+delta-userland domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
 delta-mongo-a
@@ -30,6 +30,8 @@ delta-services
 
 [worker]
 delta-api
+
+[docks]
 
 [eru]
 delta-services
@@ -79,10 +81,14 @@ delta-services
 [registry]
 delta-registry
 
+[sauron]
+delta-services
+
 [swarm-manager]
 delta-services
 
-[docks]
+[metis]
+delta-services
 
 [delta:children]
 bastion
@@ -102,7 +108,9 @@ mavis
 optimus
 rabbitmq
 eru
+sauron
 shiva
+metis
 swarm-manager
 
 [local]
