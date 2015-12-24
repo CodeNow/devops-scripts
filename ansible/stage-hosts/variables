@@ -7,6 +7,7 @@ node_env=stage
 rabbit_password=h7n972sPLs5tWGCWe6QPSCnaxDWjvnpEFEA9c9mBqauH3f22
 rabbit_username=5WE5wsEQmfw9sLsppJ4CEq9Auea8mPC4kgVt3xYqKxbYHPfP
 registry_host=10.0.1.254
+consul_host_address=consul-server-staging-codenow.runnableapp.com
 
 [vault:vars]
 vault_auth_token=db6bcf6c-eace-35b2-915a-46aeed706ad6
