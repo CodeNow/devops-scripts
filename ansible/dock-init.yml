@@ -1,11 +1,19 @@
 ---
 - hosts: consul
+- hosts: mongodb
+- hosts: neo4j
+- hosts: rabbit
+- hosts: redis
+- hosts: redis-slave
 
 - hosts: "{{ dock }}"
   vars_files:
     - group_vars/alpha-dock-init.yml
   roles:
   - { role: notify, tags: [notify] }
+  - { role: docker, tags: [docker] }
+  - { role: iptables, tags: [iptables, security] }
+  - { role: datadog }
   - { role: git_repo, tags: [deploy] }
   - { role: dock-init, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }

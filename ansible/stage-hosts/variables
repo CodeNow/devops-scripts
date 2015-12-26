@@ -1,13 +1,12 @@
 [stage:vars]
-ansible_ssh_private_key_file=~/.ssh/Test-runnable.pem
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 consul_host_address=consul-server-staging-codenow.runnableapp.com
-domain=runnable3.net
-node_env=stage
+domain=runnable-angular-staging-codenow.runnableapp.com
+node_env=stageing
 rabbit_password=h7n972sPLs5tWGCWe6QPSCnaxDWjvnpEFEA9c9mBqauH3f22
 rabbit_username=5WE5wsEQmfw9sLsppJ4CEq9Auea8mPC4kgVt3xYqKxbYHPfP
-registry_host=10.0.1.254
+registry_host=10.8.4.126
 vault_auth_token=ff3b5003-5949-5d7d-7c0d-4fa21efe6666
 vault_token_01=c9dd02cd0f28aaeb8b819d50d2b7b274dab5ddc7fc64871a979bcb4472c9355501
 vault_token_02=15cc2b24a82fd3876476dd28b48756f56b4a78d2a23d18f0faca390aaf17092e02

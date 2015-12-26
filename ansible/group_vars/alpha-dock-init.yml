@@ -2,6 +2,9 @@ name: dock-init
 app_name: "{{ name }}"
 app_repo: git@github.com:CodeNow/{{ name }}.git
 
+# for docker role
+docker_config: docks
+
 # consul values
 consul_values:
   - key: "{{ name }}/version"
