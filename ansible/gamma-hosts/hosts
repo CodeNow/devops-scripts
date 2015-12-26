@@ -87,27 +87,30 @@ gamma-services
 
 [docks]
 
+[dock]
+
 [gamma:children]
-bastion
-hipache
-mongodb
 api
-web
-redis
-redis-slave
-docks
-registry
-neo4j
-navi
+bastion
 charon
+dock
+docks
+eru
+hipache
 khronos
 mavis
+mongodb
+navi
+neo4j
 optimus
 rabbitmq
-eru
+redis
+redis-slave
+registry
 sauron
 shiva
 swarm-manager
+web
 
 [ec2]
 127.0.0.1

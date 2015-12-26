@@ -1,7 +1,7 @@
 ---
 - hosts: consul
 
-- hosts: docks
+- hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-image-builder.yml
   roles:

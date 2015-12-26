@@ -1,12 +1,13 @@
 ---
 - hosts: consul
 
-- hosts: docks
+- hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-krain.yml
   roles:
   - { role: notify, tags: [notify] }
   - { role: build_essential }
-  - { role: git_node_service, tags: [deploy] }
+  - { role: git_repo, tags: [deploy] }
+  - { role: node_service, tags: [deploy] }
   - { role: loggly-rotate }
   - { role: consul_value, tags: [deploy, consul_value] }

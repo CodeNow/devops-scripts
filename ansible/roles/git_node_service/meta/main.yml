@@ -1,5 +1,0 @@
----
-dependencies:
-  - { role: base_ubuntu, when: "ansible_distribution == 'Ubuntu'"}
-  - { role: node }
-  - { role: git }

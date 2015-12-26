@@ -1,29 +1,26 @@
+[dock]
+
+[docks]
+
 [hipache]
 alpha-stage-userland-hipache domain=runnable2.net httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [targets]
 localhost ansible_connection=local bastion_name=alpha-bastion
 
-[redis]
-delta-staging-data
-
 [rabbitmq]
 delta-staging-data
 
-[consul]
+[redis]
 delta-staging-data
 
 [vault]
 delta-staging-data
 
-[swarm-manager]
-delta-staging-data
-
-[docks]
-
 [stage:children]
-consul
+dock
 docks
 hipache
 rabbitmq
 redis
+vault
