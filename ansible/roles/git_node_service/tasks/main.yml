@@ -1,6 +1,6 @@
 ---
 - name: pull repo
-  include: git/tasks/main.yml
+  include: ../../git/tasks/main.yml
 
 - name: remove node_modules
   sudo: yes
