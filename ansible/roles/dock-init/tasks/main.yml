@@ -4,7 +4,6 @@
 
 - name: copy vault auth files
   tags: vault_files
-  sudo: yes
   lineinfile:
     dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}"
     line="{{ item.value }}"

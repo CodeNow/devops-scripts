@@ -12,7 +12,6 @@
   roles:
   - { role: notify, tags: [notify] }
   - { role: docker, tags: [docker] }
-  - { role: iptables, tags: [iptables, security] }
   - { role: datadog }
   - { role: git_repo, tags: [deploy] }
   - { role: dock-init, tags: [deploy] }
