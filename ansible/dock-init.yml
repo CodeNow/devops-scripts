@@ -1,10 +1,5 @@
 ---
 - hosts: consul
-- hosts: mongodb
-- hosts: neo4j
-- hosts: rabbit
-- hosts: redis
-- hosts: redis-slave
 
 - hosts: "{{ dock }}"
   vars_files:

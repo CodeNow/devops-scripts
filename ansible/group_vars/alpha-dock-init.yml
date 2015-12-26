@@ -3,7 +3,7 @@ app_name: "{{ name }}"
 app_repo: git@github.com:CodeNow/{{ name }}.git
 
 # for docker role
-docker_config: docks
+docker_config: dock
 
 # consul values
 consul_values:

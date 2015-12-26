@@ -13,13 +13,6 @@
     state=latest
     production=yes
 
-- name: create new config file
-  sudo: yes
-  template:
-    src=upstart.conf
-    dest=/etc/init/{{ app_name }}.conf
-    backup=yes
-
 - name: make override file
   tags: deploy
   sudo: yes
@@ -27,6 +20,13 @@
     dest="/etc/init/{{ app_name }}.override"
     line="manual"
     create=yes
+
+- name: create new config file
+  sudo: yes
+  template:
+    src=upstart.conf
+    dest=/etc/init/{{ app_name }}.conf
+    backup=yes
 
 - name: restart service {{ app_name }}
   tags: deploy
