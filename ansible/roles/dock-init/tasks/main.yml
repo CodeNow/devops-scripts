@@ -1,0 +1,16 @@
+---
+- fail: msg="value tokens need to be defined for this role"
+  when: vault_auth_token is not defined or vault_token_01 is not defined or vault_token_02 is not defined or vault_token_03 is not defined
+
+- name: copy vault auth files
+  tags: vault_files
+  sudo: yes
+  lineinfile:
+    dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}"
+    line="{{ item.value }}"
+    create=yes
+  with_items:
+  - { file_name: 'auth-token', value: "{{ vault_auth_token }}" }
+  - { file_name: 'token-01', value: "{{ vault_token_01 }}" }
+  - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
+  - { file_name: 'token-03', value: "{{ vault_token_03 }}" }

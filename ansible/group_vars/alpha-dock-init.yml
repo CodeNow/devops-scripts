@@ -1,5 +1,6 @@
 name: dock-init
 app_name: "{{ name }}"
+app_repo: git@github.com:CodeNow/{{ name }}.git
 
 # consul values
 consul_values:

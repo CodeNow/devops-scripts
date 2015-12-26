@@ -1,21 +1,6 @@
 ---
-- name: create {{ app_name }} repository dir
-  sudo: yes
-  file:
-    path=/opt/runnable/{{ app_name }}
-    state=directory
-    owner={{ ansible_env.USER }}
-
-- name: pull the git repository
-  sudo: yes
-  git:
-    repo={{ app_repo }}
-    dest=/opt/runnable/{{ app_name }}
-    version={{ git_branch }}
-    update=yes
-    accept_hostkey=True
-    force=yes
-    key_file=/opt/runnable/dock-init/key/id_rsa_runnabledock
+- name: pull repo
+  include: git/tasks/main.yml
 
 - name: remove node_modules
   sudo: yes

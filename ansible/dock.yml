@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  tasks:
+  - fail: msg="`dock` (target dock) needs to be defined to run this role"
+    when: dock is not defined
+  - add_host:
+      name={{ dock }}
+      groups=dock
+
+# - hosts: consul
+# - hosts: mongodb
+# - hosts: neo4j
+# - hosts: rabbit
+# - hosts: redis
+# - hosts: redis-slave
+
+# - hosts: {{ dock }}
+#   vars_files:
+#     - "group_vars/alpha-docks.yml"
+#   roles:
+#     - { role: docker, tags: "docker" }
+#     - { role: iptables, tags: "iptables, security" }
+#     - { role: datadog }
+
+- include: dock-init.yml git_branch=v5.1.3
+# - include: krain.yml
+# - include: filibuster.yml
+# - include: sauron.yml
+# - include: image-builder.yml
+# - include: charon.yml
