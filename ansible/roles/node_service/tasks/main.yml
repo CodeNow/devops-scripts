@@ -1,0 +1,31 @@
+---
+- name: remove node_modules
+  when: remove_node_modules is defined
+  file:
+    path=/opt/runnable/{{ app_name }}/node_modules
+    state=absent
+
+- name: npm install {{ app_name }}
+  npm:
+    path=/opt/runnable/{{ app_name }}
+    state=latest
+    production=yes
+
+- name: add env to configs
+  tags: 'update_configs'
+  sudo: yes
+  when: enviroment_vars is defined
+  with_dict: "{{ enviroment_vars }}"
+  lineinfile:
+    dest=/etc/init/{{ app_name }}.conf
+    regexp="env {{ item.key }}"
+    insertafter="env NPM_BIN"
+    line="env {{ item.key }}={{ item.value }}"
+    state=present
+
+- name: restart service {{ app_name }}
+  sudo: yes
+  service:
+    name={{ app_name }}
+    state=restarted
+    enabled=yes
