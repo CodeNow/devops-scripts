@@ -11,6 +11,27 @@ Host delta*
   Identityfile ~/.ssh/delta.pem
 
 ################################################################################
+# oregon
+################################################################################
+Host oregon-bastion
+  HostName 52.25.121.228
+  User ubuntu
+  ForwardAgent yes 
+  IdentityFile ~/.ssh/oregon.pem
+                   
+Host migration-router
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.254 22
+  User ubuntu
+  ForwardAgent yes 
+  IdentityFile ~/.ssh/oregon.pem
+                               
+Host hubot
+  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.230 22
+  User ubuntu
+  ForwardAgent yes 
+  IdentityFile ~/.ssh/oregon.pem
+
+################################################################################
 # DELTA staging runnable.io
 ################################################################################
 
