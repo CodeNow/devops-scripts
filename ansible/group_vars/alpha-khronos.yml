@@ -20,6 +20,7 @@ cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js 
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
