@@ -2,6 +2,7 @@
 - hosts: redis
 - hosts: detention
 - hosts: mongo-navi
+- hosts: rabbit
 
 - hosts: navi
   vars_files:
