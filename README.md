@@ -73,6 +73,8 @@ If, for some reason, the new deploy is not operating as expected you can quickly
 
 It is the custom at Runnable to play a song to the entire team when deploying. For each of the repositories here are the respective songs:
 
+*NEW JUAREZ* [stack: The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV. Presto; Allegro molto assai (Alla marcia); Andante maestroso; Allegro energico, sempre ben marcato.] (https://www.youtube.com/watch?v=4g5770gaais)
+
 [api: Push it - Rick Ross](https://www.youtube.com/watch?v=qk2jeE1LOn8)
 
 [runnable-angular: Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA)
@@ -100,5 +102,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 [swarm-deamon: Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q)
 
 [vault / vault-values: Seal - Kiss From A Rose](https://www.youtube.com/watch?v=zP3so2hY4CM)
+
+[Sauron: Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY)
 
 **IMPORTANT:** Make sure the play the song loud and proud when deploying!

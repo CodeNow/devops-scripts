@@ -1,0 +1,6 @@
+---
+- hosts: ec2
+  vars_files:
+    - "group_vars/ec2_sg.yml"
+  roles:
+  - { role: create_sg }

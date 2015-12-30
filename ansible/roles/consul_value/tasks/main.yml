@@ -1,5 +1,6 @@
 ---
 - name: make sure httplib2 is installed
+  run_once: true
   sudo: yes
   apt:
     package=python-httplib2
@@ -9,9 +10,9 @@
 
 - name: put values into consul
   run_once: true
-  when: consul_hostname is defined and consul_port is defined and consul_values is defined
+  when: consul_host_address is defined and consul_api_port is defined and consul_values is defined
   uri:
     method=PUT
-    url=http://{{ consul_hostname }}:{{ consul_port }}/v1/kv/{{ item.key }}
+    url=http://{{ consul_host_address }}:{{ consul_api_port }}/v1/kv/{{ item.key }}
     body="{{ item.value }}"
   with_items: "{{ consul_values }}"

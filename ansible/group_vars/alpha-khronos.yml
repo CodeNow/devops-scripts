@@ -8,7 +8,7 @@ npm_version: "2.1.18"
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
-cron_queues: khronos:containers:image-builder:prune khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
+cron_queues: khronos:containers:image-builder:prune khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune khronos:docks:obliterate-codenow
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
@@ -20,6 +20,7 @@ cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js 
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
