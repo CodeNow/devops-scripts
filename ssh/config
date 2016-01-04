@@ -83,14 +83,14 @@ Host gamma-api-us-west-2a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.170 22
 
 ## Gamma MongoDB
-Host gamma-mongo-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.144 22
+Host gamma-mongo-a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.56 22
 
-Host gamma-mongo-us-west-2b
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.57 22
+Host gamma-mongo-b
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.8.241 22
 
-Host gamma-mongo-us-west-2c
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.15.18 22
+Host gamma-mongo-c
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.116 22
 
 ## Gamma Rabbit
 Host gamma-rabbit
