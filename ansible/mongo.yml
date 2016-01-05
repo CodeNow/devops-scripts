@@ -6,3 +6,4 @@
   - { role: notify, tags: "notify" }
   - { role: database }
   - { role: container_kill_start, tags: "deploy" }
+  - { role: datadog }

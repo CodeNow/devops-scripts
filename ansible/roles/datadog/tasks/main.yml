@@ -1,4 +1,20 @@
 ---
+- name: install dd agent
+  tags: ['datadog']
+  sudo: yes
+  apt:
+    name=datadog-agent
+    state=latest
+
+- name: create dd configdir
+  tags: ['datadog']
+  sudo: yes
+  file:
+    path=/etc/dd-agent/conf.d
+    owner=root
+    mode=0555
+    state=directory
+
 - name: add https transport
   tags: ['datadog']
   sudo: yes
@@ -39,8 +55,17 @@
     dest=/etc/dd-agent/conf.d/tcp_check.yaml
   notify: restart datadog-agent
 
+# assumes a config for {{ app_name }} exists
+- name: install datadog integrations
+  tags: ['datadog']
+  sudo: yes
+  template:
+    src="{{ app_name }}.yaml.j2"
+    dest="/etc/dd-agent/conf.d/{{ app_name }}.yaml.j2"
+  notify: restart datadog-agent
+
 - name: force restart
-  tags: ['datadogg']
+  tags: ['datadog']
   command: echo restart datadog
   when: force_restart is defined
   notify: restart datadog-agent
