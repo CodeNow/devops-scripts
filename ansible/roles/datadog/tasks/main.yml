@@ -29,6 +29,12 @@
     name=datadog-agent
     state=latest
 
+- name: add docker to dd-agent group
+  tags: ['datadog']
+  sudo: yes
+  when: name != "mongo"
+  shell: usermod -a -G docker dd-agent
+
 - name: create dd configdir
   tags: ['datadog']
   sudo: yes
@@ -53,6 +59,15 @@
   template:
     src=tcp_check.yaml.j2
     dest=/etc/dd-agent/conf.d/tcp_check.yaml
+  notify: restart datadog-agent
+
+- name: install docker integration
+  tags: ['datadog']
+  sudo: yes
+  when: name != "mongo"
+  template:
+    src=docker_daemon.yaml.j2
+    dest=/etc/dd-agent/conf.d/docker_daemon.yaml
   notify: restart datadog-agent
 
 # assumes a config for {{ name }} exists
