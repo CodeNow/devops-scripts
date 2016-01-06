@@ -32,7 +32,7 @@
 - name: add docker to dd-agent group
   tags: ['datadog']
   sudo: yes
-  when: name != "mongo"
+  when: not no_dd_monitoring
   shell: usermod -a -G docker dd-agent
 
 - name: create dd configdir
@@ -64,7 +64,7 @@
 - name: install docker integration
   tags: ['datadog']
   sudo: yes
-  when: name != "mongo"
+  when: not no_dd_monitoring
   template:
     src=docker_daemon.yaml.j2
     dest=/etc/dd-agent/conf.d/docker_daemon.yaml

@@ -72,6 +72,7 @@ registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+no_dd_monitoring=false
 
 [ec2:vars]
 env=gamma
