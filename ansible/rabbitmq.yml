@@ -7,4 +7,4 @@
   - { role: database }
   - { role: rabbitmq }
   - { role: container_kill_start, tags: "deploy" }
-  - { role: datadog }
+  - { role: datadog, tags: datadog }

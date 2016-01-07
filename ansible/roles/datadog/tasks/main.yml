@@ -1,13 +1,11 @@
 ---
 - name: add https transport
-  tags: ['datadog']
   sudo: yes
   apt:
     name=apt-transport-https
     state=latest
 
 - name: add datadog apt key
-  tags: ['datadog']
   sudo: yes
   apt_key:
     id=C7A7DA52
@@ -15,7 +13,6 @@
     state=present
 
 - name: add datadog repository
-  tags: ['datadog']
   sudo: yes
   apt_repository:
     repo='deb http://apt.datadoghq.com/ stable main'
@@ -23,14 +20,12 @@
     update_cache=yes
 
 - name: install dd agent
-  tags: ['datadog']
   sudo: yes
   apt:
     name=datadog-agent
     state=latest
 
 - name: add docker to dd-agent group
-  tags: ['datadog']
   sudo: yes
   when: no_dd_monitoring != false
   user:
@@ -38,7 +33,6 @@
     groups=docker
 
 - name: create dd configdir
-  tags: ['datadog']
   sudo: yes
   file:
     path=/etc/dd-agent/conf.d
@@ -47,7 +41,6 @@
     state=directory
 
 - name: Create main Datadog agent configuration file
-  tags: ['datadog']
   sudo: yes
   template:
     src=datadog.conf.j2
@@ -55,7 +48,6 @@
   notify: restart datadog-agent
 
 - name: install network checks for dock services
-  tags: ['datadog']
   sudo: yes
   when: docker_config == "docks"
   template:
@@ -64,7 +56,6 @@
   notify: restart datadog-agent
 
 - name: install docker integration
-  tags: ['datadog']
   sudo: yes
   when: no_dd_monitoring != false
   template:
@@ -74,7 +65,6 @@
 
 # assumes a config for {{ name }} exists
 - name: install datadog integrations
-  tags: ['datadog']
   sudo: yes
   template:
     src="{{ name }}.yaml.j2"
@@ -82,7 +72,6 @@
   notify: restart datadog-agent
 
 - name: force restart
-  tags: ['datadog']
   command: echo restart datadog
   when: force_restart is defined
   notify: restart datadog-agent
