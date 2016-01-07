@@ -9,4 +9,3 @@
   - { role: container_kill_start,
       container_run_args: "redis-server --slaveof {{ redis_host_address }} 6379",
       tags: "deploy" }
-  - { role: datadog, tags: "datadog" }
