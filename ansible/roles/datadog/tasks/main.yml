@@ -27,7 +27,7 @@
 
 - name: add docker to dd-agent group
   sudo: yes
-  when: no_dd_monitoring != false
+  when: no_dd_monitoring != true
   user:
     name=dd-agent
     groups=docker
@@ -57,7 +57,7 @@
 
 - name: install docker integration
   sudo: yes
-  when: no_dd_monitoring != false
+  when: no_dd_monitoring != true
   template:
     src=docker_daemon.yaml.j2
     dest=/etc/dd-agent/conf.d/docker_daemon.yaml
@@ -66,6 +66,7 @@
 # assumes a config for {{ name }} exists
 - name: install datadog integrations
   sudo: yes
+  when: docker_config != "docks"
   template:
     src="{{ name }}.yaml.j2"
     dest="/etc/dd-agent/conf.d/{{ name }}.yaml"
