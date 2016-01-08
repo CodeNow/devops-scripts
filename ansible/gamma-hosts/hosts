@@ -29,7 +29,7 @@ gamma-web
 gamma-services
 
 [worker]
-gamma-worker
+gamma-api-worker
 
 [eru]
 gamma-services
