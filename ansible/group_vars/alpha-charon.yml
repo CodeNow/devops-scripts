@@ -4,7 +4,7 @@ app_repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: ["{{ charon_port }}"]
 
 enviroment_vars:
-  API_HOST: "{{ api_hostname }}"
+  API_HOST: "https://{{ api_hostname }}"
   API_TOKEN: 51c61b779f3de616a9639cfc44a22c79fbd8e328
   DATADOG_HOST: "{{ datadog_host_address }}"
   DATADOG_PORT: "{{ datadog_port }}"
