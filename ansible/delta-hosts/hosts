@@ -20,6 +20,9 @@ api
 [api]
 delta-api
 
+[worker]
+delta-api-worker
+
 [consul]
 delta-services
 delta-api

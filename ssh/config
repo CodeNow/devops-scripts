@@ -170,6 +170,9 @@ Host delta-admin
 Host delta-api
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.212 22
 
+Host delta-api-worker
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.132 22
+
 Host delta-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
 
