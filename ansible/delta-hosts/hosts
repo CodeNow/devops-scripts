@@ -98,6 +98,7 @@ bastion
 hipache
 mongodb
 api
+worker
 web
 redis
 redis-slave
