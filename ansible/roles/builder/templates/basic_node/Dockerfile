@@ -22,14 +22,14 @@ RUN {{ command }}
 {% endif %}
 
 # Add package.json from the current build context (`.` is the repo) first
-ADD ./package.json /{{ name }}/package.json
+ADD ./repo/package.json /{{ name }}/package.json
 
 # install, should will skip if no package.json change
 WORKDIR /{{ name }}
 RUN npm install --production
 
 # move the current build context (`.` is the repo) to /{{ name }}
-ADD . /{{ name }}
+ADD ./repo /{{ name }}
 
 {% if dockerfile_post_install_commands is defined %}
 {% for command in dockerfile_post_install_commands %}
