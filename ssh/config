@@ -83,10 +83,10 @@ Host gamma-api-us-west-2a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.170 22
 
 Host gamma-api-worker
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.225 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.212 22
 
 Host gamma-api-worker-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.225 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.212 22
 
 ## Gamma MongoDB
 Host gamma-mongo-a
