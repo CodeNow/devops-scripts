@@ -74,6 +74,9 @@ user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 no_dd_monitoring=false
 
+[navi:vars]
+navi_new_relic_app_name=gamma-navi
+
 [ec2:vars]
 env=gamma
 aws_custid=437258487404
