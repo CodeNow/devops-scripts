@@ -29,7 +29,7 @@ gamma-web
 gamma-services
 
 [worker]
-gamma-api
+gamma-api-worker
 
 [eru]
 gamma-services
@@ -95,6 +95,7 @@ bastion
 hipache
 mongodb
 api
+worker
 web
 redis
 redis-slave
