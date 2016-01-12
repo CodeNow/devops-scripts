@@ -25,6 +25,9 @@ khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
+[navi:vars]
+navi_new_relic_app_name=delta-navi
+
 [optimus:vars]
 optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
@@ -70,9 +73,6 @@ rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.8.4.126
 user_content_domain=runnableapp.com
-
-[navi:vars]
-navi_new_relic_app_name=delta-navi
 
 [ec2:vars]
 aws_custid=437258487404
