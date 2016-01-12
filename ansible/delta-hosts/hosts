@@ -29,7 +29,7 @@ delta-web
 delta-services
 
 [worker]
-delta-api
+delta-api-worker
 
 [docks]
 
@@ -97,6 +97,7 @@ bastion
 hipache
 mongodb
 api
+worker
 web
 redis
 redis-slave

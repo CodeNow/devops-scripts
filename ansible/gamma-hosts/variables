@@ -21,7 +21,7 @@ eru_github_id=8abb08f83f6d1c52bd1a
 eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 
 [khronos:vars]
-khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
+khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
 
@@ -54,6 +54,8 @@ vault_aws_region=us-east-1
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 datadog_host_address=10.4.6.251
 datadog_tags=env:gamma
+datadog_mongodb_user=datadog
+datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 domain=runnable-gamma.com
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
@@ -66,6 +68,7 @@ registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+no_dd_monitoring=false
 vault_auth_token=e22c3ebc-11cf-653b-7df0-79d78a499458
 vault_token_01=71d7b4754686013c8b9cfb22bafae79c661849dcd67c483c89efba12c0466aa201
 vault_token_02=794d6f7a3459c332a1fd2bbcc9230a7f84f1639806039ee8be547828cd7ab03a02

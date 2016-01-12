@@ -21,7 +21,7 @@ eru_github_id=46a23f5f99f0aa9460f8
 eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 
 [khronos:vars]
-khronos_mongo_auth=api:oW4c7x9Wiv28oiNBy2Bc
+khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
@@ -59,8 +59,9 @@ domain=runnable.io
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-delta
-pg_host=delta-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
+pg_host=delta-infradb.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=59a5524e-a772-11e5-bedc-1bdc0db458b3
+pg_user=astral
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.8.4.126

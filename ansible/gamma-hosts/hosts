@@ -6,9 +6,9 @@ gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDep
 gamma-userland-hipache domain=runnable.ninja httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
-gamma-mongo-us-west-2a
-gamma-mongo-us-west-2b
-gamma-mongo-us-west-2c
+gamma-mongo-a
+gamma-mongo-b
+gamma-mongo-c
 
 [neo4j]
 gamma-neo4j
@@ -29,7 +29,7 @@ gamma-web
 gamma-services
 
 [worker]
-gamma-api
+gamma-api-worker
 
 [eru]
 gamma-services
@@ -85,6 +85,9 @@ gamma-registry
 [swarm-manager]
 gamma-services
 
+[metis]
+gamma-services
+
 [docks]
 
 [dock]
@@ -104,6 +107,9 @@ navi
 neo4j
 optimus
 rabbitmq
+api
+worker
+web
 redis
 redis-slave
 registry
@@ -111,6 +117,7 @@ sauron
 shiva
 swarm-manager
 web
+metis
 
 [ec2]
 127.0.0.1
