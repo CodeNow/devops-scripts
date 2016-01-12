@@ -71,6 +71,9 @@ rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.8.4.126
 user_content_domain=runnableapp.com
 
+[navi:vars]
+navi_new_relic_app_name=delta-navi
+
 [ec2:vars]
 aws_custid=437258487404
 sg_hipache=sg-7fd7fb1b
