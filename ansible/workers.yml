@@ -7,7 +7,7 @@
 - hosts: redis
 - hosts: swarm-manager
 
-- hosts: api
+- hosts: worker
   vars_files:
     - "group_vars/alpha-workers.yml"
   roles:

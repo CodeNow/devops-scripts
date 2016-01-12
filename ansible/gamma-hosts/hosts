@@ -29,7 +29,7 @@ gamma-web
 gamma-services
 
 [worker]
-gamma-api
+gamma-api-worker
 
 [eru]
 gamma-services
@@ -85,6 +85,9 @@ gamma-registry
 [swarm-manager]
 gamma-services
 
+[metis]
+gamma-services
+
 [docks]
 
 [gamma:children]
@@ -92,6 +95,7 @@ bastion
 hipache
 mongodb
 api
+worker
 web
 redis
 redis-slave
@@ -108,6 +112,7 @@ eru
 sauron
 shiva
 swarm-manager
+metis
 
 [ec2]
 127.0.0.1
