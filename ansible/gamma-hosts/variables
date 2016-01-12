@@ -25,6 +25,9 @@ khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
 
+[navi:vars]
+navi_new_relic_app_name=gamma-navi
+
 [optimus:vars]
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
