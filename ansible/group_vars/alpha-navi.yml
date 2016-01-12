@@ -27,7 +27,6 @@ container_envs: >
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
 
-
 container_run_opts: >
   -h {{ name }}
   -d
