@@ -1,4 +1,19 @@
 ---
+- name: create docker cert directory
+  sudo: yes
+  file:
+    path=/etc/ssl/docker
+    state=directory
+
+- name: copy docker certs
+  sudo: yes
+  copy:
+    src=certs
+    dest=/etc/ssl/docker
+    mode=0440
+    owner=root
+    group=root
+
 - name: change core dump path
   sudo: yes
   when: docker_config == "runnable"

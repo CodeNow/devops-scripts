@@ -6,6 +6,7 @@
     - group_vars/alpha-dock-init.yml
   roles:
   - { role: notify, tags: [notify] }
+  - { role: docker_client, tags: [docker] }
   - { role: docker, tags: [docker] }
   - { role: git_repo, tags: [deploy] }
   - { role: dock-init, tags: [deploy] }
