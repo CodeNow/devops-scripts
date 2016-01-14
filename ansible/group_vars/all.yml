@@ -35,7 +35,7 @@ loggly_username: ops
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
-api_url: {{ api_url }}
+api_url: "{{ api_url }}"
 api_neo4j_port: 7474
 api_neo4j_protocol: http://
 api_port: 80
