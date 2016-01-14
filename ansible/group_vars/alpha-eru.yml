@@ -15,7 +15,7 @@ container_envs: >
   -e ADMIN_DOMAIN={{ eru_hostname }}
   -e ADMIN_GITHUB_ID={{ eru_github_id }}
   -e ADMIN_GITHUB_SECRET={{ eru_github_secret }}
-  -e API_URL=https://{{ api_hostname }}
+  -e API_URL={{ api_url }}
   -e RUNNABLE_HOST={{ domain }}
   -e PORT={{ hosted_ports[0] }}
 
