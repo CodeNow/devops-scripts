@@ -23,9 +23,18 @@
     dest="{{ build_dir }}/{{ name }}"
   tags: 'genDockerfile'
 
+- name: generate random string
+  shell: "cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 8"
+  register: tag_randomizer
+  changed_when: tag_randomizer.stdout != ''
+
 - name: build docker image and tag
-  command: sudo docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+  command: sudo docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}_{{ tag_randomizer.stdout }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
   when: not do_not_push
   command: sudo docker push {{ container_image }}:{{ container_tag }}
+
+- name: spam
+  sudo: yes
+  command: docker ps
