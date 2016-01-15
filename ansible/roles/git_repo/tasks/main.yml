@@ -1,3 +1,4 @@
+
 - name: create {{ app_name }} repository dir
   sudo: yes
   file:
