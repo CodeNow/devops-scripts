@@ -9,7 +9,7 @@ npm_version: "2.1.18"
 rollbar_token: "162a053bebd34e9eb6e2860543c7ae79"
 
 dockerfile_enviroment: [
-  "API_URL https//api.{{ domain }}",
+  "API_URL https://api.{{ domain }}",
   "USER_CONTENT_DOMAIN {{ user_content_domain }}",
   "NODE_ENV production"
 ]
