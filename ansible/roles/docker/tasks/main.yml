@@ -8,7 +8,7 @@
 - name: copy docker certs
   sudo: yes
   copy:
-    src=certs
+    src=certs/
     dest=/etc/ssl/docker
     mode=0440
     owner=root

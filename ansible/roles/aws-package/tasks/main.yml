@@ -1,0 +1,25 @@
+---
+  -name: Check if /usr/local/bin exsits
+   become: true
+   file:
+     Path=/usr/local/bin
+     state=directory
+
+  -name: Install ec2-metadata in /usr/local/bin
+   become:
+    get_url: url=http://s3.amazonaws.com/ec2metadata/ec2-metadata dest=/usr/local/bin mode=0755
+
+  -name: Check of /usr/local/ec2
+   become: true
+   file:
+     path=/usr/local/ec2
+     state=directory
+
+  -name: Download the zip file for ec2-api-tools
+   become: true
+   get_url: url=http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip dest=/tmp/ec2 mode=0755
+
+  -name: Unzip the ec2-api-tool
+   become: true
+   unarchive: src=/tmp/ec2/ec2-api-tools.zip dest=/usr/local/ec2 copy=no
+
