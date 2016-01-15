@@ -33,6 +33,8 @@ delta-api-worker
 
 [docks]
 
+[dock]
+
 [eru]
 delta-services
 
@@ -113,6 +115,7 @@ sauron
 shiva
 metis
 swarm-manager
+dock
 
 [local]
 127.0.0.1

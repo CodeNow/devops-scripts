@@ -1,0 +1,4 @@
+---
+- name: update cache for apt repository
+  apt:
+    update_cache=yes

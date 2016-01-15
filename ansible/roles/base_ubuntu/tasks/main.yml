@@ -1,6 +1,7 @@
 ---
 - name: ensure registry.runnable in /etc/hosts
   sudo: yes
+  when: dock is not defined
   lineinfile:
     dest=/etc/hosts
     line="{{ registry_host }} registry.runnable.com"

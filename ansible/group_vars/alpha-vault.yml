@@ -6,6 +6,8 @@ db_path: /opt/runnable/vault
 container_image: runnable/vault
 container_tag: v0.3.1
 
+log_driver: json-file
+
 container_run_opts: >
   -d
   -h {{ inventory_hostname }}
@@ -19,7 +21,6 @@ container_run_args: >
   vault server
   -log-level=warn
   -config=/vault.hcl
-  > /var/log/vault.log 2>&1
 
 # vault seed data
 # pulled 2015/16/12 - Bryan
