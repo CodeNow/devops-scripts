@@ -15,7 +15,7 @@
 
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
-  shell: "sudo docker ps | grep {{ container_image }}: | awk '{print $1}'"
+  shell: "sudo docker ps | grep -v '^CONTAINER' | awk '{print $1,$2}' | grep -e {{ container_image }} -v -e ':'|awk -F' ' '{print $1}'" 
   register: old_containers_id
   changed_when: old_containers_id.stdout != ''
 

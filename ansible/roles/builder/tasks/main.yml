@@ -29,3 +29,6 @@
 - name: push docker image
   when: not do_not_push
   command: sudo docker push {{ container_image }}:{{ container_tag }}
+
+- name: show current docker ps
+  command: sudo docker ps
