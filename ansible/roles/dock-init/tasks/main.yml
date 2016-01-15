@@ -13,3 +13,12 @@
   - { file_name: 'token-01', value: "{{ vault_token_01 }}" }
   - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
   - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
+
+- name: Install jq
+  become: true
+  tags: "Install jq"
+  apt:
+    pkg=jq
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800
