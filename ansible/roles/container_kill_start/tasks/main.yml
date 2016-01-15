@@ -1,4 +1,7 @@
 ---
+- name: "spam"
+  shell: "sudo docker ps"
+
 - name: "look for stopped {{ container_image }} containers"
   shell: >
     sudo docker ps -a |
