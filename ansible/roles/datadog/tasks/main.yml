@@ -27,7 +27,7 @@
 
 - name: add docker to dd-agent group
   sudo: yes
-  when: no_dd_monitoring != true
+  when: no_dd_monitoring is defined
   user:
     name=dd-agent
     groups=docker
@@ -57,7 +57,7 @@
 
 - name: install docker integration
   sudo: yes
-  when: no_dd_monitoring != true
+  when: no_dd_monitoring is defined
   template:
     src=docker_daemon.yaml.j2
     dest=/etc/dd-agent/conf.d/docker_daemon.yaml
