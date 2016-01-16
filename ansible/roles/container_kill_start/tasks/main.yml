@@ -23,7 +23,6 @@
 
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
-  #shell: "sudo docker ps | grep -v '^CONTAINER' | awk '{print $1,$2}' | grep -e {{ container_image }} -v -e ':'|awk -F' ' '{print $1}'" 
   sudo: yes
   shell: "/root/findTagRunning.sh {{ container_image }}"
   register: old_containers_id
