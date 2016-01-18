@@ -59,7 +59,6 @@ vault_aws_region=us-east-1
 
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
-datadog_host_address=10.4.6.251
 datadog_tags=env:gamma
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
@@ -75,7 +74,6 @@ registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-no_dd_monitoring=false
 
 [ec2:vars]
 env=gamma
