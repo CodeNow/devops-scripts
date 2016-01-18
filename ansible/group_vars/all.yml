@@ -52,7 +52,6 @@ consul_api_port: 8500
 
 # datadog
 datadog_api_key: 6488896fe0c811965ef233b96809d70d
-# not sure this ever gets referenced by anything
 datadog_host_address: "{{ ansible_default_ipv4.address }}"
 datadog_port: 8125
 
