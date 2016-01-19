@@ -109,4 +109,4 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 
 [Link: Zelda Main Theme Song](https://www.youtube.com/watch?v=cGufy1PAeTU)
 
-**IMPORTANT:** Make sure the play the song loud and proud when deploying!
+**IMPORTANT:** Make sure to play the song loud and proud when deploying!
