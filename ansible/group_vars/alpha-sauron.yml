@@ -30,6 +30,8 @@ container_envs: >
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e WEAVE_PATH={{ weave_path }}
+  -e SWARM_HOSTNAME={{ swarm_host_address }}
+  -e SWARM_PORT={{ swarm_master_port }}  
 
 container_run_opts: >
   -h {{ name }}
