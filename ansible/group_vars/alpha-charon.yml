@@ -17,3 +17,5 @@ enviroment_vars:
 consul_values:
   - key: "{{ name }}/version"
     value: "{{ git_branch }}"
+  - key: api/url
+    value: "{{ api_url }}"
