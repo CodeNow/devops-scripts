@@ -11,22 +11,16 @@ Host delta*
   Identityfile ~/.ssh/delta.pem
 
 ################################################################################
-# oregon
+# utility
 ################################################################################
-Host oregon-bastion
-  HostName 52.25.121.228
-  User ubuntu
-  ForwardAgent yes
-  IdentityFile ~/.ssh/oregon.pem
-
 Host migration-router
-  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.254 22
+  HostName 52.24.117.16
   User ubuntu
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
 
 Host hubot
-  ProxyCommand ssh -q ubuntu@oregon-bastion nc 10.2.0.230 22
+  HostName 52.24.128.35
   User ubuntu
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
@@ -37,15 +31,6 @@ Host hubot
 
 Host delta-staging-data
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.59 22
-
-################################################################################
-# oregon
-################################################################################
-Host oregon-bastion
-  HostName 52.25.121.228
-  User ubuntu
-  ForwardAgent yes
-  IdentityFile ~/.ssh/oregon.pem
 
 ################################################################################
 # Gamma
