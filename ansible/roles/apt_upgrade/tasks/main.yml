@@ -1,4 +1,5 @@
 ---
 - name: upgrade a server
+  sudo: yes
   apt:
      upgrade=full
