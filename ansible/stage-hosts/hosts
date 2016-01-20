@@ -7,16 +7,19 @@ localhost ansible_connection=local bastion_name=alpha-bastion
 [rabbitmq]
 delta-staging-data
 
+[consul]
+delta-staging-data
+
 [redis]
 delta-staging-data
 
 [vault]
 delta-staging-data
 
+[docks]
+
 [stage:children]
-dock
 docks
 hipache
 rabbitmq
 redis
-vault
