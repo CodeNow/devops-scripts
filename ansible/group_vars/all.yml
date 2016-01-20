@@ -3,6 +3,13 @@
 registry_env: prod
 registry_port: 80
 
+# ntp servers
+ntp_servers:
+- 0.north-america.pool.ntp.org
+- 1.north-america.pool.ntp.org
+- 2.north-america.pool.ntp.org
+- 3.north-america.pool.ntp.org
+
 # for docker stop old container
 stop_time: 5
 
