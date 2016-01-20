@@ -1,0 +1,18 @@
+---
+- name: Restart ntp
+  sudo: yes
+  service:
+    name=ntp
+    state=restarted
+
+- name: Froce ntp update
+  sudo: yes
+  shell:
+    "service ntp stop && /usr/sbin/ntpdate pool.ntp.org && service ntp start"
+
+- name: Start and Enable ntp
+  sudo: yes
+  service:
+    name=ntp
+    state=started
+    enabled=yes

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+    name : restart services
+    sudo: yes
+    service:
+      name={{ item }}
+      state=restarted
+    with_items:
+      - ntp
