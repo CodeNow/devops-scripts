@@ -16,13 +16,9 @@ delta-staging-data
 [vault]
 delta-staging-data
 
-[swarm-manager]
-delta-staging-data
-
 [docks]
 
 [stage:children]
-consul
 docks
 hipache
 rabbitmq
