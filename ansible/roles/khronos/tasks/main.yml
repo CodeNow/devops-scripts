@@ -6,12 +6,23 @@
     mode=0744
     dest="/opt/runnable/khronos-cron.sh"
 
-# Run Cronjob once every day at 11:30am PST (19:30 UTC).
-- name: Put Khronos CLI job in place
+# Run Cronjob at 6 hour intervals.
+- name: Put Khronos CLI script in crontab
   sudo: yes
+  tags: cron
+  cron:
+    name="Khronos CLI"
+    minute="13"
+    hour="1,7,13,19"
+    job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
+
+# Run Cronjob once every day at 11:30am PST (19:30 UTC).
+- name: Remove old Khronos CLI cronjob
+  sudo: yes 
   tags: cron
   cron:
     name="Khronos CLI Daily"
     minute="30"
     hour="19"
     job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
+    state="absent"

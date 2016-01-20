@@ -25,6 +25,9 @@ khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
+[navi:vars]
+navi_new_relic_app_name=delta-navi
+
 [optimus:vars]
 optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id=tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
@@ -53,8 +56,9 @@ vault_aws_region=us-east-1
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-datadog_host_address=10.8.5.63
 datadog_tags=env:delta
+datadog_mongodb_user=datadog
+datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 domain=runnable.io
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead

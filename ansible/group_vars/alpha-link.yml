@@ -7,7 +7,7 @@ node_version: "4.2.1"
 npm_version: "2.14.7"
 
 container_envs: >
-  -e API_HOST=http://{{ api_hostname }}
+  -e API_URL={{ api_url }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
