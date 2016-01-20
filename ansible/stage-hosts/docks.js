@@ -6,7 +6,7 @@ var aws = require('aws-sdk');
 var ec2 = new aws.EC2({
   accessKeyId: 'AKIAJ3RCYU6FCULAJP2Q',
   secretAccessKey: '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',
-  region: 'us-west-1'
+  region: 'us-west-2'
 });
 
 var params = {

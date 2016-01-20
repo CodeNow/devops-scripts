@@ -44,3 +44,5 @@ consul_seed:
     value: "{{ node_env }}"
   - key: api/hostname
     value: "{{ api_hostname }}"
+  - key: api/url
+    value: "{{ api_url }}"
