@@ -40,6 +40,10 @@
       - proto: tcp
         from_port: 8300
         to_port: 8302
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8300
@@ -49,6 +53,26 @@
         from_port: 8300
         to_port: 8302
         group_id: "{{ sg_web }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_api }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_services }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: 8400
         to_port: 8400
@@ -61,6 +85,18 @@
         from_port: 8400
         to_port: 8400
         group_id: "{{ sg_web }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: 8500
         to_port: 8500
@@ -480,11 +516,27 @@
       - proto: udp
         from_port: 8300
         to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_services }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
         group_id: "{{ sg_web }}"
       - proto: tcp
         from_port: 8300
         to_port: 8302
         group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: 8300
         to_port: 8302
@@ -493,6 +545,14 @@
         from_port: 8400
         to_port: 8400
         group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: 8400
         to_port: 8400
@@ -505,6 +565,10 @@
         from_port: 8500
         to_port: 8500
         group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: 8500
         to_port: 8500
@@ -569,6 +633,22 @@
         from_port: 8200
         to_port: 8200
         group_id: "{{ sg_services }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_api }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_services }}"
+      - proto: udp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
       - proto: tcp
         from_port: 8300
         to_port: 8302
@@ -576,7 +656,15 @@
       - proto: tcp
         from_port: 8300
         to_port: 8302
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
         group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_web }}"
       - proto: tcp
         from_port: 8400
         to_port: 8400
@@ -584,7 +672,15 @@
       - proto: tcp
         from_port: 8400
         to_port: 8400
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
         group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8400
+        to_port: 8400
+        group_id: "{{ sg_web }}"
       - proto: tcp
         from_port: 8500
         to_port: 8500
@@ -592,7 +688,15 @@
       - proto: tcp
         from_port: 8500
         to_port: 8500
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
         group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8500
+        group_id: "{{ sg_web }}"
       - proto: tcp
         from_port: 32768
         to_port: 65535
