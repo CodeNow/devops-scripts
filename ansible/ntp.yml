@@ -1,6 +1,0 @@
----
-- hosts: all
-  gather_facts: no
-
-  roles:
-  - { role: package_ntp, tags "Setup NTP Package" }
