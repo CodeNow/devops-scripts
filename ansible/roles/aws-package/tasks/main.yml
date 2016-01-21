@@ -19,12 +19,12 @@
       dest=/tmp/ec2 
       mode=0755
 
-  - name: Unzip the ec2-api-tool
-    become: true
-    unarchive: 
-      src=/tmp/ec2/ec2-api-tools.zip 
-      dest=/usr/local/ec2 
-      copy=no
+#  - name: Unzip the ec2-api-tool
+#    become: true
+#    unarchive: 
+#      src=/tmp/ec2/ec2-api-tools.zip 
+#      dest=/usr/local/ec2 
+#      copy=no
 
   - name: Download jq into /usr/local/bin
     become: true
