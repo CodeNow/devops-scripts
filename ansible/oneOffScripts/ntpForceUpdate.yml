@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+
+#  pl test on test box
+  - name: Froce ntp update
+    sudo: yes
+    shell:
+      "service ntp stop && /usr/sbin/ntpdate pool.ntp.org && service ntp start"
