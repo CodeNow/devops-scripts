@@ -1,0 +1,7 @@
+---
+- name: Start and Enable ntp
+  sudo: yes
+  service:
+    name=ntp
+    state=started
+    enabled=yes
