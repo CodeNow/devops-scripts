@@ -1,10 +1,4 @@
 ---
-- name: Restart ntp
-  sudo: yes
-  service:
-    name=ntp
-    state=restarted
-
 - name: Froce ntp update
   sudo: yes
   shell:
