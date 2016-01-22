@@ -24,6 +24,10 @@ RUN {{ command }}
 # Add package.json from the current build context (`.` is the repo) first
 ADD ./repo/package.json /{{ name }}/package.json
 
+{% if name in ['api', 'api-worker'] %}
+ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
+{% endif %}
+
 # install, should will skip if no package.json change
 WORKDIR /{{ name }}
 RUN npm install --production
