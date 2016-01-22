@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: aws-package, tag: [anurag] }
