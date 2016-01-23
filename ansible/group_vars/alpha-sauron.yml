@@ -23,6 +23,8 @@ consul_values:
     value: "{{ git_branch }}"
 
 container_envs: >
+  -e DATADOG_HOST={{ datadog_host_address }}
+  -e DATADOG_PORT={{ datadog_port }}
   -e LOGGLY_TOKEN="{{ loggly_token }}"
   -e MAVIS_URL="http://{{ mavis_hostname }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
@@ -30,7 +32,7 @@ container_envs: >
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e SWARM_HOSTNAME={{ swarm_host_address }}
-  -e SWARM_PORT={{ swarm_master_port }}  
+  -e SWARM_PORT={{ swarm_master_port }}
   -e WEAVE_PATH={{ weave_path }}
 
 container_run_opts: >
