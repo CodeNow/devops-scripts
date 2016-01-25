@@ -1,3 +1,8 @@
+---
+- name: Display Git Repo Name
+  debug:
+    msg: "applicate Installed: {{ app_name }}, branch : {{ git_branch }} "
+
 - name: create {{ app_name }} repository dir
   sudo: yes
   file:
