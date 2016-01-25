@@ -1,7 +1,7 @@
 name: "api-worker"
 
 # for rollbar deploy info
-rollbar_token: a90d9c262c7c48cfabbd32fd0a1bc61c
+rollbar_token: 3edfe8fe4fd640ae9fdbbe08fcb9f121
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
