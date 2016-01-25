@@ -13,3 +13,4 @@
 - include: filibuster.yml git_branch=v0.1.7
 - include: charon.yml git_branch=v3.0.0
 - include: image-builder.yml git_branch=d1.6.2-v4.0.0
+- include: docker-listener.yml git_branch=v4.3.0

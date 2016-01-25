@@ -6,8 +6,10 @@
     - group_vars/alpha-dock-init.yml
   roles:
   - { role: notify, tags: [notify] }
+  - { role: package-dock, tags: [dock, pakage] }
+  - { role: package-aws, tags: [dock, pakage] }
   - { role: docker, tags: [docker] }
   - { role: git_repo, tags: [deploy] }
   - { role: dock-init, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }
-  - { role: datadog, tags [deploy, datadog] }
+  - { role: datadog, tags: [deploy, datadog] }

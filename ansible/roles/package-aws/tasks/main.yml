@@ -6,12 +6,6 @@
 #     dest=/usr/local/bin 
 #     mode=0755
 
-# - name: Check of /usr/local/ec2
-#   become: true
-#   file:
-#     path=/usr/local/ec2
-#     state=directory
-
 #  - name: Download the zip file for ec2-api-tools
 #   become: true
 #   get_url: 
@@ -25,19 +19,3 @@
 #      src=/tmp/ec2/ec2-api-tools.zip 
 #      dest=/usr/local/ec2 
 #      copy=no
-
-# - name: Download jq into /usr/local/bin
-#   become: true
-#   get_url:
-#     url=
-#     dest=/usr/local/bin
-#     mode0755
-
-# - name: Download vault software to /usr/local/bin
-#   become: true
-#   get_url:
-#     url=https://vaultproject.io/downloads.html
-#     dest=/usr/local/bin
-#     mode=0755
-
-

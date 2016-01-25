@@ -14,11 +14,12 @@
   - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
   - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
 
-- name: Install jq
+- name: copy rollbar token
+  tags: rollbar
   become: true
-  tags: "Install jq"
-  apt:
-    pkg=jq
-    state=latest
-    update_cache=yes
-    cache_valid_time=604800
+  copy:
+    src=rollbar.token
+    dest=/opt/runnable/dock-init/key
+    mode=0444
+    owner=root
+    group=root
