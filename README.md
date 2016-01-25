@@ -120,6 +120,7 @@ Simply run the appropriate deploy command in the previous section with the last 
 It is the custom at Runnable to play a song to the entire team when deploying. For each of the repositories here are the respective songs:
 
 | Service | Deploy Song Link |
+| ------- | ---------------- |
 | api / api-workers | [Push it - Rick Ross](https://www.youtube.com/watch?v=qk2jeE1LOn8) |
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
