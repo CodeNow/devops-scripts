@@ -9,7 +9,7 @@
   - { role: package-dock, tags: [dock, package] }
   - { role: package-aws, tags: [dock, package] }
   - { role: docker, tags: [docker] }
+  - { role: datadog, tags: [deploy, datadog] }
   - { role: git_repo, tags: [deploy] }
   - { role: dock-init, tags: [deploy] }
   - { role: consul_value, tags: [deploy, consul_value] }
-  - { role: datadog, tags: [deploy, datadog] }
