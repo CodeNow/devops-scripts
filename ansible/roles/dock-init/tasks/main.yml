@@ -16,10 +16,7 @@
 
 - name: copy rollbar token
   tags: rollbar
-  become: true
-  copy:
-    src=rollbar.token
-    dest=/opt/runnable/dock-init/key
-    mode=0444
-    owner=root
-    group=root
+  lineinfile:
+    dest="/opt/runnable/dock-init/key/rollbar.token
+    line="{{ docks_rollbar_key }}"
+    create=yes

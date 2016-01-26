@@ -15,6 +15,7 @@ api_s3_context_bucket=runnable.context.resources.production-beta
 
 [docks:vars]
 docker_config=docks
+docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 
 [eru:vars]
 eru_github_id=8abb08f83f6d1c52bd1a
