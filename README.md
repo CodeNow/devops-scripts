@@ -39,8 +39,8 @@ copy it down somewhere that is easily and quickly accessible (you may need to us
   Ask someone on the team for help before continuing.
 - **IMPORTANT:** All commands should be run from the `devops-script/ansible` directory.
 
-#### Latest Master
-Build and deploy a service to the latest commit on the master branch of its repository. This will build
+#### Latest Tag
+Build and deploy a service to the latest tag of its repository. This will build
 the docker image needed to run the container on our infrastructure.
 
 ##### Command
