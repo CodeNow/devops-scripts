@@ -14,9 +14,12 @@
   - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
   - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
 
+- fail: msg="value tokens need to be defined for this role"
+  when: docks_rollbar_key is not defined
+
 - name: copy rollbar token
   tags: rollbar
   lineinfile:
-    dest="/opt/runnable/dock-init/key/rollbar.token
+    dest="/opt/runnable/dock-init/key/rollbar.token"
     line="{{ docks_rollbar_key }}"
     create=yes
