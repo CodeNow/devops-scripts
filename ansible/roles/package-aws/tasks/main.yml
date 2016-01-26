@@ -13,19 +13,23 @@
     dest=/usr/local
     mode=0755
 
-- name: Create Directory for ec2 api tool
-  become: true
-  file:
-    path=/usr/local/ec2
-    owner=root
-    group=root
-    mode=0555
-    state=directory
+#- name: Create Directory for ec2 api tool
+#  become: true
+#  file:
+#    path=/usr/local/ec2
+#    owner=root
+#    group=root
+#    mode=0555
+#    state=directory
 
 - name: Unzip the ec2-api-tool
   become: true
   unarchive: 
     src=/usr/local/ec2-api-tools.zip
-    dest=/usr/local/ec2 
+    dest=/usr/local 
     copy=no
     mode=0755
+
+- name: Move ec2-api-tool to ec2
+  become: true
+  command: mv /usr/local/ec2-api-tools-1.7.5.1 /usr/local/ec2 
