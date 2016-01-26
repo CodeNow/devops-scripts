@@ -148,9 +148,6 @@ Host 10.8.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@delta-bastion nc %h %p
   IdentityFile ~/.ssh/delta.pem
 
-Host delta-admin
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.146 22
-
 ## Delta API
 Host delta-api
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.212 22
