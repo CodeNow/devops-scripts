@@ -1,9 +1,9 @@
 ---
 - name: Display Git Repo Name
   debug:
-    msg: "applicate Installed: {{ app_name }}, branch : {{ git_branch }} "
+    msg: "application Installed: {{ app_name }}, branch : {{ git_branch }} "
 
-- name: create {{ app_name }} repository dir
+- name: create repository dir
   sudo: yes
   file:
     path=/opt/runnable/{{ app_name }}
