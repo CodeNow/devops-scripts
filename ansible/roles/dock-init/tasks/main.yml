@@ -23,3 +23,10 @@
     dest="/opt/runnable/dock-init/key/rollbar.token"
     line="{{ docks_rollbar_key }}"
     create=yes
+
+- name: docker upstart override
+  sudo: yes
+  lineinfile:
+    dest="/etc/init/docker.override"
+    line="manual"
+    create=yes
