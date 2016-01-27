@@ -34,6 +34,6 @@
 - name: enforce sane permissions for dock-init RSA keys
   become: true
   file:
-    owner: "root"
+    owner="root"
     path="/opt/runnable/dock-init/key/id_rsa_runnabledock"
-    mode=0400
+    mode="0400"
