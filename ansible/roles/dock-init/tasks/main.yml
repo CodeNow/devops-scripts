@@ -30,3 +30,9 @@
     dest="/etc/init/docker.override"
     line="manual"
     create=yes
+
+- name: enforce sane permissions for dock-init RSA keys
+  become: true
+  file:
+    path=/opt/runnable/dock-init/key/id_rsa_runnabledock
+    mode=0400
