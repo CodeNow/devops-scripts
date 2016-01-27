@@ -90,28 +90,33 @@ gamma-services
 
 [docks]
 
+[dock]
+
 [gamma:children]
+api
 bastion
+charon
+dock
+docks
+eru
 hipache
+khronos
+mavis
 mongodb
+navi
+neo4j
+optimus
+rabbitmq
 api
 worker
 web
 redis
 redis-slave
-docks
 registry
-neo4j
-navi
-charon
-khronos
-mavis
-optimus
-rabbitmq
-eru
 sauron
 shiva
 swarm-manager
+web
 metis
 
 [ec2]

@@ -1,5 +1,5 @@
 backend "consul" {
-  address = "{{ ansible_default_ipv4.address }}:8500"
+  address = "{{ consul_host_address }}:{{ consul_api_port }}"
   path = "vault"
   advertise_addr = "http://{{ ansible_default_ipv4.address }}:8200"
 }

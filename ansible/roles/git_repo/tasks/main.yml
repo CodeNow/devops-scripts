@@ -1,0 +1,20 @@
+---
+- name: Display Git Repo Name
+  debug:
+    msg: "application Installed: {{ app_name }}, branch : {{ git_branch }} "
+
+- name: create repository dir
+  sudo: yes
+  file:
+    path=/opt/runnable/{{ app_name }}
+    state=directory
+    owner={{ ansible_env.USER }}
+
+- name: pull the git repository
+  git:
+    repo={{ app_repo }}
+    dest=/opt/runnable/{{ app_name }}
+    version={{ git_branch }}
+    update=yes
+    accept_hostkey=True
+    force=yes

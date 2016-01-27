@@ -1,2 +1,2 @@
 ---
-docker_package_name: lxc-docker-1.6.2
+docker_package_name: docker-engine=1.9.1-0~trusty

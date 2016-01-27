@@ -1,0 +1,35 @@
+---
+- name: Install ec2-metadata in /usr/local/bin
+  become: true
+  get_url: 
+    url=http://s3.amazonaws.com/ec2metadata/ec2-metadata 
+    dest=/usr/local/bin 
+    mode=0755
+
+- name: Download the zip file for ec2-api-tools
+  become: true
+  get_url: 
+    url=http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip 
+    dest=/usr/local
+    mode=0755
+
+#- name: Create Directory for ec2 api tool
+#  become: true
+#  file:
+#    path=/usr/local/ec2
+#    owner=root
+#    group=root
+#    mode=0555
+#    state=directory
+
+- name: Unzip the ec2-api-tool
+  become: true
+  unarchive: 
+    src=/usr/local/ec2-api-tools.zip
+    dest=/usr/local 
+    copy=no
+    mode=0755
+
+- name: Move ec2-api-tool to ec2
+  become: true
+  command: mv -f /usr/local/ec2-api-tools-1.7.5.1 /usr/local/ec2 

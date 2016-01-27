@@ -1,4 +1,19 @@
 ---
+- name: create docker cert directory
+  sudo: yes
+  file:
+    path=/etc/ssl/docker
+    state=directory
+
+- name: copy docker certs
+  sudo: yes
+  copy:
+    src=certs/
+    dest=/etc/ssl/docker
+    mode=0440
+    owner=root
+    group=root
+
 - name: change core dump path
   sudo: yes
   when: docker_config == "runnable"
@@ -36,13 +51,12 @@
 - name: add docker repository
   sudo: yes
   apt_repository:
-    repo: "deb https://get.docker.com/ubuntu docker main"
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
 
 - name: copy docker config file
   sudo: yes
-  when: docker_config == "runnable"
   template:
     src={{ docker_config }}
     dest=/etc/default/docker
@@ -51,7 +65,7 @@
 
 - name: install docker
   sudo: yes
-  when: restart is defined
+  when: restart is defined or dock is defined
   apt:
     pkg="{{ docker_package_name }}"
     state=present
@@ -60,5 +74,5 @@
     cache_valid_time=604800
 
 - name: restart docker
-  when: copied_config.changed and restart is defined
+  when: (copied_config.changed and restart is defined) or dock is defined
   command: sudo service docker restart

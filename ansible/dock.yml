@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`dock` (target dock) needs to be defined to run this role"
+    when: dock is not defined
+  - add_host:
+      name={{ dock }}
+      groups=dock
+
+- include: dock-init.yml git_branch=v6.0.0
+- include: krain.yml git_branch=v0.1.1
+- include: filibuster.yml git_branch=v0.1.7
+- include: charon.yml git_branch=v3.2.0
+- include: image-builder.yml git_branch=v4.0.1
+- include: docker-listener.yml git_branch=v4.3.0

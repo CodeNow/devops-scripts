@@ -1,4 +1,6 @@
 ---
+- hosts: consul
+
 - hosts: vault
   vars_files:
     - group_vars/alpha-vault.yml
