@@ -32,6 +32,13 @@
     line="manual"
     create=yes
 
+- name: create ssh config for root
+  sudo: yes
+  lineinfile:
+    dest="/root/.ssh/config"
+    line="StrictHostKeyChecking no"
+    create=yes
+
 - name: enforce sane permissions for dock-init RSA keys
   become: true
   file:
