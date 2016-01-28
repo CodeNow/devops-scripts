@@ -36,7 +36,7 @@
 
 - name: remove user casey
   sudo: yes
+  with_dict: delete
   user:
-    name="casey"
+    name={{ delete.key }}
     state="absent"
-
