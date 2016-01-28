@@ -1,12 +1,14 @@
 ---
 - name: create docker cert directory
   sudo: yes
+  when: dock is defined
   file:
     path=/etc/ssl/docker
     state=directory
 
 - name: copy docker certs
   sudo: yes
+  when: dock is defined
   copy:
     src=certs/
     dest=/etc/ssl/docker
