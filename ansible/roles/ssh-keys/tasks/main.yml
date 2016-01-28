@@ -38,5 +38,5 @@
   sudo: yes
   with_dict: delete
   user:
-    name={{ delete.key }}
+    name={{ item.key }}
     state="absent"
