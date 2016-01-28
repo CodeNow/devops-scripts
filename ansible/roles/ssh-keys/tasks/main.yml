@@ -34,7 +34,7 @@
     user={{ item.key }}
     key="{{ item.value.pub_key }}"
 
-- name: remove user casey
+- name: remove users
   sudo: yes
   with_dict: delete
   user:
