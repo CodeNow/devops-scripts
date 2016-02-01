@@ -10,7 +10,7 @@
 
 - name: put values into consul
   run_once: true
-  when: consul_host_address is defined and consul_api_port is defined and consul_values is defined
+  when: consul_host_address is defined and consul_api_port is defined and consul_values is defined and dock is not defined
   uri:
     method=PUT
     url=http://{{ consul_host_address }}:{{ consul_api_port }}/v1/kv/{{ item.key }}
