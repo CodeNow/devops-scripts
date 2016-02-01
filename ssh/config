@@ -10,6 +10,12 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
+Host epsilon*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/epsilon.pem
+
 ################################################################################
 # utility
 ################################################################################
@@ -193,6 +199,20 @@ Host delta-navi
 
 Host delta-web
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
+
+################################################################################
+# Epsilon
+################################################################################
+
+Host epsilon-bastion
+  HostName 52.35.234.45
+
+Host 10.12.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@epsilon-bastion nc %h %p
+  IdentityFile ~/.ssh/epsilon.pem
 
 ################################################################################
 # other
