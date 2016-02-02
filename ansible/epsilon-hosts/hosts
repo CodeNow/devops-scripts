@@ -6,7 +6,7 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 epsilon-userland domain=runnable-epsilon.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
-epsilon-mongo-a
+epsilon-mongo
 
 [neo4j]
 epsilon-neo4j
