@@ -96,4 +96,4 @@ sg_redis="sg-b923e5de"
 sg_services="sg-7520e612"
 sg_userland="sg-8f20e6e8"
 sg_web="sg-cb20e6ac"
-vpc_id=vpc-c53464a0
+vpc_id="vpc-cdb2a3a8"
