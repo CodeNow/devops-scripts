@@ -10,6 +10,12 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
+Host epsilon*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/epsilon.pem
+
 ################################################################################
 # utility
 ################################################################################
@@ -193,6 +199,56 @@ Host delta-navi
 
 Host delta-web
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
+
+################################################################################
+# Epsilon
+################################################################################
+
+Host epsilon-bastion
+  HostName 52.35.234.45
+
+Host 10.12.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@epsilon-bastion nc %h %p
+  IdentityFile ~/.ssh/epsilon.pem
+
+Host epsilon-api
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.64 22
+
+Host epsilon-api-worker
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.127 22
+
+Host epsilon-hipache
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.195 22
+
+Host epsilon-mongo
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.140 22
+
+Host epsilon-navi
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.13.227 22
+
+Host epsilon-neo4j
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.204 22
+
+Host epsilon-rabbit
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.13.62 22
+
+Host epsilon-redis
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.167 22
+
+Host epsilon-registry
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
+
+Host epsilon-services
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.136 22
+
+Host epsilon-userland
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
+
+Host epsilon-web
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.33 22
 
 ################################################################################
 # other
