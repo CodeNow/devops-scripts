@@ -4,6 +4,7 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 consul_host_address=consul-server-staging-codenow.runnableapp.com
 detention_hostname=detention-staging-codenow.runnableapp.com
+docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 domain=runnable-angular-staging-codenow.runnableapp.com
 eru_hostname=admin-staging-codenow.runnableapp.com
 fluffy_hostname=fluffy-staging-codenow.runnableapp.com

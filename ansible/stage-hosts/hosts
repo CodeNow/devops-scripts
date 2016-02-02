@@ -17,6 +17,9 @@ delta-staging-data
 [vault]
 delta-staging-data
 
+[consul]
+delta-staging-data
+
 [stage:children]
 dock
 docks
@@ -24,3 +27,4 @@ hipache
 rabbitmq
 redis
 vault
+consul

@@ -15,7 +15,7 @@
   - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
   - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
 
-- fail: msg="value tokens need to be defined for this role"
+- fail: msg="docks_rollbar_key needs to be defined for this role"
   when: docks_rollbar_key is not defined
 
 - name: copy rollbar token
