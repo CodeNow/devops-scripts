@@ -614,10 +614,6 @@
     aws_access_key: "{{ aws_access_key }}"
     rules:
       - proto: tcp
-        from_port: 22
-        to_port: 22
-        cidr_ip: 0.0.0.0/0
-      - proto: tcp
         from_port: 8200
         to_port: 8200
         group_id: "{{ sg_api }}"
