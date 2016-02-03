@@ -18,8 +18,8 @@ var params = {
     },
     // Only fetch instances that are tagged as docks
     {
-      Name: 'tag:org',
-      Values: ['2335750']
+      Name: 'tag:role',
+      Values: ['dock']
     },
     // Only fetch running instances
     {
