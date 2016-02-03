@@ -8,3 +8,4 @@ npm-debug.log
 ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
+ansible/certs/*
