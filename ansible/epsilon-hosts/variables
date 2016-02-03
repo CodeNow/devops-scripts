@@ -66,6 +66,7 @@ domain=runnable-beta.com
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-epsilon
+pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM

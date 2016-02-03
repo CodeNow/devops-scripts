@@ -21,8 +21,8 @@
 - include: metis.yml git_branch=v7.0.1
 - include: optimus.yml git_branch=v3.0.0
 - include: palantiri.yml git_branch=v0.1.10
-- include: sauron.yml git_branch=v3.s41.0
-- include: shiva.yml git_branch=v7.0.01
+- include: sauron.yml git_branch=v3.4.0
+- include: shiva.yml git_branch=v7.0.1
 - include: swarm-manager.yml 
 - include: web.yml git_branch=v3.11.6
 #- include: vault.yml 
