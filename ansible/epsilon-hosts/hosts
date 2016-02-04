@@ -3,7 +3,6 @@ epsilon-bastion
 
 [hipache]
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-epsilon-userland domain=runnable-epsilon.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
 epsilon-mongo
