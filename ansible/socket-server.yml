@@ -10,7 +10,7 @@
 - hosts: worker
   vars_files:
     - "group_vars/alpha-api-base.yml"
-    - "group_vars/alpha-workers.yml"
+    - "group_vars/alpha-socket-server.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }

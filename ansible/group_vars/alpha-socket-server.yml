@@ -1,14 +1,17 @@
-name: "api-worker"
+name: "api-socket-server"
 
 # for rollbar deploy info
-rollbar_token: 3edfe8fe4fd640ae9fdbbe08fcb9f121
+rollbar_token: cad27f265e8e473c9b293615e7ed0f3a
 
 container_image: registry.runnable.com/runnable/{{ name }}
+
+# for redis
+redis_key: "frontend:{{ api_socket_server_hostname }}"
+is_redis_update_required: 'yes'
 
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
-  -e IS_QUEUE_WORKER=true
 
 container_run_opts: >
   -h {{ name }}

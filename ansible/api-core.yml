@@ -9,6 +9,7 @@
 
 - hosts: api
   vars_files:
+    - "group_vars/alpha-api-base.yml"
     - "group_vars/alpha-api.yml"
   roles:
   - { role: notify, tags: "notify" }
