@@ -28,6 +28,6 @@
 #- include: vault.yml 
 #
 ## secondary services and configuration
-- include: api.yml git_branch=v6.21.1
+- include: api.yml git_branch=v6.22.3
 - include: navi.yml git_branch=v4.3.0
 #- include: vault-values.yml 
