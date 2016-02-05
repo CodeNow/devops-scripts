@@ -29,6 +29,9 @@ khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
+[metis:vars]
+metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
+
 [navi:vars]
 navi_new_relic_app_name=delta-navi
 
