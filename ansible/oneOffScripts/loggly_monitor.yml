@@ -4,9 +4,9 @@
 
   tasks:
   - name: loggly monitor
-    sudo: yes
     tags: cron
     cron:
       name="loggly monitor"
       minute="*/2"
-      job="logger `hostname` `date -u '+%Y-%m-%d %H:%M:%S'`"  
+      job="/usr/bin/logger -t `/bin/hostname` `/bin/date -u '+%Y-%m-%d %H:%M:%S'`"  
+      state=absent

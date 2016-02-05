@@ -58,7 +58,6 @@
 
 # Run loggly monitor Cronjob every min intervals.
 - name: loggly monitor
-  sudo: yes
   tags: cron
   cron:
     name="loggly monitor"
