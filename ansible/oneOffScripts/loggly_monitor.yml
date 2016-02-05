@@ -2,5 +2,11 @@
 - hosts: all
   gather_facts: no
 
-  roles:
-  - { role: loggly, tags "loggly_monitor" }
+  tasks:
+  - name: loggly monitor
+    sudo: yes
+    tags: cron
+    cron:
+      name="loggly monitor"
+      minute="*/2"
+      job="logger `hostname` `date -u '+%Y-%m-%d %H:%M:%S'`"  
