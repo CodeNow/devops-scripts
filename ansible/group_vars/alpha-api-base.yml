@@ -42,7 +42,6 @@ api_base_container_envs: >
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
-  -e ROLLBAR_KEY={{ api_rollbar_key }}
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
   -e SENDGRID_KEY={{ sendgrid_key }}
   -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}

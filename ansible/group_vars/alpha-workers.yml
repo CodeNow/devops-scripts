@@ -1,14 +1,12 @@
 name: "api-worker"
 
-# for rollbar deploy info
-rollbar_token: 3edfe8fe4fd640ae9fdbbe08fcb9f121
-
 container_image: registry.runnable.com/runnable/{{ name }}
 
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
   -e IS_QUEUE_WORKER=true
+  -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}

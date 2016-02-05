@@ -1,8 +1,5 @@
 name: "api-socket-server"
 
-# for rollbar deploy info
-rollbar_token: cad27f265e8e473c9b293615e7ed0f3a
-
 container_image: registry.runnable.com/runnable/{{ name }}
 
 hosted_ports: ["{{ api_port }}"]
@@ -14,6 +11,7 @@ is_redis_update_required: 'yes'
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
+  -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
