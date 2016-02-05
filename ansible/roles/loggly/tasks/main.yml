@@ -55,3 +55,12 @@
   tags: [loggly, deploy]
   sudo: yes
   service: name=rsyslog state=restarted
+
+# Run loggly monitor Cronjob every min intervals.
+- name: Put loggly monitor in cron job run every min
+  sudo: yes
+  tags: cron
+  cron:
+    name="loggly_monitor"
+    minute="*/2"
+    job="logger `hostname` `date -u '+%Y-%m-%d %H:%M:%S'`"
