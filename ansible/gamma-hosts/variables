@@ -29,6 +29,9 @@ khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
 
+[metis:vars]
+metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
+
 [navi:vars]
 navi_new_relic_app_name=gamma-navi
 

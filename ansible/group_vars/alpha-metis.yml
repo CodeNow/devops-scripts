@@ -27,7 +27,7 @@ container_envs: >
   -e REDIS_PORT={{ redis_port }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REGISTRY_HOST={{ registry_host }}
-  -e ROLLBAR_KEY={{ shiva_rollbar_key }}
+  -e ROLLBAR_KEY={{ metis_rollbar_key }}
   -e DOCKER_PORT={{ docker_port }}
 
 container_run_opts: >
