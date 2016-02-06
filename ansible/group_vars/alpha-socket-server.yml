@@ -12,6 +12,7 @@ is_redis_update_required: 'yes'
 container_envs: >
   {{ api_base_container_envs }}
   -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
+  -e NUM_WORKERS=1
 
 container_run_opts: >
   -h {{ name }}
