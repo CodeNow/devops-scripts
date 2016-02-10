@@ -16,4 +16,5 @@
   - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
   - { role: docker_client }
+  - { role: datadog, tags: [ "deploy", "datadog"] }
   - { role: container_start, tags: "deploy" }
