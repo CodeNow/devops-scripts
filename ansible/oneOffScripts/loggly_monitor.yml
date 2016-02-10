@@ -1,21 +1,12 @@
 ---
 - hosts: all
   gather_facts: no
-
   tasks:
-  - name: delete loggly monitor
-    tags: cron
-    cron:
-      name="loggly monitor"
-      job="echo  'modify loggly monitoringto have host and timestamp' 2>&1 | /usr/bin/logger -t LogMonitor"  
-      state=absent
 
   - name: add loggly monitor
     tags: cron
     cron:
       name="loggly monitor"
       minute="*/2"
-      job="echo  'modify loggly monitoringto have host and timestamp' 2>&1 | /usr/bin/logger -t LogMonitor"  
+      job="echo  'loggly monitoring' 2>&1 | /usr/bin/logger -t LogMonitor"
       state=present
-
-#      job="echo  `/hostname` `date -u '+%Y-%m-%d %H:%M:%S'` 2>&1 | /usr/bin/logger -t LogMonitor"  
