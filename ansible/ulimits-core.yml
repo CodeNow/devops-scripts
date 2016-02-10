@@ -1,4 +1,0 @@
----
-- hosts: "{{ target_host | default('all') }}"
-  roles:
-  - { role: ulimits }
