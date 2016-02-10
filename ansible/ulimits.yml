@@ -1,5 +1,12 @@
 ---
-- hosts: "{{ target_host }}"
-  roles:
-  - { role: base_ubuntu }
-  - { role: ulimits, tags: ["ulimits"] }
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`target_host` (target host) needs to be defined to run this role"
+    when: target_host is not defined
+
+  - add_host:
+      name={{ target_host }}
+      groups=ec2
+
+- include: ulimits-core.yml

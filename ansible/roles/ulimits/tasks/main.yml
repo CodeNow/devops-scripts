@@ -1,20 +1,20 @@
 ---
-- name: update limits.conf
-  become: true
-  file:
-    src=limits.conf
-    dest=/etc/security/limits.conf
-  notify: reboot
-
 - name: update sysctl.conf
   become: true
-  file:
-    src=sysctl.config
+  copy:
+    src=sysctl.conf
     dest=/etc/sysctl.conf
-  notify: sysctl -p
+  notify: reload kernel parameters
+
+- name: update limits.conf
+  become: true
+  copy:
+    src=limits.conf
+    dest=/etc/security/limits.conf
+  notify: reboot server
 
 - name: force reboot server
   become: true
   command: echo rebooting
   when: force_restart is defined
-  notify: reboot
+  notify: reboot server
