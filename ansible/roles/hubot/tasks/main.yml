@@ -1,6 +1,5 @@
 ---
 - name: create runnabot repository dir
-  sudo: yes
   file:
     path=/opt/runnable/runnabot
     state=directory
@@ -12,10 +11,9 @@
     dest=/opt/runnable/runnabot
     version={{ git_branch }}
     update=yes
-    accept_hostkey=True
+    accept_hostkey=yes
+    depth=1
+    force=yes
 
-- name: npm install
-  npm: path=/opt/runnable/runnabot
-
-- name: build the image-builder
+- name: build the hubot image
   command: sudo docker build --tag="{{ container_image }}:{{ container_tag }}" /opt/runnable/runnabot
