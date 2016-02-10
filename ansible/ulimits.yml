@@ -1,0 +1,5 @@
+---
+- hosts: "{{ target_host }}"
+  roles:
+  - { role: base_ubuntu }
+  - { role: ulimits, tags: ["ulimits"] }

@@ -1,13 +1,20 @@
 ---
-- name: update system limits.conf
-  sudo: yes
+- name: update limits.conf
+  become: true
   file:
     src=limits.conf
     dest=/etc/security/limits.conf
   notify: reboot
 
+- name: update sysctl.conf
+  become: true
+  file:
+    src=sysctl.config
+    dest=/etc/sysctl.conf
+  notify: sysctl -p
+
 - name: force reboot server
-  sudo: yes
+  become: true
   command: echo rebooting
   when: force_restart is defined
   notify: reboot
