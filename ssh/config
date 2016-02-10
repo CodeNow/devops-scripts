@@ -25,12 +25,6 @@ Host migration-router
   ForwardAgent yes
   IdentityFile ~/.ssh/oregon.pem
 
-Host hubot
-  HostName 52.24.128.35
-  User ubuntu
-  ForwardAgent yes
-  IdentityFile ~/.ssh/oregon.pem
-
 ################################################################################
 # DELTA staging runnable.io
 ################################################################################
