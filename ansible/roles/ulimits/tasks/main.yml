@@ -1,0 +1,13 @@
+---
+- name: update system limits.conf
+  sudo: yes
+  file:
+    src=limits.conf
+    dest=/etc/security/limits.conf
+  notify: reboot
+
+- name: force reboot server
+  sudo: yes
+  command: echo rebooting
+  when: force_restart is defined
+  notify: reboot
