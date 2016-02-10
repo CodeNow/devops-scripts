@@ -1,9 +1,0 @@
----
-- hosts: registry
-
-- hosts: hubot
-  vars_files:
-    - "group_vars/alpha-hubot.yml"
-  roles:
-  - { role: hubot, tags: [ "build", "deploy" ] }
-  - { role: container_kill_start, tags: deploy }
