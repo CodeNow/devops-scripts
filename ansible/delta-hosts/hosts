@@ -16,6 +16,7 @@ delta-neo4j
 [api_group:children]
 worker
 api
+socket-server
 
 [api]
 delta-api
@@ -30,6 +31,9 @@ delta-services
 
 [worker]
 delta-api-worker
+
+[socket-server]
+delta-api-socket-server
 
 [docks]
 
@@ -98,6 +102,7 @@ hipache
 mongodb
 api
 worker
+socket-server
 web
 redis
 redis-slave

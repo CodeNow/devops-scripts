@@ -16,6 +16,7 @@ gamma-neo4j
 [api_group:children]
 worker
 api
+socket-server
 
 [api]
 gamma-api
@@ -79,6 +80,9 @@ gamma-services
 [shiva]
 gamma-services
 
+[socket-server]
+gamma-api-socket-server
+
 [registry]
 gamma-registry
 
@@ -115,6 +119,7 @@ redis-slave
 registry
 sauron
 shiva
+socket-server
 swarm-manager
 web
 metis

@@ -14,6 +14,7 @@ epsilon-neo4j
 [api_group:children]
 worker
 api
+socket-server
 
 [api]
 epsilon-api
@@ -28,6 +29,9 @@ epsilon-services
 
 [worker]
 epsilon-api-worker
+
+socket-server]
+epsilon-api-socket-server
 
 [docks]
 
@@ -93,6 +97,7 @@ hipache
 mongodb
 api
 worker
+socket-server
 web
 redis
 docks
