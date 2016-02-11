@@ -1,6 +1,9 @@
 ## configure security group policy
 #- include: sg_configure.yml 
 #
+## Install Datadog Agent
+- include: datadog.yml
+#
 ## begin with databases:
 #- include: consul.yml 
 #- include: mongo-navi.yml 
