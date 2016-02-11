@@ -81,7 +81,7 @@ gamma-services
 gamma-services
 
 [socket-server]
-gamma-api-socket-server
+gamma-api
 
 [registry]
 gamma-registry

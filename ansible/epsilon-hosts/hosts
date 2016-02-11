@@ -30,8 +30,8 @@ epsilon-services
 [worker]
 epsilon-api-worker
 
-socket-server]
-epsilon-api-socket-server
+[socket-server]
+epsilon-api-socket
 
 [docks]
 

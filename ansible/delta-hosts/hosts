@@ -33,7 +33,7 @@ delta-services
 delta-api-worker
 
 [socket-server]
-delta-api-socket-server
+delta-api
 
 [docks]
 
