@@ -106,26 +106,6 @@
         to_port: 65535
         group_id: "{{ sg_hipache }}"
 
-- name: API Socket SG
-  tags:
-    - api
-  ec2_group:
-    name: "{{ env }}-api-socket"
-    description: "{{ env }} API Socket Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: us-west-2
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: 22
-        to_port: 22
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: 32768
-        to_port: 65535
-        group_id: "{{ sg_hipache }}"
-
 - name: Docker Container Service SG
   tags:
     - dock

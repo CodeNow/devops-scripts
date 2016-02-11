@@ -7,7 +7,7 @@
 - hosts: redis
 - hosts: swarm-manager
 
-- hosts: api
+- hosts: socket-server
   vars_files:
     - "group_vars/alpha-api-base.yml"
     - "group_vars/alpha-socket-server.yml"

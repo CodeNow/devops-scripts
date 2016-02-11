@@ -79,10 +79,10 @@ Host gamma-api-worker
 Host gamma-api-worker-us-west-2a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.212 22
 
-#Host gamma-api-socket-server
+#Host gamma-api-socket
 #  ProxyCommand ssh -q ubuntu@gamma-bastion nc 
 #
-#Host gamma-api-socket-serverr-us-west-2a
+#Host gamma-api-socket-us-west-2a
 #  ProxyCommand ssh -q ubuntu@gamma-bastion nc 
 
 ## Gamma MongoDB
@@ -167,7 +167,7 @@ Host delta-api
 Host delta-api-worker
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.132 22
 
-#Host delta-api-socket-server
+#Host delta-api-socket
 #  ProxyCommand ssh -q ubuntu@delta-bastion nc 
 
 Host delta-services
@@ -229,7 +229,7 @@ Host epsilon-api
 Host epsilon-api-worker
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.127 22
 
-Host epsilon-api-socket-server
+Host epsilon-api-socket
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.15.207 22
 
 Host epsilon-hipache
