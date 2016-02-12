@@ -55,3 +55,11 @@
   tags: [loggly, deploy]
   sudo: yes
   service: name=rsyslog state=restarted
+
+- name: add loggly monitor
+  tags: cron
+  cron:
+    name="loggly monitor"
+    minute="*/2"
+    job="echo  'loggly monitoring' 2>&1 | /usr/bin/logger -t LogMonitor"
+    state=present
