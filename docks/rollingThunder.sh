@@ -89,6 +89,15 @@ function setLaunchConfig() {
     done
 }
 
+function getDesiredInstances() {
+    MYORG="${1}"
+    # prodably to this with docks. TODO
+}
+
+function setDesiredInstances() {
+    MYORG="${1}"
+}
+
 function seekAndDestroy() {
     MYDOCKS="${1}"
     for dock in ${MYDOCKS} ; do
@@ -105,6 +114,19 @@ function hushHushKeepItDownNowVoicesCarry() {
 # grok per-org scaling group size
 # some modulo math on scaling groups > 2
 # recusion!
+
+# psuedo-code:
+#
+# set launch config 
+# list docks
+# get desired number
+# scale out by 25%
+# skim first 25% of docks list
+# signal unhealthy
+# sleep
+# check for new docks ; if yes, continue
+# kill next batch
+# rinse, repeat
 
 #
 # Putting it together.
