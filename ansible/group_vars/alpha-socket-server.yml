@@ -1,15 +1,22 @@
-name: "api-worker"
+name: "api-socket-server"
 
 container_image: registry.runnable.com/runnable/{{ name }}
+
+hosted_ports: ["{{ api_port }}"]
+
+# for redis
+redis_key: "frontend:{{ api_socket_server_hostname }}"
+is_redis_update_required: 'yes'
 
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
-  -e IS_QUEUE_WORKER=true
-  -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
+  -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
+  -e NUM_WORKERS=1
 
 container_run_opts: >
   -h {{ name }}
   -d
+  -P
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{ container_envs }}

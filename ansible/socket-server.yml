@@ -7,14 +7,14 @@
 - hosts: redis
 - hosts: swarm-manager
 
-- hosts: api
+- hosts: socket-server
   vars_files:
     - "group_vars/alpha-api-base.yml"
-    - "group_vars/alpha-api.yml"
+    - "group_vars/alpha-socket-server.yml"
   roles:
   - { role: notify, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: builder, tags: "build" }
   - { role: docker_client }
-  - { role: datadog, tags: [ "deploy", "datadog"] }
+  - { role: datadog, tags: ["deploy", "datadog"] }
   - { role: container_start, tags: "deploy" }

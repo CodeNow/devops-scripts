@@ -11,6 +11,7 @@ api_mongo_replset_name=delta-rs0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_new_relic_app_name=delta-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
+api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production
 
 [docks:vars]
@@ -28,6 +29,9 @@ eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
 khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
+
+[metis:vars]
+metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=delta-navi

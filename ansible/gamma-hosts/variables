@@ -11,6 +11,7 @@ api_mongo_replset_name=gamma-rs0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_new_relic_app_name=gamma-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
+api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 
 [docks:vars]
@@ -28,6 +29,9 @@ eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
+
+[metis:vars]
+metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=gamma-navi
@@ -74,7 +78,6 @@ registry_host=10.4.4.82
 swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnable.ninja
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-no_dd_monitoring=false
 vault_auth_token=e22c3ebc-11cf-653b-7df0-79d78a499458
 vault_token_01=71d7b4754686013c8b9cfb22bafae79c661849dcd67c483c89efba12c0466aa201
 vault_token_02=794d6f7a3459c332a1fd2bbcc9230a7f84f1639806039ee8be547828cd7ab03a02

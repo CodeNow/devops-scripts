@@ -9,5 +9,5 @@ container_tag: "latest"
 container_run_opts: "-d --name mongodb -p 27017:27017 -v {{ db_path }}:/data/db:rw"
 
 # do not monitor docker-daemon for mongo, as there is none
-no_dd_monitoring: true
+no_datadog_docker_monitoring: true
 has_dd_integration: true

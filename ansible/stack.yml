@@ -1,6 +1,9 @@
 ## configure security group policy
 #- include: sg_configure.yml 
 #
+## Install Datadog Agent
+- include: datadog.yml
+#
 ## begin with databases:
 #- include: consul.yml 
 #- include: mongo-navi.yml 
@@ -12,22 +15,22 @@
 #
 ## base service tier
 #- include: consul-values.yml 
-- include: detention.yml git_branch=v1.1.0
-- include: eru.yml git_branch=v1.0.1
+- include: detention.yml git_branch=v1.3.1
+- include: eru.yml git_branch=v1.1.0
 - include: hipache.yml 
-- include: khronos.yml git_branch=v2.5.0
-- include: link.yml git_branch=v1.0.0
-- include: mavis.yml git_branch=v4.2.0
-- include: metis.yml git_branch=v7.0.0
-- include: optimus.yml git_branch=v2.0.0
+- include: khronos.yml git_branch=v2.5.1
+- include: link.yml git_branch=v1.2.1
+- include: mavis.yml git_branch=v4.4.0
+- include: metis.yml git_branch=v7.0.1
+- include: optimus.yml git_branch=v3.0.0
 - include: palantiri.yml git_branch=v0.1.10
-- include: sauron.yml git_branch=v3.1.0
-- include: shiva.yml git_branch=v7.0.0
+- include: sauron.yml git_branch=v3.4.0
+- include: shiva.yml git_branch=v7.0.1
 - include: swarm-manager.yml 
-- include: web.yml git_branch=v3.9.1
+- include: web.yml git_branch=v3.11.6
 #- include: vault.yml 
 #
 ## secondary services and configuration
-- include: api.yml git_branch=v6.0.0
-- include: navi.yml git_branch=v4.0.0
+- include: api.yml git_branch=v6.22.3
+- include: navi.yml git_branch=v4.3.0
 #- include: vault-values.yml 

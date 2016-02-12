@@ -1,8 +1,8 @@
 [api_group:vars]
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
-api_github_client_id=b6072dc57062faca7fcb
-api_github_client_secret=ba73a9294dc4bfaa7ed02ba187f73918506e4293
+api_github_client_id=baa5c868b6d17d7ae002
+api_github_client_secret=ad4f8527ae98d7eea15a32ee5abbead5c9a25abc
 api_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
@@ -11,6 +11,7 @@ api_mongo_replset_name=epsilon-rs0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
 api_new_relic_app_name=epsilon-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
+api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 
 [docks:vars]
@@ -28,6 +29,9 @@ eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=epsilon
 khronos_mongo_replset_name=epsilon
+
+[metis:vars]
+metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=epsilon-navi
@@ -62,22 +66,22 @@ ansible_ssh_private_key_file=~/.ssh/epsilon.pem
 datadog_tags=env:epsilon
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
-domain=runnable-epsilon.com
+domain=runnable-beta.com
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-epsilon
+pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.12.12.99
 swarm_token=d363b783f03a845a2c82b081bfe8443e
-user_content_domain=runnable.ninja
+user_content_domain=runnablecloud.com
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-no_dd_monitoring=false
-vault_auth_token=e22c3ebc-11cf-653b-7df0-79d78a499458
-vault_token_01=71d7b4754686013c8b9cfb22bafae79c661849dcd67c483c89efba12c0466aa201
-vault_token_02=794d6f7a3459c332a1fd2bbcc9230a7f84f1639806039ee8be547828cd7ab03a02
-vault_token_03=2e67faeffe4343c038d0f3210bdb83f3d3a5bc468975cf13e977ce9b5922aefe03
+vault_auth_token=bc768f31-62ef-ceda-3de6-c86bd0c7ffc6
+vault_token_01=c21de228e17c9b489b2f5a2de316b97e589ef4ee83cb18ad85f6ce4a0479e30503
+vault_token_02=4ad609187fd19ee2e084068ba53e9ec116b11fc05b84c36e4a7b8a9da391be1204
+vault_token_03=e59939b5785df0c886c2159937603dce5d45e58e147301781c3cb0bcee6507a105
 
 [ec2:vars]
 env=epsilon
@@ -96,4 +100,4 @@ sg_redis="sg-b923e5de"
 sg_services="sg-7520e612"
 sg_userland="sg-8f20e6e8"
 sg_web="sg-cb20e6ac"
-vpc_id=vpc-c53464a0
+vpc_id="vpc-cdb2a3a8"
