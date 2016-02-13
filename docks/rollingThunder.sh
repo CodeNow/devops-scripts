@@ -32,12 +32,14 @@ fi
 
 AWS=`which aws`
 DOCKS=`which docks`
-ORG_ID="" # lazy, I know.
+ORG_ID=""
+BATCHSIZE=1
 
 BEAST_MODE=""
 if [ ${#} -eq 3 ] ; then
     if [ "schwifty" == "${3}" ] ; then
         BEAST_MODE="enabled"
+        BATCHSIZE=2100
     else
         ORG_ID="${3}"
     fi
@@ -52,20 +54,21 @@ LAUNCH_CONFIG="${2}"
 # Let us now contemplate our existence, and find out what the hell AMI our launch configuration uses.
 AMI_ID=`${AWS} autoscaling describe-launch-configurations --launch-configuration-names "${LAUNCH_CONFIG}" | grep "ImageId" | awk '{print $2}' | sed 's/[\",]//g'`
 
-# Functionly. Functionify. iFunction. Function Junction.
+# Get list of Orgs.
 function dockGetOrgs() {
     ${DOCKS} asg list -e ${ENV} | \
-        grep producgtion | \
+        grep production | \
         grep -v '^$' | \
         awk '{printf("%s ".$4);}'
 }
 
-# Pre-fabricate various `docks` queries to generate lists:
-function dockGetOld() {
+# fetch a batch docks to kill
+function dockGetKillBatch() {
     MYORG="${1}"
     ${DOCKS} aws -e ${ENV} --org ${MYORG} | \
         grep -v "${AMI_ID}" | \
         grep running | \
+        tail -${BATCHSIZE} | \
         awk '{printf("%s ",$6);}'
 }
 
@@ -91,11 +94,33 @@ function setLaunchConfig() {
 
 function getDesiredInstances() {
     MYORG="${1}"
-    # prodably to this with docks. TODO
+    ${DOCKS} asg -e ${ENV} | \
+        grep "${MYORG}" | \
+        awk '{print $8}'
 }
 
-function setDesiredInstances() {
+function calculateInstanceCountOffset() {
+    MYCOUNT="${1}"
+    if [ 4 -ge ${MYCOUNT} ] ; then
+        echo 1
+    else
+        MYCOUNT=`expr ${MYCOUNT} / 4 + 1`
+        echo ${MYCOUNT}
+    fi
+}
+
+function scaleOutDesiredInstances() {
     MYORG="${1}"
+    MYINSTCOUNT="${2}"
+    ${DOCKS} asg scale-out --org ${MYORG} --number ${MYINSTCOUNT}
+    return ${?}
+}
+
+function scaleInDesiredInstances() {
+    MYORG="${1}"
+    MYINSTCOUNT="${2}"
+    ${DOCKS} asg scale-in --org ${MYORG} --number ${MYINSTCOUNT}
+    return ${?}
 }
 
 function seekAndDestroy() {
@@ -107,37 +132,88 @@ function seekAndDestroy() {
 }
 
 function hushHushKeepItDownNowVoicesCarry() {
-    sleep 300
+    MYINTERVAL=${1}
+    sleep ${MYINTERVAL}
 }
-
-# TODO -
-# grok per-org scaling group size
-# some modulo math on scaling groups > 2
-# recusion!
 
 # psuedo-code:
 #
 # set launch config 
-# list docks
-# get desired number
+# get scaling group desired number
 # scale out by 25%
-# skim first 25% of docks list
-# signal unhealthy
-# sleep
+# wait
 # check for new docks ; if yes, continue
-# kill next batch
-# rinse, repeat
+# if no, back off by x + ( x * .5 ) where initial x = 300. back off a maximum of 3 times before failing.
+# skim first 25% of old docks list.
+# restore original scaling group desired number.
+# rinse, repeat.
+# exit when docksGetOld returns an empty string.
 
+# discussion - instead of concerning ourselves with the full list of matching docks (that is to say, docks that are not using the new AMI from
+# our desired launch config, we simply pop N number of instances off the top of the stack where N is 1 if # of desired instances per the ASG is
+# <= 4 or N is the integer result of ( number of desired instances / 4 + 1 ).
+#
+# the thinking behind this is that if we simply ask for the integer division result then we would only kill 1 dock per cycle for scaling groups of
+# up to 7 desired instances, which seems wildly ineffient. on the other hand, it may be a corner case with a too clever by half solution to a
+# non problem.
+#
+# either way, simply asking for a subset of total docks until none are returned is much more clean than maintaining an internal tally managed
+# independantly from the results `docks` supply.
 #
 # Putting it together.
 #
 
-if [ "" != "${ORG_ID}" ] ; then
-    ORGS=$(docksGetOrgs)
-    setLaunchConfig ${ORGS}
+# Set the launch config
+if [ "enabled" == "${BEASTMODE}" ] ; then
+    KILLBATCH=$(docksGetAll)
+    seekAndDestroy ${KILLBATCH}
 else
-    setLaunchConfig ${ORG_ID}
-fi
+    if [ "" != "${ORG_ID}" ] ; then
+        ORGS=$(docksGetOrgs)
+    else
+        ORGS="${ORG_ID}"
+    fi
 
+    for org in ${ORGS} ; do
+        # the needful
+        DESIREDCOUNT=$(getDesiredInstances ${org})
+        BATCHSIZE=$(calculateInstanceCountOffset ${DESIREDCOUNT})
+        scaleOutDesiredInstances ${org} ${BATCHSIZE}
+        INTERVAL=300
+        NEWINSTANCESTATUS=1
+        LASTNEWINSTANCES=""
+        NEWINSTANCES=""
+        KILLBATCH=""
+        RETRY=0
+        while [ ${NEWINSTANCESTATUS} ] ; do
+            hushHushKeepItDownNowVoicesCarry ${INTERVAL}
+            INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
+            NEWINSTANCES=$(dockGetNew ${org})
+            if [ -z "${NEWINSTANCES}" ] ; then
+                if [ ${INTERVAL} -le 1000 ] ; then
+                    continue
+                else
+                    RETRYFAIL=1
+                    break
+                fi
+            elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
+                if [ 3 -eq ${RETRY} ] ; then
+                    RETRYFAIL=1
+                    break
+                else
+                    RETRY=`expr ${RETRY} + 1`
+                fi
+            else
+                KILLBATCH=$(dockGetKillBatch ${org})
+                if [ -z "${KILLBATCH}" ] ; then
+                    break
+                else
+                    seekAndDestroy ${KILLBATCH}
+                fi
+            fi
+        done
+        scaleInDesiredInstances ${org} ${BATCHSIZE}
+    done
+fi
 
 
