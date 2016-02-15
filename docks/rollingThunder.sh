@@ -178,6 +178,7 @@ else
         # the needful
         DESIREDCOUNT=$(getDesiredInstances ${org})
         BATCHSIZE=$(calculateInstanceCountOffset ${DESIREDCOUNT})
+        setLaunchConfig ${org}
         scaleOutDesiredInstances ${org} ${BATCHSIZE}
         INTERVAL=300
         NEWINSTANCESTATUS=1
