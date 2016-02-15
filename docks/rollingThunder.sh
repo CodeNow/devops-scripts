@@ -59,7 +59,7 @@ function dockGetOrgs() {
     ${DOCKS} asg list -e ${ENV} | \
         grep production | \
         grep -v '^$' | \
-        awk '{printf("%s ".$4);}'
+        awk '{printf("%s ",$4);}'
 }
 
 # fetch a batch docks to kill
@@ -168,8 +168,8 @@ if [ "enabled" == "${BEASTMODE}" ] ; then
     KILLBATCH=$(docksGetAll)
     seekAndDestroy ${KILLBATCH}
 else
-    if [ "" != "${ORG_ID}" ] ; then
-        ORGS=$(docksGetOrgs)
+    if [ "" == "${ORG_ID}" ] ; then
+        ORGS=$(dockGetOrgs)
     else
         ORGS="${ORG_ID}"
     fi
@@ -215,5 +215,3 @@ else
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
 fi
-
-
