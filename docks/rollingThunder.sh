@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#
 # "headless" dock killer, uses docks-cli to roll through an environment and recycle (mark unhealthy) all docks
 #
 # Design notes: assumes this is being run with the purpose of upgrading a launch configuration for all the docks in an environment.
@@ -8,10 +7,6 @@
 # Will operate in two modes: regular - with the expectation that the entire site will be refreshed within 7 hours or so; and "schwifty", 
 # the "wham-bam-thank-you-ma'am" expedited version should we want to throw caution to the wind as Rick Sanchez would say and "get
 # schwifty."
-#
-# The program will use simple recursion to scale-out a set percentage of an org until only instances with the new lauch config are 
-# present. When an org is marked complete, Rolling Thunder(tm) will iterate through to the next org until all orgs are exhausted, then exit.
-#
 
 usage() {
     # KISS
@@ -161,10 +156,13 @@ function hushHushKeepItDownNowVoicesCarry() {
 # independantly from the results `docks` supply.
 #
 # Putting it together.
-#
 
-# Set the launch config
 if [ "enabled" == "${BEASTMODE}" ] ; then
+    # still need to loop through orgs and set LC -
+    ORGS=$(dockGetOrgs)
+    for org in ${ORGS} ; do
+        setLaunchConfig ${org}
+    done
     KILLBATCH=$(docksGetAll)
     seekAndDestroy ${KILLBATCH}
 else
