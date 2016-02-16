@@ -207,6 +207,7 @@ else
         NEWINSTANCES=""
         RETRY=0
         RETRYFAIL=0
+        # first loop scales the ASG out and tests for successful instantiation of new docks.
         while [ 1 ] ; do
             hushHushKeepItDownNowVoicesCarry ${INTERVAL}
             INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
@@ -214,15 +215,12 @@ else
             if [ -z "${NEWINSTANCES}" ] ; then
                 if [ ${INTERVAL} -le 1000 ] ; then
                     continue
-                else
-                    RETRYFAIL=1
-                    break
                 fi
             elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
                 # nothin references this yet
                 if [ 3 -eq ${RETRY} ] ; then
-                    RETRYFAIL=1
-                    break
+                    echo "Exceeded maximum wait time for new instance, bailing."
+                    exit 1
                 else
                     RETRY=`expr ${RETRY} + 1`
                 fi
@@ -231,6 +229,7 @@ else
             fi
         done
         INTERVAL=30
+        # second loop whiddles down the "kill batch" list until all old instances have fallen off.
         while [ "" != "${KILLBATCH}" ] ; do
             LASTKILLBATCH="${KILLBATCH}"
             if [ "${LASTKILLBATCH}" == "${KILLBATCH}" ] ; then
