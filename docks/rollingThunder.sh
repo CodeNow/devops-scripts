@@ -13,7 +13,7 @@ usage() {
     echo "${0} <env> <launchConfig> [ <orgId> | <schwifty> ]"
     exit 1
 }
-
+    
 which docks > /dev/null 2>&1
 if [ 0 -ne "${?}" ] ; then
     echo "Swing and a miss. Install 'docks-cli'."
@@ -108,14 +108,20 @@ function scaleOutDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
 ${DOCKS} asg scale-out --org ${MYORG} --number ${MYINSTCOUNT}
-return ${?}
+if [ 0 -ne ${?} ] ; then
+    echo "Scale-out failed, bailing."
+    exit 1
+fi
 }
 
 function scaleInDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
 ${DOCKS} asg scale-in --org ${MYORG} --number ${MYINSTCOUNT}
-return ${?}
+if [ 0 -ne ${?} ] ; then
+    echo "Scale-in failed, bailing."
+    exit 1
+fi
 }
 
 function seekAndDestroy() {
@@ -123,9 +129,13 @@ MYDOCKS="${1}"
 for dock in ${MYDOCKS} ; do
     ( printf "y\n\n" | \
         ${DOCKS} unhealthy -e ${ENV} -i ${dock} )
-    MYRETURN=${?}
-    if [ 0 -ne ${MYRETURN} ] ; then
-        continue
+    MYEXIT=${?}
+    if [ 0 -ne ${MYEXIT} ] ; then
+        MYRETURN=${MYEXIT}
+        # Nuclear option
+        ( printf "y\n\y\n" | \
+            ${DOCKS} kill -e ${ENV} -i ${dock} )
+            continue
     fi
 done
 }
@@ -176,21 +186,24 @@ else
         ORGS="${ORG_ID}"
     fi
 
+    setLaunchConfig ${ORGS}
     for org in ${ORGS} ; do
         # the needful
         DESIREDCOUNT=$(getDesiredInstances ${org})
         BATCHSIZE=$(calculateInstanceCountOffset ${DESIREDCOUNT})
-        setLaunchConfig ${org}
-        scaleOutDesiredInstances ${org} ${BATCHSIZE}
+        KILLBATCH=$(dockGetKillBatch ${org})
+        if [ "" != "${KILLBATCH}" ] ; then
+            scaleOutDesiredInstances ${org} ${BATCHSIZE}
+        else
+            continue
+        fi
         INTERVAL=300
-        NEWINSTANCESTATUS=1
         LASTNEWINSTANCES=""
         NEWINSTANCES=""
-        KILLBATCH=""
         RETRY=0
-        KILLBATCH=$(dockGetKillBatch ${org})
+        RETRYFAIL=0
         while [ "" != "${KILLBATCH}" ] ; do
-            while [ ${NEWINSTANCESTATUS} ] ; do
+            while [ 1 ] ; do
                 hushHushKeepItDownNowVoicesCarry ${INTERVAL}
                 INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
                 NEWINSTANCES=$(dockGetNew ${org})
@@ -202,6 +215,7 @@ else
                         break
                     fi
                 elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
+                    # nothin references this yet
                     if [ 3 -eq ${RETRY} ] ; then
                         RETRYFAIL=1
                         break
@@ -209,12 +223,11 @@ else
                         RETRY=`expr ${RETRY} + 1`
                     fi
                 else
-                    NEWINSTANCESTATUS=0
-                    INTERVAL=300
-                    seekAndDestroy ${KILLBATCH}
+                    break
                 fi
             done
             KILLBATCH=$(dockGetKillBatch ${org})
+            seekAndDestroy ${KILLBATCH}
         done
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
