@@ -13,7 +13,7 @@ usage() {
     echo "${0} <env> <launchConfig> [ <orgId> | <schwifty> ]"
     exit 1
 }
-    
+
 which docks > /dev/null 2>&1
 if [ 0 -ne "${?}" ] ; then
     echo "Swing and a miss. Install 'docks-cli'."
@@ -135,7 +135,7 @@ for dock in ${MYDOCKS} ; do
         # Nuclear option
         ( printf "y\n\y\n" | \
             ${DOCKS} kill -e ${ENV} -i ${dock} )
-            continue
+        continue
     fi
 done
 }
@@ -186,9 +186,9 @@ else
         ORGS="${ORG_ID}"
     fi
 
-    setLaunchConfig ${ORGS}
     for org in ${ORGS} ; do
         # the needful
+        setLaunchConfig ${org}
         DESIREDCOUNT=$(getDesiredInstances ${org})
         BATCHSIZE=$(calculateInstanceCountOffset ${DESIREDCOUNT})
         KILLBATCH=$(dockGetKillBatch ${org})
@@ -202,32 +202,38 @@ else
         NEWINSTANCES=""
         RETRY=0
         RETRYFAIL=0
-        while [ "" != "${KILLBATCH}" ] ; do
-            while [ 1 ] ; do
-                hushHushKeepItDownNowVoicesCarry ${INTERVAL}
-                INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
-                NEWINSTANCES=$(dockGetNew ${org})
-                if [ -z "${NEWINSTANCES}" ] ; then
-                    if [ ${INTERVAL} -le 1000 ] ; then
-                        continue
-                    else
-                        RETRYFAIL=1
-                        break
-                    fi
-                elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
-                    # nothin references this yet
-                    if [ 3 -eq ${RETRY} ] ; then
-                        RETRYFAIL=1
-                        break
-                    else
-                        RETRY=`expr ${RETRY} + 1`
-                    fi
+        while [ 1 ] ; do
+            hushHushKeepItDownNowVoicesCarry ${INTERVAL}
+            INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
+            NEWINSTANCES=$(dockGetNew ${org})
+            if [ -z "${NEWINSTANCES}" ] ; then
+                if [ ${INTERVAL} -le 1000 ] ; then
+                    continue
                 else
+                    RETRYFAIL=1
                     break
                 fi
-            done
+            elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
+                # nothin references this yet
+                if [ 3 -eq ${RETRY} ] ; then
+                    RETRYFAIL=1
+                    break
+                else
+                    RETRY=`expr ${RETRY} + 1`
+                fi
+            else
+                break
+            fi
+        done
+        INTERVAL=2
+        while [ "" != "${KILLBATCH}" ] ; do
             KILLBATCH=$(dockGetKillBatch ${org})
-            seekAndDestroy ${KILLBATCH}
+            seekAndDestroy "${KILLBATCH}"
+            hushHushKeepItDownNowVoicesCarry ${INTERVAL}
+            INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
+            if [ 30 -le "${KILLBATCH}" ] ; then
+                continue
+            fi
         done
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
