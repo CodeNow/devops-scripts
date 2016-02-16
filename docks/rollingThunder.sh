@@ -84,6 +84,10 @@ function setLaunchConfig() {
 MYORGS="${1}"
 for org in ${MYORGS} ; do
     ${DOCKS} asg lc --org ${org} --lc ${LAUNCH_CONFIG} -e ${ENV}
+    if [ 0 -ne ${?} ] ; then
+        echo "Failed to update launch configuration, bailing."
+        exit 1
+    fi
 done
 }
 
@@ -107,7 +111,7 @@ fi
 function scaleOutDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-out --org ${MYORG} --number ${MYINSTCOUNT}
+${DOCKS} asg scale-out -e ${ENV} --org ${MYORG} --number ${MYINSTCOUNT}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-out failed, bailing."
     exit 1
@@ -117,7 +121,7 @@ fi
 function scaleInDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-in --org ${MYORG} --number ${MYINSTCOUNT}
+${DOCKS} asg scale-in -e ${ENV} --org ${MYORG} --number ${MYINSTCOUNT}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-in failed, bailing."
     exit 1
@@ -191,6 +195,7 @@ else
         setLaunchConfig ${org}
         DESIREDCOUNT=$(getDesiredInstances ${org})
         BATCHSIZE=$(calculateInstanceCountOffset ${DESIREDCOUNT})
+        LASTKILLBATCH=""
         KILLBATCH=$(dockGetKillBatch ${org})
         if [ "" != "${KILLBATCH}" ] ; then
             scaleOutDesiredInstances ${org} ${BATCHSIZE}
@@ -225,15 +230,21 @@ else
                 break
             fi
         done
-        INTERVAL=2
+        INTERVAL=30
         while [ "" != "${KILLBATCH}" ] ; do
-            KILLBATCH=$(dockGetKillBatch ${org})
+            LASTKILLBATCH="${KILLBATCH}"
+            if [ "${LASTKILLBATCH}" == "${KILLBATCH}" ] ; then
+                # backoff
+                hushHushKeepItDownNowVoicesCarry ${INTERVAL}
+                INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
+                if [ 120 -le ${INTERVAL} ] ; then
+                    echo "Docks termination retry for ${KILLBATCH} exceeded, bailing."
+                    exit 1
+                fi
+            fi
             seekAndDestroy "${KILLBATCH}"
             hushHushKeepItDownNowVoicesCarry ${INTERVAL}
-            INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
-            if [ 30 -le "${KILLBATCH}" ] ; then
-                continue
-            fi
+            KILLBATCH=$(dockGetKillBatch ${org})
         done
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
