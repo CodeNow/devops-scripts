@@ -1,8 +1,17 @@
 ---
-- name: get old running containers
-  shell: "sudo docker ps | grep {{container_image}}: | awk '{print $1}'"
-  register: old_containers_ids
-  changed_when: old_containers_ids.stdout != ''
+- name: "copy find running containers with this image tag util script"
+  become: true
+  copy:
+    src=findTagRunning.sh
+    dest=/root/findTagRunning.sh
+    mode=0700
+
+# get current running container with this image
+- name: "look for running containers running {{ container_image }}"
+  become: true
+  shell: "/root/findTagRunning.sh {{ container_image }}"
+  register: old_containers_id
+  changed_when: old_containers_id.stdout != ''
 
 - name: get latest images
   when: not do_not_push
