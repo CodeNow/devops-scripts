@@ -241,6 +241,8 @@ else
                     echo "Docks termination retry for ${KILLBATCH} exceeded, bailing."
                     exit 1
                 fi
+            else
+                INTERVAL=30
             fi
             seekAndDestroy "${KILLBATCH}"
             hushHushKeepItDownNowVoicesCarry ${INTERVAL}
