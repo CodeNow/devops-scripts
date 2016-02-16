@@ -243,9 +243,9 @@ else
             else
                 INTERVAL=30
             fi
+            KILLBATCH=$(dockGetKillBatch ${org})
             seekAndDestroy "${KILLBATCH}"
             hushHushKeepItDownNowVoicesCarry ${INTERVAL}
-            KILLBATCH=$(dockGetKillBatch ${org})
         done
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
