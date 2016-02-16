@@ -51,84 +51,88 @@ AMI_ID=`${AWS} autoscaling describe-launch-configurations --launch-configuration
 
 # Get list of Orgs.
 function dockGetOrgs() {
-    ${DOCKS} asg list -e ${ENV} | \
-        grep production | \
-        grep -v '^$' | \
-        awk '{printf("%s ",$4);}'
+${DOCKS} asg list -e ${ENV} | \
+    grep production | \
+    grep -v '^$' | \
+    awk '{printf("%s ",$4);}'
 }
 
 # fetch a batch docks to kill
 function dockGetKillBatch() {
-    MYORG="${1}"
-    ${DOCKS} aws -e ${ENV} --org ${MYORG} | \
-        grep -v "${AMI_ID}" | \
-        grep running | \
-        tail -${BATCHSIZE} | \
-        awk '{printf("%s ",$6);}'
+MYORG="${1}"
+${DOCKS} aws -e ${ENV} --org ${MYORG} | \
+    grep -v "${AMI_ID}" | \
+    grep running | \
+    tail -${BATCHSIZE} | \
+    awk '{printf("%s ",$6);}'
 }
 
 function dockGetNew() {
-    MYORG="${1}"
-    ${DOCKS} aws -e ${ENV} --org ${MYORG} | \
-        grep "${AMI_ID}" | \
-        awk '{printf("%s ",$6);}'
+MYORG="${1}"
+${DOCKS} aws -e ${ENV} --org ${MYORG} | \
+    grep "${AMI_ID}" | \
+    awk '{printf("%s ",$6);}'
 }
 
 function dockGetAll() {
-    ${DOCKS} aws -e ${ENV} | \
-        grep "${AMI_ID}" | \
-        awk '{printf("%s ",$6);}'
+${DOCKS} aws -e ${ENV} | \
+    grep "${AMI_ID}" | \
+    awk '{printf("%s ",$6);}'
 }
 
 function setLaunchConfig() {
-    MYORGS="${1}"
-    for org in ${MYORGS} ; do
-        ${DOCKS} asg lc --org ${org} --lc ${LAUNCH_CONFIG} -e ${ENV}
-    done
+MYORGS="${1}"
+for org in ${MYORGS} ; do
+    ${DOCKS} asg lc --org ${org} --lc ${LAUNCH_CONFIG} -e ${ENV}
+done
 }
 
 function getDesiredInstances() {
-    MYORG="${1}"
-    ${DOCKS} asg -e ${ENV} | \
-        grep "${MYORG}" | \
-        awk '{print $8}'
+MYORG="${1}"
+${DOCKS} asg -e ${ENV} | \
+    grep "${MYORG}" | \
+    awk '{print $8}'
 }
 
 function calculateInstanceCountOffset() {
-    MYCOUNT="${1}"
-    if [ 4 -ge ${MYCOUNT} ] ; then
-        echo 1
-    else
-        MYCOUNT=`expr ${MYCOUNT} / 4 + 1`
-        echo ${MYCOUNT}
-    fi
+MYCOUNT="${1}"
+if [ 4 -ge ${MYCOUNT} ] ; then
+    echo 1
+else
+    MYCOUNT=`expr ${MYCOUNT} / 4 + 1`
+    echo ${MYCOUNT}
+fi
 }
 
 function scaleOutDesiredInstances() {
-    MYORG="${1}"
-    MYINSTCOUNT="${2}"
-    ${DOCKS} asg scale-out --org ${MYORG} --number ${MYINSTCOUNT}
-    return ${?}
+MYORG="${1}"
+MYINSTCOUNT="${2}"
+${DOCKS} asg scale-out --org ${MYORG} --number ${MYINSTCOUNT}
+return ${?}
 }
 
 function scaleInDesiredInstances() {
-    MYORG="${1}"
-    MYINSTCOUNT="${2}"
-    ${DOCKS} asg scale-in --org ${MYORG} --number ${MYINSTCOUNT}
-    return ${?}
+MYORG="${1}"
+MYINSTCOUNT="${2}"
+${DOCKS} asg scale-in --org ${MYORG} --number ${MYINSTCOUNT}
+return ${?}
 }
 
 function seekAndDestroy() {
-    MYDOCKS="${1}"
-    for dock in ${MYDOCKS} ; do
-        ( printf "y\n\n" | \
-            ${DOCKS} unhealthy -e ${ENV} -i ${dock} )
-    done
+MYDOCKS="${1}"
+for dock in ${MYDOCKS} ; do
+    ( printf "y\n\n" | \
+        ${DOCKS} unhealthy -e ${ENV} -i ${dock} )
+    MYRETURN=${?}
+    if [ 0 -ne ${MYRETURN} ] ; then
+        continue
+    fi
+done
 }
 
 function hushHushKeepItDownNowVoicesCarry() {
-    MYINTERVAL=${1}
-    sleep ${MYINTERVAL}
+MYINTERVAL=${1}
+sleep ${MYINTERVAL}
 }
 
 # psuedo-code:
@@ -184,32 +188,33 @@ else
         NEWINSTANCES=""
         KILLBATCH=""
         RETRY=0
-        while [ ${NEWINSTANCESTATUS} ] ; do
-            hushHushKeepItDownNowVoicesCarry ${INTERVAL}
-            INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
-            NEWINSTANCES=$(dockGetNew ${org})
-            if [ -z "${NEWINSTANCES}" ] ; then
-                if [ ${INTERVAL} -le 1000 ] ; then
-                    continue
+        KILLBATCH=$(dockGetKillBatch ${org})
+        while [ "" != "${KILLBATCH}" ] ; do
+            while [ ${NEWINSTANCESTATUS} ] ; do
+                hushHushKeepItDownNowVoicesCarry ${INTERVAL}
+                INTERVAL=`expr ${INTERVAL} + ${INTERVAL} / 2`
+                NEWINSTANCES=$(dockGetNew ${org})
+                if [ -z "${NEWINSTANCES}" ] ; then
+                    if [ ${INTERVAL} -le 1000 ] ; then
+                        continue
+                    else
+                        RETRYFAIL=1
+                        break
+                    fi
+                elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
+                    if [ 3 -eq ${RETRY} ] ; then
+                        RETRYFAIL=1
+                        break
+                    else
+                        RETRY=`expr ${RETRY} + 1`
+                    fi
                 else
-                    RETRYFAIL=1
-                    break
-                fi
-            elif [ "${NEWINSTANCES}" == "${LASTNEWINSTANCES}" ] ; then
-                if [ 3 -eq ${RETRY} ] ; then
-                    RETRYFAIL=1
-                    break
-                else
-                    RETRY=`expr ${RETRY} + 1`
-                fi
-            else
-                KILLBATCH=$(dockGetKillBatch ${org})
-                if [ -z "${KILLBATCH}" ] ; then
-                    break
-                else
+                    NEWINSTANCESTATUS=0
+                    INTERVAL=300
                     seekAndDestroy ${KILLBATCH}
                 fi
-            fi
+            done
+            KILLBATCH=$(dockGetKillBatch ${org})
         done
         scaleInDesiredInstances ${org} ${BATCHSIZE}
     done
