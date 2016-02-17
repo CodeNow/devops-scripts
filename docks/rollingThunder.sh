@@ -57,6 +57,11 @@ ${DOCKS} asg list -e ${ENV} | \
     awk '{printf("%s ",$4);}'
 }
 
+# Get list of staging AMIs
+fuction getStagingAMIs() {
+SHOOP=""
+}
+
 # fetch a batch docks to kill
 function dockGetKillBatch() {
 MYORG="${1}"
@@ -137,9 +142,11 @@ for dock in ${MYDOCKS} ; do
     if [ 0 -ne ${MYEXIT} ] ; then
         MYRETURN=${MYEXIT}
         # Nuclear option
-        ( printf "y\n\y\n" | \
-            ${DOCKS} kill -e ${ENV} -i ${dock} )
-        continue
+        #( printf "y\n\y\n" | \
+        #    ${DOCKS} kill -e ${ENV} -i ${dock} )
+        #continue
+        echo "Dock could not be marked unhealthy, bailing."
+        exit 1
     fi
 done
 }
