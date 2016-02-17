@@ -58,8 +58,27 @@ ${DOCKS} asg list -e ${ENV} | \
 }
 
 # Get list of staging AMIs
-fuction getStagingAMIs() {
-SHOOP=""
+function getStagingAMIs() {
+MYLCS=`${DOCKS} asg list -e staging | \
+    grep 'asg\-staging' | \
+    awk '{print $12}' | \
+    sort | \
+    uniq | \
+    awk '{printf ("%s ",$1);}'`
+    MYAMIS=""
+    for lc in ${MYLCS} ; do
+        THISAMI=`${AWS} autoscaling describe-launch-configurations --launch-configuration-names "${lc}" | grep "ImageId" | awk '{print $2}' | sed 's/[\",]//g'`
+        if [ -z ${MYAMI} ] ; then
+            MYAMI=${THISAMI}
+        else
+            MYAMI="${THISAMI}\|${MYAMI}"
+        fi
+    done
+    if [ ! -z ${MYAMI} ] ; then
+        echo ${MYAMI}
+    else
+        uuid
+    fi
 }
 
 # fetch a batch docks to kill
@@ -67,6 +86,7 @@ function dockGetKillBatch() {
 MYORG="${1}"
 ${DOCKS} aws -e ${ENV} --org ${MYORG} | \
     grep -v "${AMI_ID}" | \
+    grep -v "${STAGING_AMIS}" | \
     grep running | \
     tail -${BATCHSIZE} | \
     awk '{printf("%s ",$6);}'
@@ -140,11 +160,6 @@ for dock in ${MYDOCKS} ; do
         ${DOCKS} unhealthy -e ${ENV} -i ${dock} )
     MYEXIT=${?}
     if [ 0 -ne ${MYEXIT} ] ; then
-        MYRETURN=${MYEXIT}
-        # Nuclear option
-        #( printf "y\n\y\n" | \
-        #    ${DOCKS} kill -e ${ENV} -i ${dock} )
-        #continue
         echo "Dock could not be marked unhealthy, bailing."
         exit 1
     fi
@@ -182,6 +197,7 @@ sleep ${MYINTERVAL}
 #
 # Putting it together.
 
+STAGING_AMIS=$(getStagingAMIs)
 if [ "enabled" == "${BEASTMODE}" ] ; then
     # still need to loop through orgs and set LC -
     ORGS=$(dockGetOrgs)
