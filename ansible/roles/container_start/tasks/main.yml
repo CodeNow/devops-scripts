@@ -10,8 +10,8 @@
 - name: "look for running containers running {{ container_image }}"
   become: true
   shell: "/root/findTagRunning.sh {{ container_image }}"
-  register: old_containers_id
-  changed_when: old_containers_id.stdout != ''
+  register: old_containers_ids
+  changed_when: old_containers_ids.stdout != ''
 
 - name: get latest images
   when: not do_not_push

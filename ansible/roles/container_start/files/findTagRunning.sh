@@ -11,7 +11,11 @@ else
     for container in ${CONTAINERS} ; do
         docker inspect ${container} | grep -q ${IMAGE_NAME}
         if [ ${?} -eq 0 ] ; then
-            RUNNING_CONTAINERS="${container} "
+            if [ -z ${RUNNING_CONTAINERS} ] ; then
+                RUNNING_CONTAINERS="${container}"
+            else
+                RUNNING_CONTAINERS="${RUNNING_CONTAINERS} ${container}"
+            fi
         fi
     done
 fi
