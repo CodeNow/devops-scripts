@@ -20,4 +20,6 @@ else
     done
 fi
 
-echo "${RUNNING_CONTAINERS}"
+if [ ! -z ${RUNNING_CONTAINERS} ] ; then
+    echo "${RUNNING_CONTAINERS}"
+fi
