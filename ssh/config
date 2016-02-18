@@ -256,6 +256,9 @@ Host epsilon-userland
 Host epsilon-web
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.33 22
 
+Host epsilon-consul
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.16 22
+
 ################################################################################
 # other
 ################################################################################

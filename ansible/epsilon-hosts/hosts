@@ -20,9 +20,7 @@ socket-server
 epsilon-api
 
 [consul]
-epsilon-services
-epsilon-api
-epsilon-web
+epsilon-consul
 
 [vault]
 epsilon-services
@@ -93,6 +91,7 @@ epsilon-services
 
 [epsilon:children]
 bastion
+consul
 hipache
 mongodb
 api

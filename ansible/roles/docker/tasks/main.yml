@@ -1,13 +1,13 @@
 ---
 - name: create docker cert directory
-  sudo: yes
+  become: true
   when: dock is defined
   file:
     path=/etc/ssl/docker
     state=directory
 
 - name: copy docker certs
-  sudo: yes
+  become: true
   when: dock is defined
   copy:
     src=certs/
@@ -17,26 +17,26 @@
     group=root
 
 - name: change core dump path
-  sudo: yes
+  become: true
   when: docker_config == "runnable"
   tags: coreDump
   sysctl:
     name=kernel.core_pattern
-    reload=yes
+    reload=true
     state=present
     value="/var/log/core.%h.%e.%t"
 
 - name: install aufs with linux-image-extra-{{ ansible_kernel }}
-  sudo: yes
+  become: true
   tags: aufs
   apt:
     pkg="linux-image-extra-{{ ansible_kernel }}"
     state=present
-    update_cache=yes
+    update_cache=true
     cache_valid_time=604800
 
 - name: install apt-transport-https
-  sudo: yes
+  become: true
   apt:
     pkg="apt-transport-https"
     state=present
@@ -44,36 +44,53 @@
     cache_valid_time=604800
 
 - name: add docker repository key
-  sudo: yes
+  become: true
   apt_key:
     id: 2C52609D
     url: https://apt.dockerproject.org/gpg
     state: present
 
 - name: add docker repository
-  sudo: yes
+  become: true
   apt_repository:
     repo: "deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
 
 - name: copy docker config file
-  sudo: yes
+  become: true
   template:
     src={{ docker_config }}
     dest=/etc/default/docker
   register: copied_config
   tags: genDockerConfig
 
+- name: force docker version
+  become: true
+  copy:
+    src=docker-engine
+    dest=/etc/apt/preferences.d/docker-engine
+    owner=root
+    group=root
+    mode=0600
+
+- name: apt-get update
+  become: true
+  apt:
+     update_cache=yes
+
+
 - name: install docker
-  sudo: yes
+  become: true
   when: restart is defined or dock is defined
   apt:
     pkg="{{ docker_package_name }}"
     state=present
     force=yes
+    dpkg_options='force-confold,force-confdef'
     update_cache=yes
     cache_valid_time=604800
+
 
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
