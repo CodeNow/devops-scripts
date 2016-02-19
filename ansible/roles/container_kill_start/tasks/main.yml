@@ -36,7 +36,7 @@
 
 # stop the old containers that were running this previously
 - name: stop old containers
-  when: old_containers_id.changed
+  when: old_containers_id is defined
   command: sudo docker stop -t {{ stop_time }} {{ item }}
   with_items: old_containers_id.stdout_lines
 

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 IMAGE_NAME="$1"
-RUNNING_CONTAINERS=""
-
 CONTAINERS=`docker ps | grep -v '^CONTAINER' | awk '{print $1}'`
 
 if [ "" = "${CONTAINERS}" ] ; then
