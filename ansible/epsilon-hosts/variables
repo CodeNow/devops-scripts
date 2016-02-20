@@ -75,7 +75,6 @@ pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.12.12.99
-swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnablecloud.com
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_auth_token=bc768f31-62ef-ceda-3de6-c86bd0c7ffc6
