@@ -77,7 +77,6 @@ pg_user=astral
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.8.4.126
-swarm_token=d363b783f03a845a2c82b081bfe8443e
 user_content_domain=runnableapp.com
 vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088
 vault_token_01=0d324dc7d4cbd94790fd08809d06fb1e28e21e185910081c7646e3e49924f6ed01
