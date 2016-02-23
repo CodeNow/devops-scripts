@@ -5,8 +5,8 @@
   copy:
     src=20-loggly-tls.conf
     dest=/etc/rsyslog.d/20-loggly-tls.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: create loggly TLS cert dir
   tags: loggly
@@ -14,8 +14,8 @@
   file:
     path=/etc/rsyslog.d/keys/ca.d
     state=directory
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: copy loggly TLS certs
   tags: loggly
@@ -23,8 +23,8 @@
   copy:
     src=loggly_full.crt
     dest=/etc/rsyslog.d/keys/ca.d/loggly_full.crt
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
     mode=400
 
 - name: copy loggly config
@@ -33,8 +33,8 @@
   template:
     src=22-loggly.conf.j2
     dest=/etc/rsyslog.d/22-loggly.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: create runnable bin directory
   tags: loggly
@@ -60,8 +60,8 @@
   template:
     src=21-output-syslog.conf.j2
     dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: copy rsyslog config
   tags: loggly
@@ -69,8 +69,8 @@
   template:
     src=rsyslog.conf.j2
     dest=/etc/rsyslog.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: stop rsyslog
   tags: [loggly, deploy]
