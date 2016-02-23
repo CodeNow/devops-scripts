@@ -1,4 +1,32 @@
 ---
+- name: copy loggly TLS config
+  tags: loggly
+  become: true
+  copy:
+    src=20-loggly-tls.conf
+    dest=/etc/rsyslog.d/20-loggly-tls.conf
+    owner=root
+    group=root
+
+- names: create loggly TLS cert dir
+  tags: loggly
+  become: true
+  file:
+    path=/etc/rsyslog.d/keys/ca.d
+    state=directory
+    owner=root
+    group=root
+
+- name: copy loggly TLS certs
+  tags: loggly
+  become: true
+  copy:
+    src=loggly_full.crt
+    dest=/etc/rsyslog.d/keys/ca.d/loggly_full.crt
+    owner=root
+    group=root
+    mode=400
+
 - name: copy loggly config
   tags: loggly
   sudo: yes
