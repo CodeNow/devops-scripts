@@ -8,7 +8,7 @@
     owner=root
     group=root
 
-- names: create loggly TLS cert dir
+- name: create loggly TLS cert dir
   tags: loggly
   become: true
   file:
