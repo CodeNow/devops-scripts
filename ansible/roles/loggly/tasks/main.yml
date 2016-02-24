@@ -1,4 +1,14 @@
 ---
+- name: Install rsyslog-gnutls
+  tags: loggly
+  become: yes
+  apt:
+    pkg=rsyslog-gnutls
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800
+    install_recommends=yes
+
 - name: copy loggly TLS config
   tags: loggly
   become: true
