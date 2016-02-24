@@ -20,7 +20,9 @@ socket-server
 epsilon-api
 
 [consul]
-epsilon-consul
+epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
 [vault]
 epsilon-services
