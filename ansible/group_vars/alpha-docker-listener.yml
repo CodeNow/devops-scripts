@@ -1,17 +1,20 @@
 name: docker-listener
 
-# upstart template variables
-app_name: docker-listener
-app_repo: git@github.com:CodeNow/docker-listener.git
+container_image: "registry.runnable.com/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
 
-enviroment_vars:
-  LOGGLY_TOKEN: "{{ loggly_token }}"
-  RABBITMQ_HOSTNAME: "{{ rabbit_host_address }}"
-  RABBITMQ_PASSWORD: "{{ rabbit_password }}"
-  RABBITMQ_PORT: "{{ rabbit_port }}"
-  RABBITMQ_USERNAME: "{{ rabbit_username }}"
+container_envs: >
+  -e LOGGLY_TOKEN="{{ loggly_token }}"
+  -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
+  -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
+  -e RABBITMQ_PORT="{{ rabbit_port }}"
+  -e RABBITMQ_USERNAME="{{ rabbit_username }}"
 
-# consul values
-consul_values:
-  - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  {{ container_envs }}
