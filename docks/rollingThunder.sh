@@ -108,7 +108,7 @@ ${DOCKS} aws -e ${ENV} | \
 function setLaunchConfig() {
 MYORGS="${1}"
 for org in ${MYORGS} ; do
-    ${DOCKS} asg lc --org ${org} --lc ${LAUNCH_CONFIG} -e ${ENV}
+    ${DOCKS} asg lc -e ${ENV} ${org} ${LAUNCH_CONFIG} 
     if [ 0 -ne ${?} ] ; then
         echo "Failed to update launch configuration, bailing."
         exit 1
