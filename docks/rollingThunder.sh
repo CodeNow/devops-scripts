@@ -118,7 +118,7 @@ done
 
 function getDesiredInstances() {
 MYORG="${1}"
-${DOCKS} asg -e ${ENV} | \
+${DOCKS} asg list -e ${ENV} | \
     grep "${MYORG}" | \
     awk '{print $8}'
 }
@@ -136,7 +136,7 @@ fi
 function scaleOutDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-out -e ${ENV} --org ${MYORG} --number ${MYINSTCOUNT}
+${DOCKS} asg scale-out -e ${ENV} ${MYORG} ${MYINSTCOUNT}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-out failed, bailing."
     exit 1
@@ -146,7 +146,7 @@ fi
 function scaleInDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-in -e ${ENV} --org ${MYORG} --number ${MYINSTCOUNT}
+${DOCKS} asg scale-in -e ${ENV} ${MYORG} ${MYINSTCOUNT}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-in failed, bailing."
     exit 1
@@ -157,7 +157,7 @@ function seekAndDestroy() {
 MYDOCKS="${1}"
 for dock in ${MYDOCKS} ; do
     ( printf "y\n\n" | \
-        ${DOCKS} unhealthy -e ${ENV} -i ${dock} )
+        ${DOCKS} unhealthy -e ${ENV} ${dock} )
     MYEXIT=${?}
     if [ 0 -ne ${MYEXIT} ] ; then
         echo "Dock could not be marked unhealthy, bailing."
