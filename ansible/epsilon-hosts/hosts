@@ -24,6 +24,9 @@ epsilon-services
 epsilon-api
 epsilon-web
 
+[docker-listener]
+epsilon-services
+
 [vault]
 epsilon-services
 
@@ -92,29 +95,31 @@ epsilon-services
 epsilon-services
 
 [epsilon:children]
-bastion
-hipache
-mongodb
 api
-worker
-socket-server
-web
-redis
-docks
-registry
-neo4j
-navi
+bastion
 charon
+dock
+docker-listener
+docker-listener
+docks
+eru
+hipache
 khronos
 mavis
+metis
+mongodb
+navi
+neo4j
 optimus
 rabbitmq
-eru
+redis
+registry
 sauron
 shiva
-metis
+socket-server
 swarm-manager
-dock
+web
+worker
 
 [local]
 127.0.0.1

@@ -26,6 +26,9 @@ gamma-services
 gamma-api
 gamma-web
 
+[docker-listener]
+gamma-services
+
 [vault]
 gamma-services
 
@@ -98,22 +101,22 @@ gamma-services
 
 [gamma:children]
 api
+api
 bastion
 charon
 dock
+docker-listener
 docks
 eru
 hipache
 khronos
 mavis
+metis
 mongodb
 navi
 neo4j
 optimus
 rabbitmq
-api
-worker
-web
 redis
 redis-slave
 registry
@@ -122,7 +125,8 @@ shiva
 socket-server
 swarm-manager
 web
-metis
+web
+worker
 
 [ec2]
 127.0.0.1
