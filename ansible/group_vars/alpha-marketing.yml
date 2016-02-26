@@ -1,0 +1,20 @@
+name: "runnable.com"
+
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+dockerfile_enviroment: [
+  "API_URL https://{{ api_hostname }}",
+  "AWS_ACCESS_KEY {{ aws_access_key }}",
+  "AWS_ACCESS_SECRET {{ aws_secret_key }}",
+  "ANGULAR_URL {{ angular_url }}",
+  "AWS_BUCKET {{ domain }}",
+  "NODE_ENV {{ node_env }}"
+]
+
+dockerfile_post_install_commands: [
+  "npm run deploy"
+]

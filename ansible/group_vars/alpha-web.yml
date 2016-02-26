@@ -13,26 +13,12 @@ dockerfile_enviroment: [
   "API_SOCK_URL https://{{ api_socket_server_hostname }}",
   "USER_CONTENT_DOMAIN {{ user_content_domain }}",
   "NODE_ENV production"
+  "AWS_ACCESS_KEY {{ aws_access_key }}",
+  "AWS_ACCESS_SECRET {{ aws_secret_key }}",
+  "MARKETING_URL {{ marketing_host }}",
+  "AWS_BUCKET {{ domain }}"
 ]
 
 dockerfile_post_install_commands: [
   "npm run gruntDeploy"
 ]
-
-# for redis
-# HTTPS is set above, so use HTTPS here! <3
-hosted_protocol: https
-redis_key: "frontend:{{ domain }}"
-is_redis_update_required: 'yes'
-
-# for container settings
-container_envs: >
-  -e PORT={{ hosted_ports[1] }}
-  -e HTTPS=true
-  -e HTTPS_PORT={{ hosted_ports[0] }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  {{ container_envs }}
