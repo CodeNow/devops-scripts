@@ -10,4 +10,4 @@
   - { role: git_repo, tags: [deploy] }
   - { role: node_service, tags: [deploy] }
   - { role: loggly-rotate }
-  - { role: consul_value, tags: [deploy, consul_value] }
+  - { role: consul_value, tags: [consul_value] }
