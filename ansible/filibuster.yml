@@ -6,7 +6,7 @@
     - group_vars/alpha-filibuster.yml
   roles:
   - { role: notify, tags: [notify] }
-  - { role: git_repo, tags: [deploy] }
-  - { role: node_service, tags: [deploy] }
+  - { role: git_repo }
+  - { role: node_service }
   - { role: loggly-rotate }
   - { role: consul_value, tags: [consul_value] }
