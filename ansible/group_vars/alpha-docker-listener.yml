@@ -7,11 +7,15 @@ node_version: "4.2.2"
 npm_version: "2.14.7"
 
 container_envs: >
+  -e DOCKER_CERT_PATH=/etc/ssl/docker
   -e LOGGLY_TOKEN="{{ loggly_token }}"
+  -e NODE_ENV="{{ node_env }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
+  -e SWARM_HOSTNAME="{{ swarm_host_address }}"
+  -e SWARM_PORT="{{ swarm_master_port }}"
 
 container_run_opts: >
   -h {{ name }}
