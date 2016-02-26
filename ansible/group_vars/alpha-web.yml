@@ -3,7 +3,6 @@ name: "runnable-angular"
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-hosted_ports: ["443", "3000"]
 node_version: "0.10.38"
 npm_version: "2.1.18"
 rollbar_token: "162a053bebd34e9eb6e2860543c7ae79"
