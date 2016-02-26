@@ -89,6 +89,9 @@ fluffy_hostname: "fluffy.{{ domain }}"
 # krain
 krain_port: 3100
 
+# marketing
+marketing_url: https://{{ domain }}
+
 # mavis
 mavis_hostname: mavis.{{ domain }}
 mavis_port: 3000
