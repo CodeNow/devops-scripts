@@ -3,8 +3,8 @@ name: "runnable.com"
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "4.2.2"
-npm_version: "2.14.7"
+node_version: "4.3.1"
+npm_version: "3.7.5"
 
 dockerfile_enviroment: [
   "API_URL https://{{ api_hostname }}",
