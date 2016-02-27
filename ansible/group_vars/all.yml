@@ -32,6 +32,9 @@ loggly_username: ops
 ## shared application configs
 ##
 
+#angular
+angular_url: https://app.{{ domain }}
+
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
@@ -85,6 +88,9 @@ fluffy_hostname: "fluffy.{{ domain }}"
 
 # krain
 krain_port: 3100
+
+# marketing
+marketing_url: https://{{ domain }}
 
 # mavis
 mavis_hostname: mavis.{{ domain }}
