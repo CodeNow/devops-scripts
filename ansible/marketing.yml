@@ -4,4 +4,4 @@
     - "group_vars/alpha-marketing.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: builder, tags: [ "build", "deploy" ] }
+  - { role: builder, tags: "build" }
