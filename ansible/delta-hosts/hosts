@@ -73,7 +73,7 @@ delta-services
 delta-rabbit
 
 [web]
-delta-web
+delta-services
 
 [redis]
 delta-redis

@@ -1,4 +1,3 @@
-# upstart template variables
 name: sauron
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
@@ -16,11 +15,6 @@ dockerfile_pre_install_commands: [
   "curl -L https://github.com/weaveworks/weave/releases/download/v1.4.1/weave -o {{ weave_path }}",
   "chmod a+x {{ weave_path }}"
 ]
-
-# consul values
-consul_values:
-  - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
 
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}

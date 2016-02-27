@@ -71,7 +71,7 @@ epsilon-services
 epsilon-rabbit
 
 [web]
-epsilon-web
+epsilon-services
 
 [redis]
 epsilon-redis
