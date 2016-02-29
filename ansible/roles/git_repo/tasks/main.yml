@@ -11,6 +11,7 @@
     owner={{ ansible_env.USER }}
 
 - name: pull the git repository
+  tags: deploy
   git:
     repo={{ app_repo }}
     dest=/opt/runnable/{{ app_name }}

@@ -7,5 +7,6 @@
   roles:
   - { role: notify, tags: [notify] }
   - { role: node, tags: [setup]  }
+  - { role: git_repo }
   - { role: image-builder }
   - { role: consul_value, tags: [consul_value] }

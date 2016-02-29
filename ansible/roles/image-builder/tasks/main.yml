@@ -1,28 +1,16 @@
 ---
-- name: create image-builder repository dir
-  sudo: yes
-  file:
-    path=/opt/runnable/image-builder
-    state=directory
-    owner={{ ansible_env.USER }}
-
-- name: pull the image-builder repository
-  git:
-    repo=git@github.com:CodeNow/image-builder.git
-    dest=/opt/runnable/image-builder
-    version={{ git_branch }}
-    update=yes
-    accept_hostkey=True
-
 - name: npm install
+  tags: deploy
   npm:
     path=/opt/runnable/image-builder
     state=latest
 
 - name: build the image-builder
+  tags: deploy
   command: sudo docker build --no-cache --tag="registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
 
 - name: push image-builder
+  tags: deploy
   run_once: true
   command: sudo docker push "registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}"
   when: dock is not defined
