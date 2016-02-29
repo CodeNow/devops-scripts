@@ -7,5 +7,5 @@
   roles:
   - { role: notify, tags: [notify] }
   - { role: node, tags: [setup]  }
-  - { role: image-builder, tags: [deploy] }
-  - { role: consul_value, tags: [deploy, consul_value] }
+  - { role: image-builder }
+  - { role: consul_value, tags: [consul_value] }

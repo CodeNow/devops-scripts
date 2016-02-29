@@ -6,5 +6,5 @@
     - "group_vars/alpha-hipache.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: hipache, tags: "deploy" }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: hipache }
+  - { role: container_kill_start }

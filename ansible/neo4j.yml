@@ -7,4 +7,4 @@
   roles:
   - { role: builder, tags: "build" }
   - { role: neo4j }
-  - { role: container_kill_start, tags: deploy }
+  - { role: container_kill_start }

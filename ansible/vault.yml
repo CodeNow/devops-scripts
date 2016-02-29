@@ -8,4 +8,4 @@
   - { role: notify, tags: notify }
   - { role: database }
   - { role: vault }
-  - { role: container_kill_start, tags: deploy }
+  - { role: container_kill_start }

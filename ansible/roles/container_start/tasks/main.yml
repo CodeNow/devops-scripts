@@ -1,20 +1,24 @@
 ---
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
+  tags: deploy
   become: true
   script: findTagRunning.sh {{ container_image }}
   register: old_containers_ids
   changed_when: old_containers_ids.stdout != ''
 
 - name: get latest images
+  tags: deploy
   when: not do_not_push
   command: sudo docker pull {{container_image}}:{{container_tag}}
 
 - name: get id of latest image
+  tags: deploy
   shell: sudo docker images --no-trunc | grep {{container_image}}.*{{container_tag}} | awk '{print $3}'
   register: new_image_id
 
 - name: start new container
+  tags: deploy
   command: sudo docker run --log-driver=none -v /var/log:/var/log:rw {{container_run_opts}} {{container_image}}:{{container_tag}} {{container_run_args}}
   register: new_container_id
   notify:
