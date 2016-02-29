@@ -69,7 +69,7 @@ gamma-services
 gamma-rabbit
 
 [web]
-gamma-web
+gamma-services
 
 [redis]
 gamma-redis

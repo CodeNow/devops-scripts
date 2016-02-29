@@ -6,5 +6,5 @@
   - { role: notify, tags: "notify" }
   - { role: database }
   - { role: rabbitmq }
-  - { role: container_kill_start, tags: "deploy" }
+  - { role: container_kill_start }
   - { role: datadog, tags: "datadog" }

@@ -136,7 +136,7 @@ Host gamma-web
 ################################################################################
 
 Host delta-bastion
-  HostName 52.34.60.110
+  HostName 52.37.51.230
 
 Host 10.8.*.*
   User ubuntu
