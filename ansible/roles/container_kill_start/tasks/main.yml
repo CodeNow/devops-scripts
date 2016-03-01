@@ -1,4 +1,5 @@
 - name: "look for stopped {{ container_image }} containers"
+  tags: deploy
   shell: >
     sudo docker ps -a |
     grep Exited |
@@ -8,12 +9,14 @@
   changed_when: stopped_containers.stdout != ''
 
 - name: "removed stopped {{ container_image }} containers"
+  tags: deploy
   when: stopped_containers.changed
   shell: sudo docker rm {{ item }}
   with_items: stopped_containers.stdout_lines
 
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
+  tags: deploy
   sudo: yes
   script: findTagRunning.sh {{ container_image }}
   register: old_containers_id
@@ -22,11 +25,13 @@
 # get latest image
 # tag will default to latest
 - name: "pull down docker image {{ container_image }}:{{ container_tag }}"
+  tags: deploy
   command: sudo docker pull {{ container_image }}:{{ container_tag }}
   when: not do_not_push
 
 # get id of new image
 - name: get id of the docker image
+  tags: deploy
   shell: >
     sudo docker images
     --no-trunc |
@@ -36,22 +41,26 @@
 
 # stop the old containers that were running this previously
 - name: stop old containers
+  tags: deploy
   when: old_containers_id.changed
   command: sudo docker stop -t {{ stop_time }} {{ item }}
   with_items: old_containers_id.stdout_lines
 
 # remove the old containers that were running previously
 - name: remove old containers
+  tags: deploy
   when: old_containers_id.changed
   command: sudo docker rm {{ item }}
   with_items: old_containers_id.stdout_lines
 
 - name: pause to allow for any odd conditions in system caching tables
+  tags: deploy
   when: pause_length_minutes is defined and old_containers_id.changed
   pause: minutes={{pause_length_minutes}}
 
 # start our new container with options and args
 - name: start container
+  tags: deploy
   command: >
     sudo docker run
     --log-driver={{ log_driver | default("none")}}

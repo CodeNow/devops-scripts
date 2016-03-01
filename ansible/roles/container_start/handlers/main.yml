@@ -1,14 +1,17 @@
 ---
 - name: get new container ports
+  tags: deploy
   when: hosted_ports is defined
   shell: sudo docker port {{new_container_id.stdout}} {{ hosted_ports[0] }} | awk --field-separator ':' '{print $2}'
   register: container_ports
 
 # this assumes only one container is running, ever
 - name: update redis key
+  tags: deploy
   command: sudo docker run --rm redis redis-cli -h {{redis_host_address}} lset {{redis_key}} 1 {{hosted_protocol | default('http') }}://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
   when: is_redis_update_required is defined and container_ports is defined
 
 - name: stop old containers
+  tags: deploy
   command: sudo docker stop --time={{stop_time}} {{item}}
   with_items: old_containers_ids.stdout_lines

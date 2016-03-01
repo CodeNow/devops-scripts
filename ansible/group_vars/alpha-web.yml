@@ -6,6 +6,7 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
 rollbar_token: "162a053bebd34e9eb6e2860543c7ae79"
+do_not_push: yes
 
 dockerfile_enviroment: [
   "API_URL https://{{ api_hostname }}",
