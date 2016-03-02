@@ -1,16 +1,11 @@
 ---
 - hosts: rabbitmq
-- hosts: redis
-- hosts: consul
 
-- hosts: "{{ dock | default('docks') }}"
+- hosts: docker-listener
   vars_files:
     - group_vars/alpha-docker-listener.yml
   roles:
   - { role: notify, tags: [notify] }
-  - { role: build_essential }
   - { role: docker_client }
-  - { role: git_repo }
-  - { role: node_service }
-  - { role: loggly-rotate }
-  - { role: consul_value, tags: [consul_value] }
+  - { role: builder, tags: "build" }
+  - { role: container_start, tags: "deploy" }

@@ -26,6 +26,9 @@ delta-services
 delta-api
 delta-web
 
+[docker-listener]
+delta-services
+
 [vault]
 delta-services
 
@@ -97,30 +100,31 @@ delta-services
 delta-services
 
 [delta:children]
-bastion
-hipache
-mongodb
 api
-worker
-socket-server
-web
-redis
-redis-slave
-docks
-registry
-neo4j
-navi
+bastion
 charon
+dock
+docker-listener
+docks
+eru
+hipache
 khronos
 mavis
+metis
+mongodb
+navi
+neo4j
 optimus
 rabbitmq
-eru
+redis
+redis-slave
+registry
 sauron
 shiva
-metis
+socket-server
 swarm-manager
-dock
+web
+worker
 
 [local]
 127.0.0.1
