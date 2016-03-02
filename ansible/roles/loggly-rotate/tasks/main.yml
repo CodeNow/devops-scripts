@@ -1,12 +1,50 @@
 ---
+- name: Install rsyslog-gnutls
+  become: yes
+  tags: loggly
+  apt:
+    pkg=rsyslog-gnutls
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800
+    install_recommends=yes
+
+- name: copy loggly TLS config
+  tags: loggly
+  become: true
+  copy:
+    src=20-loggly-tls.conf
+    dest=/etc/rsyslog.d/20-loggly-tls.conf
+    owner=syslog
+    group=syslog
+
+- name: create loggly TLS cert dir
+  tags: loggly
+  become: true
+  file:
+    path=/etc/rsyslog.d/keys/ca.d
+    state=directory
+    owner=syslog
+    group=syslog
+
+- name: copy loggly TLS certs
+  tags: loggly
+  become: true
+  copy:
+    src=loggly_full.crt
+    dest=/etc/rsyslog.d/keys/ca.d/loggly_full.crt
+    owner=syslog
+    group=syslog
+    mode=400
+
 - name: copy loggly config
   tags: loggly
   sudo: yes
   template:
     src=22-loggly.conf.j2
     dest=/etc/rsyslog.d/22-loggly.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: create runnable bin directory
   tags: loggly
@@ -32,8 +70,8 @@
   template:
     src=21-output-syslog.conf.j2
     dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: copy rsyslog config
   tags: loggly
@@ -41,8 +79,8 @@
   template:
     src=rsyslog.conf.j2
     dest=/etc/rsyslog.conf
-    owner=root
-    group=root
+    owner=syslog
+    group=syslog
 
 - name: stop rsyslog
   tags: [loggly, deploy]

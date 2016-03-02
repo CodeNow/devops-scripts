@@ -1,0 +1,23 @@
+- hosts: "{{ host }}"
+  gather_facts: no
+  tasks:
+  - fail: msg="`host` needs to be defined for this role"
+    when: host is not defined
+  - fail: msg="`name` needs to be defined for this role"
+    when: name is not defined
+
+  - name: stop service
+    become: true
+    service:
+      name=rsyslog
+      state=stopped
+
+  - name: remove files
+    become: true
+    file:
+      path="{{ item }}"
+      state=absent
+    with_items:
+      - /etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
+      - /etc/rsyslog.d/21-rotated-{{ name }}.conf
+      - /etc/rsyslog.d/15-loggly-{{ name }}.conf
