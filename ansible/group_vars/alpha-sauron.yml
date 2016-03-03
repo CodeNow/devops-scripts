@@ -25,6 +25,7 @@ container_envs: >
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
+  -e ROLLBAR_KEY={{ sauron_rollbar_key }}
   -e SWARM_HOSTNAME={{ swarm_host_address }}
   -e SWARM_PORT={{ swarm_master_port }}
   -e WEAVE_PATH={{ weave_path }}
