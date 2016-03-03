@@ -14,6 +14,7 @@
     cache_valid_time=604800
 
 - name: put values into consul
+  tags: deploy
   run_once: true
   when: consul_host_address is defined and consul_api_port is defined and consul_values is defined and dock is not defined
   uri:

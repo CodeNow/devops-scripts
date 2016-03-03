@@ -24,6 +24,9 @@ epsilon-consul-a
 epsilon-consul-b
 epsilon-consul-c
 
+[docker-listener]
+epsilon-services
+
 [vault]
 epsilon-services
 
@@ -71,7 +74,7 @@ epsilon-services
 epsilon-rabbit
 
 [web]
-epsilon-web
+epsilon-services
 
 [redis]
 epsilon-redis
@@ -92,30 +95,31 @@ epsilon-services
 epsilon-services
 
 [epsilon:children]
-bastion
-consul
-hipache
-mongodb
 api
-worker
-socket-server
-web
-redis
-docks
-registry
-neo4j
-navi
+bastion
 charon
+consul
+dock
+docker-listener
+docks
+eru
+hipache
 khronos
 mavis
+metis
+mongodb
+navi
+neo4j
 optimus
 rabbitmq
-eru
+redis
+registry
 sauron
 shiva
-metis
+socket-server
 swarm-manager
-dock
+web
+worker
 
 [local]
 127.0.0.1

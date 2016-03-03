@@ -7,6 +7,7 @@
     state=directory
 
 - name: pull the git repository
+  tags: deploy
   sudo: yes
   git:
     repo="{{ repo }}"
@@ -24,6 +25,7 @@
   tags: 'genDockerfile'
 
 - name: build docker image and tag
+  tags: deploy
   command: sudo docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
