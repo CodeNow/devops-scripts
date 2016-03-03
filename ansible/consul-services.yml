@@ -3,6 +3,6 @@
 - hosts: redis
 - hosts: vault
 
-- hosts: consul
+- hosts: vault
   roles:
   - { role: consul-services }
