@@ -1,16 +1,17 @@
 ---
 - name: make /etc/consul.d folder
-  sudo: yes
+  become: true
   file:
     path=/etc/consul.d
     state=directory
 
 - name: remove all current configs
-  sudo: yes
+  become: true
   shell: rm -f /etc/consul.d/*.json
 
 - name: put service files in place
-  sudo: yes
+  become: true
+  run_once: true
   template:
     dest=/etc/consul.d/{{ item.name }}.json
     src=service.json
@@ -33,5 +34,5 @@
       port: '{{ registry_port }}'
 
 - name: send consul SIGUP to reload services
-  sudo: yes
+  become: true
   shell: pkill --signal SIGHUP consul
