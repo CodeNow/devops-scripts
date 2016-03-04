@@ -117,14 +117,6 @@
         from_port: 22
         to_port: 22
         group_id: "{{ sg_bastion }}"
-      - proto: udp
-        from_port: 53
-        to_port: 53
-        group_id: "{{ sg_dock }}"
-      - proto:                 tcp
-        from_port: 53
-        to_port: 53
-        group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 3100
         to_port: 3100
