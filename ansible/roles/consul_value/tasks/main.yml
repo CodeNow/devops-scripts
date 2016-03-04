@@ -1,4 +1,9 @@
 ---
+- name: Debug role
+  when: debug_info is defined
+  debug:
+    msg="Consul Server {{ consul_host_address }}:{{ consul_api_port }}"
+
 - name: make sure httplib2 is installed
   run_once: true
   sudo: yes

@@ -20,9 +20,9 @@ socket-server
 epsilon-api
 
 [consul]
-epsilon-services
-epsilon-api
-epsilon-web
+epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
 [docker-listener]
 epsilon-services
@@ -98,8 +98,8 @@ epsilon-services
 api
 bastion
 charon
+consul
 dock
-docker-listener
 docker-listener
 docks
 eru
