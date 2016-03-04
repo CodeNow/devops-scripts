@@ -2,9 +2,7 @@ app_name: image-builder
 name: "{{ app_name }}"
 # namespace (can include "registry.runnable.com:")
 image_builder_docker_namespace: runnable/image-builder
-
-# we need to push this
-do_not_push: false
+app_repo: git@github.com:CodeNow/{{ app_name }}.git
 
 # consul values
 consul_values:
