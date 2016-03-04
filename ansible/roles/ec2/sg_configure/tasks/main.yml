@@ -512,7 +512,7 @@
       - proto: tcp
         from_port: 9123
         to_port: 9123
-        group_id: "{{ sg_services }}"
+        group_id: "{{ sg_navi }}"
       - proto: tcp
         from_port: 27000
         to_port: 27020
