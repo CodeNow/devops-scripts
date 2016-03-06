@@ -22,9 +22,9 @@ socket-server
 gamma-api
 
 [consul]
-gamma-services
-gamma-api
-gamma-web
+gamma-consul-a
+gamma-consul-b
+gamma-consul-c
 
 [docker-listener]
 gamma-services
