@@ -4,7 +4,7 @@ container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ optimus_port }}"]
-node_version: "0.10.38"
+node_version: "4.3.2"
 npm_version: "2.8.3"
 
 # for redis
