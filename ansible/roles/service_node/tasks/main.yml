@@ -1,0 +1,4 @@
+---
+- name: Install service-tier node and utilities
+  become: true
+  script: nodeInstall.sh
