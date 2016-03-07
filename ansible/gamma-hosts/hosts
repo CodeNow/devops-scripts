@@ -30,7 +30,7 @@ gamma-consul-c
 gamma-services
 
 [vault]
-gamma-services
+gamma-consul-a
 
 [worker]
 gamma-api-worker
