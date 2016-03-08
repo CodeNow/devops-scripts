@@ -65,32 +65,20 @@
   register: copied_config
   tags: genDockerConfig
 
-- name: force docker version
-  become: true
-  copy:
-    src=docker-engine
-    dest=/etc/apt/preferences.d/docker-engine
-    owner=root
-    group=root
-    mode=0600
-
 - name: apt-get update
   become: true
   apt:
      update_cache=yes
 
-
 - name: install docker
   become: true
   when: restart is defined or dock is defined
   apt:
-    pkg="{{ docker_package_name }}"
+    pkg={{ docker_package_name }}
     state=present
     force=yes
-    dpkg_options='force-confold,force-confdef'
     update_cache=yes
     cache_valid_time=604800
-
 
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
