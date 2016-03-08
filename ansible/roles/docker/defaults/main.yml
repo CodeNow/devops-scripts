@@ -1,2 +1,1 @@
----
-docker_package_name: docker-engine
+docker_package_name: docker-engine=1.10.2

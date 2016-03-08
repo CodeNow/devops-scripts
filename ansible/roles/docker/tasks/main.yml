@@ -74,7 +74,7 @@
   become: true
   when: restart is defined or dock is defined
   apt:
-    pkg=docker-engine
+    pkg={{ docker_package_name }}
     state=present
     force=yes
     update_cache=yes
