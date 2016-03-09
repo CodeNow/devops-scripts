@@ -88,6 +88,7 @@ fluffy_hostname: "fluffy.{{ domain }}"
 
 # krain
 krain_port: 3100
+krain_host_address: "{{ hostvars[groups['krain'][0]]['ansible_default_ipv4']['address'] }}"
 
 # marketing
 marketing_url: https://{{ domain }}
