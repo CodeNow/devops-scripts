@@ -1,16 +1,22 @@
-# krain options
-name: krain
+name: Krain
 
-krain_env: default
+container_image: "registry.runnable.com/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "0.10.38"
+npm_version: "2.14.7"
 
-# upstart template variables
-app_name: krain
-app_repo: git@github.com:CodeNow/krain.git
-node_env: "{{ krain_env }}"
+restart_policy: "always"
 
-enviroment_vars: {}
+container_envs: >
+  -e DOCKER_CERT_PATH=/etc/ssl/docker
+  -e LOGGLY_TOKEN="{{ loggly_token }}"
+  -e NODE_ENV="{{ node_env }}"
+  -e SWARM_HOSTNAME="{{ swarm_host_address }}"
+  -e SWARM_PORT="{{ swarm_master_port }}"
 
-# consul values
-consul_values:
-  - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  {{ container_envs }}
