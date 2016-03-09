@@ -38,6 +38,7 @@ Host delta-staging-data
 
 Host gamma-bastion
   HostName 54.69.34.161
+  Port 12675
 
 Host 10.4.*.*
   User ubuntu
@@ -146,6 +147,7 @@ Host gamma-web
 
 Host delta-bastion
   HostName 52.37.51.230
+  Port 51089
 
 Host 10.8.*.*
   User ubuntu
@@ -209,6 +211,7 @@ Host delta-web
 
 Host epsilon-bastion
   HostName 52.35.234.45
+  Port 33175
 
 Host 10.12.*.*
   User ubuntu
