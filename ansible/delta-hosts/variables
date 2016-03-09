@@ -67,6 +67,7 @@ vault_aws_region=us-east-1
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+bastion_sshd_port=51089
 datadog_tags=env:delta
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
@@ -88,6 +89,7 @@ vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f0
 
 [ec2:vars]
 aws_custid=437258487404
+bastion_sshd_port=51089
 sg_hipache=sg-7fd7fb1b
 sg_api=sg-0bf7db6f
 sg_neo4j=sg-a9d0fccd
