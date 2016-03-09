@@ -22,15 +22,15 @@ socket-server
 delta-api
 
 [consul]
-delta-services
-delta-api
-delta-web
+delta-consul-a
+delta-consul-b
+delta-consul-c
 
 [docker-listener]
 delta-services
 
 [vault]
-delta-services
+delta-consul-a
 
 [worker]
 delta-api-worker
