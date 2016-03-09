@@ -70,6 +70,15 @@ Host gamma-api-worker
 Host gamma-api-socket
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.4 22
 
+Host gamma-consul-a
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.144 22
+
+Host gamma-consul-b
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.11.220 22
+
+Host gamma-consul-c
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.196 22
+
 ## Gamma MongoDB
 Host gamma-mongo-a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.56 22
@@ -217,6 +226,15 @@ Host epsilon-api-worker
 Host epsilon-api-socket
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.15.207 22
 
+Host epsilon-consul-a
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.67 22
+
+Host epsilon-consul-b
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.240 22
+
+Host epsilon-consul-c
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.209 22
+
 Host epsilon-hipache
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.195 22
 
@@ -246,15 +264,6 @@ Host epsilon-userland
 
 Host epsilon-web
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.33 22
-
-Host epsilon-consul-a
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.67 22
-
-Host epsilon-consul-b
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.240 22
-
-Host epsilon-consul-c
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.209 22
 
 ################################################################################
 # other
