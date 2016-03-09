@@ -1,4 +1,4 @@
-name: Krain
+name: krain
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
