@@ -58,6 +58,14 @@
         to_port: 8302
         group_id: "{{ sg_consul }}"
       - proto: tcp
+        from_port: 8200
+        to_port: 8200
+        group_id: "{{ sg_consul }}"
+      - proto: tcp
+        from_port: 8200
+        to_port: 8200
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
         from_port: 8500
         to_port: 8500
         group_id: "{{ sg_api }}"
@@ -417,10 +425,6 @@
         from_port: 3567
         to_port: 3567
         group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: 8200
-        to_port: 8200
-        group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 9123
         to_port: 9123
