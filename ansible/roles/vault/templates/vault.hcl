@@ -9,6 +9,13 @@ backend "consul" {
 }
 
 listener "tcp" {
- address = "0.0.0.0:8200"
- tls_disable = 1
+  address = "0.0.0.0:8200"
+  tls_disable = 1
+}
+
+listener "tcp" {
+  address = "0.0.0.0:8201"
+  tls_ca_file = "/opt/vault/server/ca.pem"
+  tls_cert_file = "/opt/vault/server/cert.pem"
+  tls_key_file = "/opt/vault/server/key.pem"
 }

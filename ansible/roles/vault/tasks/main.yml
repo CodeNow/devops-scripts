@@ -13,17 +13,37 @@
     state=directory
     recurse=yes
 
+- name: create vault server tls certificate directory
+  become: yes
+  file:
+    path=/opt/vault/server
+    state=directory
+    recurse=yes
+
 - name: copy vault config
   sudo: yes
   template:
     src=vault.hcl
     dest=/opt/runnable/vault/vault.hcl
 
-- name: copy tls certificates (3)
+- name: copy consul tls certificates (3)
   become: true
   copy:
     src=certs/vault/client-consul/{{ ansible_default_ipv4.address }}/{{ item }}
     dest=/opt/vault/client-consul/{{ item }}
+    mode=0400
+    owner=root
+    group=root
+  with_items:
+    - ca.pem
+    - cert.pem
+    - key.pem
+
+- name: copy vault tls certificates (3)
+  become: true
+  copy:
+    src=certs/vault/server/{{ ansible_default_ipv4.address }}/{{ item }}
+    dest=/opt/vault/server/{{ item }}
     mode=0400
     owner=root
     group=root
