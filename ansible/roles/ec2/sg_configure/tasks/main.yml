@@ -59,11 +59,11 @@
         group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8500
@@ -147,7 +147,7 @@
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 32768
