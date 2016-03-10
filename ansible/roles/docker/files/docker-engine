@@ -1,3 +1,0 @@
-Package: docker-engine
-Pin: version 1.9.1*
-Pin-Priority: 1001

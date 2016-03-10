@@ -14,8 +14,8 @@
     aws_access_key: "{{ aws_access_key }}"
     rules:
       - proto: tcp
-        from_port: 22
-        to_port: 22
+        from_port: "{{ bastion_sshd_port }}"
+        to_port: "{{ bastion_sshd_port }}"
         cidr_ip: 0.0.0.0/0
 
 - name: API SG
@@ -101,6 +101,14 @@
         from_port: 22
         to_port: 22
         group_id: "{{ sg_bastion }}"
+      - proto: udp
+        from_port: 53
+        to_port: 53
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 53
+        to_port: 53
+        group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 3100
         to_port: 3100
@@ -138,13 +146,33 @@
         to_port: 6783
         group_id: "{{ sg_dock }}"
       - proto: tcp
+        from_port: 8200
+        to_port: 8200
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: 32768
         to_port: 65535
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
         group_id: "{{ sg_navi }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_redis }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_services }}"
 
 - name: Hipache SG
   tags:
@@ -193,6 +221,26 @@
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_redis }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_web }}"
 
 - name: MongoDB SG
   tags:
@@ -225,6 +273,10 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_dock }}"
 
 - name: Navi SG
   tags:
@@ -436,7 +488,15 @@
       - proto: tcp
         from_port: 32768
         to_port: 65535
-        group_id: "{{ sg_hipache }}"        
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 65535
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 32768
+        to_port: 63353
+        group_id: "{{ sg_services }}"
   
 - name: Userland Hipache
   tags:
@@ -453,19 +513,3 @@
         from_port: 80
         to_port: 65535
         cidr_ip: 0.0.0.0/0
-  
-- name: Web
-  tags:
-    - web
-  ec2_group:
-    name: "{{ env }}-web"
-    description: "{{ env }} Web Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: us-west-2
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: 22
-        to_port: 22
-        group_id: "{{ sg_bastion }}"
