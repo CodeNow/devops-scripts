@@ -482,10 +482,6 @@
         to_port: 9123
         group_id: "{{ sg_navi }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
-        group_id: "{{ sg_services }}"
-      - proto: tcp
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_dock }}"

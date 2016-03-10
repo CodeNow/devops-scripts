@@ -48,10 +48,7 @@ Host 10.4.*.*
   IdentityFile ~/.ssh/gamma.pem
 
 ## Gamma Userland Hipache
-Host gamma-userland-hipache
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
-
-Host gamma-user-us-west-2a
+Host gamma-userland
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 ## Gamma App Hipache
@@ -98,46 +95,30 @@ Host gamma-rabbit
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
-Host gamma-redis-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
-
 Host gamma-redis-slave
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
-
-Host gamma-redis-us-west-2b
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
 
 ## Gamma Neo4J
 Host gamma-neo4j
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
-Host gamma-neo4j-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
-
-## Gamma Services
-Host gamma-services-us-west-2a
+# Gamma App Services
+Host gamma-app-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
 
-Host gamma-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
+# Gamma Dock Services
+Host gamma-dock-services
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22
 
-Host gamma-navi-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
-
+# Gamma Navi
 Host gamma-navi
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
 
-## Gamma Registry
-Host gamma-registry-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
-
+# Gamma Registry
 Host gamma-registry
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 ## Gamma Web
-Host gamma-web-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
-
 Host gamma-web
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
 
