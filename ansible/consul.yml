@@ -6,4 +6,5 @@
   roles:
   - { role: notify, tags: notify }
   - { role: database }
+  - { role: consul }
   - { role: container_kill_start }
