@@ -16,8 +16,7 @@ container_envs: >
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
-  -e SWARM_HOSTNAME="{{ swarm_host_address }}"
-  -e SWARM_PORT="{{ swarm_master_port }}"
+  -e SWARM_HOST="{{ swarm_host_address }}:{{ swarm_master_port }}"
 
 container_run_opts: >
   -h {{ name }}
