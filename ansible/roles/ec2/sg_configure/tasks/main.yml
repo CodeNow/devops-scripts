@@ -1,7 +1,7 @@
 #- name: install Python Boto
 #  sudo: yes
 #  apt: name=python-boto state=latest
-  
+
 - name: Bastion
   tags:
     - bastion
@@ -59,31 +59,31 @@
         group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8500
-        to_port: 8500
+        to_port: 8501
         group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: 8500
-        to_port: 8500
+        to_port: 8501
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8500
-        to_port: 8500
+        to_port: 8501
         group_id: "{{ sg_hipache }}"
       - proto: tcp
         from_port: 8500
-        to_port: 8500
+        to_port: 8501
         group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: 8500
-        to_port: 8500
+        to_port: 8501
         group_id: "{{ sg_web }}"
 
 - name: Docker Container Service SG
@@ -147,7 +147,7 @@
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 32768
@@ -497,7 +497,7 @@
         from_port: 32768
         to_port: 63353
         group_id: "{{ sg_services }}"
-  
+
 - name: Userland Hipache
   tags:
     - userland
