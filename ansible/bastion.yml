@@ -1,0 +1,5 @@
+---
+- hosts: bastion
+  roles:
+  - { role: notify, tags: "notify" , app_name: "bastion_sshd" , git_branch: "latest" , name: "bastion_sshd" }
+  - { role: bastion_sshd, tags: "bastion-sshd" }

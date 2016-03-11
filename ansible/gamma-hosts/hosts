@@ -22,15 +22,15 @@ socket-server
 gamma-api
 
 [consul]
-gamma-services
-gamma-api
-gamma-web
+gamma-consul-a
+gamma-consul-b
+gamma-consul-c
 
 [docker-listener]
 gamma-services
 
 [vault]
-gamma-services
+gamma-consul-a
 
 [worker]
 gamma-api-worker
@@ -104,6 +104,7 @@ api
 api
 bastion
 charon
+consul
 dock
 docker-listener
 docks
