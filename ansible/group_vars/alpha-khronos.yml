@@ -18,6 +18,10 @@ cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js 
 
 # for container settings
 container_envs: >
+  -e API_URL={{ api_url }}
+  -e CANARY_API_TOKEN={{ khronos_canary_token }}
+  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
+  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_PREFETCH=6
