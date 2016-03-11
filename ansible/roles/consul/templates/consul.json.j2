@@ -1,0 +1,31 @@
+{
+  "advertise_addr": "{{ ansible_default_ipv4.address }}",
+  "bind_addr": "0.0.0.0",
+  {% if consul_host_address == ansible_default_ipv4.address %}
+    "bootstrap_expect": {{ groups['consul'] | length }},
+  {% endif %}
+  "ca_file": "/opt/consul/server/ca.pem",
+  "cert_file": "/opt/consul/server/cert.pem",
+  "client_addr": "0.0.0.0",
+  "data_dir": "/data",
+  "key_file": "/opt/consul/server/key.pem",
+  "log_level": "trace",
+  "node_name": "{{ inventory_hostname }}",
+  "ports": {
+    "https": {{ consul_https_port }}
+  },
+  "recursors": [
+    "8.8.8.8"
+  ],
+  {% if consul_host_address != ansible_default_ipv4.address %}
+    "retry_join": [
+      "{{ consul_host_address }}"
+    ],
+  {% endif %}
+  "server": true,
+  {% if consul_host_address == ansible_default_ipv4.address %}
+    "ui_dir": "/ui",
+  {% endif %}
+  "verify_incoming": true,
+  "verify_outgoing": true
+}
