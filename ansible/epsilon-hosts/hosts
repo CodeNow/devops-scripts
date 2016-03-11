@@ -28,7 +28,9 @@ epsilon-consul-c
 epsilon-services
 
 [vault]
-epsilon-services
+epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
 [worker]
 epsilon-api-worker

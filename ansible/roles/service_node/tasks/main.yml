@@ -1,0 +1,97 @@
+---
+#- name: Install service-tier node and utilities
+#  become: true
+#  script: nodeInstall.sh
+- name: "remove ax25-node"
+  become: yes
+  apt:
+    name=node
+    force=yes
+    purge=yes
+    state=absent
+
+- stat: path=/usr/bin/node
+  register: bin_node
+
+- stat: path=/usr/bin/sbin
+  register: sbin_node
+
+- name: "remove any linked node in /usr/bin"
+  become: yes
+  file:
+    path=/usr/bin/node
+    state=absent
+  when: bin_node.stat.islnk is defined and bin_node.stat.islnk
+
+- name: "remove any linked node in /usr/sbin"
+  become: yes
+  file:
+    path=/usr/sbin/node
+    state=absent
+  when: sbin_node.stat.islnk is defined and sbin_node.stat.islnk
+
+- name: "download node 4.x dpkg update script"
+  get_url:
+    url=https://deb.nodesource.com/setup_4.x
+    dest=/tmp/setup_4.x
+
+- name: "update package repo for node 4.x"
+  become: yes
+  command: /usr/bin/env bash /tmp/setup_4.x
+
+- name: "clean up node 4.x package repo updater"
+  file:
+    path=/tmp/setup_4.x
+    state=absent
+
+- name: "install node 4.x"
+  become: yes
+  apt:
+    name=nodejs
+    state=latest
+
+- name: "link nodejs to node"
+  become: yes
+  file:
+    src=/usr/bin/nodejs
+    dest=/usr/bin/node
+    owner=root
+    group=root
+    state=link
+
+- name: "install build-essential"
+  become: yes
+  apt:
+    name: build-essential
+    state: latest
+
+- name: "install jq"
+  become: yes
+  apt:
+    name=jq
+    state=latest
+
+- name: "download nvm installer"
+  get_url:
+    url=https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh
+    dest=/tmp/install.sh
+
+- name: "install nvm"
+  command: /usr/bin/env bash /tmp/install.sh
+
+- name: "clean up nvm installer"
+  file:
+    path=/tmp/install.sh
+    state=absent
+
+- name: "install bunyan globally"
+  become: yes
+  npm:
+    name=bunyan
+    global=yes
+
+- name: "install json globally"
+  become: yes
+  npm:
+    name=json
+    global=yes

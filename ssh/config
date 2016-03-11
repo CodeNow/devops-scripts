@@ -169,6 +169,15 @@ Host delta-api-socket
 Host delta-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
 
+Host delta-consul-a
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.122 22
+
+Host delta-consul-b
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.8.130 22
+
+Host delta-consul-c
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.86 22
+
 Host delta-registry
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
 

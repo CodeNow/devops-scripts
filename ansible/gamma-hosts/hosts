@@ -31,6 +31,8 @@ gamma-services
 
 [vault]
 gamma-consul-a
+gamma-consul-b
+gamma-consul-c
 
 [worker]
 gamma-api-worker
