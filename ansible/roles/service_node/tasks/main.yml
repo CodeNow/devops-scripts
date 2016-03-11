@@ -17,12 +17,14 @@
   register: sbin_node
 
 - name: "remove any linked node in /usr/bin"
+  become: yes
   file:
     path=/usr/bin/node
     state=absent
   when: bin_node.stat.islnk is defined and bin_node.stat.islnk
 
 - name: "remove any linked node in /usr/sbin"
+  become: yes
   file:
     path=/usr/sbin/node
     state=absent
@@ -35,7 +37,7 @@
 
 - name: "update package repo for node 4.x"
   become: yes
-  command: /usr/bin/env bash -c /tmp/setup_4.x
+  command: /usr/bin/env bash /tmp/setup_4.x
 
 - name: "clean up node 4.x package repo updater"
   file:
@@ -51,8 +53,8 @@
 - name: "link nodejs to node"
   become: yes
   file:
-    src=/usr/bin/node
-    dest=/usr/bin/nodejs
+    src=/usr/bin/nodejs
+    dest=/usr/bin/node
     owner=root
     group=root
     state=link
@@ -75,7 +77,7 @@
     dest=/tmp/install.sh
 
 - name: "install nvm"
-  command: /usr/bin/env bash -c /tmp/install.sh
+  command: /usr/bin/env bash /tmp/install.sh
 
 - name: "clean up nvm installer"
   file:
@@ -83,11 +85,13 @@
     state=absent
 
 - name: "install bunyan globally"
+  become: yes
   npm:
     name=bunyan
     global=yes
 
 - name: "install json globally"
+  become: yes
   npm:
     name=json
     global=yes
