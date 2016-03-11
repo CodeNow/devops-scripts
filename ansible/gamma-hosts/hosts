@@ -27,7 +27,7 @@ gamma-consul-b
 gamma-consul-c
 
 [docker-listener]
-gamma-app-services
+gamma-dock-services
 
 [vault]
 gamma-consul-a

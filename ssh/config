@@ -118,10 +118,6 @@ Host gamma-navi
 Host gamma-registry
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
-## Gamma Web
-Host gamma-web
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
-
 ################################################################################
 # Delta
 ################################################################################
@@ -192,9 +188,6 @@ Host delta-mongo-c
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
 
-Host delta-web
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
-
 ################################################################################
 # Epsilon
 ################################################################################
@@ -257,9 +250,6 @@ Host epsilon-dock-services
 
 Host epsilon-userland
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
-
-Host epsilon-web
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.33 22
 
 ################################################################################
 # other
