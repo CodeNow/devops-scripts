@@ -31,6 +31,8 @@ delta-services
 
 [vault]
 delta-consul-a
+delta-consul-b
+delta-consul-c
 
 [worker]
 delta-api-worker
@@ -103,6 +105,7 @@ delta-services
 api
 bastion
 charon
+consul
 dock
 docker-listener
 docks
