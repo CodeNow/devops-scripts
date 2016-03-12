@@ -12,3 +12,34 @@
 - name: pause for start
   pause:
     seconds: 5
+
+- name: check vault seal
+  tags: [ unseal ]
+  local_action:
+    command vault status
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  ignore_errors: True
+  register: seal_data
+  changed_when: "'Sealed: true' in seal_data.stdout"
+
+- name: unseal vault
+  tags: [ unseal ]
+  when: seal_data.changed
+  local_action:
+    command vault unseal {{ item }}
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  with_items:
+  - "{{ vault_unseal_tokens.one }}"
+  - "{{ vault_unseal_tokens.two }}"
+  - "{{ vault_unseal_tokens.three }}"
+
+- name: pause to unseal
+  pause:
+    seconds: 1
+  notify:
+    - stop vault
+    - remove vault config

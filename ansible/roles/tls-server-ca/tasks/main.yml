@@ -1,0 +1,75 @@
+---
+- name: check for pki endpoint for environment
+  local_action:
+    command vault mounts
+  register: mounts
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  failed_when: "'{{ node_env }}' not in mounts.stdout"
+
+- name: mount endpoint for environment
+  when: mounts.changed
+  local_action:
+    command vault mount --path={{ node_env }} pki
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+
+- name: tune endpoint for environment
+  when: mounts.changed
+  local_action:
+    command vault mount-tune --max-lease-ttl=87600h {{ node_env }}
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+
+- name: read root CA certificate
+  local_action:
+    command vault read --format=json {{ node_env }}/cert/ca
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_ca
+
+- set_fact:
+    ca_data: "{{ raw_ca.stdout | from_json }}"
+
+- name: set ca variable
+  set_fact:
+    ca: "{{ ca_data.data.certificate }}"
+  failed_when: "ca_data.data.certificate == ''"
+
+- name: generate root CA certificate
+  when: ca == ""
+  local_action:
+      command vault write --format=json {{ node_env }}/root/generate/internal common_name="runnable" ttl="87600h"
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_new_ca
+
+- when: ca == ""
+  set_fact:
+    ca_data: "{{ raw_new_ca.stdout | from_json }}"
+
+- when: ca == ""
+  set_fact:
+    ca: "{{ ca_data.data.certificate }}"
+
+- name: make sure CA directory is in place
+  when: ca_dest is defined
+  become: true
+  file:
+    dest: "{{ ca_dest | dirname }}"
+    state: directory
+
+- name: put CA in place
+  when: ca_dest is defined
+  become: true
+  copy:
+    content: "{{ ca }}"
+    dest: "{{ ca_dest }}"
+    mode: 0400
+    owner: root
+    group: root
