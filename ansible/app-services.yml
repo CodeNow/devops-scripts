@@ -1,0 +1,5 @@
+- include: detention.yml git_branch=v1.3.1
+- include: eru.yml git_branch=v1.1.0
+- include: mavis.yml git_branch=v5.0.0
+- include: metis.yml git_branch=v7.0.2
+- include: shiva.yml git_branch=v7.0.6
