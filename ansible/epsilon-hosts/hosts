@@ -25,7 +25,7 @@ epsilon-consul-b
 epsilon-consul-c
 
 [docker-listener]
-epsilon-app-services
+epsilon-dock-services
 
 [vault]
 epsilon-consul-a
