@@ -88,19 +88,6 @@ vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088
 vault_token_01=0d324dc7d4cbd94790fd08809d06fb1e28e21e185910081c7646e3e49924f6ed01
 vault_token_02=42dc8a69df174e77eb47a63b6ef4709bec57101cb1bff11a71c91b73b8bc046102
 vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f03
-detention_branch=v1.3.2
-eru_branch=v1.1.0
-khronos_branch=v2.5.2
-link_branch=v1.3.1
-mavis_branch=v5.0.0
-metis_branch=v7.0.6
-optimus_branch=v4.0.3
-palantiri_branch=v0.1.10
-sauron_branch=v4.0.2
-shiva_branch=v7.0.6
-angular_branch=v4.2.0
-api_branch=v6.32.4
-navi_branch=v5.0.2
 
 [ec2:vars]
 aws_custid=437258487404

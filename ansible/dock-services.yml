@@ -3,3 +3,4 @@
 - include: palantiri.yml git_branch="{{ palantiri_branch }}"
 - include: sauron.yml git_branch="{{ sauron_branch }}"
 - include: swarm-manager.yml 
+# run with: `--extra-vars "@current_versions.json"`
