@@ -14,4 +14,4 @@
 - include: filibuster.yml git_branch="{{ filibuster_version }}"
 - include: charon.yml git_branch="{{ charon_version }}"
 - include: image-builder.yml git_branch="{{ image_builder_version }}"
-- include: docker-listener.yml git_branch="{{ docker_listener_version }}"
+#- include: docker-listener.yml git_branch="{{ docker_listener_version }}"
