@@ -36,4 +36,4 @@
 - include: vault-values.yml -e write_values="true"
 - include: consul-services.yml
 - include: consul-values.yml -e write_values="true"
-# run with: `--extra-vars "@current_versions.json"`
+# run with: `--extra-vars "@current_versions.yml"`
