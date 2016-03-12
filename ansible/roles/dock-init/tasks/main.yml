@@ -21,6 +21,7 @@
 
 - name: copy rollbar token
   tags: rollbar
+  become: true
   lineinfile:
     dest="/opt/runnable/dock-init/key/rollbar.token"
     line="{{ docks_rollbar_key }}"
