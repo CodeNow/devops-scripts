@@ -1,0 +1,134 @@
+---
+- name: check vault seal
+  tags: [ unseal ]
+  local_action:
+    command vault status
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  ignore_errors: True
+  register: seal_data
+  changed_when: "'Sealed: true' in seal_data.stdout"
+
+- name: unseal vault
+  tags: [ unseal ]
+  when: seal_data.changed
+  local_action:
+    command vault unseal {{ item }}
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  with_items:
+  - "{{ vault_unseal_tokens.one }}"
+  - "{{ vault_unseal_tokens.two }}"
+  - "{{ vault_unseal_tokens.three }}"
+
+- name: pause to unseal
+  pause:
+    seconds: 2
+
+- name: check for pki endpoint for environment
+  local_action:
+    command vault mounts
+  register: mounts
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  changed_when: "'{{ node_env }}' not in mounts.stdout"
+
+- name: mount endpoint for environment
+  when: mounts.changed
+  local_action:
+    command vault mount --path={{ node_env }} pki
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+
+- name: tune endpoint for environment
+  when: mounts.changed
+  local_action:
+    command vault mount-tune --max-lease-ttl=87600h {{ node_env }}
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+
+- name: read root CA certificate
+  local_action:
+    command vault read --format=json {{ node_env }}/cert/ca
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_ca
+
+- set_fact:
+    ca_data: "{{ raw_ca.stdout | from_json }}"
+
+- set_fact:
+    ca: "{{ ca_data.data.certificate }}"
+
+- name: generate root CA certificate
+  when: ca == ""
+  local_action:
+      command vault write --format=json {{ node_env }}/root/generate/internal common_name="runnable" ttl="87600h"
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_new_ca
+
+- when: ca == ""
+  set_fact:
+    ca_data: "{{ raw_new_ca.stdout | from_json }}"
+
+- when: ca == ""
+  set_fact:
+    ca: "{{ ca_data.data.certificate }}"
+
+- name: check for role for server
+  local_action:
+    command vault read --format=json {{ node_env }}/roles/server-{{ name }}
+  ignore_errors: True
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_role
+  changed_when: raw_role.rc != 0
+
+- name: create role
+  when: raw_role.rc != 0
+  local_action:
+    command vault write --format=json {{ node_env }}/roles/server-{{ name }} allow_any_name=true ttl=87600h
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+
+- name: create certificate for server
+  when: save_on_certs is undefined
+  local_action:
+    command vault write --format=json {{ node_env }}/issue/server-{{ name }} common_name="server.{{ name }}.runnable" ip_sans="{{ hostvars[groups[name][0]]['ansible_default_ipv4']['address'] }}" ttl=8760h
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  register: raw_new_certs
+
+- when: raw_new_certs is defined and save_on_certs is undefined
+  set_fact:
+    new_certs: "{{ raw_new_certs.stdout | from_json }}"
+
+- when: save_on_certs is defined
+  set_fact:
+    new_certs:
+      data:
+        certificate: fake certificate
+        issuing_ca: fake CA
+        private_key: fake private key
+
+- name: seal vault
+  tags: [ seal ]
+  local_action:
+    command vault seal
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  notify:
+  - stop vault
+  - remove vault config

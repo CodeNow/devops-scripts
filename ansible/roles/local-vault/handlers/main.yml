@@ -1,0 +1,8 @@
+---
+- name: stop vault
+  local_action:
+    shell kill $(cat /tmp/vault.pid)
+
+- name: remove vault config
+  local_action:
+    command rm -f /tmp/vault.pid /tmp/vault.hcl

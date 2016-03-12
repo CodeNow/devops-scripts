@@ -1,0 +1,14 @@
+---
+- name: create vault config
+  local_action:
+    template
+      dest=/tmp/vault.hcl
+      src=vault.hcl.j2
+
+- name: start vault daemon
+  local_action:
+    command daemon --pidfile=/tmp/vault.pid -- vault server --config=/tmp/vault.hcl
+
+- name: pause for start
+  pause:
+    seconds: 5
