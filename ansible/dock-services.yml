@@ -1,5 +1,5 @@
-- include: khronos.yml git_branch=v2.5.2
-- include: optimus.yml git_branch=v3.0.0
-- include: palantiri.yml git_branch=v0.1.10
-- include: sauron.yml git_branch=v4.0.0
+- include: khronos.yml git_branch="{{ khronos_branch }}"
+- include: optimus.yml git_branch="{{ optimus_branch }}"
+- include: palantiri.yml git_branch="{{ palantiri_branch }}"
+- include: sauron.yml git_branch="{{ sauron_branch }}"
 - include: swarm-manager.yml 

@@ -26,7 +26,7 @@
 - include: optimus.yml git_branch="{{ optimus_branch }}" -t deploy
 - include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
 - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
-- include: shiva.yml git_branch="{{ shiva_branch }}" -t deploy
+- include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
 - include: swarm-manager.yml 
 - include: web.yml git_branch="{{ angular_branch }}" -t deploy
 #
