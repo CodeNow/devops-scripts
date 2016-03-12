@@ -28,16 +28,22 @@
     create=yes
 
 - name: docker upstart override
-  sudo: yes
+  become: true
   lineinfile:
     dest="/etc/init/docker.override"
     line="manual"
     create=yes
 
 - name: create ssh config for root
-  sudo: yes
+  become: true
   lineinfile:
     dest="/root/.ssh/config"
+    line="StrictHostKeyChecking no"
+    create=yes
+
+- name: create ssh config for ubuntu
+  lineinfile:
+    dest="/home/ubuntu/.ssh/config"
     line="StrictHostKeyChecking no"
     create=yes
 
