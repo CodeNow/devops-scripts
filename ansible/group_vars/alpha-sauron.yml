@@ -20,7 +20,7 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e LOGGLY_TOKEN="{{ loggly_token }}"
-  -e MAVIS_URL="http://{{ mavis_hostname }}"
+  -e NODE_ENV="{{ node_env }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"

@@ -7,13 +7,17 @@ db_path: /etc/consul.d
 pause_length_minutes: 3
 
 container_image: runnable/consul
-container_tag: v0.5.2
+container_tag: v0.6.3
+
+log_driver: json-file
 
 container_run_opts: >
   -d
   -h {{ inventory_hostname }}
   -v /consul:/data
   -v /etc/consul.d:/etc/consul.d:ro
+  -v /opt/runnable/consul/consul.json:/consul.json:ro
+  -v /opt/consul/server:/opt/consul/server:ro
   -p {{ ansible_default_ipv4.address }}:8300:8300
   -p {{ ansible_default_ipv4.address }}:8301:8301
   -p {{ ansible_default_ipv4.address }}:8301:8301/udp
@@ -21,21 +25,13 @@ container_run_opts: >
   -p {{ ansible_default_ipv4.address }}:8302:8302/udp
   -p {{ ansible_default_ipv4.address }}:8400:8400
   -p {{ ansible_default_ipv4.address }}:{{ consul_api_port }}:8500
+  -p {{ ansible_default_ipv4.address }}:{{ consul_https_port }}:{{ consul_https_port }}
   --restart=always
 
 container_run_args: >
   consul agent
-  -server
-  -node {{ inventory_hostname }}
-  -advertise {{ ansible_default_ipv4.address }}
-  -config-dir /etc/consul.d
-  -client 0.0.0.0
-  -recursor 8.8.8.8
-  {% if consul_host_address == ansible_default_ipv4.address %}-bootstrap-expect {{ groups['consul'] | length }}{% endif %}
-  -data-dir /data
-  {% if consul_host_address == ansible_default_ipv4.address %}-ui-dir /ui{% endif %}
-  {% if consul_host_address != ansible_default_ipv4.address %}-retry-join {{ consul_host_address }}{% endif %}
-  > /var/log/consul.log 2>&1
+  --config-file /consul.json
+  --config-dir /etc/consul.d
 
 # some seed values
 # pulled 2015/16/11 - Bryan

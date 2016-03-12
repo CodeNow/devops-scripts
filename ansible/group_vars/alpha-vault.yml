@@ -4,7 +4,7 @@ name: vault
 db_path: /opt/runnable/vault
 
 container_image: runnable/vault
-container_tag: v0.3.1
+container_tag: v0.5.1
 
 log_driver: json-file
 
@@ -12,8 +12,11 @@ container_run_opts: >
   -d
   -h {{ inventory_hostname }}
   -v /opt/runnable/vault/vault.hcl:/vault.hcl:ro
+  -v /opt/vault/client-consul:/opt/vault/client-consul:ro
+  -v /opt/vault/server:/opt/vault/server:ro
   -v /var/log:/var/log:rw
   -p {{ ansible_default_ipv4.address }}:8200:8200
+  -p {{ ansible_default_ipv4.address }}:8201:8201
   --cap-add IPC_LOCK
   --restart=always
 

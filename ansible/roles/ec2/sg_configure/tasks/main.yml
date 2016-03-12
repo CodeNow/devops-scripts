@@ -1,7 +1,7 @@
 #- name: install Python Boto
 #  sudo: yes
 #  apt: name=python-boto state=latest
-  
+
 - name: Bastion
   tags:
     - bastion
@@ -34,73 +34,57 @@
         to_port: 22
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_web }}"
-      - proto: tcp
         from_port: 32768
         to_port: 65535
         group_id: "{{ sg_hipache }}"
+
+- name: Consul Service SG
+  tags:
+    - consul
+  ec2_group:
+    name: "{{ env }}-consul"
+    description: "{{ env }} Consul Service Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: us-west-2
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: 8300
+        to_port: 8302
+        group_id: "{{ sg_consul }}"
+      - proto: tcp
+        from_port: 8200
+        to_port: 8201
+        group_id: "{{ sg_consul }}"
+      - proto: tcp
+        from_port: 8200
+        to_port: 8201
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8501
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8501
+        group_id: "{{ sg_dock }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8501
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8501
+        group_id: "{{ sg_services }}"
+      - proto: tcp
+        from_port: 8500
+        to_port: 8501
+        group_id: "{{ sg_web }}"
 
 - name: Docker Container Service SG
   tags:
@@ -163,7 +147,7 @@
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 8200
-        to_port: 8200
+        to_port: 8201
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: 32768
@@ -494,77 +478,9 @@
         to_port: 3567
         group_id: "{{ sg_hipache }}"
       - proto: tcp
-        from_port: 8200
-        to_port: 8200
-        group_id: "{{ sg_dock }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_web }}"
-      - proto: tcp
         from_port: 9123
         to_port: 9123
-        group_id: "{{ sg_services }}"
+        group_id: "{{ sg_navi }}"
       - proto: tcp
         from_port: 27000
         to_port: 27020
@@ -581,7 +497,7 @@
         from_port: 32768
         to_port: 63353
         group_id: "{{ sg_services }}"
-  
+
 - name: Userland Hipache
   tags:
     - userland
@@ -597,99 +513,3 @@
         from_port: 80
         to_port: 65535
         cidr_ip: 0.0.0.0/0
-  
-- name: Web
-  tags:
-    - web
-  ec2_group:
-    name: "{{ env }}-web"
-    description: "{{ env }} Web Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: us-west-2
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: 22
-        to_port: 22
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: 8200
-        to_port: 8200
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8200
-        to_port: 8200
-        group_id: "{{ sg_services }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: udp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8300
-        to_port: 8302
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8400
-        to_port: 8400
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_services }}"
-      - proto: tcp
-        from_port: 8500
-        to_port: 8500
-        group_id: "{{ sg_web }}"
-      - proto: tcp
-        from_port: 32768
-        to_port: 65535
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 32768
-        to_port: 65535
-        group_id: "{{ sg_hipache }}"

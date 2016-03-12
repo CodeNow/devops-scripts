@@ -90,6 +90,7 @@ vault_token_03=8e8918bee9fe08f5558450bceeab71326da91b60a24aed41f6ae7eebb35fe2e20
 env=epsilon
 aws_custid=437258487404
 bastion_sshd_port=33175
+region=us-west-2
 sg_api="sg-c839ffaf"
 sg_bastion="sg-1525e372"
 sg_dock="sg-3322e454"
