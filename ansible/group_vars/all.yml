@@ -72,6 +72,9 @@ docker_cert_path: /etc/ssl/docker/cert.pem
 docker_key_path: /etc/ssl/docker/key.pem
 docker_port: 4242
 
+# docker-listener
+docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
+
 # ec2
 aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
 aws_secret_key: "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"
@@ -135,3 +138,7 @@ swarm_container_name: swarm
 navi_mongo_database: navi
 navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_mongo_port: 27017
+
+# local-vault
+vault_local_port: 31836
+vault_addr: http://127.0.0.1:{{ vault_local_port }}

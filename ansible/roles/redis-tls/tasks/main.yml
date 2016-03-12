@@ -1,0 +1,15 @@
+---
+- name: make folder for certificate
+  become: true
+  file:
+    dest: /opt/redis-tls
+    state: directory
+
+- name: create private key
+  become: true
+  copy:
+    dest: /opt/redis-tls/stunnel.pem
+    content: "{{ new_certs.data.private_key }}\n{{ new_certs.data.certificate }}\n"
+    owner: root
+    group: root
+    mode: 0400

@@ -26,6 +26,9 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
+  -e API_URL={{ api_url }}
+  -e COOKIE_DOMAIN=.{{ user_content_domain }}
+  -e COOKIE_SECRET={{ navi_cookie_secret }}
 
 container_run_opts: >
   -h {{ name }}
