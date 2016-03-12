@@ -86,6 +86,20 @@ vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
+detention_branch=v1.3.2
+eru_branch=v1.1.0
+khronos_branch=v2.5.2
+link_branch=v1.3.1
+mavis_branch=v5.0.0
+metis_branch=v7.0.6
+optimus_branch=v4.0.3
+palantiri_branch=v0.1.10
+sauron_branch=v4.0.2
+shiva_branch=v7.0.6
+angular_branch=v4.2.0
+api_branch=v6.32.4
+navi_branch=v5.0.2
+
 
 [ec2:vars]
 env=gamma

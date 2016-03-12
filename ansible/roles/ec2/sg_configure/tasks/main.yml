@@ -391,27 +391,27 @@
         group_id: "{{ sg_bastion }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_dock }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_hipache }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_navi }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_services }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
-        to_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_web }}"
 
 - name: Services SG
