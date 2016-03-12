@@ -4,7 +4,7 @@
   copy:
     src=sysctl.conf
     dest=/etc/sysctl.conf
-  notify: reload kernel parameters
+  notify: load kernel parameters
 
 - name: update limits.conf
   become: true
