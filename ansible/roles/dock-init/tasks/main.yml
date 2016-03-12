@@ -4,6 +4,7 @@
 
 - name: copy vault auth files
   tags: vault_files
+  become: true
   lineinfile:
     dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}"
     line="{{ item.value }}"
@@ -20,6 +21,7 @@
 
 - name: copy rollbar token
   tags: rollbar
+  become: true
   lineinfile:
     dest="/opt/runnable/dock-init/key/rollbar.token"
     line="{{ docks_rollbar_key }}"
