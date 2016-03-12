@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: local-vault, tags: [ unseal, seal ] }

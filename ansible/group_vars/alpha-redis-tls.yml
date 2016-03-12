@@ -1,0 +1,11 @@
+name: redis
+
+# container_kill_start settings
+log_driver: json-file
+container_image: runnable/redis-stunnel
+container_tag: latest
+container_run_opts: >
+  --link redis:redis
+  -d
+  -p {{ ansible_default_ipv4.address }}:6380:6380
+  -v /opt/redis-tls/stunnel.pem:/stunnel/private.pem
