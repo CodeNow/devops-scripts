@@ -1,0 +1,8 @@
+---
+- hosts: redis
+  vars_files:
+    - group_vars/alpha-redis-tls.yml
+  roles:
+  - { role: notify, tags: [ notify ] }
+  - { role: redis-tls }
+  - { role: container_kill_start }
