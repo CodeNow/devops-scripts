@@ -35,6 +35,7 @@ metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=gamma-navi
+navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
 
 [optimus:vars]
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
