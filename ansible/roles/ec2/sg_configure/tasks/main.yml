@@ -478,8 +478,8 @@
         to_port: "{{ navi_port }}"
         group_id: "{{ sg_hipache }}"
       - proto: tcp
-        from_port: "{{ detenetion_port }}"
-        to_port: "{{ detenetion_port }}"
+        from_port: "{{ detention_port }}"
+        to_port: "{{ detention_port }}"
         group_id: "{{ sg_navi }}"
       - proto: tcp
         from_port: "{{ container_min_port }}"
