@@ -8,4 +8,4 @@
   - { role: notify, tags: [notify] }
   - { role: docker_client }
   - { role: builder, tags: "build" }
-  - { role: container_start, tags: "deploy" }
+  - { role: container_kill_start }
