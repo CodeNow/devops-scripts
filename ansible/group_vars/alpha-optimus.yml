@@ -20,6 +20,7 @@ container_envs: >
   -e AWS_SECRET_ACCESS_KEY={{ optimus_aws_secret_id }}
   -e S3_DEPLOY_KEY_BUCKET={{ optimus_github_deploy_keys_bucket }}
   -e ROLLBAR_KEY=a49f9cce09ee46f09df3f603178fba75
+  -e LOG_LEVEL=trace
 
 container_run_opts: >
   -h {{ name }}
