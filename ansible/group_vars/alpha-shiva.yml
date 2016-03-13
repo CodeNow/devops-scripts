@@ -32,4 +32,5 @@ container_run_opts: >
   -h {{ name }}
   -d
   -P
+  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
   {{ container_envs }}
