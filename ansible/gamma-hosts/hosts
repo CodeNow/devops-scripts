@@ -3,7 +3,7 @@ gamma-bastion
 
 [hipache]
 gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-gamma-userland-hipache domain=runnable.ninja httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+gamma-userland domain=runnable.ninja httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
 
 [mongodb]
 gamma-mongo-a
@@ -27,7 +27,7 @@ gamma-consul-b
 gamma-consul-c
 
 [docker-listener]
-gamma-services
+gamma-dock-services
 
 [vault]
 gamma-consul-a
@@ -38,7 +38,7 @@ gamma-consul-c
 gamma-api-worker
 
 [eru]
-gamma-services
+gamma-app-services
 
 [navi]
 gamma-navi
@@ -50,28 +50,28 @@ gamma-navi
 gamma-navi
 
 [charon]
-gamma-services
+gamma-app-services
 
 [khronos]
-gamma-services
+gamma-dock-services
 
 [mavis]
-gamma-services
+gamma-app-services
 
 [optimus]
-gamma-services
+gamma-dock-services
 
 [detention]
-gamma-services
+gamma-app-services
 
 [palantiri]
-gamma-services
+gamma-dock-services
 
 [rabbitmq]
 gamma-rabbit
 
 [web]
-gamma-services
+gamma-app-services
 
 [redis]
 gamma-redis
@@ -80,10 +80,10 @@ gamma-redis
 gamma-redis-slave
 
 [sauron]
-gamma-services
+gamma-dock-services
 
 [shiva]
-gamma-services
+gamma-app-services
 
 [socket-server]
 gamma-api-socket
@@ -92,10 +92,10 @@ gamma-api-socket
 gamma-registry
 
 [swarm-manager]
-gamma-services
+gamma-dock-services
 
 [metis]
-gamma-services
+gamma-app-services
 
 [docks]
 

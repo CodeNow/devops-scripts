@@ -94,6 +94,7 @@ bastion_sshd_port=33175
 region=us-west-2
 sg_api="sg-c839ffaf"
 sg_bastion="sg-1525e372"
+sg_consul="sg-b050f7d7"
 sg_dock="sg-3322e454"
 sg_hipache="sg-0822e46f"
 sg_mongo="sg-ec22e48b"

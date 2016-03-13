@@ -1,3 +1,27 @@
 ---
 app_name: "ec2"
+consul_api_port: 8500
+consul_api_ssl_port: 8501
+consul_rpc_min_port: 8300
+consul_rpc_max_port: 8302
+container_min_port: 32768
+container_max_port: 65535
+detention_port: 9123
+docker_port: 4242
+dock_filibuster_port: 3200
+filibuster_port: 3112
 git_branch: "null"
+http_port: 80
+https_port: 443
+ip_all: "0.0.0.0/0"
+krain_port: 3100
+named_port: 53
+navi_port: 3567
+redis_port: 6379
+redis_tls_port: 6380
+region: us-west-2
+sshd_port: 22
+swarm_port: 2375
+vault_api_port: 8200
+vault_api_ssl_port: 8201
+weave_port: 6783
