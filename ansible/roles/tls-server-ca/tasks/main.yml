@@ -38,7 +38,7 @@
 - name: set ca variable
   set_fact:
     ca: "{{ ca_data.data.certificate }}"
-  failed_when: "ca_data.data.certificate == ''"
+  changed_when: "ca_data.data.certificate == ''"
 
 - name: generate root CA certificate
   when: ca == ""
