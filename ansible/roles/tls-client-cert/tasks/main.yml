@@ -1,7 +1,7 @@
 ---
-- name: check for role for server
+- name: check for role for client
   local_action:
-    command vault read --format=json {{ node_env }}/roles/server-{{ name }}
+    command vault read --format=json {{ node_env }}/roles/client-{{ name }}
   ignore_errors: True
   environment:
     VAULT_ADDR: "{{ vault_addr }}"
@@ -9,18 +9,18 @@
   register: raw_role
   changed_when: raw_role.rc != 0
 
-- name: create role
+- name: create role for client
   when: raw_role.rc != 0
   local_action:
-    command vault write --format=json {{ node_env }}/roles/server-{{ name }} allow_any_name=true ttl=87600h
+    command vault write --format=json {{ node_env }}/roles/client-{{ name }} allow_any_name=true ttl=87600h
   environment:
     VAULT_ADDR: "{{ vault_addr }}"
     VAULT_TOKEN: "{{ vault_root_token }}"
 
-- name: create certificate for server
+- name: create certificate for client
   when: save_on_certs is undefined
   local_action:
-    command vault write --format=json {{ node_env }}/issue/server-{{ name }} common_name="server.{{ name }}.runnable" ip_sans="{{ hostvars[groups[name][0]]['ansible_default_ipv4']['address'] }}" ttl=8760h
+    command vault write --format=json {{ node_env }}/issue/client-{{ name }} common_name="client.{{ name }}.runnable" ttl=8760h
   environment:
     VAULT_ADDR: "{{ vault_addr }}"
     VAULT_TOKEN: "{{ vault_root_token }}"
@@ -28,11 +28,11 @@
 
 - when: raw_new_certs is defined and save_on_certs is undefined
   set_fact:
-    new_certs: "{{ raw_new_certs.stdout | from_json }}"
+    new_client_certs: "{{ raw_new_certs.stdout | from_json }}"
 
 - when: save_on_certs is defined
   set_fact:
-    new_certs:
+    new_client_certs:
       data:
         certificate: fake certificate
         issuing_ca: fake CA
