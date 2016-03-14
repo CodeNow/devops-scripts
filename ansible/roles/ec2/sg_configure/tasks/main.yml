@@ -560,11 +560,39 @@
       - proto: tcp 
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp 
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
         group_id: "{{ sg_dock }}"
+      - proto: tcp 
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp 
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_dock_services }}"
+      - proto: tcp 
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        group_id: "{{ sg_api }}"
       - proto: tcp 
         from_port: "{{ https_port }}"
         to_port: "{{ https_port }}"
         group_id: "{{ sg_dock }}"
+      - proto: tcp 
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        group_id: "{{ sg_hipache }}"
+      - proto: tcp 
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        group_id: "{{ sg_dock_services }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
@@ -573,6 +601,14 @@
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_dock_services }}"
+      - proto: tcp
+        from_port: "{{ container_min_port }}"
+        to_port: "{{ container_max_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ container_min_port }}"
+        to_port: "{{ container_max_port }}"
+        group_id: "{{ sg_hipache }}"
 
 - name: Userland Hipache
   tags:
