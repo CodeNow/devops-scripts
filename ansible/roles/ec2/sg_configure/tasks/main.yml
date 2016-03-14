@@ -396,6 +396,10 @@
       - proto: tcp
         from_port: "{{ redis_port }}"
         to_port: "{{ redis_tls_port }}"
+        group_id: "{{ sg_dock_services }}"
+      - proto: tcp
+        from_port: "{{ redis_port }}"
+        to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_web }}"
 
 - name: Registry SG
