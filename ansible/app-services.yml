@@ -1,0 +1,6 @@
+- include: detention.yml git_branch="{{ detention_branch }}"
+- include: eru.yml git_branch="{{ eru_branch }}"
+- include: mavis.yml git_branch="{{ mavis_branch }}"
+- include: metis.yml git_branch="{{ astral_branch }}"
+- include: shiva.yml git_branch="{{ astral_branch }}"
+# run with: `--extra-vars "@current_versions.yml"`

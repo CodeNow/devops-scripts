@@ -1,17 +1,15 @@
-name: "shiva"
-container_image: "registry.runnable.com/runnable/{{ name }}"
+name: shiva
+container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
-repo: "git@github.com:CodeNow/astral.git"
+repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
 npm_version: "2.8.3"
 
 # Overrides the start command in the builder role
-npm_start_command: "run shiva-start"
-
-# Not actually needed, just allows container-kill-start to work
-hosted_ports: ["{{ shiva_port }}"]
+npm_start_command: run shiva-start
 
 # container settings
+redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
@@ -23,7 +21,8 @@ container_envs: >
   -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
   -e NODE_ENV={{ node_env }}
-  -e REDIS_PORT={{ redis_port }}
+  -e REDIS_CACERT={{ redis_ca_cert_path }}
+  -e REDIS_PORT={{ redis_tls_port }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REGISTRY_HOST={{ registry_host }}
   -e ROLLBAR_KEY={{ shiva_rollbar_key }}
@@ -33,4 +32,5 @@ container_run_opts: >
   -h {{ name }}
   -d
   -P
-  {{container_envs}}
+  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
+  {{ container_envs }}

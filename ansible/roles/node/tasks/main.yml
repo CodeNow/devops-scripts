@@ -2,4 +2,4 @@
 - name: install node.js
   sudo: yes
   nodejs:
-    version={{node_version|default('0.10.31')}}
+    version={{node_version|default('0.10.40')}}

@@ -38,6 +38,8 @@ metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=delta-navi
+navi_cookie_secret=e80173940e7bdd84734e868b6ea054a0
+
 
 [optimus:vars]
 optimus_aws_access_id=AKIAJWSSSJYUXKNW2ZDA
@@ -70,6 +72,7 @@ vault_aws_region=us-east-1
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+bastion_sshd_port=51089
 datadog_tags=env:delta
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
@@ -91,20 +94,23 @@ vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f0
 
 [ec2:vars]
 aws_custid=437258487404
-sg_hipache=sg-7fd7fb1b
-sg_api=sg-0bf7db6f
-sg_neo4j=sg-a9d0fccd
-sg_bastion=sg-99d6fafd
-sg_dock=sg-6cd7fb08
-sg_mongo=sg-00d7fb64
-sg_rds=sg-65d2fe01
-sg_web=sg-51d2fe35
-sg_services=sg-71d2fe15
-sg_userland=sg-41d2fe25
-sg_nat=sg-3082cc54
-sg_rabbit=sg-92d1fdf6
-sg_redis=sg-6ed2fe0a
-sg_navi=sg-e5d7fb81
+bastion_sshd_port=51089
 env=delta
 region=us-west-2
+sg_hipache=sg-7fd7fb1b
+sg_api=sg-0bf7db6f
+sg_bastion=sg-99d6fafd
+sg_consul=sg-0f981868
+sg_dock=sg-6cd7fb08
+sg_hipache=sg-7fd7fb1b
+sg_mongo=sg-00d7fb64
+sg_nat=sg-3082cc54
+sg_navi=sg-e5d7fb81
+sg_neo4j=sg-a9d0fccd
+sg_rabbit=sg-92d1fdf6
+sg_rds=sg-65d2fe01
+sg_redis=sg-6ed2fe0a
+sg_services=sg-71d2fe15
+sg_userland=sg-41d2fe25
+sg_web=sg-51d2fe35
 vpc_id=vpc-864c6be3

@@ -25,10 +25,12 @@ epsilon-consul-b
 epsilon-consul-c
 
 [docker-listener]
-epsilon-services
+epsilon-dock-services
 
 [vault]
-epsilon-services
+epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
 [worker]
 epsilon-api-worker
@@ -41,7 +43,7 @@ epsilon-api-socket
 [dock]
 
 [eru]
-epsilon-services
+epsilon-app-services
 
 [navi]
 epsilon-navi
@@ -53,46 +55,46 @@ epsilon-navi
 epsilon-navi
 
 [charon]
-epsilon-services
+epsilon-app-services
 
 [khronos]
-epsilon-services
+epsilon-dock-services
 
 [mavis]
-epsilon-services
+epsilon-app-services
 
 [optimus]
-epsilon-services
+epsilon-dock-services
 
 [detention]
-epsilon-services
+epsilon-app-services
 
 [palantiri]
-epsilon-services
+epsilon-dock-services
 
 [rabbitmq]
 epsilon-rabbit
 
 [web]
-epsilon-services
+epsilon-app-services
 
 [redis]
 epsilon-redis
 
 [shiva]
-epsilon-services
+epsilon-app-services
 
 [registry]
 epsilon-registry
 
 [sauron]
-epsilon-services
+epsilon-dock-services
 
 [swarm-manager]
-epsilon-services
+epsilon-dock-services
 
 [metis]
-epsilon-services
+epsilon-app-services
 
 [epsilon:children]
 api

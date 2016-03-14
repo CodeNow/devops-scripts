@@ -4,8 +4,9 @@
 
 - hosts: metis
   vars_files:
-    - "group_vars/alpha-metis.yml"
+    - group_vars/alpha-metis.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
+  - { role: notify, tags: [ notify ] }
+  - { role: builder, tags: [ build ] }
+  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
   - { role: container_kill_start }

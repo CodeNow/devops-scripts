@@ -38,6 +38,7 @@ metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=gamma-navi
+navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
 
 [optimus:vars]
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
@@ -69,6 +70,7 @@ vault_aws_region=us-east-1
 
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
+bastion_sshd_port=12675
 datadog_tags=env:gamma
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
@@ -91,6 +93,7 @@ vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a0
 [ec2:vars]
 env=gamma
 aws_custid=437258487404
+bastion_sshd_port=12675
 region=us-west-2
 vpc_id=vpc-c53464a0
 sg_api=sg-3b0c7b5f

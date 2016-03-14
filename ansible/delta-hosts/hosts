@@ -22,15 +22,17 @@ socket-server
 delta-api
 
 [consul]
-delta-services
-delta-api
-delta-web
+delta-consul-a
+delta-consul-b
+delta-consul-c
 
 [docker-listener]
-delta-services
+delta-dock-services
 
 [vault]
-delta-services
+delta-consul-a
+delta-consul-b
+delta-consul-c
 
 [worker]
 delta-api-worker
@@ -43,7 +45,7 @@ delta-api-socket
 [dock]
 
 [eru]
-delta-services
+delta-app-services
 
 [navi]
 delta-navi
@@ -55,28 +57,28 @@ delta-navi
 delta-navi
 
 [charon]
-delta-services
+delta-app-services
 
 [khronos]
-delta-services
+delta-dock-services
 
 [mavis]
-delta-services
+delta-app-services
 
 [optimus]
-delta-services
+delta-dock-services
 
 [detention]
-delta-services
+delta-app-services
 
 [palantiri]
-delta-services
+delta-dock-services
 
 [rabbitmq]
 delta-rabbit
 
 [web]
-delta-services
+delta-app-services
 
 [redis]
 delta-redis
@@ -85,24 +87,25 @@ delta-redis
 delta-redis-slave
 
 [shiva]
-delta-services
+delta-app-services
 
 [registry]
 delta-registry
 
 [sauron]
-delta-services
+delta-dock-services
 
 [swarm-manager]
-delta-services
+delta-dock-services
 
 [metis]
-delta-services
+delta-app-services
 
 [delta:children]
 api
 bastion
 charon
+consul
 dock
 docker-listener
 docks

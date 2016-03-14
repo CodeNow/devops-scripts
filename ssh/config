@@ -38,6 +38,7 @@ Host delta-staging-data
 
 Host gamma-bastion
   HostName 54.69.34.161
+  Port 12675
 
 Host 10.4.*.*
   User ubuntu
@@ -47,10 +48,7 @@ Host 10.4.*.*
   IdentityFile ~/.ssh/gamma.pem
 
 ## Gamma Userland Hipache
-Host gamma-userland-hipache
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
-
-Host gamma-user-us-west-2a
+Host gamma-userland
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
 
 ## Gamma App Hipache
@@ -97,48 +95,28 @@ Host gamma-rabbit
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
-Host gamma-redis-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
-
 Host gamma-redis-slave
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
-
-Host gamma-redis-us-west-2b
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
 
 ## Gamma Neo4J
 Host gamma-neo4j
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
-Host gamma-neo4j-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
+# Gamma App Services
+Host gamma-app-services
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22
 
-## Gamma Services
-Host gamma-services-us-west-2a
+# Gamma Dock Services
+Host gamma-dock-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
 
-Host gamma-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
-
-Host gamma-navi-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
-
+# Gamma Navi
 Host gamma-navi
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
 
-## Gamma Registry
-Host gamma-registry-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
-
+# Gamma Registry
 Host gamma-registry
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
-
-## Gamma Web
-Host gamma-web-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
-
-Host gamma-web
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.121 22
 
 ################################################################################
 # Delta
@@ -146,6 +124,7 @@ Host gamma-web
 
 Host delta-bastion
   HostName 52.37.51.230
+  Port 51089
 
 Host 10.8.*.*
   User ubuntu
@@ -164,8 +143,20 @@ Host delta-api-worker
 Host delta-api-socket
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.23 22
 
-Host delta-services
+Host delta-app-services
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.13.102 22
+
+Host delta-dock-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
+
+Host delta-consul-a
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.122 22
+
+Host delta-consul-b
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.8.130 22
+
+Host delta-consul-c
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.86 22
 
 Host delta-registry
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
@@ -200,15 +191,13 @@ Host delta-mongo-c
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
 
-Host delta-web
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.229 22
-
 ################################################################################
 # Epsilon
 ################################################################################
 
 Host epsilon-bastion
   HostName 52.35.234.45
+  Port 33175
 
 Host 10.12.*.*
   User ubuntu
@@ -256,14 +245,14 @@ Host epsilon-redis
 Host epsilon-registry
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
 
-Host epsilon-services
+Host epsilon-app-services
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.13.112 22
+
+Host epsilon-dock-services
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.136 22
 
 Host epsilon-userland
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
-
-Host epsilon-web
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.33 22
 
 ################################################################################
 # other

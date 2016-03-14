@@ -10,5 +10,6 @@
   - { role: notify, tags: "notify" }
   - { role: redis_key, tags: ["setup", "redis_key"] }
   - { role: docker_client }
+  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
   - { role: builder, tags: "build" }
   - { role: container_start }
