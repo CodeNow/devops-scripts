@@ -22,6 +22,11 @@ https://github.com/CodeNow/devops-scripts
 
 5. Move the “Keys of Power” .pem  files to your `~/.ssh` directory
 
+6. Install two required tools onto your machine:
+```bash
+brew update && brew install vault daemon
+```
+
 At this point you should be capable of deploying; keep reading to find out how to actually perform a deploy!
 
 ## Deploying Services
@@ -39,24 +44,23 @@ copy it down somewhere that is easily and quickly accessible (you may need to us
   Ask someone on the team for help before continuing.
 - **IMPORTANT:** All commands should be run from the `devops-script/ansible` directory.
 
+#### Ansible Vault
+
+Please note that there are playbook that require encrypted [ansible vault](http://docs.ansible.com/ansible/playbooks_vault.html) files. If you see the following error:
+
+```bash
+ERROR: A vault password must be specified to decrypt # snip
+```
+
+you will need to re-run the playbook with:
+
+```bash
+--ask-vault-pass
+```
+
 #### Latest Tag
 Build and deploy a service to the latest tag of its repository. This will build
 the docker image needed to run the container on our infrastructure.
-
-##### Command
-```
-ansible-playbook -i ./[inventory_dir] [service-playbook]
-```
-
-##### Arguments
-- `[inventory_dir]` - The environment inventory files (servers and variables). Should be one of the following:
-  - `stage-hosts` - Runnable sandbox staging environment services
-  - `gamma-hosts` - Gamma services (internal use only; production mirror)
-  - `delta-hosts` - Delta services (real production)
-- `[service-playbook]` - The playbook for the service you wish to deploy, ex:
-  - `api.yml` - Deploys both the api and the api-workers services
-  - `shiva.yml` - Deploys the shiva micro-service
-  - `charon.yml` - Deploys a specific version of charon DNS to all docks
 
 #### Branch or Tag
 Build and deploy a service to a specific branch or tag on its repository. This performs a build
@@ -68,8 +72,14 @@ ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-o
 ```
 
 ##### Arguments
-- `[inventory_dir]` - The environment inventory files (servers and variables).
-- `[service-playbook]` - The playbook for the service you wish to deploy.
+- `[inventory_dir]` - The environment inventory files (servers and variables). Should be one of the following:
+  - `stage-hosts` - Runnable sandbox staging environment services
+  - `gamma-hosts` - Gamma services (internal use only; production mirror)
+  - `delta-hosts` - Delta services (real production)
+- `[service-playbook]` - The playbook for the service you wish to deploy, ex:
+  - `api.yml` - Deploys both the api and the api-workers services
+  - `shiva.yml` - Deploys the shiva micro-service
+  - `charon.yml` - Deploys a specific version of charon DNS to all docks
 - `[branch-or-tag]` - The branch or tag you wish to deploy, ex:
   - `-e git_branch=v1.9.9` (version tag)
   - `-e git_branch=my-feature-branch` (branch)
