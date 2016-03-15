@@ -23,7 +23,7 @@
   when: save_on_certs is undefined
   run_once: true
   local_action:
-    command vault write --format=json {{ node_env }}/issue/server-{{ name }} common_name="server.{{ name }}.runnable" ip_sans="{{ hostvars[groups[name][0]]['ansible_default_ipv4']['address'] }}" ttl=8760h
+    command vault write --format=json {{ node_env }}/issue/server-{{ name }} common_name="server.{{ name }}.runnable" alt_names="{{ ansible_fqdn }}" ip_sans="{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}" ttl=8760h
   environment:
     VAULT_ADDR: "{{ vault_addr }}"
     VAULT_TOKEN: "{{ vault_root_token }}"
