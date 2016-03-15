@@ -19,5 +19,5 @@ container_run_args: >
 
 # consul values
 consul_values:
-  - key: "{{ name }}/version"
+  - key: "swarm/version"
     value: "{{ container_tag }}"
