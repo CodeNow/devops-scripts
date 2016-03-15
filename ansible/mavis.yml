@@ -2,14 +2,17 @@
 - hosts: redis
 - hosts: swarm-manager
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: mavis
   vars_files:
-    - "group_vars/alpha-mavis.yml"
+    - group_vars/alpha-mavis.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
+  - role: notify
+    rollbar_token: "{{ mavis_rollbar_token }}"
+    tags: [ notify ]
+  - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: docker_client }
   - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - { role: builder, tags: "build" }
+  - { role: builder, tags: [ build ] }
   - { role: container_start }

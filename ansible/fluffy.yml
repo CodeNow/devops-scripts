@@ -1,12 +1,14 @@
 ---
 - hosts: redis
+- hosts: consul
 
 - hosts: fluffy
   vars_files:
-    - "group_vars/alpha-fluffy.yml"
+    - group_vars/alpha-fluffy.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
+  - role: notify
+    rollbar_token: "{{ fluffy_rollbar_token }}"
+    tags: [ notify ]
+  - { role: redis_key, tags: [ setup, redis_key ] }
+  - { role: builder, tags: [ build ] }
   - { role: container_start }
-

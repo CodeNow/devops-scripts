@@ -3,11 +3,14 @@
 - hosts: detention
 - hosts: mongo-navi
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: navi
   vars_files:
-    - "group_vars/alpha-navi.yml"
+    - group_vars/alpha-navi.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
+  - role: notify
+    rollbar_token: "{{ 719269e87b9b42848472542a8b2059ae }}"
+    tags: [ notify ]
+  - { role: builder, tags: [ build ] }
   - { role: container_kill_start }

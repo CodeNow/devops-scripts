@@ -60,7 +60,6 @@ registry_s3_region=us-east-1
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
-shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
