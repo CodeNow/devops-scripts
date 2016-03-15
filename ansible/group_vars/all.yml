@@ -91,6 +91,9 @@ fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
 fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
 
+# khronos
+rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
+
 # krain
 krain_port: 3100
 
