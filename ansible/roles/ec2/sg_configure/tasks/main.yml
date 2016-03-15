@@ -68,7 +68,7 @@
       - proto: tcp
         from_port: "{{ consul_api_port }}"
         to_port: "{{ consul_api_ssl_port }}"
-        group_id: "{{ sg_api }}"
+        group_id: "{{ sg_dock_services }}"
       - proto: tcp
         from_port: "{{ consul_api_port }}"
         to_port: "{{ consul_api_ssl_port }}"
