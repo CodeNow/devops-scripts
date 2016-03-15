@@ -1,9 +1,7 @@
 name: charon
 app_name: "{{ name }}"
 app_repo: git@github.com:CodeNow/{{ name }}.git
-hosted_ports: [ "{{ charon_port }}" ]
-
-redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
+hosted_ports: ["{{ charon_port }}"]
 
 enviroment_vars:
   API_URL: "{{ api_url }}"
@@ -12,9 +10,8 @@ enviroment_vars:
   DATADOG_PORT: "{{ datadog_port }}"
   DOMAIN_FILTER: "{{ user_content_domain }}"
   PORT: "{{ hosted_ports[0] }}"
-  REDIS_CACERT: "{{ redis_ca_cert_path }}"
   REDIS_HOST: "{{ redis_host_address }}"
-  REDIS_PORT: "{{ redis_tls_port }}"
+  REDIS_PORT: "{{ redis_port }}"
 
 # consul values
 consul_values:

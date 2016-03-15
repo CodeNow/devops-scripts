@@ -10,5 +10,4 @@
   - { role: git_repo }
   - { role: node_service }
   - { role: loggly-rotate }
-  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
   - { role: consul_value, tags: [consul_value] }
