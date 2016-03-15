@@ -17,6 +17,8 @@ ip_all: "0.0.0.0/0"
 krain_port: 3100
 named_port: 53
 navi_port: 3567
+neo4j_port: 7473
+neo4j_tls_port: 7474
 redis_port: 6379
 redis_tls_port: 6380
 region: us-west-2
