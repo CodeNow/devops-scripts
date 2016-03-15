@@ -3,7 +3,8 @@
 
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
-    - "group_vars/alpha-swarm-deamon.yml"
+    - "group_vars/alpha-swarm-daemon.yml"
   roles:
+  - { role: consul_value, tags: [consul_value] }
   - { role: notify, tags: "notify" }
   - { role: container_kill_start }
