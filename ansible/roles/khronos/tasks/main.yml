@@ -22,9 +22,10 @@
 - name: Build Canary CLI script in crontab
   become: yes
   tags: cron
+  when: node_env == "production-delta"
   cron:
     name: Khronos CLI
-    minute: */5
+    minute: "*/5"
     job: /opt/runnable/build-canary.sh >> /var/log/build-canary.log 2>&1
 
 # Run Cronjob once every day at 11:30am PST (19:30 UTC).
