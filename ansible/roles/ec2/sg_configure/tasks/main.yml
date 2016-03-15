@@ -189,46 +189,6 @@
         from_port: "{{ https_port }}"
         to_port: "{{ https_port }}"
         cidr_ip: "{{ ip_all }}"
-      - proto: tcp
-        from_port: 3000
-        to_port: 3000
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: 8301
-        to_port: 8301
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: 8301
-        to_port: 8301
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: 8301
-        to_port: 8301
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_redis }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_web }}"
 
 - name: MongoDB SG
   tags:
@@ -261,6 +221,10 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_app_services }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_dock_services }}"
 
 - name: Navi SG
   tags:
