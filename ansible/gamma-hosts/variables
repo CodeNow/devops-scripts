@@ -29,6 +29,9 @@ eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
+khronos_canary_token=d939b612d75244947c9e07b3fec22c9fe95f13ae
+khronos_canary_rebuild_instance_id=56e077e595ba23200046ce7a
+khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnable.ninja:8000/
 
 [metis:vars]
 metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c

@@ -4,7 +4,7 @@ container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.12.7"
-npm_version: "2.1.18"
+npm_version: "2.14.22"
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
@@ -15,9 +15,15 @@ cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password }}
 # this is the command we want to run in the container.
 cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
+# This is the build canary cron command
+cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
+  -e API_URL={{ api_url }}
+  -e CANARY_API_TOKEN={{ khronos_canary_token }}
+  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
+  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e KHRONOS_PREFETCH=6
