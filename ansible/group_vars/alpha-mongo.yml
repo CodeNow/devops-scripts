@@ -1,12 +1,12 @@
 # database vars
-name: mongo
+name: mongodb
 
-db_path: "/opt/mongodb/db"
+db_path: /opt/mongodb/db
 
 # container_kill_start settings
 container_image: mongo
-container_tag: "latest"
-container_run_opts: "-d --name mongodb -p 27017:27017 -v {{ db_path }}:/data/db:rw"
+container_tag: latest
+container_run_opts: -d --name mongodb -p 27017:27017 -v {{ db_path }}:/data/db:rw
 
 # do not monitor docker-daemon for mongo, as there is none
 no_datadog_docker_monitoring: true

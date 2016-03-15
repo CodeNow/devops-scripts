@@ -29,6 +29,9 @@ eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
+khronos_canary_token=d939b612d75244947c9e07b3fec22c9fe95f13ae
+khronos_canary_rebuild_instance_id=56e077e595ba23200046ce7a
+khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnable.ninja:8000/
 
 [metis:vars]
 metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
@@ -57,7 +60,6 @@ registry_s3_region=us-east-1
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
-shiva_rollbar_key=0526a90faec845d796e1ef5361a00526
 
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -73,7 +75,7 @@ datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 domain=runnable-gamma.com
 mongo_port=27017
-new_relic_license_key=
+new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-gamma
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
@@ -94,9 +96,11 @@ bastion_sshd_port=12675
 region=us-west-2
 vpc_id=vpc-c53464a0
 sg_api=sg-3b0c7b5f
+sg_app_services=sg-35d14052
 sg_bastion=sg-91eb81f5
 sg_consul=sg-899616ee
 sg_dock=sg-577a0d33
+sg_dock_services=sg-12d14075
 sg_hipache=sg-e70c7883
 sg_mongo=sg-977a0df3
 sg_nat=sg-b595ffd1
@@ -105,6 +109,6 @@ sg_neo4j=sg-ff60179b
 sg_rabbit=sg-44b7cb20
 sg_rds=sg-081e596c
 sg_redis=sg-477b0c23
-sg_services=sg-8c6710e8
+sg_registry=sg-c8d140af
 sg_userland=sg-12ce9876
 sg_web=sg-fe8bf49a

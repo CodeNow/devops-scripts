@@ -1,0 +1,3 @@
+---
+dependencies:
+- { role: tls-server-cert, name: mongodb }

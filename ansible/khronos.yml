@@ -1,12 +1,17 @@
 ---
 - hosts: rabbitmq
 - hosts: mongodb
+- hosts: consul
 
 - hosts: khronos
   vars_files:
-    - "group_vars/alpha-khronos.yml"
+    - group_vars/alpha-khronos.yml
   roles:
+  - role: notify
+    rollbar_token: "{{ rollbar_khronos_token }}"
+    tags: [ notify ]
   - { role: docker_client }
-  - { role: builder, tags: "build" }
+  - { role: builder, tags: [ build ] }
+  - { role: khronos, tags: [ deploy ] }
   - { role: container_kill_start }
-  - { role: khronos, tags: ["deploy"] }
+

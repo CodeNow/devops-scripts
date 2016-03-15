@@ -1,12 +1,15 @@
 ---
 - hosts: redis
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: shiva
   vars_files:
     - group_vars/alpha-shiva.yml
   roles:
-  - { role: notify, tags: [ notify ] }
+  - role: notify
+    rollbar_token: "{{ shiva_rollbar_token }}"
+    tags: [ notify ]
   - { role: builder, tags: [ build ] }
   - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
   - { role: container_kill_start }

@@ -1,11 +1,14 @@
 ---
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: palantiri
   vars_files:
-    - "group_vars/alpha-palantiri.yml"
+    - group_vars/alpha-palantiri.yml
   roles:
-  - { role: notify, tags: "notify" }
+  - role: notify
+    rollbar_token: "{{ palantiri_rollbar_token }}"
+    tags: [ notify ]
   - { role: docker_client }
-  - { role: builder, tags: "build" }
+  - { role: builder, tags: [ build ] }
   - { role: container_kill_start }
