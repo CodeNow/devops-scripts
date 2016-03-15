@@ -30,6 +30,11 @@ container_envs: >
   -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL=info
+  {% if node_env != "production-epsilon" %}
+    -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
+    -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
+    -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
+  {% endif %}
   -e NODE_ENV={{ node_env }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
@@ -41,6 +46,7 @@ container_run_opts: >
   -h {{ name }}
   -d
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   --memory=1500m
   {{container_envs}}
 
