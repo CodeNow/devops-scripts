@@ -4,9 +4,9 @@
 
 - hosts: khronos
   vars_files:
-    - "group_vars/alpha-khronos.yml"
+    - group_vars/alpha-khronos.yml
   roles:
   - { role: docker_client }
-  - { role: builder, tags: "build" }
+  - { role: builder, tags: [ build ] }
+  - { role: khronos, tags: [ deploy ] }
   - { role: container_kill_start }
-  - { role: khronos, tags: ["deploy"] }

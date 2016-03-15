@@ -1,5 +1,5 @@
 - name: Put khronos cron script in place
-  sudo: yes
+  become: yes
   tags: cron
   template:
     src="khronos-cron.sh"
@@ -8,7 +8,7 @@
 
 # Run Cronjob at 6 hour intervals.
 - name: Put Khronos CLI script in crontab
-  sudo: yes
+  become: yes
   tags: cron
   cron:
     name="Khronos CLI"
@@ -18,7 +18,7 @@
 
 # Run Cronjob once every day at 11:30am PST (19:30 UTC).
 - name: Remove old Khronos CLI cronjob
-  sudo: yes 
+  become: yes
   tags: cron
   cron:
     name="Khronos CLI Daily"
@@ -26,3 +26,30 @@
     hour="19"
     job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
     state="absent"
+
+- name: make directory for mongo certificates
+  become: yes
+  file:
+    dest: /opt/ssl/mongo-client
+    state: directory
+
+- name: put client CA in place for mongo
+  become: yes
+  copy:
+    dest: /opt/ssl/mongo-client/ca.pem
+    content: "{{ new_client_certs.data.issuing_ca }}"
+    mode: 0400
+
+- name: put client certificate in place for mongo
+  become: yes
+  copy:
+    dest: /opt/ssl/mongo-client/cert.pem
+    content: "{{ new_client_certs.data.certificate }}"
+    mode: 0400
+
+- name: put client private key in place for mongo
+  become: yes
+  copy:
+    dest: /opt/ssl/mongo-client/key.pem
+    content: "{{ new_client_certs.data.private_key }}"
+    mode: 0400
