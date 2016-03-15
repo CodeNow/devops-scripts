@@ -22,4 +22,4 @@
     - send done message
     - send rollbar message for deploy
     - send datadog message for deploy
-
+    - put deployed version in consul

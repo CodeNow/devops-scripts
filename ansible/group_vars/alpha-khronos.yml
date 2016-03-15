@@ -6,6 +6,8 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.12.7"
 npm_version: "2.1.18"
 
+rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
+
 # for cron job
 # this is the list of queues we want to enqueue a job into
 cron_queues: khronos:containers:image-builder:prune khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
