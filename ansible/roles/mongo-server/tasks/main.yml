@@ -1,0 +1,29 @@
+---
+- name: make folder for certificates
+  tags: [ tls ]
+  become: true
+  file:
+    dest: /opt/ssl/mongo-server
+    state: directory
+    owner: mongodb
+    group: mongodb
+
+- name: create server pem file
+  tags: [ tls ]
+  become: true
+  copy:
+    dest: /opt/ssl/mongo-server/mongo.pem
+    content: "{{ new_certs.data.private_key }}\n{{ new_certs.data.certificate }}\n"
+    owner: mongodb
+    group: mongodb
+    mode: 0440
+
+- name: create server CA file
+  tags: [ tls ]
+  become: true
+  copy:
+    dest: /opt/ssl/mongo-server/ca.pem
+    content: "{{ new_certs.data.issuing_ca }}\n"
+    owner: mongodb
+    group: mongodb
+    mode: 0440
