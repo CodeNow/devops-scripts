@@ -12,5 +12,6 @@
     tags: [ notify ]
   - { role: docker_client }
   - { role: builder, tags: [ build ] }
-  - { role: container_kill_start }
   - { role: khronos, tags: [ deploy ] }
+  - { role: container_kill_start }
+

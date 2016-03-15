@@ -1,5 +1,6 @@
 ---
 - name: create vault config
+  run_once: true
   local_action:
     template
       dest=/tmp/vault.hcl
@@ -8,6 +9,7 @@
     - remove vault config
 
 - name: start vault daemon
+  run_once: true
   local_action:
     command daemon --pidfile=/tmp/vault.pid -- vault server --config=/tmp/vault.hcl
   notify:
@@ -15,10 +17,11 @@
 
 - name: pause for start
   pause:
-    seconds: 5
+    seconds: 1
 
 - name: check vault seal
   tags: [ unseal ]
+  run_once: true
   local_action:
     command vault status
   environment:
@@ -30,6 +33,7 @@
 
 - name: unseal vault
   tags: [ unseal ]
+  run_once: true
   when: seal_data.changed
   local_action:
     command vault unseal {{ item }}
