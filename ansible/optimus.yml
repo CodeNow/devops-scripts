@@ -1,11 +1,14 @@
 ---
 - hosts: redis
+- hosts: consul
 
 - hosts: optimus
   vars_files:
-    - "group_vars/alpha-optimus.yml"
+    - group_vars/alpha-optimus.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
+  - role: notify
+    rollbar_token: "{{ optimus_rollbar_token }}"
+    tags: [ notify ]
+  - { role: redis_key, tags: [ setup, redis_key ] }
+  - { role: builder, tags: [ build ] }
   - { role: container_start }
