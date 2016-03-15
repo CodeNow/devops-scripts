@@ -20,4 +20,4 @@ container_run_args: >
 # consul values
 consul_values:
   - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
+    value: "{{ container_tag }}"
