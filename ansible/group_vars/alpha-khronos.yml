@@ -3,8 +3,8 @@ name: khronos
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "0.12.7"
-npm_version: "2.14.22"
+node_version: "4"
+npm_version: "2"
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
