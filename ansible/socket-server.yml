@@ -19,5 +19,6 @@
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: builder, tags: [ build ] }
   - { role: docker_client }
+  - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: container_start }
