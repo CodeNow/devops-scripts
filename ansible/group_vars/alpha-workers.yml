@@ -1,4 +1,4 @@
-name: "api-worker"
+name: api-worker
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
@@ -12,4 +12,5 @@ container_run_opts: >
   -h {{ name }}
   -d
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

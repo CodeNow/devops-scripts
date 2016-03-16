@@ -1,9 +1,9 @@
 container_tag: "{{ git_branch }}"
 
-node_version: "0.10.38"
-npm_version: "2.8.3"
+node_version: 0.10.38
+npm_version: 2.8.3
 
-repo: "git@github.com:CodeNow/api.git"
+repo: git@github.com:CodeNow/api.git
 
 # for sendGrid
 sendgrid_key: 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
@@ -26,8 +26,11 @@ api_base_container_envs: >
   -e KRAIN_PORT={{ krain_port }}
   -e MAVIS_HOST=http://{{ mavis_hostname }}:80
   -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}
-  -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
+  -e MONGO_CACERT=/opt/ssl/mongodb-client/ca.pem
+  -e MONGO_CERT=/opt/ssl/mongodb-client/cert.pem
+  -e MONGO_KEY=/opt/ssl/mongodb-client/key.pem
   -e MONGO_REPLSET_NAME={{ api_mongo_replset_name }}
+  -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
   -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_port }}
   -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host_address }}:{{ api_neo4j_port }}
   -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }}
