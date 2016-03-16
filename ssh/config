@@ -68,6 +68,9 @@ Host gamma-api-worker
 Host gamma-api-socket
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.4 22
 
+Host gamma-api-socket-proxy
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.69 22
+
 Host gamma-consul-a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.144 22
 
@@ -143,6 +146,9 @@ Host delta-api-worker
 Host delta-api-socket
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.23 22
 
+Host delta-api-socket-proxy
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.46 22
+
 Host delta-app-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.13.102 22
 
@@ -214,6 +220,9 @@ Host epsilon-api-worker
 
 Host epsilon-api-socket
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.15.207 22
+
+Host epsilon-api-socket-proxy
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.116 22
 
 Host epsilon-consul-a
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.67 22

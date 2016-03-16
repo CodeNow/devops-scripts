@@ -38,6 +38,9 @@ epsilon-api-worker
 [socket-server]
 epsilon-api-socket
 
+[socket-server-proxy]
+epsilon-api-socket-proxy
+
 [docks]
 
 [dock]
@@ -119,6 +122,7 @@ registry
 sauron
 shiva
 socket-server
+socket-server-proxy
 swarm-manager
 web
 worker

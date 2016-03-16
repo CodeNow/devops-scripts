@@ -22,3 +22,7 @@
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: container_start }
+
+- hosts: socket-server-proxy
+  roles:
+  - { role: socket-server, tags: [ deploy, proxy ] }
