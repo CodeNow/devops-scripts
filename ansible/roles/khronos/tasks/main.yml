@@ -9,24 +9,22 @@
   - khronos-cron.sh
   - build-canary.sh
 
-# Run Cronjob at 6 hour intervals.
-- name: Put Khronos CLI script in crontab
+- name: Put Khronos script into crontab
   become: yes
   tags: cron
   cron:
-    name: Khronos CLI - Daily Cleanup
+    name: "{{ item.name }}"
+    job: /opt/runnable/{{ item.script }} >> /var/log/{{ item.script }}.log 2>&1
+    minute: "{{ item.minute | default('*') }}"
+    hour: "{{ item.hour | default('*') }}"
+  with_items:
+  - name: Khronos CLI - Daily Cleanup
     minute: 13
     hour: 1,7,13,19
-    job: /opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1
-
-- name: Build Canary CLI script in crontab
-  become: yes
-  tags: cron
-  when: node_env == "production-delta"
-  cron:
-    name: Khronos CLI - Canary
+    script: khronos-cron.sh
+  - name: Khronos CLI - Canary
     minute: "*/5"
-    job: /opt/runnable/build-canary.sh >> /var/log/build-canary.log 2>&1
+    script: build-canary.sh
 
 - name: make directory for mongo certificates
   become: yes
