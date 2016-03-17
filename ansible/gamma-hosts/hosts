@@ -88,6 +88,9 @@ gamma-app-services
 [socket-server]
 gamma-api-socket
 
+[socket-server-proxy]
+gamma-api-socket-proxy
+
 [registry]
 gamma-registry
 
@@ -126,6 +129,7 @@ registry
 sauron
 shiva
 socket-server
+socket-server-proxy
 swarm-manager
 web
 web

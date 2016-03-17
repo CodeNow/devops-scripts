@@ -1,0 +1,8 @@
+---
+- hosts: socket-server
+
+- hosts: socket-server-proxy
+  vars_files:
+  - group_vars/alpha-proxy-socket-server.yml
+  roles:
+  - role: socket-proxy
