@@ -21,7 +21,7 @@
   - { role: docker_client }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
-  - { role: container_start }
+  - { role: container_start, number_of_containers: 8 }
 
 - hosts: socket-server-proxy
   roles:
