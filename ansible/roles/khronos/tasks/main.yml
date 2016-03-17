@@ -2,42 +2,31 @@
   become: yes
   tags: cron
   template:
-    src="{{ item }}"
-    mode=0744
-    dest="/opt/runnable/{{ item }}"
+    src: "{{ item }}"
+    mode: 0744
+    dest: /opt/runnable/{{ item }}
   with_items:
   - khronos-cron.sh
   - build-canary.sh
 
-# Run Cronjob at 6 hour intervals.
-- name: Put Khronos CLI script in crontab
+- name: Put Khronos script into crontab
   become: yes
   tags: cron
   cron:
-    name="Khronos CLI"
-    minute="13"
-    hour="1,7,13,19"
-    job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
-
-- name: Build Canary CLI script in crontab
-  become: yes
-  tags: cron
-  when: node_env == "production-delta"
-  cron:
-    name: Khronos CLI
+    name: "{{ item.name }}"
+    job: /opt/runnable/{{ item.script }} >> /var/log/{{ item.script }}.log 2>&1
+    minute: "{{ item.minute | default('*') }}"
+    hour: "{{ item.hour | default('*') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items:
+  - name: Khronos CLI - Daily Cleanup
+    minute: 13
+    hour: 1,7,13,19
+    script: khronos-cron.sh
+  - name: Khronos CLI - Canary
     minute: "*/5"
-    job: /opt/runnable/build-canary.sh >> /var/log/build-canary.log 2>&1
-
-# Run Cronjob once every day at 11:30am PST (19:30 UTC).
-- name: Remove old Khronos CLI cronjob
-  become: yes
-  tags: cron
-  cron:
-    name="Khronos CLI Daily"
-    minute="30"
-    hour="19"
-    job="/opt/runnable/khronos-cron.sh >> /var/log/khronos_cron.log 2>&1"
-    state="absent"
+    script: build-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates
   become: yes
