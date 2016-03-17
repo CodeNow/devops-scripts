@@ -64,7 +64,7 @@ epsilon-app-services
 epsilon-dock-services
 
 [mavis]
-epsilon-app-services
+epsilon-dock-services
 
 [optimus]
 epsilon-dock-services

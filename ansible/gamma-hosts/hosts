@@ -56,7 +56,7 @@ gamma-app-services
 gamma-dock-services
 
 [mavis]
-gamma-app-services
+gamma-dock-services
 
 [optimus]
 gamma-dock-services
