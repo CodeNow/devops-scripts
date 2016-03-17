@@ -17,6 +17,7 @@
     job: /opt/runnable/{{ item.script }} >> /var/log/{{ item.script }}.log 2>&1
     minute: "{{ item.minute | default('*') }}"
     hour: "{{ item.hour | default('*') }}"
+    state: "{{ item.state | default('present') }}"
   with_items:
   - name: Khronos CLI - Daily Cleanup
     minute: 13
@@ -25,6 +26,7 @@
   - name: Khronos CLI - Canary
     minute: "*/5"
     script: build-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates
   become: yes
