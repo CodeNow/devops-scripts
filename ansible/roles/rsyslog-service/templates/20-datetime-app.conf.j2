@@ -1,0 +1,13 @@
+$WorkDirectory /var/spool/rsyslog
+
+# set template name for outfile
+$template DateTime{{ name }},"{{ rsyslog_dir }}/%$YEAR%/%$MONTH%/%$DDAY%/%$HOUR$/{{ name }}.log"
+#  activate the channel and log everything to it
+if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then DateTime{{ name }}
+# end log rotation via outchannel
+
+# {{ name }} access file:
+#Add a tag for {{ name }} events
+$template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058  tag=\"file\" ] %msg%\n"
+if $msg contains '{{ name }}' then @@logs-01.loggly.com:6514;LogglyFormatFile{{ name }}
+if $msg contains '{{ name }}' then ~

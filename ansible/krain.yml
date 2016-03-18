@@ -9,5 +9,5 @@
   - { role: build_essential }
   - { role: git_repo }
   - { role: node_service }
-  - { role: rsyslog-service }
+  - { role: rsyslog-service, tags: [ loggly, truncate ] }
   - { role: consul_value, tags: [consul_value] }
