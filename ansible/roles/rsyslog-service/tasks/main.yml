@@ -27,6 +27,16 @@
     owner=syslog
     group=syslog
     
+- name: fix /docker mode
+  tags: loggly
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
 - name: create "{{ rsyslog_dir }}"
   tags: loggly
   become: true
@@ -51,7 +61,7 @@
   tags: loggly
   sudo: yes
   template:
-    src=99-catchall-loggly
+    src=99-catchall-loggly.conf.j2
     dest=/etc/rsyslog.d/99-loggly.conf
     owner=syslog
     group=syslog

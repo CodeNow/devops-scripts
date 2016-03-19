@@ -4,6 +4,7 @@
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-krain.yml
+    - group_vars/alpha-rsyslog.yml
   roles:
   - { role: notify, tags: [notify] }
   - { role: build_essential }
