@@ -13,8 +13,8 @@
   tags: loggly
   become: true
   copy:
-    src=20-loggly-tls.conf
-    dest=/etc/rsyslog.d/20-loggly-tls.conf
+    src=10-loggly-tls.conf
+    dest=/etc/rsyslog.d/10-loggly-tls.conf
     owner=syslog
     group=syslog
 
@@ -26,6 +26,26 @@
     state=directory
     owner=syslog
     group=syslog
+    
+- name: fix /docker mode
+  tags: loggly
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
+- name: create "{{ rsyslog_dir }}"
+  tags: loggly
+  become: true
+  file:
+    path="{{ rsyslog_dir }}"
+    state=directory
+    owner=syslog
+    group=syslog
+    mode=0755
 
 - name: copy loggly TLS certs
   tags: loggly
@@ -41,8 +61,8 @@
   tags: loggly
   sudo: yes
   template:
-    src=22-loggly.conf.j2
-    dest=/etc/rsyslog.d/22-loggly.conf
+    src=99-catchall-loggly.conf.j2
+    dest=/etc/rsyslog.d/99-loggly.conf
     owner=syslog
     group=syslog
 
@@ -56,20 +76,21 @@
     owner=ubuntu
     group=ubuntu
 
-- name: copy rotate util script
-  tags: loggly
+- name: copy app datetime config
+  tags: [ loggly, datetime ]
   sudo: yes
   template:
-    src=rotate-logs.sh.j2
-    dest=/opt/runnable/bin/rotate-{{ name }}-logs.sh
-    mode=0755
+    src=20-datetime-app.conf.j2
+    dest=/etc/rsyslog.d/20-datetime-{{ name }}.conf
+    owner=syslog
+    group=syslog
 
-- name: copy app config
-  tags: loggly
+- name: copy app truncation config
+  tags: [ loggly, truncate ]
   sudo: yes
   template:
-    src=21-output-syslog.conf.j2
-    dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
+    src=25-truncate-app.conf.j2
+    dest=/etc/rsyslog.d/25-truncate-{{ name }}.conf
     owner=syslog
     group=syslog
 
@@ -93,15 +114,6 @@
   file:
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
-
-- name: touch the log file
-  tags: [loggly, deploy]
-  sudo: yes
-  file:
-    path=/var/log/{{ name }}-daemon.log
-    state=touch
-    owner=syslog
-    group=adm
 
 - name: restart rsyslog
   tags: [loggly, deploy]

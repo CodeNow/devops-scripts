@@ -4,10 +4,11 @@
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-krain.yml
+    - group_vars/alpha-rsyslog.yml
   roles:
   - { role: notify, tags: [notify] }
   - { role: build_essential }
   - { role: git_repo }
   - { role: node_service }
-  - { role: loggly-rotate }
+  - { role: rsyslog-service, tags: [ loggly, truncate ] }
   - { role: consul_value, tags: [consul_value] }
