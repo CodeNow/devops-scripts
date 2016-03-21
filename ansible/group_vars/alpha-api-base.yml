@@ -33,10 +33,12 @@ api_base_container_envs: >
   -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
   -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_port }}
   -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host_address }}:{{ api_neo4j_port }}
-  -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }}
-  -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
-  -e NEW_RELIC_LOG_LEVEL=fatal
-  -e NEW_RELIC_NO_CONFIG_FILE=true
+  {% if api_new_relic_app_name is defined %}
+    -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }}
+    -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
+    -e NEW_RELIC_LOG_LEVEL=fatal
+    -e NEW_RELIC_NO_CONFIG_FILE=true
+  {% endif %}
   -e NODE_ENV={{ node_env }}
   -e OPTIMUS_HOST=http://{{ optimus_hostname }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
