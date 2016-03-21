@@ -9,7 +9,6 @@ api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database=epsilon
 api_mongo_replset_name=epsilon-rs0
 api_neo4j_auth=neo4j:oqGlRV1KTpaqbHDkdlJz
-api_new_relic_app_name=epsilon-api-production
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
@@ -34,7 +33,6 @@ khronos_mongo_replset_name=epsilon
 metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
-navi_new_relic_app_name=epsilon-navi
 navi_cookie_secret=e6911c10e7e611e597309a79f06e9478
 
 [optimus:vars]
@@ -72,7 +70,6 @@ datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 domain=runnable-beta.com
 mongo_port=27017
-new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-epsilon
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB

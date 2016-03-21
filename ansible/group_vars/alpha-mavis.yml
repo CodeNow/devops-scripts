@@ -17,7 +17,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOCKER_CERT_PATH=/etc/ssl/docker
-  -e NEWRELIC_KEY={{ new_relic_license_key }}
   -e PORT={{ hosted_ports[0] }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
