@@ -20,10 +20,12 @@ container_envs: >
   -e HTTP_PORT={{ hosted_ports[0] }}
   -e LOG_LEVEL_STDOUT=trace
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
-  -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }}
-  -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
-  -e NEW_RELIC_LOG_LEVEL=fatal
-  -e NEW_RELIC_NO_CONFIG_FILE=true
+  {% if navi_new_relic_app_name is defined %}
+    -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }}
+    -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }}
+    -e NEW_RELIC_LOG_LEVEL=fatal
+    -e NEW_RELIC_NO_CONFIG_FILE=true
+  {% endif %}
   -e NODE_ENV={{ node_env }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
