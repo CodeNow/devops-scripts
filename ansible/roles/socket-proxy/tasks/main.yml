@@ -1,0 +1,64 @@
+---
+- name: get ports from socket-server
+  delegate_to: "{{ groups['socket-server'][0] }}"
+  tags: [ config ]
+  become: true
+  shell: "for c in $(docker ps | awk '/api-socket-server/{ print $1 }'); do docker port $c 80 | cut -d ':' -f 2; done"
+  args:
+    executable: /bin/bash
+  register: ports
+
+- name: register socket server IP as variable
+  tags: [ config ]
+  set_fact:
+    socket_server_hostname: "{{ hostvars[groups['socket-server'][0]].ansible_default_ipv4.address }}"
+
+- name: install nginx
+  become: yes
+  apt:
+    name: nginx
+    update_cache: yes
+    state: present
+
+- name: make nginx ssl folder
+  become: yes
+  file:
+    name: /etc/nginx/ssl
+    state: directory
+
+- name: create better DH key
+  become: yes
+  command: openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
+  args:
+    creates: /etc/nginx/ssl/dhparam.pem
+
+- name: get present nginx configs
+  tags: [ config ]
+  become: yes
+  shell: ls -1 /etc/nginx/sites-enabled
+  register: present_configs
+
+- name: remove any nginx configs
+  tags: [ config ]
+  become: yes
+  file:
+    name: /etc/nginx/sites-enabled/{{ item }}
+    state: absent
+  with_items: present_configs.stdout_lines
+
+- name: put configuration in place
+  tags: [ config ]
+  become: yes
+  template:
+    src: 01-socket-server.conf
+    dest: /etc/nginx/sites-available/01-socket-server.conf
+
+- name: link configuration to enabled
+  tags: [ config ]
+  become: yes
+  file:
+    state: link
+    src: /etc/nginx/sites-available/01-socket-server.conf
+    dest: /etc/nginx/sites-enabled/01-socket-server.conf
+  notify:
+    - restart nginx

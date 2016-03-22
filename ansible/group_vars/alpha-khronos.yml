@@ -1,14 +1,14 @@
 name: khronos
 
-container_image: "registry.runnable.com/runnable/{{ name }}"
+container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "0.12.7"
-npm_version: "2.14.22"
+node_version: 4
+npm_version: 2
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
-cron_queues: khronos:containers:image-builder:prune khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
+cron_queues: khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron

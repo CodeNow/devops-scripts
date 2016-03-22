@@ -40,6 +40,9 @@ delta-api-worker
 [socket-server]
 delta-api-socket
 
+[socket-server-proxy]
+delta-api-socket-proxy
+
 [docks]
 
 [dock]
@@ -63,7 +66,7 @@ delta-app-services
 delta-dock-services
 
 [mavis]
-delta-app-services
+delta-dock-services
 
 [optimus]
 delta-dock-services
@@ -125,6 +128,7 @@ registry
 sauron
 shiva
 socket-server
+socket-server-proxy
 swarm-manager
 web
 worker
