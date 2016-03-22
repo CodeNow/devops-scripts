@@ -27,6 +27,10 @@
     minute: "*/5"
     script: build-canary.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
+  - name: Khronos CLI - Log Canary
+    minute: "*/5"
+    script: log-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates
   become: yes
