@@ -17,6 +17,7 @@
   "recursors": [
     "8.8.8.8"
   ],
+  "dogstatsd_addr": "{{ ansible_default_ipv4.address }}:{{ datadog_port }}",
   {% if consul_host_address != ansible_default_ipv4.address %}
     "retry_join": [
       "{{ consul_host_address }}"
