@@ -17,6 +17,8 @@ cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password
 cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
 # This is the build canary cron command
 cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
+# This is the build canary cron command
+cron_github_branch_canary_command: "/khronos/bin/cli.js --queue khronos:canary:github-branch --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
@@ -41,6 +43,7 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e WORKER_MAX_RETRY_DELAY=3600000
+  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{khronos_canary_github_branches_instance_id}}
 
 container_run_opts: >
   -h {{ name }}
