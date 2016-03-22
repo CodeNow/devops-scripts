@@ -45,7 +45,7 @@ container_envs: >
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e WORKER_MAX_RETRY_DELAY=3600000
   -e CANARY_LOG_TERMINAL_SLEEP=10
-  -e CANARY_LOGS_INSTANCE_ID={{khronos_canary_logs_instance_id}}
+  -e CANARY_LOG_INSTANCE_ID={{khronos_canary_logs_instance_id}}
 
 
 container_run_opts: >
