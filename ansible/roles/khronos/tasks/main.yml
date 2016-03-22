@@ -8,6 +8,7 @@
   with_items:
   - khronos-cron.sh
   - build-canary.sh
+  - log-canary.sh
   - github-branch-canary.sh
 
 - name: Put Khronos script into crontab
@@ -31,6 +32,9 @@
   - name: Khronos CLI - Github Branch Canary
     minute: "*/5"
     script: github-branch-canary.sh
+  - name: Khronos CLI - Log Canary
+    minute: "*/5"
+    script: log-canary.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates

@@ -32,6 +32,7 @@ khronos_mongo_replset_name=delta
 khronos_canary_token=4740ee4eed5892d61c34e728e527d49b780d576f
 khronos_canary_rebuild_instance_id=56df6674058d592500f76c9f
 khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnableapp.com:8000/
+khronos_canary_logs_instance_id=56f07f5c1e089a200077f2a3
 khronos_canary_github_branches_instance_id=56f05754a443842400b66a53
 
 [metis:vars]

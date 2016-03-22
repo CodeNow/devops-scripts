@@ -13,6 +13,7 @@ ENV {{ env }}
 {% endif %}
 
 # setup node and npm versions
+RUN npm install -g n@2.1.0
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
 {% if dockerfile_pre_install_commands is defined %}
