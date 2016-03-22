@@ -45,7 +45,7 @@
     url=https://releases.hashicorp.com/consul-template/0.11.1/consul-template_0.11.1_linux_amd64.zip
     dest=/usr/local/bin
 
-- name: unzip 
+- name: unzip
   become: true
   unarchive:
     src=/usr/local/bin/consul-template_0.11.1_linux_amd64.zip
@@ -53,10 +53,9 @@
     copy=no
     mode=0755
 
-- name: Download weave 141
+- name: Download weave 145
   become: true
   get_url:
-    url=https://github.com/weaveworks/weave/releases/download/v1.4.1/weave
+    url=https://github.com/weaveworks/weave/releases/download/v1.4.5/weave
     dest=/usr/local/bin
     mode=0755
-
