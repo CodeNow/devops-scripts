@@ -23,6 +23,7 @@ cron_log_canary_command: "/khronos/bin/cli.js --queue khronos:canary:log --job '
 # for container settings
 container_envs: >
   -e API_URL={{ api_url }}
+  -e API_SOCKET_SERVER={{ api_socket_server_hostname }}
   -e CANARY_API_TOKEN={{ khronos_canary_token }}
   -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
   -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
