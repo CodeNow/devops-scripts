@@ -3,7 +3,7 @@ name: khronos
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: 4
+node_version: lts
 npm_version: 2
 
 # for cron job
@@ -17,10 +17,13 @@ cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password
 cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
 # This is the build canary cron command
 cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
+# This is the log canary cron command
+cron_log_canary_command: "/khronos/bin/cli.js --queue khronos:canary:log --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
   -e API_URL={{ api_url }}
+  -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
   -e CANARY_API_TOKEN={{ khronos_canary_token }}
   -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
   -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
@@ -41,6 +44,9 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e WORKER_MAX_RETRY_DELAY=3600000
+  -e CANARY_LOG_TERMINAL_SLEEP=10
+  -e CANARY_LOG_INSTANCE_ID={{khronos_canary_logs_instance_id}}
+
 
 container_run_opts: >
   -h {{ name }}
