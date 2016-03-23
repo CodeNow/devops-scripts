@@ -12,7 +12,7 @@ docker_path: "/bin/docker"
 dockerfile_pre_install_commands: [
   "curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.2 -o {{ docker_path }}",
   "chmod a+x {{ docker_path }}",
-  "curl -L https://github.com/weaveworks/weave/releases/download/v1.4.5/weave -o {{ weave_path }}",
+  "curl -L https://github.com/weaveworks/weave/releases/download/v1.4.6/weave -o {{ weave_path }}",
   "chmod a+x {{ weave_path }}"
 ]
 
