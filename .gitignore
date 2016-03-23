@@ -1,6 +1,7 @@
 node_modules
 *.pem
 pass
+.pass
 hellorunnable
 dump.rdb
 erl_crash.dump
