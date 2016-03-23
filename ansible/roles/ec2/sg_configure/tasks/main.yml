@@ -74,7 +74,7 @@
         to_port: "{{ consul_api_ssl_port }}"
         group_id: "{{ sg_dock }}"
 
-- name: Runnable Container Services SG
+- name: On-Dock Services SG
   tags:
     - dock
   ec2_group:
@@ -102,14 +102,6 @@
         to_port: "{{ krain_port }}"
         group_id: "{{ sg_api }}"
       - proto: tcp
-        from_port: "{{ filibuster_port }}"
-        to_port: "{{ filibuster_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ dock_filibuster_port }}"
-        to_port: "{{ dock_filibuster_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
         from_port: "{{ docker_port }}"
         to_port: "{{ docker_port }}"
         group_id: "{{ sg_api }}"
@@ -120,15 +112,7 @@
       - proto: udp
         from_port: "{{ weave_port }}"
         to_port: "{{ weave_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: udp
-        from_port: "{{ weave_port }}"
-        to_port: "{{ weave_port }}"
         group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ weave_port }}"
-        to_port: "{{ weave_port }}"
-        group_id: "{{ sg_api }}"
       - proto: tcp
         from_port: "{{ weave_port }}"
         to_port: "{{ weave_port }}"
@@ -140,27 +124,11 @@
       - proto: tcp
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_hipache }}"
+        group_id: "{{ sg_userland }}"
       - proto: tcp
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_navi }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_redis }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_app_services }}"
 
 - name: Hipache SG
   tags:
@@ -216,14 +184,6 @@
       - proto: tcp
         from_port: 27000
         to_port: 27020
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: 27000
-        to_port: 27020
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: 27000
-        to_port: 27020
         group_id: "{{ sg_dock_services }}"
 
 - name: Navi SG
@@ -265,10 +225,6 @@
         from_port: "{{ neo4j_port }}"
         to_port: "{{ neo4j_tls_port }}"
         group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ neo4j_port }}"
-        to_port: "{{ neo4j_tls_port }}"
-        group_id: "{{ sg_app_services }}"
 
 - name: RabbitMQ SG
   tags:
@@ -361,10 +317,6 @@
         from_port: "{{ redis_port }}"
         to_port: "{{ redis_tls_port }}"
         group_id: "{{ sg_dock_services }}"
-      - proto: tcp
-        from_port: "{{ redis_port }}"
-        to_port: "{{ redis_tls_port }}"
-        group_id: "{{ sg_web }}"
 
 - name: Registry SG
   tags:
@@ -462,29 +414,9 @@
         to_port: "{{ http_port }}"
         group_id: "{{ sg_hipache }}"
       - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
         from_port: "{{ swarm_port }}"
         to_port: "{{ swarm_port }}"
         group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ navi_port }}"
-        to_port: "{{ navi_port }}"
-        group_id: "{{ sg_hipache }}"
       - proto: tcp
         from_port: "{{ detention_port }}"
         to_port: "{{ detention_port }}"
@@ -493,10 +425,6 @@
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_app_services }}"
 
 - name: Dock Services
   tags:
@@ -513,57 +441,13 @@
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
-      - proto: udp
-        from_port: "{{ named_port }}"
-        to_port: "{{ named_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp 
-        from_port: "{{ named_port }}"
-        to_port: "{{ named_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp 
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp 
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp 
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp 
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_dock_services }}"
-      - proto: tcp 
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp 
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp 
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp 
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_dock_services }}"
       - proto: tcp
         from_port: "{{ swarm_port }}"
         to_port: "{{ swarm_port }}"
         group_id: "{{ sg_api }}"
       - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
         group_id: "{{ sg_dock_services }}"
       - proto: tcp
         from_port: "{{ container_min_port }}"
