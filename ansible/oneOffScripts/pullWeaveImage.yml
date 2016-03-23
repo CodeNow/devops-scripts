@@ -1,6 +1,5 @@
 - hosts: docks
   gather_facts: no
-  serial: 1
   tasks:
   - name: pull weave image
     sudo: yes
