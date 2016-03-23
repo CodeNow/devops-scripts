@@ -53,7 +53,7 @@
     copy=no
     mode=0755
 
-- name: Download weave 145
+- name: Download weave 1.4.5
   become: true
   get_url:
     url=https://github.com/weaveworks/weave/releases/download/v1.4.5/weave
