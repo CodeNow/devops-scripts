@@ -26,28 +26,34 @@
     src=vault.hcl
     dest=/opt/runnable/vault/vault.hcl
 
-- name: copy consul tls certificates (3)
-  become: true
+- name: put consul certificates in place
+  become: yes
   copy:
-    src=certs/vault/client-consul/{{ ansible_default_ipv4.address }}/{{ item }}
-    dest=/opt/vault/client-consul/{{ item }}
-    mode=0400
-    owner=root
-    group=root
+    content: "{{ item.content }}"
+    dest: /opt/vault/client-consul/{{ item.file }}
+    mode: 0400
+    owner: root
+    group: root
   with_items:
-    - ca.pem
-    - cert.pem
-    - key.pem
+  - file: ca.pem
+    content: "{{ new_client_certs.data.issuing_ca }}"
+  - file: cert.pem
+    content: "{{ new_client_certs.data.certificate }}"
+  - file: key.pem
+    content: "{{ new_client_certs.data.private_key }}"
 
-- name: copy vault tls certificates (3)
-  become: true
+- name: put vault server certificates in place
+  become: yes
   copy:
-    src=certs/vault/server/{{ ansible_default_ipv4.address }}/{{ item }}
-    dest=/opt/vault/server/{{ item }}
-    mode=0400
-    owner=root
-    group=root
+    content: "{{ item.content }}"
+    dest: /opt/vault/server/{{ item.file }}
+    mode: 0400
+    owner: root
+    group: root
   with_items:
-    - ca.pem
-    - cert.pem
-    - key.pem
+  - file: ca.pem
+    content: "{{ new_certs.data.issuing_ca }}"
+  - file: cert.pem
+    content: "{{ new_certs.data.certificate }}"
+  - file: key.pem
+    content: "{{ new_certs.data.private_key }}"
