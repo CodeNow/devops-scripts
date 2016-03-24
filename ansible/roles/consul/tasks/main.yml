@@ -2,35 +2,38 @@
 - name: create configuration directory
   become: yes
   file:
-    path=/opt/runnable/consul
-    state=directory
-    recurse=yes
+    path: /opt/runnable/consul
+    state: directory
+    recurse: yes
 
 - name: create server tls certificate directory
   become: yes
   file:
-    path=/opt/consul/server
-    state=directory
-    recurse=yes
+    path: /opt/consul/server
+    state: directory
+    recurse: yes
+
+- name: install server certificates (3)
+  become: yes
+  copy:
+    content: "{{ item.content }}"
+    dest: /opt/consul/server/{{ item.file }}
+    mode: 0400
+    owner: root
+    group: root
+  with_items:
+  - file: ca.pem
+    content: "{{ new_certs.data.issuing_ca }}"
+  - file: cert.pem
+    content: "{{ new_certs.data.certificate }}"
+  - file: key.pem
+    content: "{{ new_certs.data.private_key }}"
 
 - name: copy vault config
   become: yes
   template:
-    src=consul.json.j2
-    dest=/opt/runnable/consul/consul.json
-
-- name: copy tls certificates (3)
-  become: true
-  copy:
-    src=certs/consul/server/{{ ansible_default_ipv4.address }}/{{ item }}
-    dest=/opt/consul/server/{{ item }}
-    mode=0400
-    owner=root
-    group=root
-  with_items:
-    - ca.pem
-    - cert.pem
-    - key.pem
+    src: consul.json.j2
+    dest: /opt/runnable/consul/consul.json
 
 - name: add datadog monitoring
   become: true

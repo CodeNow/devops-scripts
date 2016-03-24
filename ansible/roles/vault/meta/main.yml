@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: tls-server-cert }
+  - { role: tls-client-cert, tls_service: consul }
