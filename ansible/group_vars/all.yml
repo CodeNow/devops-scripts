@@ -96,6 +96,7 @@ rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
 
 # krain
 krain_port: 3100
+krain_host_address: "{{ hostvars[groups['krain'][0]]['ansible_default_ipv4']['address'] }}"
 
 # marketing
 marketing_url: https://{{ domain }}

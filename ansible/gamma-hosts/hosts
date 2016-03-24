@@ -55,6 +55,9 @@ gamma-app-services
 [khronos]
 gamma-dock-services
 
+[krain]
+gamma-services
+
 [mavis]
 gamma-dock-services
 

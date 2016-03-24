@@ -63,6 +63,9 @@ epsilon-app-services
 [khronos]
 epsilon-dock-services
 
+[krain]
+epsilon-services
+
 [mavis]
 epsilon-dock-services
 

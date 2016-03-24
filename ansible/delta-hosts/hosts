@@ -65,6 +65,9 @@ delta-app-services
 [khronos]
 delta-dock-services
 
+[krain]
+delta-services
+
 [mavis]
 delta-dock-services
 
