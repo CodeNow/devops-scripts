@@ -101,6 +101,7 @@ ${DOCKS} aws --org ${MYORG} -e ${ENV}| \
 
 function dockGetAll() {
 ${DOCKS} aws -e ${ENV} | \
+    grep running | \
     grep -v "${AMI_ID}" | \
     awk '{printf("%s ",$6);}'
 }
@@ -204,7 +205,7 @@ if [ "enabled" == "${BEAST_MODE}" ] ; then
     for org in ${ORGS} ; do
         setLaunchConfig ${org}
     done
-    KILLBATCH=$(docksGetAll)
+    KILLBATCH=$(dockGetAll)
     seekAndDestroy ${KILLBATCH}
 else
     if [ "" == "${ORG_ID}" ] ; then
