@@ -32,6 +32,9 @@ Host migration-router
 Host delta-staging-data
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.59 22
 
+Host delta-staging-userland
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.175 22
+
 ################################################################################
 # Gamma
 ################################################################################
