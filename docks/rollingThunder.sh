@@ -84,7 +84,7 @@ MYLCS=`${DOCKS} asg list -e staging | \
 # fetch a batch docks to kill
 function dockGetKillBatch() {
 MYORG="${1}"
-${DOCKS} aws -e ${ENV} --org ${MYORG} | \
+${DOCKS} aws --org ${MYORG} -e ${ENV} | \
     grep -v "${AMI_ID}" | \
     grep -v "${STAGING_AMIS}" | \
     grep running | \
@@ -94,21 +94,21 @@ ${DOCKS} aws -e ${ENV} --org ${MYORG} | \
 
 function dockGetNew() {
 MYORG="${1}"
-${DOCKS} aws -e ${ENV} --org ${MYORG} | \
+${DOCKS} aws --org ${MYORG} -e ${ENV}| \
     grep "${AMI_ID}" | \
     awk '{printf("%s ",$6);}'
 }
 
 function dockGetAll() {
 ${DOCKS} aws -e ${ENV} | \
-    grep "${AMI_ID}" | \
+    grep -v "${AMI_ID}" | \
     awk '{printf("%s ",$6);}'
 }
 
 function setLaunchConfig() {
 MYORGS="${1}"
 for org in ${MYORGS} ; do
-    ${DOCKS} asg lc -e ${ENV} ${org} ${LAUNCH_CONFIG} 
+    ${DOCKS} asg lc ${org} ${LAUNCH_CONFIG}  -e ${ENV}
     if [ 0 -ne ${?} ] ; then
         echo "Failed to update launch configuration, bailing."
         exit 1
@@ -136,7 +136,7 @@ fi
 function scaleOutDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-out -e ${ENV} ${MYORG} ${MYINSTCOUNT}
+${DOCKS} asg scale-out ${MYORG} ${MYINSTCOUNT} -e ${ENV}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-out failed, bailing."
     exit 1
@@ -146,7 +146,7 @@ fi
 function scaleInDesiredInstances() {
 MYORG="${1}"
 MYINSTCOUNT="${2}"
-${DOCKS} asg scale-in -e ${ENV} ${MYORG} ${MYINSTCOUNT}
+${DOCKS} asg scale-in ${MYORG} ${MYINSTCOUNT} -e ${ENV}
 if [ 0 -ne ${?} ] ; then
     echo "Scale-in failed, bailing."
     exit 1
@@ -157,7 +157,7 @@ function seekAndDestroy() {
 MYDOCKS="${1}"
 for dock in ${MYDOCKS} ; do
     ( printf "y\n\n" | \
-        ${DOCKS} unhealthy -e ${ENV} ${dock} )
+        ${DOCKS} unhealthy ${dock} -e ${ENV} )
     MYEXIT=${?}
     if [ 0 -ne ${MYEXIT} ] ; then
         echo "Dock could not be marked unhealthy, bailing."
@@ -198,7 +198,7 @@ sleep ${MYINTERVAL}
 # Putting it together.
 
 STAGING_AMIS=$(getStagingAMIs)
-if [ "enabled" == "${BEASTMODE}" ] ; then
+if [ "enabled" == "${BEAST_MODE}" ] ; then
     # still need to loop through orgs and set LC -
     ORGS=$(dockGetOrgs)
     for org in ${ORGS} ; do
