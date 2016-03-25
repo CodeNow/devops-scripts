@@ -104,6 +104,9 @@ delta-dock-services
 [metis]
 delta-app-services
 
+[drake]
+delta-app-services
+
 [delta:children]
 api
 bastion
@@ -112,6 +115,7 @@ consul
 dock
 docker-listener
 docks
+drake
 eru
 hipache
 khronos
