@@ -101,7 +101,7 @@ ${DOCKS} aws --org ${MYORG} -e ${ENV}| \
 
 function dockGetAll() {
 ${DOCKS} aws -e ${ENV} | \
-    grep running | \
+    grep http | \
     grep -v "${AMI_ID}" | \
     awk '{printf("%s ",$6);}'
 }
