@@ -36,7 +36,6 @@
     owner=syslog
     group=syslog
     mode=400
-    group=syslog
 
 - name: stop rsyslog
   tags: [loggly, deploy]
