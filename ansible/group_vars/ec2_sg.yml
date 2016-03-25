@@ -2,6 +2,7 @@
 app_name: "ec2"
 consul_api_port: 8500
 consul_api_ssl_port: 8501
+consul_cli_port: 8400
 consul_rpc_min_port: 8300
 consul_rpc_max_port: 8302
 container_min_port: 32768

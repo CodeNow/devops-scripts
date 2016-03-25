@@ -49,6 +49,10 @@
     aws_secret_key: "{{ aws_secret_key }}"
     aws_access_key: "{{ aws_access_key }}"
     rules:
+      - proto: icmp
+        from_port: -1
+        to_port: -1
+        group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
@@ -56,6 +60,14 @@
       - proto: tcp
         from_port: "{{ consul_rpc_min_port }}"
         to_port: "{{ consul_rpc_max_port }}"
+        group_id: "{{ sg_consul }}"
+      - proto: udp
+        from_port: "{{ consul_rpc_min_port }}"
+        to_port: "{{ consul_rpc_max_port }}"
+        group_id: "{{ sg_consul }}"
+      - proto: tcp
+        from_port: "{{ consul_cli_port }}"
+        to_port: "{{ consul_cli_port }}"
         group_id: "{{ sg_consul }}"
       - proto: tcp
         from_port: "{{ vault_api_port }}"
