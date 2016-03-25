@@ -99,6 +99,9 @@ epsilon-dock-services
 [metis]
 epsilon-app-services
 
+[drake]
+epsilon-app-services
+
 [epsilon:children]
 api
 bastion
@@ -107,6 +110,7 @@ consul
 dock
 docker-listener
 docks
+drake
 eru
 hipache
 khronos
