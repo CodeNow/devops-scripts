@@ -1,0 +1,14 @@
+---
+- hosts: redis
+- hosts: rabbitmq
+- hosts: consul
+
+- hosts: drake
+  vars_files:
+    - group_vars/alpha-drake-http.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ drake_http_rollbar_token }}"
+    tags: [ notify ]
+  - { role: builder, tags: [ build ] }
+  - { role: container_start }

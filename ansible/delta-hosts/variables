@@ -21,6 +21,11 @@ docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 [dock:vars]
 docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 
+[drake:vars]
+drake_port=80
+drake_http_rollbar_token=52ad749ddb8e47b2a8e15312b6b300fb
+drake_worker_rollbar_token=14152b8572034943b714da27ca607698
+
 [eru:vars]
 eru_github_id=46a23f5f99f0aa9460f8
 eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
