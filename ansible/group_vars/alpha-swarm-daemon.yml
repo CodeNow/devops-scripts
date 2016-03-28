@@ -16,3 +16,8 @@ container_run_args: >
   --heartbeat 15s --ttl 30s
    --addr={{ ansible_default_ipv4.address }}:{{ docker_port }}
   consul://{{ consul_host_address }}:{{ consul_api_port }}/swarm
+
+# consul values
+consul_values:
+  - key: "swarm/version"
+    value: "{{ container_tag }}"

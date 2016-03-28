@@ -31,8 +31,8 @@
   tags: loggly
   become: true
   copy:
-    src=loggly_full.crt
-    dest=/etc/rsyslog.d/keys/ca.d/loggly_full.crt
+    src=logs-01.loggly.com_sha12.crt
+    dest=/etc/rsyslog.d/keys/ca.d/logs-01.loggly.com_sha12.crt
     owner=syslog
     group=syslog
     mode=400

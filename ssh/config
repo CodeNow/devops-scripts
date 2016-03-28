@@ -49,7 +49,7 @@ Host 10.4.*.*
 
 ## Gamma Userland Hipache
 Host gamma-userland
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.141 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.2.208 22
 
 ## Gamma App Hipache
 Host gamma-hipache

@@ -34,7 +34,7 @@ container_envs: >
   -e KHRONOS_PREFETCH=6
   -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
-  -e LOG_LEVEL=info
+  -e LOG_LEVEL=error
   {% if node_env != "production-epsilon" %}
     -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
     -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
