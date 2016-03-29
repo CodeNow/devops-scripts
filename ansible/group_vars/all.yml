@@ -29,6 +29,12 @@ loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
 loggly_username: ops
 
 ##
+## cores and logs
+##
+
+core_file_dir: /var/log
+
+##
 ## shared application configs
 ##
 
