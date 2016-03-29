@@ -13,19 +13,12 @@
   set_fact:
     socket_server_hostname: "{{ hostvars[groups['socket-server'][0]].ansible_default_ipv4.address }}"
 
-- name: get present nginx configs
-  tags: [ config ]
-  become: yes
-  shell: ls -1 /etc/nginx/sites-enabled
-  register: present_configs
-
-- name: remove any nginx configs
+- name: make nginx config directory
   tags: [ config ]
   become: yes
   file:
-    name: /etc/nginx/sites-enabled/{{ item }}
-    state: absent
-  with_items: present_configs.stdout_lines
+    state: directory
+    dest: /etc/nginx
 
 - name: put configuration in place
   tags: [ config ]
@@ -34,12 +27,9 @@
     src: 01-socket-server.conf
     dest: /etc/nginx/sites-available/01-socket-server.conf
 
-- name: link configuration to enabled
+- name: put nginx configuration in place
   tags: [ config ]
   become: yes
-  file:
-    state: link
-    src: /etc/nginx/sites-available/01-socket-server.conf
-    dest: /etc/nginx/sites-enabled/01-socket-server.conf
-  notify:
-    - restart nginx
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf

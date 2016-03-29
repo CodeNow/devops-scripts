@@ -1,0 +1,39 @@
+---
+- name: look for current container
+  become: yes
+  shell: docker ps | grep {{ docker_image }} || true
+  register: running_containers
+  changed_when: "running_containers.stdout_lines | length > 0"
+  tags: [ test ]
+
+- name: get version of running container
+  when: running_containers.changed
+  set_fact:
+    running_container_version: "{{ running_containers.stdout_lines[0] | split_regex('\\s+') | split_get_index(1) | split_regex(':') | split_get_index(1) }}"
+    running_container_id: "{{ running_containers.stdout_lines[0] | split_regex('\\s+') | split_get_index(0) }}"
+  tags: [ test ]
+
+- debug:
+    msg: running_container_version {{ running_container_version }} {{ docker_image_version }} {{ running_container_version != docker_image_version }}
+  when: running_containers.changed
+  tags: [ test ]
+
+- name: restart container if it is the same version
+  when: running_containers.changed and running_container_version == docker_image_version
+  become: yes
+  shell: docker {{ docker_restart_command | default('restart') }} {{ running_container_id }}
+  register: restarted_container
+  changed_when: "restarted_container.rc == 0"
+
+- name: stop old container
+  when: force_stop is defined and running_container_id != '' or (running_containers.changed and running_container_version != docker_image_version)
+  become: yes
+  shell: docker stop {{ running_container_id }}
+  register: stopped_container
+  # notify:
+  #   - clean up stopped container
+
+- name: start new container
+  when: force_stop is defined or (not stopped_container.skipped and not running_containers.changed)
+  become: yes
+  shell: docker run {{ docker_container_run_opts }} {{ docker_image }}:{{ docker_image_version }}

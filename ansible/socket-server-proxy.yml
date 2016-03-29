@@ -3,6 +3,7 @@
 
 - hosts: socket-server-proxy
   vars_files:
-  - group_vars/alpha-proxy-socket-server.yml
+    - group_vars/alpha-proxy-socket-server.yml
   roles:
-  - role: socket-proxy
+    - role: socket-proxy
+    - role: container_restart
