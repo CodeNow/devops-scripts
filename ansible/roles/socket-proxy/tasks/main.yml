@@ -20,12 +20,27 @@
     state: directory
     dest: /etc/nginx
 
+- name: list files in config directory
+  tags: [ config, deploy ]
+  become: yes
+  command: ls /etc/nginx/sites-available
+  register: sites_available
+
+- name: remove all sites
+  tags: [ config, deploy ]
+  become: yes
+  command: rm -f {{ item }}
+  with_items: "{{ sites_available.stdout_lines }}"
+
 - name: put configuration in place
   tags: [ config, deploy ]
   become: yes
   template:
-    src: 01-socket-server.conf
-    dest: /etc/nginx/sites-available/01-socket-server.conf
+    src: "{{ item }}"
+    dest: /etc/nginx/sites-available/{{ item }}
+  with_items:
+    - 00-nginx-status.conf
+    - 01-socket-server.conf
 
 - name: put nginx configuration in place
   tags: [ config, deploy ]

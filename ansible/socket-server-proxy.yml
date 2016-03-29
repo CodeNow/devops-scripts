@@ -5,5 +5,7 @@
   vars_files:
     - group_vars/alpha-proxy-socket-server.yml
   roles:
+    - role: datadog
+      has_dd_integration: yes
     - role: socket-proxy
     - role: container_restart
