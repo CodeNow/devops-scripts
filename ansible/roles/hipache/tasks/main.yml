@@ -1,43 +1,43 @@
 ---
 - name: create certs path
-  sudo: yes
+  become: true
   file:
     path=/etc/ssl/certs/{{ domain }}
     state=directory
 
 - name: create private cert path
-  sudo: yes
+  become: true
   file:
     path=/etc/ssl/private
     state=directory
 
 # the keys below must be placed inside devops-scripts/ansible/roles/hipache/files
 - name: copy ca.crt
-  sudo: yes
+  become: true
   template:
     src={{ domain }}-ca.crt
     dest=/etc/ssl/certs/{{ domain }}/ca.crt
 
 - name: copy {{ domain }}.crt
-  sudo: yes
+  become: true
   template:
     src={{ domain }}.crt
     dest=/etc/ssl/certs/{{ domain }}/{{ domain }}.crt
 
 - name: copy private ssl key
-  sudo: yes
+  become: true
   template:
     src={{ domain }}.key
    dest=/etc/ssl/private/{{ domain }}.key
 
 - name: create hipache config directory
-  sudo: yes
+  become: true
   file:
     path=/opt/hipache-conf
     state=directory
 
 - name: copy configs
-  sudo: yes
+  become: true
   template:
     src=config.json
     dest=/opt/hipache-conf

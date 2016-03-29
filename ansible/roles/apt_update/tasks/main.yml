@@ -1,5 +1,5 @@
 ---
 - name: update cache for apt repository
-  sudo: yes
+  become: true
   apt:
     update_cache=yes

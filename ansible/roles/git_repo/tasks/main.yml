@@ -4,7 +4,7 @@
     msg: "application Installed: {{ app_name }}, branch : {{ git_branch }} "
 
 - name: create repository dir
-  sudo: yes
+  become: true
   file:
     path=/opt/runnable/{{ app_name }}
     state=directory
@@ -12,7 +12,7 @@
 
 - name: pull the git repository
   tags: deploy
-  sudo: yes
+  become: true
   git:
     repo={{ app_repo }}
     dest=/opt/runnable/{{ app_name }}

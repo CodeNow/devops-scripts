@@ -15,7 +15,7 @@
 
 - name: make override file
   tags: deploy
-  sudo: yes
+  become: true
   lineinfile:
     dest="/etc/init/{{ app_name }}.override"
     line="manual"
@@ -23,7 +23,7 @@
 
 - name: create new config file
   tags: deploy
-  sudo: yes
+  become: true
   template:
     src=upstart.conf
     dest=/etc/init/{{ app_name }}.conf
@@ -31,7 +31,7 @@
 
 - name: restart service {{ app_name }}
   tags: deploy
-  sudo: yes
+  become: true
   when: dock is not defined
   service:
     name={{ app_name }}

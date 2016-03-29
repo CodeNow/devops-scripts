@@ -1,16 +1,16 @@
 ---
 - name: create config directory
-  sudo: yes
+  become: true
   file: path=/opt/neo4j/conf state=directory
 
 - name: copy neo4j config
-  sudo: yes
+  become: true
   template:
     src=neo4j-server.properties
     dest=/opt/neo4j/conf/
 
 - name: copy neo4j start.sh
-  sudo: yes
+  become: true
   template:
     src=start.sh
     dest=/opt/neo4j/

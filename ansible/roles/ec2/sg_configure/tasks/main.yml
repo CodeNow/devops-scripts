@@ -1,5 +1,5 @@
 #- name: install Python Boto
-#  sudo: yes
+#  become: true
 #  apt: name=python-boto state=latest
 
 - name: Bastion
