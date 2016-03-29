@@ -28,7 +28,7 @@
 
 - name: start new container
   tags: deploy
-  shell: for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do sudo docker run --log-driver=none -v /var/log:/var/log:rw --restart={{ restart_policy | default('no') }} {{ container_run_opts }} {{ container_image }}:{{ container_tag }} {{ container_run_args }}; done
+  shell: for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do sudo docker run --log-driver=none -v {{ app_log_dir }}:{{ app_log_dir }}:rw --restart={{ restart_policy | default('no') }} {{ container_run_opts }} {{ container_image }}:{{ container_tag }} {{ container_run_args }}; done
   args:
     executable: /bin/bash
   register: new_container_ids

@@ -78,7 +78,7 @@
 
 - name: check for current log file
   tags: [loggly, deploy]
-  stat: path=/var/log/{{ name }}
+  stat: path={{ app_log_dir }}/{{ name }}
   register: log_file
 
 - name: remove old log file
@@ -86,7 +86,7 @@
   tags: [loggly, deploy]
   become: true
   file:
-    path=/var/log/{{ name }}.log
+    path={{ app_log_dir }}/{{ name }}.log
     state=absent
 
 - name: restart rsyslog

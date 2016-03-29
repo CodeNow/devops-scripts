@@ -98,7 +98,7 @@
   tags: [loggly, deploy]
   sudo: yes
   file:
-    path=/var/log/{{ name }}-daemon.log
+    path={{ app_log_dir }}/{{ name }}-daemon.log
     state=touch
     owner=syslog
     group=adm

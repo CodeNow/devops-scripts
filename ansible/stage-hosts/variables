@@ -1,6 +1,7 @@
 [stage:vars]
 api_hostname=api-staging-codenow.runnableapp.com
 api_socket_server_hostname=api-staging-codenow.runnableapp.com
+app_log_dir=/var/log
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 consul_host_address=consul-server-staging-codenow.runnableapp.com
