@@ -31,6 +31,7 @@
     - clean up stopped containers
 
 - name: start new container
-  when: force_stop is defined or (not stopped_container.skipped and not running_containers.changed)
+  when: force_stop is defined or (stopped_container.skipped and not running_containers.changed)
+  tags: [ deploy ]
   become: yes
   shell: docker run {{ docker_container_run_opts }} {{ docker_image }}:{{ docker_image_version }}
