@@ -1,0 +1,5 @@
+---
+- name: clean up stopped containers
+  tags: [ deploy ]
+  become: true
+  shell: docker ps --filter status=exited -q | xargs docker rm

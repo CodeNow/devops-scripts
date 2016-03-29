@@ -1,7 +1,7 @@
 ---
 - name: get ports from socket-server
   delegate_to: "{{ groups['socket-server'][0] }}"
-  tags: [ config ]
+  tags: [ config, deploy ]
   become: true
   shell: "for c in $(docker ps | awk '/api-socket-server/{ print $1 }'); do docker port $c 80 | cut -d ':' -f 2; done"
   args:
@@ -9,26 +9,26 @@
   register: ports
 
 - name: register socket server IP as variable
-  tags: [ config ]
+  tags: [ config, deploy ]
   set_fact:
     socket_server_hostname: "{{ hostvars[groups['socket-server'][0]].ansible_default_ipv4.address }}"
 
 - name: make nginx config directory
-  tags: [ config ]
+  tags: [ config, deploy ]
   become: yes
   file:
     state: directory
     dest: /etc/nginx
 
 - name: put configuration in place
-  tags: [ config ]
+  tags: [ config, deploy ]
   become: yes
   template:
     src: 01-socket-server.conf
     dest: /etc/nginx/sites-available/01-socket-server.conf
 
 - name: put nginx configuration in place
-  tags: [ config ]
+  tags: [ config, deploy ]
   become: yes
   copy:
     src: nginx.conf
