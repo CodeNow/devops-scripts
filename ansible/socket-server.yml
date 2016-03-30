@@ -24,5 +24,8 @@
   - { role: container_start, number_of_containers: 8 }
 
 - hosts: socket-server-proxy
+  vars_files:
+    - group_vars/alpha-proxy-socket-server.yml
   roles:
-  - { role: socket-server, tags: [ deploy, proxy ] }
+  - role: socket-proxy
+  - role: container_restart
