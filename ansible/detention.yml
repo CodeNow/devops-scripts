@@ -1,5 +1,6 @@
 ---
 - hosts: redis
+- hosts: consul
 
 - hosts: detention
   vars_files:
