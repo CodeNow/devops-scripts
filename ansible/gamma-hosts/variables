@@ -36,6 +36,8 @@ khronos_mongo_replset_name=gamma
 khronos_canary_token=d939b612d75244947c9e07b3fec22c9fe95f13ae
 khronos_canary_rebuild_instance_id=56e077e595ba23200046ce7a
 khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnable.ninja:8000/
+intercom_app_id=xs5g95pd
+intercom_api_key=037d14f2758eac144de1d2657b2ef9a4f26aef1a
 
 [metis:vars]
 metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
