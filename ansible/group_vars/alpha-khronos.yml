@@ -21,6 +21,7 @@ cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --j
 cron_log_canary_command: "/khronos/bin/cli.js --queue khronos:canary:log --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 # This is the github-branch canary cron command
 cron_github_branch_canary_command: "/khronos/bin/cli.js --queue khronos:canary:github-branch --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
+cron_container_metrics_command: "/khronos/bin/cli.js --queue khronos:metrics:container-status --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
@@ -49,6 +50,8 @@ container_envs: >
   -e CANARY_LOG_TERMINAL_SLEEP=10
   -e CANARY_LOG_INSTANCE_ID={{khronos_canary_logs_instance_id}}
   -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{khronos_canary_github_branches_instance_id}}
+  -e INTERCOM_APP_ID={{ intercom_app_id }}
+  -e INTERCOM_API_KEY={{ intercom_api_key }}
 
 container_run_opts: >
   -h {{ name }}
