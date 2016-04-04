@@ -8,5 +8,5 @@
   become: true
   npm:
     name=npm
-    state=latest
+    version={{npm_version|default('2.15.3')}}
     global=yes
