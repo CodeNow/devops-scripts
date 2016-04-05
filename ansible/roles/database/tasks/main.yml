@@ -1,4 +1,4 @@
 ---
 - name: create database directory
-  sudo: yes
+  become: true
   file: path={{ db_path }} state=directory

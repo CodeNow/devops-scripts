@@ -5,6 +5,6 @@
 
 #  pl test on test box
   - name: Froce ntp update
-    sudo: yes
+    become: true
     shell:
       "service ntp stop && /usr/sbin/ntpdate pool.ntp.org && service ntp start"

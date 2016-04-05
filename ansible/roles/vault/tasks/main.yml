@@ -21,7 +21,7 @@
     recurse=yes
 
 - name: copy vault config
-  sudo: yes
+  become: true
   template:
     src=vault.hcl
     dest=/opt/runnable/vault/vault.hcl

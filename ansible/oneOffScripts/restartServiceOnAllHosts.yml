@@ -6,7 +6,7 @@
       when: name is not defined
 
     - name: restart {{ name }}
-      sudo: yes
+      become: true
       service:
         name={{ name }}
         state=restarted

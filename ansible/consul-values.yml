@@ -4,7 +4,7 @@
     - "group_vars/alpha-consul.yml"
   tasks:
     - name: make sure httplib2 is installed
-      sudo: yes
+      become: true
       apt: package=python-httplib2 state=present
 
     - name: put values into consul

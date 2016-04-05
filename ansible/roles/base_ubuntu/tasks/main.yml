@@ -1,6 +1,6 @@
 ---
 - name: ensure registry.runnable in /etc/hosts
-  sudo: yes
+  become: true
   when: dock is not defined
   lineinfile:
     dest=/etc/hosts

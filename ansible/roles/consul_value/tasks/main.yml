@@ -6,7 +6,7 @@
 
 - name: make sure httplib2 is installed
   run_once: true
-  sudo: yes
+  become: true
   apt:
     package=python-httplib2
     state=present
