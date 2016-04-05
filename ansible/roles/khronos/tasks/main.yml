@@ -33,6 +33,7 @@
   - name: Khronos CLI - Github Branch Canary
     minute: "*/5"
     script: github-branch-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
   - name: Khronos CLI - Log Canary
     minute: "*/5"
     script: log-canary.sh
