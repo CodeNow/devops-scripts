@@ -2,6 +2,7 @@
 - hosts: rabbitmq
 - hosts: mongodb
 - hosts: consul
+- hosts: swarm-manager
 
 - hosts: khronos
   vars_files:
@@ -14,4 +15,3 @@
   - { role: builder, tags: [ build ] }
   - { role: khronos, tags: [ deploy ] }
   - { role: container_kill_start }
-
