@@ -69,7 +69,6 @@ vault_aws_region=us-east-1
 
 [epsilon:vars]
 ansible_ssh_private_key_file=~/.ssh/epsilon.pem
-app_log_dir=/docker/app_logs
 bastion_sshd_port=60519
 datadog_tags=env:epsilon
 datadog_mongodb_user=datadog
