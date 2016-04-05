@@ -18,7 +18,7 @@
 
 - name: create core file dir
   become: true
-  when: docker_config == "runnable" and core_file_dir != /var/log
+  when: docker_config == "runnable" and core_file_dir != "/var/log"
   tags: coreDump
   file:
     path="{{ core_file_dir }}"
