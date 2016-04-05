@@ -23,9 +23,9 @@
   file:
     path="{{ core_file_dir }}"
     state=directory
-    user=ubuntu
-    group=ubuntu
-    mode=0700
+    user=root
+    group=root
+    mode=0755
 
 - name: change core dump path
   become: true
