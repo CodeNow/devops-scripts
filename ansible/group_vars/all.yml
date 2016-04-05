@@ -95,9 +95,14 @@ fluffy_hostname: "fluffy.{{ domain }}"
 fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
 
 # khronos
-rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
-khronos_canary_logs_instance_id: undefined
+intercom_api_key: undefined
+intercom_app_id: undefined
 khronos_canary_github_branches_instance_id: undefined
+khronos_canary_logs_instance_id: undefined
+khronos_canary_rebuild_instance_id: undefined
+khronos_canary_rebuild_navi_url: undefined
+khronos_canary_token: undefined
+rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
 
 # krain
 krain_port: 3100

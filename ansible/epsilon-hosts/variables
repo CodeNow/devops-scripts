@@ -30,11 +30,6 @@ eru_github_id=8abb08f83f6d1c52bd1a
 eru_github_secret=74a23ee56486d57b14f292283cb04625f600917c
 
 [khronos:vars]
-intercom_api_key=037d14f2758eac144de1d2657b2ef9a4f26aef1a
-intercom_app_id=deadbeef
-khronos_canary_rebuild_instance_id=deadbeefdeadbeefdeadbeef
-khronos_canary_rebuild_navi_url=http://doesnt-matter-wont-run.runnablecloud.com:8000/
-khronos_canary_token=d939b612d75244947c9e07b3fec22c9fe95f13ae
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=epsilon
 khronos_mongo_replset_name=epsilon
