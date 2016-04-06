@@ -1,4 +1,13 @@
 ---
+- name: enforce modes on /docker
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
 - name: create application logs directory
   tags: rsyslog
   when: app_log_dir != "/var/log"
@@ -6,7 +15,7 @@
   file:
     path="{{ app_log_dir }}"
     state=directory
-    owner=ubuntu
-    group=ubuntu
-    mode=0700
+    owner=root
+    group=syslog
+    mode=0775
 

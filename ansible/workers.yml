@@ -18,6 +18,7 @@
     tags: [ notify ]
   - { role: builder, tags: [ build ] }
   - { role: docker_client }
+  - { role: loggly-rotate }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: container_kill_start }
