@@ -27,16 +27,16 @@ cron_container_metrics_command: "/khronos/bin/cli.js --queue khronos:metrics:con
 container_envs: >
   -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
   -e API_URL={{ api_url }}
-  -e CANARY_API_TOKEN={{ khronos_canary_token }}
-  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id }}
-  -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id }}
+  -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
+  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
+  -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
   -e CANARY_LOG_TERMINAL_SLEEP=10
-  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
-  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
+  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id | default('undefined') }}
+  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url | default('undefined') }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e INTERCOM_API_KEY={{ intercom_api_key }}
-  -e INTERCOM_APP_ID={{ intercom_app_id }}
+  -e INTERCOM_API_KEY={{ intercom_api_key | default('undefined') }}
+  -e INTERCOM_APP_ID={{ intercom_app_id | default('undefined') }}
   -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e KHRONOS_PREFETCH=6
