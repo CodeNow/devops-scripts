@@ -25,16 +25,21 @@ cron_container_metrics_command: "/khronos/bin/cli.js --queue khronos:metrics:con
 
 # for container settings
 container_envs: >
-  -e API_URL={{ api_url }}
   -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
-  -e CANARY_API_TOKEN={{ khronos_canary_token }}
-  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
-  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
+  -e API_URL={{ api_url }}
+  -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
+  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
+  -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
+  -e CANARY_LOG_TERMINAL_SLEEP=10
+  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id | default('undefined') }}
+  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url | default('undefined') }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e KHRONOS_PREFETCH=6
+  -e INTERCOM_API_KEY={{ intercom_api_key | default('undefined') }}
+  -e INTERCOM_APP_ID={{ intercom_app_id | default('undefined') }}
   -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
+  -e KHRONOS_PREFETCH=6
   -e LOG_LEVEL=error
   {% if node_env != "production-epsilon" %}
     -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
@@ -46,12 +51,8 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
   -e WORKER_MAX_RETRY_DELAY=3600000
-  -e CANARY_LOG_TERMINAL_SLEEP=10
-  -e CANARY_LOG_INSTANCE_ID={{khronos_canary_logs_instance_id}}
-  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{khronos_canary_github_branches_instance_id}}
-  -e INTERCOM_APP_ID={{ intercom_app_id }}
-  -e INTERCOM_API_KEY={{ intercom_api_key }}
 
 container_run_opts: >
   -h {{ name }}
