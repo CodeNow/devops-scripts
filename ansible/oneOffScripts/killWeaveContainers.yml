@@ -3,5 +3,5 @@
   serial: 1
   tasks:
   - name: kill weave containers
-    sudo: yes
+    become: true
     shell: 'sudo docker ps | grep weaveworks/weave | cut -d" " -f 1 | xargs sudo docker kill'

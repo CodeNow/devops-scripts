@@ -2,13 +2,13 @@
 - include_vars: users.yml
 
 - name: ensure runnable admin group exists
-  sudo: yes
+  become: true
   group:
     name={{ runnable_admin_group }}
     state=present
 
 - name: ensure 'sudoers' has runnable admin group
-  sudo: yes
+  become: true
   lineinfile: "
     dest=/etc/sudoers
     regexp='^%{{ runnable_admin_group }}'
@@ -17,7 +17,7 @@
     "
 
 - name: make users
-  sudo: yes
+  become: true
   with_dict: users
   user:
     name={{ item.key }}
@@ -27,7 +27,7 @@
     state=present
 
 - name: "set user's keys"
-  sudo: yes
+  become: true
   with_dict: users
   authorized_key:
     exclusive=yes
@@ -35,7 +35,7 @@
     key="{{ item.value.pub_key }}"
 
 - name: remove users
-  sudo: yes
+  become: true
   with_dict: delete
   user:
     name={{ item.key }}

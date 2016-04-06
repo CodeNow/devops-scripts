@@ -1,10 +1,10 @@
 ---
 - name: create scripts directory
-  sudo: yes
+  become: true
   file: path=/opt/scripts state=directory
 
 - name: put script in place
-  sudo: yes
+  become: true
   copy:
     src={{ item }}.sh
     dest=/opt/scripts/{{ item }}.sh
@@ -15,7 +15,7 @@
     - docker_proc_status
 
 - name: put cron in place
-  sudo: yes
+  become: true
   cron:
     name="{{ item.name }}"
     minute={{ item.minutes }}

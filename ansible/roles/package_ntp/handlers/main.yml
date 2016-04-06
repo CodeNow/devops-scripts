@@ -1,6 +1,6 @@
 ---
 - name: Start and Enable ntp
-  sudo: yes
+  become: true
   service:
     name=ntp
     state=started

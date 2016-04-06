@@ -39,10 +39,10 @@
 
 - name: stop rsyslog
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   service: name=rsyslog state=stopped
 
 - name: restart rsyslog
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   service: name=rsyslog state=restarted

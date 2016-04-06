@@ -1,6 +1,6 @@
 ---
 - name: Install ntp package
-  sudo: yes
+  become: true
   apt:
      name=ntp
      state=present
@@ -9,7 +9,7 @@
      cache_valid_time=604800
 
 - name: Copy the ntp.conf template file
-  sudo: yes
+  become: true
   template:
     src=ntp.conf.j2
     dest=/etc/ntp.conf

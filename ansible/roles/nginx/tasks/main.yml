@@ -1,6 +1,6 @@
 ---
 - name: install nginx
-  sudo: yes
+  become: true
   apt:
     update_cache=yes
     cache_valid_time=604800
@@ -8,7 +8,7 @@
     state=present
 
 - name: install node dependencies (build-essential)
-  sudo: yes
+  become: true
   apt:
     update_cache=yes
     cache_valid_time=604800
@@ -16,25 +16,25 @@
     state=present
 
 - name: get node install script
-  sudo: yes
+  become: true
   get_url:
     url=https://deb.nodesource.com/setup
     dest=~/node-install.sh
     mode=744
 
 - name: check for node PPA
-  sudo: yes
+  become: true
   register: ppa_check
   file:
     path=/etc/apt/sources.list.d/nodesource.list
 
 - name: install node PPA
-  sudo: yes
+  become: true
   when: ppa_check.changed
   shell: ~/node-install.sh
 
 - name: install node
-  sudo: yes
+  become: true
   apt:
     update_cache=yes
     cache_valid_time=604800
@@ -42,13 +42,13 @@
     state=present
 
 - name: copy node script for nginx
-  sudo: yes
+  become: true
   copy:
     src=genNginxConf.js
     dest=/tmp/genNginxConf.js
 
 # - name: download sitemap
-#   sudo: yes
+#   become: true
 #   get_url:
 #     url=http://runnable.com/sitemap.xml
 #     dest=/tmp/sitemap.xml
@@ -57,26 +57,26 @@
 #     force=yes
 
 - name: install packages
-  sudo: yes
+  become: true
   shell:
     npm install 101 request xml2js async
     chdir=/tmp
 
 - name: generate nginx config
-  sudo: yes
+  become: true
   shell: node /tmp/genNginxConf.js > /etc/nginx/conf.d/runnable-migration.conf
     chdir=/tmp
 
 - name: remove default nginx config
-  sudo: yes
+  become: true
   file:
     path=/etc/nginx/sites-enabled/default
     state=absent
 
 - name: test nginx config
-  sudo: yes
+  become: true
   shell: nginx -t
 
 - name: reload nginx
-  sudo: yes
+  become: true
   shell: nginx -s reload

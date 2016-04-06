@@ -39,7 +39,7 @@
 
 - name: copy loggly config
   tags: loggly
-  sudo: yes
+  become: true
   template:
     src=22-loggly.conf.j2
     dest=/etc/rsyslog.d/22-loggly.conf
@@ -48,7 +48,7 @@
 
 - name: create runnable bin directory
   tags: loggly
-  sudo: yes
+  become: true
   file:
     path=/opt/runnable/bin
     state=directory
@@ -58,7 +58,7 @@
 
 - name: copy rotate util script
   tags: loggly
-  sudo: yes
+  become: true
   template:
     src=rotate-logs.sh.j2
     dest=/opt/runnable/bin/rotate-{{ name }}-logs.sh
@@ -66,7 +66,7 @@
 
 - name: copy app config
   tags: loggly
-  sudo: yes
+  become: true
   template:
     src=21-output-syslog.conf.j2
     dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
@@ -75,7 +75,7 @@
 
 - name: copy rsyslog config
   tags: loggly
-  sudo: yes
+  become: true
   template:
     src=rsyslog.conf.j2
     dest=/etc/rsyslog.conf
@@ -84,19 +84,19 @@
 
 - name: stop rsyslog
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   service: name=rsyslog state=stopped
 
 - name: clear rsyslog state file
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   file:
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
 
 - name: touch the log file
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   file:
     path={{ app_log_dir }}/{{ name }}-daemon.log
     state=touch
@@ -105,5 +105,5 @@
 
 - name: restart rsyslog
   tags: [loggly, deploy]
-  sudo: yes
+  become: true
   service: name=rsyslog state=restarted

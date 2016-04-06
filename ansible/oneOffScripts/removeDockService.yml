@@ -5,13 +5,13 @@
     when: name is not defined
 
   - name: stop service
-    sudo: yes
+    become: true
     service:
       name={{ name }}
       state=stopped
 
   - name: remove files
-    sudo: yes
+    become: true
     file:
       path={{ item }}
       state=absent
