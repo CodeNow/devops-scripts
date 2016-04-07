@@ -3,7 +3,7 @@
 #          -------------------------------------------------------
 
 # Define the template used for sending logs to Loggly. Do not change this format.
-$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058] %msg%\n"
+$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058 tag=\"{{ node_env }}\"] %msg%\n"
 
 $WorkDirectory /var/spool/rsyslog # where to place spool files
 $ActionQueueFileName fwdRule1 # unique name prefix for spool files
