@@ -32,7 +32,7 @@ loggly_username: ops
 ## cores and logs
 ##
 
-app_log_dir: /docker/app_logs
+app_log_dir: /var/log
 
 ##
 ## shared application configs
