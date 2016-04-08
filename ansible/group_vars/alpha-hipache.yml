@@ -5,8 +5,6 @@ container_image: registry.runnable.com/runnable/hipache
 container_tag: latest
 hosted_ports: [ 80, 443 ]
 
-log_driver: json-file
-
 container_run_opts: >
   -d
   -p 80:80

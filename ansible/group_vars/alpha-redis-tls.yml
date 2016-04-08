@@ -1,7 +1,6 @@
 name: redis
 
 # container_kill_start settings
-log_driver: json-file
 container_image: runnable/redis-stunnel
 container_tag: v0.1.0
 container_run_opts: >

@@ -4,9 +4,6 @@ name: "swarm-deamon"
 container_image: swarm
 container_tag: 1.1.2
 
-# container_kill_start vars
-log_driver: json-file
-
 container_run_opts: >
   --name {{ swarm_container_name }}
   -d

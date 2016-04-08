@@ -5,8 +5,6 @@ container_image: "registry"
 container_tag: "2.1.1"
 hosted_ports: ["80"]
 
-log_driver: json-file
-
 container_envs: >
   -e REGISTRY_STORAGE_S3_ACCESSKEY={{ registry_s3_access_key }}
   -e REGISTRY_STORAGE_S3_SECRETKEY={{ registry_s3_secret_key }}
