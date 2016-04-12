@@ -17,7 +17,7 @@
   tags: cron
   cron:
     name: "{{ item.name }}"
-    job: /opt/runnable/{{ item.script }} >> /var/log/{{ item.script }}.log 2>&1
+    job: /opt/runnable/{{ item.script }} >> {{ app_log_dir }}/{{ item.script }}.log 2>&1
     minute: "{{ item.minute | default('*') }}"
     hour: "{{ item.hour | default('*') }}"
     state: "{{ item.state | default('present') }}"
