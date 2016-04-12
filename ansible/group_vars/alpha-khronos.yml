@@ -64,5 +64,3 @@ container_run_opts: >
   -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   --memory=1500m
   {{container_envs}}
-
-npm_start_command: run start-json-output
