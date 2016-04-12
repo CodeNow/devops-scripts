@@ -10,6 +10,7 @@
   - build-canary.sh
   - log-canary.sh
   - github-branch-canary.sh
+  - container-metrics.sh
 
 - name: Put Khronos script into crontab
   become: yes
@@ -32,9 +33,14 @@
   - name: Khronos CLI - Github Branch Canary
     minute: "*/5"
     script: github-branch-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
   - name: Khronos CLI - Log Canary
     minute: "*/5"
     script: log-canary.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
+  - name: Container Metrics
+    minute: "*/5"
+    script: container-metrics.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates

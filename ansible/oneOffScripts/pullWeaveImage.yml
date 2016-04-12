@@ -2,5 +2,5 @@
   gather_facts: no
   tasks:
   - name: pull weave image
-    sudo: yes
+    become: true
     shell: 'sudo docker pull weaveworks/weave:1.4.6'

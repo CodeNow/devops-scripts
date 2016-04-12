@@ -8,17 +8,17 @@
     state=present
     regexp=".+ \/etc\/firewall\.conf"
     insertbefore="exit 0"
-  sudo: yes
+  become: true
 
 - name: Place temp script file for iptables update
   template: src=iptables_apply_rule.sh.j2 dest={{ script_temp_path }} owner=root group=root mode=500
-  sudo: yes
+  become: true
 
 - name: Apply iptables
   shell: "{{ script_temp_path }} '{{ item }}'"
   with_items: iptables_rule
-  sudo: yes
+  become: true
 
 - name: update /etc/firewall.conf so that it load on system startup
   template: src=firewall.conf.j2 dest=/etc/firewall.conf owner=root group=root mode=500
-  sudo: yes
+  become: true
