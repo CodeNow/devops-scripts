@@ -103,6 +103,9 @@ gamma-app-services
 [drake]
 gamma-app-services
 
+[pheidi]
+gamma-app-services
+
 [docks]
 
 [dock]
@@ -126,6 +129,7 @@ mongodb
 navi
 neo4j
 optimus
+pheidi
 rabbitmq
 redis
 redis-slave

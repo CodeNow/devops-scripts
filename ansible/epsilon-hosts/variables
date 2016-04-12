@@ -48,6 +48,11 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 [palantiri:vars]
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
+[pheidi:vars]
+pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+pheidi_mongo_database=epsilon
+pheidi_mongo_replset_name=epsilon
+
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 

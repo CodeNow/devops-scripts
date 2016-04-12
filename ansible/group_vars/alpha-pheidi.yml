@@ -1,0 +1,33 @@
+name: pheidi
+
+container_image: "registry.runnable.com/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+
+container_envs: >
+  -e DATADOG_HOST={{ datadog_host_address }}
+  -e DATADOG_PORT={{ datadog_port }}
+  -e DOMAIN={{ domain }}
+  -e LOGGLY_TOKEN="{{ loggly_token }}"
+  -e NODE_ENV="{{ node_env }}"
+  -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
+  -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
+  -e RABBITMQ_PORT="{{ rabbit_port }}"
+  -e RABBITMQ_USERNAME="{{ rabbit_username }}"
+  -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
+  {% if node_env != "production-epsilon" %}
+    -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
+    -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
+    -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
+  {% endif %}
+  -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
+  -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  {{ container_envs }}

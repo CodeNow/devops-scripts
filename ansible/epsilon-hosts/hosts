@@ -102,6 +102,9 @@ epsilon-app-services
 [drake]
 epsilon-app-services
 
+[pheidi]
+epsilon-dock-services
+
 [epsilon:children]
 api
 bastion
@@ -122,6 +125,7 @@ neo4j
 optimus
 rabbitmq
 redis
+pheidi
 registry
 sauron
 shiva
