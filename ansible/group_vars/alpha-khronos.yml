@@ -8,18 +8,18 @@ npm_version: 2
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
-main_cron_queues: >
-  khronos:containers:orphan:prune
-  khronos:context-versions:prune-expired
-  khronos:images:prune
-  khronos:weave:prune
+main_cron_queues: "\
+  khronos:containers:orphan:prune \
+  khronos:context-versions:prune-expired \
+  khronos:images:prune \
+  khronos:weave:prune"
 
-canary_cron_queues: >
-  khronos:canary:build
-  khronos:canary:github-branch
-  khronos:canary:log
-  khronos:canary:network
-  khronos:metrics:container-status
+canary_cron_queues: "\
+  khronos:canary:build \
+  khronos:canary:github-branch \
+  khronos:canary:log \
+  khronos:canary:network \
+  khronos:metrics:container-status"
 
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
