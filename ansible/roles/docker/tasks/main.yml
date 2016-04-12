@@ -91,6 +91,15 @@
     update_cache=yes
     cache_valid_time=604800
 
+- name: enforce modes on /docker
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
   command: sudo service docker restart
