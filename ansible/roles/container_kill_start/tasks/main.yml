@@ -62,7 +62,7 @@
 - name: pause to allow for any odd conditions in system caching tables
   tags: deploy
   when: pause_length_minutes is defined and old_containers_id.changed
-  pause: minutes={{pause_length_minutes}}
+  pause: minutes={{ pause_length_minutes }}
 
 # start our new container with options and args
 - name: start container
