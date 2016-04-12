@@ -34,4 +34,4 @@
   when: force_stop is defined or (stopped_container.skipped and not running_containers.changed)
   tags: [ deploy ]
   become: yes
-  shell: docker run {{ docker_container_run_opts }} {{ docker_image }}:{{ docker_image_version }}
+  shell: docker run {{ docker_container_run_opts | trim }} {{ docker_image }}:{{ docker_image_version }}
