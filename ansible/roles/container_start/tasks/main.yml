@@ -10,11 +10,16 @@
 - name: get latest images
   tags: deploy
   when: not do_not_push
-  command: sudo docker pull {{ container_image }}:{{ container_tag }}
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
 
 - name: get id of latest image
   tags: deploy
-  shell: sudo docker images --no-trunc | grep {{ container_image }}.*{{ container_tag }} | awk '{print $3}'
+  become: yes
+  shell: >
+    docker images --no-trunc |
+    grep {{ container_image }}.*{{ container_tag }} |
+    awk '{print $3}'
   register: new_image_id
 
 - name: default number of containers
@@ -24,11 +29,20 @@
     number_of_containers: 1
 
 - debug:
-    msg: "{{ number_of_containers}}"
+    msg: starting this many containers -- {{ number_of_containers }}
 
 - name: start new container
   tags: deploy
-  shell: for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do sudo docker run --log-driver=none -v /var/log:/var/log:rw --restart={{ restart_policy | default('no') }} {{ container_run_opts }} {{ container_image }}:{{ container_tag }} {{ container_run_args }}; done
+  become: yes
+  shell: |
+    for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do
+      docker run --log-driver={{ log_driver | default("none")}} \
+        -v /var/log:/var/log:rw \
+        --restart={{ restart_policy | default('no') }} \
+        {{ container_run_opts | trim }} \
+        {{ container_image }}:{{ container_tag }} \
+        {{ container_run_args | trim }}
+    done
   args:
     executable: /bin/bash
   register: new_container_ids

@@ -1,9 +1,11 @@
 ---
 - name: check keys
-  command: sudo docker run --rm redis redis-cli -h {{redis_host_address}} LLEN {{redis_key}}
+  become: yes
+  command: docker run --rm redis redis-cli -h {{ redis_host_address }} LLEN {{ redis_key }}
   register: key_length
   changed_when: key_length.stdout == "0"
 
 - name: create key if not exist
-  command: sudo docker run --rm redis redis-cli -h {{redis_host_address}} RPUSH {{redis_key}} {{name}} {{name}}
   when: key_length.changed
+  become: yes
+  command: docker run --rm redis redis-cli -h {{ redis_host_address }} RPUSH {{ redis_key }} {{ name }} {{ name }}
