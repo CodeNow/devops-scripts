@@ -23,6 +23,7 @@
   file:
     path="{{ core_file_dir }}"
     state=directory
+    owner=root
     group=root
     mode=0755
 
