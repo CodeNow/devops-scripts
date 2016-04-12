@@ -26,7 +26,7 @@
   - name: Khronos CLI - Canary
     minute: "*/5"
     script: canary-cron.sh
-    state: "{% if node_env == 'production-gamma' %}present{% else %}absent{% endif %}"
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates
   become: yes
