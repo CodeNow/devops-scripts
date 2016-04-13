@@ -9,6 +9,6 @@ if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then :omfile:
 
 # {{ name }} access file:
 #Add a tag for {{ name }} events
-$template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058  tag=\"runnable\" tag=\"{{ env }}\" ] %msg%\n"
+$template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058  tag=\"runnable\" tag=\"{{ node_env }}\" ] %msg%\n"
 if $msg contains '{{ name }}' then @@logs-01.loggly.com:6514;LogglyFormatFile{{ name }}
 if $msg contains '{{ name }}' then ~
