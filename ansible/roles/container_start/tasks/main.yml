@@ -37,7 +37,8 @@
   shell: |
     for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do
       docker run --log-driver={{ log_driver | default("none")}} \
-        -v /var/log:/var/log:rw \
+        -v {{ app_log_dir }}:{{ app_log_dir }}:rw \
+        -v /dev/log:/dev/log:rw \
         --restart={{ restart_policy | default('no') }} \
         {{ container_run_opts | trim }} \
         {{ container_image }}:{{ container_tag }} \
