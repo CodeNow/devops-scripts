@@ -18,11 +18,9 @@ container_envs: >
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
-  {% if node_env != "production-epsilon" %}
-    -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
-    -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
-    -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
-  {% endif %}
+  {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
+  {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
+  {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   -e WEB_URL=https://app.{{ domain }}
