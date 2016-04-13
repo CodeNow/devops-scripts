@@ -1,6 +1,7 @@
 ---
 - hosts: mongo-navi
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: link
   vars_files:

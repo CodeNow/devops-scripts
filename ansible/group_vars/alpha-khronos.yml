@@ -8,20 +8,23 @@ npm_version: 2
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
-cron_queues: khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
+main_cron_queues: "\
+  khronos:containers:orphan:prune \
+  khronos:context-versions:prune-expired \
+  khronos:images:prune \
+  khronos:weave:prune"
+
+canary_cron_queues: "\
+  khronos:canary:build \
+  khronos:canary:github-branch \
+  khronos:canary:log \
+  khronos:canary:network \
+  khronos:metrics:container-status"
+
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
 cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password }}
-# this is the command we want to run in the container.
-cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
-# This is the build canary cron command
-cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-# This is the log canary cron command
-cron_log_canary_command: "/khronos/bin/cli.js --queue khronos:canary:log --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-# This is the github-branch canary cron command
-cron_github_branch_canary_command: "/khronos/bin/cli.js --queue khronos:canary:github-branch --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-cron_container_metrics_command: "/khronos/bin/cli.js --queue khronos:metrics:container-status --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
@@ -61,5 +64,3 @@ container_run_opts: >
   -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   --memory=1500m
   {{container_envs}}
-
-npm_start_command: run start-json-output

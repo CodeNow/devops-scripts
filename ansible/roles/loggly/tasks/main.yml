@@ -98,10 +98,23 @@
   tags: [loggly, deploy]
   become: true
   file:
-    path=/var/log/{{ name }}-daemon.log
+    path="{{ app_log_dir }}/{{ name }}-daemon.log"
     state=touch
     owner=syslog
     group=adm
+
+- name: check for current log file
+  tags: [loggly, deploy]
+  stat: path="{{ app_log_dir }}/{{ name }}-daemon.log"
+  register: log_file
+
+- name: remove old log file
+  when: log_file.stat.exists
+  tags: [loggly, deploy]
+  become: true
+  file:
+    path="{{ app_log_dir }}/{{ name }}-daemon.log"
+    state=absent
 
 - name: restart rsyslog
   tags: [loggly, deploy]

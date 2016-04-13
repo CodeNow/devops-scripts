@@ -2,22 +2,19 @@
   become: yes
   tags: cron
   template:
-    src: "{{ item }}"
+    src: "khronos-cron.sh"
     mode: 0744
-    dest: /opt/runnable/{{ item }}
+    dest: /opt/runnable/{{ item.script }}
   with_items:
-  - khronos-cron.sh
-  - build-canary.sh
-  - log-canary.sh
-  - github-branch-canary.sh
-  - container-metrics.sh
+  - { cron_queues: "{{ main_cron_queues }}", script: "main-cron.sh"}
+  - { cron_queues: "{{ canary_cron_queues }}", script: "canary-cron.sh"}
 
 - name: Put Khronos script into crontab
   become: yes
   tags: cron
   cron:
     name: "{{ item.name }}"
-    job: /opt/runnable/{{ item.script }} >> /var/log/{{ item.script }}.log 2>&1
+    job: /opt/runnable/{{ item.script }} >> {{ app_log_dir }}/{{ item.script }}.log 2>&1
     minute: "{{ item.minute | default('*') }}"
     hour: "{{ item.hour | default('*') }}"
     state: "{{ item.state | default('present') }}"
@@ -25,22 +22,10 @@
   - name: Khronos CLI - Daily Cleanup
     minute: 13
     hour: 1,7,13,19
-    script: khronos-cron.sh
+    script: main-cron.sh
   - name: Khronos CLI - Canary
     minute: "*/5"
-    script: build-canary.sh
-    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Github Branch Canary
-    minute: "*/5"
-    script: github-branch-canary.sh
-    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Log Canary
-    minute: "*/5"
-    script: log-canary.sh
-    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Container Metrics
-    minute: "*/5"
-    script: container-metrics.sh
+    script: canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates

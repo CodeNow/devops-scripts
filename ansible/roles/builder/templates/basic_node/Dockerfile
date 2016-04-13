@@ -22,12 +22,6 @@ RUN {{ command }}
 {% endfor %}
 {% endif %}
 
-# Add shrinkwrap from the current build context (`.` is the repo) first
-# If we change a non first-level dependency, this will break cache as expected
-{% if name in ['api', 'api-worker'] %}
-ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
-{% endif %}
-
 # Add package.json from the current build context (`.` is the repo) second
 ADD ./repo/package.json /{{ name }}/package.json
 

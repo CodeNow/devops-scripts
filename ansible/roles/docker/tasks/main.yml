@@ -16,6 +16,17 @@
     owner=root
     group=root
 
+- name: create core file dir
+  become: true
+  when: docker_config == "runnable" and core_file_dir != "/var/log"
+  tags: coreDump
+  file:
+    path="{{ core_file_dir }}"
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
 - name: change core dump path
   become: true
   when: docker_config == "runnable"
@@ -24,7 +35,7 @@
     name=kernel.core_pattern
     reload=true
     state=present
-    value="/var/log/core.%h.%e.%t"
+    value="{{ core_file_dir }}/core.%h.%e.%t"
 
 - name: install aufs with linux-image-extra-{{ ansible_kernel }}
   become: true
@@ -79,6 +90,15 @@
     force=yes
     update_cache=yes
     cache_valid_time=604800
+
+- name: enforce modes on /docker
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
 
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
