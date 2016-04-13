@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # literally truncate the file
-cat /dev/null > /var/log/{{ name }}-daemon.log 2>&1
+cat /dev/null > {{ app_log_dir }}/{{ name }}-daemon.log 2>&1
 # exit code? don't care
 
 exit 0

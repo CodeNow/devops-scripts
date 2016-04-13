@@ -8,33 +8,41 @@ npm_version: 2
 
 # for cron job
 # this is the list of queues we want to enqueue a job into
-cron_queues: khronos:containers:orphan:prune khronos:context-versions:prune-expired khronos:images:prune khronos:weave:prune
+main_cron_queues: "\
+  khronos:containers:orphan:prune \
+  khronos:context-versions:prune-expired \
+  khronos:images:prune \
+  khronos:weave:prune"
+
+canary_cron_queues: "\
+  khronos:canary:build \
+  khronos:canary:github-branch \
+  khronos:canary:log \
+  khronos:canary:network \
+  khronos:metrics:container-status"
+
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
 cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password }}
-# this is the command we want to run in the container.
-cron_command: "bash -c \"for QUEUE in {{ cron_queues }}; do /khronos/bin/cli.js --queue \\$QUEUE --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}; done\""
-# This is the build canary cron command
-cron_build_canary_command: "/khronos/bin/cli.js --queue khronos:canary:build --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-# This is the log canary cron command
-cron_log_canary_command: "/khronos/bin/cli.js --queue khronos:canary:log --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-# This is the github-branch canary cron command
-cron_github_branch_canary_command: "/khronos/bin/cli.js --queue khronos:canary:github-branch --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
-cron_container_metrics_command: "/khronos/bin/cli.js --queue khronos:metrics:container-status --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}"
 
 # for container settings
 container_envs: >
-  -e API_URL={{ api_url }}
   -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
-  -e CANARY_API_TOKEN={{ khronos_canary_token }}
-  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id }}
-  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url }}
+  -e API_URL={{ api_url }}
+  -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
+  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
+  -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
+  -e CANARY_LOG_TERMINAL_SLEEP=10
+  -e CANARY_REBUILD_INSTANCE_ID={{ khronos_canary_rebuild_instance_id | default('undefined') }}
+  -e CANARY_REBUILD_NAVI_URL={{ khronos_canary_rebuild_navi_url | default('undefined') }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e KHRONOS_PREFETCH=6
+  -e INTERCOM_API_KEY={{ intercom_api_key | default('undefined') }}
+  -e INTERCOM_APP_ID={{ intercom_app_id | default('undefined') }}
   -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
+  -e KHRONOS_PREFETCH=6
   -e LOG_LEVEL=error
   {% if node_env != "production-epsilon" %}
     -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
@@ -46,12 +54,8 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
   -e WORKER_MAX_RETRY_DELAY=3600000
-  -e CANARY_LOG_TERMINAL_SLEEP=10
-  -e CANARY_LOG_INSTANCE_ID={{khronos_canary_logs_instance_id}}
-  -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{khronos_canary_github_branches_instance_id}}
-  -e INTERCOM_APP_ID={{ intercom_app_id }}
-  -e INTERCOM_API_KEY={{ intercom_api_key }}
 
 container_run_opts: >
   -h {{ name }}
@@ -60,5 +64,3 @@ container_run_opts: >
   -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   --memory=1500m
   {{container_envs}}
-
-npm_start_command: run start-json-output
