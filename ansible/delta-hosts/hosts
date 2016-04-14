@@ -107,6 +107,9 @@ delta-app-services
 [drake]
 delta-app-services
 
+[pheidi]
+delta-app-services
+
 [delta:children]
 api
 bastion
@@ -125,6 +128,7 @@ mongodb
 navi
 neo4j
 optimus
+pheidi
 rabbitmq
 redis
 redis-slave

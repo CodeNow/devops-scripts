@@ -103,6 +103,9 @@ gamma-app-services
 [drake]
 gamma-app-services
 
+[pheidi]
+gamma-app-services
+
 [docks]
 
 [dock]
@@ -126,6 +129,7 @@ mongodb
 navi
 neo4j
 optimus
+pheidi
 rabbitmq
 redis
 redis-slave
@@ -139,8 +143,11 @@ web
 web
 worker
 
-[ec2]
+[local]
 127.0.0.1
+
+[ec2]
+local
 
 [targets]
 localhost ansible_connection=local bastion_name=gamma-bastion
