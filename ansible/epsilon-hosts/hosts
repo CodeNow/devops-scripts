@@ -103,7 +103,7 @@ epsilon-app-services
 epsilon-app-services
 
 [pheidi]
-epsilon-dock-services
+epsilon-app-services
 
 [epsilon:children]
 api

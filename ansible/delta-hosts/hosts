@@ -108,7 +108,7 @@ delta-app-services
 delta-app-services
 
 [pheidi]
-delta-dock-services
+delta-app-services
 
 [delta:children]
 api
