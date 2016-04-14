@@ -11,6 +11,6 @@ $InputFileSeverity info
 $InputFilePersistStateInterval 20000
 $InputRunFileMonitor
 #Add a tag for {{ name }} events
-$template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058  tag=\"file\" ] %msg%\n"
+$template LogglyFormatFile{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058  tag=\"runnable\" tag=\"{{ node_env }}\" ] %msg%\n"
 if $programname == '{{ name }}' then @@logs-01.loggly.com:6514;LogglyFormatFile{{ name }}
 if $programname == '{{ name }}' then ~
