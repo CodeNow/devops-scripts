@@ -94,15 +94,6 @@
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
 
-- name: touch the log file
-  tags: [loggly, deploy]
-  become: true
-  file:
-    path="{{ app_log_dir }}/{{ name }}-daemon.log"
-    state=touch
-    owner=syslog
-    group=adm
-
 - name: check for current log file
   tags: [loggly, deploy]
   stat: path="{{ app_log_dir }}/{{ name }}-daemon.log"
@@ -115,6 +106,15 @@
   file:
     path="{{ app_log_dir }}/{{ name }}-daemon.log"
     state=absent
+
+- name: touch the log file
+  tags: [loggly, deploy]
+  become: true
+  file:
+    path="{{ app_log_dir }}/{{ name }}-daemon.log"
+    state=touch
+    owner=syslog
+    group=adm
 
 - name: restart rsyslog
   tags: [loggly, deploy]
