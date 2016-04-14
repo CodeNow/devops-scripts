@@ -143,8 +143,11 @@ web
 web
 worker
 
-[ec2]
+[local]
 127.0.0.1
+
+[ec2]
+local
 
 [targets]
 localhost ansible_connection=local bastion_name=gamma-bastion
