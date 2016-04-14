@@ -197,6 +197,10 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_dock_services }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_app_services }}"
 
 - name: Navi SG
   tags:
