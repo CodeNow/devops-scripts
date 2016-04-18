@@ -3,9 +3,6 @@ name: mongo-navi
 
 db_path: /opt/mongodb/db
 
-# enable logs for mongo
-log_driver: json-file
-
 # container_kill_start settings
 container_image: mongo
 container_tag: latest

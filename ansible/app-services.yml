@@ -1,4 +1,5 @@
 - include: detention.yml git_branch="{{ detention_branch }}"
+- include: drake.yml git_branch="{{ drake_branch }}"
 - include: eru.yml git_branch="{{ eru_branch }}"
 - include: mavis.yml git_branch="{{ mavis_branch }}"
 - include: metis.yml git_branch="{{ astral_branch }}"

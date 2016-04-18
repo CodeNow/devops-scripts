@@ -1,7 +1,7 @@
 ---
 - name: Install rsyslog-gnutls
-  tags: loggly
   become: yes
+  tags: loggly
   apt:
     pkg=rsyslog-gnutls
     state=latest
@@ -46,12 +46,30 @@
     owner=syslog
     group=syslog
 
+- name: create runnable bin directory
+  tags: loggly
+  become: true
+  file:
+    path=/opt/runnable/bin
+    state=directory
+    mode=0755
+    owner=ubuntu
+    group=ubuntu
+
+- name: copy rotate util script
+  tags: loggly
+  become: true
+  template:
+    src=rotate-logs.sh.j2
+    dest=/opt/runnable/bin/rotate-{{ name }}-logs.sh
+    mode=0755
+
 - name: copy app config
   tags: loggly
   become: true
   template:
-    src=21-filemonitoring-app.conf.j2
-    dest=/etc/rsyslog.d/21-filemonitoring-{{ name }}.conf
+    src=21-output-syslog.conf.j2
+    dest=/etc/rsyslog.d/21-rotated-{{ name }}.conf
     owner=syslog
     group=syslog
 
@@ -78,7 +96,7 @@
 
 - name: check for current log file
   tags: [loggly, deploy]
-  stat: path="{{ app_log_dir }}/{{ name }}.log"
+  stat: path="{{ app_log_dir }}/{{ name }}-daemon.log"
   register: log_file
 
 - name: remove old log file
@@ -86,8 +104,17 @@
   tags: [loggly, deploy]
   become: true
   file:
-    path="{{ app_log_dir }}/{{ name }}.log"
+    path="{{ app_log_dir }}/{{ name }}-daemon.log"
     state=absent
+
+- name: touch the log file
+  tags: [loggly, deploy]
+  become: true
+  file:
+    path="{{ app_log_dir }}/{{ name }}-daemon.log"
+    state=touch
+    owner=syslog
+    group=adm
 
 - name: restart rsyslog
   tags: [loggly, deploy]
