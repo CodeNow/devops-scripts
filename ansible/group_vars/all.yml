@@ -73,6 +73,11 @@ detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ip
 detention_port: 9123
 detention_hostname: detention.{{ domain }}
 
+# docker log driver
+
+log_driver: syslog
+log_facility: local7
+
 # docker
 docker_ca_path: /etc/ssl/docker/ca.pem
 docker_cert_path: /etc/ssl/docker/cert.pem

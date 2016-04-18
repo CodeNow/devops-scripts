@@ -63,9 +63,10 @@
   tags: deploy
   command: >
     sudo docker run
-    --log-driver={{ log_driver | default("none")}}
+    --log-driver={{ log_driver }}
+    --log-opt syslog-facility={{ log_facility }}
+    --log-opt tag="{{ log_tag | default ( name ) }}"
     -v {{ app_log_dir }}:{{ app_log_dir }}:rw
-    -v /dev/log:/dev/log:rw
     --restart={{ restart_policy | default('always') }}
     {{ container_run_opts}}
     {{ container_image }}:{{ container_tag }}

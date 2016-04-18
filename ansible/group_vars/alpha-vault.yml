@@ -6,8 +6,6 @@ db_path: /opt/runnable/vault
 container_image: runnable/vault
 container_tag: v0.5.1
 
-log_driver: json-file
-
 container_run_opts: >
   -d
   -h {{ inventory_hostname }}
