@@ -1,14 +1,10 @@
 $WorkDirectory /var/spool/rsyslog
 
-# start log rotation via outchannel
-# outchannel definition
-$outchannel log_rotation_{{ name }},{{ app_log_dir }}/{{ name }}-daemon.log,524288000,/opt/runnable/bin/rotate-{{ name }}-logs.sh
-#  activate the channel and log everything to it
-if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then :omfile:$log_rotation_{{ name }}
-# end log rotation via outchannel
+# Rotate per hour
+$template RotateHourly_{{ name }},"{{ app_log_dir }}/%$YEAR%/%$MONTH%/%$DAY%/%$HOUR%/{{ name }}.log"
+if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then { action (type="omfile" DynaFile="RotateHourly_{{ name }}" template="RunnableJSON") }
 
-# {{ name }} access file:
-#Add a tag for {{ name }} events
+# Loggly: Add a tag for {{ name }} events
 $template LogglyFormat_{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ loggly_token }}@41058 tag=\"runnable\" tag=\"{{ node_env }}\"] %msg%\n"
-if $msg contains '{{ name }}' then @@logs-01.loggly.com:6514;LogglyFormat_{{ name }}
-if $msg contains '{{ name }}' then stop
+if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then @@logs-01.loggly.com:6514;LogglyFormat_{{ name }}
+if $msg contains '{{ name }}' and $syslogfacility-text == 'local7' then stop
