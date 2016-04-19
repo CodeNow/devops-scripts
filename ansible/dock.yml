@@ -9,8 +9,7 @@
       name={{ dock }}
       groups=dock
 
-- include: dock-init.yml git_branch="{{ dock_init_version }}"
-- include: krain.yml git_branch="{{ krain_version }}"
-- include: filibuster.yml git_branch="{{ filibuster_version }}"
 - include: charon.yml git_branch="{{ charon_version }}"
+- include: dock-init.yml git_branch="{{ dock_init_version }}"
+- include: filibuster.yml git_branch="{{ filibuster_version }}"
 - include: image-builder.yml git_branch="{{ image_builder_version }}"

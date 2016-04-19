@@ -18,7 +18,7 @@
     force: yes
 
 - name: copy dockerfile to build folder
-  tags: [ genDockerfile ]
+  tags: deploy
   become: true
   template:
     src: "{{ dockerfile }}"

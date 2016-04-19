@@ -1,0 +1,15 @@
+---
+- hosts: consul
+- hosts: mongodb
+- hosts: rabbitmq
+
+- hosts: pheidi
+  vars_files:
+    - group_vars/alpha-pheidi.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ pheidi_rollbar_token }}"
+    tags: [ notify ]
+  - { role: builder, tags: [build] }
+  - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
+  - { role: container_kill_start }
