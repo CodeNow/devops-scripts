@@ -10,9 +10,7 @@
   - { role: notify, tags: [ notify ] }
   - { role: builder, tags: [ build ] }
   - role: container_start
-
-- hosts: socket-server-proxy
-  vars_files:
-  - group_vars/alpha-eru.yml
-  roles:
-  - role: eru
+  - role: nginx-proxied-service
+    nginx_host: "{{ groups['api-socket-proxy'][0] }}"
+    target_ip_address: "{{ groups['eru'][0].ansible_default_ipv4.address }}"
+    templates: [ 11-eru-server.conf ]
