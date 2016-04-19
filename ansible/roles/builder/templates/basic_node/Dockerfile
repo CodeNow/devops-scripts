@@ -25,6 +25,12 @@ RUN {{ command }}
 # Add package.json from the current build context (`.` is the repo) second
 ADD ./repo/package.json /{{ name }}/package.json
 
+# Add shrinkwrap from the current build context (`.` is the repo) first
+# If we change a non first-level dependency, this will break cache as expected
+{% if has_shrinkwrap %}
+ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
+{% endif %}
+
 # install, should will skip if no package.json change
 WORKDIR /{{ name }}
 RUN npm install --production

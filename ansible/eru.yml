@@ -1,12 +1,18 @@
 ---
-- hosts: redis
 - hosts: consul
+- hosts: mongodb
+- hosts: redis
 
 - hosts: eru
   vars_files:
-    - "group_vars/alpha-eru.yml"
+  - group_vars/alpha-eru.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: container_kill_start }
+  - { role: notify, tags: [ notify ] }
+  - { role: builder, tags: [ build ] }
+  - role: container_start
+
+- hosts: socket-server-proxy
+  vars_files:
+  - group_vars/alpha-eru.yml
+  roles:
+  - role: eru
