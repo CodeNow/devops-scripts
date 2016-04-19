@@ -18,7 +18,7 @@
 
 - name: make users
   become: true
-  with_dict: users
+  with_dict: "{{ users }}"
   user:
     name={{ item.key }}
     append=yes
@@ -28,7 +28,7 @@
 
 - name: "set user's keys"
   become: true
-  with_dict: users
+  with_dict: "{{ users }}"
   authorized_key:
     exclusive=yes
     user={{ item.key }}
@@ -36,7 +36,7 @@
 
 - name: remove users
   become: true
-  with_dict: delete
+  with_dict: "{{ delete }}"
   user:
     name={{ item.key }}
     state="absent"

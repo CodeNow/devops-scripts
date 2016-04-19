@@ -9,7 +9,7 @@ repo: git@github.com:CodeNow/api.git
 sendgrid_key: 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
 
 # shared ENV's between api services
-api_base_container_envs: >
+api_base_container_envs: >-
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
   -e COOKIE_DOMAIN={{ domain }}

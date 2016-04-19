@@ -3,31 +3,33 @@
 - name: create build folder
   become: true
   file:
-    path="{{ build_dir }}/{{ name }}"
-    state=directory
+    path: "{{ build_dir }}/{{ name }}"
+    state: directory
 
 - name: pull the git repository
   tags: deploy
   become: true
   git:
-    repo="{{ repo }}"
-    dest="{{ build_dir }}/{{ name }}/repo"
-    version="{{ git_branch }}"
-    update=yes
-    accept_hostkey=True
-    force=yes
+    repo: "{{ repo }}"
+    dest: "{{ build_dir }}/{{ name }}/repo"
+    version: "{{ git_branch }}"
+    update: yes
+    accept_hostkey: yes
+    force: yes
 
 - name: copy dockerfile to build folder
   tags: deploy
   become: true
   template:
-    src={{ dockerfile }}
-    dest="{{ build_dir }}/{{ name }}"
+    src: "{{ dockerfile }}"
+    dest: "{{ build_dir }}/{{ name }}"
 
 - name: build docker image and tag
   tags: deploy
-  command: sudo docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+  become: yes
+  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
+  become: yes
   when: not do_not_push
-  command: sudo docker push {{ container_image }}:{{ container_tag }}
+  command: docker push {{ container_image }}:{{ container_tag }}

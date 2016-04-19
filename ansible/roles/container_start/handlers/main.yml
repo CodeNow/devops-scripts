@@ -2,22 +2,25 @@
 - name: get new container ports
   tags: deploy
   when: hosted_ports is defined
-  shell: sudo docker port {{ item }} {{ hosted_ports[0] }} | awk --field-separator ':' '{ print $2 }'
+  become: yes
+  shell: docker port {{ item }} {{ hosted_ports[0] }} | awk --field-separator ':' '{ print $2 }'
   register: container_ports
-  with_items: new_container_ids.stdout_lines
+  with_items: "{{ new_container_ids.stdout_lines }}"
 
 - name: remove all hosts from redis key
   tags: deploy
-  command: sudo docker run --rm redis redis-cli -h {{ redis_host_address }} ltrim {{ redis_key }} 0 0
+  become: yes
+  command: docker run --rm redis redis-cli -h {{ redis_host_address }} ltrim {{ redis_key }} 0 0
   when: is_redis_update_required is defined and container_ports is defined
 
 - name: put new hosts on redis keys
   tags: deploy
-  command: sudo docker run --rm redis redis-cli -h {{ redis_host_address }} rpush {{ redis_key }} {{ hosted_protocol | default('http') }}://{{ ansible_default_ipv4.address }}:{{ item.stdout }}
+  become: yes
+  command: docker run --rm redis redis-cli -h {{ redis_host_address }} rpush {{ redis_key }} {{ hosted_protocol | default('http') }}://{{ ansible_default_ipv4.address }}:{{ item.stdout }}
   when: is_redis_update_required is defined and container_ports is defined
-  with_items: container_ports.results
+  with_items: "{{ container_ports.results }}"
 
 - name: stop old containers
   tags: deploy
   command: sudo docker stop --time={{ stop_time }} {{ item }}
-  with_items: old_containers_ids.stdout_lines
+  with_items: "{{ old_containers_ids.stdout_lines }}"
