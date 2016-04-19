@@ -27,7 +27,7 @@ ADD ./repo/package.json /{{ name }}/package.json
 
 # Add shrinkwrap from the current build context (`.` is the repo) first
 # If we change a non first-level dependency, this will break cache as expected
-{% if has_shrinkwrap %}
+{% if has_shrinkwrap is defined %}
 ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
 {% endif %}
 
