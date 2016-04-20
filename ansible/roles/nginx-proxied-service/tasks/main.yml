@@ -2,7 +2,7 @@
 # these are pretty hacky, but it should work
 # Get port information from the hosted service
 - name: get eru ports
-  when: "{{ name }} == eru"
+  when: name == "eru"
   tags: [ configure_proxy, deploy ]
   become: true
   shell: |
@@ -12,10 +12,10 @@
     done
   args:
     executable: /bin/bash
-  register: target_ports
+  register: eru_target_ports
 
 - name: get socket server ports
-  when: "{{ name }} == api-socket-server"
+  when: name == "api-socket-server"
   tags: [ configure_proxy, deploy ]
   become: true
   shell: |
@@ -24,7 +24,7 @@
     done
   args:
     executable: /bin/bash
-  register: target_ports
+  register: socket_target_ports
 
 # everything from this point on is deligated to the nginx host
 
@@ -32,7 +32,9 @@
   delegate_to: "{{ nginx_host }}"
   tags: [ configure_proxy, deploy ]
   debug:
-    msg: ports -- {{ target_ports }}
+    msg: |
+      eru ports -- {{ eru_target_ports }}
+      socket ports -- {{ socket_target_ports }}
 
 - name: print target IP address
   delegate_to: "{{ nginx_host }}"
