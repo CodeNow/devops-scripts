@@ -46,24 +46,6 @@
     owner=syslog
     group=syslog
 
-- name: create runnable bin directory
-  tags: loggly
-  become: true
-  file:
-    path=/opt/runnable/bin
-    state=directory
-    mode=0755
-    owner=ubuntu
-    group=ubuntu
-
-- name: copy rotate util script
-  tags: loggly
-  become: true
-  template:
-    src=rotate-logs.sh.j2
-    dest=/opt/runnable/bin/rotate-{{ name }}-logs.sh
-    mode=0755
-
 - name: copy app config
   tags: loggly
   become: true
@@ -76,8 +58,8 @@
 - name: copy rsyslog config
   tags: loggly
   become: true
-  template:
-    src=rsyslog.conf.j2
+  copy:
+    src=rsyslog.conf
     dest=/etc/rsyslog.conf
     owner=syslog
     group=syslog
@@ -94,25 +76,12 @@
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
 
-- name: check for current log file
-  tags: [loggly, deploy]
-  stat: path="{{ app_log_dir }}/{{ name }}-daemon.log"
-  register: log_file
-
-- name: remove old log file
-  when: log_file.stat.exists
+- name: ensure log path
   tags: [loggly, deploy]
   become: true
   file:
-    path="{{ app_log_dir }}/{{ name }}-daemon.log"
-    state=absent
-
-- name: touch the log file
-  tags: [loggly, deploy]
-  become: true
-  file:
-    path="{{ app_log_dir }}/{{ name }}-daemon.log"
-    state=touch
+    path="{{ app_log_dir }}"
+    state=directory
     owner=syslog
     group=adm
 

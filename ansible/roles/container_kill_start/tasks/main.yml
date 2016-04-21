@@ -71,8 +71,8 @@
   command: >
     docker run
     --log-driver={{ log_driver }}
-    --log-opt syslog-facility={{ log_facility }}
-    --log-opt tag="{{ log_tag | default ( name ) }}"
+    #--log-opt syslog-facility={{ log_facility }}
+    #--log-opt tag="{{ log_tag | default ( name ) }}"
     -v {{ app_log_dir }}:{{ app_log_dir }}:rw
     --restart={{ restart_policy | default('always') }}
     {{ container_run_opts }}

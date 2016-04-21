@@ -32,7 +32,7 @@ loggly_username: ops
 ## cores and logs
 ##
 
-app_log_dir: /var/log
+app_log_dir: /var/log/runnable
 core_file_dir: /var/log/core
 
 ##
