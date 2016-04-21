@@ -1,21 +1,23 @@
-- name: "look for stopped {{ container_image }} containers"
+- name: look for stopped {{ container_image }} containers
   tags: deploy
+  become: yes
   shell: >
-    sudo docker ps -a |
+    docker ps -a |
     grep Exited |
     grep {{ container_image }} |
     awk '{print $1}'
   register: stopped_containers
   changed_when: stopped_containers.stdout != ''
 
-- name: "removed stopped {{ container_image }} containers"
+- name: removed stopped {{ container_image }} containers
   tags: deploy
+  become: yes
   when: stopped_containers.changed
-  shell: sudo docker rm {{ item }}
-  with_items: stopped_containers.stdout_lines
+  shell: docker rm {{ item }}
+  with_items: "{{ stopped_containers.stdout_lines }}"
 
 # get current running container with this image
-- name: "look for running containers running {{ container_image }}"
+- name: look for running containers running {{ container_image }}
   tags: deploy
   become: true
   script: findTagRunning.sh {{ container_image }}
@@ -24,16 +26,18 @@
 
 # get latest image
 # tag will default to latest
-- name: "pull down docker image {{ container_image }}:{{ container_tag }}"
+- name: pull down docker image {{ container_image }}:{{ container_tag }}
   tags: deploy
-  command: sudo docker pull {{ container_image }}:{{ container_tag }}
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
   when: not do_not_push
 
 # get id of new image
 - name: get id of the docker image
   tags: deploy
+  become: yes
   shell: >
-    sudo docker images
+    docker images
     --no-trunc |
     grep {{ container_image }}.*{{ container_tag }} |
     awk '{print $3}'
@@ -43,32 +47,35 @@
 - name: stop old containers
   tags: deploy
   when: old_containers_id.changed
-  command: sudo docker stop -t {{ stop_time }} {{ item }}
-  with_items: old_containers_id.stdout_lines
+  become: yes
+  command: docker stop -t {{ stop_time }} {{ item }}
+  with_items: "{{ old_containers_id.stdout_lines }}"
 
 # remove the old containers that were running previously
 - name: remove old containers
   tags: deploy
   when: old_containers_id.changed
-  command: sudo docker rm {{ item }}
-  with_items: old_containers_id.stdout_lines
+  become: yes
+  command: docker rm {{ item }}
+  with_items: "{{ old_containers_id.stdout_lines }}"
 
 - name: pause to allow for any odd conditions in system caching tables
   tags: deploy
   when: pause_length_minutes is defined and old_containers_id.changed
-  pause: minutes={{pause_length_minutes}}
+  pause: minutes={{ pause_length_minutes }}
 
 # start our new container with options and args
 - name: start container
   tags: deploy
+  become: yes
   command: >
-    sudo docker run
+    docker run
     --log-driver={{ log_driver }}
     #--log-opt syslog-facility={{ log_facility }}
     #--log-opt tag="{{ log_tag | default ( name ) }}"
     -v {{ app_log_dir }}:{{ app_log_dir }}:rw
     --restart={{ restart_policy | default('always') }}
-    {{ container_run_opts}}
+    {{ container_run_opts }}
     {{ container_image }}:{{ container_tag }}
     {{ container_run_args }}
   register: new_container_id

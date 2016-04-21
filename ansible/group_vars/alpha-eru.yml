@@ -1,26 +1,40 @@
+---
 name: eru
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
-hosted_ports: ["{{ eru_port }}"]
-node_version: "0.12.0"
-npm_version: "2.1.18"
+hosted_ports: [ "5501", "5502" ]
+node_version: lts
+npm_version: 2
+has_shrinkwrap: true
 
-# for redis
-redis_key: frontend:{{ eru_hostname }}
-is_redis_update_required: yes
+dockerfile_post_install_commands:
+- apt-get update && apt-get install -y supervisor
+- npm run build
 
-container_envs: >
-  -e ADMIN_DOMAIN={{ eru_hostname }}
-  -e ADMIN_GITHUB_ID={{ eru_github_id }}
-  -e ADMIN_GITHUB_SECRET={{ eru_github_secret }}
-  -e API_URL={{ api_url }}
-  -e RUNNABLE_HOST={{ domain }}
-  -e PORT={{ hosted_ports[0] }}
+container_envs: >-
+  -e AWS_ACCESS_KEY={{ eru_aws_access_key_id }}
+  -e AWS_ENVIRONMENT={{ eru_aws_environment }}
+  -e AWS_SECRET_KEY={{ eru_aws_secret_access_key }}
+  -e DOMAIN={{ eru_subdomain }}.{{ domain }}
+  -e GITHUB_CLIENT_ID={{ eru_github_id }}
+  -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
+  -e MONGODB_DATABASE={{ eru_mongodb_database }}
+  -e MONGODB_PASSWORD={{ eru_mongodb_password }}
+  -e MONGODB_HOSTS={{ mongo_hosts }}
+  -e MONGODB_REPLSET={{ eru_mongodb_replset }}
+  -e MONGODB_USERNAME={{ eru_mongodb_username }}
+  -e NODE_ENV=production
+  -e REDIS_HOSTNAME={{ redis_host_address }}
+  -e REDIS_PORT={{ redis_port }}
+  -e RUNNABLE_DOMAIN={{ domain }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
+  -P
+  -v /var/log:/var/log:rw
   {{ container_envs }}
+
+container_run_args: supervisord --configuration supervisord.conf --nodaemon

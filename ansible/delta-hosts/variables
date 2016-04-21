@@ -27,8 +27,16 @@ drake_http_rollbar_token=52ad749ddb8e47b2a8e15312b6b300fb
 drake_worker_rollbar_token=14152b8572034943b714da27ca607698
 
 [eru:vars]
+eru_subdomain=eru
 eru_github_id=46a23f5f99f0aa9460f8
 eru_github_secret=a0336d72e3d540fb9fbbed2c123a81e1cb329dab
+eru_aws_access_key_id=AKIAIFCVEISSC5JMPWDA
+eru_aws_secret_access_key=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
+eru_aws_environment=delta
+eru_mongodb_database=delta
+eru_mongodb_password=tilde-rawboned-lotus-hideaway-diastole
+eru_mongodb_username=eru
+eru_mongodb_replset=delta-rs0
 
 [khronos:vars]
 intercom_api_key=14771f14efb617900724a16345e57beb55ba9beb

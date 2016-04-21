@@ -1,0 +1,6 @@
+- hosts: docks
+  gather_facts: no
+  tasks:
+  - name: reset weave
+    become: true
+    shell: 'sudo weave reset'

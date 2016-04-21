@@ -95,8 +95,6 @@ aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
 aws_secret_key: "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"
 
 # eru
-eru_port: 57831
-eru_hostname: admin.{{ domain }}
 
 # filibuster
 filibuster_port: 3112
