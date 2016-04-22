@@ -6,7 +6,7 @@ container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "5501", "5502" ]
 node_version: lts
-npm_version: 2
+npm_version: 3
 has_shrinkwrap: true
 
 dockerfile_post_install_commands:
