@@ -159,6 +159,7 @@
 
 - name: clean legacy log files
   tags: clean
+  become: true
   script: archiveOldLogs.sh
   register: purge_out
 
