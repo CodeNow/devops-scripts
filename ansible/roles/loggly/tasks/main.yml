@@ -84,6 +84,8 @@
     state=directory
     owner=syslog
     group=adm
+    mode=0755
+    recurse=yes
 
 - name: restart rsyslog
   tags: [loggly, deploy]
