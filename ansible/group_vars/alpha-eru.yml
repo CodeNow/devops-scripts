@@ -17,6 +17,7 @@ container_envs: >-
   -e AWS_ACCESS_KEY={{ eru_aws_access_key_id }}
   -e AWS_ENVIRONMENT={{ eru_aws_environment }}
   -e AWS_SECRET_KEY={{ eru_aws_secret_access_key }}
+  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e DOMAIN={{ eru_subdomain }}.{{ domain }}
   -e GITHUB_CLIENT_ID={{ eru_github_id }}
   -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
