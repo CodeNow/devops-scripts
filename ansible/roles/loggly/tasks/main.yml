@@ -141,7 +141,7 @@
 
 - name: copy log purge script
   tags: [loggly, deploy]
-  file:
+  copy:
    src=purgeLogs.sh
    dest=/opt/runnable/bin/purgeLogs.sh
    owner=ubuntu
