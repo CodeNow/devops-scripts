@@ -1,6 +1,6 @@
 ---
 - name: copy bash aliases to ubuntu
-  tags: bash_aliases
+  tags: [ loggly, deploy ] 
   template:
     src=dot_bash_aliases.sh.j2
     dest=/home/ubuntu/.bash_aliases
@@ -9,7 +9,7 @@
     mode=0700
 
 - name: copy bash aliases to root
-  tags: bash_aliases
+  tags: [ loggly, deploy ] 
   become: true
   template:
     src=dot_bash_aliases_root.sh.j2

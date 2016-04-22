@@ -3,15 +3,14 @@ function logtail() {
     MY_APP="$1"
     MY_DATE=`date +%Y/%m/%d/%H`
     MY_LOGDIR="{{ app_log_dir }}"
-    MY_LOGFILE="${MY_LOG_DIR}/${MY_DATE}/${MY_APP}-daemon.log"
+    MY_LOGFILE="${MY_LOGDIR}/${MY_DATE}/${MY_APP}.log"
     tail -f ${MY_LOGFILE} | bunyan
 }
 
 function npmlog() {
     MY_APP="$1"
-    MY_DATE=`date +%Y/%m/%d/%H`
-    MY_LOGDIR="{{ app_log_dir }}"
-    MY_LOGFILE="${MY_LOG_DIR}/${MY_DATE}/${MY_APP}.log"
+    MY_LOGDIR="/var/log"
+    MY_LOGFILE="${MY_LOGDIR}/${MY_APP}.log"
     less ${MY_LOGFILE}
 }
 
