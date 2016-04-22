@@ -1,16 +1,26 @@
 # not really an alias
 function logtail() {
-    MY_APP="$1"
-    MY_DATE=`date +%Y/%m/%d/%H`
-    MY_LOGDIR="{{ app_log_dir }}"
-    MY_LOGFILE="${MY_LOGDIR}/${MY_DATE}/${MY_APP}.log"
-    tail -f ${MY_LOGFILE} | bunyan
+# Usage: logtail <app_name>
+    # Name of the app log you wish you view, eg: api, navi, docker-listener, swarm-manager
+    local app_name="$1"
+    # string of the current year, month, day and hour in YYYY/MM/DD/HH format
+    local datetime=`date +%Y/%m/%d/%H`
+    # location of application logs specified in ansible configuration
+    local app_log_dir="{{ app_log_dir }}"
+    # concatenate this strings to derive the full log path
+    local logfile="${app_log_dir}/${datetime}/${app_name}.log"
+    # follow logfile, format via bunyan
+    tail -f ${logfile} | bunyan
 }
 
 function npmlog() {
-    MY_APP="$1"
-    MY_LOGDIR="/var/log"
-    MY_LOGFILE="${MY_LOGDIR}/${MY_APP}.log"
-    less ${MY_LOGFILE}
+# Usage: npmlog <app_name>
+    # Name of the app npm log you wish to view.
+    local app_name="$1"
+    # system log dir
+    local app_log_dir="/var/log"
+    # npm log
+    local logfile="${app_log_dir}/${app_name}.log"
+    less ${logfile}
 }
 
