@@ -1,0 +1,17 @@
+# not really an alias
+function logtail() {
+    MY_APP="$1"
+    MY_DATE=`date +%Y/%m/%d/%H`
+    MY_LOGDIR="{{ app_log_dir }}"
+    MY_LOGFILE="${MY_LOG_DIR}/${MY_DATE}/${MY_APP}-daemon.log"
+    tail -f ${MY_LOGFILE} | bunyan
+}
+
+function npmlog() {
+    MY_APP="$1"
+    MY_DATE=`date +%Y/%m/%d/%H`
+    MY_LOGDIR="{{ app_log_dir }}"
+    MY_LOGFILE="${MY_LOG_DIR}/${MY_DATE}/${MY_APP}.log"
+    less ${MY_LOGFILE}
+}
+
