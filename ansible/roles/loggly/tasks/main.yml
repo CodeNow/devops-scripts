@@ -77,7 +77,7 @@
     state=absent
 
 - name: ensure log path
-  tags: [loggly, deploy]
+  tags: loggly
   become: true
   file:
     path="{{ app_log_dir }}"
