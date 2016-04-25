@@ -94,30 +94,8 @@
     path=/var/spool/rsyslog/stat-{{ name }}
     state=absent
 
-- name: check for current log file
-  tags: [loggly, deploy]
-  stat: path="{{ app_log_dir }}/{{ name }}-daemon.log"
-  register: log_file
-
-- name: remove old log file
-  when: log_file.stat.exists
-  tags: [loggly, deploy]
-  become: true
-  file:
-    path="{{ app_log_dir }}/{{ name }}-daemon.log"
-    state=absent
-
-- name: touch the log file
-  tags: [loggly, deploy]
-  become: true
-  file:
-    path="{{ app_log_dir }}/{{ name }}-daemon.log"
-    state=touch
-    owner=syslog
-    group=adm
-
 - name: restart rsyslog
-  tags: [loggly, deploy]
+  tags: [ loggly, deploy ]
   become: true
   service: name=rsyslog state=restarted
 
@@ -130,7 +108,7 @@
     state=present
 
 - name: runnable bin directory
-  tags: [loggly, deploy]
+  tags: loggly
   become: true
   file:
     path=/opt/runnable/bin
@@ -140,7 +118,7 @@
     mode=0700
 
 - name: copy log purge script
-  tags: [loggly, deploy]
+  tags: loggly
   copy:
    src=purgeLogs.sh
    dest=/opt/runnable/bin/purgeLogs.sh
@@ -149,7 +127,7 @@
    mode=0700
 
 - name: purge log files
-  tags: [loggly, deploy]
+  tags: loggly
   become: true
   cron:
     name="purge log files"
@@ -158,7 +136,7 @@
     state=present
 
 - name: clean legacy log files
-  tags: clean
+  tags: [ loggly, clean ]
   become: true
   script: archiveOldLogs.sh
   register: purge_out
