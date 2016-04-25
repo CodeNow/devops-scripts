@@ -1,7 +1,0 @@
----
-- name: restart nginx
-  tags: [ config ]
-  become: yes
-  service:
-    name: nginx
-    state: restarted

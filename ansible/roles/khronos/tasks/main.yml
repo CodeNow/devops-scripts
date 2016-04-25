@@ -21,7 +21,7 @@
   with_items:
   - name: Khronos CLI - Daily Cleanup
     minute: 13
-    hour: 1,7,13,19
+    hour: 1,4,7,10,13,16,19,22
     script: main-cron.sh
   - name: Khronos CLI - Canary
     minute: "*/5"

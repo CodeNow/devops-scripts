@@ -10,3 +10,5 @@ ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
 ansible/certs/*
+*.retry
+

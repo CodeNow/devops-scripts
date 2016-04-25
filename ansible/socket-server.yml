@@ -7,6 +7,7 @@
 - hosts: redis
 - hosts: swarm-manager
 - hosts: consul
+- hosts: socket-server-proxy
 
 - hosts: socket-server
   vars_files:
@@ -22,10 +23,7 @@
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: container_start, number_of_containers: 8 }
-
-- hosts: socket-server-proxy
-  vars_files:
-    - group_vars/alpha-proxy-socket-server.yml
-  roles:
-  - role: socket-proxy
-  - role: container_restart
+  - role: nginx-proxied-service
+    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
+    target_ip_address: "{{ hostvars[groups['socket-server'][0]]['ansible_default_ipv4']['address'] }}"
+    templates: [ 01-socket-server.conf ]
