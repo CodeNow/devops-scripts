@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+export DOCK_INIT_BASE="/opt/runnable/dock-init"
+export CONSUL_HOSTNAME="{{ consul_hostname }}"
+export CONSUL_PORT="8500"
+export ORG_ID="$(cat /etc/default/docker | perl -n -e'/org=(\d+)/ && print $1')"
+export VAULT_TOKEN="{{ vault_token }}"
+
+REGISTRY_STATUS=$(curl localhost/debug/health)
+if [[ "$REGISTRY_STATUS" == "404 page not found" ]]; then
+  echo "do not need to fix registry"
+  exit 0
+fi
+
+CURRENT_REGISTRY=$(docker ps | awk '/bin\/registry/{ print $1 }')
+docker stop -t 5 "$CURRENT_REGISTRY"
+docker rm "$CURRENT_REGISTRY"
+
+source "$DOCK_INIT_BASE/lib/container.sh"
+
+echo "starting container"
+container::_start_registry_container
+
+sleep 5
+
+echo "checking container"
+curl localhost/debug/health
