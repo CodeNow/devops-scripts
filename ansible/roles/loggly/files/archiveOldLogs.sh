@@ -6,7 +6,7 @@
 
 # we only want this run as root
 if [ "root" != `whoami` ] ; then
-    echo "This script needs to be run as root."
+    echo "${0}: ERROR - This script needs to be run as root."
     exit 127
 fi
 
