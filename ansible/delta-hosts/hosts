@@ -99,7 +99,7 @@ delta-registry
 delta-dock-services
 
 [swarm-manager]
-delta-dock-services
+delta-swarm-manager
 
 [metis]
 delta-app-services
