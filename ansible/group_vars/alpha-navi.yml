@@ -32,6 +32,8 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_tls_port }}
+  -e INTERCOM_APP_ID = {{ navi_intercom_app_id | default('undefined') }}
+  -e INTERCOM_API_KEY = {{ navi_intercom_api_key | default('undefined') }}
 
 container_run_opts: >
   -h {{ name }}
