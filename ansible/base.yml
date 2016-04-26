@@ -9,7 +9,7 @@
       name={{ host }}
       groups=dock
 
-- hosts: "{{ host | default('docks') }}"
+- hosts: "{{ host }}"
   roles:
   - { role: package-dock, tags: [ dock, package ] }
   - { role: package-aws, tags: [ dock, package ] }
