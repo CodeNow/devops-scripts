@@ -58,6 +58,7 @@
 
 - name: copy rotate util script
   tags: loggly
+  when: name is defined
   become: true
   template:
     src=rotate-logs.sh.j2
