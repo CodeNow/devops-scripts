@@ -197,6 +197,9 @@ Host delta-mongo-c
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
 
+Host delta-swarm-manager
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.40 22
+
 ################################################################################
 # Epsilon
 ################################################################################

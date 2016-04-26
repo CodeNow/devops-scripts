@@ -1,6 +1,7 @@
 ---
 - hosts: rabbitmq
 - hosts: consul
+- hosts: swarm-manager
 
 - hosts: docker-listener
   vars_files:
