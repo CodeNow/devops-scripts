@@ -47,6 +47,7 @@
     group=syslog
 
 - name: copy app config
+  when: name is defined
   tags: loggly
   become: true
   template:
@@ -70,6 +71,7 @@
   service: name=rsyslog state=stopped
 
 - name: clear rsyslog state file
+  when: name is defined
   tags: [loggly, deploy]
   become: true
   file:
