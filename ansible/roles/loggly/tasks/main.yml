@@ -101,7 +101,7 @@
     state=present
 
 - name: runnable bin directory
-  tags: loggly
+  tags: [ loggly, clean ] 
   become: true
   file:
     path=/opt/runnable/bin
@@ -111,7 +111,7 @@
     mode=0700
 
 - name: copy log purge script
-  tags: loggly
+  tags: [ loggly, clean ]
   copy:
    src=purgeLogs.sh
    dest=/opt/runnable/bin/purgeLogs.sh
@@ -120,7 +120,7 @@
    mode=0700
 
 - name: purge log files
-  tags: loggly
+  tags: [ loggly, clean ] 
   become: true
   cron:
     name="purge log files"
