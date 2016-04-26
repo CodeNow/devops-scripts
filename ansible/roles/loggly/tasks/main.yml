@@ -88,7 +88,7 @@
     recurse=yes
 
 - name: restart rsyslog
-  tags: [loggly, deploy]
+  tags: [ loggly, deploy ]
   become: true
   service: name=rsyslog state=restarted
 
@@ -99,3 +99,37 @@
     minute="*/2"
     job="echo  'loggly monitoring' 2>&1 | /usr/bin/logger -t LogMonitor"
     state=present
+
+- name: runnable bin directory
+  tags: [ loggly, clean ] 
+  become: true
+  file:
+    path=/opt/runnable/bin
+    state=directory
+    owner=ubuntu
+    group=ubuntu
+    mode=0700
+
+- name: copy log purge script
+  tags: [ loggly, clean ]
+  copy:
+   src=purgeLogs.sh
+   dest=/opt/runnable/bin/purgeLogs.sh
+   owner=ubuntu
+   group=ubuntu
+   mode=0700
+
+- name: purge log files
+  tags: [ loggly, clean ] 
+  become: true
+  cron:
+    name="purge log files"
+    minute=0
+    job="/opt/runnable/bin/purgeLogs.sh {{ app_log_dir }}"
+    state=present
+
+- name: clean legacy log files
+  tags: [ loggly, clean ]
+  become: true
+  script: archiveOldLogs.sh
+  register: purge_out
