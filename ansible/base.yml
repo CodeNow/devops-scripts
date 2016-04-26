@@ -14,6 +14,7 @@
   - { role: package-dock, tags: [ dock, package ] }
   - { role: package-aws, tags: [ dock, package ] }
   - { role: package_ntp }
+  - { role: build_essential }
   - { role: docker, tags: [ docker ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: ulimits, tags: [ ulimits ] }

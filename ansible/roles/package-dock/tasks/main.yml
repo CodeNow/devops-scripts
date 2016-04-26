@@ -1,6 +1,14 @@
 ---
+- name: Install make
+  become: true
+  apt:
+    pkg=make
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800
+
 - name: Install unzip
-  become: yes
+  become: true
   apt:
     pkg=unzip
     state=latest
@@ -8,7 +16,7 @@
     cache_valid_time=604800
 
 - name: Install openjdk-7-jdk
-  become: yes
+  become: true
   apt:
     pkg=openjdk-7-jdk
     state=latest
@@ -32,7 +40,7 @@
     dest=/usr/local/bin
 
 - name: unzip vault_0.4.1_linux_amd64.zip
-  become: yes
+  become: true
   unarchive:
     src=/usr/local/bin/vault_0.4.1_linux_amd64.zip
     dest=/usr/local/bin
