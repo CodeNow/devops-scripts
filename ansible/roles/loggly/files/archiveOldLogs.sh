@@ -6,7 +6,7 @@
 
 # we only want this run as root
 if [ "root" != `whoami` ] ; then
-    echo "It don't mean a thing if it ain't got that swing."
+    echo "This script needs to be run as root."
     exit 127
 fi
 
@@ -23,8 +23,8 @@ echo "Restarting rsyslogd"
 # but we do need to clean the filehandles after, just in case
 service rsyslog restart
 
-# archive anything > 1wk
-echo "Archiving logs > 1wk"
+# archive anything > 6h
+echo "Archiving logs > 6h"
 mkdir -p ${archdir} 2>&1
 find ${logdir} -maxdepth 2 -type f -mtime +6 -name '*z' | xargs tar jcvpf ${archdir}/log-archive-${datetime}.tbz 
 echo "Purging logs > 1wk"
