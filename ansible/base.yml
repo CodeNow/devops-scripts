@@ -1,12 +1,21 @@
 ---
-- hosts: "{{ host }}"
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`host` (target host) needs to be defined to run this role"
+    when: host is not defined
+
+  - add_host:
+      name={{ host }}
+      groups=dock
+
+- hosts: "{{ host | default('docks') }}"
   roles:
-  - { role: notify, tags: [ notify ], app_name: base_sshd, git_branch: latest, name: base_sshd }
-  - { role: package-dock, tags: [dock, package] }
-  - { role: package-aws, tags: [dock, package] }
+  - { role: package-dock, tags: [ dock, package ] }
+  - { role: package-aws, tags: [ dock, package ] }
   - { role: package_ntp }
-  - { role: docker, tags: [docker] }
-  - { role: datadog, tags: [datadog] }
-  - { role: ulimits, tags: [ulimits] }
-  - { role: loggly, tags: [loggly] }
+  - { role: docker, tags: [ docker ] }
+  - { role: datadog, tags: [ datadog ] }
+  - { role: ulimits, tags: [ ulimits ] }
+  - { role: loggly, tags: [ loggly, clean ] }
   - { role: node }
