@@ -6,7 +6,7 @@
 
 # we only want this run as root
 if [ "root" != `whoami` ] ; then
-    echo "It don't mean a thing if it ain't got that swing."
+    echo "This script needs to be run as root."
     exit 127
 fi
 
