@@ -2,7 +2,7 @@
 set -e
 
 export DOCK_INIT_BASE="/opt/runnable/dock-init"
-export CONSUL_HOSTNAME="{{ consul_hostname }}"
+export CONSUL_HOSTNAME="{{ consul_host_address }}"
 export CONSUL_PORT="8500"
 export ORG_ID="$(cat /etc/default/docker | perl -n -e'/org=(\d+)/ && print $1')"
 export VAULT_TOKEN="{{ vault_token }}"
