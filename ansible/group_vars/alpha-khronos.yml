@@ -30,6 +30,7 @@ cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password
 container_envs: >
   -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
   -e API_URL={{ api_url }}
+  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
   -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
   -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
