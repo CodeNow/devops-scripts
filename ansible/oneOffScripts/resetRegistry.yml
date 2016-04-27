@@ -1,4 +1,5 @@
 ---
+# DOCUMENTATION https://github.com/CodeNow/devops-scripts/wiki/Reset-Customer-Local-Registry
 - hosts: consul
 
 - hosts: docks
