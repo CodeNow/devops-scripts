@@ -112,7 +112,6 @@ gamma-app-services
 
 [gamma:children]
 api
-api
 bastion
 charon
 consul
@@ -139,7 +138,6 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
-web
 web
 worker
 
