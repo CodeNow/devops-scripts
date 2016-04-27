@@ -1,0 +1,44 @@
+---
+- hosts: swarm-manager
+  vars_files:
+  - group_vars/alpha-swarm-manager-metrics.yml
+  tasks:
+  - name: make runnable folder
+    become: yes
+    file:
+      dest: /opt/runnable/
+      state: directory
+      owner: ubuntu
+      group: ubuntu
+      mode: 0775
+
+  - name: put script in place
+    template:
+      src: get-info.js
+      dest: /opt/runnable/get-info.js
+      owner: ubuntu
+      group: ubuntu
+      mode: 0444
+
+  - name: run container
+    when: test_run is defined
+    become: yes
+    shell: >-
+      docker run
+      {{ container_run_opts }}
+      {{ container_image }}:{{ container_tag }}
+      {{ container_run_args }}
+
+  - name: put script into cron
+    become: yes
+    cron:
+      name: swarm-cloudwatch-reporter
+      cron_file: 10-swarm-cloudwatch
+      user: root
+      state: present
+      job: >-
+        sudo docker run
+        --rm
+        {{ container_run_opts }}
+        {{ container_image }}:{{ container_tag }}
+        {{ container_run_args }}

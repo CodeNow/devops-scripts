@@ -1,0 +1,24 @@
+---
+name: swarm-cloudwatch-reporter
+
+container_image: node
+container_tag: 4
+
+log_driver: json-file
+
+container_run_opts: >-
+  --log-driver={{ log_driver }}
+  -e AWS_ACCESS_KEY={{ aws_access_key }}
+  -e AWS_SECRET_KEY={{ aws_secret_key }}
+  -e DOCKER_CERT_PATH=/opt/ssl/docker/swarm-manager
+  -e ENVIRONMENT={{ environment_name }}
+  -e SWARM_HOSTNAME={{ ansible_default_ipv4.address }}
+  -e SWARM_PORT={{ swarm_master_port }}
+  -v /opt/runnable/get-info.js:/get-info.js:ro
+  -v /opt/ssl/docker/swarm-manager:/opt/ssl/docker/swarm-manager:ro
+  -v /var/log:/var/log
+
+commands_to_run: >-
+  npm install 101 swarmerode dockerode bluebird aws-sdk &&
+  node get-info.js
+container_run_args: bash -c "{{ commands_to_run }}" >> /var/log/{{ name }}.log 2>&1
