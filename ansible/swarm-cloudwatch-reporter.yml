@@ -10,7 +10,7 @@
       state: directory
       owner: ubuntu
       group: ubuntu
-      mode: 0775
+      mode: 0500
 
   - name: put script in place
     template:
@@ -18,7 +18,7 @@
       dest: /opt/runnable/get-info.js
       owner: ubuntu
       group: ubuntu
-      mode: 0444
+      mode: 0400
 
   - name: run container
     when: test_run is defined
