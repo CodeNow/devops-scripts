@@ -1,10 +1,17 @@
 ---
 name: swarm-cloudwatch-reporter
 
-container_image: node
-container_tag: 4
+repo: git@github.com:CodeNow/furry-cactus.git
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+node_version: lts
+npm_version: 3
+do_not_push: true
 
 log_driver: json-file
+
+dockerfile_pre_install_commands:
+- npm config set progress false
 
 container_run_opts: >-
   --log-driver={{ log_driver }}
@@ -18,7 +25,4 @@ container_run_opts: >-
   -v /opt/ssl/docker/swarm-manager:/opt/ssl/docker/swarm-manager:ro
   -v /var/log:/var/log
 
-commands_to_run: >-
-  npm install 101 swarmerode dockerode bluebird aws-sdk &&
-  node get-info.js
-container_run_args: bash -c "{{ commands_to_run }}" >> /var/log/{{ name }}.log 2>&1
+container_run_args: npm start >> /var/log/{{ name }}.log 2>&1
