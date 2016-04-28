@@ -17,6 +17,7 @@ dockerfile_pre_install_commands: [
 ]
 
 container_envs: >
+  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e LOGGLY_TOKEN="{{ loggly_token }}"
