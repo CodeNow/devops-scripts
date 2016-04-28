@@ -86,6 +86,11 @@ registry_s3_region=us-west-2
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
+[swarm-manager:vars]
+aws_access_key=AKIAIB5W3E6HR6Q52HEQ
+aws_secret_key=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
+environment_name=delta
+
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
