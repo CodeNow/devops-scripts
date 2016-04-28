@@ -56,6 +56,8 @@ metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 [navi:vars]
 navi_new_relic_app_name=delta-navi
 navi_cookie_secret=e80173940e7bdd84734e868b6ea054a0
+navi_intercom_api_key=6f6400402170e78fa1ad4418608aacc63512122b
+navi_intercom_app_id=wqzm3rju
 
 
 [optimus:vars]
