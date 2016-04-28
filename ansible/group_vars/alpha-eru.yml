@@ -27,10 +27,10 @@ container_envs: >-
   -e MONGODB_REPLSET={{ eru_mongodb_replset }}
   -e MONGODB_USERNAME={{ eru_mongodb_username }}
   -e NODE_ENV=production
-  -e RABBIT_HOSTNAME={{ rabbit_host_address }}
-  -e RABBIT_PORT={{ rabbit_port }}
-  -e RABBIT_USERNAME={{ rabbit_username }}
-  -e RABBIT_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e REDIS_HOSTNAME={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
   -e RUNNABLE_DOMAIN={{ domain }}
