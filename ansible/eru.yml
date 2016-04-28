@@ -2,6 +2,7 @@
 - hosts: consul
 - hosts: mongodb
 - hosts: redis
+- hosts: rabbitmq
 - hosts: socket-server-proxy
 
 - hosts: eru
