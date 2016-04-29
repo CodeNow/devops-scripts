@@ -9,6 +9,15 @@
     cache_valid_time=604800
     install_recommends=yes
 
+- name: copy rsyslog default config
+  tags: loggly
+  become: true
+  copy:
+    src=50-default.conf
+    dest=/etc/rsyslog.d/50-default.conf
+    owner=syslog
+    group=syslog
+
 - name: copy loggly TLS config
   tags: loggly
   become: true
