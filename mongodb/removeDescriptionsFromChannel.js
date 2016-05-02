@@ -1,1 +1,0 @@
-db.channels.update({}, {$set:{description:'<br><br>'}}, false, true);

@@ -1,4 +1,0 @@
---ui bdd
---bail
---reporter spec
---require should
