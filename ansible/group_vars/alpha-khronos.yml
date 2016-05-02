@@ -12,6 +12,7 @@ main_cron_queues: "\
   khronos:containers:orphan:prune \
   khronos:context-versions:prune-expired \
   khronos:images:prune \
+  khronos:containers:image-builder:prune \
   khronos:weave:prune"
 
 canary_cron_queues: "\
