@@ -1,1 +1,0 @@
-db.images.update({"tags.name":"jquery"},{$set:{"service_cmds":"memcached -d -u www-data; /etc/init.d/apache2 restart; mysqld"}},false,true)
