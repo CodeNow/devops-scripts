@@ -9,6 +9,7 @@ npm_version: "2.14.7"
 restart_policy: "always"
 
 container_envs: >
+  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOCKER_CERT_PATH=/etc/ssl/docker
