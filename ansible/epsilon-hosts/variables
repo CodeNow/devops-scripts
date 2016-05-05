@@ -35,7 +35,7 @@ eru_aws_environment=epsilon
 eru_mongodb_database=epsilon
 eru_mongodb_password=success-nan-europium-rerun-sheep
 eru_mongodb_username=eru
-eru_mongodb_replset=epsilon-rs0
+eru_mongodb_replset=
 
 [khronos:vars]
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
