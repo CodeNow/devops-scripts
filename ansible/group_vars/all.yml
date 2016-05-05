@@ -142,7 +142,6 @@ palantiri_rollbar_token: f675e9090d6f483ca4e742af2c7f2f83
 
 # pheidi
 pheidi_rollbar_token: 6fc422ac645441bea7f6f14853eb01ab
-pheidi_runnabot_tokens: ff3d259c5d988badbb692cc400998e46cdd5f1fc
 
 # rabbit
 rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
