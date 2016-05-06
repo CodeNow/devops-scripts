@@ -405,10 +405,6 @@
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
         group_id: "{{ sg_userland }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_web }}"
 
 - name: App Services SG
   tags:
