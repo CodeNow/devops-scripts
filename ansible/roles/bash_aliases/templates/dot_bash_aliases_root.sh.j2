@@ -8,6 +8,46 @@ function logtail() {
     tail -f ${logfile} | bunyan
 }
 
+# Follows the logfile for a given app_name interpolating the datetime string into the logpath (/var/log/runnable/YYYY/MM/DD/HH/<app_name>.log)
+# Usage: lograw <app_name>
+function lograw() {
+    local app_name="$1"
+    local datetime=`date +%Y/%m/%d/%H`
+    local app_log_dir="{{ app_log_dir }}"
+    local logfile="${app_log_dir}/${datetime}/${app_name}.log"
+    tail -f ${logfile} 
+}
+
+# Just display the last few lines of a log (2nd arg specifies # of lines or tail default if left blank)
+# Usage: loglast <app_name> [ <#_of_lines> ]
+function loglast() {
+    local app_name="$1"
+    local datetime=`date +%Y/%m/%d/%H`
+    local app_log_dir="{{ app_log_dir }}"
+    local logfile="${app_log_dir}/${datetime}/${app_name}.log"
+    local tailopts=""
+    # trusting YOU, the user, not to fsck this up
+    if [ 2 -eq ${#} ] ; then
+        tailopts="-${2}" 
+    fi
+    tail ${tailopts} ${logfile} | bunyan
+}
+
+# Follow a log, grep for "${regexp}"
+# Usage: greplog <app_name> <regexp>
+function greplog() {
+    local app_name="$1"
+    local datetime=`date +%Y/%m/%d/%H`
+    local app_log_dir="{{ app_log_dir }}"
+    local logfile="${app_log_dir}/${datetime}/${app_name}.log"
+    local regexp=""
+    # trusting YOU, the user, not to fsck this up
+    if [ 2 -eq ${#} ] ; then
+        regexp="${2}" 
+    fi
+    tail -f ${logfile} | grep ${regexp} | bunyan
+}
+
 # Outputs contents of an npm start log for <app_name>, if it exists, into a pager for reading.
 # Usage: npmlog <app_name>
 function npmlog() {
@@ -16,4 +56,3 @@ function npmlog() {
     local logfile="${app_log_dir}/${app_name}.log"
     less ${logfile}
 }
-
