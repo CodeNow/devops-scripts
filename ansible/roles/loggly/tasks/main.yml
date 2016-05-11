@@ -55,6 +55,15 @@
     owner=syslog
     group=syslog
 
+- name: copy docker upstart logs config
+  tags: loggly
+  become: true
+  copy:
+    src=21-rotated-docker.conf
+    dest=/etc/rsyslog.d/21-rotated-docker.conf
+    owner=syslog
+    group=syslog
+
 - name: copy app config
   when: name is defined
   tags: loggly
