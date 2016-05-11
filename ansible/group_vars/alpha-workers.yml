@@ -6,6 +6,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_envs: >
   {{ api_base_container_envs }}
   -e IS_QUEUE_WORKER=true
+  -e NUM_WORKERS=1
   -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
 
 container_run_opts: >
