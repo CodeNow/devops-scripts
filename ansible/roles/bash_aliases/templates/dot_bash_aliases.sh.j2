@@ -10,14 +10,14 @@ logpath() {
 
 logtail() {
     local app_name="$1"
-    tail -f $(logpath ${app_name}) | bunyan
+    tail -f "$(logpath ${app_name})" | bunyan
 }
 
 # Follows the logfile for a given app_name interpolating the datetime string into the logpath (/var/log/runnable/YYYY/MM/DD/HH/<app_name>.log)
 # Usage: lograw <app_name>
 lograw() {
     local app_name="$1"
-    tail -f $(logpath ${app_name}) 
+    tail -f "$(logpath ${app_name})"
 }
 
 # Just display the last few lines of a log (2nd arg specifies # of lines or tail default if left blank)
@@ -29,7 +29,7 @@ loglast() {
     if [ 2 -eq "{{ '${#}' }}" ] ; then
         tailopts="-${2}" 
     fi
-    tail ${tailopts} $(logpath ${app_name}) | bunyan
+    tail "${tailopts}" "$(logpath ${app_name})" | bunyan
 }
 
 # Follow a log, grep for "${regexp}"
@@ -41,11 +41,11 @@ greplog() {
     if [ 2 -eq "{{ '${#}' }}" ] ; then
         regexp="${2}" 
     fi
-    tail -f $(logpath ${app_name}) | grep ${regexp} | bunyan
+    tail -f "$(logpath ${app_name})" | grep "${regexp}" | bunyan
 }
 
 # Outputs contents of an npm start log for <app_name>, if it exists, into a pager for reading.
 # Usage: npmlog <app_name>
 npmlog() {
-    less $(logpath ${app_name})
+    less "$(logpath ${app_name})"
 }
