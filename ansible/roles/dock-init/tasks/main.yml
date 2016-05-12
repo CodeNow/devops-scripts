@@ -4,7 +4,7 @@
 
 - name: create vault auth directory
   tags: vault_files
-  becore: true
+  become: true
   file:
     dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}"
     state=directory
