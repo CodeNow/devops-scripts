@@ -34,6 +34,7 @@ container_envs: >-
   -e REDIS_HOSTNAME={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
   -e RUNNABLE_DOMAIN={{ domain }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
 
 container_run_opts: >
   -h {{ name }}
