@@ -1,0 +1,4 @@
+---
+- hosts: socket-server-proxy
+  roles:
+  - { role: user-content-pixel }

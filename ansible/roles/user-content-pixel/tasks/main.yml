@@ -1,0 +1,50 @@
+---
+- name: assert nginx config directory
+  tags: [ deploy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx
+
+- name: assert nginx sites-available directory
+  tags: [ deploy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-available
+
+- name: assert nginx sites-enable directory
+  tags: [ deploy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-enable
+
+- name: put configuration in place
+  tags: [ deploy ]
+  become: yes
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/sites-available/{{ item }}
+  with_items:
+  - 90-user-content-pixel.conf
+
+- name: link configuration to enable
+  tags: [ deploy ]
+  become: yes
+  file:
+    state: link
+    dest: /etc/nginx/sites-enabled/{{ item }}
+    src: /etc/nginx/sites-available/{{ item }}
+  with_items:
+  - 90-user-content-pixel.conf
+
+- name: reload nginx
+  tags: [ deploy ]
+  become: yes
+  shell: >
+    docker ps |
+    awk '/nginx/{ print $1 }' |
+    xargs -n 1 docker kill --signal SIGHUP
+  args:
+    executable: /bin/bash
