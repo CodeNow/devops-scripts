@@ -7,13 +7,3 @@
     owner=ubuntu
     group=ubuntu
     mode=0700
-
-- name: copy bash aliases to root
-  tags: [ loggly, bash_aliases ] 
-  become: true
-  template:
-    src=dot_bash_aliases_root.sh.j2
-    dest=/root/.bash_aliases
-    owner=root
-    group=root
-    mode=0700
