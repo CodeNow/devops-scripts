@@ -2,6 +2,16 @@
 - fail: msg="value tokens need to be defined for this role"
   when: vault_auth_token is not defined or vault_token_01 is not defined or vault_token_02 is not defined or vault_token_03 is not defined
 
+- name: create vault auth directory
+  tags: vault_files
+  become: true
+  file:
+    dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}"
+    state=directory
+    owner=ubuntu
+    group=ubuntu
+    mode="0711"
+
 - name: copy vault auth files
   tags: vault_files
   become: true
