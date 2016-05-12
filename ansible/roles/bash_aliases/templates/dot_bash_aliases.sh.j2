@@ -25,8 +25,8 @@ lograw() {
 loglast() {
     local app_name="$1"
     local tailopts=""
-    # trusting YOU, the user, not to fsck this up
-    if [ 2 -eq ${#} ] ; then
+    # do not check contents of $2, just if exists, escape jinja2 keyword.
+    if [ 2 -eq "{{ '${#}' }}" ] ; then
         tailopts="-${2}" 
     fi
     tail ${tailopts} $(logpath ${app_name}) | bunyan
@@ -37,8 +37,8 @@ loglast() {
 greplog() {
     local app_name="$1"
     local regexp=""
-    # trusting YOU, the user, not to fsck this up
-    if [ 2 -eq ${#} ] ; then
+    # again, not checking arg2, just making sure it exists, and espace jinja2 keyword.
+    if [ 2 -eq "{{ '${#}' }}" ] ; then
         regexp="${2}" 
     fi
     tail -f $(logpath ${app_name}) | grep ${regexp} | bunyan
