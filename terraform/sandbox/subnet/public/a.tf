@@ -17,7 +17,6 @@ resource "aws_subnet" "public-a" {
 
 /**
  * Route table for the sanbox public-a subnet.
- *
  */
 resource "aws_route_table" "public-a" {
   vpc_id = "${aws_vpc.sandbox.id}"
@@ -31,6 +30,9 @@ resource "aws_route_table" "public-a" {
   }
 }
 
+/**
+ * Maps the route table to the public-a subnet.
+ */
 resource "aws_route_table_association" "public-a" {
   subnet_id = "${aws_subnet.public-a.id}"
   route_table_id = "${aws_route_table.public-a.id}"

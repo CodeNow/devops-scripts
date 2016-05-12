@@ -1,13 +1,17 @@
 /**
  * NAT (network address translation) security group.
+ * @param {string} environment Name of the environment.
+ * @param {string} vpc.cidr_block CIDR block for the VPC.
  */
-resource "aws_security_group" "packer_nat" {
-  name = "packer_nat"
-  description = "Ingress/Egress rules for packer NAT"
+resource "aws_security_group" "nat" {
   tags {
-    Name = "packer_nat_security_group"
-    Environment = "packer"
+    Name = "nat"
+    Environment = "${var.environment}"
   }
+
+  vpc_id = "${aws_vpc.sandbox.id}"
+  name = "nat"
+  description = "Ingress/Egress rules for the NAT"
 
   // Allow inbound SSH
   ingress {
@@ -25,19 +29,19 @@ resource "aws_security_group" "packer_nat" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  // Allow all inbound from packer VPC
+  // Allow all inbound from the VPC
   ingress {
     from_port = 0
     to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["10.254.0.0/16"]
+    protocol = "tcp"
+    cidr_blocks = ["${var.vpc.cidr_block}"]
   }
 
   // Allow all outbound
   egress {
     from_port = 0
     to_port = 0
-    protocol = "-1"
+    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
