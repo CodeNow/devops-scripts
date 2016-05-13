@@ -1,7 +1,5 @@
 /**
  * NAT (network address translation) security group.
- * @param {string} environment Name of the environment.
- * @param {string} vpc.cidr_block CIDR block for the VPC.
  */
 resource "aws_security_group" "nat" {
   tags {
@@ -12,36 +10,53 @@ resource "aws_security_group" "nat" {
   vpc_id = "${aws_vpc.sandbox.id}"
   name = "nat"
   description = "Ingress/Egress rules for the NAT"
+}
 
-  // Allow inbound SSH
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+/**
+ * Ingress rule to allow SSH from the bastion server.
+ */
+resource "aws_security_group_rule" "nat-bastion" {
+  type = "ingress"
+  security_group_id = "${aws_security_group.nat.id}"
+  source_security_group_id = "${aws_security_group.bastion.id}"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+}
 
-  // Allow inbound PING (ICMP)
-  ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "icmp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+/**
+ * Ingress rule to allow ping from everywhere.
+ * TODO Should we allow this from the entire internet?
+ */
+resource "aws_security_group_rule" "nat-ping" {
+  type = "ingress"
+  security_group_id = "${aws_security_group.nat.id}"
+  from_port = -1
+  to_port = -1
+  protocol = "icmp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  // Allow all inbound from the VPC
-  ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "tcp"
-    cidr_blocks = ["${var.vpc.cidr_block}"]
-  }
+/**
+ * Ingress rule to allow all inbound from VPC.
+ */
+resource "aws_security_group_rule" "nat-vpc-all" {
+  type = "ingress"
+  security_group_id = "${aws_security_group.nat.id}"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["${var.vpc.cidr_block}"]
+}
 
-  // Allow all outbound
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+/**
+ * Egress rule to allow all outbound traffic on the NAT.
+ */
+resource "aws_security_group_rule" "nat-outbound" {
+  type = "egress"
+  security_group_id = "${aws_security_group.nat.id}"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
 }
