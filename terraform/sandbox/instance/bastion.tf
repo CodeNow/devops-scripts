@@ -1,9 +1,6 @@
 /**
  * Bastion server for the VPC. The bastion server allows those with credentials
  * (e.g. a signed pem file) to SSH through it and into the private subnet.
- * @param {string} environment Name of the environment.
- * @param {string} bastion.ami Id of the AMI to use for the server.
- * @param {string} bastion.instance_type EC2 instance type for the server.
  */
 resource "aws_instance" "bastion" {
   tags {

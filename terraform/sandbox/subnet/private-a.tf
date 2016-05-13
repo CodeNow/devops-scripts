@@ -1,8 +1,5 @@
 /**
  * Private subnet for the VPC bound to the first availability zone.
- * @param {string} environment Name of the environment.
- * @param {string} vpc.cidr_prefix Prefix for the CIDR of the VPC.
- * @param {string} provider.region Region for the provider (aws).
  */
 resource "aws_subnet" "private-a" {
   tags {
@@ -28,7 +25,7 @@ resource "aws_route_table" "private-a" {
   vpc_id = "${aws_vpc.sandbox.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    instance_id = "${aws_instance.nat.id}"
+    nat_gateway_id = "${aws_nat_gateway.nat.id}"
   }
 }
 

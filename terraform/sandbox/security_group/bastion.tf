@@ -1,9 +1,6 @@
 /**
  * Bastion security group. This allows trusted external sources to talk to
  * machines within the packer VPCs private subnet.
- * @param {string} environment Name of the environment.
- * @param {integer} bastion.ssh_port The port on which bastion should allow
- *   ssh connections.
  */
 resource "aws_security_group" "bastion" {
   tags {
@@ -14,20 +11,28 @@ resource "aws_security_group" "bastion" {
   vpc_id = "${aws_vpc.sandbox.id}"
   name = "bastion"
   description = "Ingress/Egress rules for the VPC bastion server"
+}
 
-  // Allow a specific, non-defualt, port for SSH communication to the VPC
-  ingress {
-    from_port = "${var.bastion.ssh_port}"
-    to_port = "${var.bastion.ssh_port}"
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+/**
+ * Allows inbound SSH connections from the internet to the bastion server.
+ */
+resource "aws_security_group_rule" "bastion-ingress-ssh" {
+  type = "ingress"
+  security_group_id = "${aws_security_group.bastion.id}"
+  from_port = "${var.bastion.ssh_port}"
+  to_port = "${var.bastion.ssh_port}"
+  protocol = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  // Allow all outbound
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+/**
+ * Allows all outbound traffic from the bastion server.
+ */
+resource "aws_security_group_rule" "bastion-egress-all" {
+  type = "egress"
+  security_group_id = "${aws_security_group.bastion.id}"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
 }

@@ -2,7 +2,6 @@
  * Defines the environment for which to build the infrastructure. This allows
  * us to change the basic environment labels for all resources in AWS to easily
  * differentiate between VPCs in oregon (us-west-2)
- * @type {string}
  */
 variable "environment" {
   type = "string"
@@ -11,7 +10,6 @@ variable "environment" {
 
 /**
  * AWS key name to use for instances in the VPC.
- * @type {string}
  */
 variable "key_name" {
   type = "string"
@@ -20,7 +18,6 @@ variable "key_name" {
 
 /**
  * Details for the AWS provider. Includes region, access keys, etc.
- * @type {map}
  */
 variable "provider" {
   type = "map"
@@ -33,7 +30,6 @@ variable "provider" {
 
 /**
  * VPC specific configuration.
- * @type {map}
  */
 variable "vpc" {
   type = "map"
@@ -44,7 +40,6 @@ variable "vpc" {
 
 /**
  * Defines options for changing details about public subnets in the VPC.
- * @type {map}
  */
 variable "public-subnet" {
   type = "map"
@@ -58,7 +53,6 @@ variable "public-subnet" {
 
 /**
  * Defines options for changing details about private subnets in the VPC.
- * @type {map}
  */
 variable "private-subnet" {
   type = "map"
@@ -72,7 +66,6 @@ variable "private-subnet" {
 
 /**
  * Bastion options for the VPC.
- * @type {map}
  */
 variable "bastion" {
   type = "map"
@@ -85,7 +78,6 @@ variable "bastion" {
 
 /**
  * Options for the NAT.
- * @type {map}
  */
 variable "nat" {
   type = "map"

@@ -16,7 +16,7 @@ resource "aws_security_group" "private-example" {
  * Allows SSH (port 22) traffic inbound to private-example security group via
  * the bastion security group.
  */
-resource "aws_security_group_rule" "private-example-bastion" {
+resource "aws_security_group_rule" "private-example-inbound-bastion" {
   type = "ingress"
   security_group_id = "${aws_security_group.private-example.id}"
   source_security_group_id = "${aws_security_group.bastion.id}"
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "private-example-bastion" {
 /**
  * Allows all outbound on the private-example security group.
  */
-resource "aws_security_group_rule" "private-example-outbound" {
+resource "aws_security_group_rule" "private-example-outbound-all" {
   type = "egress"
   security_group_id = "${aws_security_group.private-example.id}"
   from_port = 0

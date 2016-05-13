@@ -1,8 +1,7 @@
 /**
  * Internet gateway for the sanbox infrastructure.
- * @param {string} environment Name of the environment.
  */
-resource "aws_internet_gateway" "sandbox" {
+resource "aws_internet_gateway" "gateway" {
   tags {
     Name = "gateway"
     Environment = "${var.environment}"
