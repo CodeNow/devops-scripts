@@ -21,6 +21,7 @@ container_envs: >
   -e ENABLE_LRU_CACHE=1
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HTTP_PORT={{ hosted_ports[0] }}
+  -e HTTPS_PORT={{ hosted_ports[1] }}
   -e LOG_LEVEL_STDOUT=trace
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}

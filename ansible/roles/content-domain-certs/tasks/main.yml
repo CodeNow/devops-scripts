@@ -1,7 +1,6 @@
 ---
 - name: make sure cert directory is in place
   tags: [ certs ]
-  when: ca_dest is defined
   become: true
   file:
     dest: /opt/ssl/{{ user_content_domain }}
