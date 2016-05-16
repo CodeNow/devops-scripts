@@ -45,7 +45,7 @@ apply: compile deps
 		-var-file="environment/${TERRAFORM_ENVIRONMENT}.tfvars" \
 		${BUILD_DIR}/
 
-destroy:
+destroy: compile deps
 	terraform destroy \
 		-var-file="${CREDENTIALS_FILE}" \
 		-var-file="environment/${TERRAFORM_ENVIRONMENT}.tfvars" \

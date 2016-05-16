@@ -23,10 +23,16 @@ resource "aws_route_table" "public-a" {
   }
 
   vpc_id = "${aws_vpc.sandbox.id}"
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.gateway.id}"
-  }
+}
+
+/**
+ * Routes all traffic from the public-a subnet through the internet gateway.
+ */
+resource "aws_route" "public-a-to-internet-gateway" {
+  route_table_id = "${aws_route_table.public-a.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = "${aws_internet_gateway.gateway.id}"
+  depends_on = ["aws_route_table.public-a"]
 }
 
 /**

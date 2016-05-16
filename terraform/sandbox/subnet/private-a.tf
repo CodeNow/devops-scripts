@@ -23,10 +23,16 @@ resource "aws_route_table" "private-a" {
   }
 
   vpc_id = "${aws_vpc.sandbox.id}"
-  route {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = "${aws_nat_gateway.nat.id}"
-  }
+}
+
+/**
+ * Routes all outbound traffic from the private-a subnet to the NAT.
+ */
+resource "aws_route" "private-a-to-nat" {
+  route_table_id = "${aws_route_table.private-a.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id = "${aws_nat_gateway.nat.id}"
+  depends_on = ["aws_route_table.private-a"]
 }
 
 /**

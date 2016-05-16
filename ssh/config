@@ -285,5 +285,5 @@ Host 127.0.0.1
 # Zeta Environment (Terraform Infrastructure Migration)
 ################################################################################
 Host zeta-bastion
-  HostName 52.26.78.234
+  HostName 52.24.4.209
   Port 22
