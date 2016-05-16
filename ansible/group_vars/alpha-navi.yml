@@ -3,13 +3,16 @@ name: navi
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
-hosted_ports: [ "{{ navi_port }}" ]
+hosted_ports: [ "{{ navi_http_port }}", "{{ navi_https_port }}" ]
 node_version: "4.2.4"
 npm_version: "2.8.3"
 
 redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
+content_domain_certs: /opt/ssl/{{ user_content_domain }}
+
 container_envs: >
   -e API_URL={{ api_url }}
+  -e CERT_PATH={{ content_domain_certs }}
   -e COOKIE_DOMAIN=.{{ user_content_domain }}
   -e COOKIE_SECRET={{ navi_cookie_secret }}
   -e DATADOG_HOST={{ datadog_host_address }}
@@ -18,12 +21,9 @@ container_envs: >
   -e ENABLE_LRU_CACHE=1
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HTTP_PORT={{ hosted_ports[0] }}
+  -e HTTPS_PORT={{ hosted_ports[1] }}
   -e LOG_LEVEL_STDOUT=trace
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
   -e NODE_ENV={{ node_env }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
@@ -32,12 +32,18 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_tls_port }}
-  {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
   {% if navi_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ navi_intercom_api_key }} {% endif %}
+  {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
+  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}
+  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
+  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
+  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
+  -p {{ hosted_ports[1] }}:{{ hosted_ports[1] }}
   -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
+  -v {{ content_domain_certs }}:{{ content_domain_certs }}
   {{ container_envs }}

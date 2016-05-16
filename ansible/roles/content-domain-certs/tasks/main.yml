@@ -1,0 +1,21 @@
+---
+- name: make sure cert directory is in place
+  tags: [ certs ]
+  become: true
+  file:
+    dest: /opt/ssl/{{ user_content_domain }}
+    state: directory
+
+- name: put certs in place
+  tags: [ certs ]
+  become: true
+  copy:
+    src: "{{ user_content_domain }}/{{ item }}"
+    dest: /opt/ssl/{{ user_content_domain }}/{{ item }}
+    mode: 0400
+    owner: root
+    group: root
+  with_items:
+  - ca.pem
+  - key.pem
+  - cert.pem
