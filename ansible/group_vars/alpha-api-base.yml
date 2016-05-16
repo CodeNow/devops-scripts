@@ -32,7 +32,7 @@ api_base_container_envs: >-
   -e MONGO_KEY=/opt/ssl/mongodb-client/key.pem
   -e MONGO_REPLSET_NAME={{ api_mongo_replset_name }}
   -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
-  -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_port }}
+  -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_http_port }}
   -e NEO4J={{ api_neo4j_protocol }}{{ api_neo4j_auth }}@{{ neo4j_host_address }}:{{ api_neo4j_port }}
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }} {% endif %}
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
