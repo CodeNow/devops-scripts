@@ -75,14 +75,3 @@ variable "bastion" {
     ssh_port = -1
   }
 }
-
-/**
- * Options for the NAT.
- */
-variable "nat" {
-  type = "map"
-  default = {
-    ami = "ami-290f4119" # amzn-ami-vpc-nat-hvm-2014.09.1.x86_64-gp2
-    instance_type = "t2.micro"
-  }
-}
