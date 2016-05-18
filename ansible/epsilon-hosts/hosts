@@ -3,7 +3,9 @@ epsilon-bastion
 
 [hipache]
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-epsilon-userland domain=runnablecloud.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+
+[userland]
+epsilon-userland
 
 [mongodb]
 epsilon-mongo
@@ -132,6 +134,7 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
+userland
 web
 worker
 
