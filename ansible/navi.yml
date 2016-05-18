@@ -4,6 +4,7 @@
 - hosts: mongo-navi
 - hosts: rabbitmq
 - hosts: consul
+- hosts: userland
 
 - hosts: navi
   vars_files:

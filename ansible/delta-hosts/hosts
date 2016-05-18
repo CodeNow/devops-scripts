@@ -3,7 +3,9 @@ delta-bastion
 
 [hipache]
 delta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-delta-userland domain=runnableapp.com httpsCheckForBackend80=true prependIncomingPort=true subDomainDepth=3
+
+[userland]
+delta-userland
 
 [mongodb]
 delta-mongo-a
@@ -138,6 +140,7 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
+userland
 web
 worker
 
