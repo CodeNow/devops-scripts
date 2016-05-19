@@ -5,8 +5,8 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "5501", "5502" ]
-node_version: lts
-npm_version: 3
+node_version: 4.4.4
+npm_version: 3.8
 has_shrinkwrap: true
 
 dockerfile_post_install_commands:
@@ -21,6 +21,8 @@ container_envs: >-
   -e DOMAIN={{ eru_subdomain }}.{{ domain }}
   -e GITHUB_CLIENT_ID={{ eru_github_id }}
   -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
+  -e INTERCOM_APP_ID={{ eru_intercom_id }}
+  -e INTERCOM_API_KEY={{ eru_intercom_key }}
   -e MONGODB_DATABASE={{ eru_mongodb_database }}
   -e MONGODB_PASSWORD={{ eru_mongodb_password }}
   -e MONGODB_HOSTS={{ mongo_hosts }}
