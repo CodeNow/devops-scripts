@@ -12,6 +12,10 @@
         "builders": [
         {
             "type": "amazon-ebs",
+            "communicator": "ssh",
+            "ssh_bastion_host": "52.35.234.45",
+            "ssh_bastion_port": "60519",
+            "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-west-2",
