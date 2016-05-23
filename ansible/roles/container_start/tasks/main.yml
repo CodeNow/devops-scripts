@@ -29,6 +29,7 @@
     number_of_containers: 1
 
 - debug:
+  tags: deploy
     msg: starting this many containers -- {{ number_of_containers }}
 
 - name: start new container
