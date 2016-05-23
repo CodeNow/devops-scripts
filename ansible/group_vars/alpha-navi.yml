@@ -32,6 +32,7 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_tls_port }}
+  -e USERLAND_IP={{ userland_host_address }}
   {% if navi_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ navi_intercom_api_key }} {% endif %}
   {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
   {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}

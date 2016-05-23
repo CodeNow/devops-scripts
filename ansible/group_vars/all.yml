@@ -174,3 +174,6 @@ navi_mongo_port: 27017
 # local-vault
 vault_local_port: 31836
 vault_addr: http://127.0.0.1:{{ vault_local_port }}
+
+# userland
+userland_host_address: "{{ hostvars[groups['userland'][0]]['ansible_default_ipv4']['address'] }}"

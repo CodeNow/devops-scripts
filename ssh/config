@@ -16,6 +16,12 @@ Host epsilon*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/epsilon.pem
 
+Host zeta*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  Identityfile ~/.ssh/zeta.pem
+
 ################################################################################
 # utility
 ################################################################################
@@ -274,3 +280,10 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
+
+################################################################################
+# Zeta Environment (Terraform Infrastructure Migration)
+################################################################################
+Host zeta-bastion
+  HostName 52.24.4.209
+  Port 22
