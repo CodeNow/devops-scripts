@@ -7,7 +7,7 @@
         {
             "type": "ansible",
             "playbook_file": "base.yml",
-            "extra_arguments": "-e host=\"{{user `ssh_host`}}\""
+            "extra_arguments": "-e host=\"{{ `ssh_host` }}\"" 
         }
     ],
         "builders": [
