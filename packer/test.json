@@ -6,7 +6,8 @@
         "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "base.yml"
+            "playbook_file": "base.yml",
+            "extra_arguments": "-e host=\"{{user `ssh_host`}}\""
         }
     ],
         "builders": [
@@ -15,6 +16,7 @@
             "communicator": "ssh",
             "ssh_bastion_host": "52.35.234.45",
             "ssh_bastion_port": "60519",
+            "ssh_bastion_username": "ubuntu",
             "ssh_port": "22",
             "ssh_disable_agent": "false",
             "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
@@ -23,7 +25,7 @@
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-west-2",
-            "source_ami": "ami-cdb04cad",
+            "source_ami": "ami-ffea149f",
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ami_name": "packer-test {{timestamp}}",

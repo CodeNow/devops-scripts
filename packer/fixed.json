@@ -8,10 +8,11 @@
       "region": "us-west-2",
       "secret_key": "{{user `aws_secret_key`}}",
       "security_group_id": "sg-3322e454",
-      "source_ami": "ami-cdb04cad",
+      "source_ami": "ami-ffea149f",
       "ssh_bastion_host": "52.35.234.45",
       "ssh_bastion_port": "60519",
       "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
+      "ssh_bastion_username": "ubuntu",
       "ssh_disable_agent": "false",
       "ssh_keypair_name": "epsilon",
       "ssh_port": "22",
@@ -24,6 +25,7 @@
   "post-processors": null,
   "provisioners": [
     {
+      "extra_arguments": "-e host=\"{{user `ssh_host`}}\"",
       "playbook_file": "base.yml",
       "type": "ansible"
     }
