@@ -1,0 +1,36 @@
+{
+  "builders": [
+    {
+      "access_key": "{{user `aws_access_key`}}",
+      "ami_name": "packer-test {{timestamp}}",
+      "communicator": "ssh",
+      "instance_type": "t2.micro",
+      "region": "us-west-2",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "security_group_id": "sg-3322e454",
+      "source_ami": "ami-cdb04cad",
+      "ssh_bastion_host": "52.35.234.45",
+      "ssh_bastion_port": "60519",
+      "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
+      "ssh_disable_agent": "false",
+      "ssh_keypair_name": "epsilon",
+      "ssh_port": "22",
+      "ssh_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
+      "ssh_username": "ubuntu",
+      "subnet_id": "subnet-9d4214c4",
+      "type": "amazon-ebs"
+    }
+  ],
+  "post-processors": null,
+  "provisioners": [
+    {
+      "playbook_file": "base.yml",
+      "type": "ansible"
+    }
+  ],
+  "variables": {
+    "aws_access_key": "AKIAIB3IJCCJZQWQMVSQ",
+    "aws_secret_key": "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"
+  }
+}
+
