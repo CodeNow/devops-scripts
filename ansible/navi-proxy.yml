@@ -1,0 +1,8 @@
+---
+- hosts: userland
+  vars_files:
+    - group_vars/alpha-navi-proxy.yml
+  roles:
+    - role: datadog
+      has_dd_integration: yes
+    - role: container_restart
