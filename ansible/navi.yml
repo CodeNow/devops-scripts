@@ -16,4 +16,9 @@
   - { role: builder, tags: [ build ] }
   - { role: content-domain-certs }
   - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - { role: container_kill_start }
+  - { role: container_start, number_of_containers: 2 }
+  - role: nginx-proxied-service
+    nginx_host: "{{ groups['userland'][0] }}"
+    target_ip_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
+    templates: [ 01-navi.conf ]
+    nginx_config: proxy
