@@ -17,8 +17,6 @@
   - role: builder
     tags: [ build ]
 
-  - role: content-domain-certs
-
   - role: tls-server-ca
     ca_dest: "{{ redis_ca_cert_path }}"
 
