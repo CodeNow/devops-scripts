@@ -5,5 +5,7 @@
   roles:
     - role: datadog
       has_dd_integration: yes
+
     - role: content-domain-certs
-    - role: container_restart
+
+    - role: container_kill_start

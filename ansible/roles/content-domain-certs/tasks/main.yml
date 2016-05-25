@@ -3,7 +3,7 @@
   tags: [ certs ]
   become: true
   file:
-    dest: /opt/ssl/{{ user_content_domain }}
+    dest: /etc/ssl/certs/{{ user_content_domain }}
     state: directory
 
 - name: put certs in place
@@ -11,7 +11,7 @@
   become: true
   copy:
     src: "{{ user_content_domain }}/{{ item }}"
-    dest: /opt/ssl/{{ user_content_domain }}/{{ item }}
+    dest: /etc/ssl/certs/{{ user_content_domain }}/{{ item }}
     mode: 0400
     owner: root
     group: root
@@ -19,3 +19,13 @@
   - ca.pem
   - key.pem
   - cert.pem
+
+- name: create chained cert
+  tags: [ certs ]
+  become: true
+  shell: >
+    cat
+    /etc/ssl/certs/{{ user_content_domain }}/cert.pem
+    /etc/ssl/certs/{{ user_content_domain }}/ca.pem
+    >
+    /etc/ssl/certs/{{ user_content_domain }}/chained.pem
