@@ -1,5 +1,4 @@
 ---
-# these are pretty hacky, but it should work
 # Get port information from the hosted service
 - name: get socket server ports
   tags: [ configure_proxy, deploy ]
@@ -16,7 +15,12 @@
     executable: /bin/bash
   register: proxy_target_ports
 
-# everything from this point on is deligated to the nginx host
+# everything from this point on is delegated to the nginx host
+- name: put dhparam in place
+  delegate_to: "{{ nginx_host }}"
+  tags: [ configure_proxy ]
+  become: yes
+  command: openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
 - name: print target ports
   delegate_to: "{{ nginx_host }}"
