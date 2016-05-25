@@ -25,9 +25,8 @@
   "post-processors": null,
   "provisioners": [
     {
-      "extra_arguments": "-e host=\"{{ `ssh_host` }}\"",
-      "playbook_file": "base.yml",
-      "type": "ansible"
+      "script": "bin/configure.sh",
+      "type": "shell"
     }
   ],
   "variables": {

@@ -2,10 +2,9 @@
 
 #### Notes
 
-We will start using GDI interrupt mode always
+We will start using packer with a simple configuration script to install various packages and configure node.
 
-
-Files:
+### Files
 
 *.json - packer templates
 bin/ - installer executable scripts and wrappers
@@ -16,3 +15,5 @@ tmp/ - files ignored by git created on the fly by wrappers / `packer fix`
 Jinja2 -> Packer template -> auto-fix -> deploy:
 
 Use a templating language to sub {{ variables }} into the Packer JSON templates, then use packer validate / fix to automatically format the Packer JSON correctly (eg, packer wrapper) and build.
+
+** note: ** can use `environment_vars` directive to interpolate values into the script(s).

@@ -5,9 +5,8 @@
     },
         "provisioners": [
         {
-            "type": "ansible",
-            "playbook_file": "base.yml",
-            "extra_arguments": "-e host=\"{{ `ssh_host` }}\"" 
+            "type": "shell",
+            "script": "bin/configure.sh"
         }
     ],
         "builders": [
