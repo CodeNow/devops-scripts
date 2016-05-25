@@ -7,6 +7,6 @@ if $syslogtag contains '{{ name }}' and $syslogfacility-text == 'local7' then { 
 
 # Loggly: Add a tag for {{ name }} events
 $ActionQueueType LinkedList
-$template LogglyFormat_{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %syslogtagid% [{{ loggly_token }}@41058 tag=\"runnable\" tag=\"{{ node_env }}\"] %syslogtag%\n"
+$template LogglyFormat_{{ name }},"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %syslogtag% [{{ loggly_token }}@41058 tag=\"runnable\" tag=\"{{ node_env }}\"] %msg%\n"
 if $syslogtag contains '{{ name }}' and $syslogfacility-text == 'local7' then @@logs-01.loggly.com:6514;LogglyFormat_{{ name }}
 if $syslogtag contains '{{ name }}' and $syslogfacility-text == 'local7' then stop
