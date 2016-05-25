@@ -18,4 +18,3 @@ docker_container_run_opts: >
   -v /etc/ssl/certs/{{ user_content_domain }}:/etc/ssl/certs/{{ user_content_domain }}:ro
   -v /etc/ssl/private:/etc/ssl/private:ro
   -v /var/log/nginx:/var/log/nginx
-  
