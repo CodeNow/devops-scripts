@@ -127,7 +127,6 @@ mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_defa
 # navi
 navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_http_port: 3567
-navi_https_port: 443
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
 
 # neo4j
