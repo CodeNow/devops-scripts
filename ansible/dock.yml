@@ -9,7 +9,7 @@
       name={{ dock }}
       groups=dock
 
-- include: charon.yml git_branch="{{ charon_version }}" -t loggly,deploy
-- include: dock-init.yml git_branch="{{ dock_init_version }}" -t loggly,deploy
-- include: image-builder.yml git_branch="{{ image_builder_version }}" -t loggly,deploy
-- include: krain.yml git_branch="{{ krain_version }}" -t loggly,deploy
+- include: charon.yml git_branch="{{ charon_version }}" 
+- include: dock-init.yml git_branch="{{ dock_init_version }}" 
+- include: image-builder.yml git_branch="{{ image_builder_version }}" 
+- include: krain.yml git_branch="{{ krain_version }}" 
