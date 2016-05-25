@@ -13,7 +13,7 @@
   - role: notify
     rollbar_token: "{{ navi_rollbar_token }}"
     tags: [ notify ]
-  - { role: builder, tags: [ build ] }
+  # - { role: builder, tags: [ build ] }
   - { role: content-domain-certs }
   - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
   - { role: container_start, number_of_containers: 2 }

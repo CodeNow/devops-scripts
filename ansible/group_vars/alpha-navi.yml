@@ -17,7 +17,6 @@ container_envs: >
   -e COOKIE_SECRET={{ navi_cookie_secret }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e ENABLE_CLUSTERING=1
   -e ENABLE_LRU_CACHE=1
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HTTP_PORT={{ hosted_ports[0] }}
@@ -43,5 +42,4 @@ container_run_opts: >
   -d
   -P
   -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  -v {{ content_domain_certs }}:{{ content_domain_certs }}
   {{ container_envs }}
