@@ -28,8 +28,9 @@
   set_fact:
     number_of_containers: 1
 
-- debug:
+- name: print number of contaienrs
   tags: deploy
+  debug:
     msg: starting this many containers -- {{ number_of_containers }}
 
 - name: start new container
