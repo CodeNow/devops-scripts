@@ -5,7 +5,7 @@
   become: true
   when: hosted_ports is defined
   shell: |
-    for c in $(docker ps | awk '/{{ name }}/{ print $1 }'); do
+    for c in {{ new_container_ids.stdout_lines|join(' ') }}; do
       {% for hosted_port in hosted_ports %}
         docker port $c {{ hosted_port }} | cut -d ':' -f 2
       {% endfor %}
