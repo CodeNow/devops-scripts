@@ -9,6 +9,7 @@
 - name: put certs in place
   tags: [ certs ]
   become: true
+  register: add_certs
   copy:
     src: "{{ user_content_domain }}/{{ item }}"
     dest: /etc/ssl/certs/{{ user_content_domain }}/{{ item }}
@@ -23,6 +24,7 @@
 - name: create chained cert
   tags: [ certs ]
   become: true
+  when: add_certs.changed
   shell: >
     cat
     /etc/ssl/certs/{{ user_content_domain }}/cert.pem

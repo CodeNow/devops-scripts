@@ -26,5 +26,5 @@
   - role: nginx-proxied-service
     nginx_host: "{{ groups['userland'][0] }}"
     target_ip_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 01-navi.conf ]
+    templates: [ 69-navi.conf ]
     nginx_config: proxy

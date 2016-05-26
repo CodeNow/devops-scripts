@@ -3,13 +3,12 @@
 - name: get socket server ports
   tags: [ configure_proxy, deploy ]
   become: true
+  when: hosted_ports is defined
   shell: |
     for c in $(docker ps | awk '/{{ name }}/{ print $1 }'); do
-      {% if hosted_ports is defined %}
-        {% for hosted_port in hosted_ports %}
+      {% for hosted_port in hosted_ports %}
         docker port $c {{ hosted_port }} | cut -d ':' -f 2
-        {% endfor %}
-      {% endif %}
+      {% endfor %}
     done
   args:
     executable: /bin/bash
