@@ -6,6 +6,6 @@
     - role: datadog
       has_dd_integration: yes
 
-    - role: content-domain-certs
+    - role: content-domain-proxy
 
     - role: container_kill_start

@@ -15,57 +15,13 @@
   register: proxy_target_ports
 
 # everything from this point on is delegated to the nginx host
-- name: put dhparam in place
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy ]
-  become: yes
-  command: openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
-
-- name: print target ports
+- name: print target info
   delegate_to: "{{ nginx_host }}"
   tags: [ configure_proxy, deploy ]
   debug:
     msg: |
       proxy target ports -- {{ proxy_target_ports }}
-
-- name: print target IP address
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  debug:
-    msg: ip -- {{ target_ip_address }}
-
-- name: assert nginx config directory
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx
-
-- name: assert nginx sites-available directory
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/sites-available
-
-- name: assert nginx sites-enable directory
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/sites-enable
-
-- name: put nginx configuration in place
-  when: nginx_config is defined and nginx_config == "proxy"
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  become: yes
-  template:
-    src: "{{ nginx_config }}-nginx.conf"
-    dest: /etc/nginx/nginx.conf
+      ip -- {{ target_ip_address }}
 
 - name: put configuration in place
   delegate_to: "{{ nginx_host }}"
@@ -73,17 +29,7 @@
   become: yes
   template:
     src: "{{ item }}"
-    dest: /etc/nginx/sites-available/{{ item }}
-  with_items: "{{ templates }}"
-
-- name: link configuration to enable
-  delegate_to: "{{ nginx_host }}"
-  tags: [ configure_proxy, deploy ]
-  become: yes
-  file:
-    state: link
     dest: /etc/nginx/sites-enabled/{{ item }}
-    src: /etc/nginx/sites-available/{{ item }}
   with_items: "{{ templates }}"
 
 - name: reload nginx
