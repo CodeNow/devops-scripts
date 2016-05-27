@@ -4,7 +4,6 @@
 - hosts: mongo-navi
 - hosts: rabbitmq
 - hosts: consul
-- hosts: userland
 
 - hosts: navi
   vars_files:
@@ -13,7 +12,18 @@
   - role: notify
     rollbar_token: "{{ navi_rollbar_token }}"
     tags: [ notify ]
-  - { role: builder, tags: [ build ] }
-  - { role: content-domain-certs }
-  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - { role: container_kill_start }
+
+  - role: builder
+    tags: [ build ]
+
+  - role: tls-server-ca
+    ca_dest: "{{ redis_ca_cert_path }}"
+
+  - role: container_start
+    number_of_containers: "{{ ansible_processor_cores }}"
+
+  - role: nginx-proxied-service
+    nginx_host: "{{ groups['userland'][0] }}"
+    target_ip_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
+    templates: [ 69-navi.conf ]
+    nginx_config: proxy

@@ -1,0 +1,60 @@
+---
+- name: make sure cert directory is in place
+  tags: [ configure_proxy, certs ]
+  become: true
+  file:
+    dest: /etc/ssl/certs/{{ user_content_domain }}
+    state: directory
+
+- name: put certs in place
+  tags: [ configure_proxy, certs ]
+  become: true
+  register: add_certs
+  copy:
+    src: "{{ user_content_domain }}/{{ item }}"
+    dest: /etc/ssl/certs/{{ user_content_domain }}/{{ item }}
+    mode: 0400
+    owner: root
+    group: root
+  with_items:
+  - ca.pem
+  - key.pem
+  - cert.pem
+
+- name: create chained cert
+  tags: [ configure_proxy, certs ]
+  become: true
+  when: add_certs.changed
+  shell: >
+    cat
+    /etc/ssl/certs/{{ user_content_domain }}/cert.pem
+    /etc/ssl/certs/{{ user_content_domain }}/ca.pem
+    >
+    /etc/ssl/certs/{{ user_content_domain }}/chained.pem
+
+- name: create dhparam.pem
+  tags: [ configure_proxy, certs ]
+  become: yes
+  command: openssl dhparam -out /etc/ssl/certs/{{ user_content_domain }}/dhparam.pem 2048
+
+- name: make sure nginx directory is in place
+  tags: [ configure_proxy ]
+  become: true
+  file:
+    dest: /etc/nginx
+    state: directory
+
+
+- name: assert nginx sites-enabled directory
+  tags: [ configure_proxy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-enabled
+
+- name: put nginx configuration in place
+  tags: [ configure_proxy ]
+  become: yes
+  template:
+    src: proxy-nginx.conf
+    dest: /etc/nginx/nginx.conf
