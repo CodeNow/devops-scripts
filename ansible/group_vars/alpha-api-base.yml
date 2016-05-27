@@ -23,6 +23,8 @@ api_base_container_envs: >-
   -e GITHUB_DEPLOY_KEYS_BUCKET={{ api_github_deploy_keys_bucket }}
   -e GITHUB_HOOK_URL={{ api_url }}/actions/github
   -e GITHUB_WEBHOOK_URL=https://{{ drake_hostname }}/github
+  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
+  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
   -e KRAIN_PORT={{ krain_port }}
   -e MAVIS_HOST=http://{{ mavis_hostname }}:80
