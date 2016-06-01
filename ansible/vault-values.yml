@@ -8,17 +8,17 @@
       become: true
       apt: package=python-httplib2 state=present
 
-    # - name: put values into vault
-    #   run_once: true
-    #   when: write_values is defined
-    #   uri:
-    #     method=PUT
-    #     url=http://{{ ansible_default_ipv4.address }}:8200/v1/{{ item.key }}
-    #     HEADER_X-Vault-Token="{{ vault_auth_token }}"
-    #     body_format=json
-    #     body='{{ item.data | to_json }}'
-    #     status_code=200,204
-    #   with_items: "{{ vault_seed_values }}"
+    - name: put values into vault
+      run_once: true
+      when: write_values is defined
+      uri:
+        method=PUT
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/{{ item.key }}
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item.data | to_json }}'
+        status_code=200,204
+      with_items: "{{ vault_seed_values }}"
 
     - name: check for aws backend in vault
       run_once: true
