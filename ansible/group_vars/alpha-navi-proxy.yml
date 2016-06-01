@@ -1,0 +1,15 @@
+---
+name: nginx
+
+container_image: "{{ name }}"
+container_tag: "1.10"
+
+container_run_opts: >
+  -d
+  -h {{ name }}
+  -p 0.0.0.0:443:443
+  -p 0.0.0.0:80:80
+  -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  -v /etc/nginx/sites-enabled/:/etc/nginx/sites-enabled/:ro
+  -v /etc/ssl/certs/{{ user_content_domain }}:/etc/ssl/certs/{{ user_content_domain }}:ro
+  -v /var/log/nginx:/var/log/nginx
