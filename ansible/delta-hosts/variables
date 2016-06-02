@@ -50,6 +50,7 @@ khronos_canary_logs_instance_id=56f07f5c1e089a200077f2a3
 khronos_canary_rebuild_instance_id=571b39b9d35173300021667d
 khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnableapp.com:8000/
 khronos_canary_token=24592325a6f881e77a01e3bacf0952c49f4e9f1c
+khronos_canary_failover_token=84549e76545306de61d47f23b1d1831e1c95a400
 khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
