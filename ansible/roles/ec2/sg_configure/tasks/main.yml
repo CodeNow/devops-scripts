@@ -222,12 +222,8 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: "{{ navi_http_port }}"
-        to_port: "{{ navi_http_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ navi_https_port }}"
-        to_port: "{{ navi_https_port }}"
+        from_port: "{{ container_min_port }}"
+        to_port: "{{ container_max_port }}"
         group_id: "{{ sg_hipache }}"
 
 - name: Neo4J SG

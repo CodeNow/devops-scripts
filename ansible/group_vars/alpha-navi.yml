@@ -3,7 +3,7 @@ name: navi
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
-hosted_ports: [ "{{ navi_http_port }}", "{{ navi_https_port }}" ]
+hosted_ports: [ "{{ navi_http_port }}" ]
 node_version: "4.2.4"
 npm_version: "2.8.3"
 
@@ -17,11 +17,9 @@ container_envs: >
   -e COOKIE_SECRET={{ navi_cookie_secret }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e ENABLE_CLUSTERING=1
   -e ENABLE_LRU_CACHE=1
   -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
   -e HTTP_PORT={{ hosted_ports[0] }}
-  -e HTTPS_PORT={{ hosted_ports[1] }}
   -e LOG_LEVEL_STDOUT=trace
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
@@ -32,7 +30,6 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_tls_port }}
-  -e USERLAND_IP={{ userland_host_address }}
   {% if navi_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ navi_intercom_api_key }} {% endif %}
   {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
   {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}
@@ -43,8 +40,6 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
-  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
-  -p {{ hosted_ports[1] }}:{{ hosted_ports[1] }}
+  -P
   -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  -v {{ content_domain_certs }}:{{ content_domain_certs }}
   {{ container_envs }}
