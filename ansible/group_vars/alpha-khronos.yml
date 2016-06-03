@@ -36,7 +36,7 @@ container_envs: >
   -e API_URL={{ api_url }}
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
-  {% if api_new_relic_app_name is defined %}
+  {% if khronos_canary_failover_token is defined %}
     -e CANARY_API_FAILOVER_TOKEN={{ khronos_canary_failover_token }}
   {% endif %}
   -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
@@ -58,6 +58,7 @@ container_envs: >
     -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
   {% endif %}
   -e NODE_ENV={{ node_env }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
