@@ -23,7 +23,7 @@ canary_cron_queues: "\
   khronos:metrics:container-status"
 
 hourly_canary_cron_queues: "\
-  khronos:canary:failover \"
+  khronos:canary:failover"
 
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
