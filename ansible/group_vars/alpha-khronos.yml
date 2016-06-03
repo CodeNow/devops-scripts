@@ -58,12 +58,12 @@ container_envs: >
     -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
   {% endif %}
   -e NODE_ENV={{ node_env }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WORKER_MAX_RETRY_DELAY=3600000
 
 container_run_opts: >
