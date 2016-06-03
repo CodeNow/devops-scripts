@@ -36,7 +36,9 @@ container_envs: >
   -e API_URL={{ api_url }}
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
-  -e CANARY_API_FAILOVER_TOKEN={{ khronos_canary_failover_token | default('undefined') }}
+  {% if api_new_relic_app_name is defined %}
+    -e CANARY_API_FAILOVER_TOKEN={{ khronos_canary_failover_token }}
+  {% endif %}
   -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
   -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
   -e CANARY_LOG_TERMINAL_SLEEP=10
