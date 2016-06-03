@@ -22,6 +22,9 @@ canary_cron_queues: "\
   khronos:canary:network \
   khronos:metrics:container-status"
 
+hourly_canary_cron_queues: "\
+  khronos:canary:failover \"
+
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
@@ -33,6 +36,9 @@ container_envs: >
   -e API_URL={{ api_url }}
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
+  {% if khronos_canary_failover_token is defined %}
+    -e CANARY_API_FAILOVER_TOKEN={{ khronos_canary_failover_token }}
+  {% endif %}
   -e CANARY_GITHUB_BRANCHES_INSTANCE_ID={{ khronos_canary_github_branches_instance_id | default('undefined') }}
   -e CANARY_LOG_INSTANCE_ID={{ khronos_canary_logs_instance_id | default('undefined') }}
   -e CANARY_LOG_TERMINAL_SLEEP=10
@@ -57,6 +63,7 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WORKER_MAX_RETRY_DELAY=3600000
 
 container_run_opts: >
