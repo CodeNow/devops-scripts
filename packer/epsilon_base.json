@@ -24,12 +24,29 @@
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-west-2",
-            "source_ami": "ami-ffea149f",
+            "source_ami": "ami-9abea4fb",
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ami_name": "packer-test {{timestamp}}",
             "security_group_id": "sg-3322e454",
-            "subnet_id": "subnet-9d4214c4"
+            "subnet_id": "subnet-9d4214c4",
+            "launch_block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "volume_size": 32,  
+                "volume_type": "gp2",
+                "encrypted": false,
+                "delete_on_termination": true
+              },
+              {
+                "device_name": "/dev/sdb",
+                "volume_size": 200,
+                "volume_type": "gp2",
+                "encrypted": false,
+                "delete_on_termination": true,
+                "virtual_name": "docker"
+              }
+            ]
         }
     ]
 }

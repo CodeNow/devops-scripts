@@ -5,10 +5,27 @@
       "ami_name": "packer-test {{timestamp}}",
       "communicator": "ssh",
       "instance_type": "t2.micro",
+      "launch_block_device_mappings": [
+        {
+          "delete_on_termination": true,
+          "device_name": "/dev/sda1",
+          "encrypted": false,
+          "volume_size": 32,
+          "volume_type": "gp2"
+        },
+        {
+          "delete_on_termination": true,
+          "device_name": "/dev/sdb",
+          "encrypted": false,
+          "virtual_name": "docker",
+          "volume_size": 200,
+          "volume_type": "gp2"
+        }
+      ],
       "region": "us-west-2",
       "secret_key": "{{user `aws_secret_key`}}",
       "security_group_id": "sg-3322e454",
-      "source_ami": "ami-ffea149f",
+      "source_ami": "ami-9abea4fb",
       "ssh_bastion_host": "52.35.234.45",
       "ssh_bastion_port": "60519",
       "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
