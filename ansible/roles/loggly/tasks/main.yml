@@ -58,8 +58,8 @@
 - name: copy docker upstart logs config
   tags: loggly
   become: true
-  copy:
-    src=21-rotated-docker.conf
+  template:
+    src=21-rotated-docker.conf.j2
     dest=/etc/rsyslog.d/21-rotated-docker.conf
     owner=syslog
     group=syslog

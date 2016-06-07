@@ -2,7 +2,7 @@ name: "swarm-manager"
 
 # container_kill_start settings
 container_image: swarm
-container_tag: 1.2.0
+container_tag: 1.2.0-0
 
 container_run_opts: >
   -d
