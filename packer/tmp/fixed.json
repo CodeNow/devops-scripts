@@ -9,15 +9,12 @@
         {
           "delete_on_termination": true,
           "device_name": "/dev/sda1",
-          "encrypted": false,
           "volume_size": 32,
           "volume_type": "gp2"
         },
         {
           "delete_on_termination": true,
           "device_name": "/dev/sdb",
-          "encrypted": false,
-          "virtual_name": "docker",
           "volume_size": 200,
           "volume_type": "gp2"
         }
