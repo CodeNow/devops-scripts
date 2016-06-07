@@ -30,7 +30,7 @@
         return_content=yes
       register: mounts
 
-    - name: mount aws backend in vault
+    - name: mount 1h aws backend in vault
       run_once: true
       when: write_values is defined and mounts.json['aws_1h/'] is not defined
       uri:
@@ -47,13 +47,47 @@
             default_lease_ttl: "3600s" # 1 hour, in seconds
             max_lease_ttl: "3600s" # 1 hour, in seconds
 
-    - name: configure aws root credentials
+    - name: mount 1yr aws backend in vault
       run_once: true
-      when: (write_values is defined and write_root_creds is defined) or (write_values is defined and mounts.json['aws/'] is not defined)
+      when: write_values is defined and mounts.json['aws_1yr/'] is not defined
+      uri:
+        method=POST
+        follow_redirects=all
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/mounts/aws_1yr
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+        status_code=204
+      with_items:
+        - type: "aws"
+          config:
+            default_lease_ttl: "3600s" # 1 hour, in seconds
+            max_lease_ttl: "3600s" # 1 hour, in seconds
+
+    - name: configure 1h aws root credentials
+      run_once: true
+      when: (write_values is defined and write_root_creds is defined) or (write_values is defined and mounts.json['aws_1h/'] is not defined)
       uri:
         method=POST
         follow_redirects=all
         url=http://{{ ansible_default_ipv4.address }}:8200/v1/aws_1h/config/root
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+        status_code=204
+      register: creds
+      with_items:
+        - access_key: "{{ vault_aws_access_key_id }}"
+          secret_key: "{{ vault_aws_secret_key }}"
+          region: "{{ vault_aws_region }}"
+
+    - name: configure 1yr aws root credentials
+      run_once: true
+      when: (write_values is defined and write_root_creds is defined) or (write_values is defined and mounts.json['aws_1yr/'] is not defined)
+      uri:
+        method=POST
+        follow_redirects=all
+        url=http://{{ ansible_default_ipv4.address }}:8200/v1/aws_1yr/config/root
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json }}'
