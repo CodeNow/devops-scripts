@@ -16,7 +16,6 @@ Base Images:
     a) root file system - 32GB, stock
     b) /docker file system, /dev/xvdb, 200GB, high inode-density, ext4fs
 
-
 mkfs.ext4 -i 8192 /dev/xvdb 
 mkdir /docker
 printf "/dev/xvdb\t/docker\text4\tdefaults,nofail\t0\t2\n" | tee -a /etc/fstab
@@ -24,7 +23,7 @@ mount /docker
 
 4) Networking:
     a) eth0
-    b) build - any docks subnet
+   o "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | b) build - any docks subnet
     c) security group - dock sg
 
 5) Docker:
@@ -34,3 +33,21 @@ apt-get install apt-transport-https ca-certificates
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | tee -a /etc/apt/sources.list.d/docker.list
 
+6) base pakages:
+
+apt-get install build-essential make openjdk-7-jdk jq unzip
+
+7) git:
+
+apt-get install git
+
+8) node, npm:
+
+apt-get install nodejs 0.10.40
+apt-get install npm 2.15.3
+
+9) AWS tools:
+
+curl -O http://s3.amazonaws.com/ec2metadata/ec2-metadata 
+unzip ec2-appi-tools.zip
+install -c -m 755 ec2-api-tools*/* /usr/local/ec2
