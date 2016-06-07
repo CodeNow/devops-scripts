@@ -61,8 +61,8 @@
       with_items:
         - type: "aws"
           config:
-            default_lease_ttl: "3600s" # 1 hour, in seconds
-            max_lease_ttl: "3600s" # 1 hour, in seconds
+            default_lease_ttl: "31536000s" # 1 year, in seconds
+            max_lease_ttl: "31536000s" # 1 year, in seconds
 
     - name: configure 1h aws root credentials
       run_once: true
