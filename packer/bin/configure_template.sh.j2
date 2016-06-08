@@ -12,7 +12,7 @@ printf "/dev/xvdb\t/docker\text4\tdefaults,nofail\t0\t2\n" | sudo tee -a /etc/fs
 sudo mount /docker
 
 # Base packages
-export PKGS="build-essential make unzip openjdk-7-jdk jq nmap htop colordiff git nodejs=0.10.40"
+export PKGS="build-essential make unzip openjdk-7-jdk jq nmap htop colordiff git"
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove
