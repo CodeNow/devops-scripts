@@ -11,19 +11,24 @@ sudo mkdir -p /docker
 printf "/dev/xvdb\t/docker\text4\tdefaults,nofail\t0\t2\n" | sudo tee -a /etc/fstab
 sudo mount /docker
 
-# Base packages
-export PKGS="build-essential make unzip openjdk-7-jdk jq nmap htop colordiff git nodejs=0.10.40"
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} upgrade
-sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove
-sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install ${PKGS} || echo "Apt installation failure."
-
-# Docker
+# Docker Init
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install apt-transport-https ca-certificates
 sudo DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list.d/docker.list
+printf "Package: docker-engine\nPin: version 1.10.2*\mPin-Priority: 1001\n" | sudo tee -a /etc/apt/preferences.d/docker-engine 
+
+# NodeJS Init
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+
+# Docker Install
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install docker-engine=1.10.2-0~trusty
+
+# NodeJS, build-essential, utilities
+export PKGS="build-essential make unzip openjdk-7-jdk jq nmap htop colordiff git nodejs"
+sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove
+sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install ${PKGS} || echo "Apt installation failure."
 
 # consul
 curl --silent -q -O https://releases.hashicorp.com/consul-template/0.11.1/consul-template_0.11.1_linux_amd64.zip
