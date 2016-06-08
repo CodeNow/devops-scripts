@@ -19,3 +19,5 @@ listener "tcp" {
   tls_cert_file = "/opt/vault/server/cert.pem"
   tls_key_file = "/opt/vault/server/key.pem"
 }
+
+max_lease_ttl = "8760h"
