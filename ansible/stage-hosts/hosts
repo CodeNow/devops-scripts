@@ -17,7 +17,7 @@ delta-staging-data
 [stage:children]
 dock
 docks
-#rabbitmq
+rabbitmq
 redis
 vault
 consul
