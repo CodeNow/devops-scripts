@@ -9,7 +9,6 @@ container_run_opts: >
   --name {{ name }}
   -v /var/run/docker.sock:/tmp/docker.sock
   -v {{ template_path }}:/tmp/template
-  -e CONSUL_TEMPLATE_LOG=debug
   --volumes-from {{ target_container_name }}
 
 container_run_args: >
