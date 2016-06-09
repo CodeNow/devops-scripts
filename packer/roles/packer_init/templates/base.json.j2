@@ -1,8 +1,4 @@
 {
-    "variables": {
-        "aws_access_key": "{{ aws_access_key }}",
-            "aws_secret_key": "{{ aws_secret_key }}"
-    },
         "provisioners": [
         {
             "type": "shell",
@@ -21,14 +17,14 @@
             "ssh_bastion_private_key_file": "{{ ssh_config_dir}}/{{ ssh_bastion_private_key_file }}",
             "ssh_private_key_file": "{{ ssh_config_dir }}/{{ ssh_private_key_file }}",
             "ssh_keypair_name": "{{ ssh_keypair_name }}",
-            "access_key": "{{user `aws_access_key`}}",
-            "secret_key": "{{user `aws_secret_key`}}",
+            "access_key": "{{ aws_access_key }}",
+            "secret_key": "{{ aws_secret_key }}",
             "region": "{{ aws_region }}",
             "source_ami": "{{ aws_community_ami }}",
             "instance_type": "t2.micro",
             "ssh_username": "{{ app_username }}",
-            "ami_name": "{{ ami_name }} {{timestamp}}",
-            "security_group_id": "{{ sg_bastion }}",
+            "ami_name": "{{ ami_name }} {{ '{{' }} timestamp {{ '}}' }}",
+            "security_group_id": "{{ sg_dock }}",
             "subnet_id": "{{ subnet_docks_default }}",
             "launch_block_device_mappings": [
               {

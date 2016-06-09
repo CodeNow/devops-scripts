@@ -1,8 +1,8 @@
 {
   "builders": [
     {
-      "access_key": "{{user `aws_access_key`}}",
-      "ami_name": "packer-test {{timestamp}}",
+      "access_key": "AKIAIB3IJCCJZQWQMVSQ",
+      "ami_name": "Packer Base {{ timestamp }}",
       "communicator": "ssh",
       "instance_type": "t2.micro",
       "launch_block_device_mappings": [
@@ -20,7 +20,7 @@
         }
       ],
       "region": "us-west-2",
-      "secret_key": "{{user `aws_secret_key`}}",
+      "secret_key": "z26Bvf00yp+r+iTaXsSBC6oJchRXRtX+M1WSf4s2",
       "security_group_id": "sg-3322e454",
       "source_ami": "ami-9abea4fb",
       "ssh_bastion_host": "52.35.234.45",
@@ -39,13 +39,9 @@
   "post-processors": null,
   "provisioners": [
     {
-      "script": "bin/configure.sh",
+      "script": "tmp/bin/configure.sh",
       "type": "shell"
     }
-  ],
-  "variables": {
-    "aws_access_key": "AKIAIB3IJCCJZQWQMVSQ",
-    "aws_secret_key": "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"
-  }
+  ]
 }
 

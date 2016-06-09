@@ -1,9 +1,10 @@
 [epsilon:vars]
 bastion_host="52.35.234.45"
 bastion_sshd_port=60519
+sg_dock="sg-3322e454"
 ssh_bastion_private_key_file="epsilon.pem"
 ssh_private_key_file="epsilon.pem"
-security_group_id="sg-3322e454"
-subnet_docks_defualt="subnet-9d4214c4"
+ssh_keypair_name="epsilon"
+subnet_docks_default="subnet-9d4214c4"
 aws_community_ami="ami-9abea4fb"
 packer_configure_script="tmp/bin/configure.sh"

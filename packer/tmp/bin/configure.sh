@@ -15,37 +15,20 @@ sudo mount /docker
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install apt-transport-https ca-certificates
 sudo DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list.d/docker.list
-printf "Package: docker-engine\nPin: version 1.10.2*\mPin-Priority: 1001\n" | sudo tee -a /etc/apt/preferences.d/docker-engine 
+printf "Package: docker-engine\nPin: version 1.11*\mPin-Priority: 1001\n" | sudo tee -a /etc/apt/preferences.d/docker-engine 
 
 # NodeJS Init
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
 # Docker Install
 sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install docker-engine=1.10.2-0~trusty
+sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install docker-engine
 
 # NodeJS, build-essential, utilities
-export PKGS="build-essential make unzip openjdk-7-jdk jq nmap htop colordiff git nodejs"
+export PKGS="ansible build-essential colordiff git htop jq make nmap nodejs openjdk-7-jdk unzip"
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install ${PKGS} || echo "Apt installation failure."
-
-# consul
-curl --silent -q -O https://releases.hashicorp.com/consul-template/0.11.1/consul-template_0.11.1_linux_amd64.zip
-unzip consul-template_0.11.1_linux_amd64.zip
-sudo install -c -m 755 consul-template /usr/local/bin || echo "Could not install consul."
-rm -f consul*
-
-# vault
-curl --silent -q -O https://releases.hashicorp.com/vault/0.4.1/vault_0.4.1_linux_amd64.zip
-unzip vault_0.4.1_linux_amd64.zip
-sudo install -c -m 755 vault /usr/local/bin || echo "Could not install vault."
-rm -f vault*
-
-# weave
-curl --silent -q -O https://github.com/weaveworks/weave/releases/download/v1.4.6/weave
-sudo install -c -m 755 weave /usr/local/bin || echo "Could not install weave."
-rm -f weave
 
 # ec2-metadata
 curl --silent -q -O http://s3.amazonaws.com/ec2metadata/ec2-metadata
@@ -57,7 +40,6 @@ curl --silent -q -O http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
 unzip ec2-api-tools.zip 
 sudo mv ec2-api-tools-1.7.5.1 /usr/local/ec2
 
-sudo service docker restart
 sudo npm install -g bunyan
 
 date > ${HOME}/.install.date
