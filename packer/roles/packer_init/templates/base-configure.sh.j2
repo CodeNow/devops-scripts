@@ -30,23 +30,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove
 sudo DEBIAN_FRONTEND=noninteractive apt-get ${APT_OPTS} install ${PKGS} || echo "Apt installation failure."
 
-# consul
-curl --silent -q -O https://releases.hashicorp.com/consul-template/0.11.1/consul-template_0.11.1_linux_amd64.zip
-unzip consul-template_0.11.1_linux_amd64.zip
-sudo install -c -m 755 consul-template /usr/local/bin || echo "Could not install consul."
-rm -f consul*
-
-# vault
-curl --silent -q -O https://releases.hashicorp.com/vault/0.4.1/vault_0.4.1_linux_amd64.zip
-unzip vault_0.4.1_linux_amd64.zip
-sudo install -c -m 755 vault /usr/local/bin || echo "Could not install vault."
-rm -f vault*
-
-# weave
-curl --silent -q -O https://github.com/weaveworks/weave/releases/download/v1.4.6/weave
-sudo install -c -m 755 weave /usr/local/bin || echo "Could not install weave."
-rm -f weave
-
 # ec2-metadata
 curl --silent -q -O http://s3.amazonaws.com/ec2metadata/ec2-metadata
 sudo install -c -m 755 ec2-metadata /usr/local/bin || echo "Could not install ec2-metadata."
@@ -57,7 +40,6 @@ curl --silent -q -O http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
 unzip ec2-api-tools.zip 
 sudo mv ec2-api-tools-1.7.5.1 /usr/local/ec2
 
-sudo service docker restart
 sudo npm install -g bunyan
 
 date > ${HOME}/.install.date
