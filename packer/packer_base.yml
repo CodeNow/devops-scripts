@@ -6,3 +6,4 @@
   roles:
   - { role: packer_initialize, tags: "init" }
   - { role: packer_run }
+  - { role: packer_clean, tags: "clean" }
