@@ -9,3 +9,7 @@
     - role: content-domain-proxy
 
     - role: container_kill_start
+
+- include: consul-template-updater.yml
+  vars:
+    var_file: "alpha-navi-proxy"

@@ -1,0 +1,18 @@
+name: consul-template-updater
+
+# container_kill_start settings
+container_image: avthart/consul-template
+container_tag: latest
+
+container_run_opts: >
+  -d
+  --name {{ name }}
+  -v /var/run/docker.sock:/tmp/docker.sock
+  -v {{ template_path }}:/tmp/template
+  -e CONSUL_TEMPLATE_LOG=debug
+  --volumes-from {{ target_container_name }}
+
+container_run_args: >
+  -consul={{ consul_host_address }}:{{ consul_api_port }}
+  -wait=1s
+  -template="/tmp/template:{{ dest_path }}/{{ out_file }}:{{ template_command }}"

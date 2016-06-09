@@ -1,0 +1,15 @@
+name: "registrator"
+
+# container_kill_start settings
+container_image: gliderlabs/registrator
+container_tag: v7
+
+container_run_opts: >
+  -d
+  --name={{ name }}
+  --net=host
+  --volume=/var/run/docker.sock:/tmp/docker.sock
+
+container_run_args: >
+  -ip {{ ansible_default_ipv4.address }}
+  consul://{{ consul_host_address }}:{{ consul_api_port }}
