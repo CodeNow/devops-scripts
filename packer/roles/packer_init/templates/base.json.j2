@@ -27,7 +27,7 @@
             "source_ami": "{{ aws_community_ami }}",
             "instance_type": "t2.micro",
             "ssh_username": "{{ app_username }}",
-            "ami_name": "packer-test {{timestamp}}",
+            "ami_name": "{{ ami_name }} {{timestamp}}",
             "security_group_id": "{{ sg_bastion }}",
             "subnet_id": "{{ subnet_docks_default }}",
             "launch_block_device_mappings": [

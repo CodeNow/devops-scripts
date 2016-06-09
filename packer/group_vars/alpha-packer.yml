@@ -1,0 +1,10 @@
+name: "base_ami"
+base_packages: "ansible build-essential colordiff git htop jq make nmap nodejs openjdk-7-jdk unzip"
+docker_engine_version: "1.11"
+aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
+aws_secret_key: "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"
+app_username: "ubuntu"
+sshd_port: 22
+aws_region: "us-west-2"
+ami_name: "Packer Base"
+ssh_config_dir: ""

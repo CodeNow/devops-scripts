@@ -1,0 +1,9 @@
+[zeta:vars]
+bastion_host=172.16.14.1
+bastion_sshd_port=31337
+ssh_bastion_private_key_file=zeta.pem
+ssh_private_key_file=zeta.pem
+security_group_id=sg-d34db33f
+subnet_docks_defualt=subnet-d34db33f
+aws_community_ami=ami-9abea4fb
+packer_configure_script=tmp/bin/configure.sh
