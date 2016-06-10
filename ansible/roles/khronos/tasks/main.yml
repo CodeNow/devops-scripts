@@ -28,8 +28,8 @@
     minute: "*/5"
     script: canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Hourly Canary
-    minute: "*/50"
+  - name: Khronos CLI - Half-Hourly Canary
+    minute: "*/30"
     script: hourly-canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 

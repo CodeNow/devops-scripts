@@ -21,6 +21,7 @@
     recurse=yes
 
 - name: copy vault config
+  tags: [ deploy ]
   become: true
   template:
     src=vault.hcl
