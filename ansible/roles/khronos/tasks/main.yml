@@ -8,6 +8,7 @@
   with_items:
   - { cron_queues: "{{ main_cron_queues }}", script: "main-cron.sh"}
   - { cron_queues: "{{ canary_cron_queues }}", script: "canary-cron.sh"}
+  - { cron_queues: "{{ hourly_canary_cron_queues }}", script: "hourly-canary-cron.sh"}
 
 - name: Put Khronos script into crontab
   become: yes
@@ -26,6 +27,10 @@
   - name: Khronos CLI - Canary
     minute: "*/5"
     script: canary-cron.sh
+    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
+  - name: Khronos CLI - Half-Hourly Canary
+    minute: "*/30"
+    script: hourly-canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
 
 - name: make directory for mongo certificates
