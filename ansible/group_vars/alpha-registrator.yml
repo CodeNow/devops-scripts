@@ -1,4 +1,4 @@
-name: "registrator"
+name: registrator
 
 # container_kill_start settings
 container_image: gliderlabs/registrator
