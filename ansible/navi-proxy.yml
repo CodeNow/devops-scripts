@@ -12,4 +12,4 @@
 
 - include: consul-template-updater.yml
   vars:
-    var_file: alpha-navi-proxy
+    var_file: alpha-navi-proxy.yml

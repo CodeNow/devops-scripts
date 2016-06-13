@@ -3,7 +3,7 @@
 
 - hosts: userland
   vars_files:
-  - group_vars/{{ var_file }}.yml
+  - group_vars/{{ var_file }}
   - group_vars/alpha-consul-template-updater.yml
   roles:
   - role: notify
