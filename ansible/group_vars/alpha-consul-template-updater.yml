@@ -14,4 +14,4 @@ container_run_opts: >
 container_run_args: >
   -consul={{ consul_host_address }}:{{ consul_api_port }}
   -wait=1s
-  -template="/tmp/template:{{ dest_path }}/{{ out_file }}:{{ template_command }}"
+  -template="/tmp/template:{{ target_updater_file_path }}/{{ out_file }}:{{ template_command }}"

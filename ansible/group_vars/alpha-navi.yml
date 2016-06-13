@@ -7,7 +7,7 @@ hosted_ports: [ "{{ navi_http_port }}" ]
 node_version: "4.2.4"
 npm_version: "2.8.3"
 
-restart_policy: "always"
+restart_policy: always
 
 redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
 content_domain_certs: /opt/ssl/{{ user_content_domain }}

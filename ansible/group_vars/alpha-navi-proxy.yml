@@ -3,10 +3,10 @@ name: nginx
 
 # used by consul template updater
 target_container_name: nginx
-dest_path: /etc/nginx/sites-enabled
+target_updater_file_path: /etc/nginx/sites-enabled
 template_path: /etc/nginx/template/navi.tmpl
-template_command: "/bin/docker kill -s HUP {{ target_container_name }}"
-out_file: 'navi.conf'
+template_command: /bin/docker kill -s HUP {{ target_container_name }}
+out_file: navi.conf
 
 # used by container_kill_start
 container_image: "{{ name }}"
@@ -19,6 +19,6 @@ container_run_opts: >
   -p 0.0.0.0:443:443
   -p 0.0.0.0:80:80
   -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  -v {{ dest_path }}
+  -v {{ target_updater_file_path }}
   -v /etc/ssl/certs/{{ user_content_domain }}:/etc/ssl/certs/{{ user_content_domain }}:ro
   -v /var/log/nginx:/var/log/nginx

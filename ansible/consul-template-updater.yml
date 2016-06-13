@@ -3,8 +3,10 @@
 
 - hosts: userland
   vars_files:
-    - "group_vars/{{ var_file }}.yml"
-    - "group_vars/alpha-consul-template-updater.yml"
+  - group_vars/{{ var_file }}.yml
+  - group_vars/alpha-consul-template-updater.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: container_kill_start }
+  - role: notify
+    tags: notify
+
+  - role: container_kill_start
