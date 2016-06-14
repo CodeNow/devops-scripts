@@ -6,7 +6,7 @@ container_tag: v7
 
 container_run_opts: >
   -d
-  --hostname $HOSTNAME
+  --hostname={{ ansible_hostname }}
   --name={{ name }}
   --volume=/var/run/docker.sock:/tmp/docker.sock
 
