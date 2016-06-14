@@ -74,7 +74,6 @@ detention_port: 9123
 detention_hostname: detention.{{ domain }}
 
 # docker log driver
-
 log_driver: syslog
 log_facility: local7
 
@@ -103,6 +102,10 @@ filibuster_port: 3112
 fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
 fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
+
+# github-varnish
+github_varnish_host: "{{ hostvars[groups['github-varnish'][0]]['ansible_default_ipv4']['address'] }}"
+github_varnish_port: 8765
 
 # khronos
 rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
