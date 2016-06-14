@@ -8,10 +8,10 @@ npm_version: "2.14.7"
 
 # container settings
 container_envs: >
+  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e MAVIS_HOST=http://{{ mavis_hostname }}:80
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
@@ -19,6 +19,8 @@ container_envs: >
   -e ROLLBAR_KEY={{ palantiri_rollbar_key }}
   -e RSS_LIMIT=2000000
   -e LOG_LEVEL_STDOUT=trace
+  -e SWARM_HOSTNAME={{ swarm_host_address }}
+  -e SWARM_PORT={{ swarm_master_port }}
 
 container_run_opts: >
   -h {{ name }}
