@@ -18,16 +18,26 @@
     force: yes
 
 - name: copy dockerfile to build folder
+  when: repo_dockerfile is not defined
   tags: deploy
   become: true
   template:
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
+- name: set build dir to repo
+  set_fact:
+    build_path: "{{ build_dir }}/{{ name }}"
+
+- name: set build dir to repo
+  when: repo_dockerfile is defined
+  set_fact:
+    build_path: "{{ build_dir }}/{{ name }}/repo"
+
 - name: build docker image and tag
   tags: deploy
   become: yes
-  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_path }}"
 
 - name: push docker image
   become: yes
