@@ -6,8 +6,8 @@ container_tag: v7
 
 container_run_opts: >
   -d
+  --hostname $HOSTNAME
   --name={{ name }}
-  --net=host
   --volume=/var/run/docker.sock:/tmp/docker.sock
 
 container_run_args: >
