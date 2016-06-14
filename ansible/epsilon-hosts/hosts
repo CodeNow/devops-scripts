@@ -107,6 +107,9 @@ epsilon-app-services
 [pheidi]
 epsilon-app-services
 
+[github-varnish]
+epsilon-app-services
+
 [epsilon:children]
 api
 bastion
@@ -117,6 +120,7 @@ docker-listener
 docks
 drake
 eru
+github-varnish
 hipache
 khronos
 mavis

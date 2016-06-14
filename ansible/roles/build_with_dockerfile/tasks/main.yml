@@ -1,0 +1,28 @@
+---
+# commands to build an image from a repo that contains a Dockerfile
+- name: create build folder
+  become: true
+  file:
+    path: "{{ build_dir }}/{{ name }}"
+    state: directory
+
+- name: pull the git repository
+  tags: deploy
+  become: true
+  git:
+    repo: "{{ repo }}"
+    dest: "{{ build_dir }}/{{ name }}/repo"
+    version: "{{ git_branch }}"
+    update: yes
+    accept_hostkey: yes
+    force: yes
+
+- name: build docker image and tag
+  tags: deploy
+  become: yes
+  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
+
+- name: push docker image
+  become: yes
+  when: not do_not_push
+  command: docker push {{ container_image }}:{{ container_tag }}

@@ -112,6 +112,9 @@ delta-app-services
 [pheidi]
 delta-app-services
 
+[github-varnish]
+delta-app-services
+
 [delta:children]
 api
 bastion
@@ -122,6 +125,7 @@ docker-listener
 docks
 drake
 eru
+github-varnish
 hipache
 khronos
 mavis

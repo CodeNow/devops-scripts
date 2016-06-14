@@ -1,0 +1,8 @@
+---
+
+- hosts: github-varnish
+  vars_files:
+  - group_vars/alpha-github-varnish.yml
+  roles:
+  - { role: build_with_dockerfile, tags: [ build ] }
+  - { role: container_kill_start }
