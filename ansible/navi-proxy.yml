@@ -1,11 +1,15 @@
 ---
 - hosts: userland
   vars_files:
-    - group_vars/alpha-navi-proxy.yml
+  - group_vars/alpha-navi-proxy.yml
   roles:
-    - role: datadog
-      has_dd_integration: yes
+  - role: datadog
+    has_dd_integration: yes
 
-    - role: content-domain-proxy
+  - role: content-domain-proxy
 
-    - role: container_kill_start
+  - role: container_kill_start
+
+- include: consul-template-updater.yml
+  vars:
+    var_file: alpha-navi-proxy.yml
