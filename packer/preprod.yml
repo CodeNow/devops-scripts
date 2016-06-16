@@ -4,6 +4,6 @@
   vars_files:
     - "group_vars/alpha_packer.yml"
   roles:
-  - { role: packer_init, tags: "init" }
+  - { role: preprod_init, tags: "init" }
   - { role: packer_run }
   - { role: packer_clean, tags: "clean" }

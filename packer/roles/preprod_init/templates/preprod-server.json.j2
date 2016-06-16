@@ -7,7 +7,7 @@
     ],
         "builders": [
         {
-            "type": "amazon-ebs",
+            "type": "amazon-instance",
             "communicator": "ssh",
             "ssh_bastion_host": "{{ bastion_host }}",
             "ssh_bastion_port": "{{ bastion_sshd_port }}",
@@ -20,26 +20,12 @@
             "access_key": "{{ aws_access_key }}",
             "secret_key": "{{ aws_secret_key }}",
             "region": "{{ aws_region }}",
-            "source_ami": "{{ aws_community_ami }}",
+            "source_ami": "{{ aws_pv_community_ami }}",
             "instance_type": "t2.micro",
             "ssh_username": "{{ app_username }}",
             "ami_name": "{{ ami_name }} {{ '{{' }} timestamp {{ '}}' }}",
             "security_group_id": "{{ sg_dock }}",
-            "subnet_id": "{{ subnet_docks_default }}",
-            "launch_block_device_mappings": [
-              {
-                "device_name": "/dev/sda1",
-                "volume_size": 32,  
-                "volume_type": "gp2",
-                "delete_on_termination": true
-              },
-              {
-                "device_name": "/dev/sdb",
-                "volume_size": 200,
-                "volume_type": "gp2",
-                "delete_on_termination": true
-              }
-            ]
+            "subnet_id": "{{ subnet_docks_default }}"
         }
     ]
 }

@@ -8,3 +8,5 @@ sshd_port: 22
 aws_region: "us-west-2"
 ami_name: "Packer Base"
 ssh_config_dir: ""
+aws_community_ami: "ami-9abea4fb"
+aws_pv_community_ami: "ami-0e3ac26e"

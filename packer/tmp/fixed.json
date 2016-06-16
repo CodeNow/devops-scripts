@@ -5,24 +5,10 @@
       "ami_name": "Packer Base {{ timestamp }}",
       "communicator": "ssh",
       "instance_type": "t2.micro",
-      "launch_block_device_mappings": [
-        {
-          "delete_on_termination": true,
-          "device_name": "/dev/sda1",
-          "volume_size": 32,
-          "volume_type": "gp2"
-        },
-        {
-          "delete_on_termination": true,
-          "device_name": "/dev/sdb",
-          "volume_size": 200,
-          "volume_type": "gp2"
-        }
-      ],
       "region": "us-west-2",
       "secret_key": "z26Bvf00yp+r+iTaXsSBC6oJchRXRtX+M1WSf4s2",
       "security_group_id": "sg-3322e454",
-      "source_ami": "ami-9abea4fb",
+      "source_ami": "ami-0e3ac26e",
       "ssh_bastion_host": "52.35.234.45",
       "ssh_bastion_port": "60519",
       "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
