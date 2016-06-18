@@ -264,10 +264,10 @@ Host epsilon-registry
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
 
 Host epsilon-app-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.13.112 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.180 22
 
 Host epsilon-dock-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.136 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.210 22
 
 Host epsilon-userland
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
