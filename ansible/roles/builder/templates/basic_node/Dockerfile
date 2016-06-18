@@ -16,6 +16,9 @@ ENV {{ env }}
 RUN npm install -g n@2.1.0
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
+# ECONNRESET error work-aroute
+RUN npm config set strict-ssl false
+
 {% if dockerfile_pre_install_commands is defined %}
 {% for command in dockerfile_pre_install_commands %}
 RUN {{ command }}

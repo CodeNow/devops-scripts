@@ -22,6 +22,7 @@
 
 - name: stop old containers
   tags: deploy
+  ignore_errors: yes
   become: yes
   command: docker stop --time={{ stop_time }} {{ item }}
   with_items: "{{ old_containers_ids.stdout_lines }}"

@@ -46,6 +46,7 @@
 # stop the old containers that were running this previously
 - name: stop old containers
   tags: deploy
+  ignore_errors: yes
   when: old_containers_id.changed
   become: yes
   command: docker stop -t {{ stop_time }} {{ item }}
