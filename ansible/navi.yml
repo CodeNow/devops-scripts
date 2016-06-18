@@ -21,9 +21,3 @@
 
   - role: container_start
     number_of_containers: "{{ ansible_processor_cores }}"
-
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['userland'][0] }}"
-    target_ip_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 69-navi.conf ]
-    nginx_config: proxy

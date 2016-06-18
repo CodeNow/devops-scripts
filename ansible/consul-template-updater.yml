@@ -1,0 +1,12 @@
+---
+- hosts: consul
+
+- hosts: userland
+  vars_files:
+  - group_vars/{{ var_file }}
+  - group_vars/alpha-consul-template-updater.yml
+  roles:
+  - role: notify
+    tags: notify
+
+  - role: container_kill_start
