@@ -55,6 +55,7 @@
 # remove the old containers that were running previously
 - name: remove old containers
   tags: deploy
+  ignore_errors: yes
   when: old_containers_id.changed
   become: yes
   command: docker rm {{ item }}
