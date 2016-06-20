@@ -71,5 +71,6 @@ container_run_opts: >
   -d
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
-  --memory=1500m
   {{container_envs}}
+
+container_run_args: timeout 5h npm start
