@@ -4,7 +4,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 upstream {{ name }} {
- {{ '{{' }}range service "{{ name }}"{{ '}}' }} server {{ '{{' }}.Address{{ '}}' }}:{{ '{{' }}.Port{{ '}}' }} max_fails=0 fail_timeout=1s;
+ {{ '{{' }}range service "{{ proxy_service_name }}"{{ '}}' }} server {{ '{{' }}.Address{{ '}}' }}:{{ '{{' }}.Port{{ '}}' }} max_fails=0 fail_timeout=1s;
  {{ '{{' }}end{{ '}}' }}
 }
 
