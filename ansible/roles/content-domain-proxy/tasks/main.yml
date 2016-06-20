@@ -44,13 +44,6 @@
     dest: /etc/nginx
     state: directory
 
-- name: assert nginx sites-enabled directory
-  tags: [ configure_proxy ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/sites-enabled
-
 - name: put nginx configuration in place
   tags: [ configure_proxy ]
   become: yes
@@ -70,4 +63,20 @@
   become: yes
   template:
     src: navi.tmpl
-    dest: /etc/nginx/template
+    dest: /etc/nginx/template/navi.tmpl
+
+- name: setup ip table rule to redir all to port 80
+  tags: [ configure_proxy, iptables ]
+  become: yes
+  iptables:
+    table=nat
+    chain=PREROUTING
+    in_interface=eth0
+    protocol=tcp
+    destination_port={{ item }}
+    jump=REDIRECT
+    to_ports=80
+    comment="Redirect {{ item }} traffic to port 80"
+  with_items:
+  - 81:442
+  - 444:65535
