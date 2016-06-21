@@ -1,0 +1,9 @@
+---
+- hosts: local
+  connection: local
+  vars_files:
+    - "group_vars/alpha_packer.yml"
+  roles:
+  - { role: base_init, tags: "init" }
+  - { role: packer_run }
+  - { role: packer_clean, tags: "clean" }
