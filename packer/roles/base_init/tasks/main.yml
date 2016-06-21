@@ -1,0 +1,22 @@
+---
+- name: create packer build file
+  tags: init
+  template:
+    src=base.json.j2
+    dest=tmp/base.json
+
+- name: create configure script
+  tags: init
+  template:
+    src=base-configure.sh.j2
+    dest=tmp/bin/configure.sh
+
+- name: validate packer build file
+  tags: init
+  shell:
+    packer validate tmp/base.json
+
+# not exactly sure if this is necessary
+- name: fix packer build file
+  shell:
+    packer fix tmp/base.json > tmp/fixed.json

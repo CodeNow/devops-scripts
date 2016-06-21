@@ -1,0 +1,4 @@
+---
+- name: run packer build
+  shell:
+    packer build tmp/fixed.json
