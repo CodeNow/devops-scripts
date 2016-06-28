@@ -222,7 +222,7 @@ Host 10.12.*.*
   IdentityFile ~/.ssh/epsilon.pem
 
 Host epsilon-api
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.5.219 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.80 22
 
 Host epsilon-api-worker
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.38 22
@@ -246,7 +246,7 @@ Host epsilon-hipache
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.195 22
 
 Host epsilon-mongo
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.140 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.73 22
 
 Host epsilon-navi
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.252 22
