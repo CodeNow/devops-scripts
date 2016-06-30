@@ -1,0 +1,30 @@
+{
+    "server": {
+        "datadogHost": "{{ ansible_default_ipv4.address }}",
+        "datadogPort": "8125",
+        "prependPort": {{ prependIncomingPort | default("false") }},
+        "subDomainDepth": {{ subDomainDepth }},
+        "accessLog": "/host/access.log",
+        "workers": 10,
+        "maxSockets": 10000,
+        "deadBackendTTL": 30,
+        "tcpTimeout": 120,
+        "retryOnError": {{ retry_on_error }},
+        "deadBackendOn500": false,
+        "httpKeepAlive": false
+    },
+    "http": {
+        "port": 80,
+        "bind": "0.0.0.0"
+    },
+    "https": {
+        "port": 443,
+        "bind": "0.0.0.0",
+        "key": "/etc/ssl/private/{{ domain }}.key",
+        "cert": "/etc/ssl/certs/{{ domain }}/{{ domain }}.crt",
+        "ca": "/etc/ssl/certs/{{ domain }}/ca.crt",
+        "ciphers": "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA",
+        "checkForBackend80": {{ httpsCheckForBackend80 | default("false") }}
+    },
+    "driver": ["redis://{{ redis_host_address }}:{{ redis_port }}"]
+}
