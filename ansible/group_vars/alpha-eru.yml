@@ -21,18 +21,20 @@ container_envs: >-
   -e DOMAIN={{ eru_subdomain }}.{{ domain }}
   -e GITHUB_CLIENT_ID={{ eru_github_id }}
   -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
-  -e INTERCOM_APP_ID={{ eru_intercom_id }}
   -e INTERCOM_API_KEY={{ eru_intercom_key }}
+  -e INTERCOM_APP_ID={{ eru_intercom_id }}
+  -e LOG_ENVIRONMENT={{ node_env }}
+  -e LOG_LEVEL=trace
   -e MONGODB_DATABASE={{ eru_mongodb_database }}
-  -e MONGODB_PASSWORD={{ eru_mongodb_password }}
   -e MONGODB_HOSTS={{ mongo_hosts }}
+  -e MONGODB_PASSWORD={{ eru_mongodb_password }}
   -e MONGODB_REPLSET={{ eru_mongodb_replset }}
   -e MONGODB_USERNAME={{ eru_mongodb_username }}
   -e NODE_ENV=production
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e REDIS_HOSTNAME={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
   -e RUNNABLE_DOMAIN={{ domain }}
@@ -45,4 +47,4 @@ container_run_opts: >
   -v /var/log:/var/log:rw
   {{ container_envs }}
 
-container_run_args: supervisord --configuration supervisord.conf --nodaemon
+container_run_args: bash -c "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"
