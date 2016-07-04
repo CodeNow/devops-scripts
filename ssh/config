@@ -222,17 +222,16 @@ Host 10.12.*.*
   IdentityFile ~/.ssh/epsilon.pem
 
 Host epsilon-api
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.80 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.153 22
 
 Host epsilon-api-worker
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.38 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.152 22
 
 Host epsilon-api-socket
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.39 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.155 22
 
 Host epsilon-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.116 22
-  #ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.80 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.80 22
 
 Host epsilon-consul-a
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.67 22
@@ -247,28 +246,28 @@ Host epsilon-hipache
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.78 22
 
 Host epsilon-mongo
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.73 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.234 22
 
 Host epsilon-navi
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.252 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.156 22
 
 Host epsilon-neo4j
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.204 22
 
 Host epsilon-rabbit
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.57 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.158 22
 
 Host epsilon-redis
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.245 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.157 22
 
 Host epsilon-registry
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
 
 Host epsilon-app-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.174 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.154 22
 
 Host epsilon-dock-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.110 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.151 22
 
 Host epsilon-nginx
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.79 22
