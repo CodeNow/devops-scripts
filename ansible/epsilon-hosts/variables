@@ -30,6 +30,7 @@ eru_subdomain=eru
 eru_github_id=1834e6be0811db20d219
 eru_github_secret=dda712ce9bdb92cd9187b14c0897319e90dd5462
 eru_intercom_id=xs5g95pd
+eru_intercom_key=ro-9367eb0eb11542323371dcf25b8e260891f89b36
 eru_aws_access_key_id=AKIAIFCVEISSC5JMPWDA
 eru_aws_secret_access_key=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
 eru_aws_environment=epsilon
