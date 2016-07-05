@@ -28,7 +28,7 @@
 - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
 - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
 - include: swarm-manager.yml 
-- include: web.yml git_branch="{{ angular_branch }}" -t deploy
+#- include: web.yml git_branch="{{ angular_branch }}" -t deploy
 #
 ## secondary services and configuration
 - include: api.yml git_branch="{{ api_branch }}" -t deploy
