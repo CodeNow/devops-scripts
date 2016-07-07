@@ -10,6 +10,7 @@ upstream {{ name }} {
 
 server {
   listen 80;
+  client_max_body_size 200m;
   server_name {{ user_content_domain }};
   access_log /var/log/nginx/{{ name }}.access.log;
 
@@ -30,6 +31,7 @@ server {
 
 server {
   listen 443 ssl;
+  client_max_body_size 200m;
   server_name {{ user_content_domain }};
   access_log /var/log/nginx/{{ name }}.ssl.access.log;
 
