@@ -5,7 +5,7 @@ epsilon-bastion
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
 [userland]
-epsilon-nginx
+epsilon-userland
 
 [mongodb]
 epsilon-mongo
