@@ -40,6 +40,7 @@ digraph {
   }
 
   # here's the actual interactions
+  rankdir=LR
   api -> mongodb, redis, neo4j, rabbitmq, github_varnish
   api_socket_server -> mongodb, redis, docker, github_varnish
   api_workers -> mongodb, redis, neo4j, rabbitmq, docker, github_varnish
