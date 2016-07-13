@@ -1,0 +1,59 @@
+digraph {
+  # describe the groups
+  subgraph cluster_0 {
+    label = "Data Layer"
+    mongodb
+    rabbitmq
+    redis
+    neo4j
+  }
+  subgraph cluster_1 {
+    label = "App Services"
+    api
+    api_socket_server
+    api_workers
+    detention
+    drake
+    drake_workers
+    eru
+    github_varnish
+    pheidi
+    shiva
+  }
+  subgraph cluster_4 {
+    label = "Dock Services"
+    docker_listener
+    khronos
+    mavis
+    optimus
+    palantiri
+    sauron
+  }
+  subgraph cluster_2 {
+    label = "Proxy Layer"
+    nginx
+    hipache
+  }
+  subgraph cluster_3 {
+    label = "Customer Clusters"
+    docker
+  }
+
+  # here's the actual interactions
+  api -> mongodb, redis, neo4j, rabbitmq, github_varnish
+  api_socket_server -> mongodb, redis, docker, github_varnish
+  api_workers -> mongodb, redis, neo4j, rabbitmq, docker, github_varnish
+  drake -> rabbitmq
+  drake_workers -> api
+  eru -> rabbitmq
+  docker_listener -> docker
+  khronos -> mongodb, docker, rabbitmq
+  mavis -> docker
+  palantiri -> docker
+  sauron -> docker
+  hipache -> drake, api, detention, optimus, mavis
+  nginx -> api_socket_server, eru
+  rabbitmq -> api_workers, drake_workers, pheidi, shiva, khronos, palantiri, eru
+  docker -> docker_listener
+  the_internet -> nginx, hipache
+}
