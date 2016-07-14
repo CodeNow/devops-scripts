@@ -35,7 +35,7 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-epsilon-api-worker
+epsilon-swarm-master
 
 [socket-server]
 epsilon-api-socket
