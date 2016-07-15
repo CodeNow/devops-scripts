@@ -77,6 +77,7 @@ palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 pheidi_mongo_auth=pheidi:septa-mauve-enquiry-clipper-history
 pheidi_mongo_database=delta
 pheidi_mongo_replset_name=delta
+pheidi_prefetch=6
 pheidi_runnabot_tokens=d22a5ec75f66a0f472f3d856eb01df2321115e0b,33d8accaa7afeace8f44e3a6de409097ea1e67b8,82a7f2838852c04b75bee2b1a8ed236e2f9fc1ef,cab912709f7eb5bb8c21f9177f845561222d3933
 
 [sauron:vars]
