@@ -24,6 +24,7 @@ container_envs: >
   {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
+  -e PHEIDI_PREFETCH={{ pheidi_prefetch }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}
 
