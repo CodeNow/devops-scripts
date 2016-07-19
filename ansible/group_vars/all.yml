@@ -21,7 +21,7 @@ base_dockerfile: node_base
 docker_config: runnable
 
 # slack rooms to send notifications
-slack_token: T029DEC10/B07DM0YBB/IvbJO2i8ROojkW9IDeVYSM4J
+slack_token: T029DEC10/B1RSX8LNS/qLLSYEEqkGddohOdE44eDf3j
 slack_channels: [ '#ops' ]
 
 loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
@@ -32,8 +32,8 @@ loggly_username: ops
 ## cores and logs
 ##
 
-app_log_dir: /var/log/runnable
-core_file_dir: /var/log/core
+app_log_dir: /docker/app-logs
+core_file_dir: /docker/app-cores
 
 ##
 ## shared application configs
@@ -64,7 +64,7 @@ consul_api_port: 8500
 consul_https_port: 8501
 
 # datadog
-datadog_api_key: 6488896fe0c811965ef233b96809d70d
+datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
 datadog_host_address: "{{ ansible_default_ipv4.address }}"
 datadog_port: 8125
 
