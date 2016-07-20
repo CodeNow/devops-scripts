@@ -58,6 +58,7 @@ pg_database: astral
 # big-poppa
 big_poppa_pg_database: big-poppa
 big_poppa_pg_user: big-poppa
+big_poppa_pg_connection_string: postgres://{{ big_poppa_pg_user }}@localhost/{{ big_poppa_pg_database }}
 big_poppa_hostname: big-poppa.{{ domain }}
 
 # charon
