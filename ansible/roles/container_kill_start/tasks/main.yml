@@ -22,7 +22,7 @@
   become: true
   script: findTagRunning.sh {{ container_image }}
   register: old_containers_id
-  changed_when: old_containers_id.stdout != ''
+  changed_when: old_containers_id.stdout | length > 4
 
 # get latest image
 # tag will default to latest
@@ -48,16 +48,14 @@
   tags: deploy
   when: old_containers_id.changed
   become: yes
-  command: docker stop -t {{ stop_time }} {{ item }}
-  with_items: "{{ old_containers_id.stdout_lines }}"
+  command: docker stop -t {{ stop_time }} {{ old_containers_id.stdout }}
 
 # remove the old containers that were running previously
 - name: remove old containers
   tags: deploy
   when: old_containers_id.changed
   become: yes
-  command: docker rm {{ item }}
-  with_items: "{{ old_containers_id.stdout_lines }}"
+  command: docker rm {{ old_containers_id.stdout }}
 
 - name: pause to allow for any odd conditions in system caching tables
   tags: deploy
