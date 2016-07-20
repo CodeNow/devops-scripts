@@ -15,6 +15,9 @@ delta-mongo-c
 [neo4j]
 delta-neo4j
 
+[ingress]
+delta-ingress
+
 [api_group:children]
 worker
 api
@@ -127,6 +130,7 @@ drake
 eru
 github-varnish
 hipache
+ingress
 khronos
 mavis
 metis

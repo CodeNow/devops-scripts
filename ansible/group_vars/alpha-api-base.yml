@@ -4,6 +4,7 @@ node_version: 0.10.38
 npm_version: 2.8.3
 
 repo: git@github.com:CodeNow/api.git
+restart_policy: always
 
 # for sendGrid
 sendgrid_key: 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
