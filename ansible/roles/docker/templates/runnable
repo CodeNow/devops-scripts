@@ -1,1 +1,1 @@
-DOCKER_OPTS="-g /docker --insecure-registry registry.runnable.com --icc=false --log-driver=syslog --log-opt syslog-level=local7 --log-opt tag=docker-engine"
+DOCKER_OPTS="-g /docker --insecure-registry registry.runnable.com --icc=false --log-driver=syslog --log-opt syslog-facility=local7 --log-opt tag=docker-engine"
