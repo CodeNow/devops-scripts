@@ -53,6 +53,10 @@ Host 10.4.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
   IdentityFile ~/.ssh/gamma.pem
 
+## Gamma Ingress
+Host gamma-ingress
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.4 22
+
 ## Gamma Userland Hipache
 Host gamma-userland
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.2.208 22

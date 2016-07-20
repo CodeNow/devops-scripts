@@ -3,7 +3,7 @@
   tags: [ configure_proxy, certs ]
   become: true
   file:
-    dest: /etc/ssl/certs/{{ user_content_domain }}
+    dest: /etc/ssl/certs/{{ domain }}
     state: directory
 
 - name: put certs in place
@@ -11,8 +11,8 @@
   become: true
   register: add_certs
   copy:
-    src: "{{ user_content_domain }}/{{ item }}"
-    dest: /etc/ssl/certs/{{ user_content_domain }}/{{ item }}
+    src: "{{ domain }}/{{ item }}"
+    dest: /etc/ssl/certs/{{ domain }}/{{ item }}
     mode: 0400
     owner: root
     group: root
@@ -27,15 +27,16 @@
   when: add_certs.changed
   shell: >
     cat
-    /etc/ssl/certs/{{ user_content_domain }}/cert.pem
-    /etc/ssl/certs/{{ user_content_domain }}/ca.pem
+    /etc/ssl/certs/{{ domain }}/cert.pem
+    /etc/ssl/certs/{{ domain }}/ca.pem
     >
-    /etc/ssl/certs/{{ user_content_domain }}/chained.pem
+    /etc/ssl/certs/{{ domain }}/chained.pem
 
 - name: create dhparam.pem
   tags: [ configure_proxy, certs ]
+  when: add_certs.changed
   become: yes
-  command: openssl dhparam -out /etc/ssl/certs/{{ user_content_domain }}/dhparam.pem 2048
+  command: openssl dhparam -out /etc/ssl/certs/{{ domain }}/dhparam.pem 2048
 
 - name: make sure nginx directory is in place
   tags: [ configure_proxy ]
@@ -49,7 +50,7 @@
   become: yes
   template:
     src: proxy-nginx.conf
-    dest: /etc/nginx/
+    dest: /etc/nginx/nginx.conf
 
 - name: assert nginx template directory
   tags: [ configure_proxy ]
@@ -58,25 +59,9 @@
     state: directory
     dest: /etc/nginx/template
 
-- name: put navi template in place
+- name: put api template in place
   tags: [ configure_proxy ]
   become: yes
   template:
-    src: navi.tmpl
-    dest: /etc/nginx/template/navi.tmpl
-
-- name: setup ip table rule to redir all to port 80
-  tags: [ configure_proxy, iptables ]
-  become: yes
-  iptables:
-    table=nat
-    chain=PREROUTING
-    in_interface=eth0
-    protocol=tcp
-    destination_port={{ item }}
-    jump=REDIRECT
-    to_ports=80
-    comment="Redirect {{ item }} traffic to port 80"
-  with_items:
-  - 81:442
-  - 444:65535
+    src: api.tmpl
+    dest: /etc/nginx/template/api.tmpl
