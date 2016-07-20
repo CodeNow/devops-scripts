@@ -42,6 +42,7 @@ api_base_container_envs: >-
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
   -e NODE_ENV={{ node_env }}
+  -e NUM_WORKERS=1
   -e OPTIMUS_HOST=http://{{ optimus_hostname }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
