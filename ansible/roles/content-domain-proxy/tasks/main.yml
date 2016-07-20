@@ -49,7 +49,7 @@
   become: yes
   template:
     src: proxy-nginx.conf
-    dest: /etc/nginx/
+    dest: /etc/nginx/nginx.conf
 
 - name: assert nginx template directory
   tags: [ configure_proxy ]

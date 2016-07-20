@@ -55,7 +55,7 @@ Host 10.4.*.*
 
 ## Gamma Ingress
 Host gamma-ingress
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.4 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.236 22
 
 ## Gamma Userland Hipache
 Host gamma-userland

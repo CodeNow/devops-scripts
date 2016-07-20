@@ -12,5 +12,5 @@
 
 - include: consul-template-updater.yml
   vars:
-    host: ingress
+    host: userland
     var_file: alpha-navi-proxy.yml
