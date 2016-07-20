@@ -21,8 +21,8 @@ container_envs: >
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
-  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_runnabot_tokens }}
-  -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_email_github_token }}
+  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
+  -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
   {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
   {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
   {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
