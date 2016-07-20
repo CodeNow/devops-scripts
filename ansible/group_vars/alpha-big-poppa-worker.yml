@@ -13,7 +13,7 @@ container_envs: >
   -e GITHUB_TOKEN={{ big_poppa_github_token }}
   -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
-  -e POSTGRES_CONNECT_STRING={{ big_poppa_pg_connection_string }}
+  -e POSTGRES_CONNECT_STRING=postgres://{{ big_popppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ pg_host }}/{{ big_poppa_pg_database }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
