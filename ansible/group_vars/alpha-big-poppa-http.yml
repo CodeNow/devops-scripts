@@ -4,7 +4,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ big_poppa_port }}"]
 repo: "git@github.com:CodeNow/big-poppa.git"
-node_version: lts
+node_version: 4.4.7
 npm_version: 2
 
 redis_key: "frontend:{{ big_poppa_hostname }}"
@@ -16,7 +16,6 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e GITHUB_TOKEN={{ big_poppa_github_token }}
-  -e LOG_LEVEL=info
   -e NODE_ENV={{ node_env }}
   -e POSTGRES_CONNECT_STRING=postgres://{{ big_popppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ pg_host }}/{{ big_poppa_pg_database }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
