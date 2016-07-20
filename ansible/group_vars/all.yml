@@ -55,6 +55,11 @@ api_url: https://{{ api_hostname }}
 # astral
 pg_database: astral
 
+# big-poppa
+big_poppa_pg_database: big-poppa
+big_poppa_pg_user: big-poppa
+big_poppa_hostname: big-poppa.{{ domain }}
+
 # charon
 charon_port: 53
 

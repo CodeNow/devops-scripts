@@ -115,9 +115,13 @@ delta-app-services
 [github-varnish]
 delta-app-services
 
+[big-poppa]
+delta-app-services
+
 [delta:children]
 api
 bastion
+big-poppa
 charon
 consul
 dock

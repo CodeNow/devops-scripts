@@ -23,6 +23,9 @@ socket-server
 [api]
 gamma-api
 
+[big-poppa]
+gamma-app-services
+
 [consul]
 gamma-consul-a
 gamma-consul-b
