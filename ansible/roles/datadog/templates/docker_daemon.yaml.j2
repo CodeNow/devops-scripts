@@ -2,5 +2,11 @@ init_config:
 
 instances:
   - url: "unix://var/run/docker.sock"
+
     collect_labels_as_tags: ["instanceName"]
-    
+
+    collect_container_size: false
+
+    performance_tags: ["container_id", "image_name", "image_tag"]
+
+    container_tags: ["image_name", "image_tag"]

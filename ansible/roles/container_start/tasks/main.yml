@@ -39,9 +39,14 @@
   shell: |
     for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do
       docker run \
+        {% if memory_hard_limit is defined %}
+          --memory {{ memory_hard_limit }} \
+        {% endif %}
         --log-driver={{ log_driver }} \
-        --log-opt syslog-facility={{ log_facility }} \
-        --log-opt tag="{{ log_tag | default ( name ) }}" \
+        {% if log_driver == "syslog" %}
+          --log-opt syslog-facility={{ log_facility }} \
+          --log-opt tag="{{ log_tag | default ( name ) }}" \
+        {% endif %}
         -v {{ app_log_dir }}:{{ app_log_dir }}:rw \
         -v /dev/log:/dev/log:rw \
         --restart={{ restart_policy | default('no') }} \

@@ -4,6 +4,7 @@ node_version: 0.10.38
 npm_version: 2.8.3
 
 repo: git@github.com:CodeNow/api.git
+restart_policy: always
 
 # for sendGrid
 sendgrid_key: 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
@@ -42,6 +43,7 @@ api_base_container_envs: >-
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
   {% if api_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
   -e NODE_ENV={{ node_env }}
+  -e NUM_WORKERS=1
   -e OPTIMUS_HOST=http://{{ optimus_hostname }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
