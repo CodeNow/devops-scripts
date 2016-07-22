@@ -45,6 +45,9 @@ gamma-app-services
 [navi]
 gamma-navi
 
+[ingress]
+gamma-ingress
+
 [link]
 gamma-navi
 
@@ -127,6 +130,7 @@ drake
 eru
 github-varnish
 hipache
+ingress
 khronos
 mavis
 metis

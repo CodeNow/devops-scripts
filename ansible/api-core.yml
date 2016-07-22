@@ -16,9 +16,18 @@
   - role: notify
     rollbar_token: "{{ api_rollbar_key }}"
     tags: [ notify ]
-  - { role: redis_key, tags: [ setup, redis_key ] }
-  - { role: builder, tags: [ build ] }
-  - { role: docker_client }
-  - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: datadog, tags: [ datadog ] }
-  - { role: container_start }
+
+  - role: builder
+    tags: [ build ]
+
+  - role: docker_client
+
+  - role: tls-client
+    tags: [ tls ]
+    tls_service: mongodb
+
+  - role: datadog
+    tags: [ datadog ]
+
+  - role: container_start
+    number_of_containers: "{{ ansible_processor_cores }}"

@@ -22,7 +22,7 @@
   become: true
   script: findTagRunning.sh {{ container_image }}
   register: old_containers_id
-  changed_when: old_containers_id.stdout != ''
+  changed_when: old_containers_id.stdout | length > 4
 
 # get latest image
 # tag will default to latest
@@ -49,8 +49,7 @@
   ignore_errors: yes
   when: old_containers_id.changed
   become: yes
-  command: docker stop -t {{ stop_time }} {{ item }}
-  with_items: "{{ old_containers_id.stdout_lines }}"
+  command: docker stop -t {{ stop_time }} {{ old_containers_id.stdout }}
 
 # remove the old containers that were running previously
 - name: remove old containers
@@ -58,8 +57,7 @@
   ignore_errors: yes
   when: old_containers_id.changed
   become: yes
-  command: docker rm {{ item }}
-  with_items: "{{ old_containers_id.stdout_lines }}"
+  command: docker rm {{ old_containers_id.stdout }}
 
 - name: pause to allow for any odd conditions in system caching tables
   tags: deploy
@@ -70,16 +68,21 @@
 - name: start container
   tags: deploy
   become: yes
-  command: >
-    docker run
-    --log-driver={{ log_driver }}
-    --log-opt syslog-facility={{ log_facility }}
-    --log-opt tag="{{ log_tag | default ( name ) }}"
-    -v {{ app_log_dir }}:{{ app_log_dir }}:rw
-    --restart={{ restart_policy | default('always') }}
-    {{ container_run_opts }}
-    {{ container_image }}:{{ container_tag }}
-    {{ container_run_args }}
+  command: |
+    docker run \
+    {% if memory_hard_limit is defined %}
+      --memory {{ memory_hard_limit }} \
+    {% endif %}
+    --log-driver={{ log_driver }} \
+    {% if log_driver == "syslog" %}
+      --log-opt syslog-facility={{ log_facility }} \
+      --log-opt tag="{{ log_tag | default ( name ) }}" \
+    {% endif %}
+    -v {{ app_log_dir }}:{{ app_log_dir }}:rw \
+    --restart={{ restart_policy | default('always') }} \
+    {{ container_run_opts | trim }} \
+    {{ container_image }}:{{ container_tag }} \
+    {{ container_run_args | trim }}
   register: new_container_id
   notify:
     - get new container ports
