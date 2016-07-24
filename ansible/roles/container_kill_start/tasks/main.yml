@@ -69,7 +69,7 @@
   command: |
     docker run \
     {% if memory_hard_limit is defined %}
-      --memory {{ memory_hard_limit }} \
+      --memory {{ memory_hard_limit | default ( "1g" ) }} \
     {% endif %}
     --log-driver={{ log_driver }} \
     {% if log_driver == "syslog" %}
