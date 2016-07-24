@@ -5,7 +5,7 @@
 
 - hosts: big-poppa
   vars_files:
-    - group_vars/alpha-big-poppa-http.yml
+    - group_vars/alpha-big-poppa-worker.yml
   roles:
   - role: notify
     rollbar_token: "{{ big_poppa_worker_rollbar_token }}"
