@@ -1,10 +1,9 @@
 ---
 - hosts: consul
 
-- hosts: "{{ host }}"
+- hosts: api
   vars_files:
-  - group_vars/{{ var_file }}
-  - group_vars/alpha-consul-template-updater.yml
+  - group_vars/alpha-registrator.yml
   roles:
   - role: notify
     tags: notify

@@ -6,6 +6,9 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
+# for sendGrid
+sendgrid_key: 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
+
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
@@ -18,12 +21,14 @@ container_envs: >
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
+  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
   -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
   {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
   {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
   {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
+  -e SENDGRID_KEY={{ sendgrid_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}
 
