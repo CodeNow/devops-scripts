@@ -57,7 +57,7 @@ pg_database: astral
 
 # big-poppa
 big_poppa_pg_database: big_poppa
-big_poppa_pg_user: runnable
+big_poppa_pg_user: big_poppa
 big_poppa_hostname: big-poppa.{{ domain }}
 
 # charon

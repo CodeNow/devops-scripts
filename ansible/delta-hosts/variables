@@ -18,8 +18,8 @@ api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
 
 [big-poppa:vars]
 big_poppa_port=80
-big_poppa_pg_user=big_poppa
 big_poppa_pg_pass=
+big_poppa_pg_host=
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
 big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
 big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
