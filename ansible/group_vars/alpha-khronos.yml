@@ -72,4 +72,4 @@ container_run_opts: >
   -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   {{container_envs}}
 
-container_run_args: timeout 5h npm start
+container_run_args: timeout 1h npm start
