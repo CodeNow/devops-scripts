@@ -12,8 +12,6 @@ delta-mongo-a
 delta-mongo-b
 delta-mongo-c
 
-[neo4j]
-delta-neo4j
 
 [ingress]
 delta-ingress
@@ -136,7 +134,6 @@ mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 pheidi
 rabbitmq

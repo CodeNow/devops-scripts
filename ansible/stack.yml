@@ -1,24 +1,23 @@
 ## configure security group policy
-- include: sg_configure.yml 
+- include: sg_configure.yml
 #
 ## Install Datadog Agent
 - include: datadog.yml
 #
 ## begin with databases:
-- include: consul.yml 
+- include: consul.yml
 - include: vault.yml
-#- include: mongo-navi.yml 
-#- include: neo4j.yml 
-- include: rabbitmq.yml 
-- include: redis.yml 
-#- include: redis-slave.yml 
-- include: registry.yml 
+#- include: mongo-navi.yml
+- include: rabbitmq.yml
+- include: redis.yml
+#- include: redis-slave.yml
+- include: registry.yml
 #
 ## base service tier
-#- include: consul-values.yml 
+#- include: consul-values.yml
 - include: detention.yml git_branch="{{ detention_branch }}" -t deploy
 - include: eru.yml git_branch="{{ eru_branch }}" -t deploy
-- include: hipache.yml 
+- include: hipache.yml
 - include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
 - include: link.yml git_branch="{{ link_branch }}" -t deploy
 - include: mavis.yml git_branch="{{ mavis_branch }}" -t deploy
@@ -27,7 +26,7 @@
 - include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
 - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
 - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
-- include: swarm-manager.yml 
+- include: swarm-manager.yml
 - include: web.yml git_branch="{{ angular_branch }}" -t deploy
 #
 ## secondary services and configuration

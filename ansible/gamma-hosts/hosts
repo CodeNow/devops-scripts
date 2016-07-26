@@ -12,9 +12,6 @@ gamma-mongo-a
 gamma-mongo-b
 gamma-mongo-c
 
-[neo4j]
-gamma-neo4j
-
 [api_group:children]
 worker
 api
@@ -136,7 +133,6 @@ mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 pheidi
 rabbitmq

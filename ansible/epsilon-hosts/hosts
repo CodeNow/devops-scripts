@@ -10,9 +10,6 @@ epsilon-userland
 [mongodb]
 epsilon-mongo
 
-[neo4j]
-epsilon-neo4j
-
 [api_group:children]
 worker
 api
@@ -127,7 +124,6 @@ mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 rabbitmq
 redis
