@@ -9,7 +9,6 @@ docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 domain=runnable-angular-staging-codenow.runnableapp.com
 eru_hostname=admin-staging-codenow.runnableapp.com
 fluffy_hostname=fluffy-staging-codenow.runnableapp.com
-mavis_hostname=mavis-staging-codenow.runnableapp.com
 node_env=staging
 optimus_hostname=optimus-staging-codenow.runnableapp.com
 rabbit_password=h7n972sPLs5tWGCWe6QPSCnaxDWjvnpEFEA9c9mBqauH3f22

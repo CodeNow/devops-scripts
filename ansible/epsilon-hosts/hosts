@@ -62,9 +62,6 @@ epsilon-app-services
 [khronos]
 epsilon-dock-services
 
-[mavis]
-epsilon-dock-services
-
 [optimus]
 epsilon-dock-services
 
@@ -120,7 +117,6 @@ eru
 github-varnish
 hipache
 khronos
-mavis
 metis
 mongodb
 navi

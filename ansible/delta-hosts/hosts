@@ -68,9 +68,6 @@ delta-app-services
 [khronos]
 delta-dock-services
 
-[mavis]
-delta-dock-services
-
 [optimus]
 delta-dock-services
 
@@ -130,7 +127,6 @@ github-varnish
 hipache
 ingress
 khronos
-mavis
 metis
 mongodb
 navi
