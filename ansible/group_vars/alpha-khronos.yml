@@ -48,7 +48,6 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e INTERCOM_API_KEY={{ intercom_api_key | default('undefined') }}
   -e INTERCOM_APP_ID={{ intercom_app_id | default('undefined') }}
-  -e KHRONOS_MAVIS=http://{{ mavis_hostname }}
   -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   -e LOG_LEVEL=error
   {% if node_env != "production-epsilon" %}

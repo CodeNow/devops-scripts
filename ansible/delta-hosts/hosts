@@ -12,8 +12,6 @@ delta-mongo-a
 delta-mongo-b
 delta-mongo-c
 
-[neo4j]
-delta-neo4j
 
 [ingress]
 delta-ingress
@@ -68,9 +66,6 @@ delta-navi
 delta-app-services
 
 [khronos]
-delta-dock-services
-
-[mavis]
 delta-dock-services
 
 [optimus]
@@ -132,11 +127,9 @@ github-varnish
 hipache
 ingress
 khronos
-mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 pheidi
 rabbitmq
