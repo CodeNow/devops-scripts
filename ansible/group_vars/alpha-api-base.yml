@@ -13,7 +13,7 @@ sendgrid_key: SG.IUCH4sM9RPC1z_-eM-4nKQ.OrXw3BxihUkCBAwYq1pys0QE3SDbP-nOGdlGwlVK
 api_base_container_envs: >-
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
-  -e BIG_POPPA_URL=://{{ big_poppa_address }}:{{ big_poppa_port }}
+  -e BIG_POPPA_URL=://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e COOKIE_DOMAIN={{ domain }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
