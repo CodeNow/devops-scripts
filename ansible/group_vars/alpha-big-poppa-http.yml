@@ -7,15 +7,12 @@ repo: "git@github.com:CodeNow/big-poppa.git"
 node_version: 4.4.7
 npm_version: 2
 
-redis_key: "frontend:{{ big_poppa_hostname }}"
-is_redis_update_required: 'yes'
-
 # for container settings
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e GITHUB_TOKEN={{ big_poppa_github_token }}
-  -e HTTPS_PORT={{ hosted_ports[0] }}
+  -e PORT={{ hosted_ports[0] }}
   -e INTERCOM_API_KEY={{ big_poppa_intercom_key | default('undefined') }}
   -e INTERCOM_APP_ID={{ big_poppa_intercom_id | default('undefined') }}
   -e NODE_ENV={{ node_env }}
@@ -29,7 +26,7 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
-  -P
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
   {{container_envs}}
 
 npm_start_command: run start-http

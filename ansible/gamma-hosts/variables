@@ -14,7 +14,6 @@ api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 
 [big-poppa:vars]
-big_poppa_port=443
 big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
 big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205

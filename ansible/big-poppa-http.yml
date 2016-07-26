@@ -1,5 +1,4 @@
 ---
-- hosts: redis
 - hosts: rabbitmq
 - hosts: consul
 
