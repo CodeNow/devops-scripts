@@ -9,8 +9,6 @@ container_min_port: 32768
 container_max_port: 65535
 detention_port: 9123
 docker_port: 4242
-dock_filibuster_port: 3200
-filibuster_port: 3112
 git_branch: "null"
 http_port: 80
 https_port: 443
