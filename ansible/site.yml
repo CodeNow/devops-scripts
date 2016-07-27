@@ -15,8 +15,6 @@
 # api
 - include: api.yml
 # web
-- include: mavis.yml
-# web
 - include: web.yml
 # hipache
 - include: hipache.yml

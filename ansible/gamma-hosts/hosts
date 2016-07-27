@@ -12,9 +12,6 @@ gamma-mongo-a
 gamma-mongo-b
 gamma-mongo-c
 
-[neo4j]
-gamma-neo4j
-
 [api_group:children]
 worker
 api
@@ -58,9 +55,6 @@ gamma-navi
 gamma-app-services
 
 [khronos]
-gamma-dock-services
-
-[mavis]
 gamma-dock-services
 
 [optimus]
@@ -132,11 +126,9 @@ github-varnish
 hipache
 ingress
 khronos
-mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 pheidi
 rabbitmq

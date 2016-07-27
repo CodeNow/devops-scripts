@@ -1,6 +1,5 @@
 ---
 - hosts: mongodb
-- hosts: neo4j
 - hosts: navi
 - hosts: charon
 - hosts: rabbitmq
