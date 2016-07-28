@@ -45,8 +45,6 @@ angular_url: https://app.{{ domain }}
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
-api_neo4j_port: 7474
-api_neo4j_protocol: http://
 api_port: 80
 api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
@@ -95,9 +93,6 @@ aws_secret_key: "z26Bvf00yp+r+iTaXsSBC6oJchRXRtX+M1WSf4s2"
 
 # eru
 
-# filibuster
-filibuster_port: 3112
-
 # fluffy
 fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
@@ -116,11 +111,6 @@ krain_port: 3100
 # marketing
 marketing_url: https://{{ domain }}
 
-# mavis
-mavis_hostname: mavis.{{ domain }}
-mavis_port: 3000
-mavis_rollbar_token: f4888bcd48be45cabd42627dfed87bba
-
 # metis
 metis_port: 3000
 
@@ -131,9 +121,6 @@ mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_defa
 navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_http_port: 3567
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
-
-# neo4j
-neo4j_host_address: "{{ hostvars[groups['neo4j'][0]]['ansible_default_ipv4']['address'] }}"
 
 # optimus
 optimus_port: 80

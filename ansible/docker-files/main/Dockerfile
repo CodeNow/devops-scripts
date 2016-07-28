@@ -8,7 +8,6 @@ WORKDIR /repos
 # clone repos for dockerfiles
 RUN git clone git@github.com:CodeNow/api.git
 RUN git clone git@github.com:CodeNow/runnable-angular.git
-RUN git clone git@github.com:CodeNow/mavis.git
 RUN git clone git@github.com:CodeNow/devops-scripts.git
 # copy things into places
 RUN mv $REPO_BASE/devops-scripts/ssh/config /root/.ssh/config
