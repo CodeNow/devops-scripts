@@ -2,6 +2,8 @@ name: api-worker
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
+memory_hard_limit: 1g
+
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
