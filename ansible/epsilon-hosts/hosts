@@ -10,9 +10,6 @@ epsilon-userland
 [mongodb]
 epsilon-mongo
 
-[neo4j]
-epsilon-neo4j
-
 [api_group:children]
 worker
 api
@@ -66,9 +63,6 @@ epsilon-navi
 epsilon-app-services
 
 [khronos]
-epsilon-dock-services
-
-[mavis]
 epsilon-dock-services
 
 [optimus]
@@ -127,11 +121,9 @@ eru
 github-varnish
 hipache
 khronos
-mavis
 metis
 mongodb
 navi
-neo4j
 optimus
 rabbitmq
 redis

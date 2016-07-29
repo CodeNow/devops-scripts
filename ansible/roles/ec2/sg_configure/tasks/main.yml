@@ -234,26 +234,6 @@
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_hipache }}"
 
-- name: Neo4J SG
-  tags:
-    - neo4j
-  ec2_group:
-    name: "{{ env }}-neo4j"
-    description: "{{ env }} Neo4J Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: "{{ region }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: "{{ sshd_port }}"
-        to_port: "{{ sshd_port }}"
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: "{{ neo4j_port }}"
-        to_port: "{{ neo4j_tls_port }}"
-        group_id: "{{ sg_api }}"
-
 - name: RabbitMQ SG
   tags:
     - rabbit
@@ -397,10 +377,6 @@
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
         group_id: "{{ sg_navi }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_neo4j }}"
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
