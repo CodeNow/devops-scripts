@@ -1,5 +1,4 @@
 - include: khronos.yml git_branch="v4.4.1"
-- include: mavis.yml git_branch="v5.0.1"
 - include: optimus.yml git_branch="v5.1.0"
 - include: palantiri.yml git_branch="v0.4.0"
 - include: sauron.yml git_branch="v5.6.1"

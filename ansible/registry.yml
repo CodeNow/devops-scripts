@@ -4,3 +4,6 @@
     - "group_vars/alpha-registry.yml"
   roles:
   - { role: container_kill_start }
+  - role: tls-client
+    tags: [ tls ]
+    tls_service: registry
