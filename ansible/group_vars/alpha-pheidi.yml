@@ -8,6 +8,8 @@ npm_version: "2.14.7"
 
 # for sendGrid
 sendgrid_key: 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
+intercom_app_id: wqzm3rju
+intercom_api_key: ef28806417aef605ca74573ff080c9d5eb0d6384
 
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
@@ -29,6 +31,8 @@ container_envs: >
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   -e SENDGRID_KEY={{ sendgrid_key }}
+  -e INTERCOM_APP_ID={{ intercom_app_id }}
+  -e INTERCOM_API_KEY={{ intercom_api_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}
 
