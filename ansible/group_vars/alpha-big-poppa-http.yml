@@ -10,6 +10,11 @@ npm_version: 2
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=\${NPM_TOKEN}' > .npmrc"
+]
+
 # for container settings
 container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}

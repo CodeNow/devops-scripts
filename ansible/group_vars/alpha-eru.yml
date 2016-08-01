@@ -12,6 +12,9 @@ has_shrinkwrap: true
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc'
+]
 
 dockerfile_post_install_commands:
 - apt-get update && apt-get install -y supervisor

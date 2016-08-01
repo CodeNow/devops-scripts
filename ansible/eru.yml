@@ -3,6 +3,7 @@
 - hosts: mongodb
 - hosts: redis
 - hosts: rabbitmq
+- hosts: big-poppa
 - hosts: socket-server-proxy
 
 - hosts: eru
