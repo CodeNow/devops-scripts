@@ -70,9 +70,7 @@
   become: yes
   command: |
     docker run \
-    {% if memory_hard_limit is defined %}
-      --memory {{ memory_hard_limit | default ( "1g" ) }} \
-    {% endif %}
+    --memory {{ memory_hard_limit | default ( "1g" ) }} \
     --log-driver={{ log_driver }} \
     {% if log_driver == "syslog" %}
       --log-opt syslog-facility={{ log_facility }} \
