@@ -13,24 +13,24 @@ container_envs: >
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOMAIN={{ domain }}
-  -e LOGGLY_TOKEN="{{ loggly_token }}"
-  -e NODE_ENV="{{ node_env }}"
+  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
   -e FULL_API_DOMAIN=https://api.{{ domain }}
+  -e INTERCOM_API_KEY={{ pheidi_intercom_key }}
+  -e INTERCOM_APP_ID={{ pheidi_intercom_id }}
+  -e LOGGLY_TOKEN="{{ loggly_token }}"
+  -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
+  -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
+  {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
+  {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
+  {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
+  -e NODE_ENV="{{ node_env }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
-  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
   -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
-  {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
-  {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
-  {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
-  -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
-  -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   -e SENDGRID_KEY={{ sendgrid_key }}
-  -e INTERCOM_APP_ID={{ pheidi_intercom_id }}
-  -e INTERCOM_API_KEY={{ pheidi_intercom_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}
 
