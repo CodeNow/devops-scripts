@@ -10,10 +10,14 @@ npm_version: 3.8
 has_shrinkwrap: true
 
 dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}"
+  "NPM_TOKEN {{ npm_token }}",
+  "BIG_POPPA_HOST {{ big_poppa_host_address }}:{{ big_poppa_port }}",
+  "RABBITMQ_HOSTNAME {{ rabbit_host_address }}",
+  "RABBITMQ_PASSWORD {{ rabbit_password }}",
+  "RABBITMQ_PORT {{ rabbit_port }}"
 ]
 dockerfile_pre_install_commands: [
-   'echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc'
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
 ]
 
 dockerfile_post_install_commands:
