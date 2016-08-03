@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.1.0.0 (the deploy automation tool we use to deploy projects to production)
 http://docs.ansible.com/intro_installation.html
 
 2. Get the latest devops-scripts (the recipes that we use to deploy various projects)
