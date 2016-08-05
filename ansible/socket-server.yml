@@ -21,7 +21,8 @@
   - { role: docker_client }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
-    target_ip_address: "{{ hostvars[groups['socket-server'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 01-socket-server.conf ]
+  # will have to handle differently
+  #- role: nginx-proxied-service
+  #  nginx_host: "{{ groups['socket-server-proxy'][0] }}"
+  #  target_ip_address: "{{ hostvars[groups['socket-server'][0]]['ansible_default_ipv4']['address'] }}"
+  #  templates: [ 01-socket-server.conf ]
