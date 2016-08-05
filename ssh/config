@@ -231,9 +231,6 @@ Host 10.12.*.*
 Host epsilon-hive
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.111 22
 
-Host epsilon-xenial-worker
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.15.36 22
-
 Host epsilon-api-socket-proxy
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.80 22
 
