@@ -27,6 +27,3 @@
 
   - role: datadog
     tags: [ datadog ]
-
-  - role: container_start
-    number_of_containers: "{{ ansible_processor_cores }}"

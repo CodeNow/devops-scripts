@@ -7,7 +7,7 @@ container_tag: 1.2.3-0
 container_run_opts: >
   -d
   -p {{ swarm_master_port }}:2375
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
 
 container_run_args: >
   manage

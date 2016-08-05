@@ -18,6 +18,6 @@ container_run_opts: >
   -h {{ name }}
   -d
   -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
   -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

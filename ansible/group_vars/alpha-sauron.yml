@@ -34,5 +34,5 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
   {{ container_envs }}

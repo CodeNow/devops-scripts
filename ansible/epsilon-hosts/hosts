@@ -16,7 +16,7 @@ api
 socket-server
 
 [api]
-epsilon-xenial-hive
+epsilon-hive
 
 [consul]
 epsilon-consul-a
@@ -32,10 +32,10 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-epsilon-xenial-hive
+epsilon-hive
 
 [socket-server]
-epsilon-xenial-hive
+epsilon-hive
 
 [socket-server-proxy]
 epsilon-api-socket-proxy

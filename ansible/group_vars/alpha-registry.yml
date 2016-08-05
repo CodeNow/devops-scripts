@@ -3,7 +3,7 @@ name: "registry"
 
 container_image: "registry"
 container_tag: "latest"
-hosted_ports: ["443"]
+hosted_ports: ["80"]
 
 container_envs: >
   -e REGISTRY_STORAGE_S3_ACCESSKEY={{ registry_s3_access_key }}
