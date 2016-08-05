@@ -6,19 +6,6 @@
   register: local_username
   delegate_to: 127.0.0.1
 
-- name: get the username running the deploy
-  tags:
-    - always
-  local_action: command git status -uno
-  register: branch
-  delegate_to: 127.0.0.1
-
-- name: print number of contaienrs
-  tags:
-    - always
-  debug:
-    msg: "{{ branch | match("Already up-to-date")}}"
-
 - name: send start message
   run_once: yes
   changed_when: True
