@@ -3,9 +3,9 @@
 - name: "look for running service running {{ name }}"
   tags: deploy
   become: true
-  script: findRunningService.sh {{ name }}
-  register: service_exists
-  changed_when: service_exists.stdout != ''
+  command: docker service ps {{ name }}
+  register: command_result
+  ignore_errors: True
 
 - name: get latest images
   tags: deploy
@@ -37,7 +37,7 @@
   tags: deploy
   become: yes
   shell: |
-    {% if service_exists is defined %}
+    {% if command_result is True %}
       docker service update --image {{ container_image }}:{{ container_tag }} {{ name }} 
     {% else %}
       docker service create --replicas {{ number_of_containers }} --name {{ name }} \
@@ -55,6 +55,7 @@
           --log-opt syslog-facility={{ log_facility }} \
           --log-opt tag="{{ log_tag | default ( name ) }}" \
         {% endif %}
+        --label {{ name }} \
         {{ container_run_opts | trim }} \
         {% if service_exists is defined %}
           {{ container_image }}:{{ container_tag }} \
@@ -62,4 +63,4 @@
         {% endif %}
     {% endif %}
   args:
-    executable: /bin/bash
+    executable: /bin/bash -x
