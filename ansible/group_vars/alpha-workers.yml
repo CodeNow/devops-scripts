@@ -2,6 +2,9 @@ name: api-worker
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: backend
+
 memory_hard_limit: 1g
 
 # for container settings
@@ -11,8 +14,4 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

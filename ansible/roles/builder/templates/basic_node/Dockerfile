@@ -16,6 +16,21 @@ ENV {{ env }}
 RUN npm install -g n@2.1.0
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
+{% if redis_ca_cert_path is defined %}
+# Redis CA CERT
+ADD ./ssl/redis/ca.pem {{ redis_ca_cert_path }}
+{% endif %}
+
+{% if tls_service is defined %}
+# TLS Client CERT
+COPY ./{{ tls_service }}-client /opt/ssl/{{ tls_service }}-client
+{% endif %}
+
+{% if docker_cert_dir is defined %}
+# Docker certs for {{ name }}
+COPY ./ssl /etc/ssl/docker
+{% endif %}
+
 # ECONNRESET error work-aroute
 RUN npm config set strict-ssl false
 

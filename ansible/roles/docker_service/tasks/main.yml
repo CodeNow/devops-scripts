@@ -1,0 +1,65 @@
+---
+# get current running container with this image
+- name: "look for running service running {{ name }}"
+  tags: deploy
+  become: true
+  script: findRunningService.sh {{ name }}
+  register: service_exists
+  changed_when: service_exists.stdout != ''
+
+- name: get latest images
+  tags: deploy
+  when: not do_not_push
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
+
+- name: get id of latest image
+  tags: deploy
+  become: yes
+  shell: >
+    docker images --no-trunc |
+    grep {{ container_image }}.*{{ container_tag }} |
+    awk '{print $3}'
+  register: new_image_id
+
+- name: default number of containers
+  tags: deploy
+  when: number_of_containers is undefined
+  set_fact:
+    number_of_containers: 1
+
+- name: print number of contaienrs
+  tags: deploy
+  debug:
+    msg: starting this many containers -- {{ number_of_containers }}
+
+- name: start new service
+  tags: deploy
+  become: yes
+  shell: |
+    {% if service_exists is defined %}
+      docker service update --image {{ container_image }}:{{ container_tag }} {{ name }} 
+    {% else %}
+      docker service create --replicas {{ number_of_containers }} --name {{ name }} \
+        {% if swarm_cluster_network is defined %}
+          --network {{ swarm_cluster_network }} \
+        {% endif %}
+        {% if swarm_service_tag is defined %}
+          --constraint 'node.labels.tag == {{ swarm_service_tag }}' \
+        {% endif %}
+        {% if memory_hard_limit is defined %}
+          --limit-memory {{ memory_hard_limit }} \
+        {% endif %}
+        --log-driver={{ log_driver }} \
+        {% if log_driver == "syslog" %}
+          --log-opt syslog-facility={{ log_facility }} \
+          --log-opt tag="{{ log_tag | default ( name ) }}" \
+        {% endif %}
+        {{ container_run_opts | trim }} \
+        {% if service_exists is defined %}
+          {{ container_image }}:{{ container_tag }} \
+          {{ container_run_args | trim }}
+        {% endif %}
+    {% endif %}
+  args:
+    executable: /bin/bash

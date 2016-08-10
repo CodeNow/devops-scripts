@@ -19,3 +19,4 @@
   - { role: docker_client }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
+  - { role: docker_service, number_of_containers: 4 }

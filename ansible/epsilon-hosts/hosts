@@ -69,7 +69,7 @@ epsilon-dock-services
 epsilon-app-services
 
 [palantiri]
-epsilon-dock-services
+epsilon-hive
 
 [rabbitmq]
 epsilon-rabbit
@@ -81,13 +81,13 @@ epsilon-app-services
 epsilon-redis
 
 [shiva]
-epsilon-app-services
+epsilon-hive
 
 [registry]
 epsilon-registry
 
 [sauron]
-epsilon-dock-services
+epsilon-hive
 
 [swarm-manager]
 epsilon-dock-services
@@ -99,7 +99,7 @@ epsilon-app-services
 epsilon-app-services
 
 [pheidi]
-epsilon-app-services
+epsilon-hive
 
 [github-varnish]
 epsilon-app-services

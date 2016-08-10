@@ -1,5 +1,8 @@
 name: "palantiri"
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
@@ -23,7 +26,4 @@ container_envs: >
   -e SWARM_PORT={{ swarm_master_port }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
   {{ container_envs }}
