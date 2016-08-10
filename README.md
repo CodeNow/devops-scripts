@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.1.0.0 (the deploy automation tool we use to deploy projects to production)
 http://docs.ansible.com/intro_installation.html
 
 2. Get the latest devops-scripts (the recipes that we use to deploy various projects)
@@ -18,7 +18,7 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive either `Test-runnable.pem`, `oregon.pem`, or both.
+4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive either `Test-runnable.pem`, `oregon.pem`, `delta.pem`, `delta-prime.pem` or some combination of them.
 
 5. Move the “Keys of Power” .pem  files to your `~/.ssh` directory
 
