@@ -4,7 +4,7 @@
   tags: deploy
   become: true
   command: docker service ps {{ name }}
-  register: command_result
+  register: result
   ignore_errors: True
 
 - name: get latest images
@@ -35,32 +35,36 @@
 
 - name: start new service
   tags: deploy
+  when: result|failed
   become: yes
   shell: |
-    {% if command_result is True %}
-      docker service update --image {{ container_image }}:{{ container_tag }} {{ name }} 
-    {% else %}
-      docker service create --replicas {{ number_of_containers }} --name {{ name }} \
-        {% if swarm_cluster_network is defined %}
-          --network {{ swarm_cluster_network }} \
-        {% endif %}
-        {% if swarm_service_tag is defined %}
-          --constraint 'node.labels.tag == {{ swarm_service_tag }}' \
-        {% endif %}
-        {% if memory_hard_limit is defined %}
-          --limit-memory {{ memory_hard_limit }} \
-        {% endif %}
-        --log-driver={{ log_driver }} \
-        {% if log_driver == "syslog" %}
-          --log-opt syslog-facility={{ log_facility }} \
-          --log-opt tag="{{ log_tag | default ( name ) }}" \
-        {% endif %}
-        --label {{ name }} \
-        {{ container_run_opts | trim }} \
-        {% if service_exists is defined %}
-          {{ container_image }}:{{ container_tag }} \
-          {{ container_run_args | trim }}
-        {% endif %}
-    {% endif %}
+    docker service create --replicas {{ number_of_containers }} --name {{ name }} \
+      {% if swarm_cluster_network is defined %}
+        --network {{ swarm_cluster_network }} \
+      {% endif %}
+      {% if swarm_service_tag is defined %}
+        --constraint 'node.labels.tag == {{ swarm_service_tag }}' \
+      {% endif %}
+      {% if memory_hard_limit is defined %}
+        --limit-memory {{ memory_hard_limit }} \
+      {% endif %}
+      --log-driver={{ log_driver }} \
+      {% if log_driver == "syslog" %}
+        --log-opt syslog-facility={{ log_facility }} \
+        --log-opt tag="{{ log_tag | default ( name ) }}" \
+      {% endif %}
+      --label {{ name }} \
+      {{ container_run_opts | trim }} \
+      {{ container_image }}:{{ container_tag }} \
+      {{ container_run_args | trim }}
   args:
-    executable: /bin/bash -x
+    executable: /bin/bash 
+
+- name: upgrade existing service
+  tags: deploy
+  when: result|success
+  become: yes
+  shell: |
+    docker service update --image {{ container_image }}:{{ container_tag }} {{ name }} 
+  args:
+    executable: /bin/bash

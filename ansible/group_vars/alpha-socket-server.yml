@@ -15,9 +15,4 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}
