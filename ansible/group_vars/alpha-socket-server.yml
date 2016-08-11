@@ -2,6 +2,12 @@ name: api-socket-server
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
+# Swarm Cluster Network
+swarm_cluster_network: "{{ env }}-backend"
+
+# Swarm Service Tag
+swarm_service_tag: frontend
+
 hosted_ports: [ "{{ api_port }}" ]
 
 # for redis
