@@ -5,6 +5,7 @@
 - hosts: rabbitmq
 - hosts: redis
 - hosts: swarm-manager
+- hosts: big-poppa
 - hosts: consul
 
 - hosts: worker
