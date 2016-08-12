@@ -10,10 +10,6 @@ dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
 
-dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}"
-]
-
 dockerfile_pre_install_commands: [
    "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
