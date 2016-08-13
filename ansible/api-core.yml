@@ -4,6 +4,7 @@
 - hosts: charon
 - hosts: rabbitmq
 - hosts: redis
+- hosts: big-poppa
 - hosts: swarm-manager
 - hosts: consul
 
