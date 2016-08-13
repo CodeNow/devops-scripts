@@ -55,7 +55,6 @@ pg_database: astral
 
 # big-poppa
 big_poppa_pg_database: big_poppa
-big_poppa_pg_user: big_poppa
 big_poppa_port: 7788
 big_poppa_host_address: "{{ hostvars[groups['big-poppa'][0]]['ansible_default_ipv4']['address'] }}"
 
