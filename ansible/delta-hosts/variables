@@ -17,8 +17,8 @@ api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
 
 [big-poppa:vars]
 big_poppa_pg_pass=189a4a90-60d9-11e6-92c9-7b1a5b7c8417
-big_poppa_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-big_poppa_pg_port=32659
+big_poppa_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
+big_poppa_pg_port=5432
 big_poppa_pg_user=cwallace
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
 big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
