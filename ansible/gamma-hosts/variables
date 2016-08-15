@@ -12,6 +12,20 @@ api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 
+[big-poppa:vars]
+big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
+big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+big_poppa_pg_port=32659
+big_poppa_pg_user=big_poppa
+big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
+big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
+big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
+big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
+big_poppa_intercom_id=xs5g95pd
+big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+big_poppa_mongo_database=gamma
+big_poppa_mongo_replset_name=gamma-rs0
+
 [docks:vars]
 docker_config=docks
 docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751

@@ -9,6 +9,17 @@ node_version: 4.4.4
 npm_version: 3.8
 has_shrinkwrap: true
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}",
+  "BIG_POPPA_HOST {{ big_poppa_host_address }}:{{ big_poppa_port }}",
+  "RABBITMQ_HOSTNAME {{ rabbit_host_address }}",
+  "RABBITMQ_PASSWORD {{ rabbit_password }}",
+  "RABBITMQ_PORT {{ rabbit_port }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
 dockerfile_post_install_commands:
 - apt-get update && apt-get install -y supervisor
 - npm run build
@@ -17,6 +28,7 @@ container_envs: >-
   -e AWS_ACCESS_KEY={{ eru_aws_access_key_id }}
   -e AWS_ENVIRONMENT={{ eru_aws_environment }}
   -e AWS_SECRET_KEY={{ eru_aws_secret_access_key }}
+  -e BIG_POPPA_HOST={{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e DOMAIN={{ eru_subdomain }}.{{ domain }}
   -e GITHUB_CLIENT_ID={{ eru_github_id }}

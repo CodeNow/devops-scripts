@@ -59,6 +59,11 @@ api_url: https://{{ api_hostname }}
 # astral
 pg_database: astral
 
+# big-poppa
+big_poppa_pg_database: big_poppa
+big_poppa_port: 7788
+big_poppa_host_address: "{{ hostvars[groups['big-poppa'][0]]['ansible_default_ipv4']['address'] }}"
+
 # charon
 charon_port: 53
 
@@ -168,6 +173,8 @@ swarm_container_name: swarm
 navi_mongo_database: navi
 navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
 navi_mongo_port: 27017
+
+npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 
 # local-vault
 vault_local_port: 31836

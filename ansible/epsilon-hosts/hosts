@@ -18,6 +18,9 @@ socket-server
 [api]
 epsilon-hive
 
+[big-poppa]
+epsilon-app-services
+
 [consul]
 epsilon-consul-a
 epsilon-consul-b
@@ -107,6 +110,7 @@ epsilon-app-services
 [epsilon:children]
 api
 bastion
+big-poppa
 charon
 consul
 dock

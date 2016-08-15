@@ -15,6 +15,20 @@ api_s3_context_bucket=runnable.context.resources.production
 api_intercom_app_id=wqzm3rju
 api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
 
+[big-poppa:vars]
+big_poppa_pg_pass=189a4a90-60d9-11e6-92c9-7b1a5b7c8417
+big_poppa_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
+big_poppa_pg_port=5432
+big_poppa_pg_user=cwallace
+big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
+big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
+big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
+big_poppa_intercom_key=0df3322fda46a34e93ba6a43603a8fc3ef740d84
+big_poppa_intercom_id=wqzm3rju
+big_poppa_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
+big_poppa_mongo_database=delta
+big_poppa_mongo_replset_name=delta-rs0
+
 [docks:vars]
 docker_config=docks
 docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
