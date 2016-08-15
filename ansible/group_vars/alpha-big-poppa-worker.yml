@@ -23,6 +23,8 @@ container_envs: >
   -e INTERCOM_API_KEY={{ big_poppa_intercom_key | default('undefined') }}
   -e INTERCOM_APP_ID={{ big_poppa_intercom_id | default('undefined') }}
   -e POSTGRES_CONNECT_STRING=postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}
+  -e POSTGRES_POOL_MIN={{ big_poppa_postgres_pool_min }}
+  -e POSTGRES_POOL_MAX={{ big_poppa_postgres_pool_max }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
