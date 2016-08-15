@@ -9,6 +9,9 @@ build_dir: /opts/builds/docker_build
 # for docker stop old container
 stop_time: 5
 
+# docker cert hackery
+docker_cert_dir: false
+
 # For docker built containers
 do_not_push: false
 

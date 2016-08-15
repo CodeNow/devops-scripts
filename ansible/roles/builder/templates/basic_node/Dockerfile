@@ -26,7 +26,7 @@ ADD ./ssl/redis/ca.pem {{ redis_ca_cert_path }}
 COPY ./{{ tls_service }}-client /opt/ssl/{{ tls_service }}-client
 {% endif %}
 
-{% if docker_cert_dir is defined %}
+{% if docker_cert_dir is equalto "{{ build_dir }}/{{ name }}/ssl" %}
 # Docker certs for {{ name }}
 COPY ./ssl /etc/ssl/docker
 {% endif %}

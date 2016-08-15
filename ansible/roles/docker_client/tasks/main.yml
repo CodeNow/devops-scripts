@@ -1,7 +1,6 @@
 ---
 - name: create docker cert directory
   become: true
-  register: docker_cert_dir
   file:
     path={{ build_dir }}/{{ name }}/ssl
     state=directory
@@ -23,3 +22,7 @@
     mode=0440
     owner=root
     group=root
+
+- name: tell builder about certs
+  set_fact: 
+    docker_cert_dir: "{{ build_dir }}/{{ name }}/ssl"
