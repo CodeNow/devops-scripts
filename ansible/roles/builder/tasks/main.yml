@@ -30,10 +30,6 @@
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
-- name: unset docker client certs
-  set_fact:
-    docker_cert_dir: false
-
 - name: build docker image and tag
   tags: deploy
   become: yes

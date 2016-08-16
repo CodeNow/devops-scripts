@@ -1,5 +1,8 @@
 name: "swarm-manager"
 
+# copy certs into docker image:
+docker_client_certs: true
+
 # container_kill_start settings
 container_image: swarm
 container_tag: 1.2.3-0

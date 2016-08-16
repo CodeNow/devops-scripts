@@ -19,7 +19,7 @@ socket-server
 epsilon-hive
 
 [big-poppa]
-epsilon-app-services
+epsilon-hive
 
 [consul]
 epsilon-consul-a
@@ -48,7 +48,7 @@ epsilon-api-socket-proxy
 [dock]
 
 [eru]
-epsilon-app-services
+epsilon-hive
 
 [navi]
 epsilon-navi
@@ -60,7 +60,7 @@ epsilon-navi
 epsilon-navi
 
 [charon]
-epsilon-app-services
+epsilon-hive
 
 [khronos]
 epsilon-dock-services
@@ -69,7 +69,7 @@ epsilon-dock-services
 epsilon-dock-services
 
 [detention]
-epsilon-app-services
+epsilon-hive
 
 [palantiri]
 epsilon-hive
@@ -78,7 +78,7 @@ epsilon-hive
 epsilon-rabbit
 
 [web]
-epsilon-app-services
+epsilon-hive
 
 [redis]
 epsilon-redis
@@ -96,16 +96,16 @@ epsilon-hive
 epsilon-dock-services
 
 [metis]
-epsilon-app-services
+epsilon-hive
 
 [drake]
-epsilon-app-services
+epsilon-hive
 
 [pheidi]
 epsilon-hive
 
 [github-varnish]
-epsilon-app-services
+epsilon-hive
 
 [epsilon:children]
 api

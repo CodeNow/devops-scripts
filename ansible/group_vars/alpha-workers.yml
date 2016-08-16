@@ -1,5 +1,8 @@
 name: api-worker
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/{{ name }}
 
 swarm_cluster_network: "{{ env }}-backend"
