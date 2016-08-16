@@ -28,8 +28,8 @@ big_poppa_mongo_replset_name=gamma-rs0
 
 [cream:vars]
 cream_hello_runnable_github_token=
-cream_http_rollbar_token=
-cream_worker_rollbar_token=
+cream_http_rollbar_token=baa03dbd9f814d14ab0c99863ed6a4fb
+cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=2548f3affd4923602dbf7bbab66eac377b5d3aac
 cream_intercom_id=xs5g95pd
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
