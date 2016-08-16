@@ -26,6 +26,15 @@ big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=gamma
 big_poppa_mongo_replset_name=gamma-rs0
 
+[cream:vars]
+cream_hello_runnable_github_token=
+cream_http_rollbar_token=
+cream_worker_rollbar_token=
+cream_intercom_key=
+cream_intercom_id=
+cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
+cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
+
 [docks:vars]
 docker_config=docks
 docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751

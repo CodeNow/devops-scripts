@@ -116,12 +116,16 @@ delta-app-services
 [big-poppa]
 delta-app-services
 
+[cream]
+delta-app-services
+
 [delta:children]
 api
 bastion
 big-poppa
 charon
 consul
+cream
 dock
 docker-listener
 docks

@@ -23,6 +23,9 @@ gamma-api
 [big-poppa]
 gamma-app-services
 
+[cream]
+gamma-app-services
+
 [consul]
 gamma-consul-a
 gamma-consul-b
@@ -118,8 +121,10 @@ gamma-app-services
 [gamma:children]
 api
 bastion
+big-poppa
 charon
 consul
+cream
 dock
 docker-listener
 docks

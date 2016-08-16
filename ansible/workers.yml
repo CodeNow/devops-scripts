@@ -6,6 +6,7 @@
 - hosts: redis
 - hosts: swarm-manager
 - hosts: big-poppa
+- hosts: cream
 - hosts: consul
 
 - hosts: worker

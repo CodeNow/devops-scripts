@@ -12,6 +12,7 @@ sendgrid_key: SG.IUCH4sM9RPC1z_-eM-4nKQ.OrXw3BxihUkCBAwYq1pys0QE3SDbP-nOGdlGwlVK
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}",
   "BIG_POPPA_HOST {{ big_poppa_host_address }}:{{ big_poppa_port }}",
+  "CREAM_HOST {{ cream_host_address }}:{{ cream_port }}",
   "RABBITMQ_HOSTNAME {{ rabbit_host_address }}",
   "RABBITMQ_PASSWORD {{ rabbit_password }}",
   "RABBITMQ_PORT {{ rabbit_port }}"
@@ -26,6 +27,7 @@ api_base_container_envs: >-
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
   -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e COOKIE_DOMAIN={{ domain }}
+  -e CREAM_HOST=http://{{ cream_host_address }}:{{ cream_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOMAIN={{ domain }}
