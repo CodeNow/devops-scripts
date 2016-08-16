@@ -20,8 +20,8 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN={{ cream_hello_runnable_github_token }}
   -e NODE_ENV={{ node_env }}
-  -e INTERCOM_API_KEY={{ cream_intercom_key | default('undefined') }}
-  -e INTERCOM_APP_ID={{ cream_intercom_id | default('undefined') }}
+  {% if cream_intercom_key is defined %} -e INTERCOM_API_KEY={{ cream_intercom_key }} {% endif %}
+  {% if cream_intercom_id is defined %} -e INTERCOM_APP_ID={{ cream_intercom_id }} {% endif %}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}

@@ -10,12 +10,7 @@ restart_policy: always
 sendgrid_key: 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
 
 dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}",
-  "BIG_POPPA_HOST {{ big_poppa_host_address }}:{{ big_poppa_port }}",
-  "CREAM_HOST {{ cream_host_address }}:{{ cream_port }}",
-  "RABBITMQ_HOSTNAME {{ rabbit_host_address }}",
-  "RABBITMQ_PASSWORD {{ rabbit_password }}",
-  "RABBITMQ_PORT {{ rabbit_port }}"
+  "NPM_TOKEN {{ npm_token }}"
 ]
 dockerfile_pre_install_commands: [
    'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
