@@ -23,8 +23,8 @@ big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
 cream_hello_runnable_github_token=
 cream_http_rollbar_token=
 cream_worker_rollbar_token=
-cream_intercom_key=
-cream_intercom_id=
+cream_intercom_key=219f46abfc3dce8c9b029d0d799dc1727dce318a
+cream_intercom_id=xs5g95pd
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 

@@ -33,8 +33,8 @@ big_poppa_mongo_replset_name=delta-rs0
 cream_hello_runnable_github_token=
 cream_http_rollbar_token=
 cream_worker_rollbar_token=
-cream_intercom_key=
-cream_intercom_id=
+cream_intercom_key=173c1b366d11a3ef0f641c6b3327914368e67095
+cream_intercom_id=wqzm3rju
 cream_stripe_secret_key=sk_live_TM63XoojqPNzRNH3pG0p9adP
 cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
