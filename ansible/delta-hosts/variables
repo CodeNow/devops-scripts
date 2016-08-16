@@ -30,7 +30,7 @@ big_poppa_mongo_database=delta
 big_poppa_mongo_replset_name=delta-rs0
 
 [cream:vars]
-cream_hello_runnable_github_token=
+cream_hello_runnable_github_token=5ff90dacd14fb1ff202c6b48c1393ba713adf483
 cream_http_rollbar_token=baa03dbd9f814d14ab0c99863ed6a4fb
 cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=173c1b366d11a3ef0f641c6b3327914368e67095
