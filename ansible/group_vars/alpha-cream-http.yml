@@ -29,6 +29,8 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e RUNNABLE_API_URL={{ api_url }}
+  -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e ROLLBAR_KEY={{ cream_http_rollbar_token }}
 
 container_run_opts: >
