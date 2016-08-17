@@ -1,7 +1,6 @@
 - include: detention.yml git_branch="v1.3.4"
 - include: drake.yml git_branch="v1.1.0"
 - include: eru.yml git_branch="v5.1.2"
-- include: metis.yml git_branch="v7.1.2"
 - include: shiva.yml git_branch="v7.1.2"
 - include: pheidi.yml git_branch="v1.18.0"
 # run with: `--extra-vars "@current_versions.yml"`
