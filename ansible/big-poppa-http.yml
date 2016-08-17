@@ -12,4 +12,4 @@
     rollbar_token: "{{ big_poppa_http_rollbar_token }}"
     tags: [ notify ]
   - { role: builder, tags: [ build ] }
-  - { role: container_kill_start }
+  - { role: docker_service }

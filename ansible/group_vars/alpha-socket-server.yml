@@ -11,7 +11,7 @@ swarm_cluster_network: "{{ env }}-backend"
 # Swarm Service Tag
 swarm_service_tag: frontend
 
-hosted_ports: [ "{{ api_port }}" ]
+hosted_ports: [ "{{ api_socket_port }}" ]
 
 # for redis
 redis_key: frontend:{{ api_socket_server_hostname }}

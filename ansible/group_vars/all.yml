@@ -49,6 +49,7 @@ angular_url: https://app.{{ domain }}
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
 api_port: 80
+api_socket_port: 81
 api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
 api_url: https://{{ api_hostname }}
