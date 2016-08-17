@@ -1,2 +1,2 @@
-- include: cream-http.yml
 - include: cream-worker.yml
+- include: cream-http.yml
