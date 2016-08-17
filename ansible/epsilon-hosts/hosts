@@ -7,6 +7,9 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 [userland]
 epsilon-userland
 
+[ingress]
+epsilon-hive
+
 [mongodb]
 epsilon-mongo
 
@@ -63,10 +66,10 @@ epsilon-navi
 epsilon-hive
 
 [khronos]
-epsilon-dock-services
+epsilon-hive
 
 [optimus]
-epsilon-dock-services
+epsilon-hive
 
 [detention]
 epsilon-hive
