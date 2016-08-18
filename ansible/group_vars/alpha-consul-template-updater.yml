@@ -5,11 +5,7 @@ container_image: avthart/consul-template
 container_tag: latest
 
 container_run_opts: >
-  -d
   --name {{ name }}
-  -v /var/run/docker.sock:/tmp/docker.sock
-  -v {{ template_path }}:/tmp/template
-  --volumes-from {{ target_container_name }}
 
 container_run_args: >
   -consul={{ consul_host_address }}:{{ consul_api_port }}

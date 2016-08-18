@@ -9,4 +9,4 @@
   - role: notify
     tags: notify
 
-  - role: container_kill_start
+  - role: docker_service

@@ -28,7 +28,11 @@ COPY ./{{ tls_service }}-client /opt/ssl/{{ tls_service }}-client
 
 {% if docker_client_certs is defined %}
 # Docker certs for {{ name }}
-COPY ./ssl /etc/ssl/docker
+COPY ./ssl /etc/ssl
+{% endif %}
+
+{% if nginx_conf is defined %}
+COPY ./nginx /etc/nginx
 {% endif %}
 
 # ECONNRESET error work-aroute

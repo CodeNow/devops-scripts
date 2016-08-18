@@ -1,11 +1,14 @@
 ---
 name: nginx
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: frontend
+
 docker_image: runnable/sticky-nginx
 docker_image_version: v1.8.1
 
 docker_restart_command: kill -s SIGHUP
 
 docker_container_run_opts: >
-  --publish 443:443/tcp \
+  --publish 443:443/tcp 
   --publish 80:80/tcp 
