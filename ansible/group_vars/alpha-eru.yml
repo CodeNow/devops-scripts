@@ -33,6 +33,8 @@ container_envs: >-
   -e DOMAIN={{ eru_subdomain }}.{{ domain }}
   -e GITHUB_CLIENT_ID={{ eru_github_id }}
   -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
+  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
+  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
   -e INTERCOM_API_KEY={{ eru_intercom_key }}
   -e INTERCOM_APP_ID={{ eru_intercom_id }}
   -e LOG_ENVIRONMENT={{ node_env }}
