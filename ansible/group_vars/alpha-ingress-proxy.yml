@@ -8,7 +8,7 @@ docker_client_certs: true
 nginx_conf: true
 
 swarm_cluster_network: "{{ env }}-backend"
-swarm_service_tag: api-proxy
+swarm_service_tag: ingress
 
 # used by consul template updater
 proxy_service_name: api
