@@ -21,6 +21,9 @@ epsilon-api
 [big-poppa]
 epsilon-app-services
 
+[cream]
+epsilon-app-services
+
 [consul]
 epsilon-consul-a
 epsilon-consul-b
@@ -113,6 +116,7 @@ bastion
 big-poppa
 charon
 consul
+cream
 dock
 docker-listener
 docks

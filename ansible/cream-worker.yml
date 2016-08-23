@@ -1,0 +1,13 @@
+---
+- hosts: rabbitmq
+- hosts: consul
+
+- hosts: cream
+  vars_files:
+    - group_vars/alpha-cream-worker.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ cream_http_rollbar_token }}"
+    tags: [ notify ]
+  - { role: builder, tags: [ build ] }
+  - { role: container_kill_start }
