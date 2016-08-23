@@ -29,6 +29,8 @@ container_envs: >
   -e PGHOST={{ big_poppa_pg_host }}
   -e PGPORT={{ big_poppa_pg_port }}
   -e PGDATABASE={{ big_poppa_pg_database }}
+  -e POSTGRES_POOL_MIN={{ big_poppa_postgres_pool_min }}
+  -e POSTGRES_POOL_MAX={{ big_poppa_postgres_pool_max }}
   -e POSTGRES_CONNECT_STRING=postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}

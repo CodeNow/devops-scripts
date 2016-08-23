@@ -28,6 +28,8 @@ big_poppa_intercom_id=wqzm3rju
 big_poppa_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 big_poppa_mongo_database=delta
 big_poppa_mongo_replset_name=delta-rs0
+big_poppa_postgres_pool_min=1
+big_poppa_postgres_pool_max=30
 
 [docks:vars]
 docker_config=docks
