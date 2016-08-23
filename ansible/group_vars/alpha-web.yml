@@ -9,14 +9,15 @@ rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 do_not_push: yes
 
 dockerfile_enviroment: [
-  "API_URL https://{{ api_hostname }}",
   "API_SOCK_URL https://{{ api_socket_server_hostname }}",
-  "USER_CONTENT_DOMAIN {{ user_content_domain }}",
-  "NODE_ENV production",
+  "API_URL https://{{ api_hostname }}",
   "AWS_ACCESS_KEY {{ aws_access_key }}",
+  "AWS_BUCKET app.{{ domain }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
   "MARKETING_URL {{ marketing_url }}",
-  "AWS_BUCKET app.{{ domain }}"
+  "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
+  "NODE_ENV production",
+  "USER_CONTENT_DOMAIN {{ user_content_domain }}",
 ]
 
 dockerfile_post_install_commands: [
