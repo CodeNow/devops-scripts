@@ -14,11 +14,11 @@ is_redis_update_required: 'yes'
 # for container settings
 container_envs: >
   -e API_URL={{ api_url }}
-  -e PORT={{ hosted_ports[0] }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e LOG_LEVEL=info
+  -e DATADOG_SECRET=I_solemnly_swear_that_I_am_up_to_no_good
   -e NODE_ENV={{ node_env }}
+  -e PORT={{ hosted_ports[0] }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}

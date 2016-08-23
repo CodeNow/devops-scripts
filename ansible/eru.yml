@@ -5,6 +5,7 @@
 - hosts: rabbitmq
 - hosts: big-poppa
 - hosts: socket-server-proxy
+- hosts: github-varnish
 
 - hosts: eru
   vars_files:
