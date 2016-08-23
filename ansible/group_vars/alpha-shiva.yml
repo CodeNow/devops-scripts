@@ -1,4 +1,8 @@
 name: shiva
+
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/astral.git
@@ -29,8 +33,4 @@ container_envs: >
   -e DOCKER_PORT={{ docker_port }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
   {{ container_envs }}

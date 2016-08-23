@@ -12,4 +12,4 @@
     tags: [ notify ]
   - { role: builder, tags: [build] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: container_kill_start }
+  - { role: docker_service }

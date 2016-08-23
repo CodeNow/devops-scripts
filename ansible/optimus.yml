@@ -11,4 +11,4 @@
     tags: [ notify ]
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: builder, tags: [ build ] }
-  - { role: container_start }
+  - { role: docker_service }

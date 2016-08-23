@@ -1,5 +1,8 @@
 name: big-poppa-worker
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/big-poppa.git"
@@ -35,8 +38,6 @@ container_envs: >
   -e GITHUB_PROTOCOL=http
 
 container_run_opts: >
-  -h {{ name }}
-  -d
   {{container_envs}}
 
 npm_start_command: run start-worker

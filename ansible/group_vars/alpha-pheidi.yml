@@ -1,5 +1,8 @@
 name: pheidi
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
@@ -35,7 +38,4 @@ container_envs: >
   -e WEB_URL=https://app.{{ domain }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongo-client:ro
   {{ container_envs }}

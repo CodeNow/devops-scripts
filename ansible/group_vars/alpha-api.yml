@@ -1,5 +1,11 @@
 name: api
 
+# copy certs into docker image:
+docker_client_certs: true
+
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: frontend
+
 container_image: registry.runnable.com/runnable/{{ name }}
 
 hosted_ports: [ "{{ api_port }}" ]
@@ -16,9 +22,4 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_rollbar_key }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

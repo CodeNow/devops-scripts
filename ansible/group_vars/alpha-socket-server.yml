@@ -1,8 +1,17 @@
 name: api-socket-server
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/{{ name }}
 
-hosted_ports: [ "{{ api_port }}" ]
+# Swarm Cluster Network
+swarm_cluster_network: "{{ env }}-backend"
+
+# Swarm Service Tag
+swarm_service_tag: frontend
+
+hosted_ports: [ "{{ api_socket_port }}" ]
 
 # for redis
 redis_key: frontend:{{ api_socket_server_hostname }}
@@ -15,9 +24,4 @@ container_envs: >
   -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

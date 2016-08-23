@@ -7,6 +7,9 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 [userland]
 epsilon-userland
 
+[ingress]
+epsilon-hive
+
 [mongodb]
 epsilon-mongo
 
@@ -16,10 +19,10 @@ api
 socket-server
 
 [api]
-epsilon-api
+epsilon-hive
 
 [big-poppa]
-epsilon-app-services
+epsilon-hive
 
 [consul]
 epsilon-consul-a
@@ -35,10 +38,10 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-epsilon-api-worker
+epsilon-hive
 
 [socket-server]
-epsilon-api-socket
+epsilon-hive
 
 [socket-server-proxy]
 epsilon-api-socket-proxy
@@ -48,7 +51,7 @@ epsilon-api-socket-proxy
 [dock]
 
 [eru]
-epsilon-app-services
+epsilon-hive
 
 [navi]
 epsilon-navi
@@ -60,52 +63,52 @@ epsilon-navi
 epsilon-navi
 
 [charon]
-epsilon-app-services
+epsilon-hive
 
 [khronos]
-epsilon-dock-services
+epsilon-hive
 
 [optimus]
-epsilon-dock-services
+epsilon-hive
 
 [detention]
-epsilon-app-services
+epsilon-hive
 
 [palantiri]
-epsilon-dock-services
+epsilon-hive
 
 [rabbitmq]
 epsilon-rabbit
 
 [web]
-epsilon-app-services
+epsilon-hive
 
 [redis]
 epsilon-redis
 
 [shiva]
-epsilon-app-services
+epsilon-hive
 
 [registry]
 epsilon-registry
 
 [sauron]
-epsilon-dock-services
+epsilon-hive
 
 [swarm-manager]
 epsilon-dock-services
 
 [metis]
-epsilon-app-services
+epsilon-hive
 
 [drake]
-epsilon-app-services
+epsilon-hive
 
 [pheidi]
-epsilon-app-services
+epsilon-hive
 
 [github-varnish]
-epsilon-app-services
+epsilon-hive
 
 [epsilon:children]
 api

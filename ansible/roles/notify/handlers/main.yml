@@ -25,7 +25,7 @@
 
 - name: send datadog message for deploy
   when: datadog_api_key is defined and datadog_tags is defined and git_branch is defined
-  ignore_errors: true
+  ignore_errors: yes
   tags:
     - datadog
     - always

@@ -1,5 +1,8 @@
 name: khronos
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
@@ -65,10 +68,6 @@ container_envs: >
   -e WORKER_MAX_RETRY_DELAY=3600000
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongo-client:/opt/ssl/mongo-client:ro
   {{container_envs}}
 
 container_run_args: timeout 1h npm start

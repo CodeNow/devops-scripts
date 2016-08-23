@@ -77,6 +77,13 @@
     state: present
     update_cache: yes
 
+- name: add docker testing repo
+  become: true
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} testing"
+    state: present
+    update_cache: yes
+
 - name: copy docker config file
   become: true
   template:

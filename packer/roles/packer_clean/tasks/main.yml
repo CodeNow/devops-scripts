@@ -1,0 +1,18 @@
+---
+- name: remove build file
+  tags: clean
+  file:
+    path=tmp/base.json
+    state=absent
+
+- name: remove fixed build file
+  tags: clean
+  file:
+    path=tmp/fixed.json
+    state=absent
+
+- name: remove configure script
+  tags: clean
+  file:
+    path=tmp/bin/configure.sh
+    state=absent

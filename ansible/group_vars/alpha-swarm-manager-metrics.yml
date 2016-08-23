@@ -1,6 +1,9 @@
 ---
 name: swarm-cloudwatch-reporter
 
+# copy certs into docker image:
+docker_client_certs: true
+
 repo: git@github.com:CodeNow/furry-cactus.git
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"

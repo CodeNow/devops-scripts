@@ -10,6 +10,6 @@
   - role: notify
     rollbar_token: "{{ shiva_rollbar_token }}"
     tags: [ notify ]
+  - { role: tls-server-ca, ca_dest: "{{ build_dir }}/{{ name }}/ssl/redis/ca.pem" }
   - { role: builder, tags: [ build ] }
-  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - { role: container_kill_start }
+  #- { role: container_kill_start }

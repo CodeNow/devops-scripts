@@ -3,7 +3,7 @@
   tags: [ configure_proxy, certs ]
   become: true
   file:
-    dest: /etc/ssl/certs/{{ domain }}
+    dest: "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}"
     state: directory
 
 - name: put certs in place
@@ -12,7 +12,7 @@
   register: add_certs
   copy:
     src: "{{ domain }}/{{ item }}"
-    dest: /etc/ssl/certs/{{ domain }}/{{ item }}
+    dest: "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}/{{ item }}"
     mode: 0400
     owner: root
     group: root
@@ -27,22 +27,22 @@
   when: add_certs.changed
   shell: >
     cat
-    /etc/ssl/certs/{{ domain }}/cert.pem
-    /etc/ssl/certs/{{ domain }}/ca.pem
+    "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}/cert.pem"
+    "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}/ca.pem"
     >
-    /etc/ssl/certs/{{ domain }}/chained.pem
+    "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}/chained.pem"
 
 - name: create dhparam.pem
   tags: [ configure_proxy, certs ]
   when: add_certs.changed
   become: yes
-  command: openssl dhparam -out /etc/ssl/certs/{{ domain }}/dhparam.pem 2048
+  command: openssl dhparam -out "{{ build_dir }}/{{ name }}/ssl/certs/{{ domain }}/dhparam.pem" 2048
 
 - name: make sure nginx directory is in place
   tags: [ configure_proxy ]
   become: true
   file:
-    dest: /etc/nginx
+    dest: "{{ build_dir }}/nginx"
     state: directory
 
 - name: put nginx configuration in place
@@ -50,18 +50,18 @@
   become: yes
   template:
     src: proxy-nginx.conf
-    dest: /etc/nginx/nginx.conf
+    dest: "{{ build_dir }}/nginx/nginx.conf"
 
 - name: assert nginx template directory
   tags: [ configure_proxy ]
   become: yes
   file:
     state: directory
-    dest: /etc/nginx/template
+    dest: "{{ build_dir }}/nginx/template"
 
 - name: put api template in place
   tags: [ configure_proxy ]
   become: yes
   template:
     src: api.tmpl
-    dest: /etc/nginx/template/api.tmpl
+    dest: "{{ build_dir }}/nginx/template/api.tmpl"

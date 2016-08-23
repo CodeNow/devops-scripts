@@ -1,0 +1,5 @@
+Ryan notes:
+
+    - strip out consul/vault/weave from base ami script
+    - base ami installs only doker, nodejs, build-essentials, dnsutils, colordiff, htp, etc
+    - etudes - variations on the base AMI for consul, vault, name pragma, packages, organization of source/packages

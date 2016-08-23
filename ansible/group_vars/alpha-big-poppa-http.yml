@@ -1,5 +1,8 @@
 name: big-poppa-http
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ big_poppa_port }}"]
@@ -42,9 +45,6 @@ container_envs: >
   -e GITHUB_PROTOCOL=http
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
   {{container_envs}}
 
 npm_start_command: run start-http

@@ -1,0 +1,70 @@
+---
+# get current running container with this image
+- name: "look for running service running {{ name }}"
+  tags: deploy
+  become: true
+  command: docker service ps {{ name }}
+  register: result
+  ignore_errors: True
+
+- name: get latest images
+  tags: deploy
+  when: not do_not_push
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
+
+- name: get id of latest image
+  tags: deploy
+  become: yes
+  shell: >
+    docker images --no-trunc |
+    grep {{ container_image }}.*{{ container_tag }} |
+    awk '{print $3}'
+  register: new_image_id
+
+- name: default number of containers
+  tags: deploy
+  when: number_of_containers is undefined
+  set_fact:
+    number_of_containers: 1
+
+- name: print number of contaienrs
+  tags: deploy
+  debug:
+    msg: starting this many containers -- {{ number_of_containers }}
+
+- name: start new service
+  tags: deploy
+  when: result|failed
+  become: yes
+  shell: |
+    docker service create --replicas {{ number_of_containers }} --name {{ name }} \
+      {% if swarm_cluster_network is defined %}
+        --network {{ swarm_cluster_network }} \
+      {% endif %}
+      {% if swarm_service_tag is defined %}
+        --constraint 'node.labels.tag == {{ swarm_service_tag }}' \
+      {% endif %}
+      {% if memory_hard_limit is defined %}
+        --limit-memory {{ memory_hard_limit }} \
+      {% endif %}
+      --log-driver={{ log_driver }} \
+      {% if log_driver == "syslog" %}
+        --log-opt syslog-facility={{ log_facility }} \
+        --log-opt tag="{{ log_tag | default ( name ) }}" \
+      {% endif %}
+      --label {{ name }} \
+      {{ container_run_opts | trim }} \
+      {{ container_image }}:{{ container_tag }} \
+      {{ container_run_args | trim }}
+  args:
+    executable: /bin/bash 
+
+- name: upgrade existing service
+  tags: deploy
+  when: result|success
+  become: yes
+  shell: |
+    docker service update --image {{ container_image }}:{{ container_tag }} {{ name }} 
+  args:
+    executable: /bin/bash

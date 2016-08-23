@@ -1,0 +1,49 @@
+{
+    "variables": {
+        "aws_access_key": "AKIAIB3IJCCJZQWQMVSQ",
+            "aws_secret_key": "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"
+    },
+        "provisioners": [
+        {
+            "type": "shell",
+            "script": "bin/configure.sh"
+        }
+    ],
+        "builders": [
+        {
+            "type": "amazon-ebs",
+            "communicator": "ssh",
+            "ssh_bastion_host": "52.35.234.45",
+            "ssh_bastion_port": "60519",
+            "ssh_bastion_username": "ubuntu",
+            "ssh_port": "22",
+            "ssh_disable_agent": "false",
+            "ssh_bastion_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
+            "ssh_private_key_file": "/Users/cneill/.ssh/epsilon.pem",
+            "ssh_keypair_name": "epsilon",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "us-west-2",
+            "source_ami": "ami-9abea4fb",
+            "instance_type": "t2.micro",
+            "ssh_username": "ubuntu",
+            "ami_name": "packer-test {{timestamp}}",
+            "security_group_id": "sg-3322e454",
+            "subnet_id": "subnet-9d4214c4",
+            "launch_block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "volume_size": 32,  
+                "volume_type": "gp2",
+                "delete_on_termination": true
+              },
+              {
+                "device_name": "/dev/sdb",
+                "volume_size": 200,
+                "volume_type": "gp2",
+                "delete_on_termination": true
+              }
+            ]
+        }
+    ]
+}

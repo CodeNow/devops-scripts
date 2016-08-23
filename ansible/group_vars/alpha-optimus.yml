@@ -1,5 +1,8 @@
 name: optimus
 
+swarm_cluster_network: "{{ env }}-backend"
+swarm_service_tag: services
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
@@ -23,7 +26,4 @@ container_envs: >
   -e LOG_LEVEL=trace
 
 container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
   {{ container_envs }}
