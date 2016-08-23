@@ -87,6 +87,8 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [pheidi:vars]
+pheidi_intercom_id: wqzm3rju
+pheidi_intercom_key: ro-02a5323fd37f41f8eeebf6e6364cf87e6b6ac8c5
 pheidi_mongo_auth=pheidi:septa-mauve-enquiry-clipper-history
 pheidi_mongo_database=delta
 pheidi_mongo_replset_name=delta
