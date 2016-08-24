@@ -155,3 +155,6 @@ sg_redis=sg-477b0c23
 sg_registry=sg-c8d140af
 sg_userland=sg-12ce9876
 sg_web=sg-fe8bf49a
+
+[web:vars]
+web_intercom_id=xs5g95pd
