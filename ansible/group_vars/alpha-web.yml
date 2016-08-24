@@ -14,10 +14,10 @@ dockerfile_enviroment: [
   "AWS_ACCESS_KEY {{ aws_access_key }}",
   "AWS_BUCKET app.{{ domain }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
-  "MARKETING_URL {{ marketing_url }}",
-  "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
-  "NODE_ENV production",
   "INTERCOM_APP_ID {{ web_intercom_id }}",
+  "MARKETING_URL {{ marketing_url }}",
+  "NODE_ENV production",
+  "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
   "USER_CONTENT_DOMAIN {{ user_content_domain }}",
 ]
 
