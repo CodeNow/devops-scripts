@@ -134,7 +134,6 @@ socket-server
 socket-server-proxy
 swarm-manager
 userland
-web
 worker
 
 [local]
