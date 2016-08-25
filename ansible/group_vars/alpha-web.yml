@@ -17,9 +17,9 @@ dockerfile_enviroment: [
   "INTERCOM_APP_ID {{ web_intercom_id }}",
   "MARKETING_URL {{ marketing_url }}",
   "NODE_ENV production",
+  "SIFT_API_KEY {{ web_sift_public_key }}",
   "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
   "USER_CONTENT_DOMAIN {{ user_content_domain }}",
-  "SIFT_API_KEY {{ web_sift_public_key }}",
 ]
 
 dockerfile_post_install_commands: [
