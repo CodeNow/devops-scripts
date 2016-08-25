@@ -20,10 +20,7 @@ socket-server
 10.12.10.44
 
 [big-poppa]
-epsilon-app-services
-
-[cream]
-epsilon-app-services
+10.12.10.206
 
 [consul]
 epsilon-consul-a
