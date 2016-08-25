@@ -16,11 +16,10 @@ api
 socket-server
 
 [api]
-10.12.10.42
-10.12.10.44
+epsilon-api
 
 [big-poppa]
-10.12.10.206
+epsilon-big-poppa
 
 [consul]
 epsilon-consul-a
@@ -28,10 +27,10 @@ epsilon-consul-b
 epsilon-consul-c
 
 [cream]
-10.12.8.147
+epsilon-cream
 
 [docker-listener]
-epsilon-dock-services
+epsilon-docker-listener
 
 [vault]
 epsilon-consul-a
@@ -39,14 +38,10 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-10.12.8.180
-10.12.8.181
-10.12.8.182
-10.12.8.183
+epsilon-api-worker
 
 [socket-server]
-10.12.10.43
-10.12.10.45
+epsilon-api-socket
 
 [socket-server-proxy]
 epsilon-api-socket-proxy
@@ -56,7 +51,7 @@ epsilon-api-socket-proxy
 [dock]
 
 [eru]
-10.12.11.82
+epsilon-eru
 
 [navi]
 epsilon-navi
@@ -68,16 +63,16 @@ epsilon-navi
 epsilon-navi
 
 [khronos]
-10.12.8.182
+epsilon-khronos
 
 [optimus]
-10.12.8.181
+epsilon-optimus
 
 [detention]
-10.12.8.180
+epsilon-detention
 
 [palantiri]
-10.12.10.208
+epsilon-palantiri
 
 [rabbitmq]
 epsilon-rabbit
@@ -86,28 +81,25 @@ epsilon-rabbit
 epsilon-redis
 
 [shiva]
-10.12.11.83
+epsilon-shiva
 
 [registry]
 epsilon-registry
 
 [sauron]
-10.12.10.207
+epsilon-sauron
 
 [swarm-manager]
-10.12.8.183
-
-[metis]
-epsilon-app-services
+epsilon-swarm-manager
 
 [drake]
-10.12.11.81
+epsilon-drake
 
 [pheidi]
-10.12.11.84
+epsilon-pheidi
 
 [github-varnish]
-epsilon-app-services
+epsilon-varnish
 
 [epsilon:children]
 api
@@ -123,7 +115,6 @@ eru
 github-varnish
 hipache
 khronos
-metis
 mongodb
 navi
 optimus
@@ -138,6 +129,7 @@ socket-server-proxy
 swarm-manager
 userland
 worker
+varnish
 
 [local]
 127.0.0.1
