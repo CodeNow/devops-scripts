@@ -1,2 +1,2 @@
 ---
-docker_package_name: docker-engine=1.10.2-0~trusty
+docker_package_name: docker-engine=1.12.0-0~trusty
