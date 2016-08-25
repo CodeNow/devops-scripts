@@ -177,3 +177,4 @@ vpc_id=vpc-864c6be3
 
 [web:vars]
 web_intercom_id=wqzm3rju
+web_sift_public_key=27e9da5c97
