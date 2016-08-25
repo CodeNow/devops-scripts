@@ -149,3 +149,4 @@ vpc_id="vpc-cdb2a3a8"
 
 [web:vars]
 web_intercom_id=xs5g95pd
+web_sift_public_key=eea9746dff

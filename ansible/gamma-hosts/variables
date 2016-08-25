@@ -158,3 +158,4 @@ sg_web=sg-fe8bf49a
 
 [web:vars]
 web_intercom_id=xs5g95pd
+web_sift_public_key=eea9746dff
