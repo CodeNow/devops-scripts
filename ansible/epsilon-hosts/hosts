@@ -110,7 +110,7 @@ epsilon-app-services
 api
 bastion
 big-poppa
-onsul
+consul
 cream
 dock
 docker-listener
