@@ -16,7 +16,8 @@ api
 socket-server
 
 [api]
-epsilon-api
+10.12.10.42
+10.12.10.44
 
 [big-poppa]
 epsilon-app-services
@@ -38,10 +39,14 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-epsilon-api-worker
+10.12.8.180
+10.12.8.181
+10.12.8.182
+10.12.8.183
 
 [socket-server]
-epsilon-api-socket
+10.12.10.43
+10.12.10.45
 
 [socket-server-proxy]
 epsilon-api-socket-proxy
