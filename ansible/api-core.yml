@@ -1,7 +1,6 @@
 ---
 - hosts: mongodb
 - hosts: navi
-- hosts: charon
 - hosts: rabbitmq
 - hosts: redis
 - hosts: big-poppa

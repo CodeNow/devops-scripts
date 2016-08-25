@@ -64,41 +64,35 @@ epsilon-navi
 [link]
 epsilon-navi
 
-[charon]
-epsilon-app-services
-
 [khronos]
-epsilon-dock-services
+10.12.8.182
 
 [optimus]
-epsilon-dock-services
+10.12.8.181
 
 [detention]
-epsilon-app-services
+10.12.8.180
 
 [palantiri]
-epsilon-dock-services
+10.12.10.208
 
 [rabbitmq]
 epsilon-rabbit
-
-[web]
-epsilon-app-services
 
 [redis]
 epsilon-redis
 
 [shiva]
-epsilon-app-services
+10.12.11.83
 
 [registry]
 epsilon-registry
 
 [sauron]
-epsilon-dock-services
+10.12.10.207
 
 [swarm-manager]
-epsilon-dock-services
+10.12.8.183
 
 [metis]
 epsilon-app-services
