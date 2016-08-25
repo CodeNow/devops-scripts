@@ -53,7 +53,7 @@ epsilon-api-socket-proxy
 [dock]
 
 [eru]
-epsilon-app-services
+10.12.11.82
 
 [navi]
 epsilon-navi
@@ -98,10 +98,10 @@ epsilon-registry
 epsilon-app-services
 
 [drake]
-epsilon-app-services
+10.12.11.81
 
 [pheidi]
-epsilon-app-services
+10.12.11.84
 
 [github-varnish]
 epsilon-app-services
@@ -110,8 +110,7 @@ epsilon-app-services
 api
 bastion
 big-poppa
-charon
-consul
+onsul
 cream
 dock
 docker-listener

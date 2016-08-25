@@ -57,9 +57,6 @@ gamma-navi
 [mongo-navi]
 gamma-navi
 
-[charon]
-gamma-app-services
-
 [khronos]
 gamma-dock-services
 
@@ -122,7 +119,6 @@ gamma-app-services
 api
 bastion
 big-poppa
-charon
 consul
 cream
 dock
