@@ -46,10 +46,6 @@ epsilon-api-socket
 [socket-server-proxy]
 epsilon-api-socket-proxy
 
-[docks]
-
-[dock]
-
 [eru]
 epsilon-eru
 
@@ -100,6 +96,10 @@ epsilon-pheidi
 
 [github-varnish]
 epsilon-varnish
+
+[docks]
+
+[dock]
 
 [epsilon:children]
 api
