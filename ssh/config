@@ -286,31 +286,22 @@ Host epsilon-consul-c
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.209 22
 
 Host epsilon-hipache
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.195 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.78 22
 
 Host epsilon-mongo
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.73 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.234 22
 
 Host epsilon-navi
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.252 22
-
-Host epsilon-neo4j
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.204 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.156 22
 
 Host epsilon-rabbit
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.57 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.158 22
 
 Host epsilon-redis
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.245 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.157 22
 
 Host epsilon-registry
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
-
-Host epsilon-app-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.174 22
-
-Host epsilon-dock-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.110 22
 
 Host epsilon-ingress
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
