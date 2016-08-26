@@ -238,7 +238,7 @@ Host epsilon-api-socket
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.43 22
 
 Host epsilon-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.116 22
+  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.80 22
 
 Host epsilon-big-poppa
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.206 22

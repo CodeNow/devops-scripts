@@ -8,7 +8,7 @@
 - hosts: big-poppa
 - hosts: cream
 - hosts: socket-server-proxy
-
+- hosts: github-varnish
 - hosts: socket-server
   vars_files:
     - group_vars/alpha-api-base.yml
