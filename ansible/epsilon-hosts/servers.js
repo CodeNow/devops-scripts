@@ -9,17 +9,21 @@ var ec2 = new aws.EC2({
   region: 'us-west-2'
 });
 
+var name = process.argv[2];
+
+// console.log(name,"xxx");
+
 var params = {
   Filters: [
     // Only search for docks in the cluster security group
     {
-      Name: 'instance.group-id',
-      Values: ['sg-3322e454']
+      Name: 'vpc-id',
+      Values: ['vpc-cdb2a3a8']
     },
     // Only fetch instances that are tagged as docks
     {
       Name: 'tag:role',
-      Values: ['dock']
+      Values: [name]
     },
     // Only fetch running instances
     {
