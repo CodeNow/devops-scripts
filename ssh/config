@@ -312,7 +312,7 @@ Host epsilon-app-services
 Host epsilon-dock-services
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.110 22
 
-Host epsilon-userland
+Host epsilon-ingress
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
 
 Host epsilon-varnish

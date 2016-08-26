@@ -4,8 +4,8 @@ epsilon-bastion
 [hipache]
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
-[userland]
-epsilon-userland
+[ingress]
+epsilon-ingress
 
 [mongodb]
 epsilon-mongo
@@ -127,9 +127,8 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
-userland
+ingress
 worker
-varnish
 
 [local]
 127.0.0.1
