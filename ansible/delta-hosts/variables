@@ -14,6 +14,7 @@ api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production
 api_intercom_app_id=wqzm3rju
 api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
+api_sift_science_rest_api_key=be78f67e5a2950a1
 
 [big-poppa:vars]
 big_poppa_pg_pass=189a4a90-60d9-11e6-92c9-7b1a5b7c8417
