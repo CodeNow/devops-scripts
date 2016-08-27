@@ -16,7 +16,6 @@ api
 socket-server
 
 [api]
-epsilon-api
 
 [big-poppa]
 epsilon-big-poppa
@@ -41,7 +40,6 @@ epsilon-consul-c
 epsilon-api-worker
 
 [socket-server]
-epsilon-api-socket
 
 [socket-server-proxy]
 epsilon-api-socket-proxy
@@ -101,6 +99,8 @@ epsilon-varnish
 
 [dock]
 
+[servers]
+
 [epsilon:children]
 api
 bastion
@@ -129,6 +129,7 @@ socket-server-proxy
 swarm-manager
 ingress
 worker
+servers
 
 [local]
 127.0.0.1
