@@ -174,3 +174,7 @@ sg_services=sg-71d2fe15
 sg_userland=sg-41d2fe25
 sg_web=sg-51d2fe35
 vpc_id=vpc-864c6be3
+
+[web:vars]
+web_intercom_id=wqzm3rju
+web_sift_public_key=27e9da5c97

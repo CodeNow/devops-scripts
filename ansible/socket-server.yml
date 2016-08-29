@@ -8,6 +8,7 @@
 - hosts: big-poppa
 - hosts: cream
 - hosts: socket-server-proxy
+- hosts: ingress
 - hosts: github-varnish
 - hosts: socket-server
   vars_files:
