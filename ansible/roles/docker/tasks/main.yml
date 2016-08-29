@@ -111,4 +111,5 @@
 
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
-  command: sudo service docker restart
+  become: true
+  command: service docker restart

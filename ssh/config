@@ -228,15 +228,6 @@ Host 10.12.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@epsilon-bastion nc %h %p
   IdentityFile ~/.ssh/epsilon.pem
 
-Host epsilon-api
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.42 22
-
-Host epsilon-api-worker
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.180 22
-
-Host epsilon-api-socket
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.43 22
-
 Host epsilon-api-socket-proxy
   ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.0.80 22
 

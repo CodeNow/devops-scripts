@@ -37,12 +37,11 @@ epsilon-consul-b
 epsilon-consul-c
 
 [worker]
-epsilon-api-worker
 
 [socket-server]
 
 [socket-server-proxy]
-epsilon-api-socket-proxy
+epsilon-ingress
 
 [eru]
 epsilon-eru
