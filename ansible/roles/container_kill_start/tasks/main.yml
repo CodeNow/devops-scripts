@@ -45,6 +45,7 @@
 
 # stop the old containers that were running this previously
 - name: stop old containers
+  ignore_errors: true
   tags: deploy
   when: old_containers_id.changed
   become: yes
@@ -52,6 +53,7 @@
 
 # remove the old containers that were running previously
 - name: remove old containers
+  ignore_errors: true
   tags: deploy
   when: old_containers_id.changed
   become: yes

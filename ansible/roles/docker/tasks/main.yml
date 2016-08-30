@@ -108,8 +108,3 @@
     owner=root
     group=root
     mode=0755
-
-- name: restart docker
-  when: (copied_config.changed and restart is defined) or dock is defined
-  become: true
-  command: service docker restart

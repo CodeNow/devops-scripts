@@ -7,6 +7,9 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 [ingress]
 epsilon-ingress
 
+[userland]
+epsilon-userland
+
 [mongodb]
 epsilon-mongo
 
@@ -41,7 +44,7 @@ epsilon-consul-c
 [socket-server]
 
 [socket-server-proxy]
-epsilon-ingress
+epsilon-api-socket-proxy
 
 [eru]
 epsilon-eru
