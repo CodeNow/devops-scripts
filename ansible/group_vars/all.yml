@@ -4,7 +4,7 @@ registry_env: prod
 registry_port: 80
 
 # Docker build directory
-# build_dir: /opt/builds/docker_build
+build_dir: /opts/builds/docker_build
 
 # for docker stop old container
 stop_time: 5

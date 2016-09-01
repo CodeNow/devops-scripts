@@ -1,5 +1,8 @@
 name: docker-listener
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
@@ -25,5 +28,5 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
   {{ container_envs }}

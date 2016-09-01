@@ -2,14 +2,14 @@
 - name: create docker cert directory
   become: true
   file:
-    path=/opt/ssl/docker/{{ name }}
+    path={{ build_dir }}/{{ name }}/ssl/docker
     state=directory
 
 - name: copy docker CA
   become: true
   copy:
     src=certs/ca.pem
-    dest=/opt/ssl/docker/{{ name }}
+    dest={{ build_dir }}/{{ name }}/ssl/docker
     mode=0440
     owner=root
     group=root
@@ -18,7 +18,7 @@
   become: true
   copy:
     src=certs/{{ name }}/
-    dest=/opt/ssl/docker/{{ name }}
+    dest={{ build_dir }}/{{ name }}/ssl/docker
     mode=0440
     owner=root
     group=root
