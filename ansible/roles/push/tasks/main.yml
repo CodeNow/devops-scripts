@@ -1,0 +1,5 @@
+---
+- name: "push {{ name }}:{{ git_branch }} to registry"
+  tags: [ push, deploy ]
+  become: true
+  command: docker push "registry.runnable.com/runnable/{{ name }}:{{ git_branch }}"

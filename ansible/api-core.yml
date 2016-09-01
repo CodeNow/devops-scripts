@@ -9,7 +9,7 @@
 - hosts: swarm-manager
 - hosts: consul
 
-- hosts: api
+- hosts: builder
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-api.yml
@@ -27,8 +27,12 @@
     tags: [ tls ]
     tls_service: mongodb
 
+  - role: push
+    tags: [ push ] 
+
+- hosts: api
   - role: datadog
     tags: [ datadog ]
 
-  - role: container_start
+  - role: pull_start
     number_of_containers: "{{ ansible_processor_cores }}"

@@ -3,11 +3,14 @@
 registry_env: prod
 registry_port: 80
 
+# Docker build directory
+# build_dir: /opt/builds/docker_build
+
 # for docker stop old container
 stop_time: 5
 
 # For docker built containers
-do_not_push: true
+do_not_push: false
 
 # default for container args (which are optional)
 container_run_args: ""
@@ -46,6 +49,7 @@ angular_url: https://app.{{ domain }}
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
 api_port: 80
+api_socket_port: 80
 api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
 api_url: https://{{ api_hostname }}
@@ -141,6 +145,8 @@ palantiri_rollbar_token: f675e9090d6f483ca4e742af2c7f2f83
 
 # pheidi
 pheidi_email_github_token: 115b4d854e34e8a5ba99ab73eefe4bf7a8944d6d
+pheidi_intercom_id: wqzm3rju
+pheidi_intercom_key: ro-02a5323fd37f41f8eeebf6e6364cf87e6b6ac8c5
 pheidi_rollbar_token: 6fc422ac645441bea7f6f14853eb01ab
 
 # rabbit

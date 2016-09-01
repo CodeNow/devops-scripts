@@ -12,9 +12,9 @@ socket-server
 epsilon-big-poppa
 
 [consul]
-epsilon-consul-a
-epsilon-consul-b
 epsilon-consul-c
+epsilon-consul-b
+epsilon-consul-a
 
 [cream]
 epsilon-cream
