@@ -1,24 +1,12 @@
 [bastion]
 epsilon-bastion
 
-[hipache]
-epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-
-[ingress]
-epsilon-ingress
-
-[userland]
-epsilon-userland
-
-[mongodb]
-epsilon-mongo
+[api]
 
 [api_group:children]
 worker
 api
 socket-server
-
-[api]
 
 [big-poppa]
 epsilon-big-poppa
@@ -31,41 +19,51 @@ epsilon-consul-c
 [cream]
 epsilon-cream
 
+[detention]
+epsilon-detention
+
+[dock]
+
 [docker-listener]
 epsilon-docker-listener
 
-[vault]
-epsilon-consul-a
-epsilon-consul-b
-epsilon-consul-c
+[docks]
 
-[worker]
-
-[socket-server]
-
-[socket-server-proxy]
-epsilon-api-socket-proxy
+[drake]
+epsilon-drake
 
 [eru]
 epsilon-eru
 
-[navi]
-epsilon-navi
+[github-varnish]
+epsilon-varnish
 
-[mongo-navi]
-epsilon-navi
+[hipache]
+epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
-[link]
-epsilon-navi
+[ingress]
+epsilon-ingress
 
 [khronos]
 epsilon-khronos
 
+[link]
+epsilon-navi
+
+[mongodb]
+epsilon-mongo
+
+[mongo-navi]
+epsilon-navi
+
+[navi]
+epsilon-navi
+
 [optimus]
 epsilon-optimus
 
-[detention]
-epsilon-detention
+[pheidi]
+epsilon-pheidi
 
 [palantiri]
 epsilon-palantiri
@@ -76,32 +74,34 @@ epsilon-rabbit
 [redis]
 epsilon-redis
 
-[shiva]
-epsilon-shiva
-
 [registry]
 epsilon-registry
 
 [sauron]
 epsilon-sauron
 
+[servers]
+
+[shiva]
+epsilon-shiva
+
+[socket-server]
+
+[socket-server-proxy]
+epsilon-api-socket-proxy
+
 [swarm-manager]
 epsilon-swarm-manager
 
-[drake]
-epsilon-drake
+[userland]
+epsilon-userland
 
-[pheidi]
-epsilon-pheidi
+[vault]
+epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
-[github-varnish]
-epsilon-varnish
-
-[docks]
-
-[dock]
-
-[servers]
+[worker]
 
 [epsilon:children]
 api
