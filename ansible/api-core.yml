@@ -30,9 +30,6 @@
   - role: push
     tags: [ push ] 
 
-- hosts: api
-  - role: datadog
-    tags: [ datadog ]
-
-  - role: pull_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+- include: pull-image.yml
+  vars:
+    host: api

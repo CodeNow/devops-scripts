@@ -1,0 +1,10 @@
+---
+- hosts: builder
+
+- hosts: "{{ host }}" 
+ - role: datadog
+   tags: [ datadog ]
+          
+ - role: pull_start
+   number_of_containers: "{{ ansible_processor_cores }}"
+

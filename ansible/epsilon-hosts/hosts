@@ -11,6 +11,9 @@ socket-server
 [big-poppa]
 epsilon-big-poppa
 
+[builder]
+epsilon-builder 
+
 [consul]
 epsilon-consul-c
 epsilon-consul-b
@@ -107,6 +110,7 @@ epsilon-consul-c
 api
 bastion
 big-poppa
+builder
 consul
 cream
 dock

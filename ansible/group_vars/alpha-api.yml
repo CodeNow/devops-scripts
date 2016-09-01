@@ -1,5 +1,8 @@
 name: api
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/{{ name }}
 
 hosted_ports: [ "{{ api_port }}" ]
@@ -11,14 +14,11 @@ is_redis_update_required: yes
 memory_hard_limit: 1g
 
 # for container settings
-container_envs: >
-  {{ api_base_container_envs }}
-  -e ROLLBAR_KEY={{ api_rollbar_key }}
+dockerfile_envs: >
+  {{ api_base_dockerfile_envs }}
+  ENV ROLLBAR_KEY={{ api_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}
