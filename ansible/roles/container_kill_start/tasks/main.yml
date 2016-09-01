@@ -12,6 +12,7 @@
 - name: removed stopped {{ container_image }} containers
   tags: deploy
   become: yes
+  ignore_errors: true
   when: stopped_containers.changed
   shell: docker rm {{ item }}
   with_items: "{{ stopped_containers.stdout_lines }}"

@@ -5,7 +5,7 @@ consul_api_ssl_port: 8501
 consul_cli_port: 8400
 consul_rpc_min_port: 8300
 consul_rpc_max_port: 8302
-container_min_port: 32768
+container_min_port: 64536
 container_max_port: 65535
 detention_port: 9123
 docker_port: 4242
