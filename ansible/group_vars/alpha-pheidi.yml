@@ -9,7 +9,16 @@ npm_version: "2.14.7"
 # for sendGrid
 sendgrid_key: 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
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
 container_envs: >
+  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e DOMAIN={{ domain }}
