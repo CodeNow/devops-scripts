@@ -4,6 +4,7 @@ epsilon-bastion
 [api]
 
 [api_group:children]
+builder
 worker
 api
 socket-server
