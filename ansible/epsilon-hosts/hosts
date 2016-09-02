@@ -13,7 +13,6 @@ socket-server
 epsilon-big-poppa
 
 [builder]
-epsilon-builder 
 
 [consul]
 epsilon-consul-c
