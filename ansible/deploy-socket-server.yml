@@ -1,7 +1,8 @@
 ---
-- hosts: builder
-
-- hosts: "{{ host }}" 
+- hosts: api
+  vars_files:
+    - group_vars/alpha-api-base.yml
+    - group_vars/alpha-socket-server.yml
   roles:
   - role: datadog
     tags: [ datadog ]

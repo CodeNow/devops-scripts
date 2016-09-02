@@ -2,6 +2,9 @@ name: api-socket-server
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
+# copy certs into docker image:
+docker_client_certs: true
+
 hosted_ports: [ "{{ api_port }}" ]
 
 # for redis
@@ -9,6 +12,7 @@ redis_key: frontend:{{ api_socket_server_hostname }}
 is_redis_update_required: yes
 
 # for container settings
+# TODO - friggen dictionary append
 container_envs: >
   {{ api_base_container_envs }}
   -e NUM_WORKERS=1

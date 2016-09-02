@@ -9,16 +9,15 @@
 - hosts: cream
 - hosts: consul
 
-- hosts: worker
+- hosts: builder
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-workers.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ api_workers_rollbar_key }}"
-    tags: [ notify ]
-  - { role: builder, tags: [ build ] }
+  - { role: notify, rollbar_token: "{{ api_workers_rollbar_key }}", tags: [ notify ] }
   - { role: docker_client }
+  - { role: builder, tags: [ build ] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: datadog, tags: [ datadog ] }
-  - { role: container_start, number_of_containers: 4 }
+
+- include: deploy-worker.yml
+  tags: [ deploy ]

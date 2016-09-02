@@ -10,21 +10,17 @@
 - hosts: socket-server-proxy
 - hosts: ingress
 - hosts: github-varnish
+
 - hosts: socket-server
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-socket-server.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ api_socket_server_rollbar_key }}"
-    tags: [ notify ]
+  - { role: notify, rollbar_token: "{{ api_socket_server_rollbar_key }}", tags: [ notify ] }
   - { role: redis_key, tags: [ setup, redis_key ] }
-  - { role: builder, tags: [ build ] }
   - { role: docker_client }
+  - { role: builder, tags: [ build ] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: datadog, tags: [ datadog ] }
-  - { role: container_start, number_of_containers: 8 }
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
-    target_ip_address: "{{ hostvars[groups['socket-server'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 01-socket-server.conf ]
+
+- include: deploy-socket-server.yml
+  tags: [ deploy ]
