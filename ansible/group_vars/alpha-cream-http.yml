@@ -7,7 +7,7 @@ repo: "git@github.com:CodeNow/cream.git"
 node_version: 4.5.0
 npm_version: 2
 
-dockerfile_enviroment: [
+dockerfile_environment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
 

@@ -9,7 +9,7 @@ node_version: 4.4.4
 npm_version: 3.8
 has_shrinkwrap: true
 
-dockerfile_enviroment: [
+dockerfile_environment: [
   "NPM_TOKEN {{ npm_token }}",
   "BIG_POPPA_HOST {{ big_poppa_host_address }}:{{ big_poppa_port }}",
   "RABBITMQ_HOSTNAME {{ rabbit_host_address }}",

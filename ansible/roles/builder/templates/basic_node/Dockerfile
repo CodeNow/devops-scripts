@@ -5,9 +5,9 @@ FROM registry.runnable.com/runnable/{{ base_dockerfile }}:latest
 EXPOSE {% for hosted_port in hosted_ports %}{{ hosted_port }} {% endfor %}
 {% endif %}
 
-{% if dockerfile_enviroment is defined %}
+{% if dockerfile_environment is defined %}
 # Envs
-{% for env in dockerfile_enviroment %}
+{% for env in dockerfile_environment %}
 ENV {{ env }}
 {% endfor %}
 {% endif %}
