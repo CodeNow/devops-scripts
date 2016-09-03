@@ -7,7 +7,7 @@
   register: old_containers_ids
   changed_when: old_containers_ids.stdout != ''
 
-- name: get latest images
+- name: get images
   tags: deploy
   when: not do_not_push
   become: yes
