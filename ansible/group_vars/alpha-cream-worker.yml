@@ -6,36 +6,32 @@ repo: "git@github.com:CodeNow/cream.git"
 node_version: 4.5.0
 npm_version: 2
 
-dockerfile_environment: [
-  "NPM_TOKEN {{ npm_token }}"
-]
-
 dockerfile_pre_install_commands: [
    "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
 # for container settings
-container_envs: >
-  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ cream_hello_runnable_github_token }}
-  -e NODE_ENV={{ node_env }}
-  {% if cream_intercom_key is defined %} -e INTERCOM_API_KEY={{ cream_intercom_key }} {% endif %}
-  {% if cream_intercom_id is defined %} -e INTERCOM_APP_ID={{ cream_intercom_id }} {% endif %}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e RUNNABLE_API_URL={{ api_url }}
-  -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e ROLLBAR_KEY={{ cream_worker_rollbar_token }}
-  -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
-  -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
+dockerfile_environment: |
+  ENV NPM_TOKEN {{ npm_token }}
+  ENV BIG_POPPA_HOST http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV HELLO_RUNNABLE_GITHUB_TOKEN {{ cream_hello_runnable_github_token }}
+  ENV NODE_ENV {{ node_env }}
+  {% if cream_intercom_key is defined %} ENV INTERCOM_API_KEY {{ cream_intercom_key }} {% endif %}
+  {% if cream_intercom_id is defined %} ENV INTERCOM_APP_ID {{ cream_intercom_id }} {% endif %}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV RUNNABLE_API_URL {{ api_url }}
+  ENV RUNNABLE_USER_CONTENT_DOMAIN {{ user_content_domain }}
+  ENV ROLLBAR_KEY {{ cream_worker_rollbar_token }}
+  ENV STRIPE_API_KEY {{ cream_stripe_secret_key }}
+  ENV STRIPE_PUBLISHABLE_KEY {{ cream_stripe_publishable_key }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  {{container_envs}}
 
 npm_start_command: run start-worker

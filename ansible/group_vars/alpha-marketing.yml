@@ -7,14 +7,13 @@ node_version: "4.3.1"
 npm_version: "3.7.5"
 do_not_push: yes
 
-dockerfile_environment: [
-  "API_URL https://{{ api_hostname }}",
-  "AWS_ACCESS_KEY {{ aws_access_key }}",
-  "AWS_SECRET_KEY {{ aws_secret_key }}",
-  "ANGULAR_URL {{ angular_url }}",
-  "AWS_BUCKET {{ domain }}",
-  "NODE_ENV {{ node_env }}"
-]
+dockerfile_environment: |
+  ENV API_URL https://{{ api_hostname }}
+  ENV AWS_ACCESS_KEY {{ aws_access_key }}
+  ENV AWS_SECRET_KEY {{ aws_secret_key }}
+  ENV ANGULAR_URL {{ angular_url }}
+  ENV AWS_BUCKET {{ domain }}
+  ENV NODE_ENV {{ node_env }}
 
 dockerfile_post_install_commands: [
   "npm run deploy"

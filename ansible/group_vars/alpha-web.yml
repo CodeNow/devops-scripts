@@ -8,19 +8,18 @@ npm_version: "2.1.18"
 rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 do_not_push: yes
 
-dockerfile_environment: [
-  "API_SOCK_URL https://{{ api_socket_server_hostname }}",
-  "API_URL https://{{ api_hostname }}",
-  "AWS_ACCESS_KEY {{ aws_access_key }}",
-  "AWS_BUCKET app.{{ domain }}",
-  "AWS_SECRET_KEY {{ aws_secret_key }}",
-  "INTERCOM_APP_ID {{ web_intercom_id }}",
-  "MARKETING_URL {{ marketing_url }}",
-  "NODE_ENV production",
-  "SIFT_API_KEY {{ web_sift_public_key }}",
-  "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
-  "USER_CONTENT_DOMAIN {{ user_content_domain }}",
-]
+dockerfile_environment: |
+  ENV API_SOCK_URL https://{{ api_socket_server_hostname }}
+  ENV API_URL https://{{ api_hostname }}
+  ENV AWS_ACCESS_KEY {{ aws_access_key }}
+  ENV AWS_BUCKET app.{{ domain }}
+  ENV AWS_SECRET_KEY {{ aws_secret_key }}
+  ENV INTERCOM_APP_ID {{ web_intercom_id }}
+  ENV MARKETING_URL {{ marketing_url }}
+  ENV NODE_ENV production
+  ENV SIFT_API_KEY {{ web_sift_public_key }}
+  ENV STRIPE_TOKEN {{ cream_stripe_publishable_key }}
+  ENV USER_CONTENT_DOMAIN {{ user_content_domain }}
 
 dockerfile_post_install_commands: [
   "npm run gruntDeploy"
