@@ -11,53 +11,50 @@ sendgrid_key: SG.IUCH4sM9RPC1z_-eM-4nKQ.OrXw3BxihUkCBAwYq1pys0QE3SDbP-nOGdlGwlVK
 
 # shared ENV's between api services
 #api_base_dockerfile_envs: [
-dockerfile_environment: [
-  "AWS_ACCESS_KEY_ID  {{ api_aws_access_key_id }}",
-  "AWS_SECRET_ACCESS_KEY  {{ api_aws_secret_access_key }}",
-  "BIG_POPPA_HOST http://{{ big_poppa_host_address }}:{{ big_poppa_port }}",
-  "COOKIE_DOMAIN  {{ domain }}",
-  "CREAM_HOST http://{{ cream_host_address }}:{{ cream_port }}",
-  "DATADOG_HOST  {{ datadog_host_address }}",
-  "DATADOG_PORT  {{ datadog_port }}",
-  "DOMAIN  {{ domain }}",
-  "GITHUB_CALLBACK_URL  {{ api_url }}/auth/github/callback",
-  "GITHUB_CLIENT_ID  {{ api_github_client_id }}",
-  "GITHUB_CLIENT_SECRET  {{ api_github_client_secret }}",
-  "GITHUB_DEPLOY_KEYS_BUCKET  {{ api_github_deploy_keys_bucket }}",
-  "GITHUB_HOOK_URL  {{ api_url }}/actions/github",
-  "GITHUB_WEBHOOK_URL https://{{ drake_hostname }}/github",
-  "GITHUB_VARNISH_HOST  {{ github_varnish_host }}",
-  "GITHUB_VARNISH_PORT  {{ github_varnish_port }}",
-  "GITHUB_PROTOCOL=http",
-  "HELLO_RUNNABLE_GITHUB_TOKEN  {{ api_hello_runnable_github_token }}",
-  "KRAIN_PORT  {{ krain_port }}",
-  "MIXPANEL_APP_ID  {{ api_mixpanel_app_id }}",
-  "MONGO_REPLSET_NAME  {{ api_mongo_replset_name }}",
-  "MONGO mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}",
-  "NAVI_HOST http://{{ navi_host_address }}:{{ navi_http_port }}",
-  "NODE_ENV  {{ node_env }}",
-  "NPM_TOKEN  {{ npm_token }}",
-  "NUM_WORKERS 1",
-  "OPTIMUS_HOST http://{{ optimus_hostname }}",
-  "RABBITMQ_HOSTNAME  {{ rabbit_host_address }}",
-  "RABBITMQ_PASSWORD  {{ rabbit_password }}",
-  "RABBITMQ_PORT  {{ rabbit_port }}",
-  "RABBITMQ_USERNAME  {{ rabbit_username }}",
-  "REDIS_IPADDRESS  {{ redis_host_address }}",
-  "REDIS_PORT  {{ redis_port }}",
-  "S3_CONTEXT_RESOURCE_BUCKET  {{ api_s3_context_bucket }}",
-  "SENDGRID_KEY  {{ sendgrid_key }}",
-  "SWARM_HOST http://{{ swarm_host_address }}:{{ swarm_master_port }}",
-  "USER_CONTENT_DOMAIN  {{ user_content_domain }}"
-]
-
-#api_dockerfile_env_opts: |
-#  {% if api_new_relic_app_name is defined %} """NEW_RELIC_APP_NAME  {{ api_new_relic_app_name }}""", {% endif %}
-#  {% if api_new_relic_app_name is defined %} """NEW_RELIC_LICENSE_KEY  {{ new_relic_license_key }}""", {% endif %}
-#  {% if api_new_relic_app_name is defined %} """NEW_RELIC_LOG_LEVEL fatal""", {% endif %}
-#  {% if api_new_relic_app_name is defined %} """NEW_RELIC_NO_CONFIG_FILE true""", {% endif %}
-#  {% if api_intercom_app_id is defined %} """INTERCOM_APP_ID  {{ api_intercom_app_id }}""", {% endif %}
-#  {% if api_intercom_api_key is defined %} """INTERCOM_API_KEY  {{ api_intercom_api_key }}""", {% else %} """NULL null """, {% endif %}
+dockerfile_environment: |
+  ENV AWS_ACCESS_KEY_ID  {{ api_aws_access_key_id }}
+  ENV AWS_SECRET_ACCESS_KEY  {{ api_aws_secret_access_key }}
+  ENV BIG_POPPA_HOST http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
+  ENV COOKIE_DOMAIN  {{ domain }}
+  ENV CREAM_HOST http://{{ cream_host_address }}:{{ cream_port }}
+  ENV DATADOG_HOST  {{ datadog_host_address }}
+  ENV DATADOG_PORT  {{ datadog_port }}
+  ENV DOMAIN  {{ domain }}
+  ENV GITHUB_CALLBACK_URL  {{ api_url }}/auth/github/callback
+  ENV GITHUB_CLIENT_ID  {{ api_github_client_id }}
+  ENV GITHUB_CLIENT_SECRET  {{ api_github_client_secret }}
+  ENV GITHUB_DEPLOY_KEYS_BUCKET  {{ api_github_deploy_keys_bucket }}
+  ENV GITHUB_HOOK_URL  {{ api_url }}/actions/github
+  ENV GITHUB_WEBHOOK_URL https://{{ drake_hostname }}/github
+  ENV GITHUB_VARNISH_HOST  {{ github_varnish_host }}
+  ENV GITHUB_VARNISH_PORT  {{ github_varnish_port }}
+  ENV GITHUB_PROTOCOL=http
+  ENV HELLO_RUNNABLE_GITHUB_TOKEN  {{ api_hello_runnable_github_token }}
+  ENV KRAIN_PORT  {{ krain_port }}
+  ENV MIXPANEL_APP_ID  {{ api_mixpanel_app_id }}
+  ENV MONGO_REPLSET_NAME  {{ api_mongo_replset_name }}
+  ENV MONGO mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
+  ENV NAVI_HOST http://{{ navi_host_address }}:{{ navi_http_port }}
+  ENV NODE_ENV  {{ node_env }}
+  ENV NPM_TOKEN  {{ npm_token }}
+  ENV NUM_WORKERS 1
+  ENV OPTIMUS_HOST http://{{ optimus_hostname }}
+  ENV RABBITMQ_HOSTNAME  {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD  {{ rabbit_password }}
+  ENV RABBITMQ_PORT  {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME  {{ rabbit_username }}
+  ENV REDIS_IPADDRESS  {{ redis_host_address }}
+  ENV REDIS_PORT  {{ redis_port }}
+  ENV S3_CONTEXT_RESOURCE_BUCKET  {{ api_s3_context_bucket }}
+  ENV SENDGRID_KEY  {{ sendgrid_key }}
+  ENV SWARM_HOST http://{{ swarm_host_address }}:{{ swarm_master_port }}
+  ENV USER_CONTENT_DOMAIN  {{ user_content_domain }}
+  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_APP_NAME  {{ api_new_relic_app_name }} {% endif %}
+  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_LICENSE_KEY  {{ new_relic_license_key }} {% endif %}
+  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_LOG_LEVEL fatal {% endif %}
+  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_NO_CONFIG_FILE true {% endif %}
+  {% if api_intercom_app_id is defined %} ENV INTERCOM_APP_ID  {{ api_intercom_app_id }} {% endif %}
+  {% if api_intercom_api_key is defined %} ENV INTERCOM_API_KEY  {{ api_intercom_api_key }} {% endif %}
 
 #dockerfile_environment: [ "{{ api_dockerfile_env_opts }}" + "{{ api_base_dockerfile_env }}" ]
 

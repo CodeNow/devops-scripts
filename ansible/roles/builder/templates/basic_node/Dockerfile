@@ -7,9 +7,7 @@ EXPOSE {% for hosted_port in hosted_ports %}{{ hosted_port }} {% endfor %}
 
 {% if dockerfile_environment is defined %}
 # Envs
-{% for env in dockerfile_environment %}
-ENV {{ env }}
-{% endfor %}
+{{ dockerfile_environment }}
 {% endif %}
 
 # setup node and npm versions
