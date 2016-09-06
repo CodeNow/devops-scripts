@@ -1,6 +1,9 @@
 ---
-- hosts: rabbitmq
+- hosts: big-poppa
+- hosts: cream
 - hosts: consul
+- hosts: github-varnish
+- hosts: rabbitmq
 
 - hosts: builder
   vars_files:
