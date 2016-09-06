@@ -2,7 +2,7 @@
 - hosts: rabbitmq
 - hosts: consul
 
-- hosts: cream
+- hosts: builder
   vars_files:
     - group_vars/alpha-cream-http.yml
   roles:
@@ -10,5 +10,5 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-  - include: deploy-cream-http.yml
+- include: deploy-cream-http.yml
   tags: [ deploy ] 

@@ -1,0 +1,10 @@
+---
+- hosts: github-varnish
+  vars_files:
+    - group_vars/alpha-github-varnish.yml
+  roles:
+  - role: datadog
+    tags: [ datadog ]
+          
+  - role: pull_start
+    number_of_containers: 1

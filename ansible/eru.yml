@@ -7,14 +7,13 @@
 - hosts: socket-server-proxy
 - hosts: github-varnish
 
-- hosts: eru
+- hosts: builder
   vars_files:
   - group_vars/alpha-eru.yml
   roles:
   - { role: notify, tags: [ notify ] }
   - { role: builder, tags: [ build ] }
-  - role: container_start
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
-    target_ip_address: "{{ hostvars[groups['eru'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 11-eru-server.conf ]
+  - { role: push, tags [ push ] }
+
+- include: deploy-eru.yml
+    tags: [ deploy ]

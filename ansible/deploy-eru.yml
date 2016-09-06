@@ -1,0 +1,10 @@
+---
+- hosts: eru
+  vars_files:
+    - group_vars/alpha-eru.yml
+  roles:
+  - role: datadog
+    tags: [ datadog ]
+          
+  - role: pull_start
+    number_of_containers: 1

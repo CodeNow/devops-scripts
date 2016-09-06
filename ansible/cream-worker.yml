@@ -10,5 +10,5 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-  - include: deploy-cream-worker.yml
+- include: deploy-cream-worker.yml
   tags: [ deploy ]

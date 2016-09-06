@@ -4,14 +4,15 @@
 - hosts: consul
 - hosts: swarm-manager
 
-- hosts: khronos
+- hosts: build
   vars_files:
     - group_vars/alpha-khronos.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ rollbar_khronos_token }}"
-    tags: [ notify ]
+  - { role: notify, rollbar_token: "{{ rollbar_khronos_token }}", tags: [ notify ] }
   - { role: docker_client }
-  - { role: builder, tags: [ build ] }
   - { role: khronos, tags: [ deploy ] }
-  - { role: container_kill_start }
+  - { role: builder, tags: [ build ] }
+  - { role: push, tags: [ push ] }
+
+- include: deploy-khronos.yml
+  tags: [ deploy ] 
