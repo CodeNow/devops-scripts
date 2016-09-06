@@ -8,4 +8,4 @@
     tags: [ datadog ]
           
   - role: pull_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+    number_of_containers: 1

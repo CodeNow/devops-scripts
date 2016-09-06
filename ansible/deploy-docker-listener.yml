@@ -1,8 +1,7 @@
 ---
-- hosts: workers
+- hosts: docker-listener
   vars_files:
-    - group_vars/alpha-api-base.yml
-    - group_vars/alpha-workers.yml
+    - group_vars/alpha-docker-listener.yml
   roles:
   - role: datadog
     tags: [ datadog ]

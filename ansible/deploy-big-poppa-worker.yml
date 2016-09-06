@@ -1,8 +1,7 @@
 ---
-- hosts: workers
+- hosts: big-poppa
   vars_files:
-    - group_vars/alpha-api-base.yml
-    - group_vars/alpha-workers.yml
+    - group_vars/alpha-big-poppa-worker.yml
   roles:
   - role: datadog
     tags: [ datadog ]

@@ -1,8 +1,7 @@
 ---
-- hosts: workers
+- hosts: cream
   vars_files:
-    - group_vars/alpha-api-base.yml
-    - group_vars/alpha-workers.yml
+    - group_vars/alpha-cream-worker.yml
   roles:
   - role: datadog
     tags: [ datadog ]

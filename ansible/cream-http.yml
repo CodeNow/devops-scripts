@@ -6,8 +6,9 @@
   vars_files:
     - group_vars/alpha-cream-http.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ cream_http_rollbar_token }}"
-    tags: [ notify ]
+  - { role: notify, rollbar_token: "{{ cream_http_rollbar_token }}", tags: [ notify ] }
   - { role: builder, tags: [ build ] }
-  - { role: container_kill_start }
+  - { role: push, tags: [ push ] }
+
+  - include: deploy-cream-http.yml
+  tags: [ deploy ] 
