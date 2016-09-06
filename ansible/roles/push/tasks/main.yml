@@ -10,7 +10,6 @@
     method=PUT
     url=http://{{ consul_host_address }}:8500/v1/kv/runnable/container_run/{{ name }}
     body="{{ container_run_opts }}"
-    changed_when: true
 
 - name: "push {{ name }}:{{ git_branch }} to registry"
   tags: [ push, deploy ]
