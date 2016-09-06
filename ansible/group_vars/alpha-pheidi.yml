@@ -1,5 +1,8 @@
 name: pheidi
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
@@ -9,33 +12,31 @@ npm_version: "2.14.7"
 # for sendGrid
 sendgrid_key: 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
 
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DOMAIN={{ domain }}
-  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
-  -e FULL_API_DOMAIN=https://api.{{ domain }}
-  -e INTERCOM_API_KEY={{ pheidi_intercom_key }}
-  -e INTERCOM_APP_ID={{ pheidi_intercom_id }}
-  -e LOGGLY_TOKEN="{{ loggly_token }}"
-  -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
-  -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
-  {% if node_env != "production-epsilon" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
-  {% if node_env != "production-epsilon" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
-  {% if node_env != "production-epsilon" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
-  -e NODE_ENV="{{ node_env }}"
-  -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
-  -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
-  -e RABBITMQ_PORT="{{ rabbit_port }}"
-  -e RABBITMQ_USERNAME="{{ rabbit_username }}"
-  -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
-  -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
-  -e SENDGRID_KEY={{ sendgrid_key }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e WEB_URL=https://app.{{ domain }}
+dockerfile_environment: |
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV DOMAIN {{ domain }}
+  ENV EMAIL_GITHUB_ACCESS_TOKEN {{ pheidi_email_github_token }}
+  ENV FULL_API_DOMAIN https://api.{{ domain }}
+  ENV INTERCOM_API_KEY {{ pheidi_intercom_key }}
+  ENV INTERCOM_APP_ID {{ pheidi_intercom_id }}
+  ENV LOGGLY_TOKEN "{{ loggly_token }}"
+  ENV MONGO mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
+  ENV MONGO_REPLSET_NAME {{ pheidi_mongo_replset_name }}
+  {% if node_env != "production-epsilon" %} ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem {% endif %}
+  {% if node_env != "production-epsilon" %} ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem {% endif %}
+  {% if node_env != "production-epsilon" %} ENV MONGO_KEY /opt/ssl/mongo-client/key.pem {% endif %}
+  ENV NODE_ENV "{{ node_env }}"
+  ENV RABBITMQ_HOSTNAME "{{ rabbit_host_address }}"
+  ENV RABBITMQ_PASSWORD "{{ rabbit_password }}"
+  ENV RABBITMQ_PORT "{{ rabbit_port }}"
+  ENV RABBITMQ_USERNAME "{{ rabbit_username }}"
+  ENV ROLLBAR_KEY {{ pheidi_rollbar_token }}
+  ENV RUNNABOT_GITHUB_ACCESS_TOKENS {{ pheidi_runnabot_tokens }}
+  ENV SENDGRID_KEY {{ sendgrid_key }}
+  ENV USER_CONTENT_DOMAIN {{ user_content_domain }}
+  ENV WEB_URL https://app.{{ domain }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongo-client:ro
-  {{ container_envs }}

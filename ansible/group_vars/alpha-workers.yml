@@ -5,14 +5,11 @@ container_image: registry.runnable.com/runnable/{{ name }}
 memory_hard_limit: 1g
 
 # for container settings
-container_envs: >
+dockerfile_environment: |
   {{ api_base_container_envs }}
-  -e IS_QUEUE_WORKER=true
-  -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
+  ENV IS_QUEUE_WORKER true
+  ENV ROLLBAR_KEY {{ api_workers_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}

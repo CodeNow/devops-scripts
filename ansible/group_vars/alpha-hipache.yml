@@ -1,10 +1,14 @@
 # container_kill_start settings
 name: hipache
 
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/hipache
 container_tag: latest
 hosted_ports: [ 80, 443 ]
 
+# TODO: must bake these certs into these images
 container_run_opts: >
   -d
   -p 80:80

@@ -11,22 +11,20 @@ npm_version: "2.14.7"
 
 restart_policy: "always"
 
-container_envs: >
-  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DOCKER_CERT_PATH=/etc/ssl/docker
-  -e LOGGLY_TOKEN={{ loggly_token }}
-  -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ docker_listener_rollbar_key }}
-  -e SWARM_HOST={{ swarm_host_address }}:{{ swarm_master_port }}
+dockerfile_environment: |
+  ENV CONSUL_HOST {{ consul_host_address }}:{{ consul_api_port }}
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV DOCKER_CERT_PATH /etc/ssl/docker
+  ENV LOGGLY_TOKEN {{ loggly_token }}
+  ENV NODE_ENV {{ node_env }}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV ROLLBAR_KEY {{ docker_listener_rollbar_key }}
+  ENV SWARM_HOST {{ swarm_host_address }}:{{ swarm_master_port }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -v {{ build_dir }}/{{ name }}/ssl:/etc/ssl/docker:ro
-  {{ container_envs }}

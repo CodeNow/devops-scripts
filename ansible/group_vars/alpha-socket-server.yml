@@ -13,15 +13,12 @@ is_redis_update_required: yes
 
 # for container settings
 # TODO - friggen dictionary append
-container_envs: >
+dockerfile_environment: |
   {{ api_base_container_envs }}
-  -e NUM_WORKERS=1
-  -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
+  ENV NUM_WORKERS 1
+  ENV ROLLBAR_KEY {{ api_socket_server_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}

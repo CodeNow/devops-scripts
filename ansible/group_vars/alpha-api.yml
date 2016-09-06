@@ -14,10 +14,9 @@ is_redis_update_required: yes
 memory_hard_limit: 1g
 
 # for container settings
-#dockerfile_envs: [
-#  "{{ api_base_dockerfile_envs }}"
-#  ENV ROLLBAR_KEY="{{ api_rollbar_key }}",
-#]
+dockerfile_envs: |
+  "{{ api_base_dockerfile_envs }}"
+  ENV ROLLBAR_KEY="{{ api_rollbar_key }}"
 
 container_run_opts: >
   -h {{ name }}

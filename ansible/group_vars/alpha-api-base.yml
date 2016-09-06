@@ -10,8 +10,7 @@ restart_policy: always
 sendgrid_key: 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
 
 # shared ENV's between api services
-#api_base_dockerfile_envs: [
-dockerfile_environment: |
+api_base_dockerfile_envs: |
   ENV AWS_ACCESS_KEY_ID  {{ api_aws_access_key_id }}
   ENV AWS_SECRET_ACCESS_KEY  {{ api_aws_secret_access_key }}
   ENV BIG_POPPA_HOST http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
@@ -55,8 +54,6 @@ dockerfile_environment: |
   {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_NO_CONFIG_FILE true {% endif %}
   {% if api_intercom_app_id is defined %} ENV INTERCOM_APP_ID  {{ api_intercom_app_id }} {% endif %}
   {% if api_intercom_api_key is defined %} ENV INTERCOM_API_KEY  {{ api_intercom_api_key }} {% endif %}
-
-#dockerfile_environment: [ "{{ api_dockerfile_env_opts }}" + "{{ api_base_dockerfile_env }}" ]
 
 dockerfile_pre_install_commands: [
    'echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc'

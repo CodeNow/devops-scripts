@@ -9,6 +9,7 @@ pause_length_minutes: 3
 container_image: runnable/consul
 container_tag: v0.6.3
 
+# TODO: this does not need to scale for GA but would be nice
 container_run_opts: >
   -d
   -h {{ inventory_hostname }}

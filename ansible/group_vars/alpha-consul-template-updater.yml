@@ -4,6 +4,7 @@ name: consul-template-updater
 container_image: avthart/consul-template
 container_tag: latest
 
+# TODO: copy template into build dir
 container_run_opts: >
   -d
   --name {{ name }}

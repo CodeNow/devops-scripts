@@ -1,4 +1,8 @@
 name: metis
+
+# copy certs into docker image:
+docker_client_certs: true
+
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/astral.git
@@ -13,27 +17,25 @@ hosted_ports: [ "{{ metis_port }}" ]
 
 # container settings
 redis_ca_cert_path: /opt/ssl/metis/redis/ca.pem
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e POSTGRES_CONNECT_STRING=postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}
-  -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
-  -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
-  -e NODE_ENV={{ node_env }}
-  -e REDIS_CACERT={{ redis_ca_cert_path }}
-  -e REDIS_HOST={{ redis_host_address }}
-  -e REDIS_PORT={{ redis_tls_port }}
-  -e REGISTRY_HOST={{ registry_host }}
-  -e ROLLBAR_KEY={{ metis_rollbar_key }}
-  -e DOCKER_PORT={{ docker_port }}
+dockerfile_environment: |
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV POSTGRES_CONNECT_STRING postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}
+  ENV AWS_ACCESS_KEY_ID {{ aws_access_key_id }}
+  ENV AWS_SECRET_ACCESS_KEY {{ aws_secret_access_key }}
+  ENV NODE_ENV {{ node_env }}
+  ENV REDIS_CACERT {{ redis_ca_cert_path }}
+  ENV REDIS_HOST {{ redis_host_address }}
+  ENV REDIS_PORT {{ redis_tls_port }}
+  ENV REGISTRY_HOST {{ registry_host }}
+  ENV ROLLBAR_KEY {{ metis_rollbar_key }}
+  ENV DOCKER_PORT {{ docker_port }}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  {{ container_envs }}
