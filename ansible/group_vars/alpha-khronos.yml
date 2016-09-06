@@ -12,10 +12,11 @@ npm_version: 2
 # for cron job
 # this is the list of queues we want to enqueue a job into
 main_cron_queues: "\
+  khronos:containers:image-builder:prune \
   khronos:containers:orphan:prune \
   khronos:context-versions:prune-expired \
   khronos:images:prune \
-  khronos:containers:image-builder:prune \
+  khronos:instances:cleanup \
   khronos:weave:prune"
 
 canary_cron_queues: "\
@@ -52,7 +53,6 @@ dockerfile_environment: |
   ENV INTERCOM_API_KEY {{ intercom_api_key | default('undefined') }}
   ENV INTERCOM_APP_ID {{ intercom_app_id | default('undefined') }}
   ENV KHRONOS_MONGO mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
-  ENV LOG_LEVEL error
   {% if node_env != "production-epsilon" %}
     ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem
     ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem
