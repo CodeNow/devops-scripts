@@ -1,10 +1,10 @@
 Role Name
 ========
 
-Ansible Role to Install base_centos deps
+Ansible Role to tell a host to pull down an image and start it.
 
 Author Information
 ------------------
 
-# anandkumarpatel
+# chris neill
 ###         #
