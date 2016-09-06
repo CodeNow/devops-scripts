@@ -1,0 +1,10 @@
+---
+- name: copy bootstrapper script to /root
+  tags: deploy
+  become: true
+  copy:
+    src=bootstrapServicePullStart.sh
+    dest=/root/bootstrapServicePullStart.sh
+    owner=root
+    group=root
+    mode=0700
