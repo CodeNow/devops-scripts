@@ -38,7 +38,7 @@ if [ "true" != "${setFatal}" ] ; then
     fi
     docker run \
         --log-driver=syslog --log-opt syslog-facility=local7 --log-opt tag="${SERVICE_NAME}" \
-        ${CONTAINER_RUN_ARGS} registry.runnable.com/runnable/${SERVICE_NAME}:${TAGGED_VERSION}
+        ${CONTAINER_RUN_ARGS} registry.runnable.com/runnable/${SERVICE_NAME}:${TAGGED_VERSION} || die -1 "something went wrong with 'docker run'."
 else
     # don't do the things, complain, exit
     die 1 "Could not open /root/.env!"
