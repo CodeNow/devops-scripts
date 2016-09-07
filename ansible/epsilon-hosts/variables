@@ -13,18 +13,6 @@ api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 
 [big-poppa:vars]
-big_poppa_pg_pass=964aeb3c-633d-11e6-974b-3f6632e607d4
-big_poppa_pg_host=epsilon-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
-big_poppa_pg_port=5432
-big_poppa_pg_user=tupac
-big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
-big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
-big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
-big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
-big_poppa_intercom_id=xs5g95pd
-big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
-big_poppa_mongo_database=epsilon
-big_poppa_mongo_replset_name=epsilon-rs0
 
 [cream:vars]
 cream_hello_runnable_github_token=798fd0b696df96cf088de249918bf52f71058553
@@ -127,6 +115,18 @@ vault_auth_token=6f5dddd1-dea2-472d-03b0-51e7fe8ea8de
 vault_token_01=5b58b93e4cbb550d2bebe3324018c978bc89b11ba0a8a4a1430319ab8938dd1802
 vault_token_02=e334c5c53dc979476e1fb27c91dd8f7b0b5f708b876d829ee0ec54d0cba3de9e03
 vault_token_03=8e8918bee9fe08f5558450bceeab71326da91b60a24aed41f6ae7eebb35fe2e204
+big_poppa_pg_pass=964aeb3c-633d-11e6-974b-3f6632e607d4
+big_poppa_pg_host=epsilon-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
+big_poppa_pg_port=5432
+big_poppa_pg_user=tupac
+big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
+big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
+big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
+big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
+big_poppa_intercom_id=xs5g95pd
+big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+big_poppa_mongo_database=epsilon
+big_poppa_mongo_replset_name=epsilon-rs0
 
 [ec2:vars]
 env=epsilon
