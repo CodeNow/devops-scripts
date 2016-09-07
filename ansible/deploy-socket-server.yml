@@ -7,5 +7,5 @@
   - role: datadog
     tags: [ datadog ]
           
-  - role: pull_start
+  - role: pull_kill_start
     number_of_containers: 1

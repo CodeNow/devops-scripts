@@ -21,23 +21,18 @@ epsilon-consul-a
 [cream]
 
 [detention]
-epsilon-detention
 
 [dock]
 
 [docker-listener]
-epsilon-docker-listener
 
 [docks]
 
 [drake]
-epsilon-drake
 
 [eru]
-epsilon-eru
 
 [github-varnish]
-epsilon-varnish
 
 [hipache]
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
@@ -46,7 +41,6 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 epsilon-ingress
 
 [khronos]
-epsilon-khronos
 
 [link]
 epsilon-navi
@@ -61,13 +55,10 @@ epsilon-navi
 epsilon-navi
 
 [optimus]
-epsilon-optimus
 
 [pheidi]
-epsilon-pheidi
 
 [palantiri]
-epsilon-palantiri
 
 [rabbitmq]
 epsilon-rabbit
@@ -79,7 +70,6 @@ epsilon-redis
 epsilon-registry
 
 [sauron]
-epsilon-sauron
 
 [servers]
 

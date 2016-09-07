@@ -2,7 +2,7 @@ name: big-poppa-http
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
-hosted_ports: ["{{ big_poppa_port }}"]
+hosted_ports: [ "{{ big_poppa_port }}" ]
 repo: "git@github.com:CodeNow/big-poppa.git"
 node_version: 4.4.7
 npm_version: 2
@@ -18,7 +18,7 @@ dockerfile_environment: |
   ENV DATADOG_HOST {{ datadog_host_address }}
   ENV DATADOG_PORT {{ datadog_port }}
   ENV GITHUB_TOKEN {{ big_poppa_github_token }}
-  ENV PORT {{ hosted_ports[0] }}
+  ENV PORT {{ hosted_ports }}
   ENV INTERCOM_API_KEY {{ big_poppa_intercom_key | default('undefined') }}
   ENV INTERCOM_APP_ID {{ big_poppa_intercom_id | default('undefined') }}
   ENV NODE_ENV {{ node_env }}
