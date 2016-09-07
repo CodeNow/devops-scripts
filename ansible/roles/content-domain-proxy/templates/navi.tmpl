@@ -26,6 +26,10 @@ server {
     proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
     proxy_set_header x-forwarded-protocol $scheme;
     proxy_set_header x-forwarded-proto $scheme;
+
+    proxy_buffer_size 128k;
+    proxy_buffers 4 256k;
+    proxy_busy_buffers_size 256k;
   }
 }
 
@@ -59,12 +63,15 @@ server {
     proxy_set_header upgrade $http_upgrade;
     proxy_set_header connection $connection_upgrade;
 
-
     proxy_set_header Host $http_host;
     proxy_set_header x-forwarded-host $http_host;
     proxy_set_header x-real-ip $remote_addr;
     proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
     proxy_set_header x-forwarded-protocol $scheme;
     proxy_set_header x-forwarded-proto $scheme;
+
+    proxy_buffer_size 128k;
+    proxy_buffers 4 256k;
+    proxy_busy_buffers_size 256k;
   }
 }
