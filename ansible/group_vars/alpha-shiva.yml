@@ -35,4 +35,3 @@ dockerfile_environment: |
 container_run_opts: >
   -h {{ name }}
   -d
-  -P

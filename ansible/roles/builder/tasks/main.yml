@@ -23,6 +23,18 @@
     accept_hostkey: yes
     force: yes
 
+- name: debug!
+  debug: var=hosted_ports
+
+- name: debug dockerfile_environment
+  debug: var=dockerfile_environment
+
+- name: debug dockerfile_pre_install_commands
+  debug: var=dockerfile_pre_install_commands
+  
+- name: debug dockerfile_post_install_commands
+  debug: var=dockerfile_post_install_commands
+
 - name: copy dockerfile to build folder
   tags: deploy
   become: true

@@ -112,6 +112,7 @@ vault_aws_region=us-east-1
 [epsilon:vars]
 ansible_ssh_private_key_file=~/.ssh/epsilon.pem
 bastion_sshd_port=60519
+big_poppa_elb=internal-epsilon-big-poppa-http-elb-484375343.us-west-2.elb.amazonaws.com
 datadog_tags=env:epsilon
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ

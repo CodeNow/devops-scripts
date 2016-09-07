@@ -11,6 +11,8 @@ socket-server
 
 [big-poppa]
 
+[big-poppa-elb]
+
 [builder]
 
 [consul]
@@ -19,6 +21,8 @@ epsilon-consul-b
 epsilon-consul-a
 
 [cream]
+
+[cream-elb]
 
 [detention]
 
@@ -98,9 +102,11 @@ epsilon-consul-c
 api
 bastion
 big-poppa
+big-poppa-elb
 builder
 consul
 cream
+cream-elb
 dock
 docker-listener
 docks
