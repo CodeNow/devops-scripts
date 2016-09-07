@@ -1,5 +1,6 @@
 ---
 - hosts: rabbitmq
+- hosts: big-poppa
 - hosts: consul
 - hosts: mongodb
 - hosts: github-varnish
@@ -13,4 +14,4 @@
   - { role: push, tags: [ push ] }
 
 - include: deploy-big-poppa-worker.yml
-    tags: [ deploy ] 
+  tags: [ deploy ] 
