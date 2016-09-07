@@ -2,6 +2,7 @@
 - hosts: big-poppa
 - hosts: cream
 - hosts: consul
+- hosts: datadog
 - hosts: github-varnish
 - hosts: rabbitmq
 

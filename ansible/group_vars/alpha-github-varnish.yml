@@ -8,7 +8,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 
-dockerfile_environmetn: |
+dockerfile_environment: |
   ENV VARNISH_PORT 80
   ENV VARNISH_MALLOC 100M
 
