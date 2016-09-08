@@ -11,6 +11,18 @@
     url=http://{{ consul_host_address }}:8500/v1/kv/runnable/container_run/{{ name }}
     body="{{ container_run_opts }}"
 
+- name: put deployed version in consul
+  delegate_to: "{{ groups['consul'][0] }}"
+  run_once: true
+  when: git_branch is defined and name is defined and consul_host_address is defined
+  tags:
+    - consul-environment
+    - always
+  uri:
+    method=PUT
+    url=http://{{ consul_host_address }}:8500/v1/kv/runnable/environment/{{ name }}
+    body="{{ git_branch }}"
+
 - name: "push {{ name }}:{{ git_branch }} to registry"
   tags: [ push, deploy ]
   become: true
