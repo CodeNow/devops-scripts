@@ -3,9 +3,17 @@
 . /root/.env || export setFatal="true"
 
 die() {
+    # debug = exit
+    # prod = halt
+    DIECMD="exit"
+    # DIECMD=halt
     local EXIT_CODE=${1}
     local EXIT_MESSAGE=${2}
-    echo ${2} && exit ${1}
+    if [ "exit" = "${DIECMD}" ] ; then
+        echo ${2} && ${DIECMD} ${1}
+    else
+        echo ${2} && ${DIECMD}
+    fi
     return
 }
 
