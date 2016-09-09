@@ -7,8 +7,8 @@
   vars_files:
     - group_vars/alpha-drake-http.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ drake_http_rollbar_token }}"
-    tags: [ notify ]
+  - { role: notify, rollbar_token: "{{ drake_http_rollbar_token }}", tags: [ notify ] }
   - { role: builder, tags: [ build ] }
-  - { role: container_start }
+
+- include: deploy-drake-http.yml
+  tags: [ deploy ] 

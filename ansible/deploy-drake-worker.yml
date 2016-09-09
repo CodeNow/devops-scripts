@@ -1,0 +1,10 @@
+---
+- hosts: drake
+  vars_files:
+    - group_vars/alpha-drake-worker.yml
+  roles:
+  - role: datadog
+    tags: [ datadog ]
+          
+  - role: pull_kill_start
+    number_of_containers: 1

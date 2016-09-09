@@ -6,8 +6,8 @@
   vars_files:
     - group_vars/alpha-drake-worker.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ drake_worker_rollbar_token }}"
-    tags: [ notify ]
+  - { role: notify, rollbar_token: "{{ drake_worker_rollbar_token }}", tags: [ notify ] }
   - { role: builder, tags: [ build ] }
-  - { role: container_start }
+
+- include: deploy-drake-worker.yml
+  tags: [ deploy ] 
