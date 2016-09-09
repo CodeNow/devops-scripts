@@ -10,4 +10,4 @@
   - { role: builder, tags: [ build ] }
 
 - include: deploy-drake-worker.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]

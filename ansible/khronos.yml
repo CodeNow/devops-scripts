@@ -15,4 +15,4 @@
   - { role: push, tags: [ push ] }
 
 - include: deploy-khronos.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]

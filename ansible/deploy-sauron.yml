@@ -1,7 +1,7 @@
 ---
-- hosts: github-varnish
+- hosts: sauron
   vars_files:
-    - group_vars/alpha-github-varnish.yml
+    - group_vars/alpha-sauron.yml
   roles:
   - role: datadog
     tags: [ datadog ]

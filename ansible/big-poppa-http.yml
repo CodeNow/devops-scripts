@@ -8,11 +8,11 @@
 
 - hosts: builder
   vars_files:
-    - group_vars/alpha-big-poppa-http.yml 
+    - group_vars/alpha-big-poppa-http.yml
   roles:
   - { role: notify, rollbar_token: "{{ big_poppa_http_rollbar_token }}", tags: [ notify ] }
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
 - include: deploy-big-poppa-http.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]

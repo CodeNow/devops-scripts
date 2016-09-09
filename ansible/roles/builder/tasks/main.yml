@@ -31,7 +31,7 @@
 
 - name: debug dockerfile_pre_install_commands
   debug: var=dockerfile_pre_install_commands
-  
+ 
 - name: debug dockerfile_post_install_commands
   debug: var=dockerfile_post_install_commands
 

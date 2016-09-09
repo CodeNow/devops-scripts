@@ -70,7 +70,7 @@ if [ "true" != "${setFatal}" ] ; then
         fi
         CONTAINER_RUN_RESULT="$(test_container_run_config ${service})"
         if [ 0 -eq ${CONTAINER_RUN_RESULT} ] ; then
-            CONTAINER_RUN_ARGS=`curl -q -s http://${CONSUL_HOST}:8500/v1/kv/runnable/container_run/${service} | sed 's/,/\n/g' | grep Value | sed 's/\\"//g' | awk -F: '{print $2}'| base64 --decode` 
+            CONTAINER_RUN_ARGS=`curl -q -s http://${CONSUL_HOST}:8500/v1/kv/runnable/container_run/${service} | sed 's/,/\n/g' | grep Value | sed 's/\\"//g' | awk -F: '{print $2}'| base64 --decode`
         fi
         DOCKER_RUNNING_RESULT="$(test_docker_running ${service})"
         if [ 0 -eq ${DOCKER_RUNNING_RESULT} ] ; then
@@ -85,7 +85,7 @@ if [ "true" != "${setFatal}" ] ; then
             TRIES=`expr ${TRIES} + 1`
             docker run \
                 --log-driver=syslog --log-opt syslog-facility=local7 --log-opt tag="${service}" \
-                ${CONTAINER_RUN_ARGS} registry.runnable.com/runnable/${service}:${TAGGED_VERSION} 
+                ${CONTAINER_RUN_ARGS} registry.runnable.com/runnable/${service}:${TAGGED_VERSION}
             DOCKER_RUN_RESULT="${?}"
             if [ 0 -eq ${DOCKER_RUN_RESULT} ] ; then
                 break

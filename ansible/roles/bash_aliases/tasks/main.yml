@@ -1,6 +1,6 @@
 ---
 - name: copy bash aliases to ubuntu
-  tags: [ loggly, bash_aliases ] 
+  tags: [ loggly, bash_aliases ]
   template:
     src=dot_bash_aliases.sh.j2
     dest=/home/ubuntu/.bash_aliases

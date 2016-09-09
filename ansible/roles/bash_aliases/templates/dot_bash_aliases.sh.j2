@@ -27,7 +27,7 @@ loglast() {
     local tailopts=""
     # do not check contents of $2, just if exists, escape jinja2 keyword.
     if [ 2 -eq "{{ '${#}' }}" ] ; then
-        tailopts="-${2}" 
+        tailopts="-${2}"
     fi
     tail "${tailopts}" "$(logpath ${app_name})" | bunyan
 }
@@ -39,7 +39,7 @@ greplog() {
     local regexp=""
     # again, not checking arg2, just making sure it exists, and espace jinja2 keyword.
     if [ 2 -eq "{{ '${#}' }}" ] ; then
-        regexp="${2}" 
+        regexp="${2}"
     fi
     tail -f "$(logpath ${app_name})" | grep "${regexp}" | bunyan
 }

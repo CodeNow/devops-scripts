@@ -65,4 +65,4 @@ RUN {{ command }}
 {% endif %}
 
 # Define default command.
-CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }} 
+CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}

@@ -15,4 +15,4 @@
   - { role: push, tags: [ push ] }
 
 - include: deploy-cream-http.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]

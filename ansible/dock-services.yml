@@ -2,5 +2,5 @@
 - include: optimus.yml git_branch="{{ optimus_branch }}"
 - include: palantiri.yml git_branch="{{ palantiri_branch }}"
 - include: sauron.yml git_branch="{{ sauron_branch }}"
-- include: swarm-manager.yml 
+- include: swarm-manager.yml
 # run with: `--extra-vars "@current_versions.yml"`

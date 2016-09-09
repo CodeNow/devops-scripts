@@ -7,10 +7,10 @@
   vars_files:
     - group_vars/alpha-palantiri.yml
   roles:
-  - { role: notify, rollbar_token: "{{ palantiri_rollbar_token }}", tags: [ notify ] } 
+  - { role: notify, rollbar_token: "{{ palantiri_rollbar_token }}", tags: [ notify ] }
   - { role: docker_client }
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
 - include: deploy-palantiri.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]

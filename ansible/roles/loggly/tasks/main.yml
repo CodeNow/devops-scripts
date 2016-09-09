@@ -122,7 +122,7 @@
     state=present
 
 - name: runnable bin directory
-  tags: [ loggly, clean ] 
+  tags: [ loggly, clean ]
   become: true
   file:
     path=/opt/runnable/bin
@@ -141,7 +141,7 @@
    mode=0700
 
 - name: purge log files
-  tags: [ loggly, clean ] 
+  tags: [ loggly, clean ]
   become: true
   cron:
     name="purge log files"

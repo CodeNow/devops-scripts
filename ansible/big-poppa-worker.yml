@@ -14,4 +14,4 @@
   - { role: push, tags: [ push ] }
 
 - include: deploy-big-poppa-worker.yml
-  tags: [ deploy ] 
+  tags: [ deploy ]
