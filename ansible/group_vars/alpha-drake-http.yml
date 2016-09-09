@@ -12,23 +12,22 @@ redis_key: "frontend:{{ drake_hostname }}"
 is_redis_update_required: 'yes'
 
 # for container settings
-container_envs: >
-  -e API_URL={{ api_url }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DATADOG_SECRET=I_solemnly_swear_that_I_am_up_to_no_good
-  -e NODE_ENV={{ node_env }}
-  -e PORT={{ hosted_ports[0] }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ drake_http_rollbar_token }}
+dockerfile_environment: |
+  ENV API_URL {{ api_url }}
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV DATADOG_SECRET I_solemnly_swear_that_I_am_up_to_no_good
+  ENV NODE_ENV {{ node_env }}
+  ENV PORT {{ hosted_ports[0] }}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV ROLLBAR_KEY {{ drake_http_rollbar_token }}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -P
-  {{container_envs}}
 
 npm_start_command: run start-http
