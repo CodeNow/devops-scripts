@@ -55,6 +55,6 @@ dockerfile_environment: |
 container_run_opts: >
   -h {{ name }}
   -d
-  -P
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
 
 container_run_args: bash -c "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"

@@ -25,4 +25,4 @@ dockerfile_environment: |
 container_run_opts: >
   -h {{ name }}
   -d
-  -P
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
