@@ -96,6 +96,9 @@ epsilon-consul-a
 epsilon-consul-b
 epsilon-consul-c
 
+[web]
+epsilon-registry
+
 [worker]
 
 [epsilon:children]
@@ -128,6 +131,7 @@ socket-server
 socket-server-proxy
 swarm-manager
 ingress
+web
 worker
 servers
 

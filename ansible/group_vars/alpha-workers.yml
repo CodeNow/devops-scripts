@@ -6,7 +6,7 @@ memory_hard_limit: 1g
 
 # for container settings
 dockerfile_environment: |
-  {{ api_base_container_envs }}
+  {{ api_base_dockerfile_envs }}
   ENV IS_QUEUE_WORKER true
   ENV ROLLBAR_KEY {{ api_workers_rollbar_key }}
 

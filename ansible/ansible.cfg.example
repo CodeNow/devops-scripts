@@ -1,0 +1,8 @@
+[defaults]
+#retry_files_save_path = ~/.ansible/retry-files
+#vault_password_file = ~/.somefile
+sudo_flags = -HE
+
+###
+### copy to ${HOME}/.ansible.cfg and edit
+###
