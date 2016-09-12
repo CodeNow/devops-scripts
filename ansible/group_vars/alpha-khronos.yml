@@ -26,6 +26,13 @@ canary_cron_queues: "\
 hourly_canary_cron_queues: "\
   khronos:canary:failover"
 
+dockerfile_enviroment: [
+  'NPM_TOKEN {{ npm_token }}'
+]
+dockerfile_pre_install_commands: [
+  'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
 # a quick version of authentication for rabbit for cron
