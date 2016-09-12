@@ -1,6 +1,9 @@
+- include: big-poppa.yml git_branch="{{ big_poppa_branch }}"
+- include: cream.yml git_branch="{{ cream_branch }}"
 - include: detention.yml git_branch="{{ detention_branch }}"
 - include: drake.yml git_branch="{{ drake_branch }}"
 - include: eru.yml git_branch="{{ eru_branch }}"
-- include: metis.yml git_branch="{{ astral_branch }}"
+- include: github-varnish.yml git_branch="{{ github_varnish_branch }}"
+- include: pheidi.yml git_branch="{{ pheidi_branch }}"
 - include: shiva.yml git_branch="{{ astral_branch }}"
 # run with: `--extra-vars "@current_versions.yml"`

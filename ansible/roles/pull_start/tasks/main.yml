@@ -27,6 +27,9 @@
   when: number_of_containers is undefined
   set_fact:
     number_of_containers: 1
+  notify:
+    - remove all hosts from redis key
+    - stop old containers
 
 - name: print number of contaienrs
   tags: deploy
@@ -59,6 +62,4 @@
   register: new_container_ids
   notify:
     - get new container ports
-    - remove all hosts from redis key
     - put new hosts on redis keys
-    - stop old containers

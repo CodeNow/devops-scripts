@@ -1,3 +1,4 @@
+- include: docker-listener.yml git_branch="{{ docker_listener_branch }}"
 - include: khronos.yml git_branch="{{ khronos_branch }}"
 - include: optimus.yml git_branch="{{ optimus_branch }}"
 - include: palantiri.yml git_branch="{{ palantiri_branch }}"
