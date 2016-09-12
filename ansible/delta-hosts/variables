@@ -16,6 +16,7 @@ api_intercom_app_id=wqzm3rju
 api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
 
 [big-poppa:vars]
+big_poppa_new_relic_app_name=delta-big-poppa
 big_poppa_pg_pass=189a4a90-60d9-11e6-92c9-7b1a5b7c8417
 big_poppa_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
 big_poppa_pg_port=5432
