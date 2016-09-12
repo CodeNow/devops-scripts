@@ -1,6 +1,24 @@
 ---
 # commands to build an image
 #
+- name: debug!
+  debug: var=hosted_ports
+
+- name: debug dockerfile_environment
+  debug: var=dockerfile_environment
+
+- name: debug dockerfile_pre_install_commands
+  debug: var=dockerfile_pre_install_commands
+ 
+- name: debug dockerfile_post_install_commands
+  debug: var=dockerfile_post_install_commands
+
+- name: debug node_env
+  debug: var=node_env
+
+- name: debug git_branch
+  debug: var=git_branch
+
 - name: Ensure Tag Deploy For Prod
   tags: deploy
   when: not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and node_env=="production-delta"
@@ -22,18 +40,6 @@
     update: yes
     accept_hostkey: yes
     force: yes
-
-- name: debug!
-  debug: var=hosted_ports
-
-- name: debug dockerfile_environment
-  debug: var=dockerfile_environment
-
-- name: debug dockerfile_pre_install_commands
-  debug: var=dockerfile_pre_install_commands
- 
-- name: debug dockerfile_post_install_commands
-  debug: var=dockerfile_post_install_commands
 
 - name: copy dockerfile to build folder
   tags: deploy

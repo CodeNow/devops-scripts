@@ -15,15 +15,14 @@ dockerfile_post_install_commands: [
   "npm run grunt"
 ]
 
-container_envs: >
-  -e ABSOLUTE_URL={{ detention_hostname }}
-  -e API_URL={{ api_url }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
-  -e NODE_ENV={{ node_env }}
-  -e PORT={{ hosted_ports[0] }}
+dockerfile_environment: |
+  ENV ABSOLUTE_URL {{ detention_hostname }}
+  ENV API_URL {{ api_url }}
+  ENV HELLO_RUNNABLE_GITHUB_TOKEN {{ api_hello_runnable_github_token }}
+  ENV NODE_ENV {{ node_env }}
+  ENV PORT {{ hosted_ports[0] }}
 
 container_run_opts: >
   -h {{ name }}
   -d
   -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
-  {{ container_envs }}
