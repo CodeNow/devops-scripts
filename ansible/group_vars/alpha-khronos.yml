@@ -35,6 +35,7 @@ cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password
 container_envs: >
   -e API_SOCKET_SERVER=https://{{ api_socket_server_hostname }}
   -e API_URL={{ api_url }}
+  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
   -e CANARY_API_TOKEN={{ khronos_canary_token | default('undefined') }}
   {% if khronos_canary_failover_token is defined %}
