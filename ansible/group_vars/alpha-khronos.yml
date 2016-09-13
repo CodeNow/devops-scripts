@@ -9,8 +9,8 @@ npm_version: 2
 # for cron job
 # this is the list of queues we want to enqueue a job into
 main_cron_queues: "\
-  containers.image-builder:prune \
-  containers.orphan:prune \
+  containers.image-builder.prune \
+  containers.orphan.prune \
   context-versions.prune-expired \
   images.prune \
   instances.cleanup \
