@@ -17,14 +17,14 @@ main_cron_queues: "\
   weave.prune"
 
 canary_cron_queues: "\
-  canary.build \
-  canary.github-branch \
-  canary.log \
-  canary.network \
+  canary.build.run \
+  canary.github-branch.run \
+  canary.log.run \
+  canary.network.run \
   metrics.container-status"
 
 hourly_canary_cron_queues: "\
-  canary.failover"
+  canary.failover.run"
 
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
