@@ -1,4 +1,8 @@
 [api_group:vars]
+
+[big-poppa:vars]
+
+[builder:vars]
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
 api_github_client_id=baa5c868b6d17d7ae002
@@ -11,10 +15,6 @@ api_mongo_replset_name=epsilon-rs0
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
-
-[big-poppa:vars]
-
-[builder:vars]
 big_poppa_pg_pass=964aeb3c-633d-11e6-974b-3f6632e607d4
 big_poppa_pg_host=epsilon-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
 big_poppa_pg_port=5432

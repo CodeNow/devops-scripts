@@ -19,10 +19,10 @@
 - name: debug git_branch
   debug: var=git_branch
 
-- name: Ensure Tag Deploy For Prod
-  tags: deploy
+- name: Ensure Tag build For Prod
+  tags: build
   when: not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and node_env=="production-delta"
-  fail: msg="only tag can be deployed on prod not {{ git_branch }}"
+  fail: msg="only tag can be built on prod not {{ git_branch }}"
 
 - name: create build folder
   become: true
@@ -31,7 +31,7 @@
     state: directory
 
 - name: pull the git repository
-  tags: deploy
+  tags: build
   become: true
   git:
     repo: "{{ repo }}"
@@ -42,14 +42,14 @@
     force: yes
 
 - name: copy dockerfile to build folder
-  tags: deploy
+  tags: build
   become: true
   template:
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
 - name: build docker image and tag
-  tags: deploy
+  tags: build
   become: yes
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 

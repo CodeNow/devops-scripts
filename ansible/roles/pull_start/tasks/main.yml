@@ -7,6 +7,12 @@
   register: old_containers_ids
   changed_when: old_containers_ids.stdout != ''
 
+- name: kill old containers
+  tags: deploy
+  become: yes 
+  command: docker kill {{ item }}
+  with_items: "{{ old_containers_ids.stdout_lines }}"
+
 - name: get images
   tags: deploy
   when: not do_not_push
@@ -27,9 +33,6 @@
   when: number_of_containers is undefined
   set_fact:
     number_of_containers: 1
-  notify:
-    - remove all hosts from redis key
-    - stop old containers
 
 - name: print number of contaienrs
   tags: deploy
@@ -59,7 +62,3 @@
     done
   args:
     executable: /bin/bash
-  register: new_container_ids
-  notify:
-    - get new container ports
-    - put new hosts on redis keys

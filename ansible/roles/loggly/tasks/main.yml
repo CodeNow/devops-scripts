@@ -1,4 +1,7 @@
 ---
+- name: Debug node_env
+  debug: var=node_env
+
 - name: Install rsyslog-gnutls
   become: yes
   tags: loggly
