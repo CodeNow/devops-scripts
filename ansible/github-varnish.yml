@@ -1,4 +1,6 @@
 ---
+- hosts: consul
+
 - hosts: builder
   vars_files:
   - group_vars/alpha-github-varnish.yml
