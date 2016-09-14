@@ -13,6 +13,6 @@
   - { role: builder, tags: [build] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
 
-  - include: aws/pheidi.yml
-    tags: [ lc ]
-  - include: deploy/pheidi.yml
+- include: aws/pheidi.yml
+  tags: [ lc ]
+- include: deploy/pheidi.yml

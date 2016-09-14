@@ -2,6 +2,7 @@
 epsilon-bastion
 
 [api]
+builder
 
 [api_group:children]
 worker
@@ -9,10 +10,12 @@ api
 socket-server
 
 [big-poppa]
+builder
 
 [big-poppa-elb]
 
 [builder]
+epsilon-builder
 
 [consul]
 epsilon-consul-c
@@ -20,22 +23,28 @@ epsilon-consul-b
 epsilon-consul-a
 
 [cream]
+builder
 
 [cream-elb]
 
 [detention]
+builder
 
 [dock]
 
 [docker-listener]
+builder
 
 [docks]
 
 [drake]
+builder
 
 [eru]
+builder
 
 [github-varnish]
+builder
 
 [hipache]
 epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
@@ -44,6 +53,7 @@ epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainD
 epsilon-ingress
 
 [khronos]
+builder
 
 [link]
 epsilon-navi
@@ -58,10 +68,13 @@ epsilon-navi
 epsilon-navi
 
 [optimus]
+builder
 
 [pheidi]
+builder
 
 [palantiri]
+builder
 
 [rabbitmq]
 epsilon-rabbit
@@ -73,13 +86,13 @@ epsilon-redis
 epsilon-registry
 
 [sauron]
-
-[servers]
+builder
 
 [shiva]
-epsilon-shiva
+builder
 
 [socket-server]
+builder
 
 [socket-server-proxy]
 epsilon-api-socket-proxy
@@ -99,6 +112,7 @@ epsilon-consul-c
 epsilon-registry
 
 [worker]
+builder
 
 [epsilon:children]
 api
@@ -134,7 +148,6 @@ swarm-manager
 ingress
 web
 worker
-servers
 
 [local]
 127.0.0.1 ansible_python_interpreter=/usr/local/bin/python
