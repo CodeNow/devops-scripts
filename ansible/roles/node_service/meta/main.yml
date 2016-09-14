@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - { role: base_ubuntu, when: "ansible_distribution == 'Ubuntu'"}
-  - { role: node }
-  - { role: git }
+  - { role: ../roles/base_ubuntu, when: "ansible_distribution == 'Ubuntu'"}
+  - { role: ../roles/node }
+  - { role: ../roles/git }

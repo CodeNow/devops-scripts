@@ -1,0 +1,10 @@
+---
+- hosts: drake-worker
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-drake-worker.yml
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: ../roles/create_lc, tags: [ lc ] }

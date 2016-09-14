@@ -12,4 +12,7 @@
     tags: [ notify ]
   - { role: builder, tags: [build] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: container_kill_start }
+
+  - include: aws/pheidi.yml
+    tags: [ lc ]
+  - include: deploy/pheidi.yml

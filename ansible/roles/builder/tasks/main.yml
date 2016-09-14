@@ -1,23 +1,8 @@
 ---
 # commands to build an image
 #
-- name: debug!
-  debug: var=hosted_ports
-
-- name: debug dockerfile_environment
-  debug: var=dockerfile_environment
-
-- name: debug dockerfile_pre_install_commands
-  debug: var=dockerfile_pre_install_commands
- 
-- name: debug dockerfile_post_install_commands
-  debug: var=dockerfile_post_install_commands
-
-- name: debug node_env
-  debug: var=node_env
-
-- name: debug git_branch
-  debug: var=git_branch
+#- name: debug all vars
+#  action: template src=dumper.j2 dest=/tmp/all.json
 
 - name: Ensure Tag build For Prod
   tags: build

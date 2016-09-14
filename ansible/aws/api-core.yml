@@ -1,0 +1,11 @@
+---
+- hosts: api
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-api-base.yml
+    - ../group_vars/alpha-api.yml
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: ../roles/create_lc, tags: [ lc ] }

@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: docker }
-  - { role: loggly }
+  - { role: ../roles/docker }
+  - { role: ../roles/loggly }

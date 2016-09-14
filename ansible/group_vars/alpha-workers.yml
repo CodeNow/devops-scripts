@@ -1,4 +1,5 @@
 name: api-worker
+app_name: "{{ name }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
 

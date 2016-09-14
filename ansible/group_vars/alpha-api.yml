@@ -1,4 +1,5 @@
 name: api
+app_name: "{{name }}"
 
 # copy certs into docker image:
 docker_client_certs: true

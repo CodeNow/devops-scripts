@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: apt_update }
-  - { role: docker }
+  - { role: ../roles/apt_update }
+  - { role: ../roles/docker }

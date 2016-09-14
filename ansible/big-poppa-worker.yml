@@ -13,5 +13,7 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-- include: deploy-big-poppa-worker.yml
+- include: aws/big-poppa-worker.yml
+  tags: [ lc ]
+- include: deploy/big-poppa-worker.yml
   tags: [ deploy ]

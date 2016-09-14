@@ -22,5 +22,7 @@
   - { role: builder, tags: [ build ] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
 
-- include: deploy-socket-server.yml
+- include: aws/socket-server.yml
+  tags: [ lc ]
+- include: deploy/socket-server.yml
   tags: [ deploy ]

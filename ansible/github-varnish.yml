@@ -6,5 +6,7 @@
   - { role: build_with_dockerfile, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-- include: deploy-github-varnish.yml
+- include: aws/github-varnish.yml
+  tags: [ lc ]
+- include: deploy/github-varnish.yml
   tags: [ deploy ]

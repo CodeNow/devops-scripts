@@ -14,5 +14,7 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-- include: deploy-big-poppa-http.yml
+- include: aws/big-poppa-http.yml
+  tags: [ lc ]
+- include: big-poppa-http.yml
   tags: [ deploy ]

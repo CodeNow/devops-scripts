@@ -12,5 +12,7 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags: [ push ] }
 
-- include: deploy-palantiri.yml
+- include: aws/palantiri.yml
+  tags: [ lc ]
+- include: deploy/palantiri.yml
   tags: [ deploy ]

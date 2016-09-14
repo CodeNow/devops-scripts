@@ -12,4 +12,8 @@
     tags: [ notify ]
   - { role: tls-server-ca, ca_dest: "{{ build_dir }}/{{ name }}/ssl/redis/ca.pem" }
   - { role: builder, tags: [ build ] }
-  #- { role: container_kill_start }
+
+  - include: aws/palantiri.yml
+    tags: [ lc ]
+  - include: deploy/shiva.yml
+    tags: [ deploy ]

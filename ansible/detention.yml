@@ -9,5 +9,7 @@
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
 
-- include: deploy-detention.yml
+- include: aws/detention.yml
+  tags: [ lc ]
+- include: deploy/detention.yml
   tags: [ deploy ]

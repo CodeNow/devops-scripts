@@ -9,5 +9,7 @@
   - { role: notify, rollbar_token: "{{ drake_worker_rollbar_token }}", tags: [ notify ] }
   - { role: builder, tags: [ build ] }
 
-- include: deploy-drake-worker.yml
+- include: aws/drake-worker.yml
+  tags: [ lc ]
+- include: deploy/drake-worker.yml
   tags: [ deploy ]

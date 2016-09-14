@@ -1,4 +1,6 @@
 name: optimus
+app_name: "{{ name }}"
+security_groups: "{{ sg_dock_services }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"

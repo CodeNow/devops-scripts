@@ -3,6 +3,10 @@
 [big-poppa:vars]
 
 [builder:vars]
+big_poppa_elb=internal-epsilon-big-poppa-http-elb-484375343.us-west-2.elb.amazonaws.com
+cream_elb=internal-epsilon-cream-http-elb-1821868081.us-west-2.elb.amazonaws.com
+detention_elb=internal-epsilon-detention-elb-2087386367.us-west-2.elb.amazonaws.com
+github_varnish_elb=internal-epsilon-github-varnish-elb-1191139196.us-west-2.elb.amazonaws.com
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
 api_github_client_id=baa5c868b6d17d7ae002
@@ -112,7 +116,6 @@ vault_aws_region=us-east-1
 [epsilon:vars]
 ansible_ssh_private_key_file=~/.ssh/epsilon.pem
 bastion_sshd_port=60519
-big_poppa_elb=internal-epsilon-big-poppa-http-elb-484375343.us-west-2.elb.amazonaws.com
 datadog_tags=env:epsilon
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
@@ -132,10 +135,10 @@ vault_token_02=e334c5c53dc979476e1fb27c91dd8f7b0b5f708b876d829ee0ec54d0cba3de9e0
 vault_token_03=8e8918bee9fe08f5558450bceeab71326da91b60a24aed41f6ae7eebb35fe2e204
 
 [ec2:vars]
-env=epsilon
 aws_custid=437258487404
 bastion_sshd_port=60519
-region=us-west-2
+env=epsilon
+image_id=ami-c576a6a5
 sg_api="sg-c839ffaf"
 sg_app_services="sg-307aec57"
 sg_bastion="sg-1525e372"

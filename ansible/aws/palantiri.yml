@@ -1,0 +1,10 @@
+---
+- hosts: palantiri
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-palantiri.yml
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: ../roles/create_lc, tags: [ lc ] }

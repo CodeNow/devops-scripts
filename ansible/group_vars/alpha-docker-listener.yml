@@ -1,4 +1,6 @@
 name: docker-listener
+app_name: "{{ name }}"
+security_groups: "{{ sg_dock_services }}"
 
 # copy certs into docker image:
 docker_client_certs: true

@@ -1,5 +1,4 @@
 ---
-app_name: "ec2"
 consul_api_port: 8500
 consul_api_ssl_port: 8501
 consul_cli_port: 8400

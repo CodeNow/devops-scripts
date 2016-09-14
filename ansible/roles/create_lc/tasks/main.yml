@@ -1,0 +1,23 @@
+---
+- name: debug app_name
+  debug: var=app_name
+
+- name: debug user_data
+  debug: var=user_data
+
+- name: create launch config for {{ name }}
+  tags: [ ec2_lc ] 
+  run_once: true
+  ec2_lc:
+    name: "{{ env }}-lc-{{ name }}"
+    assign_public_ip: no
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    image_id: "{{ image_id }}"
+    instance_monitoring: no
+    instance_type: "{{ instance_type }}"
+    key_name: "{{ key_name }}"
+    state: present
+    region: "{{ region }}"
+    security_groups: [ "{{ security_groups }}" ]
+    user_data: "{{ user_data }}"

@@ -1,0 +1,10 @@
+---
+- hosts: drake-http
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-drake-http.yml
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: ../roles/create_lc, tags: [ lc ] }

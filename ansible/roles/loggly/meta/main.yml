@@ -1,3 +1,3 @@
 ---
 dependencies:
-  - { role: bash_aliases }
+  - { role: ../roles/bash_aliases }

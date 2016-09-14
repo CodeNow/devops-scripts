@@ -15,5 +15,7 @@
   - { role: builder, tags: [ build ] }
   - { role: push, tags [ push ] }
 
-- include: deploy-eru.yml
+- include: aws/eru.yml
+  tags: [ lc ]
+- include: deploy/eru.yml
     tags: [ deploy ]

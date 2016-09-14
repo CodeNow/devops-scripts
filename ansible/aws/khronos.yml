@@ -1,0 +1,10 @@
+---
+- hosts: khronos
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-khronos.yml
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: ../roles/create_lc, tags: [ lc ] }

@@ -1,10 +1,10 @@
 ---
 - hosts: big-poppa
   vars_files:
-    - group_vars/alpha-big-poppa-worker.yml
+    - ../group_vars/alpha-big-poppa-worker.yml
   roles:
-  - role: datadog
+  - role: ../roles/datadog
     tags: [ datadog ]
          
-  - role: pull_start
+  - role: ../roles/pull_start
     number_of_containers: 1

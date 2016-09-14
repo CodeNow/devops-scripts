@@ -1,8 +1,8 @@
 ---
 - hosts: mongodb
 - hosts: navi
-- hosts: rabbitmq
 - hosts: redis
+- hosts: rabbitmq
 - hosts: big-poppa
 - hosts: cream
 - hosts: github-varnish
@@ -13,6 +13,7 @@
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-api.yml
+    - group_vars/ec2_sg.yml
   roles:
   - { role: notify, rollbar_token: "{{ api_rollbar_key }}", tags: [ notify ] }
   - { role: docker_client }
@@ -20,5 +21,7 @@
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: push, tags: [ push ]  }
 
-- include: deploy-api-core.yml
+- include: aws/api-core.yml
+  tags: [ lc ]
+- include: deploy/api-core.yml
   tags: [ deploy ]

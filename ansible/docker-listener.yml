@@ -12,5 +12,7 @@
   - { role: builder, tags: "build" }
   - { role: push, tags: [ push ] }
 
-- include: deploy-docker-listener.yml
+- include: aws/docker-listener.yml
+  tags: [ lc ]
+- include: deploy/docker-listener.yml
   tags: [ deploy ]

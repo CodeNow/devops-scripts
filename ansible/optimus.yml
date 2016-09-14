@@ -10,5 +10,5 @@
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: builder, tags: [ build ] }
 
-- include: deploy-optimus.yml
+- include: deploy/optimus.yml
   tags: [ deploy ]

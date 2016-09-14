@@ -11,5 +11,7 @@
   - { role: docker_client }
   - { role: builder, tags: [build] }
 
-- include: deploy-sauron.yml
+- include: aws/sauron.yml
+  tags: [ lc ]
+- include: deploy/sauron.yml
   tags: [ deploy ]

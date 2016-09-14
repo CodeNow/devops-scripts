@@ -19,5 +19,7 @@
   - { role: builder, tags: [ build ] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
 
-- include: deploy-worker.yml
+- include: aws/worker.yml
+  tags: [ lc ]
+- include: deploy/worker.yml
   tags: [ deploy ]
