@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: ../roles/local-vault }
-  - { role: ../roles/tls-server-ca }
+  - { role: local-vault }
+  - { role: tls-server-ca }

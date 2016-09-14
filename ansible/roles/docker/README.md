@@ -31,7 +31,7 @@ docker_centos_packages:
 
     - hosts: docker-servers
       roles:
-         - { role: ../roles/docker-centos,
+         - { role: docker-centos,
                    tags: ["docker"] }
 
 ## Author Information
