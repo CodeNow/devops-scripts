@@ -12,7 +12,6 @@ socket-server
 [big-poppa-elb]
 
 [builder]
-epsilon-builder
 
 [consul]
 epsilon-consul-c

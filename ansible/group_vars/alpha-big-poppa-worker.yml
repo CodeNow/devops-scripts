@@ -1,5 +1,5 @@
 name: big-poppa-worker
-iapp_name: "{{ name }}"
+app_name: "{{ name }}"
 security_groups: "{{ sg_app_services }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
