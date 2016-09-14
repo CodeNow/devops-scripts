@@ -16,5 +16,5 @@
 
 - include: aws/cream-http.yml
   tags: [ lc ]
-- include: cream-http.yml
+- include: deploy/cream-http.yml
   tags: [ deploy ]

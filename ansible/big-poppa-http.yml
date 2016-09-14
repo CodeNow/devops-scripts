@@ -16,5 +16,5 @@
 
 - include: aws/big-poppa-http.yml
   tags: [ lc ]
-- include: big-poppa-http.yml
+- include: deploy/big-poppa-http.yml
   tags: [ deploy ]

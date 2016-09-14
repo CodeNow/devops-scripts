@@ -12,5 +12,5 @@
 
 - include: aws/drake-http.yml
   tags: [ lc ]
-- include: drake-http.yml
+- include: deploy/drake-http.yml
   tags: [ deploy ]

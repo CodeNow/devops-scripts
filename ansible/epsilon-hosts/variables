@@ -47,13 +47,26 @@ eru_github_secret=dda712ce9bdb92cd9187b14c0897319e90dd5462
 eru_aws_access_key_id=AKIAIFCVEISSC5JMPWDA
 eru_aws_secret_access_key=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
 eru_aws_environment=epsilon
+eru_intercom_id=xs5g95pd
+eru_intercom_key=ro-351b737dea8f238f00e8780cdee7c94a15515936
 eru_mongodb_database=epsilon
 eru_mongodb_password=success-nan-europium-rerun-sheep
 eru_mongodb_username=eru
-eru_mongodb_replset=
+eru_mongodb_replset=epsilon-rs0
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=epsilon
 khronos_mongo_replset_name=epsilon
+optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
+optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
+optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
+palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
+pheidi_intercom_id=xs5g95pd
+pheidi_intercom_key=ro-9367eb0eb11542323371dcf25b8e260891f89b36
+pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+pheidi_mongo_database=epsilon
+pheidi_mongo_replset_name=epsilon
+pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
+sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 
 [cream:vars]
 
@@ -74,23 +87,12 @@ docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 navi_cookie_secret=e6911c10e7e611e597309a79f06e9478
 
 [optimus:vars]
-optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
-optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
-optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 
 [palantiri:vars]
-palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [pheidi:vars]
-pheidi_intercom_id=xs5g95pd
-pheidi_intercom_key=ro-9367eb0eb11542323371dcf25b8e260891f89b36
-pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
-pheidi_mongo_database=epsilon
-pheidi_mongo_replset_name=epsilon
-pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
 
 [sauron:vars]
-sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 
 [registry:vars]
 registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
