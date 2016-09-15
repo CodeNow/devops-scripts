@@ -1,8 +1,6 @@
 ---
 # commands to build an image
 #
-#- name: debug all vars
-#  action: template src=dumper.j2 dest=/tmp/all.json
 
 - name: Ensure Tag build For Prod
   tags: build

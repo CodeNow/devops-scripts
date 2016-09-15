@@ -1,10 +1,4 @@
 ---
-- name: debug app_name
-  debug: var=app_name
-
-- name: debug user_data
-  debug: var=user_data
-
 - name: create launch config for {{ name }}
   tags: [ ec2_lc ] 
   run_once: true
