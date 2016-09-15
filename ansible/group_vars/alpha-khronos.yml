@@ -14,22 +14,22 @@ npm_version: 2
 # for cron job
 # this is the list of queues we want to enqueue a job into
 main_cron_queues: "\
-  khronos:containers:image-builder:prune \
-  khronos:containers:orphan:prune \
-  khronos:context-versions:prune-expired \
-  khronos:images:prune \
-  khronos:instances:cleanup \
-  khronos:weave:prune"
+  containers.image-builder.prune \
+  containers.orphan.prune \
+  context-versions.prune-expired \
+  images.prune \
+  instances.cleanup \
+  weave.prune"
 
 canary_cron_queues: "\
-  khronos:canary:build \
-  khronos:canary:github-branch \
-  khronos:canary:log \
-  khronos:canary:network \
-  khronos:metrics:container-status"
+  canary.build.run \
+  canary.github-branch.run \
+  canary.log.run \
+  canary.network.run \
+  metrics.container-status"
 
 hourly_canary_cron_queues: "\
-  khronos:canary:failover"
+  canary.failover.run"
 
 # a nice version of the rabbitmq host
 cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
