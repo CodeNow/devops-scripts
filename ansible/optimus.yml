@@ -9,6 +9,7 @@
   - { role: notify, rollbar_token: "{{ optimus_rollbar_token }}", tags: [ notify ] }
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: builder, tags: [ build ] }
+  - { role: push, tags: [ push ]  }
 
 - include: deploy/optimus.yml
   tags: [ deploy ]

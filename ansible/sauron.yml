@@ -10,6 +10,7 @@
   - { role: notify, rollbar_token: "{{ sauron_rollbar_token }}", tags: [ notify ] }
   - { role: docker_client }
   - { role: builder, tags: [build] }
+  - { role: push, tags: [ push ]  }
 
 - include: aws/sauron.yml
   tags: [ lc ]

@@ -19,8 +19,9 @@
   - { role: notify, rollbar_token: "{{ api_socket_server_rollbar_key }}", tags: [ notify ] }
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: docker_client }
-  - { role: builder, tags: [ build ] }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
+  - { role: builder, tags: [ build ] }
+  - { role: push, tags: [ push ]  }
 
 - include: aws/socket-server.yml
   tags: [ lc ]

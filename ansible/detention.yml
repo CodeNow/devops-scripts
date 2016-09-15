@@ -8,6 +8,7 @@
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
+  - { role: push, tags: [ push ]  }
 
 - include: aws/detention.yml
   tags: [ lc ]
