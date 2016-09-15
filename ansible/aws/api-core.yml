@@ -8,4 +8,4 @@
   connection: local
   gather_facts: false
   roles:
-  - { role: ../roles/create_lc, tags: [ lc ] }
+  - role: ../roles/create_lc

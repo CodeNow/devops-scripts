@@ -7,6 +7,9 @@
   register: old_containers_ids
   changed_when: old_containers_ids.stdout != ''
 
+- name: debug findTagRunning
+  debug: var=old_containers_ids.stdout_lines
+
 - name: kill old containers
   tags: deploy
   become: yes 

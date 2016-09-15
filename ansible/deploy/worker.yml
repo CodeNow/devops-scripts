@@ -1,5 +1,5 @@
 ---
-- hosts: workers
+- hosts: worker
   vars_files:
     - ../group_vars/alpha-api-base.yml
     - ../group_vars/alpha-workers.yml

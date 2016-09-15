@@ -7,10 +7,8 @@
     - "group_vars/alpha-detention.yml"
   roles:
   - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
-  - { role: push, tags: [ push ]  }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/detention.yml
-  tags: [ lc ]
 - include: deploy/detention.yml
-  tags: [ deploy ]

@@ -9,10 +9,8 @@
   roles:
   - { role: notify, rollbar_token: "{{ docker_listener_rollbar_key }}", tags: [ notify ] }
   - { role: docker_client }
-  - { role: builder, tags: "build" }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/docker-listener.yml
-  tags: [ lc ]
 - include: deploy/docker-listener.yml
-  tags: [ deploy ]

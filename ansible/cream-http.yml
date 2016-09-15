@@ -11,10 +11,8 @@
     - group_vars/alpha-cream-http.yml
   roles:
   - { role: notify, rollbar_token: "{{ cream_http_rollbar_token }}", tags: [ notify ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/cream-http.yml
-  tags: [ lc ]
 - include: deploy/cream-http.yml
-  tags: [ deploy ]

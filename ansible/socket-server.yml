@@ -17,13 +17,10 @@
     - group_vars/alpha-socket-server.yml
   roles:
   - { role: notify, rollbar_token: "{{ api_socket_server_rollbar_key }}", tags: [ notify ] }
-  - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: docker_client }
-  - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ]  }
+  - { role: tls-client, tls_service: mongodb }
+  - { role: builder }
+  - { role: push  }
 
 - include: aws/socket-server.yml
-  tags: [ lc ]
 - include: deploy/socket-server.yml
-  tags: [ deploy ]

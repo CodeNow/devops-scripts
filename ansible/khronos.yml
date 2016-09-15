@@ -10,11 +10,9 @@
   roles:
   - { role: notify, rollbar_token: "{{ rollbar_khronos_token }}", tags: [ notify ] }
   - { role: docker_client }
-  - { role: khronos, tags: [ deploy ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: khronos }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/khronos.yml
-  tags: [ lc ]
 - include: deploy/khronos.yml
-  tags: [ deploy ]

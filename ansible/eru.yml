@@ -12,10 +12,8 @@
   - group_vars/alpha-eru.yml
   roles:
   - { role: notify, tags: [ notify ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/eru.yml
-  tags: [ lc ]
 - include: deploy/eru.yml
-  tags: [ deploy ]

@@ -17,10 +17,8 @@
   - { role: notify, rollbar_token: "{{ api_workers_rollbar_key }}", tags: [ notify ] }
   - { role: docker_client }
   - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/worker.yml
-  tags: [ lc ]
 - include: deploy/worker.yml
-  tags: [ deploy ]

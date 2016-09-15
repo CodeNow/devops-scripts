@@ -10,10 +10,8 @@
     - group_vars/alpha-big-poppa-worker.yml
   roles:
   - { role: notify, rollbar_token: "{{ big_poppa_worker_rollbar_token }}", tags: [ notify ] }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/big-poppa-worker.yml
-  tags: [ lc ]
 - include: deploy/big-poppa-worker.yml
-  tags: [ deploy ]
