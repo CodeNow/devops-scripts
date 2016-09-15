@@ -9,9 +9,7 @@ var ec2 = new aws.EC2({
     region: 'us-west-2'
 });
 
-var name = process.argv[1];
-
-// console.log(name,"xxx");
+// this will get all running servers in this VPC
 
 var params = {
     Filters: [

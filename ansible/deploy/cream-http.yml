@@ -3,8 +3,4 @@
   vars_files:
     - ../group_vars/alpha-cream-http.yml
   roles:
-  - role: ../roles/datadog
-    tags: [ datadog ]
-         
   - role: ../roles/pull_start
-    number_of_containers: 1

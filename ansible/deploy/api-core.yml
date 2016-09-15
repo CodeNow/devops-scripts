@@ -4,5 +4,4 @@
     - ../group_vars/alpha-api-base.yml
     - ../group_vars/alpha-api.yml
   roles:
-  - { role: ../roles/datadog, tags: [ datadog ] } 
-  - { role: ../roles/pull_start, number_of_containers: 1 }
+  - role: ../roles/pull_start

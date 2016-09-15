@@ -11,7 +11,7 @@
 - hosts: ingress
 - hosts: github-varnish
 
-- hosts: socket-server
+- hosts: builder
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-socket-server.yml

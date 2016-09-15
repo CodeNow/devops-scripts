@@ -17,6 +17,13 @@ die() {
     return
 }
 
+fix_logs() {
+    local SVC=${1}
+    SRC="/etc/rsyslog.d/21-rotated-docker.conf"
+    DST="/etc/rsyslog.d/21-rotated-${SVC}.conf"
+    sed "s/docker_engine/${SVC}/g" ${SRC} > ${DST}
+}
+
 test_curl() {
     local SVC=${1}
     curl -q -s http://${CONSUL_HOST}:8500/v1/kv/runnable/environment/${SVC} > /dev/null 2>&1
