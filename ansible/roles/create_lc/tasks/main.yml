@@ -1,6 +1,6 @@
 ---
 - name: create launch config for {{ name }}
-  tags: [ ec2_lc ] 
+  tags: [ lc ] 
   run_once: true
   ec2_lc:
     name: "{{ env }}-lc-{{ name }}"
