@@ -67,6 +67,8 @@ pheidi_mongo_database=epsilon
 pheidi_mongo_replset_name=epsilon
 pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
+web_intercom_id=xs5g95pd
+web_sift_public_key=eea9746dff
 
 [cream:vars]
 
@@ -160,5 +162,3 @@ sg_web="sg-cb20e6ac"
 vpc_id="vpc-cdb2a3a8"
 
 [web:vars]
-web_intercom_id=xs5g95pd
-web_sift_public_key=eea9746dff

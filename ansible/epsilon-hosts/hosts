@@ -92,7 +92,6 @@ epsilon-consul-b
 epsilon-consul-c
 
 [web]
-epsilon-registry
 
 [worker]
 
