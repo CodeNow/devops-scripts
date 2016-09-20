@@ -2,7 +2,7 @@
 - hosts: redis
 - hosts: consul
 
-- hosts: optimus
+- hosts: builder
   vars_files:
     - group_vars/alpha-optimus.yml
   roles:
