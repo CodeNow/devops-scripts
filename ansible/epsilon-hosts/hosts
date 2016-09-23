@@ -14,9 +14,9 @@ socket-server
 [builder]
 
 [consul]
-epsilon-consul-c
-epsilon-consul-b
 epsilon-consul-a
+epsilon-consul-b
+epsilon-consul-c
 
 [cream]
 
@@ -119,6 +119,7 @@ navi
 optimus
 rabbitmq
 redis
+palantiri
 pheidi
 registry
 sauron

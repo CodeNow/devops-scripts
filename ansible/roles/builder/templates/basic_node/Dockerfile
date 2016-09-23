@@ -26,7 +26,7 @@ COPY ./{{ tls_service }}-client /opt/ssl/{{ tls_service }}-client
 
 {% if docker_client_certs is defined %}
 # Docker certs for {{ name }}
-COPY ./ssl /etc/ssl
+COPY ./ssl /etc/ssl/docker
 {% endif %}
 
 {% if nginx_conf is defined %}

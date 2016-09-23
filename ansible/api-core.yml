@@ -17,8 +17,8 @@
   roles:
   - { role: notify, rollbar_token: "{{ api_rollbar_key }}", tags: [ notify ] }
   - { role: docker_client }
-  - { role: builder }
   - { role: tls-client, tls_service: mongodb }
+  - { role: builder }
   - { role: push }
 
 - include: aws/api-core.yml

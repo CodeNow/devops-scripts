@@ -2,8 +2,9 @@
 - hosts: rabbitmq
 - hosts: consul
 - hosts: swarm-manager
-
 - hosts: sauron
+
+- hosts: builder
   vars_files:
     - group_vars/alpha-sauron.yml
   roles:

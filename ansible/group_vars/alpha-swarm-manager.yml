@@ -4,7 +4,7 @@ name: "swarm-manager"
 docker_client_certs: true
 
 # container_kill_start settings
-container_image: swarm
+container_image: registry.runnable.com/swarm
 container_tag: 1.2.3-0
 
 container_run_opts: >

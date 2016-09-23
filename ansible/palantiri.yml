@@ -2,6 +2,7 @@
 - hosts: rabbitmq
 - hosts: consul
 - hosts: swarm-manager
+- hosts: palantiri
 
 - hosts: builder
   vars_files:
@@ -9,10 +10,8 @@
   roles:
   - { role: notify, rollbar_token: "{{ palantiri_rollbar_token }}", tags: [ notify ] }
   - { role: docker_client }
-  - { role: builder, tags: [ build ] }
-  - { role: push, tags: [ push ] }
+  - { role: builder }
+  - { role: push }
 
 - include: aws/palantiri.yml
-  tags: [ lc ]
 - include: deploy/palantiri.yml
-  tags: [ deploy ]
