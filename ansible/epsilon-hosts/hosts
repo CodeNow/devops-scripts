@@ -130,6 +130,7 @@ swarm-manager
 ingress
 web
 worker
+userland
 
 [local]
 127.0.0.1 ansible_python_interpreter=/usr/local/bin/python
