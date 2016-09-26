@@ -3,8 +3,6 @@ name: "metabase"
 container_image: metabase/{{ name }}
 container_tag: latest
 
-do_not_push: yes
-
 container_envs: >
   -e "MB_DB_TYPE=postgres" \
   -e "MB_DB_DBNAME={{ metabase_pg_database }}" \
