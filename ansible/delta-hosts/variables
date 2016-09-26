@@ -78,6 +78,13 @@ khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
 khronos_mongo_replset_name=delta
 
+[metabase:vars]
+metabase_pg_database=metabase
+metabase_pg_host=delta-metabase.cnksgdqarobf.us-west-2.rds.amazonaws.com
+metabase_pg_pass=nifty-prowl-sought-muscles
+metabase_pg_port=32659
+metabase_pg_user=metabase
+
 [metis:vars]
 metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
