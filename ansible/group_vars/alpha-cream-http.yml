@@ -22,8 +22,6 @@ dockerfile_environment: |
   ENV DATADOG_PORT {{ datadog_port }}
   ENV HELLO_RUNNABLE_GITHUB_TOKEN {{ cream_hello_runnable_github_token }}
   ENV PORT {{ hosted_ports[0] }}
-  {% if cream_intercom_key is defined %} ENV INTERCOM_API_KEY {{ cream_intercom_key }} {% endif %}
-  {% if cream_intercom_id is defined %} ENV INTERCOM_APP_ID {{ cream_intercom_id }} {% endif %}
   ENV NODE_ENV {{ node_env }}
   ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
   ENV RABBITMQ_PASSWORD {{ rabbit_password }}
@@ -34,6 +32,12 @@ dockerfile_environment: |
   ENV ROLLBAR_KEY {{ cream_http_rollbar_token }}
   ENV STRIPE_API_KEY {{ cream_stripe_secret_key }}
   ENV STRIPE_PUBLISHABLE_KEY {{ cream_stripe_publishable_key }}
+  {% if cream_intercom_key is defined %}
+  ENV INTERCOM_API_KEY {{ cream_intercom_key }}
+  {% endif %}
+  {% if cream_intercom_id is defined %}
+  ENV INTERCOM_APP_ID {{ cream_intercom_id }}
+  {% endif %}
 
 container_run_opts: >
   -h {{ name }}

@@ -12,6 +12,7 @@
 
 - name: kill old containers
   tags: deploy
+  ignore_errors: true
   become: yes 
   command: docker kill {{ item }}
   with_items: "{{ old_containers_ids.stdout_lines }}"

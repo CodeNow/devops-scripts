@@ -49,12 +49,24 @@ api_base_dockerfile_envs: |
   ENV SENDGRID_KEY  {{ sendgrid_key }}
   ENV SWARM_HOST http://{{ swarm_host_address }}:{{ swarm_master_port }}
   ENV USER_CONTENT_DOMAIN  {{ user_content_domain }}
-  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_APP_NAME  {{ api_new_relic_app_name }} {% endif %}
-  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_LICENSE_KEY  {{ new_relic_license_key }} {% endif %}
-  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_LOG_LEVEL fatal {% endif %}
-  {% if api_new_relic_app_name is defined %} ENV NEW_RELIC_NO_CONFIG_FILE true {% endif %}
-  {% if api_intercom_app_id is defined %} ENV INTERCOM_APP_ID  {{ api_intercom_app_id }} {% endif %}
-  {% if api_intercom_api_key is defined %} ENV INTERCOM_API_KEY  {{ api_intercom_api_key }} {% endif %}
+  {% if api_new_relic_app_name is defined %}
+  ENV NEW_RELIC_APP_NAME  {{ api_new_relic_app_name }}
+  {% endif %}
+  {% if api_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LICENSE_KEY  {{ new_relic_license_key }}
+  {% endif %}
+  {% if api_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LOG_LEVEL fatal
+  {% endif %}
+  {% if api_new_relic_app_name is defined %}
+  ENV NEW_RELIC_NO_CONFIG_FILE true
+  {% endif %}
+  {% if api_intercom_app_id is defined %}
+  ENV INTERCOM_APP_ID  {{ api_intercom_app_id }}
+  {% endif %}
+  {% if api_intercom_api_key is defined %}
+  ENV INTERCOM_API_KEY  {{ api_intercom_api_key }}
+  {% endif %}
 
 dockerfile_pre_install_commands: [
    'echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc'

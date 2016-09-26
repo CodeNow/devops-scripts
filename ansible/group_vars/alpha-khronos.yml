@@ -43,7 +43,7 @@ dockerfile_environment: |
   ENV CONSUL_HOST {{ consul_host_address }}:{{ consul_api_port }}
   ENV CANARY_API_TOKEN {{ khronos_canary_token | default('undefined') }}
   {% if khronos_canary_failover_token is defined %}
-    ENV CANARY_API_FAILOVER_TOKEN {{ khronos_canary_failover_token }}
+  ENV CANARY_API_FAILOVER_TOKEN {{ khronos_canary_failover_token }}
   {% endif %}
   ENV CANARY_GITHUB_BRANCHES_INSTANCE_ID {{ khronos_canary_github_branches_instance_id | default('undefined') }}
   ENV CANARY_LOG_INSTANCE_ID {{ khronos_canary_logs_instance_id | default('undefined') }}
@@ -56,9 +56,9 @@ dockerfile_environment: |
   ENV INTERCOM_APP_ID {{ intercom_app_id | default('undefined') }}
   ENV KHRONOS_MONGO mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
   {% if node_env != "production-epsilon" %}
-    ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem
-    ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem
-    ENV MONGO_KEY /opt/ssl/mongo-client/key.pem
+  ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem
+  ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem
+  ENV MONGO_KEY /opt/ssl/mongo-client/key.pem
   {% endif %}
   ENV NODE_ENV {{ node_env }}
   ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}

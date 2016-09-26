@@ -25,9 +25,15 @@ dockerfile_environment: |
   ENV LOGGLY_TOKEN "{{ loggly_token }}"
   ENV MONGO mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   ENV MONGO_REPLSET_NAME {{ pheidi_mongo_replset_name }}
-  {% if node_env != "production-epsilon" %} ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem {% endif %}
-  {% if node_env != "production-epsilon" %} ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem {% endif %}
-  {% if node_env != "production-epsilon" %} ENV MONGO_KEY /opt/ssl/mongo-client/key.pem {% endif %}
+  {% if node_env != "production-epsilon" %}
+  ENV MONGO_CACERT /opt/ssl/mongo-client/ca.pem
+  {% endif %}
+  {% if node_env != "production-epsilon" %}
+  ENV MONGO_CERT /opt/ssl/mongo-client/cert.pem
+  {% endif %}
+  {% if node_env != "production-epsilon" %}
+  ENV MONGO_KEY /opt/ssl/mongo-client/key.pem
+  {% endif %}
   ENV NODE_ENV "{{ node_env }}"
   ENV RABBITMQ_HOSTNAME "{{ rabbit_host_address }}"
   ENV RABBITMQ_PASSWORD "{{ rabbit_password }}"
