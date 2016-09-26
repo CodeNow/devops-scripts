@@ -62,6 +62,8 @@ eru_mongodb_username=eru
 eru_subdomain=eru
 
 [khronos:vars]
+khronos_intercom_api_key=9b4ee7b4f9818b36e368985fda0befa611928876
+khronos_intercom_app_id=xs5g95pd
 khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
