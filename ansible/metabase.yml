@@ -1,0 +1,11 @@
+---
+- hosts: consul
+
+- hosts: metabase
+  vars_files:
+    - group_vars/alpha-metabase.yml
+  roles:
+  - role: notify
+    tags: [ notify ]
+  - { role: builder, tags: "build" }
+  - { role: container_start }

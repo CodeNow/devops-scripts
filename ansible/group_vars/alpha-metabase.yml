@@ -1,0 +1,20 @@
+name: "metabase"
+
+container_image: metabase/{{ name }}
+container_tag: latest
+
+do_not_push: yes
+
+container_envs: >
+  -e "MB_DB_TYPE=postgres" \
+  -e "MB_DB_DBNAME={{ metabase_pg_database }}" \
+  -e "MB_DB_PORT={{ metabase_pg_port }}" \
+  -e "MB_DB_USER={{ metabase_pg_user }}" \
+  -e "MB_DB_PASS={{ metabase_pg_pass }}" \
+  -e "MB_DB_HOST={{ metabase_pg_host }}" \
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -p 3000:3000
+  {{ container_envs }}
