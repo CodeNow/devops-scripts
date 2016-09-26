@@ -83,6 +83,9 @@ delta-rabbit
 [web]
 delta-app-services
 
+[metabase]
+delta-app-services
+
 [redis]
 delta-redis
 
