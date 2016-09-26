@@ -11,7 +11,9 @@ npm_version: 2
 
 
 dockerfile_pre_install_commands: [
-   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+  "apt-get update",
+  "apt-get install postgresql-client=9.3+154ubuntu1 -y",
+  "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
 # for container settings

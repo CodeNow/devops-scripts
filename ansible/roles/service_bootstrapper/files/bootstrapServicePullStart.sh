@@ -75,6 +75,7 @@ if [ "true" != "${setFatal}" ] ; then
         else
             die 255 "Could not open http://${CONSUL_HOST}:8500/v1/kv/runnable/environment/${service}"
         fi
+        fix_logs ${service}
         CONTAINER_RUN_RESULT="$(test_container_run_config ${service})"
         if [ 0 -eq ${CONTAINER_RUN_RESULT} ] ; then
             CONTAINER_RUN_ARGS=`curl -q -s http://${CONSUL_HOST}:8500/v1/kv/runnable/container_run/${service} | sed 's/,/\n/g' | grep Value | sed 's/\\"//g' | awk -F: '{print $2}'| base64 --decode`
