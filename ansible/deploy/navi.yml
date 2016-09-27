@@ -1,0 +1,6 @@
+---
+- hosts: navi
+  vars_files:
+    - ../group_vars/alpha-navi.yml
+  roles:
+  - role: ../roles/pull_start

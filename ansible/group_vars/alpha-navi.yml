@@ -9,39 +9,49 @@ npm_version: "2.8.3"
 
 restart_policy: always
 
-redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
-content_domain_certs: /opt/ssl/{{ user_content_domain }}
+redis_ca_cert_path: {{ build_dir }}/{{ name }}/redis/ca.pem
+content_domain_certs: {{ build_dir }}/{{ user_content_domain }}
 
-container_envs: >
-  -e API_URL={{ api_url }}
-  -e CERT_PATH={{ content_domain_certs }}
-  -e COOKIE_DOMAIN=.{{ user_content_domain }}
-  -e COOKIE_SECRET={{ navi_cookie_secret }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e ENABLE_LRU_CACHE=1
-  -e ERROR_URL=http://{{ detention_host_address }}:{{ detention_port }}
-  -e HTTP_PORT={{ hosted_ports[0] }}
-  -e LOG_LEVEL_STDOUT=trace
-  -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
-  -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e REDIS_CACERT={{ redis_ca_cert_path }}
-  -e REDIS_IPADDRESS={{ redis_host_address }}
-  -e REDIS_PORT={{ redis_tls_port }}
-  {% if navi_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ navi_intercom_api_key }} {% endif %}
-  {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
-  {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
+dockerfile_environment: |
+  ENV API_URL {{ api_url }}
+  ENV CERT_PATH {{ content_domain_certs }}
+  ENV COOKIE_DOMAIN .{{ user_content_domain }}
+  ENV COOKIE_SECRET {{ navi_cookie_secret }}
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV ENABLE_LRU_CACHE 1
+  ENV ERROR_URL http://{{ detention_host_address }}:{{ detention_port }}
+  ENV HTTP_PORT {{ hosted_ports[0] }}
+  ENV LOG_LEVEL_STDOUT trace
+  ENV MONGO mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
+  ENV NODE_ENV {{ node_env }}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV REDIS_CACERT {{ redis_ca_cert_path }}
+  ENV REDIS_IPADDRESS {{ redis_host_address }}
+  ENV REDIS_PORT {{ redis_tls_port }}
+  {% if navi_intercom_api_key is defined %}
+  ENV INTERCOM_API_KEY {{ navi_intercom_api_key }}
+  {% endif %}
+  {% if navi_intercom_app_id is defined %}
+  ENV INTERCOM_APP_ID {{ navi_intercom_app_id }}
+  {% endif %}
+  {% if navi_new_relic_app_name is defined %}
+  ENV NEW_RELIC_APP_NAME {{ navi_new_relic_app_name }}
+  {% endif %}
+  {% if navi_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LICENSE_KEY {{ new_relic_license_key }}
+  {% endif %}
+  {% if navi_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LOG_LEVEL fatal
+  {% endif %}
+  {% if navi_new_relic_app_name is defined %}
+  ENV NEW_RELIC_NO_CONFIG_FILE true
+  {% endif %}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  {{ container_envs }}
+  -p 0.0.0.0:80:80/tcp

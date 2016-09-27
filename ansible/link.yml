@@ -9,4 +9,6 @@
   roles:
   - { role: notify, tags: "notify" }
   - { role: builder, tags: "build" }
-  - { role: container_kill_start }
+
+- include: aws/link.yml
+- include: deploy/link.yml

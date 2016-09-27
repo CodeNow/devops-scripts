@@ -9,15 +9,11 @@
   vars_files:
     - group_vars/alpha-navi.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ navi_rollbar_token }}"
-    tags: [ notify ]
+  - role: { notify, rollbar_token: "{{ navi_rollbar_token }}", tags: [ notify ] }
+  - role: { builder, tags: [ build ] }
+  - role: { tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
+  - role: { push }
 
-  - role: builder
-    tags: [ build ]
-
-  - role: tls-server-ca
-    ca_dest: "{{ redis_ca_cert_path }}"
-
-  - role: container_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+- include: aws/navi.yml
+- include: deploy/navi.yml
+- include: deploy/registrator-navi.yml

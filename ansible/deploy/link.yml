@@ -1,0 +1,6 @@
+---
+- hosts: link
+  vars_files:
+    - ../group_vars/alpha-link.yml
+  roles:
+  - role: ../roles/pull_start
