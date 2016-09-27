@@ -1,0 +1,24 @@
+name: "arithmancy"
+
+container_image: "registry.runnable.com/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+# container settings
+container_envs: >
+  -e NODE_ENV={{ node_env }}
+  -e DATADOG_HOST={{ datadog_host_address }}
+  -e DATADOG_PORT={{ datadog_port }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e ROLLBAR_KEY={{ arithmancy_rollbar_key }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+  {{ container_envs }}

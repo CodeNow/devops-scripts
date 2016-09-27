@@ -114,12 +114,16 @@ gamma-app-services
 [github-varnish]
 gamma-app-services
 
+[arithmancy]
+gamma-app-services
+
 [docks]
 
 [dock]
 
 [gamma:children]
 api
+arithmancy
 bastion
 big-poppa
 charon

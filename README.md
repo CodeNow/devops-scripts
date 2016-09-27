@@ -132,6 +132,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | Service | Deploy Song Link |
 | ------- | ---------------- |
 | api / api-workers | [Push it - Rick Ross](https://www.youtube.com/watch?v=qk2jeE1LOn8) |
+| arithmancy | [onerepublic - Counting Stars](https://www.youtube.com/watch?v=hT_nvWreIhg) |
 | big poppa | [Big Poppa - The Notorious B.I.G.](https://www.youtube.com/watch?v=phaJXp_zMYM) |
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |

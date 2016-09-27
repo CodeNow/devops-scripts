@@ -110,8 +110,12 @@ epsilon-app-services
 [github-varnish]
 epsilon-app-services
 
+[arithmancy]
+epsilon-app-services
+
 [epsilon:children]
 api
+arithmancy
 bastion
 big-poppa
 charon
