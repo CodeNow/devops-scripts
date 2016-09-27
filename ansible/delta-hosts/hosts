@@ -122,8 +122,12 @@ delta-app-services
 [cream]
 delta-app-services
 
+[arithmancy]
+delta-app-services
+
 [delta:children]
 api
+arithmancy
 bastion
 big-poppa
 charon
