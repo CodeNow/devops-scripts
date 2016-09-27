@@ -4,8 +4,9 @@
 - hosts: mongo-navi
 - hosts: rabbitmq
 - hosts: consul
-
 - hosts: navi
+
+- hosts: builder
   vars_files:
     - group_vars/alpha-navi.yml
   roles:

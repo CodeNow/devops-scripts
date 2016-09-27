@@ -2,8 +2,9 @@
 - hosts: mongo-navi
 - hosts: rabbitmq
 - hosts: consul
-
 - hosts: link
+
+- hosts: builder
   vars_files:
     - "group_vars/alpha-link.yml"
   roles:
