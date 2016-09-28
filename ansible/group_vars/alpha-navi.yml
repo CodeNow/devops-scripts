@@ -56,4 +56,4 @@ dockerfile_environment: |
 container_run_opts: >
   -h {{ name }}
   -d
-  -p 0.0.0.0:80:80/tcp
+  -p 0.0.0.0:{{ navi_http_port }}:{{ navi_http_port }}/tcp

@@ -1,5 +1,5 @@
 ---
-- hosts: cream
+- hosts: cream-http
   vars_files:
     - ../group_vars/alpha-cream-http.yml
   roles:

@@ -7,9 +7,13 @@ worker
 api
 socket-server
 
-[big-poppa]
+[big-poppa_group:children]
+big-poppa-http
+big-poppa-worker
 
-[big-poppa-elb]
+[big-poppa-http]
+
+[big-poppa-worker]
 
 [builder]
 
@@ -18,9 +22,13 @@ epsilon-consul-a
 epsilon-consul-b
 epsilon-consul-c
 
-[cream]
+[cream_group:children]
+cream-http
+cream-worker
 
-[cream-elb]
+[cream-http]
+
+[cream-worker]
 
 [detention]
 
@@ -30,7 +38,13 @@ epsilon-consul-c
 
 [docks]
 
-[drake]
+[drake_group:children]
+drake-http
+drake-worker
+
+[drake-http]
+
+[drake-worker]
 
 [eru]
 
@@ -98,17 +112,18 @@ epsilon-consul-c
 [epsilon:children]
 api
 bastion
-big-poppa
-big-poppa-elb
+big-poppa-http
+big-poppa-worker
 builder
 consul
-cream
-cream-elb
+cream-http
+cream-worker
 detention
 dock
 docker-listener
 docks
-drake
+drake-http
+drake-worker
 ec2
 eru
 github-varnish

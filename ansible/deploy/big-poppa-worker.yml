@@ -1,5 +1,5 @@
 ---
-- hosts: big-poppa
+- hosts: big-poppa-worker
   vars_files:
     - ../group_vars/alpha-big-poppa-worker.yml
   roles:

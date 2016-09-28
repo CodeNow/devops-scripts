@@ -1,5 +1,5 @@
 ---
-- hosts: cream
+- hosts: cream-worker
   vars_files:
     - ../group_vars/alpha-cream-worker.yml
   roles:
