@@ -10,10 +10,10 @@
   vars_files:
     - group_vars/alpha-navi.yml
   roles:
-  - role: { notify, rollbar_token: "{{ navi_rollbar_token }}", tags: [ notify ] }
-  - role: { builder, tags: [ build ] }
-  - role: { tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - role: { push }
+  - { role:  notify, rollbar_token: "{{ navi_rollbar_token }}", tags: [ notify ] }
+  - { role:  tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
+  - { role:  builder, tags: [ build ] }
+  - { role:  push }
 
 - include: aws/navi.yml
 - include: deploy/navi.yml

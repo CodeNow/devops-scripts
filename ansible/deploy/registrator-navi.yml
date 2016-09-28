@@ -3,6 +3,6 @@
 
 - hosts: navi
   vars_files:
-  - group_vars/alpha-registrator.yml
+  - ../group_vars/alpha-registrator.yml
   roles:
-  - role: pull_start
+  - role: ../roles/pull_start

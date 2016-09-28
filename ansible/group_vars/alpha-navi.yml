@@ -1,4 +1,6 @@
 name: navi
+app_name: "{{ name }}"
+security_groups: "{{ sg_dock_services }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
@@ -9,8 +11,8 @@ npm_version: "2.8.3"
 
 restart_policy: always
 
-redis_ca_cert_path: {{ build_dir }}/{{ name }}/redis/ca.pem
-content_domain_certs: {{ build_dir }}/{{ user_content_domain }}
+redis_ca_cert_path: "{{ build_dir }}/{{ name }}/ssl/redis/ca.pem"
+content_domain_certs: "{{ build_dir }}/{{name}}/ssl/{{ user_content_domain }}"
 
 dockerfile_environment: |
   ENV API_URL {{ api_url }}
