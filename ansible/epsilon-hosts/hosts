@@ -59,7 +59,6 @@ epsilon-ingress
 [khronos]
 
 [link]
-epsilon-navi
 
 [mongodb]
 epsilon-mongo
@@ -68,7 +67,6 @@ epsilon-mongo
 epsilon-navi
 
 [navi]
-epsilon-navi
 
 [optimus]
 

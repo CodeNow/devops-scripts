@@ -1,5 +1,6 @@
 name: navi
 app_name: "{{ name }}"
+services_list: "navi registrator"
 security_groups: "{{ sg_dock_services }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}

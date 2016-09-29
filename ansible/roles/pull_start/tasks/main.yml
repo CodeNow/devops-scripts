@@ -1,7 +1,7 @@
 ---
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
-  tags: deploy
+  tags: [ deploy, restart ]
   become: true
   script: findTagRunning.sh {{ container_image }}
   register: old_containers_ids
@@ -11,20 +11,20 @@
   debug: var=old_containers_ids.stdout_lines
 
 - name: kill old containers
-  tags: deploy
+  tags: [ deploy, restart ]
   ignore_errors: true
   become: yes 
   command: docker kill {{ item }}
   with_items: "{{ old_containers_ids.stdout_lines }}"
 
 - name: get images
-  tags: deploy
+  tags: [ deploy, restart ]
   when: not do_not_push
   become: yes
   command: docker pull {{ container_image }}:{{ container_tag }}
 
 - name: get id of latest image
-  tags: deploy
+  tags: [ deploy, restart ]
   become: yes
   shell: >
     docker images --no-trunc |
@@ -33,18 +33,18 @@
   register: new_image_id
 
 - name: default number of containers
-  tags: deploy
+  tags: [ deploy, restart ]
   when: number_of_containers is undefined
   set_fact:
     number_of_containers: 1
 
 - name: print number of contaienrs
-  tags: deploy
+  tags: [ deploy, restart ]
   debug:
     msg: starting this many containers -- {{ number_of_containers }}
 
 - name: start new container
-  tags: deploy
+  tags: [ deploy, restart ] 
   become: yes
   shell: |
     for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do
@@ -64,3 +64,10 @@
     done
   args:
     executable: /bin/bash
+
+- name: clean up old containers
+  tags: [ deploy, restart ]
+  become: yes
+  ignore_errors: true
+  shell: >
+    docker ps -aq | xargs docker rm
