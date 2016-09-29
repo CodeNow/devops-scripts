@@ -57,7 +57,6 @@ khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=epsilon
 khronos_mongo_replset_name=epsilon
 navi_cookie_secret=e6911c10e7e611e597309a79f06e9478
-navi_elb=epsilon-navi-elb-395856583.us-west-2.elb.amazonaws.com
 optimus_aws_access_id=AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id=5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
 optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
@@ -84,6 +83,9 @@ docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 [drake_group:vars]
 
 [eru:vars]
+
+[ingress:vars]
+navi_elb=internal-epsilon-navi-elb-a-deux-171487650.us-west-2.elb.amazonaws.com
 
 [khronos:vars]
 

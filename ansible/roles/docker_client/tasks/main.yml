@@ -5,19 +5,28 @@
     path={{ build_dir }}/{{ name }}/ssl
     state=directory
 
-- name: copy {{ name }} CA
+- name: copy {{ name }} client cert
   become: true
   copy:
-    src=certs/ca.pem
+    src=certs/{{ name }}/cert.pem
     dest={{ build_dir }}/{{ name }}/ssl
     mode=0440
     owner=root
     group=root
 
-- name: copy {{ name }} client key and cert
+- name: copy {{ name }} client key
   become: true
   copy:
-    src=certs/swarm-manager/
+    src=certs/{{ name }}/key.pem
+    dest={{ build_dir }}/{{ name }}/ssl
+    mode=0440
+    owner=root
+    group=root
+
+- name: copy {{ name }} CA
+  become: true
+  copy:
+    src=certs/ca.pem
     dest={{ build_dir }}/{{ name }}/ssl
     mode=0440
     owner=root

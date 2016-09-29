@@ -17,4 +17,3 @@
 
 - include: aws/navi.yml
 - include: deploy/navi.yml
-- include: deploy/registrator-navi.yml

@@ -50,6 +50,9 @@ drake-worker
 
 [github-varnish]
 
+[ingress]
+epsilon-ingress
+
 [khronos]
 
 [link]
@@ -116,6 +119,7 @@ drake-worker
 ec2
 eru
 github-varnish
+ingress
 khronos
 mongodb
 navi
