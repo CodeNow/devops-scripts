@@ -7,8 +7,6 @@
 - hosts: consul
 - hosts: big-poppa
 - hosts: cream
-- hosts: socket-server-proxy
-- hosts: ingress
 - hosts: github-varnish
 
 - hosts: builder
