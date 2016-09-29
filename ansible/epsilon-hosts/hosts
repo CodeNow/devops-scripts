@@ -50,12 +50,6 @@ drake-worker
 
 [github-varnish]
 
-[hipache]
-epsilon-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-
-[ingress]
-epsilon-ingress
-
 [khronos]
 
 [link]
@@ -88,9 +82,6 @@ epsilon-registry
 [shiva]
 
 [socket-server]
-
-[socket-server-proxy]
-epsilon-api-socket-proxy
 
 [swarm-manager]
 epsilon-swarm-manager
@@ -125,7 +116,6 @@ drake-worker
 ec2
 eru
 github-varnish
-hipache
 khronos
 mongodb
 navi
@@ -138,9 +128,7 @@ registry
 sauron
 shiva
 socket-server
-socket-server-proxy
 swarm-manager
-ingress
 web
 worker
 userland
