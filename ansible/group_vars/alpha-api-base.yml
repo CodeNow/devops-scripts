@@ -1,6 +1,9 @@
 container_tag: "{{ git_branch }}"
 security_groups: "{{ sg_api }}"
 
+# copy certs into docker image:
+docker_client_certs: true
+
 node_version: "4.4.5"
 npm_version: "2.15.11"
 
