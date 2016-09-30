@@ -8,9 +8,10 @@ npm_version: "2.14.7"
 
 # container settings
 container_envs: >
-  -e NODE_ENV={{ node_env }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e NODE_ENV={{ node_env }}
+  -e POSTGRES_CONNECT_STRING=postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
