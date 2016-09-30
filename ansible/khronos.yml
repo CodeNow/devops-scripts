@@ -3,8 +3,9 @@
 - hosts: mongodb
 - hosts: consul
 - hosts: swarm-manager
+- hosts: khronos
 
-- hosts: build
+- hosts: builder
   vars_files:
     - group_vars/alpha-khronos.yml
   roles:

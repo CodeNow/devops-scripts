@@ -25,13 +25,15 @@
 
 - name: Install jq
   become: true
-  tags: "Install jq"
   apt:
     pkg=jq
     state=latest
     update_cache=yes
     cache_valid_time=604800
 
+- name: remove bad /usr/local/bin/jq
+  become: true
+  command: rm -rf /usr/local/bin/jq
 
 - name: Download Vault 041
   become: true

@@ -3,4 +3,5 @@
   vars_files:
     - ../group_vars/alpha-khronos.yml
   roles:
+  - role: ../roles/khronos
   - role: ../roles/pull_start

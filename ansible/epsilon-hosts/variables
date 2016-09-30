@@ -85,7 +85,6 @@ docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 [eru:vars]
 
 [ingress:vars]
-navi_elb=internal-epsilon-navi-elb-a-deux-171487650.us-west-2.elb.amazonaws.com
 
 [khronos:vars]
 
@@ -128,6 +127,7 @@ datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 domain=runnable-beta.com
 mongo_port=27017
+navi_elb=internal-epsilon-navi-elb-a-deux-171487650.us-west-2.elb.amazonaws.com
 node_env=production-epsilon
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
