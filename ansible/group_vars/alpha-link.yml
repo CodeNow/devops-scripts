@@ -12,7 +12,7 @@ dockerfile_environment: |
   ENV API_URL {{ api_url }}
   ENV DATADOG_HOST {{ datadog_host_address }}
   ENV DATADOG_PORT {{ datadog_port }}
-  ENV HELLO_RUNNABLE_GITHUB_TOKEN 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
+  ENV HELLO_RUNNABLE_GITHUB_TOKEN {{ api_hello_runnable_github_token }}
   ENV MONGO mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   ENV NODE_ENV {{ node_env }}
   ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}

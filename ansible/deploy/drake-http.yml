@@ -1,5 +1,5 @@
 ---
-- hosts: drake
+- hosts: drake-http
   vars_files:
     - ../group_vars/alpha-drake-http.yml
   roles:

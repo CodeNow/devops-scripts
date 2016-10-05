@@ -2,14 +2,12 @@
 - hosts: rabbitmq
 - hosts: consul
 
-- hosts: drake
+- hosts: builder
   vars_files:
     - group_vars/alpha-drake-worker.yml
   roles:
-  - { role: notify, rollbar_token: "{{ drake_worker_rollbar_token }}", tags: [ notify ] }
-  - { role: builder, tags: [ build ] }
+  - { role: notify, rollbar_token: "{{ drake_worker_rollbar_token }}" }
+  - { role: builder }
 
 - include: aws/drake-worker.yml
-  tags: [ lc ]
 - include: deploy/drake-worker.yml
-  tags: [ deploy ]

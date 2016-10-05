@@ -1,5 +1,5 @@
 ---
-- hosts: drake
+- hosts: drake-worker
   vars_files:
     - ../group_vars/alpha-drake-worker.yml
   roles:
