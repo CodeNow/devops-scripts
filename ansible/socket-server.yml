@@ -5,8 +5,8 @@
 - hosts: redis
 - hosts: swarm-manager
 - hosts: consul
-- hosts: big-poppa
-- hosts: cream
+- hosts: big-poppa_group
+- hosts: cream_group
 - hosts: github-varnish
 
 - hosts: builder

@@ -3,8 +3,8 @@
 - hosts: navi
 - hosts: redis
 - hosts: rabbitmq
-- hosts: big-poppa
-- hosts: cream
+- hosts: big-poppa_group
+- hosts: cream_group
 - hosts: github-varnish
 - hosts: swarm-manager
 - hosts: consul
