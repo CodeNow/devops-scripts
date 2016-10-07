@@ -177,6 +177,9 @@ Host delta-consul-c
 Host delta-ingress
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.219 22
 
+Host delta-metabase
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.193 22
+
 Host delta-registry
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
 
