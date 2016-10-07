@@ -90,7 +90,7 @@ delta-rabbit
 delta-app-services
 
 [metabase]
-delta-app-services
+delta-metabase
 
 [redis]
 delta-redis
