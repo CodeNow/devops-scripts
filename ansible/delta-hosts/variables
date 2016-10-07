@@ -73,7 +73,7 @@ khronos_canary_logs_instance_id=56f07f5c1e089a200077f2a3
 khronos_canary_rebuild_instance_id=571b39b9d35173300021667d
 khronos_canary_rebuild_navi_url=http://canary-build-staging-runnabletest.runnableapp.com:8000/
 # @runnable-khronos github token
-khronos_canary_token=78174a60f5eff4f209d0938ad0266f14a156fe38
+khronos_canary_token=4e2e050653b3927e53bb80bfd23d8aa17019426c
 khronos_canary_failover_token=84549e76545306de61d47f23b1d1831e1c95a400
 khronos_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 khronos_mongo_database=delta
