@@ -7,7 +7,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "80" ]
-node_version: 4.4.4
+node_version: 4.5
 npm_version: 3.8
 has_shrinkwrap: true
 

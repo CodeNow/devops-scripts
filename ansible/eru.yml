@@ -3,7 +3,7 @@
 - hosts: mongodb
 - hosts: redis
 - hosts: rabbitmq
-- hosts: big-poppa
+- hosts: big-poppa_group
 - hosts: socket-server-proxy
 - hosts: github-varnish
 

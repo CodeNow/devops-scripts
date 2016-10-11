@@ -1,0 +1,125 @@
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/cneill/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="random"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git pull)
+
+# User configuration
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
+export EC2_HOME="/Users/cneill/ec2"
+export PATH="${PATH}:${EC2_HOME}/bin:${HOME}/bin"
+export EC2_INI_PATH=${HOME}/etc/ec2.ini
+export DEVOPS_SCRIPTS_PATH="${HOME}/git/devops-scripts"
+export NVM_DIR=~/.nvm
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+source $(brew --prefix nvm)/nvm.sh
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cow="ssh -i ~/.ssh/cow_id noise@happy.cow.org."
+alias z='source ${HOME}/.zshrc'
+alias diff='colordiff'
+alias weather='curl http://wttr.in/94110'
+
+set -o vi
+for plugin in `find ${ZSH}/custom/plugins -type f -name '*.zsh'`; do
+    source ${plugin}
+done
+
+# Required to setup the SSH tunnel to swarm
+export DOCKER_HOST=tcp://localhost:2375
+export DOCKER_CERT_PATH="${DEVOPS_SCRIPTS_PATH}/ansible/roles/docker_client/files/certs/swarm-manager"
+export DOCKER_TLS_VERIFY=1
+
+# Used to create blocking tunnel to swarm host
+# usage: setupSwarm <services_host>
+alias setupSwarm='ssh -NL 2375:localhost:2375 -fq'
+alias clearSwarm='echo "clearing all swarm tunnels." ; echo `ps aux|grep 2375\: | grep -v grep | awk '"'"'{printf("%s ",$2);}'"'"'`' 
+
+# Sugar functions you will normally use
+alias setupSwarmGamma='setupSwarm gamma-dock-services'
+alias setupSwarmDelta='setupSwarm delta-swarm-manager'
+alias setupSwarmEpsilon='setupSwarm epsilon-dock-services'
+
+# ansible
+alias ap="ansible-playbook"
+
+# nodes
+export node_env="epsilon"
+alias servers="node ${DEVOPS_SCRIPTS_PATH}/ansible/${node_env}-hosts/servers.js|sed 's/,//g'|strings"
