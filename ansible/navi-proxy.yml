@@ -1,5 +1,6 @@
 ---
 - hosts: ingress
+
   vars_files:
   - group_vars/alpha-navi-proxy.yml
   roles:
@@ -7,4 +8,8 @@
     has_dd_integration: yes
 
   - role: content-domain-proxy
-  - role: pull_start
+  - role: container_kill_start
+
+- include: consul-template-updater.yml
+  vars:
+    host: ingress

@@ -16,7 +16,7 @@ is_redis_update_required: yes
 dockerfile_environment: |
   {{ api_base_dockerfile_envs }}
   ENV NUM_WORKERS 1
-  ENV ROLLBAR_KEY {{ api_socket_server_rollbar_key }}
+#  ENV ROLLBAR_KEY {{ api_socket_server_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}

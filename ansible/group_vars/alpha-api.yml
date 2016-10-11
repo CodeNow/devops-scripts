@@ -14,7 +14,7 @@ memory_hard_limit: 1g
 # for container settings
 dockerfile_environment: |
   {{ api_base_dockerfile_envs }}
-  ENV ROLLBAR_KEY {{ api_rollbar_key }}
+#  ENV ROLLBAR_KEY {{ api_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
