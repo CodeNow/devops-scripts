@@ -1,5 +1,6 @@
 ---
 - hosts: consul
+- hosts: web
 
 - hosts: builder
   vars_files:
