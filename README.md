@@ -132,11 +132,13 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | Service | Deploy Song Link |
 | ------- | ---------------- |
 | api / api-workers | [Push it - Rick Ross](https://www.youtube.com/watch?v=qk2jeE1LOn8) |
+| arithmancy | [onerepublic - Counting Stars](https://www.youtube.com/watch?v=hT_nvWreIhg) |
 | big poppa | [Big Poppa - The Notorious B.I.G.](https://www.youtube.com/watch?v=phaJXp_zMYM) |
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
 | docker-listener | [Call Me Maybe - Carly Rae Jepsen](https://www.youtube.com/watch?v=fWNaR-rxAic) |
+| drake | [Drake - Hotline Bling](https://www.youtube.com/watch?v=uxpDa-c-4Mc)
 | filibuster | [He's a Pirate - Pirates Of The Caribbean](https://www.youtube.com/watch?v=yRh-dzrI4Z4) |
 | github-proxy | [Proxy - Martin Garrix](https://www.youtube.com/watch?v=NWB6-PJw4Mk) |
 | khronos | [Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU) |

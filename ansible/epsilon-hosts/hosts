@@ -101,8 +101,12 @@ epsilon-consul-c
 
 [worker]
 
+[arithmancy]
+epsilon-app-services
+
 [epsilon:children]
 api
+arithmancy
 bastion
 big-poppa-http
 big-poppa-worker

@@ -54,6 +54,9 @@ api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
 api_url: https://{{ api_hostname }}
 
+# arithmancy
+arithmancy_rollbar_key: 1fe145fdeb1a4526b48f5dd82b0d6eb5
+
 # astral
 pg_database: astral
 

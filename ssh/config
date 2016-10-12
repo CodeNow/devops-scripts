@@ -16,12 +16,6 @@ Host epsilon*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/epsilon.pem
 
-Host zeta*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  Identityfile ~/.ssh/zeta.pem
-
 ################################################################################
 # utility
 ################################################################################
@@ -177,6 +171,9 @@ Host delta-consul-c
 Host delta-ingress
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.219 22
 
+Host delta-metabase
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.193 22
+
 Host delta-registry
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
 
@@ -278,10 +275,3 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
-
-################################################################################
-# Zeta Environment (Terraform Infrastructure Migration)
-################################################################################
-Host zeta-bastion
-  HostName 52.24.4.209
-  Port 22

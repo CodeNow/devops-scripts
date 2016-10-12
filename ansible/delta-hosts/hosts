@@ -12,6 +12,12 @@ delta-mongo-a
 delta-mongo-b
 delta-mongo-c
 
+[arithmancy:vars]
+arithmancy_pg_database=arithmancy
+arithmancy_pg_host=arithmancy-delta.cnksgdqarobf.us-west-2.rds.amazonaws.com
+arithmancy_pg_pass=y7A7k7vNf7nkVv4d73YRLYybg3JcA92
+arithmancy_pg_port=5432
+arithmancy_pg_user=arithmancy_delta
 
 [ingress]
 delta-ingress
@@ -83,6 +89,9 @@ delta-rabbit
 [web]
 delta-app-services
 
+[metabase]
+delta-metabase
+
 [redis]
 delta-redis
 
@@ -119,8 +128,12 @@ delta-app-services
 [cream]
 delta-app-services
 
+[arithmancy]
+delta-app-services
+
 [delta:children]
 api
+arithmancy
 bastion
 big-poppa
 charon
@@ -135,6 +148,7 @@ github-varnish
 hipache
 ingress
 khronos
+metabase
 metis
 mongodb
 navi
