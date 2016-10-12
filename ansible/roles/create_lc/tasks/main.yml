@@ -1,9 +1,10 @@
 ---
 - name: create launch config for {{ name }}
   tags: [ lc ] 
+  when: update_lc is defined
   run_once: true
   ec2_lc:
-    name: "{{ env }}-lc-{{ name }}"
+    name: "{{ env }}-lc-{{ name }}-{{ ansible_date_time.epoch }}"
     assign_public_ip: no
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
