@@ -42,6 +42,20 @@ dockerfile_environment: |
   ENV GITHUB_VARNISH_HOST {{ github_varnish_host }}
   ENV GITHUB_VARNISH_PORT {{ github_varnish_port }}
   ENV GITHUB_PROTOCOL http
+  {% if big_poppa_new_relic_app_name is defined %}
+  ENV NEW_RELIC_APP_NAME {{ big_poppa_new_relic_app_name }}
+  {% endif %}
+  {% if big_poppa_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LICENSE_KEY {{ new_relic_license_key }}
+  {% endif %}
+  {% if big_poppa_new_relic_app_name is defined %}
+  ENV NEW_RELIC_LOG_LEVEL fatal
+  {% endif %}
+  {% if big_poppa_new_relic_app_name is defined %}
+  ENV NEW_RELIC_NO_CONFIG_FILE true
+  {% endif %}
+  ENV STRIPE_API_KEY {{ cream_stripe_secret_key }}
+  ENV STRIPE_PUBLISHABLE_KEY {{ cream_stripe_publishable_key }}
 
 container_run_opts: >
   -h {{ name }}
