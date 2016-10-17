@@ -35,6 +35,8 @@ container_envs: >
   -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
   -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
   -e GITHUB_PROTOCOL=http
+  -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
+  -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
 
 container_run_opts: >
   -h {{ name }}

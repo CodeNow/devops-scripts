@@ -46,6 +46,8 @@ container_envs: >
   {% if big_poppa_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
   {% if big_poppa_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
   {% if big_poppa_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
+  -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
+  -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
 
 container_run_opts: >
   -h {{ name }}
