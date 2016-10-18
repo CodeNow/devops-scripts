@@ -67,7 +67,7 @@ Host gamma-api
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.3 22
 
 Host gamma-api-worker
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.5 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.9.84 22
 
 Host gamma-api-socket
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.4 22
