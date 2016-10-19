@@ -1,13 +1,15 @@
 ---
 - hosts: rabbitmq
+- hosts: arithmancy
 - hosts: consul
 
-- hosts: arithmancy
+- hosts: builder
   vars_files:
     - group_vars/alpha-arithmancy.yml
   roles:
-  - role: notify
-    rollbar_token: "{{ arithmancy_rollbar_token }}"
-    tags: [ notify ]
-  - { role: builder, tags: [build] }
-  - { role: container_kill_start }
+  - { role: notify, rollbar_token: "{{ arithmancy_rollbar_token }}", tags: [ notify ] }
+  - { role: builder }
+  - { role: push }
+
+- include: aws/arithmancy.yml
+- include: deploy/arithmancy.yml

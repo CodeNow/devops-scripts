@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+
+- hosts: ec2
+  vars_files:
+    - ../group_vars/alpha-arithmancy.yml
+  connection: local
+  roles:
+  - { role: ../roles/create_lc }

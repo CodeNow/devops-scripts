@@ -1,4 +1,8 @@
 name: "arithmancy"
+app_name: "{{ name }}"
+
+# copy certs into docker image:
+docker_client_certs: true
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
@@ -6,20 +10,18 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
-# container settings
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e NODE_ENV={{ node_env }}
-  -e POSTGRES_CONNECT_STRING=postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ arithmancy_rollbar_key }}
+# dockerfile environment
+dockerfile_environment: |
+  ENV DATADOG_HOST {{ datadog_host_address }}
+  ENV DATADOG_PORT {{ datadog_port }}
+  ENV NODE_ENV {{ node_env }}
+  ENV POSTGRES_CONNECT_STRING postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}
+  ENV RABBITMQ_HOSTNAME {{ rabbit_host_address }}
+  ENV RABBITMQ_PASSWORD {{ rabbit_password }}
+  ENV RABBITMQ_PORT {{ rabbit_port }}
+  ENV RABBITMQ_USERNAME {{ rabbit_username }}
+  ENV ROLLBAR_KEY {{ arithmancy_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  {{ container_envs }}
