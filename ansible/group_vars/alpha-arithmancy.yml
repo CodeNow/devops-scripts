@@ -1,8 +1,6 @@
 name: "arithmancy"
 app_name: "{{ name }}"
-
-# copy certs into docker image:
-docker_client_certs: true
+security_groups: "{{ sg_app_services }}"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
