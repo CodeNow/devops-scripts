@@ -1,6 +1,6 @@
 ---
 - hosts: rabbitmq
-- hosts: cream
+- hosts: cream_group
 - hosts: consul
 - hosts: mongodb
 - hosts: github-varnish
