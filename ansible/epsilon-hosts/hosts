@@ -7,6 +7,8 @@ worker
 api
 socket-server
 
+[arithmancy]
+
 [big-poppa_group:children]
 big-poppa-http
 big-poppa-worker
@@ -100,9 +102,6 @@ epsilon-consul-c
 [web]
 
 [worker]
-
-[arithmancy]
-epsilon-app-services
 
 [epsilon:children]
 api
