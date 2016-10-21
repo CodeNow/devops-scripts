@@ -4,7 +4,7 @@ name: swarm-cloudwatch-reporter
 repo: git@github.com:CodeNow/furry-cactus.git
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
-node_version: lts
+node_version: "4.2.2"
 npm_version: 3
 do_not_push: true
 

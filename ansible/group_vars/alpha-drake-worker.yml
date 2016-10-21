@@ -3,7 +3,7 @@ name: drake-worker
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/drake.git"
-node_version: lts
+node_version: "4.2.2"
 npm_version: 2
 
 # for container settings
