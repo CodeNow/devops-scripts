@@ -6,6 +6,13 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: lts
 npm_version: 2
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
 # for cron job
 # this is the list of queues we want to enqueue a job into
 main_cron_queues: "\
