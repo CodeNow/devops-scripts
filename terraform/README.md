@@ -4,10 +4,9 @@
 
 The `terraform/` directory in `devops-scripts` defines our infrastructure
 as code via [Hashicorp's Terraform Tool](https://terraform.io). To begin let's look
-at the overall directory structure:
+at the overall file structure:
 
-- `devops-scripts/terraform` all files at `terraform` are common files
-- `devops-scripts/terraform/*` all folders inside the `terraform` directory hold specific services
+- `devops-scripts/terraform/*` all files in `terraform` are sourced and used when running commands
 
 ## File naming conventions
 
@@ -16,7 +15,7 @@ at the overall directory structure:
 
 ## Key Files
 
-- `common-vars.tf` - defines common variables throughout our infra
+- `common-vars.tf` - defines common variables throughout our infrastructure
 
 ## How to develop
 
