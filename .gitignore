@@ -11,6 +11,5 @@ ca.srl
 ansible/roles/hipache/templates/runnable*
 ansible/certs/*
 *.retry
-*.tfstate*
 terraform/credentials.tfvars
 terraform/.build
