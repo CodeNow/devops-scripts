@@ -28,18 +28,6 @@ variable "dock_pool_iam_profile" {
   }
 }
 
-variable "install_ssm_script" {
-  type = "string"
-
-  default = <<EOF
-  #!/bin/bash
-  cd /tmp
-  curl https://amazon-ssm-us-west-2.s3.amazonaws.com/latest/debian_amd64/amazon-ssm-agent.deb -o amazon-ssm-agent.deb >> ./user-script.log || halt
-  dpkg -i amazon-ssm-agent.deb >> ./user-script.log || halt
-  start amazon-ssm-agent >> ./user-script.log || halt
-  EOF
-}
-
 variable "dock_pool_asg_name" {
   type = "map"
 

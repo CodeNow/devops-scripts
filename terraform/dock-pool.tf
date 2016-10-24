@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "lc_dock_pool" {
   image_id             = "${ data.aws_ami.dock_pool_ami.id }"
   instance_type        = "${ lookup(var.dock_instance_type, var.env) }"
   iam_instance_profile = "${ lookup(var.dock_pool_iam_profile, var.env) }"
-  user_data            = "${install_ssm_script}"
+  user_data            = "${ file("dock-pool-user-data.sh") }"
 
   security_groups = ["${ lookup(var.dock_instance_sg, var.env) }"]
   key_name        = "${ var.env }"
