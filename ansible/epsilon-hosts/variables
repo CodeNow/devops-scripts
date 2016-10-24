@@ -150,6 +150,7 @@ vault_token_03=8e8918bee9fe08f5558450bceeab71326da91b60a24aed41f6ae7eebb35fe2e20
 aws_custid=437258487404
 bastion_sshd_port=60519
 env=epsilon
+env_cidr_all="10.12.0.0/16"
 image_id=ami-0b6ab16b
 sg_api-socket="sg-1478a873"
 sg_api="sg-c839ffaf"

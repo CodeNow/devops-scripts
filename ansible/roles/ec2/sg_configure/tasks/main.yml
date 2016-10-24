@@ -124,31 +124,64 @@
       - proto: tcp
         from_port: "{{ vault_api_port }}"
         to_port: "{{ vault_api_ssl_port }}"
-        group_id: "{{ sg_consul }}"
-      - proto: tcp
-        from_port: "{{ vault_api_port }}"
-        to_port: "{{ vault_api_ssl_port }}"
-        group_id: "{{ sg_dock }}"
+        cidr_ip: "{{ env_cidr_all }}"
       - proto: tcp
         from_port: "{{ consul_api_port }}"
         to_port: "{{ consul_api_ssl_port }}"
-        group_id: "{{ sg_dock_services }}"
-      - proto: tcp
-        from_port: "{{ consul_api_port }}"
-        to_port: "{{ consul_api_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ consul_api_port }}"
-        to_port: "{{ consul_api_ssl_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ consul_api_port }}"
-        to_port: "{{ consul_api_ssl_port }}"
-        group_id: "{{ sg_navi }}"
-      - proto: tcp
-        from_port: "{{ consul_api_port }}"
-        to_port: "{{ consul_api_ssl_port }}"
+        group_id: "{{ env_cidr_all }}"
         group_id: "{{ sg_userland }}"
+
+- name: C.R.E.A.M. SG
+  tags:
+    - cream
+  ec2_group:
+  name: "{{ env }}-big-poppa"
+  description: "{{ env }} C.R.E.A.M. Security Policy"
+  vpc_id: "{{ vpc_id }}"
+  region: "{{ region }}"
+  aws_secret_key: "{{ aws_secret_key }}"
+  aws_access_key: "{{ aws_access_key }}"
+  rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
+- name: C.R.E.A.M. HTTP SG
+  tags:
+    - cream-http
+  ec2_group:
+  name: "{{ env }}-cream-http"
+  description: "{{ env }} C.R.E.A.M. HTTP Security Policy"
+  vpc_id: "{{ vpc_id }}"
+  region: "{{ region }}"
+  aws_secret_key: "{{ aws_secret_key }}"
+  aws_access_key: "{{ aws_access_key }}"
+  rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_cream }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_cream_http }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_eru }}"
+      - proto: tcp
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        group_id: "{{ sg_cream }}"
 
 - name: On-Dock Services SG
   tags:
@@ -266,6 +299,34 @@
         to_port: 27020
         group_id: "{{ sg_app_services }}"
 
+- name: Mongo-Navi DB SG
+  tags:
+    - mongo-navi
+  ec2_group:
+    name: "{{ env }}-mongo-navi"
+    description: "{{ env }} Mongo Navi Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_mongo_navi }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_link }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_navi }}"
+
 - name: Navi SG
   tags:
     - navi
@@ -282,8 +343,20 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
+        from_port: "{{ navi_http_port }}"
+        to_port: "{{ navi_http_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ navi_http_port }}"
+        to_port: "{{ navi_http_port }}"
+        group_id: "{{ sg_link }}"
+      - proto: tcp
+        from_port: "{{ navi_http_port }}"
+        to_port: "{{ navi_http_port }}"
+        group_id: "{{ sg_navi }}"
+      - proto: tcp
+        from_port: "{{ navi_http_port }}"
+        to_port: "{{ navi_http_port }}"
         group_id: "{{ sg_hipache }}"
 
 - name: RabbitMQ SG
