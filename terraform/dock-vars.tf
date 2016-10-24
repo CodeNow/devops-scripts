@@ -12,7 +12,7 @@ variable "dock_instance_sg" {
   type = "map"
 
   default = {
-    delta   = "XXXXXX"
+    delta   = "sg-6cd7fb08"
     gamma   = "sg-577a0d33"
     epsilon = "XXXXXX"
   }
@@ -42,7 +42,7 @@ variable "dock_ebs_block_device_snapshot" {
   type = "map"
 
   default = {
-    delta   = "XXXXXXX"
+    delta   = "snap-fa9cb900"
     gamma   = "snap-1abeb7e0"
     epsilon = "XXXXXXX"
   }
@@ -52,7 +52,7 @@ variable "dock_availability_zone" {
   type = "map"
 
   default = {
-    delta   = "XXXXXXX"
+    delta   = "us-west-2c"
     gamma   = "us-west-2a"
     epsilon = "XXXXXXX"
   }
@@ -62,7 +62,7 @@ variable "dock_subnet" {
   type = "map"
 
   default = {
-    delta   = "XXXXXXX"
+    delta   = "subnet-3343206a"
     gamma   = "subnet-9cb197f9"
     epsilon = "XXXXXXX"
   }

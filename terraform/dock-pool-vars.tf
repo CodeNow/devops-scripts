@@ -57,3 +57,13 @@ variable "dock_pool_asg_min_size" {
     epsilon = 1
   }
 }
+
+variable "dock_pool_asg_desired" {
+  type = "map"
+
+  default = {
+    delta   = 3
+    gamma   = 1
+    epsilon = 1
+  }
+}
