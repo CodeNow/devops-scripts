@@ -25,14 +25,14 @@
     force: yes
 
 - name: get new tags from remote
-  tags: deploy
+  tags: [ build, deploy ]
   become: true
   shell: "git fetch --tags"
   args:
     chdir: "{{ build_dir }}/{{ name }}/repo"
 
 - name: get latest tag name
-  tags: deploy
+  tags: [ build, deploy ]
   become: true
   shell: "git describe --tags `git rev-list --tags --max-count=1`"
   args:
@@ -40,7 +40,7 @@
   register: latest_tag
 
 - name: ensure latest tag is deployed
-  tags: deploy
+  tags: [ build, deploy ]
   fail: msg="Cannot deploy {{ git_branch }} because latest is {{latest_tag.stdout}}. Bypass with `-t i_am_deploying_an_old_tag`"
   when: node_env=="production-delta" and latest_tag.stdout != git_branch and i_am_deploying_an_old_tag is not defined
 
