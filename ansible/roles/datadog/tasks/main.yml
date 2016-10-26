@@ -25,6 +25,12 @@
     name=datadog-agent
     state=latest
 
+- name: create docker group
+  become: true
+  group:
+    name=docker
+    gid=999
+
 - name: add docker to dd-agent group
   become: true
   when: no_datadog_docker_monitoring is not defined
