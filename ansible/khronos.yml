@@ -3,6 +3,7 @@
 - hosts: mongodb
 - hosts: consul
 - hosts: swarm-manager
+- hosts: big-poppa
 - hosts: khronos
 
 - hosts: builder

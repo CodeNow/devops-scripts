@@ -11,6 +11,13 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: lts
 npm_version: 2
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
 # for cron job
 # this is the list of queues we want to enqueue a job into
 main_cron_queues: "\
@@ -40,6 +47,7 @@ cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password
 dockerfile_environment: |
   ENV API_SOCKET_SERVER https://{{ api_socket_server_hostname }}
   ENV API_URL {{ api_url }}
+  ENV BIG_POPPA_HOST http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   ENV CONSUL_HOST {{ consul_host_address }}:{{ consul_api_port }}
   ENV CANARY_API_TOKEN {{ khronos_canary_token | default('undefined') }}
   {% if khronos_canary_failover_token is defined %}
