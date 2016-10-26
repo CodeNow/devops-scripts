@@ -2,6 +2,8 @@
 
 [big-poppa_group:vars]
 
+[arithmancy:vars]
+
 [builder:vars]
 big_poppa_elb=internal-epsilon-big-poppa-http-elb-484375343.us-west-2.elb.amazonaws.com
 cream_elb=internal-epsilon-cream-http-elb-1821868081.us-west-2.elb.amazonaws.com

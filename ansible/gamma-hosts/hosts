@@ -1,6 +1,8 @@
 [bastion]
 gamma-bastion
 
+[builder]
+
 [hipache]
 gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
@@ -18,13 +20,22 @@ api
 socket-server
 
 [api]
-gamma-api
+
+[big-poppa_group]
+big-poppa
+big-poppa-http
 
 [big-poppa]
-gamma-app-services
+
+[big-poppa-http]
+
+[cream_group]
+cream
+cream-http
 
 [cream]
-gamma-app-services
+
+[cream-http]
 
 [consul]
 gamma-consul-a
@@ -32,7 +43,6 @@ gamma-consul-b
 gamma-consul-c
 
 [docker-listener]
-gamma-dock-services
 
 [vault]
 gamma-consul-a
@@ -40,40 +50,32 @@ gamma-consul-b
 gamma-consul-c
 
 [worker]
-gamma-api-worker
 
 [eru]
-gamma-app-services
 
 [navi]
-gamma-navi
 
 [ingress]
 gamma-ingress
 
 [link]
-gamma-navi
 
 [mongo-navi]
 gamma-navi
 
 [khronos]
-gamma-dock-services
 
 [optimus]
-gamma-dock-services
 
 [detention]
-gamma-app-services
 
 [palantiri]
-gamma-dock-services
 
 [rabbitmq]
 gamma-rabbit
 
 [web]
-gamma-app-services
+gamma-builder
 
 [redis]
 gamma-redis
@@ -82,13 +84,10 @@ gamma-redis
 gamma-redis-slave
 
 [sauron]
-gamma-dock-services
 
 [shiva]
-gamma-app-services
 
 [socket-server]
-gamma-api-socket
 
 [socket-server-proxy]
 gamma-api-socket-proxy
@@ -97,22 +96,14 @@ gamma-api-socket-proxy
 gamma-registry
 
 [swarm-manager]
-gamma-dock-services
-
-[metis]
-gamma-app-services
 
 [drake]
-gamma-app-services
 
 [pheidi]
-gamma-app-services
 
 [github-varnish]
-gamma-app-services
 
 [arithmancy]
-gamma-app-services
 
 [docks]
 
@@ -123,6 +114,7 @@ api
 arithmancy
 bastion
 big-poppa
+builder
 consul
 cream
 dock
@@ -134,7 +126,6 @@ github-varnish
 hipache
 ingress
 khronos
-metis
 mongodb
 navi
 optimus
