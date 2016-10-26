@@ -15,6 +15,8 @@ ip_all: "0.0.0.0/0"
 krain_port: 3100
 named_port: 53
 navi_http_port: 3567
+rabbitmq_port: 54320
+rabbitmq_tls_port: 54321
 redis_port: 6379
 redis_tls_port: 6380
 region: us-west-2

@@ -18,6 +18,22 @@
         to_port: "{{ bastion_sshd_port }}"
         cidr_ip: "{{ ip_all }}"
 
+- name: Arithmancy SG
+  tags:
+    - arithmancy
+  ec2_group:
+    name: "{{ env }}-arithmancy"
+    description: "{{ env }} Arithmancy Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
 - name: API SG
   tags:
     - api
@@ -37,6 +53,30 @@
         from_port: "{{ container_min_port }}"
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_hipache }}"
+
+- name: API ELB SG
+  tags:
+    api-elb
+  ec2_group:
+    name: "{{ env }}-api-elb"
+    description: "{{ env }} API ELB Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_keu: "{{ aws_access_key }}"
+    rules:
+      - proto: icmp
+        from_port: -1
+        to_port: -1
+        cidr_ip: "{{ ip_all }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        cidr_ip: "{{ ip_all }}"
+      - proto: tcp
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        cidr_ip: "{{ ip_all }}"
 
 - name: Big Poppa SG
   tags:
@@ -72,23 +112,23 @@
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
         group_id: "{{ sg_big_poppa }}"
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
-        group_id: "{{ sg_big_poppa_http }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_api }}"
+        group_id: "{{ sg_cream }}"
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
         group_id: "{{ sg_eru }}"
       - proto: tcp
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_big_poppa }}"
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_khronos }}"
 
 - name: Consul Service SG
   tags:
@@ -169,19 +209,7 @@
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
-        group_id: "{{ sg_cream_http }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
         group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_eru }}"
-      - proto: tcp
-        from_port: "{{ https_port }}"
-        to_port: "{{ https_port }}"
-        group_id: "{{ sg_cream }}"
 
 - name: On-Dock Services SG
   tags:
@@ -239,21 +267,69 @@
         to_port: "{{ container_max_port }}"
         group_id: "{{ sg_navi }}"
 
-- name: Hipache SG
+- name: Detention SG
   tags:
-    - hipache
+    - detention
   ec2_group:
-    name: "{{ env }}-hipache"
-    description: "{{ env }} Hipache Security Policy"
+    name: "{{ env }}-detention"
+    description: "{{ env }} Detention Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
     aws_access_key: "{{ aws_access_key }}"
     rules:
-      - proto: icmp
-        from_port: -1
-        to_port: -1
-        cidr_ip: "{{ ip_all }}"
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ detention_port }}"
+        to_port: "{{ detention_port }}"
+        group_id: "{{ sg_navi }}"
+
+- name: Docker Listener SG
+  tags:
+    - docker-listener
+  ec2_group:
+    name: "{{ env }}-docker-listener"
+    description: "{{ env }} Detention Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
+- name: Drake SG
+  tags:
+     - drake
+  ec2_group:
+    name: "{{ env }}-drake"
+    description: "{{ env }}-drake"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
+- name: Drake ELB SG
+  tags:
+     - drake_elb
+  ec2_group:
+    name: "{{ env }}-drake"
+    description: "{{ env }}-drake"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
@@ -261,11 +337,85 @@
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
-        cidr_ip: "{{ ip_all }}"
+        group_id: "{{ sg_drake }}"
       - proto: tcp
         from_port: "{{ https_port }}"
         to_port: "{{ https_port }}"
-        cidr_ip: "{{ ip_all }}"
+        group_id: "{{ sg_drake }}"
+
+- name: Eru SG
+  tags:
+     - eru
+  ec2_group:
+    name: "{{ env }}-eru"
+    description: "{{ env }}-eru"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
+- name: Eru ELB SG
+  tags:
+     - eru_elb
+  ec2_group:
+    name: "{{ env }}-eru"
+    description: "{{ env }}-eru"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_eru }}"
+      - proto: tcp
+        from_port: "{{ https_port }}"
+        to_port: "{{ https_port }}"
+        group_id: "{{ sg_eru }}"
+
+- name: Github Varnish SG
+  tags:
+     - github_varnish
+  ec2_group:
+    name: "{{ env }}-github_varnish"
+    description: "{{ env }}-github_varnish"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish }}"
+
+name: Link SG
+  tags:
+     - link
+  ec2_group:
+    description: "{{ env }}-link"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
 
 - name: MongoDB SG
   tags:
@@ -285,6 +435,10 @@
       - proto: tcp
         from_port: 27000
         to_port: 27020
+        group_id: "{{ sg_big_poppa }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
         group_id: "{{ sg_mongo }}"
       - proto: tcp
         from_port: 27000
@@ -293,15 +447,23 @@
       - proto: tcp
         from_port: 27000
         to_port: 27020
-        group_id: "{{ sg_dock_services }}"
+        group_id: "{{ sg_eru }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_khronos }}"
+      - proto: tcp
+        from_port: 27000
+        to_port: 27020
+        group_id: "{{ sg_pheidi }}"
       - proto: tcp
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_app_services }}"
 
-- name: Mongo-Navi DB SG
+- name: Navi Mongo DB SG
   tags:
-    - mongo-navi
+    - navi-mongo
   ec2_group:
     name: "{{ env }}-mongo-navi"
     description: "{{ env }} Mongo Navi Security Policy"
@@ -317,7 +479,7 @@
       - proto: tcp
         from_port: 27000
         to_port: 27020
-        group_id: "{{ sg_mongo_navi }}"
+        group_id: "{{ sg_navi_mongo }}"
       - proto: tcp
         from_port: 27000
         to_port: 27020
@@ -368,28 +530,72 @@
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
+    aws_acce:%s/ss_key: "{{ aws_access_key }}"
     rules:
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: 54320
-        to_port: 54321
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
         group_id: "{{ sg_api }}"
       - proto: tcp
-        from_port: 54320
-        to_port: 54321
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_api_socket }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_api_worker }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
         group_id: "{{ sg_navi }}"
       - proto: tcp
-        from_port: 54320
-        to_port: 54321
-        group_id: "{{ sg_app_services }}"
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_big_poppa }}"
       - proto: tcp
-        from_port: 54320
-        to_port: 54321
-        group_id: "{{ sg_dock_services }}"
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_cream }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_docker_listener }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_drake }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_eru }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_khronos }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_link }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_palantiri }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_pheidi }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_sauron }}"
+      - proto: tcp
+        from_port: "{{ rabbitmq_port }}"
+        to_port: "{{ rabbitmq_tls_port }}"
+        group_id: "{{ sg_shiva }}"
 
 - name: RDS SG
   tags:
@@ -409,7 +615,15 @@
       - proto: tcp
         from_port: 5432
         to_port: 5432
-        group_id: "{{ sg_app_services }}"
+        group_id: "{{ sg_arithmancy }}"
+      - proto: tcp
+        from_port: 5432
+        to_port: 5432
+        group_id: "{{ sg_big_poppa }"
+      - proto: tcp
+        from_port: 5432
+        to_port: 5432
+        group_id: "{{ sg_shiva }"
 
 - name: Redis SG
   tags:
@@ -437,7 +651,7 @@
       - proto: tcp
         from_port: "{{ redis_port }}"
         to_port: "{{ redis_tls_port }}"
-        group_id: "{{ sg_hipache }}"
+        group_id: "{{ sg_eru }}"
       - proto: tcp
         from_port: "{{ redis_port }}"
         to_port: "{{ redis_tls_port }}"
@@ -445,11 +659,7 @@
       - proto: tcp
         from_port: "{{ redis_port }}"
         to_port: "{{ redis_tls_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ redis_port }}"
-        to_port: "{{ redis_tls_port }}"
-        group_id: "{{ sg_dock_services }}"
+        group_id: "{{ sg_shiva }}"
 
 - name: Registry SG
   tags:
@@ -468,120 +678,7 @@
         group_id: "{{ sg_bastion }}"
       - proto: tcp
         from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_app_services }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_consul }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_dock }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_dock_services }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_mongo }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_navi }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_rabbit }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_redis }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_userland }}"
-
-- name: App Services SG
-  tags:
-    - app-services
-  ec2_group:
-    name: "{{ env }}-app-services"
-    description: "{{ env }} Application Services Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: "{{ region }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: "{{ sshd_port }}"
-        to_port: "{{ sshd_port }}"
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ http_port }}"
-        to_port: "{{ http_port }}"
-        group_id: "{{ sg_hipache }}"
-      - proto: tcp
-        from_port: "{{ swarm_port }}"
-        to_port: "{{ swarm_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ detention_port }}"
-        to_port: "{{ detention_port }}"
-        group_id: "{{ sg_navi }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_hipache }}"
-
-- name: Dock Services
-  tags:
-    - dock-services
-  ec2_group:
-    name: "{{ env }}-dock-services"
-    description: "{{ env }} Dock Services Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: "{{ region }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: "{{ sshd_port }}"
-        to_port: "{{ sshd_port }}"
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
-        from_port: "{{ swarm_port }}"
-        to_port: "{{ swarm_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ swarm_port }}"
-        to_port: "{{ swarm_port }}"
-        group_id: "{{ sg_dock_services }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_hipache }}"
+        cidr_ip: "{{ env_cidr_all }}"
 
 - name: Userland Hipache
   tags:

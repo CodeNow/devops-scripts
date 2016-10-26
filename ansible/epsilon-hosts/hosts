@@ -143,10 +143,10 @@ worker
 userland
 
 [local]
-127.0.0.1 ansible_python_interpreter=/usr/bin/python
+127.0.0.1 ansible_python_interpreter=/usr/local/bin/python
 
 [ec2]
-local ansible_python_interpreter=/usr/bin/python
+local ansible_python_interpreter=/usr/local/bin/python
 
 [targets]
 localhost ansible_connection=local bastion_name=epsilon-bastion
