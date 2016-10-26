@@ -5,7 +5,7 @@ security_groups: "{{ sg_app_services }}"
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/drake.git"
-node_version: lts
+node_version: 4.6.1
 npm_version: 2
 
 # for container settings
