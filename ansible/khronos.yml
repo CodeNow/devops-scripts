@@ -10,7 +10,7 @@
   vars_files:
     - group_vars/alpha-khronos.yml
   roles:
-  - { role: notify, rollbar_token: "{{ rollbar_khronos_token }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ rollbar_khronos_token }}" }
   - { role: docker_client }
   - { role: khronos }
   - { role: builder }

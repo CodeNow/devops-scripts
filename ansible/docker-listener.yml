@@ -7,7 +7,7 @@
   vars_files:
     - group_vars/alpha-docker-listener.yml
   roles:
-  - { role: notify, rollbar_token: "{{ docker_listener_rollbar_key }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ docker_listener_rollbar_key }}" }
   - { role: docker_client }
   - { role: builder }
   - { role: push }

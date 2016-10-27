@@ -94,21 +94,10 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
 
-- name: Big Poppa HTTP SG
+- name: Big Poppa ELB SG
   tags:
-    - big-poppa-http
+    - big-poppa-elb
   ec2_group:
-    name: "{{ env }}-big-poppa-http"
-    description: "{{ env }} Big Poppa HTTP Security Policy"
-    vpc_id: "{{ vpc_id }}"
-    region: "{{ region }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_key: "{{ aws_access_key }}"
-    rules:
-      - proto: tcp
-        from_port: "{{ sshd_port }}"
-        to_port: "{{ sshd_port }}"
-        group_id: "{{ sg_bastion }}"
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
@@ -129,6 +118,26 @@
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
         group_id: "{{ sg_khronos }}"
+
+- name: Big Poppa HTTP SG
+  tags:
+    - big-poppa-http
+  ec2_group:
+    name: "{{ env }}-big-poppa-http"
+    description: "{{ env }} Big Poppa HTTP Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_big_poppa_elb }}"
 
 - name: Consul Service SG
   tags:
@@ -174,7 +183,7 @@
   tags:
     - cream
   ec2_group:
-    name: "{{ env }}-big-poppa"
+    name: "{{ env }}-cream"
     description: "{{ env }} C.R.E.A.M. Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"

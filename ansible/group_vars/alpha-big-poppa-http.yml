@@ -1,6 +1,6 @@
 name: big-poppa-http
 app_name: "{{ name }}"
-security_groups: "{{ sg_big_poppa }}, {{ sg_big_poppa_http }}"
+security_groups: "{{ sg_big_poppa_http }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"

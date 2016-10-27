@@ -13,6 +13,7 @@
 
 - name: send rollbar message for deploy
   when: rollbar_token is defined and node_env is defined and git_branch is defined
+  ignore_errors: true
   tags:
     - rollbar
     - always
