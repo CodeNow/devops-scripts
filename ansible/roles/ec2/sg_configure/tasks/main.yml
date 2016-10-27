@@ -422,6 +422,7 @@
   tags:
      - link
   ec2_group:
+    name: "{{ env }}-link"
     description: "{{ env }}-link"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
@@ -471,10 +472,6 @@
         from_port: 27000
         to_port: 27020
         group_id: "{{ sg_pheidi }}"
-      - proto: tcp
-        from_port: 27000
-        to_port: 27020
-        group_id: "{{ sg_app_services }}"
 
 - name: Navi Mongo DB SG
   tags:
