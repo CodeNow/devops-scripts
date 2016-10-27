@@ -1,6 +1,6 @@
 name: "detention"
 app_name: "{{ name }}"
-security_groups: "{{ sg_app_services }}"
+security_groups: "{{ sg_detention }}"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"

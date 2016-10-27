@@ -1,6 +1,6 @@
 name: "palantiri"
 app_name: "{{ name }}"
-security_groups: "{{ sg_dock_services }}"
+security_groups: "{{ sg_palantiri }}"
 
 # copy certs into docker image:
 docker_client_certs: true

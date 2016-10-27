@@ -1,6 +1,6 @@
 name: "arithmancy"
 app_name: "{{ name }}"
-security_groups: "{{ sg_app_services }}"
+security_groups: "{{ sg_arithmacy }}"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"

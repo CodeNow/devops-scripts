@@ -1,6 +1,6 @@
 name: pheidi
 app_name: "{{ name }}"
-security_groups: "{{ sg_app_services }}"
+security_groups: "{{ sg_pheidi }}"
 
 # copy certs into docker image:
 docker_client_certs: {% if node_env != "production-epsilon" %} true {% endif %}

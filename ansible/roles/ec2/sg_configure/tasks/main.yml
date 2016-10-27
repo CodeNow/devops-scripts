@@ -423,7 +423,7 @@
      - link
   ec2_group:
     name: "{{ env }}-link"
-    description: "{{ env }}-link"
+    description: "{{ env }} Link Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -561,7 +561,8 @@
   tags:
      - palantiri
   ec2_group:
-    description: "{{ env }}-link"
+    name: "{{ env }}-palantiri"
+    description: "{{ env }} Palantiri Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -575,7 +576,8 @@
   tags:
      - pheidi
   ec2_group:
-    description: "{{ env }}-link"
+    name: "{{ env }}-pheidi"
+    description: "{{ env }} Pheidi Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -594,7 +596,7 @@
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
-    aws_acce:%s/ss_key: "{{ aws_access_key }}"
+    aws_access_key: "{{ aws_access_key }}"
     rules:
       - proto: tcp
         from_port: "{{ sshd_port }}"
@@ -604,14 +606,6 @@
         from_port: "{{ rabbitmq_port }}"
         to_port: "{{ rabbitmq_tls_port }}"
         group_id: "{{ sg_api }}"
-      - proto: tcp
-        from_port: "{{ rabbitmq_port }}"
-        to_port: "{{ rabbitmq_tls_port }}"
-        group_id: "{{ sg_api_socket }}"
-      - proto: tcp
-        from_port: "{{ rabbitmq_port }}"
-        to_port: "{{ rabbitmq_tls_port }}"
-        group_id: "{{ sg_api_worker }}"
       - proto: tcp
         from_port: "{{ rabbitmq_port }}"
         to_port: "{{ rabbitmq_tls_port }}"
@@ -683,11 +677,11 @@
       - proto: tcp
         from_port: 5432
         to_port: 5432
-        group_id: "{{ sg_big_poppa }"
+        group_id: "{{ sg_big_poppa }}"
       - proto: tcp
         from_port: 5432
         to_port: 5432
-        group_id: "{{ sg_shiva }"
+        group_id: "{{ sg_shiva }}"
 
 - name: Redis SG
   tags:
@@ -742,13 +736,15 @@
         group_id: "{{ sg_bastion }}"
       - proto: tcp
         from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
         cidr_ip: "{{ env_cidr_all }}"
 
 - name: Sauron SG
   tags:
      - sauron
   ec2_group:
-    description: "{{ env }}-link"
+    name: "{{ env }}-sauron"
+    description: "{{ env }} Sauron Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -763,7 +759,8 @@
   tags:
      - shiva
   ec2_group:
-    description: "{{ env }}-link"
+    name: "{{ env }}-shiva"
+    description: "{{ env }} Shiva Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -778,8 +775,9 @@
   tags:
     - swarm-manager
   ec2_group:
-    description: "{{ env }}-swarm-manager"
-    vcp_id: "{{ vpc_id }}"
+    name: "{{ env }}-swarm-manager"
+    description: "{{ env }} Swarm-manager Security Policy"
+    vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
     aws_access_key: "{{ aws_access_key }}"

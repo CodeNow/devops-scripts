@@ -1,7 +1,7 @@
 ---
 name: github-varnish
 app_name: "{{ name }}"
-security_groups: "{{ sg_app_services }}"
+security_groups: "{{ sg_github_varnish }}"
 
 # copy certs into docker image:
 docker_client_certs: true

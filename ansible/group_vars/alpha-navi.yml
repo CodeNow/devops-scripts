@@ -1,7 +1,7 @@
 name: navi
 app_name: "{{ name }}"
 services_list: "navi registrator"
-security_groups: "{{ sg_dock_services }}"
+security_groups: "{{ sg_navi }}"
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"

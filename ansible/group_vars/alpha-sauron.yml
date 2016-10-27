@@ -1,6 +1,6 @@
 name: sauron
 app_name: "{{ name }}"
-security_groups: "{{ sg_dock_services }}"
+security_groups: "{{ sg_sauron }}"
 
 # copy certs into docker image:
 docker_client_certs: true
