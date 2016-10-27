@@ -4,6 +4,8 @@ name: "swarm-manager"
 container_image: swarm
 container_tag: 1.2.3-0
 
+memory_hard_limit: 2g
+
 container_run_opts: >
   -d
   -p {{ swarm_master_port }}:2375
