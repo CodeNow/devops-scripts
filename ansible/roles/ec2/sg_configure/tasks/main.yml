@@ -63,7 +63,7 @@
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
-    aws_access_keu: "{{ aws_access_key }}"
+    aws_access_key: "{{ aws_access_key }}"
     rules:
       - proto: icmp
         from_port: -1
@@ -168,8 +168,7 @@
       - proto: tcp
         from_port: "{{ consul_api_port }}"
         to_port: "{{ consul_api_ssl_port }}"
-        group_id: "{{ env_cidr_all }}"
-        group_id: "{{ sg_userland }}"
+        cidr_ip: "{{ env_cidr_all }}"
 
 - name: C.R.E.A.M. SG
   tags:
@@ -245,7 +244,23 @@
       - proto: tcp
         from_port: "{{ docker_port }}"
         to_port: "{{ docker_port }}"
-        group_id: "{{ sg_dock_services }}"
+        group_id: "{{ sg_docker_listener }}"
+      - proto: tcp
+        from_port: "{{ docker_port }}"
+        to_port: "{{ docker_port }}"
+        group_id: "{{ sg_khronos }}"
+      - proto: tcp
+        from_port: "{{ docker_port }}"
+        to_port: "{{ docker_port }}"
+        group_id: "{{ sg_palantiri }}"
+      - proto: tcp
+        from_port: "{{ docker_port }}"
+        to_port: "{{ docker_port }}"
+        group_id: "{{ sg_sauron }}"
+      - proto: tcp
+        from_port: "{{ docker_port }}"
+        to_port: "{{ docker_port }}"
+        group_id: "{{ sg_swarm_manager}}"
       - proto: udp
         from_port: "{{ weave_port }}"
         to_port: "{{ weave_port }}"
@@ -745,6 +760,7 @@
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
 
 - name: Shiva SG
   tags:
@@ -759,6 +775,42 @@
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+
+- name: Swarm Manager SG
+  tags:
+    - swarm-manager
+  ec2_group:
+    description: "{{ env }}-swarm-manager"
+    vcp_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_docker_listener }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_khronos }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_sauron }}"
+      - proto: tcp
+        from_port: "{{ swarm_port }}"
+        to_port: "{{ swarm_port }}"
+        group_id: "{{ sg_swarm_manager }}"
 
 - name: Userland Hipache
   tags:

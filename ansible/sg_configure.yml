@@ -1,8 +1,8 @@
 ---
 - hosts: ec2
+  gather_facts: false
   connection: local
   vars_files:
     - "group_vars/ec2_sg.yml"
   roles:
-  - { role: notify, tags: "notify" }
   - { role: ec2/sg_configure }
