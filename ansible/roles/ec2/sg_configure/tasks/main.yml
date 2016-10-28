@@ -56,7 +56,7 @@
 
 - name: API ELB SG
   tags:
-    api-elb
+    - api-elb
   ec2_group:
     name: "{{ env }}-api-elb"
     description: "{{ env }} API ELB Security Policy"
@@ -320,7 +320,7 @@
 
 - name: Drake SG
   tags:
-     - drake
+    - drake
   ec2_group:
     name: "{{ env }}-drake"
     description: "{{ env }}-drake"
@@ -336,7 +336,7 @@
 
 - name: Drake ELB SG
   tags:
-     - drake_elb
+    - drake-elb
   ec2_group:
     name: "{{ env }}-drake"
     description: "{{ env }}-drake"
@@ -360,7 +360,7 @@
 
 - name: Eru SG
   tags:
-     - eru
+    - eru
   ec2_group:
     name: "{{ env }}-eru"
     description: "{{ env }}-eru"
@@ -376,7 +376,7 @@
 
 - name: Eru ELB SG
   tags:
-     - eru_elb
+    - eru-elb
   ec2_group:
     name: "{{ env }}-eru"
     description: "{{ env }}-eru"
@@ -400,7 +400,7 @@
 
 - name: Github Varnish SG
   tags:
-     - github_varnish
+    - github-varnish
   ec2_group:
     name: "{{ env }}-github_varnish"
     description: "{{ env }}-github_varnish"
@@ -420,7 +420,7 @@
 
 - name: Link SG
   tags:
-     - link
+    - link
   ec2_group:
     name: "{{ env }}-link"
     description: "{{ env }} Link Security Policy"
@@ -559,7 +559,7 @@
 
 - name: Palantiri SG
   tags:
-     - palantiri
+    - palantiri
   ec2_group:
     name: "{{ env }}-palantiri"
     description: "{{ env }} Palantiri Security Policy"
@@ -574,7 +574,7 @@
 
 - name: Pheidi SG
   tags:
-     - pheidi
+    - pheidi
   ec2_group:
     name: "{{ env }}-pheidi"
     description: "{{ env }} Pheidi Security Policy"
@@ -741,7 +741,7 @@
 
 - name: Sauron SG
   tags:
-     - sauron
+    - sauron
   ec2_group:
     name: "{{ env }}-sauron"
     description: "{{ env }} Sauron Security Policy"
@@ -757,7 +757,7 @@
 
 - name: Shiva SG
   tags:
-     - shiva
+    - shiva
   ec2_group:
     name: "{{ env }}-shiva"
     description: "{{ env }} Shiva Security Policy"
