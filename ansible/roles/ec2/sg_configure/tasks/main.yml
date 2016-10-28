@@ -398,12 +398,12 @@
         to_port: "{{ https_port }}"
         group_id: "{{ sg_eru }}"
 
-- name: Github Varnish SG
+- name: Github Varnish ELB SG
   tags:
-    - github-varnish
+    - github-varnish-elb
   ec2_group:
-    name: "{{ env }}-github_varnish"
-    description: "{{ env }}-github_varnish"
+    name: "{{ env }}-github-varnish-elb"
+    description: "{{ env }} Github Varnish ELB Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -413,6 +413,38 @@
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish_elb }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_api }}"
+
+- name: Github Varnish SG
+  tags:
+    - github-varnish
+  ec2_group:
+    name: "{{ env }}-github-varnish"
+    description: "{{ env }} Github Varish Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish_elb }}"
       - proto: tcp
         from_port: "{{ github_varnish_port }}"
         to_port: "{{ github_varnish_port }}"

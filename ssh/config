@@ -219,8 +219,8 @@ Host delta-swarm-manager
 ################################################################################
 
 Host epsilon-bastion
-  HostName 52.35.234.45
-  Port 60519
+   HostName 35.161.141.18
+   Port 60519
 
 Host 10.12.*.*
   User ubuntu
