@@ -338,8 +338,8 @@
   tags:
     - drake-elb
   ec2_group:
-    name: "{{ env }}-drake"
-    description: "{{ env }}-drake"
+    name: "{{ env }}-drake-elb"
+    description: "{{ env }} Drake ELB Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -378,8 +378,8 @@
   tags:
     - eru-elb
   ec2_group:
-    name: "{{ env }}-eru"
-    description: "{{ env }}-eru"
+    name: "{{ env }}-eru-elb"
+    description: "{{ env }} Eru ELB Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
