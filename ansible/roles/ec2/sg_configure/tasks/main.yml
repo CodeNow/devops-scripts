@@ -60,7 +60,7 @@
 
 - name: API ELB SG
   tags:
-    api-elb
+    - api-elb
   ec2_group:
     name: "{{ env }}-api-elb"
     description: "{{ env }} API ELB Security Policy"
@@ -384,7 +384,7 @@
 
 - name: Drake SG
   tags:
-     - drake
+    - drake
   ec2_group:
     name: "{{ env }}-drake"
     description: "{{ env }}-drake"
@@ -404,10 +404,10 @@
 
 - name: Drake ELB SG
   tags:
-     - drake_elb
+    - drake-elb
   ec2_group:
-    name: "{{ env }}-drake"
-    description: "{{ env }}-drake"
+    name: "{{ env }}-drake-elb"
+    description: "{{ env }} Drake ELB Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -428,7 +428,7 @@
 
 - name: Eru SG
   tags:
-     - eru
+    - eru
   ec2_group:
     name: "{{ env }}-eru"
     description: "{{ env }}-eru"
@@ -444,10 +444,10 @@
 
 - name: Eru ELB SG
   tags:
-     - eru_elb
+    - eru-elb
   ec2_group:
-    name: "{{ env }}-eru"
-    description: "{{ env }}-eru"
+    name: "{{ env }}-eru-elb"
+    description: "{{ env }} Eru ELB Security Policy"
     vpc_id: "{{ vpc_id }}"
     region: "{{ region }}"
     aws_secret_key: "{{ aws_secret_key }}"
@@ -465,6 +465,34 @@
         from_port: "{{ https_port }}"
         to_port: "{{ https_port }}"
         group_id: "{{ sg_eru }}"
+
+- name: Github Varnish ELB SG
+  tags:
+    - github-varnish-elb
+  ec2_group:
+    name: "{{ env }}-github-varnish-elb"
+    description: "{{ env }} Github Varnish ELB Security Policy"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ sshd_port }}"
+        to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish_elb }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_api }}"
 
 - name: Github Varnish SG
   tags:
@@ -484,6 +512,10 @@
       - proto: tcp
         from_port: "{{ github_varnish_port }}"
         to_port: "{{ github_varnish_port }}"
+        group_id: "{{ sg_github_varnish_elb }}"
+      - proto: tcp
+        from_port: "{{ github_varnish_port }}"
+        to_port: "{{ github_varnish_port }}"
         group_id: "{{ sg_github_varnish }}"
       - proto: tcp
         from_port: "{{ github_varnish_port }}"
@@ -492,7 +524,7 @@
 
 - name: Link SG
   tags:
-     - link
+    - link
   ec2_group:
     name: "{{ env }}-link"
     description: "{{ env }} Link Security Policy"
@@ -631,7 +663,7 @@
 
 - name: Palantiri SG
   tags:
-     - palantiri
+    - palantiri
   ec2_group:
     name: "{{ env }}-palantiri"
     description: "{{ env }} Palantiri Security Policy"
@@ -646,7 +678,7 @@
 
 - name: Pheidi SG
   tags:
-     - pheidi
+    - pheidi
   ec2_group:
     name: "{{ env }}-pheidi"
     description: "{{ env }} Pheidi Security Policy"
@@ -817,7 +849,7 @@
 
 - name: Sauron SG
   tags:
-     - sauron
+    - sauron
   ec2_group:
     name: "{{ env }}-sauron"
     description: "{{ env }} Sauron Security Policy"
@@ -833,7 +865,7 @@
 
 - name: Shiva SG
   tags:
-     - shiva
+    - shiva
   ec2_group:
     name: "{{ env }}-shiva"
     description: "{{ env }} Shiva Security Policy"
