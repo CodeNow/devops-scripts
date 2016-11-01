@@ -10,7 +10,7 @@
   vars_files:
     - group_vars/alpha-big-poppa-http.yml
   roles:
-  - { role: notify, rollbar_token: "{{ big_poppa_http_rollbar_token }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ big_poppa_http_rollbar_token }}" }
   - { role: builder }
   - { role: push }
 

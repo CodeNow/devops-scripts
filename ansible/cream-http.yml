@@ -1,16 +1,16 @@
 ---
-- hosts: big-poppa
-- hosts: cream
-- hosts: consul
+- hosts: big-poppa_group
+- hosts: cream_group
 - hosts: datadog
 - hosts: github-varnish
 - hosts: rabbitmq
+- hosts: consul
 
 - hosts: builder
   vars_files:
     - group_vars/alpha-cream-http.yml
   roles:
-  - { role: notify, rollbar_token: "{{ cream_http_rollbar_token }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ cream_http_rollbar_token }}" }
   - { role: builder }
   - { role: push }
 

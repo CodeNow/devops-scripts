@@ -4,17 +4,17 @@
 - hosts: rabbitmq
 - hosts: redis
 - hosts: swarm-manager
-- hosts: consul
 - hosts: big-poppa_group
 - hosts: cream_group
 - hosts: github-varnish
+- hosts: consul
 
 - hosts: builder
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-socket-server.yml
   roles:
-  - { role: notify, rollbar_token: "{{ api_socket_server_rollbar_key }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ api_socket_server_rollbar_key }}" }
   - { role: docker_client }
   - { role: tls-client, tls_service: mongodb }
   - { role: builder }

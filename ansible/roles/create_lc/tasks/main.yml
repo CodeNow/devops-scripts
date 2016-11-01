@@ -1,5 +1,5 @@
 ---
-- name: create launch config for {{ name }}
+- name: "create launch config for {{ name }}"
   tags: [ lc ] 
   when: update_lc is defined
   run_once: true

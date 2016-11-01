@@ -11,7 +11,7 @@
   vars_files:
   - group_vars/alpha-eru.yml
   roles:
-  - { role: notify, tags: [ notify ] }
+  - { role: notify }
   - { role: builder }
   - { role: push }
 

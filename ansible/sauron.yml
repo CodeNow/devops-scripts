@@ -1,14 +1,14 @@
 ---
 - hosts: rabbitmq
-- hosts: consul
 - hosts: swarm-manager
 - hosts: sauron
+- hosts: consul
 
 - hosts: builder
   vars_files:
     - group_vars/alpha-sauron.yml
   roles:
-  - { role: notify, rollbar_token: "{{ sauron_rollbar_token }}", tags: [ notify ] }
+  - { role: notify, rollbar_token: "{{ sauron_rollbar_token }}" }
   - { role: docker_client }
   - { role: builder }
   - { role: push  }
