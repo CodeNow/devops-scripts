@@ -50,9 +50,13 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: "{{ container_min_port }}"
-        to_port: "{{ container_max_port }}"
-        group_id: "{{ sg_hipache }}"
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_api_elb }}"
 
 - name: API ELB SG
   tags:
@@ -113,6 +117,10 @@
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"
         group_id: "{{ sg_api }}"
+      - proto: tcp
+        from_port: "{{ http_port }}"
+        to_port: "{{ http_port }}"
+        group_id: "{{ sg_big_poppa_elb }}"
       - proto: tcp
         from_port: "{{ http_port }}"
         to_port: "{{ http_port }}"

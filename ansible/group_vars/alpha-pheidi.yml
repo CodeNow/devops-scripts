@@ -3,7 +3,7 @@ app_name: "{{ name }}"
 security_groups: "{{ sg_pheidi }}"
 
 # copy certs into docker image:
-docker_client_certs: {% if node_env != "production-epsilon" %} true {% endif %}
+docker_client_certs: {% if node_env != "production-epsilon" %}true{% endif %}
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
