@@ -4,7 +4,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ drake_port }}"]
 repo: "git@github.com:CodeNow/drake.git"
-node_version: lts
+node_version: "4.4.7"
 npm_version: 2
 
 # Exposes drake (heh)
