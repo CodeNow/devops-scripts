@@ -13,8 +13,11 @@ http_port: 80
 https_port: 443
 ip_all: "0.0.0.0/0"
 krain_port: 3100
+mongodb_low: 27000
+mongodb_high: 27020
 named_port: 53
 navi_http_port: 3567
+pgdb_port: 5432
 rabbitmq_port: 54320
 rabbitmq_tls_port: 54321
 redis_port: 6379

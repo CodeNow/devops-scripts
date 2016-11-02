@@ -536,6 +536,7 @@
       - proto: tcp
         from_port: "{{ sshd_port }}"
         to_port: "{{ sshd_port }}"
+        group_id: "{{ sg_bastion }}"
 
 - name: MongoDB SG
   tags:
@@ -553,28 +554,28 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_big_poppa }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_mongo }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_api }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_eru }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_khronos }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_pheidi }}"
 
 - name: Navi Mongo DB SG
@@ -593,16 +594,16 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_navi_mongo }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_link }}"
       - proto: tcp
-        from_port: 27000
-        to_port: 27020
+        from_port: "{{ mongodb_low }}"
+        to_port: "{{ mongodb_high }}"
         group_id: "{{ sg_navi }}"
 
 - name: Navi SG
@@ -775,20 +776,20 @@
         to_port: "{{ sshd_port }}"
         group_id: "{{ sg_bastion }}"
       - proto: tcp
-        from_port: 5432
-        to_port: 5432
+        from_port: "{{ pgdb_port }}"
+        to_port: "{{ pgdb_port }}"
         group_id: "{{ sg_arithmancy }}"
       - proto: tcp
-        from_port: 5432
-        to_port: 5432
+        from_port: "{{ pgdb_port }}"
+        to_port: "{{ pgdb_port }}"
         group_id: "{{ sg_big_poppa_http }}"
       - proto: tcp
-        from_port: 5432
-        to_port: 5432
+        from_port: "{{ pgdb_port }}"
+        to_port: "{{ pgdb_port }}"
         group_id: "{{ sg_big_poppa }}"
       - proto: tcp
-        from_port: 5432
-        to_port: 5432
+        from_port: "{{ pgdb_port }}"
+        to_port: "{{ pgdb_port }}"
         group_id: "{{ sg_shiva }}"
 
 - name: Redis SG
