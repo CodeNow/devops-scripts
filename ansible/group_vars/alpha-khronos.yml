@@ -3,7 +3,7 @@ name: khronos
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
-node_version: "4.2.2"
+node_version: "4.4.7"
 npm_version: 2
 
 dockerfile_enviroment: [
