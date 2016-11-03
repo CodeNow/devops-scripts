@@ -1,0 +1,12 @@
+---
+
+script_temp_path: "/tmp/iptables_update.sh"
+docker_network: "172.17.0.0/16"
+
+iptables_rule: 
+  - '-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP'
+  - '-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP'
+
+psad_script_folder: "/home/{{deploy_user}}/devOps/psad_script"
+iptable_pattern: "iptables:"
+iptable_log_file: "/var/log/iptables"

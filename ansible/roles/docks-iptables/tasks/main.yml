@@ -1,0 +1,38 @@
+---
+#file roles/iptables/tasks/main.yml
+
+- name: iptables restore in rc.local
+  lineinfile:
+    dest=/etc/rc.local
+    line="iptables-restore < /etc/firewall.conf"
+    state=present
+    regexp=".+ \/etc\/firewall\.conf"
+    insertbefore="exit 0"
+  sudo: yes
+
+  # template: src=iptables.j2 dest=/etc/network/if-up.d/iptables owner=root  group=root mode=500
+  # sudo: yes
+
+- name: Place temp script file for iptables update
+  template: src=iptables_apply_rule.sh.j2 dest={{ script_temp_path }} owner=root group=root mode=500
+  sudo: yes
+
+- name: Apply iptables
+  shell: "{{ script_temp_path }} '{{ item }}'"
+  with_items: iptables_rule
+  sudo: yes
+  notify: 
+    - update /etc/firewall.conf so that it load on system startup
+
+- name: make sysctl config file
+  template: src=60-runnable_sysctl.conf.j2 dest=/etc/sysctl.d/60-runnable_sysctl.conf mode=644 group=root owner=root
+  sudo: yes
+  notify: 
+    - apply sysctl by service procps start
+
+- name: seeting clenup cron on api server
+  include: psad.yml
+  when:  psad_apply==true
+  tags: 
+    - psad
+

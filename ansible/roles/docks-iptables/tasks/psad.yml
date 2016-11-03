@@ -1,0 +1,72 @@
+- include_vars: '../../../../group_vars/{{node_env}}.yml'
+
+- name: Path of nodejs
+  command: which node
+  register: node_result
+  ignore_errors: yes
+
+- name: Checking nodejs dependencies
+  fail: msg="Nodejs has not installed or node binary is not in your path."
+  when: node_result|failed
+
+- name: Adding iptables log to another iptable file
+  sudo: yes
+  template: src=10-iptables.conf.j2 dest=/etc/rsyslog.d/10-iptables.conf
+  notify: 
+  - restart rsyslog
+
+- name: installing psad to latest version
+  apt: pkg=psad state=latest update_cache=yes cache_valid_time=3600
+  sudo: yes
+  notify:
+  - restart psad
+
+- name: psad signature update 
+  shell: psad --sig-update && psad -H
+  register: command_result
+  failed_when: "'FAILED' in command_result.stderr"
+  sudo: yes
+
+- debug: var=command_result
+
+- name: Check for psad hook_url is defined or not. 
+  fail:
+    msg: "psad hook_url variable not defined"
+  when: not psad_hook_url 
+
+- name: Check for channel variable is defined or not. 
+  fail:
+    msg: "psad channel variables not defined"
+  when: not psad.channel 
+
+- name: Check for username variable is defined or not. 
+  fail:
+    msg: "psad username variables not defined"
+  when: not psad.username
+
+- name: make folder for notification script 
+  file: path={{psad_script_folder}} state=directory recurse=yes
+  sudo: yes
+
+- name: make psad script that will run on startup
+  template: src=psad_scritp.js.j2 dest={{psad_script_folder}}/psad_script.js mode=u+x
+  sudo: yes
+
+- name: copy package.json to installation dir
+  template: src=psad_script_package.json.j2 dest={{psad_script_folder}}/package.json
+  sudo: yes
+
+- name: installing npm package
+  npm: path={{psad_script_folder}}
+  sudo: yes
+
+- name: ensuring psad configuration file is in correct state.
+  template:
+    dest=/etc/psad/psad.conf
+    src=psad.conf.j2
+    owner=root
+    mode=0644
+  sudo: yes
+  notify:
+  - restart psad
+

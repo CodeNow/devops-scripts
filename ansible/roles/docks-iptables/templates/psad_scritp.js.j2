@@ -1,0 +1,126 @@
+#!{{node_result['stdout']}}
+
+/**
+ * @author: varun palekar (varun.palekar@stackexpress.com), git@varunpalekar
+ * @module: "Get docker container-id by docker internal ip address, send notification to slack and parse psad logs."
+ * 
+ * Send mail 
+ * */
+
+/**
+ * modules included
+ * 
+ * */
+
+/* 
+ * Take ipaddress of container as an argument
+ */ 
+ipaddress = process.argv.slice(2)[0] ; 
+console.log(new Date());
+
+var Slack = require('node-slack')
+  , Docker = require('dockerode')
+  , util = require("util")
+  , globby = require('globby')
+  , fs = require('fs')
+  , os = require('os')
+  , exec = require('child_process').exec
+  ;
+
+var settings = {
+  slack : {
+    hook_url : "{{ psad_hook_url }}",
+    channel : "{{ psad.channel }}", 
+    username : "{{ psad.username }}"
+  }
+}
+
+/*  
+  Docker connection  
+*/
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
+container_id = '' ;
+var slack = new Slack(settings.slack.hook_url) ;
+
+/*  
+  Docker container iterating function.  
+*/
+function docker_pid (container) {
+
+  docker.getContainer(container.Id).inspect (function  (err, data) {
+    // If network id match to container_id
+    if ( data.NetworkSettings.IPAddress === ipaddress ) {
+      container_id = container.Id ;
+
+      //get all log of psad of the container
+      globby(['/var/log/psad/'+ipaddress+'/*_email_alert'], function (err, paths) {
+        if (!err)
+        {
+          // Fetch all logs of the psad of that ipaddress
+          for (var i = 0; i < paths.length ; i++) {
+            var sed = exec('sed -i \'/Whois\ Information/,$d\' '+paths[i], function(err, stdout, stderr) {
+              if (err) throw err;
+              console.log(this.paths[this.i]);
+              fs.readFile(this.paths[this.i] , 'utf8', function (err, data) {
+                if (err) return console.log(err);
+
+                // Send slack notification with the psad file on channel. 
+                send = "*PSAD alert*\n*DOCKLET:* "+os.hostname()+" \n*Container_id: "+container_id+"*\n*_DETAILS_*:\n" ;
+                slack.send({
+                    text: send,
+                    channel: settings.slack.channel,
+                    attachments : [{
+                      fallback : 'PSAD alert detail', 
+                      title: 'PSAD alert details', 
+                      color : "danger", 
+                      text: data
+                     }], 
+                    username: 'PSAD'
+                }); // slack send
+
+                //Stopping container
+                console.log ("stopping and removing container");
+                var docker = exec('docker rm -f '+container_id, function (err, stdout, stderr) {
+                  if (err) console.log("Error: error in removing container: "+container_id);
+                  console.log("Docker STDOUT: "+stdout);
+                  console.log("Docker STDERR: "+stderr);
+                  
+                }); //docker stop container
+
+                //Clean all psad logs of that container. 
+                // Not executing :(
+                var child = exec('sleep 2s && rm -rf /var/log/psad/'+ipaddress+'/' , function(err, stdout, stderr) {
+                  if (err) throw err;
+                  console.log('rm -rf /var/log/psad/'+ipaddress);
+                }); //exec rm -rf
+
+              }); //fsread file 
+            }.bind({ paths:  paths, i: i })); // exec sed
+          } //for paths 
+        } // if (!err)
+        console.log(paths);
+      }); //globby
+      
+    }   // if ipaddress
+  }) ;  //docker inspect 
+}
+
+/*
+  First block it through iptables
+*/
+var iptables = exec('iptables -I FORWARD -s '+ipaddress+' -j DROP', function(err, stdout, stderr) {
+  if (err) throw err;
+  console.log("apply iptables block");
+  var iptables = exec('sleep 2s && iptables -D FORWARD -s '+ipaddress+' -j DROP', function(err, stdout, stderr) {
+    if (err) throw err;
+    console.log("apply iptables release");
+  });
+});
+
+/*  
+  List all container 
+*/
+docker.listContainers(function (err, containers) {
+  containers.forEach(docker_pid );
+});
+
