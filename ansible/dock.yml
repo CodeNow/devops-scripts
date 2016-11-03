@@ -9,6 +9,7 @@
       name={{ dock }}
       groups=dock
 
+- include: docks-iptables.yml
 - include: charon.yml git_branch="{{ charon_version }}"
 - include: dock-init.yml git_branch="{{ dock_init_version }}"
 - include: image-builder.yml git_branch="{{ image_builder_version }}"
