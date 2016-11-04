@@ -1,14 +1,28 @@
-- name: Put khronos cron script in place
+- name: Put khronos cron queues scripts in place
   become: yes
   tags: cron
   template:
-    src: "khronos-cron.sh"
+    src: "khronos-cron-queues.sh"
     mode: 0744
     dest: /opt/runnable/{{ item.script }}
   with_items:
   - { cron_queues: "{{ main_cron_queues }}", script: "main-cron.sh"}
   - { cron_queues: "{{ canary_cron_queues }}", script: "canary-cron.sh"}
   - { cron_queues: "{{ hourly_canary_cron_queues }}", script: "hourly-canary-cron.sh"}
+
+- name: Put khronos cron events scripts in place
+  become: yes
+  tags: cron
+  template:
+    src: "khronos-cron-events.sh"
+    mode: 0744
+    dest: /opt/runnable/{{ item.script }}
+  with_items:
+  - { cron_event: "day.passed", script: "day_passed_cron_event.sh"}
+  - { cron_event: "fourth-hour.passed", script: "fourth_hour_passed_cron_event.sh"}
+  - { cron_event: "hour.passsed", script: "hour_passed_cron_event.sh"}
+  - { cron_event: "thirty-minutes.passed", script: "30_minutes_passed_cron_event.sh"}
+  - { cron_event: "five-minutes.passed", script: "5_minutes_passed_cron_event.sh"}
 
 - name: Put Khronos script into crontab
   become: yes
@@ -20,18 +34,34 @@
     hour: "{{ item.hour | default('*') }}"
     state: "{{ item.state | default('present') }}"
   with_items:
-  - name: Khronos CLI - Daily Cleanup
+  - name: Khronos CLI - Daily Cleanup Queue
     minute: 13
     hour: 1,4,7,10,13,16,19,22
     script: main-cron.sh
-  - name: Khronos CLI - Canary
+  - name: Khronos CLI - Canary Queue
     minute: "*/5"
     script: canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Half-Hourly Canary
+  - name: Khronos CLI - Half-Hourly Canary Queue
     minute: "*/30"
     script: hourly-canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
+  - name: Khronos CLI - Daily Time Event
+    hour: 2
+    script: day_passed_cron_event.sh
+  - name: Khronos CLI - 4-Hourly Time Event
+    minute: 13
+    hour: 1,4,7,10,13,16,19,22
+    script: fourth_hour_passed_cron_event.sh
+  - name: Khronos CLI - Hourly Time Event
+    minute: 49
+    script: hour_passed_cron_event.sh
+  - name: Khronos CLI - Half-Hourly Time Event
+    minute: "*/30"
+    script: 30_minutes_passed_cron_event.sh
+  - name: Khronos CLI - Every 5 minutes Time Event
+    minute: "*/5"
+    script: 5_minutes_passed_cron_event.sh
 
 - name: make directory for mongo certificates
   become: yes
