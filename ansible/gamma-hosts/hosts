@@ -121,6 +121,9 @@ gamma-app-services
 
 [dock]
 
+[prometheus]
+gamma-dock-services
+
 [gamma:children]
 api
 arithmancy

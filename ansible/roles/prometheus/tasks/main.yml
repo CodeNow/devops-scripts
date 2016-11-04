@@ -1,0 +1,16 @@
+---
+- name: create prometheus folder
+  become: true
+  file:
+    path: "{{ prometheus_root }}"
+    state: directory
+
+- name: copy config to server
+  tags: [ deploy ]
+  become: true
+  template:
+    src=prometheus.yml
+    dest={{ prometheus_root }}/prometheus.yml
+    owner=ubuntu
+    group=ubuntu
+    mode=0700
