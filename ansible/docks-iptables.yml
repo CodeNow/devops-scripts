@@ -5,5 +5,4 @@
   vars_files:
     - group_vars/alpha-docks.yml
   roles:
-  - { role: notify, tags: [notify] }
-  - { role: docks-iptabless, tags: [docks-iptabless] }
+  - { role: docks-iptables }

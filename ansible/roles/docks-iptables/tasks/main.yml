@@ -8,25 +8,25 @@
     state=present
     regexp=".+ \/etc\/firewall\.conf"
     insertbefore="exit 0"
-  sudo: yes
+  become: true
 
   # template: src=iptables.j2 dest=/etc/network/if-up.d/iptables owner=root  group=root mode=500
-  # sudo: yes
+  # become: true
 
 - name: Place temp script file for iptables update
   template: src=iptables_apply_rule.sh.j2 dest={{ script_temp_path }} owner=root group=root mode=500
-  sudo: yes
+  become: true
 
 - name: Apply iptables
   shell: "{{ script_temp_path }} '{{ item }}'"
-  with_items: iptables_rule
-  sudo: yes
+  with_items: "{{ iptables_rule }}"
+  become: true
   notify: 
     - update /etc/firewall.conf so that it load on system startup
 
 - name: make sysctl config file
   template: src=60-runnable_sysctl.conf.j2 dest=/etc/sysctl.d/60-runnable_sysctl.conf mode=644 group=root owner=root
-  sudo: yes
+  become: true
   notify: 
     - apply sysctl by service procps start
 

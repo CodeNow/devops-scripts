@@ -1,4 +1,4 @@
-- include_vars: '../../../../group_vars/{{node_env}}.yml'
+#- include_vars: '../../../../group_vars/{{node_env}}.yml'
 
 - name: Path of nodejs
   command: which node
@@ -10,14 +10,14 @@
   when: node_result|failed
 
 - name: Adding iptables log to another iptable file
-  sudo: yes
+  become: true
   template: src=10-iptables.conf.j2 dest=/etc/rsyslog.d/10-iptables.conf
   notify: 
   - restart rsyslog
 
 - name: installing psad to latest version
   apt: pkg=psad state=latest update_cache=yes cache_valid_time=3600
-  sudo: yes
+  become: true
   notify:
   - restart psad
 
@@ -25,40 +25,25 @@
   shell: psad --sig-update && psad -H
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
-  sudo: yes
+  become: true
 
 - debug: var=command_result
 
-- name: Check for psad hook_url is defined or not. 
-  fail:
-    msg: "psad hook_url variable not defined"
-  when: not psad_hook_url 
-
-- name: Check for channel variable is defined or not. 
-  fail:
-    msg: "psad channel variables not defined"
-  when: not psad.channel 
-
-- name: Check for username variable is defined or not. 
-  fail:
-    msg: "psad username variables not defined"
-  when: not psad.username
-
 - name: make folder for notification script 
   file: path={{psad_script_folder}} state=directory recurse=yes
-  sudo: yes
+  become: true
 
 - name: make psad script that will run on startup
   template: src=psad_scritp.js.j2 dest={{psad_script_folder}}/psad_script.js mode=u+x
-  sudo: yes
+  become: true
 
 - name: copy package.json to installation dir
   template: src=psad_script_package.json.j2 dest={{psad_script_folder}}/package.json
-  sudo: yes
+  become: true
 
 - name: installing npm package
   npm: path={{psad_script_folder}}
-  sudo: yes
+  become: true
 
 - name: ensuring psad configuration file is in correct state.
   template:
@@ -66,7 +51,7 @@
     src=psad.conf.j2
     owner=root
     mode=0644
-  sudo: yes
+  become: true
   notify:
   - restart psad
 

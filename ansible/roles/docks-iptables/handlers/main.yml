@@ -2,17 +2,17 @@
 # file: roles/iptables/handlers/main.yml
 
 - name: apply sysctl by service procps start
-  sudo: yes
+  become: true
   command: service procps start
 
 - name: update /etc/firewall.conf so that it load on system startup
   template: src=firewall.conf.j2 dest=/etc/firewall.conf owner=root group=root mode=500
-  sudo: yes
+  become: true
 
 - name: restart psad
   service: name=psad state=restarted enabled=true
-  sudo: yes
+  become: true
 
 - name: restart rsyslog
   command: service rsyslog restart
-  sudo: yes
+  become: true
