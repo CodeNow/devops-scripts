@@ -3,6 +3,6 @@
   vars_files:
     - "group_vars/alpha-prometheus.yml"
   roles:
-  # - { role: notify, tags: "notify" }
+  - { role: notify, tags: "notify" }
   - { role: prometheus }
   - { role: container_kill_start }
