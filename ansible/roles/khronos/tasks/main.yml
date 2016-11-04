@@ -20,7 +20,7 @@
     hour: "{{ item.hour | default('*') }}"
     state: "{{ item.state | default('present') }}"
   with_items:
-  - name: Khronos CLI - Daily Cleanup
+  - name: Khronos CLI - Cleanup
     minute: 13
     hour: 1,4,7,10,13,16,19,22
     script: main-cron.sh
