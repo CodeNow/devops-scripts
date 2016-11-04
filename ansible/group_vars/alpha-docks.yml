@@ -1,4 +1,6 @@
 docker_config: docks
+deploy_user: ubuntu
+error_mail: ops+docks_iptables@runnable.com
 psad_apply: true
 
 ethernet: 
@@ -7,13 +9,14 @@ ethernet:
     name: "eth0"
 
 # Iptables Rules
+# TODO this needs some tuning, but we will start simply with this and tune it per-service environment.
 iptables_rule:
   - '-I FORWARD -s 172.17.42.1/16 -m state --state NEW -m hashlimit --hashlimit-above 10/sec --hashlimit-burst 10 --hashlimit-mode srcip --hashlimit-name psad1 -j LOG --log-prefix=iptables:'
   - '-I INPUT -p tcp --dport ssh -j ACCEPT'
   - '-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP'
   - '-I FORWARD -s 172.0.0.0/8 -d  10.0.0.0/8 -m state --state NEW -j DROP'
   - '-I INPUT -s 172.0.0.0/8 -d  10.0.0.0/8 -m state --state NEW -j DROP'
-  - '-A INPUT -i {{ ethernet.public.name }} -m state --state NEW -j DROP'
+  - '-A INPUT -i {{ ethernet.private.name }} -m state --state NEW -j DROP'
   - '-I INPUT -p icmp --icmp-type echo-request -m state --state ESTABLISHED -j REJECT'
 
 # Sysctl rules
@@ -57,6 +60,11 @@ docker_network: "172.17.0.0/16"
 #  - '-I FORWARD -s 172.0.0.0/8 -d 10.0.0.0/8 -j DROP'
 #  - '-I FORWARD -s 172.0.0.0/8 -d 172.0.0.0/8 -j DROP'
 
+psad: 
+  channel: "#docks-iptables"
+  username: "PSAD"
+psad_hook_url: "https://hooks.slack.com/services/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"
 psad_script_folder: "/home/{{deploy_user}}/devOps/psad_script"
+
 iptable_pattern: "iptables:"
 iptable_log_file: "/var/log/iptables"
