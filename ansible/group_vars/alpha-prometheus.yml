@@ -6,6 +6,8 @@ container_tag: v1.2.2
 
 prometheus_root: /opt/runnable/prometheus
 
+memory_hard_limit: 10g
+
 container_run_opts: >
   -d
   -p {{ prometheus_port }}:{{ prometheus_port }}
