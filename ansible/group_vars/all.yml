@@ -137,6 +137,9 @@ navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['addr
 navi_http_port: 3567
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
 
+# node_exporter
+node_exporter_port: 29006
+
 # optimus
 optimus_port: 80
 optimus_hostname: optimus.{{ domain }}

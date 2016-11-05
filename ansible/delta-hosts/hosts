@@ -131,6 +131,9 @@ delta-app-services
 [arithmancy]
 delta-app-services
 
+[prometheus]
+delta-prometheus
+
 [delta:children]
 api
 arithmancy
@@ -154,6 +157,7 @@ mongodb
 navi
 optimus
 pheidi
+prometheus
 rabbitmq
 redis
 redis-slave

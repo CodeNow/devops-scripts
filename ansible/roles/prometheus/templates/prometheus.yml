@@ -12,13 +12,35 @@ scrape_configs:
 
 
 # pulls server list from ec2 and drops all servers that are not production gamma or a dock
-- job_name:         dock_info
+- job_name:         container_info
   # keys to access this region and port of prom
   ec2_sd_configs:
     - region:     us-west-2
       access_key: {{ prometheus_aws_access_key }}
       secret_key: {{ prometheus_aws_secret_key }}
       port:       {{ cadvisor_port }}
+
+  # drop all servers not in this env and not a dock
+  relabel_configs:
+  - source_labels: [__meta_ec2_tag_env]
+    regex:         {{ node_env }}
+    action:        keep
+
+  - source_labels: [__meta_ec2_tag_role]
+    regex:         dock
+    action:        keep
+
+  - source_labels: [__meta_ec2_tag_org]
+    target_label:  org
+
+# pulls server list from ec2 and drops all servers that are not production gamma or a dock
+- job_name:         server_info
+  # keys to access this region and port of prom
+  ec2_sd_configs:
+    - region:     us-west-2
+      access_key: {{ prometheus_aws_access_key }}
+      secret_key: {{ prometheus_aws_secret_key }}
+      port:       {{ node_exporter_port }}
 
   # drop all servers not in this env and not a dock
   relabel_configs:

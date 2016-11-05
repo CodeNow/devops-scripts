@@ -113,6 +113,9 @@ epsilon-app-services
 [arithmancy]
 epsilon-app-services
 
+[prometheus]
+delta-prometheus
+
 [epsilon:children]
 api
 arithmancy
@@ -136,6 +139,7 @@ optimus
 rabbitmq
 redis
 pheidi
+prometheus
 registry
 sauron
 shiva
