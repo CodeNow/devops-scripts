@@ -61,6 +61,9 @@ big_poppa_pg_database: big_poppa
 big_poppa_port: 7788
 big_poppa_host_address: "{{ hostvars[groups['big-poppa'][0]]['ansible_default_ipv4']['address'] }}"
 
+# cadvisor
+cadvisor_port: 29007
+
 # charon
 charon_port: 53
 
@@ -145,6 +148,11 @@ palantiri_rollbar_token: f675e9090d6f483ca4e742af2c7f2f83
 # pheidi
 pheidi_email_github_token: 115b4d854e34e8a5ba99ab73eefe4bf7a8944d6d
 pheidi_rollbar_token: 6fc422ac645441bea7f6f14853eb01ab
+
+# prometheus
+prometheus_port: 9090
+prometheus_aws_access_key: AKIAIFG37NSI6O2QMRRQ
+prometheus_aws_secret_key: 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
 
 # rabbit
 rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
