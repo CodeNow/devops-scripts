@@ -103,8 +103,8 @@ docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
 drake_hostname: drake.{{ domain }}
 
 # ec2
-aws_access_key: "AKIAIB3IJCCJZQWQMVSQ"
-aws_secret_key: "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"
+aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
+aws_secret_key: "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"
 
 # eru
 
