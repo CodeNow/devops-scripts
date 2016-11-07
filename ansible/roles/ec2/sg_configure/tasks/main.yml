@@ -772,10 +772,6 @@
     aws_access_key: "{{ aws_access_key }}"
     rules:
       - proto: tcp
-        from_port: "{{ sshd_port }}"
-        to_port: "{{ sshd_port }}"
-        group_id: "{{ sg_bastion }}"
-      - proto: tcp
         from_port: "{{ pgdb_port }}"
         to_port: "{{ pgdb_port }}"
         group_id: "{{ sg_arithmancy }}"
