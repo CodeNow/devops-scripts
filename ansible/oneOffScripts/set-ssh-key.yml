@@ -1,0 +1,12 @@
+---
+- name: Rotate SSH Keys
+  hosts: all
+  gather_facts: no
+  vars:
+  - new_pub_key: "{{ pub_key_path }}.pub"
+  - new_priv_key: "{{ pub_key_path }}.pem"
+
+  tasks:
+  - name: Make our new key exclusive
+    authorized_key: key="{{ lookup('file', new_pub_key) }}"
+                    user=ubuntu state=present exclusive=yes
