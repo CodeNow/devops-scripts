@@ -3,6 +3,9 @@ global:
   scrape_interval:     15s
   evaluation_interval: 1m
 
+rule_files:
+- "alerts.conf"
+
 scrape_configs:
 # monitor self to get metrics for prometheus
 - job_name:     prometheus
@@ -33,6 +36,9 @@ scrape_configs:
   - source_labels: [__meta_ec2_tag_org]
     target_label:  org
 
+  - source_labels: [__meta_ec2_private_ip]
+    target_label:  hostIp
+
 # pulls server list from ec2 and drops all servers that are not production gamma or a dock
 - job_name:         server_info
   # keys to access this region and port of prom
@@ -54,3 +60,6 @@ scrape_configs:
 
   - source_labels: [__meta_ec2_tag_org]
     target_label:  org
+
+  - source_labels: [__meta_ec2_private_ip]
+    target_label:  hostIp

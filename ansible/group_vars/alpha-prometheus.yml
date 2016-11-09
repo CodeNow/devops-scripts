@@ -14,7 +14,9 @@ container_run_opts: >
   -v {{ prometheus_root }}:/prometheus
 
 container_run_args: >
-  -web.listen-address ":{{ prometheus_port }}"
+  -alertmanager.url "{{ prometheus_alert_url }}"
   -config.file=/prometheus/prometheus.yml
   -storage.local.path "data"
   -storage.local.retention 720h0m0s
+  -web.external-url http://localhost
+  -web.listen-address ":{{ prometheus_port }}"
