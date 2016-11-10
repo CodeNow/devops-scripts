@@ -1,0 +1,8 @@
+---
+- hosts: prometheus
+  vars_files:
+    - "group_vars/alpha-prometheus-alerts.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: prometheus-alerts }
+  - { role: container_kill_start }

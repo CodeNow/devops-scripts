@@ -1,0 +1,16 @@
+---
+- name: create prometheus folder
+  become: true
+  file:
+    path: "{{ prometheus_alert_root }}"
+    state: directory
+
+- name: copy prometheus config to server
+  tags: [ deploy ]
+  become: true
+  template:
+    src=prometheus-alerts.yml
+    dest={{ prometheus_alert_root }}/prometheus-alerts.yml
+    owner=ubuntu
+    group=ubuntu
+    mode=0700

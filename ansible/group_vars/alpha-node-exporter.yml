@@ -1,0 +1,15 @@
+name: node-exporter
+
+container_image: prom/{{ name }}
+container_tag: "0.12.0"
+
+memory_hard_limit: 100mb
+
+container_run_opts: >
+  --name={{ name }}
+  --net=host
+  --memory-reservation=50mb
+
+container_run_args: >
+  --web.listen-address=:{{ node_exporter_port }}
+  --collectors.enabled=conntrack,diskstats,filefd,filesystem,loadavg,meminfo,netdev,netstat,stat,time \

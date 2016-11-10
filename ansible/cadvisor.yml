@@ -1,0 +1,7 @@
+---
+- hosts: docks
+  vars_files:
+    - "group_vars/alpha-cadvisor.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: container_kill_start }

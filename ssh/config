@@ -210,6 +210,9 @@ Host delta-mongo-b
 Host delta-mongo-c
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.13.89 22
 
+Host delta-prometheus
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.172 22
+
 Host delta-navi
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.41 22
 

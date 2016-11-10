@@ -146,6 +146,7 @@ mongodb
 navi
 optimus
 pheidi
+prometheus
 rabbitmq
 redis
 redis-slave
