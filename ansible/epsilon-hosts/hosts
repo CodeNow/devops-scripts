@@ -114,7 +114,7 @@ epsilon-app-services
 epsilon-app-services
 
 [prometheus]
-delta-prometheus
+epsilon-prometheus
 
 [epsilon:children]
 api
