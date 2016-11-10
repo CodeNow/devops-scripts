@@ -1,7 +1,7 @@
 ---
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
-pager_duty_key: ky6EFGL7Zh-xH8x1qEJV
+pager_duty_key: testkey
 
 # registry settings
 registry_env: prod

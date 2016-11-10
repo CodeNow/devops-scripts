@@ -9,26 +9,12 @@ global:
 
 # The root node of the routing tree.
 route:
-  # The labels by which incoming alerts are grouped together. For example,
-  # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
-  # be batched into a single group.
-  group_by: ["alertname", "org", "alertTo"]
-  # When a new group of alerts is created by an incoming alert, wait at
-  # least "group_wait" to send the initial notification.
-  # This way ensures that you get multiple alerts for the same group that start
-  # firing shortly after another are batched together on the first
-  # notification.
-  group_wait: 30s
   # A default receiver
-  receiver: slack_prom
+  receiver: slack
 
   continue: true
 
   routes:
-  - match_re:
-      reportTo: .*slack.*
-    receiver: slack
-
   - match_re:
       reportTo: .*pagerduty.*
     receiver: pagerduty
@@ -43,11 +29,9 @@ receivers:
   pagerduty_configs:
   - send_resolved: true
     service_key: "{{ pager_duty_key }}"
-
-- name: "slack_prom"
   slack_configs:
   - send_resolved: true
-    channel: prometheus
+    channel: ops
 
 - name: "slack"
   slack_configs:
@@ -57,4 +41,7 @@ receivers:
 - name: "drake"
   webhook_configs:
   - send_resolved: true
-    url: "{{ drake_hostname }}/datadog"
+    url: "http://{{ drake_hostname }}/prometheus"
+  slack_configs:
+  - send_resolved: true
+    channel: ops
