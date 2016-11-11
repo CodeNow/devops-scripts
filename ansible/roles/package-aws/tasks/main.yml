@@ -25,16 +25,16 @@
 - name: Unzip the ec2-api-tool
   become: true
   unarchive: 
-    src=/usr/local/ec2-api-tools.zip
-    dest=/usr/local 
-    copy=no
-    mode=0755
+    src: /usr/local/ec2-api-tools.zip
+    dest: /usr/local 
+    copy: no
+    mode: 0755
 
 - name: remove old ec2 dir/link
   become: true
   file:
-    path=/usr/local/ec2
-    state=absent
+    path: /usr/local/ec2
+    state: absent
 
 - name: Link to ec2
   become: true

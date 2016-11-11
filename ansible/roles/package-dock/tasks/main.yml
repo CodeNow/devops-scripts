@@ -42,10 +42,10 @@
 - name: unzip vault_0.4.1_linux_amd64.zip
   become: true
   unarchive:
-    src=/usr/local/bin/vault_0.4.1_linux_amd64.zip
-    dest=/usr/local/bin
-    copy=no
-    mode=0755
+    src: /usr/local/bin/vault_0.4.1_linux_amd64.zip
+    dest: /usr/local/bin
+    copy: no
+    mode: 0755
 
 - name: Download Consul-Template
   become: true
@@ -56,10 +56,10 @@
 - name: unzip
   become: true
   unarchive:
-    src=/usr/local/bin/consul-template_0.11.1_linux_amd64.zip
-    dest=/usr/local/bin
-    copy=no
-    mode=0755
+    src: /usr/local/bin/consul-template_0.11.1_linux_amd64.zip
+    dest: /usr/local/bin
+    copy: no
+    mode: 0755
 
 - name: Download weave 1.4.6
   become: true

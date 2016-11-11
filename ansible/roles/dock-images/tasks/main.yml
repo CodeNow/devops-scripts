@@ -1,0 +1,44 @@
+---
+- name: starting docker
+  become: true
+  service:
+    name=docker
+    state=started
+
+- name: pulling image builder
+  become: true
+  command: docker pull registry.runnable.com/runnable/image-builder:v4.2.2
+
+- name: pulling swarm
+  become: true
+  command: docker pull swarm:1.2.0
+
+- name: pulling registry
+  become: true
+  command: docker pull registry:2.3.1
+
+- name: pulling google cadvisor
+  become: true
+  command: docker pull google/cadvisor:v0.24.1
+
+- name: pulling node-exporter
+  become: true
+  command: docker pull prom/node-exporter:0.12.0
+
+- name: stopping docker
+  become: true
+  service:
+    name=docker
+    state=stopped
+
+- name: removing docker key file
+  become: true
+  file: 
+    path: /etc/docker/key.json 
+    state: absent
+
+- name: removing docker pid file
+  become: true
+  file:
+    path: /var/run/docker.pid
+    state: absent
