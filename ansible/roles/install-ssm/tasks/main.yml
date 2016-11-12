@@ -5,10 +5,7 @@
     dest=/tmp
 
 - name: start amazon simple systems management
-  command: "{{ item }}"
+  command: dpkg -i amazon-ssm-agent.deb
   become: true
   args:
     chdir: /tmp
-  with_items:
-    - dpkg -i amazon-ssm-agent.deb
-    - start amazon-ssm-agent
