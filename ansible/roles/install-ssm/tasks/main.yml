@@ -1,8 +1,14 @@
 ---
-- name: install amazon simple systems management
+- name: get amazon simple systems management
+  get_url:
+    url=https://amazon-ssm-us-west-2.s3.amazonaws.com/latest/debian_amd64/amazon-ssm-agent.deb
+    dest=/tmp
+
+- name: start amazon simple systems management
   command: "{{ item }}"
-    with_items:
-      - cd /tmp
-      - curl https://amazon-ssm-us-west-2.s3.amazonaws.com/latest/debian_amd64/amazon-ssm-agent.deb -o amazon-ssm-agent.deb >> ./user-script.log
-      - dpkg -i amazon-ssm-agent.deb > ./user-script.log
-      - start amazon-ssm-agent > ./user-script.log
+  become: true
+  args:
+    chdir: /tmp
+  with_items:
+    - dpkg -i amazon-ssm-agent.deb
+    - start amazon-ssm-agent
