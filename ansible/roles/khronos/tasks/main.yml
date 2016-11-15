@@ -18,9 +18,9 @@
     mode: 0744
     dest: /opt/runnable/{{ item.script }}
   with_items:
-  - { cron_event: "time.day.passed", script: "day_passed_cron_event.sh"}
-  - { cron_event: "time.fourth-hour.passed", script: "fourth_hour_passed_cron_event.sh"}
-  - { cron_event: "time.hour.passsed", script: "hour_passed_cron_event.sh"}
+  - { cron_event: "time.one-day.passed", script: "1_day_passed_cron_event.sh"}
+  - { cron_event: "time.four-hours.passed", script: "4_hours_passed_cron_event.sh"}
+  - { cron_event: "time.one-hour.passsed", script: "1_hour_passed_cron_event.sh"}
   - { cron_event: "time.thirty-minutes.passed", script: "30_minutes_passed_cron_event.sh"}
   - { cron_event: "time.five-minutes.passed", script: "5_minutes_passed_cron_event.sh"}
 
@@ -48,14 +48,14 @@
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
   - name: Khronos CLI - Daily Time Event
     hour: 2
-    script: day_passed_cron_event.sh
+    script: 1_day_passed_cron_event.sh
   - name: Khronos CLI - 4-Hourly Time Event
     minute: 13
     hour: 1,4,7,10,13,16,19,22
-    script: fourth_hour_passed_cron_event.sh
+    script: 4_hours_passed_cron_event.sh
   - name: Khronos CLI - Hourly Time Event
     minute: 49
-    script: hour_passed_cron_event.sh
+    script: 1_hour_passed_cron_event.sh
   - name: Khronos CLI - Half-Hourly Time Event
     minute: "*/30"
     script: 30_minutes_passed_cron_event.sh
