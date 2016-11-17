@@ -18,7 +18,7 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive either `Test-runnable.pem`, `oregon.pem`, `delta.pem`, `delta-prime.pem` or some combination of them.
+4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive `*.pem` files.
 
 5. Move the “Keys of Power” .pem  files to your `~/.ssh` directory
 
@@ -68,7 +68,7 @@ of the docker image needed to run the service on our architecture.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag]
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -t deploy
 ```
 
 ##### Arguments
@@ -84,21 +84,6 @@ ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-o
   - `-e git_branch=v1.9.9` (version tag)
   - `-e git_branch=my-feature-branch` (branch)
   - `-e git_branch=3928745892364578623` (specific commit)
-
-
-#### Redeploy Tag or Branch (No Build)
-Redeploy the given tag or branch without building the docker image. This is useful for when a redeploy
-is required, but it is of an already built image (e.g. when a service runs out of memory).
-
-##### Command
-```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -t deploy -e git_branch=[branch-or-tag]
-```
-
-##### Arguments
-- `[inventory_dir]` - The environment inventory files (servers and variables).
-- `[service-playbook]` - The playbook for the service you wish to deploy.
-- `[branch-or-tag]` - The branch or tag you wish to deploy.
 
 ##### Rebuild and Deploy Tag or Branch (No Cache)
 Forces a rebuild of a docker image for the given service at the given branch or tag and then deploys the
