@@ -13,21 +13,24 @@
 
 # the keys below must be placed inside devops-scripts/ansible/roles/hipache/files
 - name: copy ca.crt
+  tags: certs
   become: true
-  template:
-    src={{ domain }}-ca.crt
+  copy:
+    src={{ domain }}/ca.pem
     dest=/etc/ssl/certs/{{ domain }}/ca.crt
 
 - name: copy {{ domain }}.crt
+  tags: certs
   become: true
-  template:
-    src={{ domain }}.crt
+  copy:
+    src={{ domain }}/cert.pem
     dest=/etc/ssl/certs/{{ domain }}/{{ domain }}.crt
 
 - name: copy private ssl key
+  tags: certs
   become: true
-  template:
-    src={{ domain }}.key
+  copy:
+    src={{ domain }}/key.pem
    dest=/etc/ssl/private/{{ domain }}.key
 
 - name: create hipache config directory
