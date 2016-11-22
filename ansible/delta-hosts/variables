@@ -112,6 +112,9 @@ pheidi_mongo_database=delta
 pheidi_mongo_replset_name=delta
 pheidi_runnabot_tokens=d22a5ec75f66a0f472f3d856eb01df2321115e0b,33d8accaa7afeace8f44e3a6de409097ea1e67b8,82a7f2838852c04b75bee2b1a8ed236e2f9fc1ef,cab912709f7eb5bb8c21f9177f845561222d3933
 
+[prometheus:vars]
+pager_duty_key=ky6EFGL7Zh-xH8x1qEJV
+
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 
