@@ -10,7 +10,7 @@
       groups=dock
 
 - include: charon.yml git_branch="v4.0.0"
-- include: dock-init.yml git_branch="new-dock-init"
+- include: dock-init.yml git_branch="v10.0.0"
 - include: krain.yml git_branch="v0.3.0"
 
 - hosts: "{{ host }}"
