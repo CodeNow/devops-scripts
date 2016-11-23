@@ -10,17 +10,6 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
-Host epsilon*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  Identityfile ~/.ssh/epsilon.pem
-
-Host zeta*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  Identityfile ~/.ssh/zeta.pem
 
 ################################################################################
 # utility
@@ -63,10 +52,7 @@ Host gamma-userland
 
 ## Gamma App Hipache
 Host gamma-hipache
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
-
-Host gamma-hipache-us-west-2a
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.209 22
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.165 22
 
 ## Gamma API
 Host gamma-api
@@ -220,72 +206,6 @@ Host delta-swarm-manager
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.40 22
 
 ################################################################################
-# Epsilon
-################################################################################
-
-Host epsilon-bastion
-  HostName 52.35.234.45
-  Port 60519
-
-Host 10.12.*.*
-  User ubuntu
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@epsilon-bastion nc %h %p
-  IdentityFile ~/.ssh/epsilon.pem
-
-Host epsilon-api
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.80 22
-
-Host epsilon-api-worker
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.38 22
-
-Host epsilon-api-socket
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.39 22
-
-Host epsilon-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.116 22
-
-Host epsilon-consul-a
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.7.67 22
-
-Host epsilon-consul-b
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.240 22
-
-Host epsilon-consul-c
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.209 22
-
-Host epsilon-hipache
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.195 22
-
-Host epsilon-mongo
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.73 22
-
-Host epsilon-navi
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.252 22
-
-Host epsilon-neo4j
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.14.204 22
-
-Host epsilon-rabbit
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.8.57 22
-
-Host epsilon-redis
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.9.245 22
-
-Host epsilon-registry
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.12.99 22
-
-Host epsilon-app-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.10.174 22
-
-Host epsilon-dock-services
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.11.110 22
-
-Host epsilon-userland
-  ProxyCommand ssh -q ubuntu@epsilon-bastion nc 10.12.2.91 22
-
-################################################################################
 # other
 ################################################################################
 Host 127.0.0.1
@@ -293,10 +213,3 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
-
-################################################################################
-# Zeta Environment (Terraform Infrastructure Migration)
-################################################################################
-Host zeta-bastion
-  HostName 52.24.4.209
-  Port 22
