@@ -5,6 +5,14 @@
     name=docker
     state=started
 
+- name: add runnable registry to /etc/hosts
+  become: true
+  blockinfile:
+    dest: /etc/hosts
+    insertafter: EOF
+    block: |
+      10.4.4.82 registry.runnable.com
+
 - name: pulling image builder
   become: true
   command: docker pull registry.runnable.com/runnable/image-builder:v4.2.2
@@ -36,6 +44,34 @@
 - name: pulling weave
   become: true
   command: docker pull weaveworks/weave:1.5.0
+
+- name: pulling node:argon
+  become: true
+  command: docker pull node:argon
+
+- name: pulling ruby:2.3
+  become: true
+  command: docker pull ruby:2.3
+
+- name: pulling python:2.7
+  become: true
+  command: docker pull python:2.7
+
+- name: pulling php:7.0-apache
+  become: true
+  command: docker pull php:7.0-apache
+
+- name: pulling mysql
+  become: true
+  command: docker pull runnable/mysql:5.6
+
+- name: pulling postgres
+  become: true
+  command: docker pull runnable/postgres:9.4
+
+- name: pulling mongo
+  become: true
+  command: docker pull runnable/mongo:3.2
 
 - name: stopping docker
   become: true
