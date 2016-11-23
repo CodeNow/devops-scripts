@@ -11,7 +11,7 @@
 
 - name: pulling swarm
   become: true
-  command: docker pull swarm:1.2.0
+  command: docker pull swarm:1.2.5
 
 - name: pulling registry
   become: true
@@ -24,6 +24,18 @@
 - name: pulling node-exporter
   become: true
   command: docker pull prom/node-exporter:0.12.0
+
+- name: pulling weaveexec
+  become: true
+  command: docker pull weaveworks/weaveexec:1.5.0
+
+- name: pulling weavedb
+  become: true
+  command: docker pull weaveworks/weavedb:latest
+
+- name: pulling weave
+  become: true
+  command: docker pull weaveworks/weave:1.5.0
 
 - name: stopping docker
   become: true
