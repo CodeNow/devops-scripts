@@ -11,7 +11,7 @@
     dest: /etc/hosts
     insertafter: EOF
     block: |
-      10.4.4.82 registry.runnable.com
+      {{ registry_address }} registry.runnable.com
 
 - name: pulling image builder
   become: true
