@@ -90,6 +90,7 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [pheidi:vars]
+pheidi_intercom_admin_id=22382
 pheidi_intercom_id=xs5g95pd
 pheidi_intercom_key=ro-9367eb0eb11542323371dcf25b8e260891f89b36
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
