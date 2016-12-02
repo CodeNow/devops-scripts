@@ -121,6 +121,9 @@ gamma-app-services
 
 [dock]
 
+[docs]
+gamma-app-services
+
 [prometheus]
 gamma-dock-services
 
@@ -135,6 +138,7 @@ cream
 dock
 docker-listener
 docks
+docs
 drake
 eru
 github-varnish

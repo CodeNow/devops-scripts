@@ -39,6 +39,9 @@ cream_intercom_id=wqzm3rju
 cream_stripe_secret_key=sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
 cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
+[docs:vars]
+docs_subdomain=docs
+
 [docks:vars]
 docker_config=docks
 docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751

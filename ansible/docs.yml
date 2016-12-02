@@ -1,0 +1,13 @@
+---
+
+- hosts: docs
+  vars_files:
+  - group_vars/alpha-docs.yml
+  roles:
+  - { role: notify, tags: [ notify ] }
+  - { role: builder, tags: [ build ] }
+  - role: container_start
+  - role: nginx-proxied-service
+    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
+    target_ip_address: "{{ hostvars[groups['docs'][0]]['ansible_default_ipv4']['address'] }}"
+    templates: [ 12-docs-server.conf ]

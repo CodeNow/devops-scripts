@@ -56,6 +56,9 @@ delta-api-socket-proxy
 
 [dock]
 
+[docs]
+delta-app-services
+
 [eru]
 delta-app-services
 
@@ -145,6 +148,7 @@ cream
 dock
 docker-listener
 docks
+docs
 drake
 eru
 github-varnish
