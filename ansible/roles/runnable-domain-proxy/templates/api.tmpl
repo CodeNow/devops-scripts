@@ -10,6 +10,14 @@ upstream {{ proxy_service_name }} {
 
 server {
   listen 80;
+  server_name mixpanel.runnable-gamma.com;
+  location / {
+    return 200 'gangnam style bear runnable';
+  }
+}
+
+server {
+  listen 80;
   client_max_body_size 200m;
   server_name {{ domain }};
   access_log /var/log/nginx/{{ proxy_service_name }}.access.log;
