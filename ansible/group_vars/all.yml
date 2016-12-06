@@ -45,6 +45,7 @@ core_file_dir: /docker/app-cores
 
 #angular
 angular_url: https://app.{{ domain }}
+mixpanel_proxy_url: http://mixpanel.{{ domain }}
 
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
