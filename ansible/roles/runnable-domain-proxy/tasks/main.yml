@@ -59,16 +59,23 @@
     state: directory
     dest: /etc/nginx/template
 
+- name: assert nginx other-sites-enabled directory
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/other-sites-enabled
+
 - name: put mixpanel template in place
   tags: [ configure_proxy, configure_files ]
   become: yes
   template:
-    src: aaaa.tmpl
-    dest: /etc/nginx/template/mixpanel.tmpl
+    src: mixpanel.tmpl
+    dest: /etc/nginx/other-sites-enabled/mixpanel.conf
 
-# - name: put api template in place
-  # tags: [ configure_proxy, configure_files ]
-  # become: yes
-  # template:
-    # src: api.tmpl
-    # dest: /etc/nginx/template/api.tmpl
+- name: put api template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: api.tmpl
+    dest: /etc/nginx/template/api.tmpl
