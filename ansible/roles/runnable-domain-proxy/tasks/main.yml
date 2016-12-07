@@ -59,9 +59,16 @@
     state: directory
     dest: /etc/nginx/template
 
-- name: put api template in place
+- name: put mixpanel template in place
   tags: [ configure_proxy, configure_files ]
   become: yes
   template:
-    src: api.tmpl
-    dest: /etc/nginx/template/api.tmpl
+    src: aaaa.tmpl
+    dest: /etc/nginx/template/mixpanel.tmpl
+
+# - name: put api template in place
+  # tags: [ configure_proxy, configure_files ]
+  # become: yes
+  # template:
+    # src: api.tmpl
+    # dest: /etc/nginx/template/api.tmpl
