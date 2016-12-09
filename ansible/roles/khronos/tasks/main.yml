@@ -47,7 +47,7 @@
     script: hourly-canary-cron.sh
     state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
   - name: Khronos CLI - Daily Time Event
-    hour: 2
+    hour: 10 # 10 am UTC / 2 am PST
     script: 1_day_passed_cron_event.sh
   - name: Khronos CLI - 4-Hourly Time Event
     minute: 13
