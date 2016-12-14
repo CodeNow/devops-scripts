@@ -1,0 +1,24 @@
+{
+  "name": "deployer",
+  "version": "0.0.1",
+  "description": "deploy things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo no test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeNow/devops-scripts.git"
+  },
+  "author": "Anandkumar Patel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeNow/devops-scripts/issues"
+  },
+  "homepage": "https://github.com/CodeNow/devops-scripts#readme",
+  "dependencies": {
+    "error-cat": "^3.0.0",
+    "joi": "^10.0.5",
+    "ponos": "^5.7.1"
+  }
+}
