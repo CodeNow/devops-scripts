@@ -1,19 +1,38 @@
 'use strict'
-const Promise = require('bluebird')
 const joi = require('joi')
 
 const Ponos = require('ponos')
-const execFile = require('child_process').execFile
+const spawn = require('child_process').spawn
 
 function deployWorker (job) {
-  return Promise.fromCallback((cb) => {
+  return Promise((resove, reject) => {
     const version = job.version
     const env = job.env
     const service = job.service
 
-    execFile('/bin/bash', [`ansible-playbook -i ./${env}-hosts --vault-password-file /.vaultpass -e git_branch=v${version} /ansible/${service}.yml -t deploy`], (error, stdout, stderr) => {
-      if (error) { return cb(error) }
-      console.log(stdout, stderr)
+    const cmd = spawn('ansible-playbook', [
+      '-i', `/ansible/${env}-hosts`,
+      '--vault-password-file=/root/.ssh/vault-pass',
+      '-e', `git_branch=${version}`,
+      '-t', 'deploy',
+      `/ansible/${service}.yml`
+    ], {
+      cwd: '/ansible'
+    })
+
+    cmd.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`)
+    })
+    cmd.stderr.on('data', (data) => {
+      console.log(`stderr: ${data}`)
+    })
+    cmd.on('close', (code) => {
+      console.log(`child process exited with code ${code}`)
+      resove()
+    })
+    cmd.on('error', (err) => {
+      console.log('Failed to start child process.', err)
+      reject(err)
     })
   })
 }
@@ -30,6 +49,12 @@ const server = new Ponos.Server({
     }
   }
 })
+
 server.start()
-  .then(() => { console.log('server started') })
-  .catch((err) => { console.error('server error:', err.stack || err.message || err) })
+.then(() => {
+  console.log('server started')
+})
+.catch((err) => {
+  console.error('server error:', err)
+  throw err
+})

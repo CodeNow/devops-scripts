@@ -180,6 +180,9 @@ registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['a
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
 
+# secrets
+secret_root: /opt/runnable/secrets
+
 # shiva
 pg_user: shiva
 shiva_port: 3000
