@@ -4,6 +4,7 @@
   "description": "deploy things",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo no test"
   },
   "repository": {
