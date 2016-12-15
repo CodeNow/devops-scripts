@@ -1,11 +1,12 @@
 'use strict'
 const joi = require('joi')
+const Promise = require('bluebird')
 
 const Ponos = require('ponos')
 const spawn = require('child_process').spawn
 
 function deployWorker (job) {
-  return Promise((resove, reject) => {
+  return Promise.fromCallback((cb) => {
     const version = job.version
     const env = job.env
     const service = job.service
@@ -28,11 +29,11 @@ function deployWorker (job) {
     })
     cmd.on('close', (code) => {
       console.log(`child process exited with code ${code}`)
-      resove()
+      cb()
     })
     cmd.on('error', (err) => {
       console.log('Failed to start child process.', err)
-      reject(err)
+      cb(err)
     })
   })
 }

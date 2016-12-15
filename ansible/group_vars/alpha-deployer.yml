@@ -14,5 +14,7 @@ container_envs: >-
 container_run_opts: >
   -h {{ name }}
   -d
-  -v {{ secret_root }}:/root/.ssh
+  -v {{ secret_root }}/{{ env }}.pem:/root/.ssh/{{ env }}.pem
+  -v {{ secret_root }}/vault-pass:/root/.ssh/vault-pass
+  -v {{ secret_root }}/id_rsa:/root/.ssh/id_rsa
   {{ container_envs }}
