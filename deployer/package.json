@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/CodeNow/devops-scripts#readme",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "error-cat": "^3.0.0",
     "joi": "^10.0.5",
     "ponos": "^5.7.1"
