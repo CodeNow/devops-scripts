@@ -8,11 +8,11 @@ RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash - && \
     apt-get install -y nodejs
 
 RUN curl -O https://releases.hashicorp.com/vault/0.6.3/vault_0.6.3_linux_amd64.zip && \
-    unzip -d /bin && \
+    unzip ./vault_0.6.3_linux_amd64.zip -d /bin && \
     chmod +x /bin/vault
 
 RUN git clone git://github.com/ansible/ansible.git --recursive /opt/ansible
-    unzip vault_0.6.3_linux_amd64.zip
+
 RUN cd /opt/ansible && \
     git checkout v2.1.3.0-1 && \
     git submodule update --init --recursive && \
