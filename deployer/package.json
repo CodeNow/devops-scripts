@@ -4,8 +4,8 @@
   "description": "deploy things",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo no test"
+    "start": "NODE_PATH=./lib node index.js",
+    "test": "NODE_PATH=./lib lab -v -c ./test"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,17 @@
   },
   "homepage": "https://github.com/CodeNow/devops-scripts#readme",
   "dependencies": {
+    "101": "^1.6.2",
     "bluebird": "^3.4.6",
+    "bunyan": "^1.8.5",
+    "continuation-local-storage": "^3.2.0",
     "error-cat": "^3.0.0",
     "joi": "^10.0.5",
+    "loadenv": "^2.2.0",
     "ponos": "^5.7.1"
+  },
+  "devDependencies": {
+    "code": "^4.0.0",
+    "lab": "^11.2.1"
   }
 }
