@@ -132,6 +132,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | mavis | [Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
 | navi | [Ocarina of Time: Lost Woods The Legend of Zelda](https://www.youtube.com/watch?v=iOGpdGEEcJM) |
 | optimus | [Original Transformers Opening Theme](https://www.youtube.com/watch?v=nLS2N9mHWaw) |
+| pheidi | [Chariots of Fire Theme](https://www.youtube.com/watch?v=CSav51fVlKU) |
 | runnable-angular | [Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
 | sauron | [Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
 | Security Groups | [Out of the Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
