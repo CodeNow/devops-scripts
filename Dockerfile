@@ -33,4 +33,4 @@ ADD ./deployer/ /deployer
 RUN cd /deployer && npm install
 
 WORKDIR /deployer
-CMD ["npm", "start"]
+CMD ["bash", "-c", "npm start"]
