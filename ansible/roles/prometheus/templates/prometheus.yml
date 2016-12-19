@@ -39,6 +39,8 @@ scrape_configs:
   - source_labels: [__meta_ec2_private_ip]
     target_label:  hostIp
 
+# TODO: drop dock pool
+
 # pulls server list from ec2 and drops all servers that are not production gamma or a dock
 - job_name:         server_info
   # keys to access this region and port of prom
