@@ -39,7 +39,7 @@ scrape_configs:
     action:        keep
 
   - source_labels: [__meta_ec2_tag_org]
-    target_label:  org
+    target_label:  githubOrgId
 
   - source_labels: [__meta_ec2_private_ip]
     target_label:  hostIp
@@ -68,7 +68,7 @@ scrape_configs:
     action:        keep
 
   - source_labels: [__meta_ec2_tag_org]
-    target_label:  org
+    target_label:  githubOrgId
 
   - source_labels: [__meta_ec2_private_ip]
     target_label:  hostIp
