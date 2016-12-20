@@ -31,7 +31,8 @@ module.exports.task = (job) => {
     ]
 
     const spawnOpts = {
-      cwd: ansibleRoot
+      cwd: ansibleRoot,
+      env: process.env
     }
 
     log.trace({
