@@ -53,7 +53,7 @@ delta-api-socket
 delta-api-socket-proxy
 
 [deployer]
-delta-app-worker
+delta-app-services
 
 [docks]
 
