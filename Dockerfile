@@ -23,8 +23,10 @@ ENV PYTHONPATH  /opt/ansible/lib:$PYTHONPATH
 ENV MANPATH     /opt/ansible/docs/man:$MANPATH
 
 ADD ./ssh /root/.ssh
-RUN echo 'eval `ssh-agent`' >> /root/.bashrc
-RUN echo 'ssh-add /root/.ssh/id_rsa' >> /root/.bashrc
+RUN echo 'eval `ssh-agent`' >> /root/start.sh
+RUN echo 'ssh-add /root/.ssh/id_rsa' >> /root/start.sh
+RUN echo 'npm start' >> /root/start.sh
+RUN chmod +x /root/start.sh
 
 ADD ./ansible/ /ansible
 RUN cd /ansible && npm install
@@ -33,4 +35,4 @@ ADD ./deployer/ /deployer
 RUN cd /deployer && npm install
 
 WORKDIR /deployer
-CMD ["bash", "-c", "npm start"]
+CMD /root/start.sh
