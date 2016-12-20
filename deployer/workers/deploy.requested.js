@@ -32,7 +32,10 @@ module.exports.task = (job) => {
 
     const spawnOpts = {
       cwd: ansibleRoot,
-      env: process.env
+      env: {
+        SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK,
+        SSH_AGENT_PID: process.env.SSH_AGENT_PID
+      }
     }
 
     log.trace({
