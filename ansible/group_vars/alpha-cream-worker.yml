@@ -19,6 +19,7 @@ container_envs: >
   -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e GIT_BRANCH={{ git_branch }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN={{ cream_hello_runnable_github_token }}
   -e NODE_ENV={{ node_env }}
   {% if cream_intercom_key is defined %} -e INTERCOM_API_KEY={{ cream_intercom_key }} {% endif %}

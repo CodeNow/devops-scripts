@@ -145,7 +145,6 @@ vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d700
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
 
 [ec2:vars]
-env=gamma
 aws_custid=437258487404
 bastion_sshd_port=60709
 region=us-west-2

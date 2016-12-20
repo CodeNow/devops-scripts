@@ -7,11 +7,6 @@
 
 - [ ] list dependencies (eg, PR from another branch or repo; tags or versions required prior to deployment)
 
-#### Reviewers
-
-- [ ] _person_1_
-- [ ] _person_2_
-
 #### Tests
 
 > Test any modifications on one of our environments.
@@ -22,6 +17,5 @@
 
 > Ensure that all environments have the given changes.
 
-- [ ] deployed to epsilon
 - [ ] deployed to gamma
 - [ ] deployed to delta

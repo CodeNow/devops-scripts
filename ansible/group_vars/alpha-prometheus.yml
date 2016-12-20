@@ -2,11 +2,13 @@ name: prometheus
 
 # container_kill_start settings
 container_image: prom/prometheus
-container_tag: v1.3.1
+container_tag: v1.4.1
 
 prometheus_root: /opt/runnable/prometheus
 
 memory_hard_limit: 15g
+
+stop_time: 60
 
 container_run_opts: >
   -d

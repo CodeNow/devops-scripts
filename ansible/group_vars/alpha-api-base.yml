@@ -1,10 +1,11 @@
 container_tag: "{{ git_branch }}"
 
 node_version: 4.2.2
-npm_version: 2.14.7
+npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
 restart_policy: always
+has_shrinkwrap: true
 
 # for sendGrid
 sendgrid_key: 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
