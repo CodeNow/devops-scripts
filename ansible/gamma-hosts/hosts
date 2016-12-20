@@ -31,6 +31,9 @@ gamma-consul-a
 gamma-consul-b
 gamma-consul-c
 
+[deployer]
+gamma-app-services
+
 [docker-listener]
 gamma-dock-services
 
@@ -132,6 +135,7 @@ big-poppa
 charon
 consul
 cream
+deployer
 dock
 docker-listener
 docks

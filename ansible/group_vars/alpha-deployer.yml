@@ -1,0 +1,20 @@
+---
+name: deployer
+
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+repo: git@github.com:CodeNow/devops-scripts.git
+
+container_envs: >-
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v {{ secret_root }}/{{ env }}.pem:/root/.ssh/{{ env }}.pem
+  -v {{ secret_root }}/vault-pass:/root/.ssh/vault-pass
+  -v {{ secret_root }}/id_rsa:/root/.ssh/id_rsa
+  {{ container_envs }}
