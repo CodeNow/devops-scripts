@@ -1,6 +1,6 @@
 # my global config
 global:
-  scrape_interval:     5m
+  scrape_interval:     1m
   evaluation_interval: 10m
 
 rule_files:
@@ -16,6 +16,7 @@ scrape_configs:
 
 # pulls server list from ec2 and drops all servers that are not production gamma or a dock
 - job_name:         container_info
+  scrape_interval:     30m
   # keys to access this region and port of prom
   ec2_sd_configs:
     - region:     us-west-2
@@ -25,6 +26,10 @@ scrape_configs:
 
   # drop all servers not in this env and not a dock
   relabel_configs:
+  - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
+    regex:         {{ env }}-asg-dock-pool
+    action:        drop
+
   - source_labels: [__meta_ec2_tag_env]
     regex:         {{ node_env }}
     action:        keep
@@ -34,7 +39,7 @@ scrape_configs:
     action:        keep
 
   - source_labels: [__meta_ec2_tag_org]
-    target_label:  org
+    target_label:  githubOrgId
 
   - source_labels: [__meta_ec2_private_ip]
     target_label:  hostIp
@@ -50,6 +55,10 @@ scrape_configs:
 
   # drop all servers not in this env and not a dock
   relabel_configs:
+  - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
+    regex:         {{ env }}-asg-dock-pool
+    action:        drop
+
   - source_labels: [__meta_ec2_tag_env]
     regex:         {{ node_env }}
     action:        keep
@@ -59,7 +68,7 @@ scrape_configs:
     action:        keep
 
   - source_labels: [__meta_ec2_tag_org]
-    target_label:  org
+    target_label:  githubOrgId
 
   - source_labels: [__meta_ec2_private_ip]
     target_label:  hostIp
