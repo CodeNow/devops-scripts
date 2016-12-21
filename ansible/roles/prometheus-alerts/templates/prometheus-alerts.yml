@@ -1,7 +1,7 @@
 global:
   # ResolveTimeout is the time after which an alert is declared resolved
   # if it has not been updated.
-  resolve_timeout: 5m
+  resolve_timeout: 10m
 
   slack_api_url: "{{ ops_slack_channel_url }}"
 
@@ -29,14 +29,19 @@ receivers:
   pagerduty_configs:
   - send_resolved: true
     service_key: "{{ pager_duty_key }}"
+    description: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
   slack_configs:
   - send_resolved: true
     channel: ops
+    title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+    text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
 
 - name: "slack"
   slack_configs:
   - send_resolved: true
     channel: ops
+    title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+    text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
 
 - name: "drake"
   webhook_configs:
@@ -45,3 +50,5 @@ receivers:
   slack_configs:
   - send_resolved: true
     channel: ops
+    title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+    text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
