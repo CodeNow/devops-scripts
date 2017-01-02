@@ -1,38 +1,79 @@
 ---
-#file roles/iptables/tasks/main.yml
+- name: create iptable rule
+  become: true
+  template:
+    src=firewall.conf.j2
+    dest=/etc/firewall.conf
+    mode=500
+    owner=root
+    group=root
+  notify:
+    - restore iptables
 
 - name: iptables restore in rc.local
+  become: true
   lineinfile:
     dest=/etc/rc.local
     line="iptables-restore < /etc/firewall.conf"
     state=present
     regexp=".+ \/etc\/firewall\.conf"
     insertbefore="exit 0"
-  become: true
 
-  # template: src=iptables.j2 dest=/etc/network/if-up.d/iptables owner=root  group=root mode=500
-  # become: true
-
-- name: Place temp script file for iptables update
-  template: src=iptables_apply_rule.sh.j2 dest={{ script_temp_path }} owner=root group=root mode=500
+- name: create sysctl config file
   become: true
-
-- name: Apply iptables
-  shell: "{{ script_temp_path }} '{{ item }}'"
-  with_items: "{{ iptables_rule }}"
-  become: true
-  notify: 
-    - update /etc/firewall.conf so that it load on system startup
-
-- name: make sysctl config file
-  template: src=60-runnable_sysctl.conf.j2 dest=/etc/sysctl.d/60-runnable_sysctl.conf mode=644 group=root owner=root
-  become: true
-  notify: 
+  template:
+    src=60-runnable_sysctl.conf.j2
+    dest=/etc/sysctl.d/60-runnable_sysctl.conf
+    mode=644
+    group=root
+    owner=root
+  notify:
     - apply sysctl by service procps start
 
-- name: seeting clenup cron on api server
-  include: psad.yml
-  when:  psad_apply==true
-  tags: 
-    - psad
+- name: Adding iptables log to another iptable file
+  become: true
+  template:
+    src=10-iptables.conf.j2
+    dest=/etc/rsyslog.d/10-iptables.conf
+  notify:
+  - restart rsyslog
 
+- name: installing psad to latest version
+  become: true
+  apt:
+    pkg=psad
+    state=latest
+    update_cache=yes
+    cache_valid_time=3600
+  notify:
+  - restart psad
+
+- name: psad signature update
+  become: true
+  shell: psad --sig-update && psad -H
+  register: command_result
+  failed_when: "'FAILED' in command_result.stderr"
+
+- name: make folder for notification script
+  become: true
+  file:
+    path={{ psad_script_folder }}
+    state=directory
+    recurse=yes
+
+- name: make psad script that will run on startup
+  become: true
+  template:
+    src=psad_script.sh.j2
+    dest={{ psad_script_folder }}/psad_script.sh
+    mode=u+x
+
+- name: ensuring psad configuration file is in correct state.
+  become: true
+  template:
+    dest=/etc/psad/psad.conf
+    src=psad.conf.j2
+    owner=root
+    mode=0644
+  notify:
+  - restart psad

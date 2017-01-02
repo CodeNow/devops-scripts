@@ -3,14 +3,17 @@
   become: true
   command: service procps start
 
-- name: update /etc/firewall.conf so that it load on system startup
-  become: true
-  template: src=firewall.conf.j2 dest=/etc/firewall.conf owner=root group=root mode=500
-
 - name: restart psad
   become: true
-  service: name=psad state=restarted enabled=true
+  service:
+    name=psad
+    state=restarted
+    enabled=true
 
 - name: restart rsyslog
   become: true
   command: service rsyslog restart
+
+- name: restore iptables
+  become: true
+  command: iptables-restore < /etc/firewall.conf

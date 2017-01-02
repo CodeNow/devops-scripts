@@ -1,6 +1,6 @@
 ### Supports multiple email addresses (as a comma separated
 ### list).
-EMAIL_ADDRESSES             {{error_mail}};
+EMAIL_ADDRESSES             {{ error_mail }};
 
 ### Machine hostname
 HOSTNAME                    {{ ansible_hostname }};
@@ -432,7 +432,7 @@ ENABLE_EXT_SCRIPT_EXEC      Y;
 ### Of course this is only useful if the external program knows
 ### what to do with this information.
 ### Example:  EXTERNAL_SCRIPT       /path/to/script --ip SRCIP -v;
-EXTERNAL_SCRIPT             {{psad_script_folder}}/psad_script.js SRCIP >> {{psad_script_folder}}.log ;
+EXTERNAL_SCRIPT             {{ psad_script_folder }}/psad_script.sh SRCIP >> {{ psad_script_folder }}.log ;
 
 ### Control execution of EXTERNAL_SCRIPT (only once per IP, or
 ### every time a scan is detected for an ip).
