@@ -36,7 +36,7 @@ cream_http_rollbar_token=baa03dbd9f814d14ab0c99863ed6a4fb
 cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=173c1b366d11a3ef0f641c6b3327914368e67095
 cream_intercom_id=wqzm3rju
-cream_stripe_secret_key=sk_live_TM63XoojqPNzRNH3pG0p9adP
+cream_stripe_secret_key=sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
 cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
 [docks:vars]
@@ -105,12 +105,16 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [pheidi:vars]
+pheidi_intercom_admin_id=22382
 pheidi_intercom_id=wqzm3rju
-pheidi_intercom_key=ro-02a5323fd37f41f8eeebf6e6364cf87e6b6ac8c5
+pheidi_intercom_key=852895329aa77696b65491876eefe0eb386482c5
 pheidi_mongo_auth=pheidi:septa-mauve-enquiry-clipper-history
 pheidi_mongo_database=delta
 pheidi_mongo_replset_name=delta
 pheidi_runnabot_tokens=d22a5ec75f66a0f472f3d856eb01df2321115e0b,33d8accaa7afeace8f44e3a6de409097ea1e67b8,82a7f2838852c04b75bee2b1a8ed236e2f9fc1ef,cab912709f7eb5bb8c21f9177f845561222d3933
+
+[prometheus:vars]
+pager_duty_key=ky6EFGL7Zh-xH8x1qEJV
 
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
@@ -140,10 +144,11 @@ vault_aws_region=us-east-1
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60506
-datadog_tags=env:delta
-datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
+datadog_mongodb_user=datadog
+datadog_tags=env:delta
 domain=runnable.io
+env=delta
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-delta
@@ -162,7 +167,6 @@ vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f0
 [ec2:vars]
 aws_custid=437258487404
 bastion_sshd_port=60506
-env=delta
 region=us-west-2
 sg_hipache=sg-7fd7fb1b
 sg_api=sg-0bf7db6f

@@ -39,28 +39,42 @@
   command: openssl dhparam -out /etc/ssl/certs/{{ domain }}/dhparam.pem 2048
 
 - name: make sure nginx directory is in place
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy, configure_files ]
   become: true
   file:
     dest: /etc/nginx
     state: directory
 
 - name: put nginx configuration in place
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy, configure_files ]
   become: yes
   template:
     src: proxy-nginx.conf
     dest: /etc/nginx/nginx.conf
 
 - name: assert nginx template directory
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy, configure_files ]
   become: yes
   file:
     state: directory
     dest: /etc/nginx/template
 
+- name: assert nginx other-sites-enabled directory
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/other-sites-enabled
+
+- name: put mixpanel template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: mixpanel.tmpl
+    dest: /etc/nginx/other-sites-enabled/mixpanel.conf
+
 - name: put api template in place
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy, configure_files ]
   become: yes
   template:
     src: api.tmpl

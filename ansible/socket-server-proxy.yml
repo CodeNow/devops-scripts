@@ -5,4 +5,7 @@
   roles:
     - role: datadog
       has_dd_integration: yes
+
+    - role: runnable-domain-proxy
+
     - role: container_restart

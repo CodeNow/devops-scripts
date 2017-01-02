@@ -18,7 +18,7 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive either `Test-runnable.pem`, `oregon.pem`, `delta.pem`, `delta-prime.pem` or some combination of them.
+4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive `*.pem` files.
 
 5. Move the “Keys of Power” .pem  files to your `~/.ssh` directory
 
@@ -68,7 +68,7 @@ of the docker image needed to run the service on our architecture.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag]
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -t deploy
 ```
 
 ##### Arguments
@@ -84,21 +84,6 @@ ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-o
   - `-e git_branch=v1.9.9` (version tag)
   - `-e git_branch=my-feature-branch` (branch)
   - `-e git_branch=3928745892364578623` (specific commit)
-
-
-#### Redeploy Tag or Branch (No Build)
-Redeploy the given tag or branch without building the docker image. This is useful for when a redeploy
-is required, but it is of an already built image (e.g. when a service runs out of memory).
-
-##### Command
-```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -t deploy -e git_branch=[branch-or-tag]
-```
-
-##### Arguments
-- `[inventory_dir]` - The environment inventory files (servers and variables).
-- `[service-playbook]` - The playbook for the service you wish to deploy.
-- `[branch-or-tag]` - The branch or tag you wish to deploy.
 
 ##### Rebuild and Deploy Tag or Branch (No Cache)
 Forces a rebuild of a docker image for the given service at the given branch or tag and then deploys the
@@ -136,10 +121,12 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | big poppa | [Big Poppa - The Notorious B.I.G.](https://www.youtube.com/watch?v=phaJXp_zMYM) |
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
+| deployer | [Roll our](https://www.youtube.com/watch?v=t21DFnu00Dc) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
 | docker-listener | [Call Me Maybe - Carly Rae Jepsen](https://www.youtube.com/watch?v=fWNaR-rxAic) |
 | drake | [Drake - Hotline Bling](https://www.youtube.com/watch?v=uxpDa-c-4Mc)
 | filibuster | [He's a Pirate - Pirates Of The Caribbean](https://www.youtube.com/watch?v=yRh-dzrI4Z4) |
+| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.] (https://www.youtube.com/watch?v=4g5770gaais) |
 | github-proxy | [Proxy - Martin Garrix](https://www.youtube.com/watch?v=NWB6-PJw4Mk) |
 | khronos | [Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU) |
 | krain | [Men at Work - Down Under](https://www.youtube.com/watch?v=XfR9iY5y94s) |
@@ -147,6 +134,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | mavis | [Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
 | navi | [Ocarina of Time: Lost Woods The Legend of Zelda](https://www.youtube.com/watch?v=iOGpdGEEcJM) |
 | optimus | [Original Transformers Opening Theme](https://www.youtube.com/watch?v=nLS2N9mHWaw) |
+| pheidi | [Chariots of Fire Theme](https://www.youtube.com/watch?v=CSav51fVlKU) |
 | runnable-angular | [Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
 | sauron | [Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
 | Security Groups | [Out of the Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
@@ -154,4 +142,3 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | swarm-deamon | [Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q) |
 | swarm-manager | [Eric Prydz VS Pink Floyd - 'Proper Education'](https://www.youtube.com/watch?v=IttkDYE33aU) |
 | vault / vault-values | [Seal - Kiss From A Rose](https://www.youtube.com/watch?v=zP3so2hY4CM) |
-| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.] (https://www.youtube.com/watch?v=4g5770gaais) |

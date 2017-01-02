@@ -90,8 +90,9 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.production-beta
 palantiri_rollbar_key=f675e9090d6f483ca4e742af2c7f2f83
 
 [pheidi:vars]
+pheidi_intercom_admin_id=22382
 pheidi_intercom_id=xs5g95pd
-pheidi_intercom_key=ro-9367eb0eb11542323371dcf25b8e260891f89b36
+pheidi_intercom_key=ac207e26721127c7db60544b78988c75c2e20e12
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=gamma
 pheidi_mongo_replset_name=gamma
@@ -123,11 +124,13 @@ vault_aws_region=us-east-1
 
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
+api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
-datadog_tags=env:gamma
-datadog_mongodb_user=datadog
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
+datadog_mongodb_user=datadog
+datadog_tags=env:gamma
 domain=runnable-gamma.com
+env=gamma
 mongo_port=27017
 node_env=production-gamma
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
@@ -136,14 +139,12 @@ rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.4.82
 user_content_domain=runnable.ninja
-api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
 
 [ec2:vars]
-env=gamma
 aws_custid=437258487404
 bastion_sshd_port=60709
 region=us-west-2

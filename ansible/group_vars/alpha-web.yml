@@ -11,6 +11,7 @@ do_not_push: yes
 dockerfile_enviroment: [
   "API_SOCK_URL https://{{ api_socket_server_hostname }}",
   "API_URL https://{{ api_hostname }}",
+  "MIXPANEL_PROXY_URL {{ mixpanel_proxy_url }}",
   "AWS_ACCESS_KEY {{ aws_access_key }}",
   "AWS_BUCKET app.{{ domain }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
