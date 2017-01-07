@@ -15,3 +15,4 @@ ansible/certs/*
 terraform/credentials.tfvars
 terraform/.build
 ansible/secrets/*
+.idea
