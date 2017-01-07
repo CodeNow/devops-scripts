@@ -132,7 +132,7 @@ ALERTING_METHODS            ALL;
 ### usually recommended.
 ENABLE_SYSLOG_FILE          Y;
 IPT_WRITE_FWDATA            Y;
-IPT_SYSLOG_FILE             {{ iptable_log_file }};
+IPT_SYSLOG_FILE             /var/log/syslog;
 
 ### When enabled, this instructs psad to write the "msg" field
 ### associated with Snort rule matches to syslog.

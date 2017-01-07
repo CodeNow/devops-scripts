@@ -20,6 +20,7 @@ container_run_args: ""
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
 dockerfile: basic_node/Dockerfile
+docker_network: 172.17.0.0/16
 base_dockerfile: node_base
 
 docker_config: runnable

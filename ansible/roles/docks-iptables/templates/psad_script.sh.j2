@@ -4,7 +4,7 @@ let alerted_ipaddress = $1
 echo "looking for container with ip = ${alerted_ipaddress}"
 
 for container_id in $(docker ps -qa); do
-  container_ipaddress="$(docker inspect --format "{{ .NetworkSettings.IPAddress }}" $container_id)"
+  container_ipaddress="$(docker inspect --format "{{ '{{' }} .NetworkSettings.IPAddress {{ '}}' }}" $container_id)"
   echo "checking ${container_id}: ${container_ipaddress}"
 
   if [[ "${container_ipaddress}" -eq "${alerted_ipaddress}" ]]; then
@@ -19,7 +19,7 @@ for container_id in $(docker ps -qa); do
     curl --header "Content-Type: application/json" \
       -X POST \
       --data '{"containerId":"'${container_id}'","logs":"'${psad_logs}'"}' \
-      "http://${{ drake_hostname }}/psad"
+      "http://{{ drake_hostname }}/psad"
 
     echo "killing and removing container_id"
     docker kill "${container_id}"
