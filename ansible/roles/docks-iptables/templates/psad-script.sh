@@ -1,6 +1,6 @@
 #!/bin/bash
-#
-let alerted_ipaddress = $1
+
+let alerted_ipaddress=$1
 echo "looking for container with ip = ${alerted_ipaddress}"
 
 for container_id in $(docker ps -qa); do

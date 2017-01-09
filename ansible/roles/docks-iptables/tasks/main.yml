@@ -1,23 +1,21 @@
 ---
-- name: create iptable rule
+- name: create folder
+  become: true
+  file:
+    path={{ psad_script_folder }}
+    state=directory
+    recurse=yes
+
+- name: copy iptable script
   become: true
   template:
-    src=firewall.conf.j2
-    dest=/etc/firewall.conf
-    mode=500
-    owner=root
-    group=root
-  notify:
-    - restore iptables
+    src=iptable-configure.sh
+    dest={{ psad_script_folder }}/iptable-configure.sh
+    mode=u+x
 
-- name: iptables restore in rc.local
+- name: run iptable script
   become: true
-  lineinfile:
-    dest=/etc/rc.local
-    line="iptables-restore < /etc/firewall.conf"
-    state=present
-    regexp=".+ \/etc\/firewall\.conf"
-    insertbefore="exit 0"
+  shell: "{{ psad_script_folder }}/iptable-configure.sh"
 
 - name: create sysctl config file
   become: true
@@ -29,14 +27,6 @@
     owner=root
   notify:
     - apply sysctl by service procps start
-
-- name: Adding iptables log to another iptable file
-  become: true
-  template:
-    src=10-iptables.conf.j2
-    dest=/etc/rsyslog.d/10-iptables.conf
-  notify:
-  - restart rsyslog
 
 - name: installing psad to latest version
   become: true
@@ -54,21 +44,15 @@
   register: command_result
   failed_when: "'FAILED' in command_result.stderr"
 
-- name: make folder for notification script
-  become: true
-  file:
-    path={{ psad_script_folder }}
-    state=directory
-    recurse=yes
 
-- name: make psad script that will run on startup
+- name: copy psad detected script
   become: true
   template:
-    src=psad_script.sh.j2
-    dest={{ psad_script_folder }}/psad_script.sh
+    src=psad-script.sh
+    dest={{ psad_script_folder }}/psad-script.sh
     mode=u+x
 
-- name: ensuring psad configuration file is in correct state.
+- name: copy pasd config script
   become: true
   template:
     dest=/etc/psad/psad.conf
