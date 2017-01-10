@@ -20,4 +20,4 @@
   - { role: install-ssm }
   - { role: dock-images }
   # must be run after dock-images
-  - { role: docks-iptables }
+  - { role: docks-psad }

@@ -1,8 +1,10 @@
 ---
-- name: run iptable script
-  tags: [ psad, iptable ]
+- name: create folder
   become: true
-  shell: "{{ psad_script_folder }}/iptable-configure.sh"
+  file:
+    path={{ psad_script_folder }}
+    state=directory
+    recurse=yes
 
 - name: create sysctl config file
   become: true
@@ -22,6 +24,8 @@
   apt:
     pkg=psad
     state=latest
+    update_cache=yes
+    cache_valid_time=3600
   notify:
   - restart psad
 

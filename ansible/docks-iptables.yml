@@ -5,4 +5,4 @@
   vars_files:
     - group_vars/alpha-docks.yml
   roles:
-  - { role: docks-iptables }
+  - { role: docks-psad }
