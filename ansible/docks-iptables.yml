@@ -1,8 +1,0 @@
----
-- hosts: consul
-
-- hosts: "{{ dock }}"
-  vars_files:
-    - group_vars/alpha-docks.yml
-  roles:
-  - { role: docks-psad }
