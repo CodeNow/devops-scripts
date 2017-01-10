@@ -1,19 +1,4 @@
 ---
-- name: create folder
-  become: true
-  file:
-    path={{ psad_script_folder }}
-    state=directory
-    recurse=yes
-
-- name: copy iptable script
-  tags: [ psad, iptable ]
-  become: true
-  template:
-    src=iptable-configure.sh
-    dest={{ psad_script_folder }}/iptable-configure.sh
-    mode=u+x
-
 - name: run iptable script
   tags: [ psad, iptable ]
   become: true
@@ -37,8 +22,6 @@
   apt:
     pkg=psad
     state=latest
-    update_cache=yes
-    cache_valid_time=3600
   notify:
   - restart psad
 

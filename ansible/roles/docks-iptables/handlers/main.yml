@@ -9,7 +9,3 @@
     name=psad
     state=restarted
     enabled=true
-
-- name: restore iptables
-  become: true
-  command: iptables-restore < /etc/firewall.conf

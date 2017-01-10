@@ -112,3 +112,9 @@
 - name: restart docker
   when: (copied_config.changed and restart is defined) or dock is defined
   command: sudo service docker restart
+
+- name: create docker group
+  become: true
+  group:
+    name: docker
+    state: present
