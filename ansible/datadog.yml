@@ -1,6 +1,5 @@
 ---
 - hosts: all
   roles:
-  - { role: base_ubuntu }
   - { role: apt_update }
   - { role: datadog, tags: ["datadog"] }
