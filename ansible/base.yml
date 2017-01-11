@@ -11,6 +11,7 @@
 
 - hosts: "{{ host }}"
   roles:
+  - { role: apt_update }
   - { role: package-dock, tags: [ dock, package ] }
   - { role: package-aws, tags: [ dock, package ] }
   - { role: package_ntp }
