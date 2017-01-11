@@ -16,13 +16,10 @@ for container_id in $(docker ps -qa); do
       psad_logs="${psad_logs} \n\n $(sed '/Whois Information/,$d' ${log_file})"
     done
 
+    echo "sending alert for ${container_id}"
     curl --header "Content-Type: application/json" \
       -X POST \
       --data '{"containerId":"'${container_id}'","logs":"'${psad_logs}'"}' \
       "http://{{ drake_hostname }}/psad"
-
-    echo "killing and removing ${container_id}"
-    docker kill "${container_id}"
-    docker rm "${container_id}"
   fi
 done
