@@ -13,13 +13,23 @@ for container_id in $(docker ps -qa); do
     echo "found container_id, getting logs for ${container_id}: ${container_ipaddress} from ${psad_logs_files}"
 
     for log_file in "${psad_logs_files}"; do
-      psad_logs="${psad_logs} \n\n $(sed '/Whois Information/,$d' ${log_file})"
+      psad_logs="${psad_logs}$(sed '/Whois Information/,$d' ${log_file})"
     done
 
-    echo "sending alert for ${container_id}"
+    data_file=`tempfile`
+    echo "generating data file at ${data_file}"
+    echo '{' > ${data_file}
+    echo '"containerId": "'"${container_id}"'",' >> ${data_file}
+    echo '"hostnames": "'`hostname -I | cut -d' ' -f1`'",' >> ${data_file}
+    echo '"logs": "'${psad_logs}'"'>> ${data_file}
+    echo '}' >> ${data_file}
+
+    echo "sending alert" `cat ${data_file}`
     curl --header "Content-Type: application/json" \
       -X POST \
-      --data '{"containerId":"'${container_id}'","logs":"'${psad_logs}'"}' \
+      --data "@${data_file}" \
       "http://{{ drake_hostname }}/psad"
+
+     rm "${data_file}"
   fi
 done
