@@ -77,7 +77,7 @@ SNORT_SID_STR               SID;
 ### psad will send an alert.  The default is 1 so that at
 ### least two port must be scanned (p2-p1 >= 1).  This can be set
 ### to 0 if you want psad to be extra paranoid, or 30000 if not.
-PORT_RANGE_SCAN_THRESHOLD   1;
+PORT_RANGE_SCAN_THRESHOLD   5;
 
 ### For IP protocol scan detection (nmap -sO).  While it may be relatively
 ### common for a host to trigger on tcp, udp, and icmp, it is more unusual if
@@ -118,7 +118,7 @@ SHOW_ALL_SIGNATURES         N;
 ### syslog and email messages).  "ALL" is the default.  Both "nosyslog"
 ### and "noemail" can be combined with a comma to disable all logging
 ### and alerting.
-ALERTING_METHODS            ALL;
+ALERTING_METHODS            noemail;
 
 ### By default, psad acquires iptables log data from the /var/log/messages
 ### file which the local syslog daemon (usually) writes iptables log messages
@@ -432,7 +432,7 @@ ENABLE_EXT_SCRIPT_EXEC      Y;
 ### Of course this is only useful if the external program knows
 ### what to do with this information.
 ### Example:  EXTERNAL_SCRIPT       /path/to/script --ip SRCIP -v;
-EXTERNAL_SCRIPT             {{ psad_script_folder }}/psad-script.sh SRCIP >> {{ psad_script_folder }}/psad-script.log ;
+EXTERNAL_SCRIPT             {{ psad_script_folder }}/psad-script.sh SRCIP >> {{ psad_script_folder }}/psad-script.log 2>&1;
 
 ### Control execution of EXTERNAL_SCRIPT (only once per IP, or
 ### every time a scan is detected for an ip).
