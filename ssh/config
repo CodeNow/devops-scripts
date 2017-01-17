@@ -117,6 +117,12 @@ Host gamma-navi
 Host gamma-registry
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
+Host gamma-bear-clone-main
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.148 22
+
+Host gamma-bear-clone-dock
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.248.1.58 22
+
 ################################################################################
 # Delta
 ################################################################################
@@ -204,6 +210,11 @@ Host delta-navi
 
 Host delta-swarm-manager
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.40 22
+
+################################################################################
+# Bear Clone
+################################################################################
+
 
 ################################################################################
 # other

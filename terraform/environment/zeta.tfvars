@@ -7,6 +7,8 @@
 environment = "zeta"
 key_name = "zeta"
 provider.region = "us-west-2"
+provider.access_key = "AKIAI2DRCDSEREBPTQDQ"
+provider.secret_key = "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"
 
 /**
  * VPC resource configuration.

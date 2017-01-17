@@ -9,7 +9,7 @@ resource "aws_subnet" "public-a" {
 
   vpc_id = "${aws_vpc.sandbox.id}"
   cidr_block = "${var.public-subnet.cidr_block_a}"
-  availability_zone = "${var.provider.region}a"
+  availability_zone = "us-west-2a"
   map_public_ip_on_launch = false
 }
 

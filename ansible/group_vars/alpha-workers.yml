@@ -8,7 +8,7 @@ memory_hard_limit: 1g
 container_envs: >
   {{ api_base_container_envs }}
   -e IS_QUEUE_WORKER=true
-  -e ROLLBAR_KEY={{ api_workers_rollbar_key }}
+  {% if api_workers_rollbar_key is defined %} -e ROLLBAR_KEY={{ api_workers_rollbar_key }} {% endif %}
 
 container_run_opts: >
   -h {{ name }}
