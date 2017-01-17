@@ -52,6 +52,9 @@ delta-api-socket
 [socket-server-proxy]
 delta-api-socket-proxy
 
+[deployer]
+delta-app-services
+
 [docks]
 
 [dock]

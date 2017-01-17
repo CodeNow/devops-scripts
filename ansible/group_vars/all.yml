@@ -20,6 +20,7 @@ container_run_args: ""
 repo_base: "{{ lookup('env','REPO_BASE') }}"
 
 dockerfile: basic_node/Dockerfile
+docker_network: 172.17.0.0/16
 base_dockerfile: node_base
 
 docker_config: runnable
@@ -179,6 +180,9 @@ registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['a
 
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
+
+# secrets
+secret_root: /opt/runnable/secrets
 
 # shiva
 pg_user: shiva

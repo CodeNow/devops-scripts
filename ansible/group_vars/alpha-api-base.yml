@@ -1,10 +1,11 @@
 container_tag: "{{ git_branch }}"
 
 node_version: 4.2.2
-npm_version: 2.14.7
+npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
 restart_policy: always
+has_shrinkwrap: true
 
 # for sendGrid
 sendgrid_key: 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
@@ -28,6 +29,7 @@ api_base_container_envs: >-
   -e CREAM_HOST=http://{{ cream_host_address }}:{{ cream_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
+  -e DOCKER_BUILD_LINE_TIMEOUT_MS=3600000
   -e DOMAIN={{ domain }}
   -e ENABLE_AUTOFORK_ON_BRANCH_PUSH=true
   -e ENABLE_USER_WHITELIST=true

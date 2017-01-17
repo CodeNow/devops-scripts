@@ -14,3 +14,5 @@ ansible/certs/*
 *.tfstate*
 terraform/credentials.tfvars
 terraform/.build
+ansible/secrets/*
+.idea
