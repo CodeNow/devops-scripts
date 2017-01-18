@@ -29,8 +29,10 @@ cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [docks:vars]
 docker_config=docks
+docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 
 [dock:vars]
+docks_rollbar_key=d1af6567ed0f464fb1d676f38fd31751
 
 [drake:vars]
 drake_port=80
@@ -69,6 +71,18 @@ registry_s3_region=us-east-1
 [shiva:vars]
 aws_access_key_id=AKIAIVCZL2ARDILEI6AA
 aws_secret_access_key=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
+shiva_consult_hostname=10.4.0.148
+shiva_aws_region=us-west-2
+shiva_dock_security_groups=sg-ec0da194
+shiva_ssh_key_name=gamma-key
+shiva_aws_instance_image_id=ami-c07ec2a0
+shiva_aws_instance_image_name=dock-bear-clone
+shiva_aws_instance_type=t2.medium
+shiva_dock_pool_asg_name=bear-clone-asg-dock-pool
+shiva_aws_launch_configuration_name=bear-clone-lc-2.0.9
+shiva_aws_auto_scaling_group_subnets=subnet-9cb197f9
+shiva_aws_auto_scaling_group_max=29
+shiva_aws_auto_scaling_group_prefix=asg-bear-clone-
 
 [swarm-manager:vars]
 aws_access_key=AKIAIVCZL2ARDILEI6AA
@@ -90,8 +104,9 @@ datadog_mongodb_pwd=
 domain=runnable.rocks
 mongo_port=27017
 node_env=production-bear-clone
-pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
-pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
+pg_user=astral
+pg_pass=MgZQTuJcFZxM3aoJHtXn
+pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.4.82

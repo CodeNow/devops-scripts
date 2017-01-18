@@ -25,8 +25,19 @@ container_envs: >
   -e REDIS_PORT={{ redis_tls_port }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REGISTRY_HOST={{ registry_host }}
-  -e ROLLBAR_KEY={{ shiva_rollbar_token }}
+  {% if shiva_rollbar_token is defined %} -e ROLLBAR_KEY={{ shiva_rollbar_token }} {% endif %}
   -e DOCKER_PORT={{ docker_port }}
+  {% if shiva_consult_hostname is defined %} -e CONSUL_HOSTNAME={{ shiva_consult_hostname }} {% endif %}
+  {% if shiva_aws_region is defined %} -e AWS_REGION={{ shiva_aws_region }} {% endif %}
+  {% if shiva_dock_security_groups is defined %} -e AWS_DOCK_SECURITY_GROUPS={{ shiva_dock_security_groups }} {% endif %}
+  {% if shiva_ssh_key_name is defined %} -e AWS_SSH_KEY_NAME={{ shiva_ssh_key_name }} {% endif %}
+  {% if shiva_aws_instance_image_id is defined %} -e AWS_INSTANCE_IMAGE_ID={{ shiva_aws_instance_image_id }} {% endif %}
+  {% if shiva_aws_instance_image_name is defined %} -e AWS_INSTANCE_IMAGE_NAME={{ shiva_aws_instance_image_name }} {% endif %}
+  {% if shiva_dock_pool_asg_name is defined %} -e DOCK_POOL_ASG_NAME={{ shiva_dock_pool_asg_name }} {% endif %}
+  {% if shiva_aws_launch_configuration_name is defined %} -e AWS_LAUNCH_CONFIGURATION_NAME={{ shiva_aws_launch_configuration_name }} {% endif %}
+  {% if shiva_aws_auto_scaling_group_subnets is defined %} -e AWS_AUTO_SCALING_GROUP_SUBNETS={{ shiva_aws_auto_scaling_group_subnets }} {% endif %}
+  {% if shiva_aws_auto_scaling_group_max is defined %} -e AWS_AUTO_SCALING_GROUP_MAX_SIZE={{ shiva_aws_auto_scaling_group_max }} {% endif %}
+  {% if shiva_aws_auto_scaling_group_prefix is defined %} -e AWS_AUTO_SCALING_GROUP_PREFIX={{ shiva_aws_auto_scaling_group_prefix }} {% endif %}
 
 container_run_opts: >
   -h {{ name }}
