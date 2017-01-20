@@ -17,7 +17,6 @@
 
 - name: copy docker certs
   become: true
-  when: dock is defined
   copy:
     src=certs/
     dest=/etc/ssl/docker

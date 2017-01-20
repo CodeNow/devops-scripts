@@ -39,7 +39,7 @@ container_envs: >
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   {% if big_poppa_http_rollbar_token is defined %} -e ROLLBAR_KEY={{ big_poppa_http_rollbar_token }} {% endif %}
-  -e MONGO=mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ big_poppa_mongo_database }}
+  -e MONGO=mongodb://{{ mongo_hosts }}/{{ big_poppa_mongo_database }}
   -e MONGO_REPLSET_NAME={{ big_poppa_mongo_replset_name }}
   -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
   -e GITHUB_VARNISH_PORT={{ github_varnish_port }}

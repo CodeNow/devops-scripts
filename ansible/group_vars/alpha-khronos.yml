@@ -57,8 +57,8 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e INTERCOM_API_KEY={{ khronos_intercom_api_key | default('undefined') }}
   -e INTERCOM_APP_ID={{ khronos_intercom_app_id | default('undefined') }}
-  -e KHRONOS_MONGO=mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}
-  {% if node_env != "production-epsilon" %}
+  -e KHRONOS_MONGO=mongodb://{{ mongo_hosts }}/{{ khronos_mongo_database }}
+  {% if node_env == "production-delta" %}
     -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
     -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
     -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
