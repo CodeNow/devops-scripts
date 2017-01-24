@@ -11,7 +11,7 @@
 - name: start vault daemon
   run_once: true
   local_action:
-    shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 & echo $! > /tmp/vault.pid
+    shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
   notify:
     - stop vault
 
