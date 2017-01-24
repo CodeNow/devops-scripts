@@ -5,7 +5,7 @@ pager_duty_key: testkey
 
 # registry settings
 registry_env: prod
-registry_port: 80
+registry_port: 65001
 
 # for docker stop old container
 stop_time: 5
