@@ -3,11 +3,6 @@
 ops_slack_channel_url: https://hooks.slack.com/services/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
 pager_duty_key: testkey
 
-# Github Enterprise Config
-github_domain: api.github.com
-github_protocol: https
-is_github_enterprise: false
-
 # registry settings
 registry_env: prod
 registry_port: 80

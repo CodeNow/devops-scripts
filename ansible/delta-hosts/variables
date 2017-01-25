@@ -149,6 +149,9 @@ datadog_mongodb_user=datadog
 datadog_tags=env:delta
 domain=runnable.io
 env=delta
+github_domain: api.github.com
+github_protocol: https
+is_github_enterprise: false
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env=production-delta
