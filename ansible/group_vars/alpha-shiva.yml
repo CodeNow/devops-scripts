@@ -33,6 +33,7 @@ container_envs: >
   {% if shiva_ssh_key_name is defined %} -e AWS_SSH_KEY_NAME={{ shiva_ssh_key_name }} {% endif %}
   {% if shiva_aws_instance_image_id is defined %} -e AWS_INSTANCE_IMAGE_ID={{ shiva_aws_instance_image_id }} {% endif %}
   {% if shiva_aws_instance_image_name is defined %} -e AWS_INSTANCE_IMAGE_NAME={{ shiva_aws_instance_image_name }} {% endif %}
+  {% if shiva_aws_instance_type is defined %} -e AWS_INSTANCE_TYPE={{ shiva_aws_instance_type }} {% endif %}
   {% if shiva_dock_pool_asg_name is defined %} -e DOCK_POOL_ASG_NAME={{ shiva_dock_pool_asg_name }} {% endif %}
   {% if shiva_aws_launch_configuration_name is defined %} -e AWS_LAUNCH_CONFIGURATION_NAME={{ shiva_aws_launch_configuration_name }} {% endif %}
   {% if shiva_aws_auto_scaling_group_subnets is defined %} -e AWS_AUTO_SCALING_GROUP_SUBNETS={{ shiva_aws_auto_scaling_group_subnets }} {% endif %}
