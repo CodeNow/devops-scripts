@@ -7,6 +7,14 @@
   - fail: msg="`dock` (target dock) needs to be defined to run this role"
     when: dock is not defined
 
+  - name: remove datadog agent
+    become: true
+    apt:
+      name=datadog-agent
+      state=absent
+      purge=yes
+      force=yes
+
   - add_host:
       name={{ dock }}
       groups=dock
