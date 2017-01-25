@@ -111,9 +111,9 @@ datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:epsilon
 domain=runnable-beta.com
-github_domain: api.github.com
-github_protocol: https
-is_github_enterprise: false
+github_domain=api.github.com
+github_protocol=https
+is_github_enterprise=false
 mongo_port=27017
 node_env=production-epsilon
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
