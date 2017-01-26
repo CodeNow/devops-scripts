@@ -1,0 +1,10 @@
+---
+
+- hosts: egret
+  vars_files:
+    - group_vars/alpha-egret.yml
+  roles:
+  - role: notify
+    tags: [ notify ]
+  - { role: builder, tags: [build] }
+  - { role: container_kill_start }

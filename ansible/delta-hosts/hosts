@@ -59,6 +59,9 @@ delta-app-services
 
 [dock]
 
+[egret]
+delta-app-services
+
 [eru]
 delta-app-services
 
@@ -149,6 +152,7 @@ dock
 docker-listener
 docks
 drake
+egret
 eru
 github-varnish
 hipache
