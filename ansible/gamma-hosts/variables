@@ -130,7 +130,6 @@ datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma
 domain=runnable-gamma.com
-agreeable_egret_hello_runnable_github_token=b6130cbbd1be797d83b3d419ba60176e7b3f07d2
 env=gamma
 github_domain=api.github.com
 github_protocol=https

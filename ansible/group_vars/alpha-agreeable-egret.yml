@@ -1,4 +1,4 @@
-name: "arithmancy"
+name: "agreeable-egret"
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
@@ -6,13 +6,16 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "6.3.1"
 npm_version: "4.0.5"
 
+# Exposes egret
+redis_key: "frontend:{{ agreeable_egret_hostname }}"
+is_redis_update_required: 'yes'
+
 # container settings
 container_envs: >
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ agreeable_egret_hello_runnable_github_token }}
+  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
   -e NODE_ENV={{ node_env }}
 
 container_run_opts: >
   -h {{ name }}
   -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   {{ container_envs }}
