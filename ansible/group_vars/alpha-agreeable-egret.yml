@@ -8,7 +8,7 @@ npm_version: "4.0.5"
 
 # container settings
 container_envs: >
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
+  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ agreeable_egret_hello_runnable_github_token }}
   -e NODE_ENV={{ node_env }}
 
 container_run_opts: >

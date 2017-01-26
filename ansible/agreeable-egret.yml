@@ -1,8 +1,8 @@
 ---
 
-- hosts: egret
+- hosts: agreeable-egret
   vars_files:
-    - group_vars/alpha-egret.yml
+    - group_vars/alpha-agreeable-egret.yml
   roles:
   - role: notify
     tags: [ notify ]

@@ -45,7 +45,7 @@ gamma-consul-c
 [worker]
 gamma-api-worker
 
-[egret]
+[agreeable-egret]
 gamma-app-services
 
 [eru]
@@ -143,7 +143,7 @@ dock
 docker-listener
 docks
 drake
-egret
+agreeable-egret
 eru
 github-varnish
 hipache
