@@ -29,9 +29,14 @@
     - "ruby:2.3"
     - "python:2.7"
     - "php:7.0-apache"
+    - "runnable/node-starter"
+    - "runnable/rails-starter"
+    - "runnable/django-starter"
+    - "runnable/laravel-starter"
     - "runnable/mysql:5.6"
     - "runnable/postgres:9.4"
     - "runnable/mongo:3.2"
+    - "runnable/redis:3.2"
 
 - name: stopping docker
   become: true
