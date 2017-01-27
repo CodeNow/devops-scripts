@@ -12,7 +12,7 @@
       when: write_values is defined
       uri:
         method=PUT
-        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+        url=http://{{ ansible_default_ipv4.address }}:{{ consul_api_port }}/v1/kv/{{ item.key }}
         body="{{ item.value }}"
       with_items: "{{ consul_seed }}"
 
@@ -21,7 +21,7 @@
       when: read_values is defined
       uri:
         method=GET
-        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+        url=http://{{ ansible_default_ipv4.address }}:{{ consul_api_port }}/v1/kv/{{ item.key }}
       with_items: "{{ consul_seed }}"
       register: values
 

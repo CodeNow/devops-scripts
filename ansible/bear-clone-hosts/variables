@@ -46,8 +46,9 @@ khronos_mongo_replset_name=bearclone
 
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
-navi_proxy_port=65100
-navi_proxy_ssl_port=65101
+_navi_proxy_port=65100
+_navi_proxy_ssl_port=65101
+
 
 [optimus:vars]
 optimus_aws_access_id=AKIAIVCZL2ARDILEI6AA
@@ -112,8 +113,13 @@ pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.0.148
-registry_port=65001
+_registry_port=65001
+_consul_api_port=65200
+_consul_https_port=65201
+_swarm_master_port=65250
 user_content_domain=runnable-beta.com
+max_navi_port=65000
+_redis_port=65075
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_auth_token=f025895e-bfde-13d0-8913-0cea0c33cd4a
 vault_token_01=1618e6c73c18a7b2fad20b915b62f09d46244b2a217980a93e6f12d11e4d324501

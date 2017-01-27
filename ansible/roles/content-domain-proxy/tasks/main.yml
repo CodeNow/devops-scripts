@@ -52,14 +52,14 @@
     dest: /etc/nginx/nginx.conf
 
 - name: assert nginx template directory
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy,  configure_files ]
   become: yes
   file:
     state: directory
     dest: /etc/nginx/template
 
 - name: put navi template in place
-  tags: [ configure_proxy ]
+  tags: [ configure_proxy, configure_files ]
   become: yes
   template:
     src: navi.tmpl
@@ -79,4 +79,4 @@
     comment="Redirect {{ item }} traffic to port 80"
   with_items:
   - 81:442
-  - 444:65535
+  - 444:{{ max_navi_port  }} # Don't expose all ports if in a single host

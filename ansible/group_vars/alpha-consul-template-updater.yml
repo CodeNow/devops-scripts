@@ -6,12 +6,12 @@ container_tag: latest
 
 container_run_opts: >
   -d
-  --name {{ name }}
+  --name {{ name }}-{{ proxy_service_name }}
   -v /var/run/docker.sock:/tmp/docker.sock
-  -v {{ template_path }}:/tmp/template
+  -v {{ template_path }}:/tmp/template/{{ proxy_service_name }}.tmpl
   --volumes-from {{ target_container_name }}
 
 container_run_args: >
   -consul={{ consul_host_address }}:{{ consul_api_port }}
   -wait=1s
-  -template="/tmp/template:{{ target_updater_file_path }}/{{ proxy_service_name }}.conf:{{ template_command }}"
+  -template="/tmp/template/{{ proxy_service_name }}.tmpl:{{ target_updater_file_path }}/{{ proxy_service_name }}.conf:{{ template_command }}"

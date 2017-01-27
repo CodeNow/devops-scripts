@@ -1,0 +1,20 @@
+---
+name: nginx
+
+# used by container_kill_start
+container_image: "nginx"
+container_tag: "1.10"
+
+restart_policy: always
+
+container_run_opts: >
+  -d
+  --name {{ name }}
+  -p 0.0.0.0:443:443
+  -p 0.0.0.0:80:80
+  -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  -v /etc/nginx/other-sites-enabled:/etc/nginx/other-sites-enabled
+  -v /etc/nginx/sites-enabled/
+  -v /etc/ssl/certs/{{ domain }}:/etc/ssl/certs/{{ domain }}:ro
+  -v /etc/ssl/certs/{{ user_content_domain }}:/etc/ssl/certs/{{ user_content_domain }}:ro
+  -v /var/log/nginx:/var/log/nginx

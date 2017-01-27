@@ -1,0 +1,24 @@
+---
+- hosts: single-host-proxy
+  vars_files:
+    - group_vars/alpha-single-host-proxy.yml
+  roles:
+  - role: datadog
+    has_dd_integration: yes
+
+  - role: content-domain-proxy
+    proxy_service_name: navi
+
+  - role: runnable-domain-proxy
+    proxy_service_name: api
+
+
+- include: consul-template-updater.yml
+  vars:
+    host: ingress
+    var_file: alpha-navi-proxy.yml
+
+- include: consul-template-updater.yml
+  vars:
+    host: ingress
+    var_file: alpha-ingress-proxy.yml

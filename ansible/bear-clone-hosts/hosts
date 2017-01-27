@@ -105,6 +105,8 @@ gamma-bear-clone-main
 [github-varnish]
 gamma-bear-clone-main
 
+[single-host-proxy]
+gamma-bear-clone-main
 
 [docks]
 
@@ -139,6 +141,7 @@ redis-slave
 registry
 sauron
 shiva
+single-host-proxy
 socket-server
 socket-server-proxy
 swarm-manager
