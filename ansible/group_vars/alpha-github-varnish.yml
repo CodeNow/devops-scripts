@@ -8,6 +8,9 @@ repo: git@github.com:CodeNow/{{ name }}.git
 container_envs: >-
   -e VARNISH_PORT=80
   -e VARNISH_MALLOC=100M
+  -e GITHUB_DOMAIN={{ github_domain }}
+  -e IS_GITHUB_ENTERPRISE={{ is_github_enterprise }}
+  -e GITHUB_PROTOCOL={{ github_protocol }}
 
 container_run_opts: >
   -h {{ name }}
