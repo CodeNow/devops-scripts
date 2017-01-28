@@ -8,4 +8,4 @@
 - name: create key if not exist
   when: key_length.changed
   become: yes
-  command: docker run --rm redis redis-cli -h {{ redis_host_address }} RPUSH {{ redis_key }} {{ name }} {{ name }}
+  command: docker run --rm redis redis-cli -h {{ redis_host_address }} -p {{ redis_port }} RPUSH {{ redis_key }} {{ name }} {{ name }}

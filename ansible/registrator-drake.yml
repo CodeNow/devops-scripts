@@ -1,0 +1,11 @@
+---
+- hosts: consul
+
+- hosts: drake-http
+  vars_files:
+  - group_vars/alpha-registrator.yml
+  roles:
+  - role: notify
+    tags: notify
+
+  - role: container_kill_start

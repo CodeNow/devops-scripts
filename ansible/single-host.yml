@@ -19,11 +19,11 @@
 # - include: registry.yml
 
 # Docks Services
-- include: swarm-manager.yml
+# - include: swarm-manager.yml
 # - include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
 # - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
-- include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
-- include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
+# - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
+# - include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
 
 # Main
 - include: api.yml git_branch="{{ api_branch }}" -t deploy
