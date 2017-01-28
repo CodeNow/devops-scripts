@@ -5,23 +5,25 @@
 # - include: datadog.yml
 #
 ## begin with databases:
-- include: consul.yml
-- include: vault.yml
-- include: rabbitmq.yml
-- include: redis.yml
-- include: registry.yml
+# - include: consul.yml
+# - include: vault.yml
 
-# Not sure if we have to run this
-#- include: consul-values.yml -e write_values="true"
-# - include: consul-services.yml
+# Initial values (Only run the first time)
+#- include: consul-values.yml -e write_values="true" # Only run the first time
+# - include: consul-services.yml # Only run the first time
 # - include: vault-values.yml -e write_values="true"
 
+# Databases
+# - include: rabbitmq.yml
+# - include: redis.yml
+# - include: registry.yml
+
 # Docks Services
-- include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
-- include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
+- include: swarm-manager.yml
+# - include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
+# - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
 - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
 - include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
-- include: swarm-manager.yml
 
 # Main
 - include: api.yml git_branch="{{ api_branch }}" -t deploy

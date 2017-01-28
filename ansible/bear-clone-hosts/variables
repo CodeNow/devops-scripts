@@ -95,8 +95,12 @@ environment_name=bear-clone
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAIVCZL2ARDILEI6AA
-vault_aws_secret_key=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
-vault_aws_region=us-east-1
+vault_aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e/
+# vault_aws_access_key_id=AKIAIALSDNO3WSKPWOEA
+# vault_aws_secret_key=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
+vault_aws_region=us-west-2
+vault_root_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
+vault_unseal_tokens={'one':'d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001', 'two': '4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602', 'three': '6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403', 'four': '41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04', 'five': '600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805'}
 
 [bear-clone:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
@@ -127,6 +131,12 @@ vault_token_02=d3a0b4741e673cd93f17486478a03f78bc53c60c2345213477f1808ef339d3140
 vault_token_03=a5e9f76f14fc3de2e3e7258f5e3b943111428fdc657c3f07f9709005b00bee3d03
 vault_token_04=7a3fedd99659dfb1ca5dc7274880376f1df2d222e28dc1d008c8a3a0ba7b023404
 vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d05
+# vault_auth_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
+# vault_token_01=d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001
+# vault_token_02=4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602
+# vault_token_03=6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403
+# vault_token_04=41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04
+# vault_token_05=600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805
 
 [ec2:vars]
 env=bear-clone
