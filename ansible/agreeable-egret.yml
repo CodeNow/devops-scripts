@@ -1,4 +1,5 @@
 ---
+- hosts: redis
 - hosts: agreeable-egret
   vars_files:
     - group_vars/alpha-agreeable-egret.yml
