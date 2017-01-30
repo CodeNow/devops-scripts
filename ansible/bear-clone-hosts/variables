@@ -137,6 +137,9 @@ vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d0
 # vault_token_03=6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403
 # vault_token_04=41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04
 # vault_token_05=600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805
+github_domain=api.github.com
+is_github_enterprise=false
+github_protocol=https
 
 [ec2:vars]
 env=bear-clone

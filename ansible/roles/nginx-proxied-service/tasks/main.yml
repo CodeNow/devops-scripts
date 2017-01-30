@@ -23,6 +23,13 @@
       proxy target ports -- {{ proxy_target_ports }}
       ip -- {{ target_ip_address }}
 
+- name: assert nginx other-sites-enabled directory
+  tags: [ configure_proxy, deploy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-enabled
+
 - name: put configuration in place
   delegate_to: "{{ nginx_host }}"
   tags: [ configure_proxy, deploy ]

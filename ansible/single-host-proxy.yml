@@ -12,6 +12,7 @@
   - role: runnable-domain-proxy
     proxy_service_name: api
 
+  - role: container_kill_start
 
 - include: consul-template-updater.yml
   vars:
