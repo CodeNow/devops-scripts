@@ -1,3 +1,7 @@
+[agreeable-egret:vars]
+agreeable_egret_port=80
+agreeable_egret_api_url=https://api.runnable.io
+
 [api_group:vars]
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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

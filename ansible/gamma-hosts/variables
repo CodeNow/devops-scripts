@@ -1,5 +1,6 @@
 [agreeable-egret:vars]
 agreeable_egret_port=80
+agreeable_egret_api_url=https://api.runnable-gamma.com
 
 [api_group:vars]
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
