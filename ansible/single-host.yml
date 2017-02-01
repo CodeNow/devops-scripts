@@ -25,6 +25,7 @@
 # - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
 # - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
 # - include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
+# - include: docker-listener.yml git_branch="{{ docker_listener_branch }}" -t deploy
 
 ## Proxies
 # - include: registrator-api.yml # Only one of these is neededi, so registrator-navi is not needed
