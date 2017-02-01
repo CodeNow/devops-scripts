@@ -201,5 +201,9 @@ npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 vault_local_port: "{{ _vault_local_port | default(31836) }}"
 vault_addr: http://127.0.0.1:{{ vault_local_port }}
 
+# Remote vault
+vault_port: "{{ _vault_port | default(8200) }}"
+vault_ssl_port: "{{ _vault_ssl_port | default(8201) }}"
+
 # userland
 userland_host_address: "{{ hostvars[groups['userland'][0]]['ansible_default_ipv4']['address'] }}"

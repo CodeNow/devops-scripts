@@ -101,6 +101,8 @@ vault_aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e/
 vault_aws_region=us-west-2
 vault_root_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
 vault_unseal_tokens={'one':'d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001', 'two': '4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602', 'three': '6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403', 'four': '41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04', 'five': '600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805'}
+_vault_port=65240
+_vault_ssl_port=65241
 
 [bear-clone:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
