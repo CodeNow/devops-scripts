@@ -16,6 +16,7 @@
 # Databases
 # - include: rabbitmq.yml
 # - include: redis.yml
+# - include: redis-tls.yml # Only used by navi and shiva
 # - include: registry.yml
 
 # Docks Services

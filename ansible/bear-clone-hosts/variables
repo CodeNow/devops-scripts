@@ -49,7 +49,6 @@ navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
-
 [optimus:vars]
 optimus_aws_access_id=AKIAIVCZL2ARDILEI6AA
 optimus_aws_secret_id=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e
@@ -82,7 +81,7 @@ shiva_aws_instance_image_id=ami-278a3447
 shiva_aws_instance_image_name=bear-clone-dock-2.0.10
 shiva_aws_instance_type=t2.medium
 shiva_dock_pool_asg_name=bear-clone-asg-dock-pool
-shiva_aws_launch_configuration_name=bear-clone-lc-2.0.10.7
+shiva_aws_launch_configuration_name=bear-clone-lc-2.0.10.10
 shiva_aws_auto_scaling_group_subnets=subnet-9cb197f9
 shiva_aws_auto_scaling_group_max=29
 shiva_aws_auto_scaling_group_prefix=asg-bear-clone-
@@ -126,6 +125,7 @@ _swarm_master_port=65250
 user_content_domain=runnable-beta.com
 max_navi_port=65000
 _redis_port=65075
+_redis_tls_port=65076
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_auth_token=f025895e-bfde-13d0-8913-0cea0c33cd4a
 vault_token_01=1618e6c73c18a7b2fad20b915b62f09d46244b2a217980a93e6f12d11e4d324501

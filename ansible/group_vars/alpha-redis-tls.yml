@@ -3,8 +3,12 @@ name: redis
 # container_kill_start settings
 container_image: runnable/redis-stunnel
 container_tag: v0.1.0
+
+container_envs: >
+  -e REDIS_PORT_6379_TCP_ADDR={{ redis_port }}
+
 container_run_opts: >
   --link redis:redis
   -d
-  -p {{ ansible_default_ipv4.address }}:6380:6380
+  -p {{ ansible_default_ipv4.address }}:{{ redis_tls_port}}:6380
   -v /opt/redis-tls/stunnel.pem:/stunnel/private.pem
