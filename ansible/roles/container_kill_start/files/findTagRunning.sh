@@ -12,7 +12,7 @@ else
         docker inspect "${container}" 2>/dev/null| grep -q '"Image": "'"${IMAGE_NAME}" &> /dev/null
         HAS_IMAGE=$?
         if [ ! -z "${CONTAINER_NAME}"  ] ; then
-          docker inspect "${container}" 2>/dev/null| grep -q '"Name": "'"\/${CONTAINER_NAME}" > /dev/null 2>&1
+          docker inspect "${container}" 2>/dev/null| grep -q  "\"Name\": \"\/${CONTAINER_NAME}\"" > /dev/null 2>&1
           HAS_CONTAINER_NAME=$?
         else
           HAS_CONTAINER_NAME=0

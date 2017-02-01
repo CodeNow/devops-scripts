@@ -63,7 +63,7 @@
   become: yes
   template:
     src: navi.tmpl
-    dest: /etc/nginx/template/navi.tmpl
+    dest: /etc/nginx/template/
 
 - name: setup ip table rule to redir all to port 80
   tags: [ configure_proxy, iptables ]

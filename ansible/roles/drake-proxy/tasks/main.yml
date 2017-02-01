@@ -59,16 +59,9 @@
     state: directory
     dest: /etc/nginx/template
 
-- name: assert nginx other-sites-enabled directory
-  tags: [ configure_proxy, configure_files ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/other-sites-enabled
-
 - name: put drake template in place
   tags: [ configure_proxy, configure_files ]
   become: yes
   template:
-    src: drake.tmpl
-    dest: /etc/nginx/template/drake.tmpl
+    src: drake-http.tmpl
+    dest: /etc/nginx/template/

@@ -6,6 +6,9 @@
   - role: datadog
     has_dd_integration: yes
 
+  - role: drake-proxy
+    proxy_service_name: drake-http
+
   - role: content-domain-proxy
     proxy_service_name: navi
 
@@ -13,6 +16,11 @@
     proxy_service_name: api
 
   - role: container_kill_start
+
+- include: consul-template-updater.yml
+  vars:
+    host: ingress
+    var_file: alpha-drake-proxy.yml
 
 - include: consul-template-updater.yml
   vars:
