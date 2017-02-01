@@ -1,4 +1,17 @@
 ---
+# start our new container with options and args
+- name: get socket server container ids
+  tags: [ configure_proxy, deploy ]
+  become: yes
+  when: new_container_ids is not defined
+  shell: >
+    docker ps --format {% raw %}"{{\.Image}}\t{{\.ID}}"{% endraw %} |
+    grep socket |
+    cut -f2
+  args:
+    executable: /bin/bash
+  register: new_container_ids
+
 # Get port information from the hosted service
 - name: get socket server ports
   tags: [ configure_proxy, deploy ]

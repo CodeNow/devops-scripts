@@ -142,6 +142,8 @@ vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d0
 github_domain=api.github.com
 is_github_enterprise=false
 github_protocol=https
+proxy_container_image=runnable/sticky-nginx
+proxy_container_image_version=v1.8.1
 
 [ec2:vars]
 env=bear-clone

@@ -3,8 +3,8 @@ map $http_upgrade $connection_upgrade {
   '' close;
 }
 
-upstream {{ proxy_service_name }} {
- {{ '{{' }}range service "{{ proxy_service_name }}"{{ '}}' }} server {{ '{{' }}.Address{{ '}}' }}:{{ '{{' }}.Port{{ '}}' }} max_fails=0 fail_timeout=1s;
+upstream {{ proxy_service_name }}-socket-server {
+ {{ '{{' }}range service "{{ proxy_service_name }}-socket-server"{{ '}}' }} server {{ '{{' }}.Address{{ '}}' }}:{{ '{{' }}.Port{{ '}}' }} max_fails=0 fail_timeout=1s;
  {{ '{{' }}end{{ '}}' }}
 }
 
@@ -12,11 +12,11 @@ server {
   listen 80;
   client_max_body_size 5g;
   # This used to be {{ domain }} but this is only for api...?
-  server_name api.{{ domain }};
-  access_log /var/log/nginx/{{ proxy_service_name }}.access.log;
+  server_name apisock.{{ domain }};
+  access_log /var/log/nginx/{{ proxy_service_name }}-socket-server.access.log;
 
   location / {
-    proxy_pass http://{{ proxy_service_name }};
+    proxy_pass http://{{ proxy_service_name }}-socket-server;
     proxy_http_version 1.1;
     proxy_set_header upgrade $http_upgrade;
     proxy_set_header connection $connection_upgrade;
@@ -33,8 +33,8 @@ server {
 server {
   listen 443 ssl;
   client_max_body_size 5g;
-  server_name api.{{ domain }};
-  access_log /var/log/nginx/{{ proxy_service_name }}.ssl.access.log;
+  server_name apisock.{{ domain }};
+  access_log /var/log/nginx/{{ proxy_service_name }}-socket-server.ssl.access.log;
 
   ssl on;
   ssl_certificate /etc/ssl/certs/{{ domain }}/chained.pem;
@@ -55,7 +55,7 @@ server {
   resolver_timeout 5s;
 
   location / {
-    proxy_pass http://{{ proxy_service_name }};
+    proxy_pass http://{{ proxy_service_name }}-socket-server;
     proxy_http_version 1.1;
     proxy_set_header upgrade $http_upgrade;
     proxy_set_header connection $connection_upgrade;

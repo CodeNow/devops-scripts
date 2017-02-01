@@ -2,10 +2,12 @@
 name: nginx
 
 # used by container_kill_start
-container_image: "nginx"
-container_tag: "1.10"
+container_image: "{{ proxy_container_image }}"
+docker_image_version: "{{ proxy_container_image_version }}"
 
 restart_policy: always
+
+container_run_args: nginx -g 'daemon off;'
 
 container_run_opts: >
   -d

@@ -86,3 +86,10 @@
   template:
     src: api.tmpl
     dest: /etc/nginx/template/api.tmpl
+
+- name: put api-socket-server template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: api-socket-server.tmpl
+    dest: /etc/nginx/template/api-socket-server.tmpl

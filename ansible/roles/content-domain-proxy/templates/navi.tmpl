@@ -3,7 +3,7 @@ map $http_upgrade $connection_upgrade {
   '' close;
 }
 
-upstream {{ name }} {
+upstream {{ name }}-navi {
  {{ '{{' }}range service "{{ proxy_service_name }}"{{ '}}' }} server {{ '{{' }}.Address{{ '}}' }}:{{ '{{' }}.Port{{ '}}' }} max_fails=0 fail_timeout=1s;
  {{ '{{' }}end{{ '}}' }}
 }
@@ -11,11 +11,11 @@ upstream {{ name }} {
 server {
   listen 80;
   client_max_body_size 200m;
-  server_name {{ user_content_domain }};
-  access_log /var/log/nginx/{{ name }}.access.log;
+  server_name {{ user_content_domain }} *.{{ user_content_domain }};
+  access_log /var/log/nginx/{{ name }}-navi.access.log;
 
   location / {
-    proxy_pass http://{{ name }};
+    proxy_pass http://{{ name }}-navi;
     proxy_http_version 1.1;
     proxy_set_header upgrade $http_upgrade;
     proxy_set_header connection $connection_upgrade;
@@ -36,8 +36,8 @@ server {
 server {
   listen 443 ssl;
   client_max_body_size 200m;
-  server_name {{ user_content_domain }};
-  access_log /var/log/nginx/{{ name }}.ssl.access.log;
+  server_name {{ user_content_domain }} *.{{ user_content_domain }};
+  access_log /var/log/nginx/{{ name }}-navi.ssl.access.log;
 
   ssl on;
   ssl_certificate /etc/ssl/certs/{{ user_content_domain }}/chained.pem;
@@ -58,7 +58,7 @@ server {
   resolver_timeout 5s;
 
   location / {
-    proxy_pass http://{{ name }};
+    proxy_pass http://{{ name }}-navi;
     proxy_http_version 1.1;
     proxy_set_header upgrade $http_upgrade;
     proxy_set_header connection $connection_upgrade;

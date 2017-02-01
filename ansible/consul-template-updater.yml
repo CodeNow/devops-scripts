@@ -9,4 +9,4 @@
   - role: notify
     tags: notify
   # Adding this at the end of the other thing
-  - role: container_start
+  - role: container_kill_start

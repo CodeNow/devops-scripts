@@ -1,4 +1,4 @@
-name: consul-template-updater
+name: consul-template-updater-{{ proxy_service_name }}
 
 # container_kill_start settings
 container_image: avthart/consul-template
@@ -6,7 +6,7 @@ container_tag: latest
 
 container_run_opts: >
   -d
-  --name {{ name }}-{{ proxy_service_name }}
+  --name {{ name }}
   -v /var/run/docker.sock:/tmp/docker.sock
   -v {{ template_path }}:/tmp/template/{{ proxy_service_name }}.tmpl
   --volumes-from {{ target_container_name }}

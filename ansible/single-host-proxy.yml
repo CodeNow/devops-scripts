@@ -23,3 +23,8 @@
   vars:
     host: ingress
     var_file: alpha-ingress-proxy.yml
+
+- include: consul-template-updater.yml
+  vars:
+    host: ingress
+    var_file: alpha-api-socket-server-proxy.yml
