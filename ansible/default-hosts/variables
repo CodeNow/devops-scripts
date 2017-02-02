@@ -64,109 +64,74 @@ pheidi_runnabot_tokens=${ GITHUB_ACCESS_TOKEN }
 [sauron:vars]
 
 [registry:vars]
-registry_s3_access_key=AWS_ACCESS_KEY_ID_1
-registry_s3_secret_key=AWS_SECRET_ACCESS_KEY_1
-registry_s3_bucket=runnableimages.bear-clone
-registry_s3_region=us-west-2
+registry_s3_access_key=${ AWS_ACCESS_KEY_ID_1 }
+registry_s3_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
+registry_s3_bucket=runnableimages.${ ENV }
+registry_s3_region=${ AWS_REGION }
 
 [shiva:vars]
-aws_access_key_id=AWS_ACCESS_KEY_ID_1
-aws_secret_access_key=AWS_SECRET_ACCESS_KEY_1
-shiva_consult_hostname=10.4.0.148
-shiva_aws_region=us-west-2
-shiva_dock_security_groups=sg-ec0da194
-shiva_ssh_key_name=gamma-key
-shiva_aws_instance_image_id=ami-278a3447
-shiva_aws_instance_image_name=bear-clone-dock-2.0.10
+aws_access_key_id=${ AWS_ACCESS_KEY_ID_1 }
+aws_secret_access_key=${ AWS_ACCESS_KEY_ID_1 }
+shiva_consult_hostname=${ MAIN_HOST_IP_ADDRESS }
+shiva_aws_region=${ AWS_REGION }
+shiva_dock_security_groups=${ AWS_DOCK_SG }
+shiva_ssh_key_name=${ AWS_SSH_KEY_NAME }
+shiva_aws_instance_image_id=${ AWS_DOCK_AMI_ID }
+shiva_aws_instance_image_name=${ AWS_DOCK_AMI_NAME }
 shiva_aws_instance_type=t2.medium
-shiva_dock_pool_asg_name=bear-clone-asg-dock-pool
-shiva_aws_launch_configuration_name=bear-clone-lc-2.0.10.10
-shiva_aws_auto_scaling_group_subnets=subnet-9cb197f9
+shiva_dock_pool_asg_name=${ ENV }-asg-dock-pool
+shiva_aws_launch_configuration_name=${ ENV }-lc-${ AWS_LC_VERSION }
+shiva_aws_auto_scaling_group_subnets=${ AWS_ASG_SUBNET }
 shiva_aws_auto_scaling_group_max=29
-shiva_aws_auto_scaling_group_prefix=asg-bear-clone-
+shiva_aws_auto_scaling_group_prefix=asg-${ ENV }-
 
 [swarm-manager:vars]
-aws_access_key=AWS_ACCESS_KEY_ID_1
-aws_secret_key=AWS_SECRET_ACCESS_KEY_1
-environment_name=bear-clone
+aws_access_key=${ AWS_ACCESS_KEY_ID_1 }
+aws_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
+environment_name=${ ENV }
 
 [vault:vars]
-vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-vault_aws_access_key_id=AWS_ACCESS_KEY_ID_1
-vault_aws_secret_key=AWS_SECRET_ACCESS_KEY_1/
-# vault_aws_access_key_id=AKIAIALSDNO3WSKPWOEA
-# vault_aws_secret_key=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
-vault_aws_region=us-west-2
-vault_root_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
-vault_unseal_tokens={'one':'d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001', 'two': '4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602', 'three': '6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403', 'four': '41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04', 'five': '600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805'}
+vault_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE }
+vault_aws_access_key_id=${ AWS_ACCESS_KEY_ID_1 }
+vault_aws_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
+vault_aws_region=${ AWS_REGION }
+vault_root_token=${ LOCAL_VAULT_ROOT_TOKEN }
+vault_unseal_tokens={'one':'${ LOCAL_VAULT_TOKEN_1 }', 'two': '${ LOCAL_VAULT_TOKEN_2 }', 'three': '${ LOCAL_VAULT_TOKEN_3 }', 'four': '${ LOCAL_VAULT_TOKEN_4 }', 'five': '${ LOCAL_VAULT_TOKEN_5 }'}
 _vault_port=65240
 _vault_ssl_port=65241
 
-[bear-clone:vars]
-ansible_ssh_private_key_file=~/.ssh/gamma.pem
+[${ ENV }:vars]
+ansible_ssh_private_key_file=~/.ssh/${ PEM_KEY_NAME }
 bastion_sshd_port=60709
-datadog_tags=env:bear-clone
+datadog_tags=env:${ ENV }
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=
-domain=runnable.rocks
+domain=${ DOMAIN }
 mongo_port=27017
-node_env=bear-clone
+node_env=${ ENV }
 pg_user=astral
-pg_pass=MgZQTuJcFZxM3aoJHtXn
-pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
-rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-registry_host=10.4.0.148
+pg_pass=${ POSTGRES_PASSWORD }
+pg_host=${ POSTGRES_HOST }:${ POSTGRES_PORT }
+rabbit_password=${ RABBIT_PASSWORD }
+rabbit_username=${ RABBIT_USERNAME }
+registry_host=${ MAIN_HOST_IP_ADDRESS }
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201
 _swarm_master_port=65250
-user_content_domain=runnable-beta.com
+user_content_domain=${ USER_CONTENT_DOMAIN }
 max_navi_port=65000
 _redis_port=65075
 _redis_tls_port=65076
-api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-vault_auth_token=f025895e-bfde-13d0-8913-0cea0c33cd4a
-vault_token_01=1618e6c73c18a7b2fad20b915b62f09d46244b2a217980a93e6f12d11e4d324501
-vault_token_02=d3a0b4741e673cd93f17486478a03f78bc53c60c2345213477f1808ef339d31402
-vault_token_03=a5e9f76f14fc3de2e3e7258f5e3b943111428fdc657c3f07f9709005b00bee3d03
-vault_token_04=7a3fedd99659dfb1ca5dc7274880376f1df2d222e28dc1d008c8a3a0ba7b023404
-vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d05
-# vault_auth_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
-# vault_token_01=d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001
-# vault_token_02=4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602
-# vault_token_03=6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403
-# vault_token_04=41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04
-# vault_token_05=600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805
+api_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE }
+vault_auth_token=${ REMOTE_VAULT_ROOT_TOKEN }
+vault_token_01=${ REMOTE_VAULT_TOKEN_1 }
+vault_token_02=${ REMOTE_VAULT_TOKEN_2 }
+vault_token_03=${ REMOTE_VAULT_TOKEN_3 }
+vault_token_04=${ REMOTE_VAULT_TOKEN_4 }
+vault_token_05=${ REMOTE_VAULT_TOKEN_5 }
 github_domain=api.github.com
 is_github_enterprise=false
 github_protocol=https
 proxy_container_image=runnable/sticky-nginx
 proxy_container_image_version=v1.8.1
-
-[ec2:vars]
-env=bear-clone
-aws_custid=437258487404
-bastion_sshd_port=60709
-region=us-west-2
-vpc_id=vpc-c53464a0
-sg_api=sg-3b0c7b5f
-sg_app_services=sg-35d14052
-sg_bastion=sg-91eb81f5
-sg_consul=sg-899616ee
-sg_dock=sg-577a0d33
-sg_dock_services=sg-12d14075
-sg_hipache=sg-e70c7883
-sg_mongo=sg-977a0df3
-sg_nat=sg-b595ffd1
-sg_navi=sg-45633421
-sg_rabbit=sg-44b7cb20
-sg_rds=sg-081e596c
-sg_redis=sg-477b0c23
-sg_registry=sg-c8d140af
-sg_userland=sg-12ce9876
-sg_web=sg-fe8bf49a
-
-[web:vars]
-web_sift_public_key=eea9746dff
-web_intercom_id=xs5g95pd
