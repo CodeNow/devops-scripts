@@ -16,8 +16,8 @@ big_poppa_pg_port=${POSTGRES_PORT}
 big_poppa_pg_user=big_poppa
 big_poppa_github_token=${GITHUB_ACCESS_TOKEN}
 big_poppa_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
-big_poppa_mongo_database=${MONGO_DATABASE_NAME}
-big_poppa_mongo_replset_name=${MONGO_DATABASE_NAME}-rs0
+big_poppa_mongo_database=${MONGO_DATABASE}
+big_poppa_mongo_replset_name=${MONGO_DATABASE}-rs0
 big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
@@ -38,8 +38,8 @@ drake_port=80
 
 [khronos:vars]
 khronos_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
-khronos_mongo_database=${MONGO_DATABASE_NAME}
-khronos_mongo_replset_name=${MONGO_DATABASE_NAME}
+khronos_mongo_database=${MONGO_DATABASE}
+khronos_mongo_replset_name=${MONGO_DATABASE}
 
 [metis:vars]
 
@@ -72,7 +72,6 @@ registry_s3_region=${AWS_REGION}
 [shiva:vars]
 aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
 aws_secret_access_key=${AWS_ACCESS_KEY_ID_1}
-shiva_consult_hostname=${MAIN_HOST_IP_ADDRESS}
 shiva_aws_region=${AWS_REGION}
 shiva_dock_security_groups=${AWS_DOCK_SG}
 shiva_ssh_key_name=${AWS_SSH_KEY_NAME}
@@ -101,7 +100,6 @@ _vault_port=65240
 _vault_ssl_port=65241
 
 [${ENV}:vars]
-ansible_ssh_private_key_file=~/.ssh/${PEM_KEY_NAME}
 bastion_sshd_port=60709
 datadog_tags=env:${ENV}
 datadog_mongodb_user=datadog
