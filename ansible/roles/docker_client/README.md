@@ -7,7 +7,7 @@ Ansible Role to Install Docker Client Certs on Ubuntu
 Creating new docker client certs:
 1. cd into this dir ```cd <roles/docker_client>```
 2. ensure you have ca-key.pem here `roles/docker_client/ca-key.pem`
-3. run cert generator ```sudo ./scripts/genClientCert.sh <app name> <server ip>```
+3. run cert generator ```sudo ./scripts/genClientCert.sh <app name> <server ip> <user content domain>```
 
 ## Author Information
 

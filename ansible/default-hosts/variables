@@ -24,7 +24,7 @@ big_poppa_pg_pool_max=20
 [cream:vars]
 cream_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN }
 cream_stripe_secret_key=${ STRIPE_SECRET_KEY }
-cream_stripe_publishable_key=${ STRIPE_SECRET_KEY }
+cream_stripe_publishable_key=${ STRIPE_PUBLISHABLE_KEY }
 
 [docks:vars]
 docker_config=docks

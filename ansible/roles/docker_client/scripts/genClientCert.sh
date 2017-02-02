@@ -7,10 +7,12 @@ fi
 CLIENT=./files/certs/$1
 
 echo 'WARN: hard coded alpha-api-old gamma-services and beta-services for SWARM'
-# if [[ $2 = '' ]]; then
-#   echo 'script requires a client ip address'
-#   exit 1
-# fi
+if [[ $2 = '' ]]; then
+  echo 'script requires a client ip address'
+  exit 1
+fi
+
+MAIN_HOST_IP_ADDRESS=$2
 
 mkdir $CLIENT
 
@@ -28,7 +30,7 @@ openssl req \
 chmod 400 "$CLIENT/client.csr"
 
 echo extendedKeyUsage=clientAuth,serverAuth > "$CLIENT/extfile.cnf"
-echo subjectAltName=IP:10.4.0.148,IP:127.0.0.1,DNS:localhost,DNS:swarm-staging-codenow.runnable-beta.com >> "$CLIENT/extfile.cnf"
+echo subjectAltName=IP:${MAIN_HOST_IP_ADDRESS},IP:127.0.0.1,DNS:localhost >> "$CLIENT/extfile.cnf"
 
 # generate cert for client
 openssl x509 \
