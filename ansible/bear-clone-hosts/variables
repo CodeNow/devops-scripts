@@ -117,7 +117,6 @@ pg_pass=MgZQTuJcFZxM3aoJHtXn
 pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-registry_host=10.4.0.148
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201

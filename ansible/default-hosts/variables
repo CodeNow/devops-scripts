@@ -114,7 +114,6 @@ pg_pass=${POSTGRES_PASSWORD}
 pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
 rabbit_password=${RABBIT_PASSWORD}
 rabbit_username=${RABBIT_USERNAME}
-registry_host=${MAIN_HOST_IP_ADDRESS}
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201

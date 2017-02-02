@@ -24,10 +24,10 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_PORT={{ redis_tls_port }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
-  -e REGISTRY_HOST={{ registry_host }}
+  -e REGISTRY_HOST={{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}
   {% if shiva_rollbar_token is defined %} -e ROLLBAR_KEY={{ shiva_rollbar_token }} {% endif %}
   -e DOCKER_PORT={{ docker_port }}
-  {% if shiva_consult_hostname is defined %} -e CONSUL_HOSTNAME={{ shiva_consult_hostname }} {% endif %}
+  {% if shiva_consult_hostname is defined %} -e CONSUL_HOSTNAME={{ hostvars[groups['dock'][0]]['ansible_default_ipv4']['address'] }} {% endif %}
   {% if shiva_aws_region is defined %} -e AWS_REGION={{ shiva_aws_region }} {% endif %}
   {% if shiva_dock_security_groups is defined %} -e AWS_DOCK_SECURITY_GROUPS={{ shiva_dock_security_groups }} {% endif %}
   {% if shiva_ssh_key_name is defined %} -e AWS_SSH_KEY_NAME={{ shiva_ssh_key_name }} {% endif %}
