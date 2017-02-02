@@ -7,4 +7,4 @@
   - role: notify
     tags: [ notify ]
   - { role: builder, tags: [build] }
-  - { role: container_start }
+  - { role: container_kill_start }
