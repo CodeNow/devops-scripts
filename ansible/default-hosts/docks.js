@@ -4,9 +4,9 @@
 
 var aws = require('aws-sdk');
 var ec2 = new aws.EC2({
-  accessKeyId: '${ AWS_ACCESS_KEY_ID_1 }',
-  secretAccessKey: '${ AWS_SECRET_ACCESS_KEY_1 }',
-  region: '${ AWS_REGION }'
+  accessKeyId: '${AWS_ACCESS_KEY_ID_1}',
+  secretAccessKey: '${AWS_SECRET_ACCESS_KEY_1}',
+  region: '${AWS_REGION}'
 });
 
 var params = {
@@ -14,7 +14,7 @@ var params = {
     // Only search for docks in the cluster security group
     {
       Name: 'instance.group-id',
-      Values: ['${ AWS_DOCK_SG }'] // This script is the same for all environments
+      Values: ['${AWS_DOCK_SG}'] // This script is the same for all environments
     },
     // Only fetch instances that are tagged as docks
     {

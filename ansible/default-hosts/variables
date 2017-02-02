@@ -1,135 +1,135 @@
 [api_group:vars]
-api_aws_access_key_id=${ AWS_ACCESS_KEY_ID_1 }
-api_aws_secret_access_key=${ AWS_SECRET_ACCESS_KEY_1 }
-api_github_client_id=${ GITHUB_CLIEND_ID }
-api_github_client_secret=${ GITHUB_CLIENT_SECRET }
-api_github_deploy_keys_bucket=runnable.deploykeys.${ ENV }
-api_mongo_auth=${ MONGO_USERNAME }:${ MONGO_PASSWORD }
-api_mongo_database=${ ENV }
-api_mongo_replset_name=${ ENV }-rs0
-api_s3_context_bucket=runnable.context.resources.${ ENV }
+api_aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
+api_aws_secret_access_key=${AWS_SECRET_ACCESS_KEY_1}
+api_github_client_id=${GITHUB_CLIEND_ID}
+api_github_client_secret=${GITHUB_CLIENT_SECRET}
+api_github_deploy_keys_bucket=runnable.deploykeys.${ENV}
+api_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
+api_mongo_database=${ENV}
+api_mongo_replset_name=${ENV}-rs0
+api_s3_context_bucket=runnable.context.resources.${ENV}
 
 [big-poppa:vars]
-big_poppa_pg_pass=${ POSTGRES_PASSWORD }
-big_poppa_pg_host=${ POSTGRES_HOST }:${ POSTGRES_PORT }
-big_poppa_pg_port=${ POSTGRES_PORT }
+big_poppa_pg_pass=${POSTGRES_PASSWORD}
+big_poppa_pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
+big_poppa_pg_port=${POSTGRES_PORT}
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=${ GITHUB_ACCESS_TOKEN }
-big_poppa_mongo_auth=${ MONGO_USERNAME }:${ MONGO_PASSWORD }
-big_poppa_mongo_database=${ MONGO_DATABASE_NAME }
-big_poppa_mongo_replset_name=${ MONGO_DATABASE_NAME }-rs0
+big_poppa_github_token=${GITHUB_ACCESS_TOKEN}
+big_poppa_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
+big_poppa_mongo_database=${MONGO_DATABASE_NAME}
+big_poppa_mongo_replset_name=${MONGO_DATABASE_NAME}-rs0
 big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN }
-cream_stripe_secret_key=${ STRIPE_SECRET_KEY }
-cream_stripe_publishable_key=${ STRIPE_PUBLISHABLE_KEY }
+cream_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN}
+cream_stripe_secret_key=${STRIPE_SECRET_KEY}
+cream_stripe_publishable_key=${STRIPE_PUBLISHABLE_KEY}
 
 [docks:vars]
 docker_config=docks
-docks_rollbar_key=${ ROLLBAR_TOKEN_DOCKS }
+docks_rollbar_key=${ROLLBAR_TOKEN_DOCKS}
 
 [dock:vars]
-docks_rollbar_key=${ ROLLBAR_TOKEN_DOCKS }
+docks_rollbar_key=${ROLLBAR_TOKEN_DOCKS}
 
 [drake:vars]
 drake_port=80
 
 [khronos:vars]
-khronos_mongo_auth=${ MONGO_USER }:${ MONGO_PASSWORD }
-khronos_mongo_database=${ MONGO_DATABASE_NAME }
-khronos_mongo_replset_name=${ MONGO_DATABASE_NAME }
+khronos_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
+khronos_mongo_database=${MONGO_DATABASE_NAME}
+khronos_mongo_replset_name=${MONGO_DATABASE_NAME}
 
 [metis:vars]
 
 [navi:vars]
-navi_cookie_secret=${ COOKIE_SECRET }
+navi_cookie_secret=${COOKIE_SECRET}
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
 [optimus:vars]
-optimus_aws_access_id=${ AWS_ACCESS_KEY_ID_1 }
-optimus_aws_secret_id=${ AWS_SECRET_ACCESS_KEY_1 }
-optimus_github_deploy_keys_bucket=runnable.deploykeys.${ ENV }
+optimus_aws_access_id=${AWS_ACCESS_KEY_ID_1}
+optimus_aws_secret_id=${AWS_SECRET_ACCESS_KEY_1}
+optimus_github_deploy_keys_bucket=runnable.deploykeys.${ENV}
 
 [palantiri:vars]
 
 [pheidi:vars]
-pheidi_mongo_auth=${ MONGO_USER }:${ MONGO_PASSWORD }
-pheidi_mongo_database=${ MONGO_DATABASE }
-pheidi_mongo_replset_name=${ MONGO_DATABASE }
-pheidi_runnabot_tokens=${ GITHUB_ACCESS_TOKEN }
+pheidi_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
+pheidi_mongo_database=${MONGO_DATABASE}
+pheidi_mongo_replset_name=${MONGO_DATABASE}
+pheidi_runnabot_tokens=${GITHUB_ACCESS_TOKEN}
 
 [sauron:vars]
 
 [registry:vars]
-registry_s3_access_key=${ AWS_ACCESS_KEY_ID_1 }
-registry_s3_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
-registry_s3_bucket=runnableimages.${ ENV }
-registry_s3_region=${ AWS_REGION }
+registry_s3_access_key=${AWS_ACCESS_KEY_ID_1}
+registry_s3_secret_key=${AWS_SECRET_ACCESS_KEY_1}
+registry_s3_bucket=runnableimages.${ENV}
+registry_s3_region=${AWS_REGION}
 
 [shiva:vars]
-aws_access_key_id=${ AWS_ACCESS_KEY_ID_1 }
-aws_secret_access_key=${ AWS_ACCESS_KEY_ID_1 }
-shiva_consult_hostname=${ MAIN_HOST_IP_ADDRESS }
-shiva_aws_region=${ AWS_REGION }
-shiva_dock_security_groups=${ AWS_DOCK_SG }
-shiva_ssh_key_name=${ AWS_SSH_KEY_NAME }
-shiva_aws_instance_image_id=${ AWS_DOCK_AMI_ID }
-shiva_aws_instance_image_name=${ AWS_DOCK_AMI_NAME }
+aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
+aws_secret_access_key=${AWS_ACCESS_KEY_ID_1}
+shiva_consult_hostname=${MAIN_HOST_IP_ADDRESS}
+shiva_aws_region=${AWS_REGION}
+shiva_dock_security_groups=${AWS_DOCK_SG}
+shiva_ssh_key_name=${AWS_SSH_KEY_NAME}
+shiva_aws_instance_image_id=${AWS_DOCK_AMI_ID}
+shiva_aws_instance_image_name=${AWS_DOCK_AMI_NAME}
 shiva_aws_instance_type=t2.medium
-shiva_dock_pool_asg_name=${ ENV }-asg-dock-pool
-shiva_aws_launch_configuration_name=${ ENV }-lc-${ AWS_LC_VERSION }
-shiva_aws_auto_scaling_group_subnets=${ AWS_ASG_SUBNET }
+shiva_dock_pool_asg_name=${ENV}-asg-dock-pool
+shiva_aws_launch_configuration_name=${ENV}-lc-${AWS_LC_VERSION}
+shiva_aws_auto_scaling_group_subnets=${AWS_ASG_SUBNET}
 shiva_aws_auto_scaling_group_max=29
-shiva_aws_auto_scaling_group_prefix=asg-${ ENV }-
+shiva_aws_auto_scaling_group_prefix=asg-${ENV}-
 
 [swarm-manager:vars]
-aws_access_key=${ AWS_ACCESS_KEY_ID_1 }
-aws_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
-environment_name=${ ENV }
+aws_access_key=${AWS_ACCESS_KEY_ID_1}
+aws_secret_key=${AWS_SECRET_ACCESS_KEY_1}
+environment_name=${ENV}
 
 [vault:vars]
-vault_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE }
-vault_aws_access_key_id=${ AWS_ACCESS_KEY_ID_1 }
-vault_aws_secret_key=${ AWS_SECRET_ACCESS_KEY_1 }
-vault_aws_region=${ AWS_REGION }
-vault_root_token=${ LOCAL_VAULT_ROOT_TOKEN }
-vault_unseal_tokens={'one':'${ LOCAL_VAULT_TOKEN_1 }', 'two': '${ LOCAL_VAULT_TOKEN_2 }', 'three': '${ LOCAL_VAULT_TOKEN_3 }', 'four': '${ LOCAL_VAULT_TOKEN_4 }', 'five': '${ LOCAL_VAULT_TOKEN_5 }'}
+vault_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+vault_aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
+vault_aws_secret_key=${AWS_SECRET_ACCESS_KEY_1}
+vault_aws_region=${AWS_REGION}
+vault_root_token=${LOCAL_VAULT_ROOT_TOKEN}
+vault_unseal_tokens={'one':'${LOCAL_VAULT_TOKEN_1}', 'two': '${LOCAL_VAULT_TOKEN_2}', 'three': '${LOCAL_VAULT_TOKEN_3}', 'four': '${LOCAL_VAULT_TOKEN_4}', 'five': '${LOCAL_VAULT_TOKEN_5}'}
 _vault_port=65240
 _vault_ssl_port=65241
 
-[${ ENV }:vars]
-ansible_ssh_private_key_file=~/.ssh/${ PEM_KEY_NAME }
+[${ENV}:vars]
+ansible_ssh_private_key_file=~/.ssh/${PEM_KEY_NAME}
 bastion_sshd_port=60709
-datadog_tags=env:${ ENV }
+datadog_tags=env:${ENV}
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=
-domain=${ DOMAIN }
+domain=${DOMAIN}
 mongo_port=27017
-node_env=${ ENV }
+node_env=${ENV}
 pg_user=astral
-pg_pass=${ POSTGRES_PASSWORD }
-pg_host=${ POSTGRES_HOST }:${ POSTGRES_PORT }
-rabbit_password=${ RABBIT_PASSWORD }
-rabbit_username=${ RABBIT_USERNAME }
-registry_host=${ MAIN_HOST_IP_ADDRESS }
+pg_pass=${POSTGRES_PASSWORD}
+pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
+rabbit_password=${RABBIT_PASSWORD}
+rabbit_username=${RABBIT_USERNAME}
+registry_host=${MAIN_HOST_IP_ADDRESS}
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201
 _swarm_master_port=65250
-user_content_domain=${ USER_CONTENT_DOMAIN }
+user_content_domain=${USER_CONTENT_DOMAIN}
 max_navi_port=65000
 _redis_port=65075
 _redis_tls_port=65076
-api_hello_runnable_github_token=${ GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE }
-vault_auth_token=${ REMOTE_VAULT_ROOT_TOKEN }
-vault_token_01=${ REMOTE_VAULT_TOKEN_1 }
-vault_token_02=${ REMOTE_VAULT_TOKEN_2 }
-vault_token_03=${ REMOTE_VAULT_TOKEN_3 }
-vault_token_04=${ REMOTE_VAULT_TOKEN_4 }
-vault_token_05=${ REMOTE_VAULT_TOKEN_5 }
+api_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+vault_auth_token=${REMOTE_VAULT_ROOT_TOKEN}
+vault_token_01=${REMOTE_VAULT_TOKEN_1}
+vault_token_02=${REMOTE_VAULT_TOKEN_2}
+vault_token_03=${REMOTE_VAULT_TOKEN_3}
+vault_token_04=${REMOTE_VAULT_TOKEN_4}
+vault_token_05=${REMOTE_VAULT_TOKEN_5}
 github_domain=api.github.com
 is_github_enterprise=false
 github_protocol=https
