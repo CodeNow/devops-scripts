@@ -111,6 +111,7 @@ datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:epsilon
 domain=runnable-beta.com
+github_api_url=https://api.github.com
 github_domain=api.github.com
 github_protocol=https
 is_github_enterprise=false
