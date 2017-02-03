@@ -9,6 +9,7 @@ api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database=bearclone
 api_mongo_replset_name=bearclone-rs0
 api_s3_context_bucket=runnable.context.resources.bear-clone2
+api_number_of_containers=1
 
 [big-poppa:vars]
 big_poppa_pg_pass=dgLXZdzJwepRAuGx4FRo
@@ -46,6 +47,7 @@ khronos_mongo_replset_name=bearclone
 
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
+navi_number_of_containers=1
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 

@@ -44,17 +44,6 @@
     awk '{print $3}'
   register: new_image_id
 
-- name: get id of the docker image
-  tags: deploy
-  become: yes
-  when: container_name is undefined
-  shell: >
-    docker images
-    --no-trunc |
-    grep {{ container_image }}.*{{ container_tag }} |
-    awk '{print $3}'
-  register: new_image_id
-
 # stop the old containers that were running this previously
 - name: stop old containers
   tags: deploy

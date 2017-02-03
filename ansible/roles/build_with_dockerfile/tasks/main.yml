@@ -1,9 +1,9 @@
 ---
 # commands to build an image from a repo that contains a Dockerfile
-# - name: Ensure Tag Deploy For Prod
-  # tags: deploy
-  # when: not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and node_env=="production-delta"
-  # fail: msg="only tag can be deployed on prod not {{ git_branch }}"
+- name: Ensure Tag Deploy For Prod
+  tags: deploy
+  when: not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and node_env=="production-delta"
+  fail: msg="only tag can be deployed on prod not {{ git_branch }}"
 
 - name: create build folder
   become: true
