@@ -1,10 +1,10 @@
 [api_group:vars]
 api_aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
 api_aws_secret_access_key=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
-api_github_client_id=${GITHUB_CLIEND_ID}
-api_github_client_secret=${GITHUB_CLIENT_SECRET}
+api_github_client_id=fb6620cd05b411759d15
+api_github_client_secret=8a7ff50364ce874865cebabae3d61697801ec950
 api_github_deploy_keys_bucket=runnable.deploykeys.grizzly
-api_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
+api_mongo_auth=nfE2OIeyTKWt4aGZWr1NSYTQb6WVN0dfp7U7vNKfRhY=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
 api_mongo_database=grizzly
 api_mongo_replset_name=grizzly-rs0
 api_s3_context_bucket=runnable.context.resources.grizzly
@@ -14,17 +14,17 @@ big_poppa_pg_pass=${POSTGRES_PASSWORD}
 big_poppa_pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
 big_poppa_pg_port=${POSTGRES_PORT}
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=${GITHUB_ACCESS_TOKEN}
-big_poppa_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
-big_poppa_mongo_database=${MONGO_DATABASE}
-big_poppa_mongo_replset_name=${MONGO_DATABASE}-rs0
+big_poppa_github_token=5346739a35753d289b9ef52bd68328ad36897091
+big_poppa_mongo_auth=nfE2OIeyTKWt4aGZWr1NSYTQb6WVN0dfp7U7vNKfRhY=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+big_poppa_mongo_database=grizzly
+big_poppa_mongo_replset_name=grizzly-rs0
 big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN}
-cream_stripe_secret_key=${STRIPE_SECRET_KEY}
-cream_stripe_publishable_key=${STRIPE_PUBLISHABLE_KEY}
+cream_hello_runnable_github_token=ebb1ef52e73a03899a31f067507f68e843d52f27 #Hello Runnable
+cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
+cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [docks:vars]
 docker_config=docks
@@ -37,9 +37,9 @@ docks_rollbar_key=${ROLLBAR_TOKEN_DOCKS}
 drake_port=80
 
 [khronos:vars]
-khronos_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
-khronos_mongo_database=${MONGO_DATABASE}
-khronos_mongo_replset_name=${MONGO_DATABASE}
+khronos_mongo_auth=W2i3PLCITOqvPeEG9MGiQ6F3yAdwwUJGscb1FURHxuI=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+khronos_mongo_database=grizzly
+khronos_mongo_replset_name=grizzly
 
 [metis:vars]
 
@@ -56,10 +56,10 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.grizzly
 [palantiri:vars]
 
 [pheidi:vars]
-pheidi_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
-pheidi_mongo_database=${MONGO_DATABASE}
-pheidi_mongo_replset_name=${MONGO_DATABASE}
-pheidi_runnabot_tokens=${GITHUB_ACCESS_TOKEN}
+pheidi_mongo_auth=W2i3PLCITOqvPeEG9MGiQ6F3yAdwwUJGscb1FURHxuI=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+pheidi_mongo_database=grizzly
+pheidi_mongo_replset_name=grizzly
+pheidi_runnabot_tokens=5346739a35753d289b9ef52bd68328ad36897091
 
 [sauron:vars]
 
@@ -90,7 +90,7 @@ aws_secret_key=k7L6Ljvl46ThhZ6ed3VeN6lRG83p3kR/1QXVDYUA
 environment_name=grizzly
 
 [vault:vars]
-vault_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+vault_hello_runnable_github_token=ebb1ef52e73a03899a31f067507f68e843d52f27 #Hello Runnable
 vault_aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
 vault_aws_secret_key=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
 vault_aws_region=us-west-2
@@ -110,8 +110,8 @@ node_env=grizzly
 pg_user=astral
 pg_pass=${POSTGRES_PASSWORD}
 pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
-rabbit_password=${RABBIT_PASSWORD}
-rabbit_username=${RABBIT_USERNAME}
+rabbit_password=dkW4nGBvTM+iV+7yXNnXLE1XJ0WpKk84nuDt1TJS1V4=
+rabbit_username=8NjWopyYRKClypDP6WuQXit3CKVhgksvm82ScQuL1ms=
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201
@@ -120,7 +120,7 @@ user_content_domain=runnabae.com
 max_navi_port=65000
 _redis_port=65075
 _redis_tls_port=65076
-api_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+api_hello_runnable_github_token=ebb1ef52e73a03899a31f067507f68e843d52f27 # HelloRunnable
 vault_auth_token=${REMOTE_VAULT_ROOT_TOKEN}
 vault_token_01=${REMOTE_VAULT_TOKEN_1}
 vault_token_02=${REMOTE_VAULT_TOKEN_2}
