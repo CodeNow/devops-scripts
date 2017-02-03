@@ -1,21 +1,22 @@
 [api_group:vars]
 api_aws_access_key_id=AKIAIVCZL2ARDILEI6AA
 api_aws_secret_access_key=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
-api_github_client_id=1639b85ac1efdbdf6330
-api_github_client_secret=6d158b52d7d5d0311fbc7231f47fb548f5da00e6
+api_github_client_id=ffb2586025d894ef70f4
+api_github_client_secret=3be37316b629f8d9881f8471d9e709b889ab01a9
 api_github_deploy_keys_bucket=runnable.deploykeys.bear-clone
 api_mixpanel_app_id=c41affa4b08818443365c526cbb51606
 api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database=bearclone
 api_mongo_replset_name=bearclone-rs0
 api_s3_context_bucket=runnable.context.resources.bear-clone2
+api_number_of_containers=1
 
 [big-poppa:vars]
 big_poppa_pg_pass=dgLXZdzJwepRAuGx4FRo
 big_poppa_pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 big_poppa_pg_port=32659
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
+big_poppa_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=bearclone
 big_poppa_mongo_replset_name=bearclone-rs0
@@ -23,7 +24,7 @@ big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=e1b68a2cbfefcfee87d72df6d1c07bce886454b9
+cream_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
@@ -46,6 +47,7 @@ khronos_mongo_replset_name=bearclone
 
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
+navi_number_of_containers=1
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
@@ -60,7 +62,7 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.bear-clone
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=bearclone
 pheidi_mongo_replset_name=bearclone
-pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
+pheidi_runnabot_tokens=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 
 [sauron:vars]
 
@@ -92,7 +94,7 @@ aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e
 environment_name=bear-clone
 
 [vault:vars]
-vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+vault_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 vault_aws_access_key_id=AKIAIVCZL2ARDILEI6AA
 vault_aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e/
 # vault_aws_access_key_id=AKIAIALSDNO3WSKPWOEA
@@ -104,45 +106,48 @@ _vault_port=65240
 _vault_ssl_port=65241
 
 [bear-clone:vars]
-ansible_ssh_private_key_file=~/.ssh/gamma.pem
-bastion_sshd_port=60709
-datadog_tags=env:bear-clone
-datadog_mongodb_user=datadog
-datadog_mongodb_pwd=
-domain=runnable.rocks
-mongo_port=27017
-node_env=bear-clone
-pg_user=astral
-pg_pass=MgZQTuJcFZxM3aoJHtXn
-pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
-rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-_registry_port=65001
-_consul_api_port=65200
-_consul_https_port=65201
-_swarm_master_port=65250
-user_content_domain=runnable-beta.com
-max_navi_port=65000
-_redis_port=65075
-_redis_tls_port=65076
-api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
-vault_auth_token=f025895e-bfde-13d0-8913-0cea0c33cd4a
-vault_token_01=1618e6c73c18a7b2fad20b915b62f09d46244b2a217980a93e6f12d11e4d324501
-vault_token_02=d3a0b4741e673cd93f17486478a03f78bc53c60c2345213477f1808ef339d31402
-vault_token_03=a5e9f76f14fc3de2e3e7258f5e3b943111428fdc657c3f07f9709005b00bee3d03
-vault_token_04=7a3fedd99659dfb1ca5dc7274880376f1df2d222e28dc1d008c8a3a0ba7b023404
-vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d05
 # vault_auth_token=2865193c-8abc-9ffd-74eb-23e7fc593f5b
 # vault_token_01=d09b3002044f8746271cb987601849faa16b90ddfdc651e89f5df111926c873001
 # vault_token_02=4c702650257794387da65d5aa0cad24d2e9fde5c06f7eb240dedcf70d08c55d602
 # vault_token_03=6db4c9d33289452fc8e25b929d5273e4285fc2eb3b05708d95cafca5496fa7b403
 # vault_token_04=41c7c6251fa23e84197cf52b968b0b288c499b119159b83b97066fa343dc645a04
 # vault_token_05=600329a6085cef93ac38f3e3ab13aa818a8987a6acab23920f215c76da3f963805
-github_domain=api.github.com
-is_github_enterprise=false
+_consul_api_port=65200
+_consul_https_port=65201
+_redis_port=65075
+_redis_tls_port=65076
+_registry_port=65001
+_swarm_master_port=65250
+ansible_ssh_private_key_file=~/.ssh/gamma.pem
+api_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+bastion_sshd_port=60709
+charon_api_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+datadog_mongodb_pwd=
+datadog_mongodb_user=datadog
+datadog_tags=env:bear-clone
+domain=runnable.rocks
+github_api_url=https://github.runnable-gamma.com/api/v3
+github_domain=github.runnable-gamma.com
 github_protocol=https
+is_github_enterprise=true
+max_navi_port=65000
+mongo_port=27017
+node_env=bear-clone
+pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+pg_pass=MgZQTuJcFZxM3aoJHtXn
+pg_user=astral
 proxy_container_image=runnable/sticky-nginx
 proxy_container_image_version=v1.8.1
+rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+registry_host=10.4.0.148
+user_content_domain=runnable-beta.com
+vault_auth_token=f025895e-bfde-13d0-8913-0cea0c33cd4a
+vault_token_01=1618e6c73c18a7b2fad20b915b62f09d46244b2a217980a93e6f12d11e4d324501
+vault_token_02=d3a0b4741e673cd93f17486478a03f78bc53c60c2345213477f1808ef339d31402
+vault_token_03=a5e9f76f14fc3de2e3e7258f5e3b943111428fdc657c3f07f9709005b00bee3d03
+vault_token_04=7a3fedd99659dfb1ca5dc7274880376f1df2d222e28dc1d008c8a3a0ba7b023404
+vault_token_05=0c76aec29cc2de8a16adaacc6e1b9c26b0e39bf2a4b4dfe38649b32bf9493f1d05
 
 [ec2:vars]
 env=bear-clone

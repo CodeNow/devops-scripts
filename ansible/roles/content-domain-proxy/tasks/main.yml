@@ -52,14 +52,14 @@
     dest: /etc/nginx/nginx.conf
 
 - name: assert nginx template directory
-  tags: [ configure_proxy,  configure_files ]
+  tags: [ configure_proxy ]
   become: yes
   file:
     state: directory
     dest: /etc/nginx/template
 
 - name: put navi template in place
-  tags: [ configure_proxy, configure_files ]
+  tags: [ configure_proxy ]
   become: yes
   template:
     src: navi.tmpl
