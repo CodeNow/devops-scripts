@@ -1,0 +1,11 @@
+---
+- hosts: userland
+  vars_files:
+  - group_vars/alpha-lets-encrypt-certs-generation.yml
+  roles:
+  - role: datadog
+    has_dd_integration: yes
+
+  - role: lets-encrypt-certs-generation
+
+  - role: container_kill_start
