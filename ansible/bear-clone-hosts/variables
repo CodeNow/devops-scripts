@@ -15,7 +15,7 @@ big_poppa_pg_pass=dgLXZdzJwepRAuGx4FRo
 big_poppa_pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 big_poppa_pg_port=32659
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=24a5d6f60f1d0bd4ab3cfcceeb6f4ab501b16cf9
+big_poppa_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=bearclone
 big_poppa_mongo_replset_name=bearclone-rs0
@@ -23,7 +23,7 @@ big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=24a5d6f60f1d0bd4ab3cfcceeb6f4ab501b16cf9
+cream_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
@@ -60,7 +60,7 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.bear-clone
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=bearclone
 pheidi_mongo_replset_name=bearclone
-pheidi_runnabot_tokens=24a5d6f60f1d0bd4ab3cfcceeb6f4ab501b16cf9
+pheidi_runnabot_tokens=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 
 [sauron:vars]
 
@@ -92,7 +92,7 @@ aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e
 environment_name=bear-clone
 
 [vault:vars]
-vault_hello_runnable_github_token=24a5d6f60f1d0bd4ab3cfcceeb6f4ab501b16cf9
+vault_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 vault_aws_access_key_id=AKIAIVCZL2ARDILEI6AA
 vault_aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e/
 # vault_aws_access_key_id=AKIAIALSDNO3WSKPWOEA
@@ -117,8 +117,9 @@ _redis_tls_port=65076
 _registry_port=65001
 _swarm_master_port=65250
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
-api_hello_runnable_github_token=24a5d6f60f1d0bd4ab3cfcceeb6f4ab501b16cf9
+api_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 bastion_sshd_port=60709
+charon_api_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
 datadog_mongodb_pwd=
 datadog_mongodb_user=datadog
 datadog_tags=env:bear-clone

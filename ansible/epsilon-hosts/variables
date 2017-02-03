@@ -107,6 +107,7 @@ vault_aws_region=us-east-1
 ansible_ssh_private_key_file=~/.ssh/epsilon.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60519
+charon_api_token=798fd0b696df96cf088de249918bf52f71058553
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:epsilon

@@ -126,6 +126,7 @@ vault_aws_region=us-east-1
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
+charon_api_token=e1b68a2cbfefcfee87d72df6d1c07bce886454b9
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma
