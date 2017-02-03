@@ -1,6 +1,6 @@
 [api_group:vars]
-api_aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
-api_aws_secret_access_key=${AWS_SECRET_ACCESS_KEY_1}
+api_aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
+api_aws_secret_access_key=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
 api_github_client_id=${GITHUB_CLIEND_ID}
 api_github_client_secret=${GITHUB_CLIENT_SECRET}
 api_github_deploy_keys_bucket=runnable.deploykeys.grizzly
@@ -49,8 +49,8 @@ _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
 [optimus:vars]
-optimus_aws_access_id=${AWS_ACCESS_KEY_ID_1}
-optimus_aws_secret_id=${AWS_SECRET_ACCESS_KEY_1}
+optimus_aws_access_id=AKIAIS2HMUM2REGVTVIQ
+optimus_aws_secret_id=k7L6Ljvl46ThhZ6ed3VeN6lRG83p3kR/1QXVDYUA
 optimus_github_deploy_keys_bucket=runnable.deploykeys.grizzly
 
 [palantiri:vars]
@@ -64,17 +64,17 @@ pheidi_runnabot_tokens=${GITHUB_ACCESS_TOKEN}
 [sauron:vars]
 
 [registry:vars]
-registry_s3_access_key=${AWS_ACCESS_KEY_ID_1}
-registry_s3_secret_key=${AWS_SECRET_ACCESS_KEY_1}
+registry_s3_access_key=AKIAIS2HMUM2REGVTVIQ
+registry_s3_secret_key=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
 registry_s3_bucket=runnableimages.grizzly
-registry_s3_region=${AWS_REGION}
+registry_s3_region=us-west-2
 
 [shiva:vars]
-aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
-aws_secret_access_key=${AWS_ACCESS_KEY_ID_1}
-shiva_aws_region=${AWS_REGION}
+aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
+aws_secret_access_key=AKIAIS2HMUM2REGVTVIQ
+shiva_aws_region=us-west-2
 shiva_dock_security_groups=${AWS_DOCK_SG}
-shiva_ssh_key_name=${AWS_SSH_KEY_NAME}
+shiva_ssh_key_name=gamma-key
 shiva_aws_instance_image_id=${AWS_DOCK_AMI_ID}
 shiva_aws_instance_image_name=${AWS_DOCK_AMI_NAME}
 shiva_aws_instance_type=t2.medium
@@ -85,15 +85,15 @@ shiva_aws_auto_scaling_group_max=29
 shiva_aws_auto_scaling_group_prefix=asg-grizzly-
 
 [swarm-manager:vars]
-aws_access_key=${AWS_ACCESS_KEY_ID_1}
-aws_secret_key=${AWS_SECRET_ACCESS_KEY_1}
+aws_access_key=AKIAIS2HMUM2REGVTVIQ
+aws_secret_key=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
 environment_name=grizzly
 
 [vault:vars]
 vault_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
-vault_aws_access_key_id=${AWS_ACCESS_KEY_ID_1}
-vault_aws_secret_key=${AWS_SECRET_ACCESS_KEY_1}
-vault_aws_region=${AWS_REGION}
+vault_aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
+vault_aws_secret_key=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
+vault_aws_region=us-west-2
 vault_root_token=${LOCAL_VAULT_ROOT_TOKEN}
 vault_unseal_tokens={'one':'${LOCAL_VAULT_TOKEN_1}', 'two': '${LOCAL_VAULT_TOKEN_2}', 'three': '${LOCAL_VAULT_TOKEN_3}', 'four': '${LOCAL_VAULT_TOKEN_4}', 'five': '${LOCAL_VAULT_TOKEN_5}'}
 _vault_port=65240

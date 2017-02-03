@@ -4,9 +4,9 @@
 
 var aws = require('aws-sdk');
 var ec2 = new aws.EC2({
-  accessKeyId: '${AWS_ACCESS_KEY_ID_1}',
-  secretAccessKey: '${AWS_SECRET_ACCESS_KEY_1}',
-  region: '${AWS_REGION}'
+  accessKeyId: 'AKIAIS2HMUM2REGVTVIQ',
+  secretAccessKey: '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',
+  region: 'us-west-2'
 });
 
 var params = {
