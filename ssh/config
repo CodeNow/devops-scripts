@@ -123,6 +123,9 @@ Host gamma-bear-clone-main
 Host gamma-bear-clone-dock
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.248.1.58 22
 
+Host gamma-grizzly-main
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.213 22
+
 ################################################################################
 # Delta
 ################################################################################
