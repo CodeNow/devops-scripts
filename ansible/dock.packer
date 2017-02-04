@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-      "ami_name": "gamma-dock-testv4",
+      "ami_name": "gamma-dock-testv8",
       "access_key": "{{user `aws_access_key`}}",
       "ami_block_device_mappings": [
         {
@@ -43,8 +43,8 @@
   "provisioners": [{
     "type": "ansible",
     "playbook_file": "/Users/anandkumarpatel/run/devops-scripts/ansible/dock.yml",
-    "extra_arguments":  [ "--extra-vars", "restart=true dock=packer", "-i", "gamma-hosts" , "-vvvvvv"],
-    "host_alias": "packer",
+    "extra_arguments":  [ "--extra-vars", "restart=true dock=xxxpackerxxx", "-i", "gamma-hosts" , "-vvvvvv"],
+    "host_alias": "packerx",
     "ansible_env_vars": [ "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'", "ANSIBLE_NOCOLOR=True" ]
   }]
 }

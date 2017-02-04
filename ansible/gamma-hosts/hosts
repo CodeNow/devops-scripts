@@ -172,3 +172,6 @@ local
 
 [targets]
 localhost ansible_connection=local bastion_name=gamma-bastion
+
+[xxxpackerxxx]
+packerx
