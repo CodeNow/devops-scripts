@@ -1,7 +1,7 @@
 ---
 - name: stop vault
   local_action:
-    shell kill $(cat /tmp/vault.pid)
+    shell kill $(ps aux | grep "vault server" | grep -v grep | cut -d' ' -f3)
 
 - name: remove vault config
   local_action:
