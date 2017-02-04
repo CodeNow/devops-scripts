@@ -115,7 +115,7 @@ gamma-grizzly-main
 [prometheus]
 gamma-grizzly-main
 
-[bear-clone:children]
+[grizzly:children]
 api
 bastion
 big-poppa
