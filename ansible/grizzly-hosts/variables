@@ -10,10 +10,10 @@ api_mongo_replset_name=grizzly-rs0
 api_s3_context_bucket=runnable.context.resources.grizzly
 
 [big-poppa:vars]
-big_poppa_pg_pass=${POSTGRES_PASSWORD}
-big_poppa_pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
-big_poppa_pg_port=${POSTGRES_PORT}
-big_poppa_pg_user=big_poppa
+big_poppa_pg_pass=790e5214041d4ff4b0dadbb63cfcc66d
+big_poppa_pg_host=grizzly.cnksgdqarobf.us-west-2.rds.amazonaws.com:5432
+big_poppa_pg_port=5432
+big_poppa_pg_user=e1058667bd5f4e50
 big_poppa_github_token=5346739a35753d289b9ef52bd68328ad36897091
 big_poppa_mongo_auth=nfE2OIeyTKWt4aGZWr1NSYTQb6WVN0dfp7U7vNKfRhY=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
 big_poppa_mongo_database=grizzly
@@ -107,9 +107,9 @@ datadog_mongodb_pwd=
 domain=runnablecloud.com
 mongo_port=27017
 node_env=grizzly
-pg_user=astral
-pg_pass=${POSTGRES_PASSWORD}
-pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
+pg_user=e1058667bd5f4e50
+pg_pass=790e5214041d4ff4b0dadbb63cfcc66d
+pg_host=grizzly.cnksgdqarobf.us-west-2.rds.amazonaws.com:5432
 rabbit_password=dkW4nGBvTM+iV+7yXNnXLE1XJ0WpKk84nuDt1TJS1V4=
 rabbit_username=8NjWopyYRKClypDP6WuQXit3CKVhgksvm82ScQuL1ms=
 _registry_port=65001
