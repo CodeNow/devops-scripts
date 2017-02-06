@@ -59,6 +59,9 @@ delta-app-services
 
 [dock]
 
+[agreeable-egret]
+delta-app-services
+
 [eru]
 delta-app-services
 
@@ -138,6 +141,7 @@ delta-app-services
 delta-prometheus
 
 [delta:children]
+agreeable-egret
 api
 arithmancy
 bastion

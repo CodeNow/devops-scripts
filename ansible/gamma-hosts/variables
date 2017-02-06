@@ -1,3 +1,11 @@
+[agreeable-egret:vars]
+agreeable_egret_port=65520
+egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+egret_pg_port=32659
+egret_pg_user=egret
+egret_pg_pass=b3UKjxbGblKZtG6c
+egret_pg_database=egret
+
 [api_group:vars]
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
