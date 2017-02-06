@@ -26,6 +26,7 @@ api_base_container_envs: >-
   -e CONTAINER_STOP_LIMIT=10
   -e DOCKER_IMAGE_BUILDER_CACHE=/git-cache
   -e DOCKER_IMAGE_BUILDER_LAYER_CACHE=/layer-cache
+  -e DOCKER_IMAGE_BUILDER_VERSION={{ image_builder_version }}
   -e CREAM_HOST=http://{{ cream_host_address }}:{{ cream_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
