@@ -31,5 +31,5 @@
   tags: [ configure_proxy, configure_files ]
   become: yes
   template:
-    src: lets-encrypt.tmpl
-    dest: /etc/nginx/sites-enabled/lets-encrypt.conf
+    src: default.conf
+    dest: /etc/nginx/sites-enabled/

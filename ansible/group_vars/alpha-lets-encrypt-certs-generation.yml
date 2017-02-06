@@ -13,7 +13,9 @@ restart_policy: always
 
 container_run_opts: >
   -d
-  --name {{ name }}
-  -p 0.0.0.0:443:443
-  -p 0.0.0.0:80:80
+  --name "{{ name }}"
+  -p 80:80
+  -v {{ target_updater_file_path }}:/etc/nginx/sites-enabled
+  -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  -v /var/www/html:/var/www/html
   -v /etc/ssl/certs/{{ domain }}:/etc/ssl/certs/{{ domain }}:ro

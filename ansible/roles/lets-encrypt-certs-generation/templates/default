@@ -1,13 +1,5 @@
 server {
   listen [::]:80 default_server;
-  server_name {{ domain }} *.{{ domain }};
-  root /var/www/html;
-
-  location ~ /.well-known {
-    allow all;
-  }
-
-  location /test/ {
-    return 200 "Its alive";
-  }
+  server_name _;
+  return 200 "Its alive";
 }
