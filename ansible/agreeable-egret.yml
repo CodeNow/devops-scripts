@@ -6,5 +6,5 @@
   roles:
   - role: notify
     tags: [ notify ]
-  - { role: builder, tags: [build] }
-  - { role: container_kill_start }
+    - { role: builder, tags: [build] }
+    - { role: container_kill_start }

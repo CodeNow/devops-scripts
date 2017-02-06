@@ -131,6 +131,7 @@ gamma-app-services
 gamma-dock-services
 
 [gamma:children]
+agreeable-egret
 api
 arithmancy
 bastion
@@ -143,7 +144,6 @@ dock
 docker-listener
 docks
 drake
-agreeable-egret
 eru
 github-varnish
 hipache

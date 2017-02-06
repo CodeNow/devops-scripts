@@ -1,7 +1,10 @@
 [agreeable-egret:vars]
 agreeable_egret_port=65520
-agreeable_egret_api_url=https://api.runnable.io
-egret_postgres_connect_string=postgres://egret:wwHQ5B4RfY9iKS3m@delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com/egret
+egret_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
+egret_pg_port=5432
+egret_pg_user=egret
+egret_pg_pass=wwHQ5B4RfY9iKS3m
+egret_pg_database=egret
 
 [api_group:vars]
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA

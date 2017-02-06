@@ -141,6 +141,7 @@ delta-app-services
 delta-prometheus
 
 [delta:children]
+agreeable-egret
 api
 arithmancy
 bastion
@@ -152,7 +153,6 @@ dock
 docker-listener
 docks
 drake
-agreeable-egret
 eru
 github-varnish
 hipache

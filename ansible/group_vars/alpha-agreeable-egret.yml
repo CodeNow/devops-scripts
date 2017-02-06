@@ -15,10 +15,10 @@ is_redis_update_required: 'yes'
 container_envs: >
   -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
   -e NODE_ENV={{ node_env }}
-  -e RUNNABLE_API_URL={{ agreeable_egret_api_url }}
+  -e RUNNABLE_API_URL={{ api_url }}
   -e PORT={{ hosted_ports[0] }}
   -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e POSTGRES_CONNECT_STRING={{ egret_postgres_connect_string }}
+  -e POSTGRES_CONNECT_STRING=-postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ egret_pg_host }}/{{ egret_pg_database }}
 
 container_run_opts: >
   -h {{ name }}
