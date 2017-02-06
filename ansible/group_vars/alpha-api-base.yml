@@ -51,6 +51,7 @@ api_base_container_envs: >-
   -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
   -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
   -e GITHUB_PROTOCOL=http
+  -e HELLO_RUNNABLE_GITHUB_ID={{ hello_runnable_github_id }}
   -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
   -e KRAIN_PORT={{ krain_port }}
   -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}

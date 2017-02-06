@@ -129,6 +129,7 @@ domain=runnable.rocks
 github_api_url=https://github.runnable-gamma.com/api/v3
 github_domain=github.runnable-gamma.com
 github_protocol=https
+hello_runnable_github_id=12
 image_builder_version=SAN-5622-github-enterprise
 is_github_enterprise=true
 max_navi_port=65000
