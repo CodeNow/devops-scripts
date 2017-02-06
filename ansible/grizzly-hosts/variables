@@ -94,8 +94,8 @@ vault_hello_runnable_github_token=ebb1ef52e73a03899a31f067507f68e843d52f27 #Hell
 vault_aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
 vault_aws_secret_key=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
 vault_aws_region=us-west-2
-vault_root_token=${LOCAL_VAULT_ROOT_TOKEN}
-vault_unseal_tokens={'one':'${LOCAL_VAULT_TOKEN_1}', 'two': '${LOCAL_VAULT_TOKEN_2}', 'three': '${LOCAL_VAULT_TOKEN_3}', 'four': '${LOCAL_VAULT_TOKEN_4}', 'five': '${LOCAL_VAULT_TOKEN_5}'}
+vault_root_token=1ca30253-c3d3-9a90-5399-31844b339fce
+vault_unseal_tokens={'one':'d8a1906386b875439b744211699362625f07f4d3ade1376b9e2f9ab62347f54d01', 'two': '6e6ff3355f7be3ad1da095a3b8334e7a6c994694774a4545f53bfba99f5c92ee02', 'three': '400830bae75f5663f66abba8b5faa62e867c98173ed484ee321f5165c6b8ff9903', 'four': 'e008fc18d4c3d5671cf027f9f2252513448af38add5d23dcfe909b9cecf6e16104', 'five': 'ce6f3f976ce760a9f73a09f2ffeccd47ae6f2d0994c3e27739b43150b5128c1605'}
 _vault_port=65240
 _vault_ssl_port=65241
 
