@@ -62,7 +62,8 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.bear-clone
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=bearclone
 pheidi_mongo_replset_name=bearclone
-pheidi_runnabot_tokens=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
+pheidi_runnabot_tokens=39580dca419ce6288d8489808da601fa046ff326
+pheidi_runnabot_username=bear-clone-bot
 
 [sauron:vars]
 

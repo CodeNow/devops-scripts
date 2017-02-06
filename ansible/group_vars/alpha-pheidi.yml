@@ -40,6 +40,7 @@ container_envs: >
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
   {% if pheidi_rollbar_token is defined %} -e ROLLBAR_KEY={{ pheidi_rollbar_token }} {% endif %}
   -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
+  -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
   -e SENDGRID_KEY={{ sendgrid_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}
