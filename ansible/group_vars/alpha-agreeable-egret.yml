@@ -18,6 +18,7 @@ container_envs: >
   -e RUNNABLE_API_URL={{ agreeable_egret_api_url }}
   -e PORT={{ hosted_ports[0] }}
   -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
+  -e POSTGRES_CONNECT_STRING={{ egret_postgres_connect_string }}
 
 container_run_opts: >
   -h {{ name }}
