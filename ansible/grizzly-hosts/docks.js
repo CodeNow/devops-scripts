@@ -14,7 +14,7 @@ var params = {
     // Only search for docks in the cluster security group
     {
       Name: 'instance.group-id',
-      Values: ['${AWS_DOCK_SG}'] // This script is the same for all environments
+      Values: ['sg-ec0da194'] // This script is the same for all environments
     },
     // Only fetch instances that are tagged as docks
     {
