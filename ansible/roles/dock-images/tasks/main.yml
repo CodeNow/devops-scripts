@@ -17,8 +17,7 @@
   become: true
   command: docker pull {{ item }}
   with_items:
-    - "registry.runnable.com/runnable/image-builder:v4.2.3"
-    - "swarm:1.2.5"
+    - "runnable/swarm:{{ swarm_version  }}"
     - "registry:2.3.1"
     - "google/cadvisor:v0.24.1"
     - "prom/node-exporter:v0.13.0"

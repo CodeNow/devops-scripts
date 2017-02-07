@@ -133,3 +133,4 @@ github_protocol=https
 proxy_container_image=runnable/sticky-nginx
 proxy_container_image_version=v1.8.1
 charon_api_token=ebb1ef52e73a03899a31f067507f68e843d52f27 # Hello Runnable
+swarm_version=v1.2.3-0
