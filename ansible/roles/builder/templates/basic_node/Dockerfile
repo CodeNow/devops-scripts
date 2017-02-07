@@ -1,4 +1,4 @@
-FROM registry.runnable.com/runnable/{{ base_dockerfile }}:latest
+FROM node:latest
 
 {% if hosted_ports is defined %}
 # Expose port to Host
@@ -16,6 +16,7 @@ ENV {{ env }}
 RUN npm install -g n@2.1.0
 RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
 
+WORKDIR /{{ name }}
 {% if dockerfile_pre_install_commands is defined %}
 {% for command in dockerfile_pre_install_commands %}
 RUN {{ command }}
