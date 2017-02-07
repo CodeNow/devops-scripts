@@ -2,7 +2,7 @@ disable_mlock = true
 
 backend "s3" {
   bucket = "runnable.vault.{{ environment_name }}"
-  access_key = "{{ vault_aws_access_key }}"
+  access_key = "{{ vault_aws_access_key_id }}"
   secret_key = "{{ vault_aws_secret_key }}"
   region = "us-west-2"
 }

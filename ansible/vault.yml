@@ -9,6 +9,10 @@
   - { role: container_kill_start }
 
   tasks:
+  - name: make sure httplib2 is installed
+    become: true
+    apt: package=python-httplib2 state=present
+
   - name: get seal status
     tags: [ deploy ]
     uri:
