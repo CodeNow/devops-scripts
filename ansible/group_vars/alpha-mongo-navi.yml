@@ -9,5 +9,5 @@ container_tag: latest
 container_run_opts: >
   -h {{ name }}
   -d
-  -p 27017:27017
+  -p {{ navi_mongo_port }}:27017
   -v {{ db_path }}:/data/db:rw
