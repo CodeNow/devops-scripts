@@ -44,7 +44,7 @@ khronos_mongo_replset_name=grizzly
 [metis:vars]
 
 [navi:vars]
-navi_cookie_secret=${COOKIE_SECRET}
+navi_cookie_secret=17578a96-8610-4db0-83ea-7b4491e8c1a5
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
