@@ -1,4 +1,20 @@
 ---
+- name: assert necessary groups
+  tags: [ tls ]
+  become: true
+  group:
+    name: mongodb
+    state: present
+
+- name: assert necessary users
+  tags: [ tls ]
+  become: true
+  user:
+    name: mongodb
+    shell: /bin/bash
+    groups: mongodb
+    append: yes
+
 - name: make folder for certificates
   tags: [ tls ]
   become: true
