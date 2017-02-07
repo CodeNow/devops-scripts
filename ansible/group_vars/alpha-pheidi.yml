@@ -24,6 +24,9 @@ container_envs: >
   -e DOMAIN={{ domain }}
   -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
   -e FULL_API_DOMAIN=https://api.{{ domain }}
+  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
+  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
+  -e GITHUB_PROTOCOL=http
   {% if pheidi_intercom_admin_id is defined %} -e INTERCOM_ADMIN_ID={{ pheidi_intercom_admin_id }} {% endif %}
   {% if pheidi_intercom_key is defined %} -e INTERCOM_API_KEY={{ pheidi_intercom_key }} {% endif %}
   {% if pheidi_intercom_id is defined %} -e INTERCOM_APP_ID={{ pheidi_intercom_id }} {% endif %}
