@@ -2,7 +2,7 @@ name: "swarm-manager"
 
 # container_kill_start settings
 container_image: runnable/swarm
-container_tag: "{ swarm_version }"
+container_tag: "{{ swarm_version }}"
 
 memory_hard_limit: 10g
 

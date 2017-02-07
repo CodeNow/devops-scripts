@@ -2,7 +2,7 @@ name: "swarm-deamon"
 
 # container_kill_start settings
 container_image: runnable/swarm
-container_tag: "{ swarm_version }"
+container_tag: "{{ swarm_version }}"
 
 container_run_opts: >
   --name {{ swarm_container_name }}
