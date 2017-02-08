@@ -7,7 +7,7 @@
 - include: docker-listener.yml git_branch="{{ docker_listener_branch }}" -t deploy
 
 ## Proxies
-- include: registrator-api.yml # Only one of these is neededi, so registrator-navi is not needed
+- include: registrator-api.yml # Only one of these is needed, so registrator-navi is not needed
 - include: single-host-proxy.yml # API depends on NGINX to be running
 - include: github-varnish.yml git_branch="{{ github_varnish_branch }}" -t deploy
 
