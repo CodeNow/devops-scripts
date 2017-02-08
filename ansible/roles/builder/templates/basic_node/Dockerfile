@@ -23,6 +23,11 @@ RUN {{ command }}
 {% endfor %}
 {% endif %}
 
+RUN mkdir /root/.ssh/
+ADD id_rsa /root/.ssh/id_rsa
+ADD known_hosts /root/.ssh/known_hosts
+RUN chmod 600 /root/.ssh/id_rsa
+
 # Add package.json from the current build context (`.` is the repo) second
 ADD ./repo/package.json /{{ name }}/package.json
 
