@@ -12,6 +12,8 @@ redis_key: "frontend:{{ detention_hostname }}"
 is_redis_update_required: 'yes'
 
 dockerfile_post_install_commands: [
+  "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
+  "chmod +x /usr/bin/sass",
   "npm run grunt"
 ]
 

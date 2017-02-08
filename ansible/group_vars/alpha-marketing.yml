@@ -11,6 +11,7 @@ dockerfile_enviroment: [
   "API_URL https://{{ api_hostname }}",
   "AWS_ACCESS_KEY {{ aws_access_key }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
+  "AWS_REGION {{ marketing_aws_region | default('us-standard') }}",
   "ANGULAR_URL {{ angular_url }}",
   "AWS_BUCKET {{ domain }}",
   "NODE_ENV {{ node_env }}"
