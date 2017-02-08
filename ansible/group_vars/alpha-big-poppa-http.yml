@@ -12,8 +12,10 @@ dockerfile_enviroment: [
 ]
 
 dockerfile_pre_install_commands: [
+  'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main"> /etc/apt/sources.list.d/pgdg.list',
+  'wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -',
   "apt-get update",
-  "apt-get install postgresql-client=9.3+154ubuntu1 -y",
+  "apt-get install postgresql-client-9.4 -y",
   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
