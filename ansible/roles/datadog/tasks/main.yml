@@ -68,7 +68,7 @@
   become: true
   when: has_dd_integration is defined
   template:
-    src="{{ name }}.yaml.j2"
+    src="roles/datadog/templates/{{ name }}.yaml.j2"
     dest="/etc/dd-agent/conf.d/{{ name }}.yaml"
   notify: restart datadog-agent
 
