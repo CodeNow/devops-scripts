@@ -1,28 +1,28 @@
 # Docks Services
-- include: swarm-manager.yml
-- include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
-- include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
-- include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
-- include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
-- include: docker-listener.yml git_branch="{{ docker_listener_branch }}" -t deploy
+# - include: swarm-manager.yml
+# - include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
+# - include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
+# - include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
+# - include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
+# - include: docker-listener.yml git_branch="{{ docker_listener_branch }}" -t deploy
 
 ## Proxies
-- include: registrator-api.yml # Only one of these is needed, so registrator-navi is not needed
-- include: single-host-proxy.yml # API depends on NGINX to be running
-- include: github-varnish.yml git_branch="{{ github_varnish_branch }}" -t deploy
+# - include: registrator-api.yml # Only one of these is needed, so registrator-navi is not needed
+# - include: single-host-proxy.yml # API depends on NGINX to be running
+# - include: github-varnish.yml git_branch="{{ github_varnish_branch }}" -t deploy
 
 # Main
-- include: big-poppa.yml git_branch="{{ big_poppa_branch }}" -t deploy
-- include: api.yml git_branch="{{ api_branch }}" -t deploy
-- include: cream.yml git_branch="{{ cream_branch }}" -t deploy # CREAM fails if big-poppa or API is down
-- include: web.yml git_branch="{{ angular_branch }}" -t deploy # fucked
+# - include: big-poppa.yml git_branch="{{ big_poppa_branch }}" -t deploy
+# - include: api.yml git_branch="{{ api_branch }}" -t deploy
+# - include: drake.yml git_branch="{{ drake_branch }}" -t deploy
+# - include: cream.yml git_branch="{{ cream_branch }}" -t deploy # CREAM fails if big-poppa or API is down
+# - include: web.yml git_branch="{{ angular_branch }}" -t deploy # fucked
 
 # Networking services
-- include: detention.yml git_branch="{{ detention_branch }}" -t deploy
+# - include: detention.yml git_branch="{{ detention_branch }}" -t deploy
 - include: link.yml git_branch="{{ link_branch }}" -t deploy
 - include: navi.yml git_branch="{{ navi_branch }}" -t deploy # Connects to Redis over tls port
 
 # Other
 - include: optimus.yml git_branch="{{ optimus_branch }}" -t deploy
-- include: drake.yml git_branch="{{ drake_branch }}" -t deploy
 - include: pheidi.yml git_branch="{{ pheidi_branch }}" -t deploy
