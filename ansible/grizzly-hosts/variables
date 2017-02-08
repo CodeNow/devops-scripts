@@ -99,6 +99,12 @@ vault_unseal_tokens={'one':'d8a1906386b875439b744211699362625f07f4d3ade1376b9e2f
 _vault_port=65240
 _vault_ssl_port=65241
 
+[web:vars]
+web_intercom_id=xs5g95pd
+web_sift_public_key=eea9746dff
+web_aws_bucket_region=us-west-2
+marketing_aws_region=us-west-2
+
 [grizzly:vars]
 bastion_sshd_port=60709
 datadog_tags=env:grizzly
@@ -137,5 +143,3 @@ swarm_version=v1.2.3-0
 github_api_url=https://api.github.com
 github_domain=api.github.com
 github_protocol=https
-web_intercom_id=xs5g95pd
-web_sift_public_key=eea9746dff
