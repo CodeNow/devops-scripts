@@ -50,6 +50,19 @@
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
+- name: copy secrets into build dir
+  tags: [ deploy ]
+  become: true
+  copy:
+    src=../docker-files/base/{{ item }}
+    dest={{ build_dir }}/{{ name }}
+    owner=ubuntu
+    group=ubuntu
+    mode=0700
+  with_items:
+    - id_rsa
+    - known_hosts
+
 - name: build docker image and tag
   tags: deploy
   become: yes
