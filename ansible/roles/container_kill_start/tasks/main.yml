@@ -20,7 +20,7 @@
 - name: look for running containers running {{ container_image }}
   tags: deploy
   become: true
-  script: findTagRunning.sh {{ container_image }}
+  script: findTagRunning.sh {{ container_image }} {{ kill_container_name | default('') }}
   register: old_containers_id
   changed_when: old_containers_id.stdout | length > 4
 
