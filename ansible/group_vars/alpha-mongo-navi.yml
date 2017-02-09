@@ -5,7 +5,7 @@ db_path: /opt/mongodb/db
 
 # container_kill_start settings
 container_image: mongo
-container_tag: latest
+container_tag: 3.2.4
 container_run_opts: >
   -h {{ name }}
   -d

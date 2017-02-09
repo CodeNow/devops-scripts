@@ -5,7 +5,7 @@ db_path: /opt/mongodb/db
 
 # container_kill_start settings
 container_image: mongo
-container_tag: latest
+container_tag: 2.6.11
 container_run_opts: -d --name mongodb -p {{ mongo_port }}:27017 -v {{ db_path }}:/data/db:rw
 
 # do not monitor docker-daemon for mongo, as there is none

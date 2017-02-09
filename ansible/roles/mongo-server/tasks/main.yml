@@ -43,8 +43,3 @@
     owner: mongodb
     group: mongodb
     mode: 0440
-
-- name: create user
-  tags: [tls]
-  become: true
-  command: docker exec -it mongodb mongo --eval 'db.createUser({"user":"{{ mongo_user }}=","pwd": "{{ mongo_password }}","roles":[]})'
