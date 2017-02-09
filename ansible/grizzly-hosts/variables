@@ -4,7 +4,7 @@ api_aws_secret_access_key=k7L6Ljvl46ThhZ6ed3VeN6lRG83p3kR/1QXVDYUA
 api_github_client_id=fb6620cd05b411759d15
 api_github_client_secret=8a7ff50364ce874865cebabae3d61697801ec950
 api_github_deploy_keys_bucket=runnable.deploykeys.grizzly
-api_mongo_auth=nfE2OIeyTKWt4aGZWr1NSYTQb6WVN0dfp7U7vNKfRhY=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+api_mongo_auth=b3f65941632347b2941ef9cf0d6a1fd2:0d3ab8d34f4e4b5a82ea7bc10ebaab5b
 api_mongo_database=grizzly
 api_mongo_replset_name=grizzly-rs0
 api_s3_context_bucket=runnable.context.resources.grizzly
@@ -15,7 +15,7 @@ big_poppa_pg_host=grizzly.cnksgdqarobf.us-west-2.rds.amazonaws.com:5432
 big_poppa_pg_port=5432
 big_poppa_pg_user=e1058667bd5f4e50
 big_poppa_github_token=5346739a35753d289b9ef52bd68328ad36897091
-big_poppa_mongo_auth=nfE2OIeyTKWt4aGZWr1NSYTQb6WVN0dfp7U7vNKfRhY=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+big_poppa_mongo_auth=b3f65941632347b2941ef9cf0d6a1fd2:0d3ab8d34f4e4b5a82ea7bc10ebaab5b
 big_poppa_mongo_database=grizzly
 big_poppa_mongo_replset_name=grizzly-rs0
 big_poppa_pg_pool_min=10
@@ -37,7 +37,7 @@ docks_rollbar_key=${ROLLBAR_TOKEN_DOCKS}
 drake_port=80
 
 [khronos:vars]
-khronos_mongo_auth=W2i3PLCITOqvPeEG9MGiQ6F3yAdwwUJGscb1FURHxuI=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+khronos_mongo_auth=b3f65941632347b2941ef9cf0d6a1fd2:0d3ab8d34f4e4b5a82ea7bc10ebaab5b
 khronos_mongo_database=grizzly
 khronos_mongo_replset_name=grizzly
 
@@ -56,7 +56,7 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.grizzly
 [palantiri:vars]
 
 [pheidi:vars]
-pheidi_mongo_auth=W2i3PLCITOqvPeEG9MGiQ6F3yAdwwUJGscb1FURHxuI=:IjY3mdy1R8Se+yTelCBGo32t6w2D7kDVuymLV6YDOkQ=
+pheidi_mongo_auth=b3f65941632347b2941ef9cf0d6a1fd2:0d3ab8d34f4e4b5a82ea7bc10ebaab5b
 pheidi_mongo_database=grizzly
 pheidi_mongo_replset_name=grizzly
 pheidi_runnabot_tokens=5346739a35753d289b9ef52bd68328ad36897091
