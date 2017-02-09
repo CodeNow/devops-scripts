@@ -115,7 +115,6 @@ ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 bastion_sshd_port=60709
 charon_api_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
-datadog_mongodb_pwd=
 datadog_mongodb_user=datadog
 datadog_tags=env:bear-clone
 domain=runnable.rocks
