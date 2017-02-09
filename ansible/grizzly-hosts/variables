@@ -8,6 +8,7 @@ api_mongo_auth=b3f65941632347b2941ef9cf0d6a1fd2:0d3ab8d34f4e4b5a82ea7bc10ebaab5b
 api_mongo_database=grizzly
 api_mongo_replset_name=grizzly-rs0
 api_s3_context_bucket=runnable.context.resources.grizzly
+api_number_of_containers=1
 
 [big-poppa:vars]
 big_poppa_pg_pass=790e5214041d4ff4b0dadbb63cfcc66d
@@ -50,6 +51,7 @@ link_hello_runnable_github_token=7d97ecc61565ab2170a285060bc31628ba5c3443
 navi_cookie_secret=17578a96-8610-4db0-83ea-7b4491e8c1a5
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
+navi_number_of_containers=1
 
 [optimus:vars]
 optimus_aws_access_id=AKIAIS2HMUM2REGVTVIQ
