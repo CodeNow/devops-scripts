@@ -146,5 +146,5 @@ proxy_container_image_version=v1.8.1
 charon_api_token=7d97ecc61565ab2170a285060bc31628ba5c3443
 swarm_version=v1.2.3-0
 github_api_url=https://api.github.com
-github_domain=api.github.com
+github_domain=github.com
 github_protocol=https
