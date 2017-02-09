@@ -76,16 +76,16 @@ registry_s3_region=us-west-2
 
 [shiva:vars]
 aws_access_key_id=AKIAIS2HMUM2REGVTVIQ
-aws_secret_access_key=AKIAIS2HMUM2REGVTVIQ
+aws_secret_access_key=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
 shiva_aws_region=us-west-2
 shiva_dock_security_groups=sg-ec0da194
 shiva_ssh_key_name=gamma-key
-shiva_aws_instance_image_id=ami-a0ab2ec0
-shiva_aws_instance_image_name=grizzly-dock-2.0.12
+shiva_aws_instance_image_id=ami-74ee6a14
+shiva_aws_instance_image_name=grizzly-dock-2.0.15
 shiva_aws_instance_type=t2.medium
 shiva_dock_pool_asg_name=grizzly-asg-dock-pool
-shiva_aws_launch_configuration_name=grizzly-dock-2.0.12
-shiva_aws_auto_scaling_group_subnets=subnet-b8be98dd
+shiva_aws_launch_configuration_name=grizzly-dock-2.0.16
+shiva_aws_auto_scaling_group_subnets=subnet-d485c1a3
 shiva_aws_auto_scaling_group_max=29
 shiva_aws_auto_scaling_group_prefix=asg-grizzly-
 
