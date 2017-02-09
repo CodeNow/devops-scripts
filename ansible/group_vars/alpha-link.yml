@@ -10,7 +10,7 @@ container_envs: >
   -e API_URL={{ api_url }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
+  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ link_hello_runnable_github_token }}
   -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
   -e NODE_ENV={{ node_env }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
