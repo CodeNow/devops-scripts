@@ -16,7 +16,7 @@ big_poppa_pg_pass=dgLXZdzJwepRAuGx4FRo
 big_poppa_pg_host=big-poppa-bear-clone.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 big_poppa_pg_port=32659
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+big_poppa_github_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=bearclone
 big_poppa_mongo_replset_name=bearclone-rs0
@@ -24,7 +24,7 @@ big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+cream_hello_runnable_github_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
@@ -62,7 +62,8 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.bear-clone
 pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=bearclone
 pheidi_mongo_replset_name=bearclone
-pheidi_runnabot_tokens=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+pheidi_runnabot_tokens=39580dca419ce6288d8489808da601fa046ff326
+pheidi_runnabot_username=bear-clone-bot
 
 [sauron:vars]
 
@@ -83,7 +84,7 @@ shiva_aws_instance_image_id=ami-278a3447
 shiva_aws_instance_image_name=bear-clone-dock-2.0.10
 shiva_aws_instance_type=t2.medium
 shiva_dock_pool_asg_name=bear-clone-asg-dock-pool
-shiva_aws_launch_configuration_name=bear-clone-lc-2.0.10.10
+shiva_aws_launch_configuration_name=bear-clone-lc-2.0.10.13
 shiva_aws_auto_scaling_group_subnets=subnet-9cb197f9
 shiva_aws_auto_scaling_group_max=29
 shiva_aws_auto_scaling_group_prefix=asg-bear-clone-
@@ -94,7 +95,7 @@ aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e
 environment_name=bear-clone
 
 [vault:vars]
-vault_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+vault_hello_runnable_github_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 vault_aws_access_key_id=AKIAIVCZL2ARDILEI6AA
 vault_aws_secret_key=/JZ2ZCz7jqfVuWGc0QNsFrFuvHTZzW7mW4LWPK2e/
 vault_aws_region=us-west-2
@@ -111,9 +112,9 @@ _redis_tls_port=65076
 _registry_port=65001
 _swarm_master_port=65250
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
-api_hello_runnable_github_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+api_hello_runnable_github_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 bastion_sshd_port=60709
-charon_api_token=6bf00b1cce8a0ebce0f759ab68c9eb7e6a585acf
+charon_api_token=8cdeefaf5a1a0f0e7fe744ddce6bc4c5b2f89218
 datadog_mongodb_pwd=
 datadog_mongodb_user=datadog
 datadog_tags=env:bear-clone
@@ -121,6 +122,8 @@ domain=runnable.rocks
 github_api_url=https://github.runnable-gamma.com/api/v3
 github_domain=github.runnable-gamma.com
 github_protocol=https
+hello_runnable_github_id=12
+image_builder_version=SAN-5622-github-enterprise
 is_github_enterprise=true
 max_navi_port=65000
 mongo_port=27017

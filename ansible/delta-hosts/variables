@@ -112,6 +112,7 @@ pheidi_mongo_auth=pheidi:septa-mauve-enquiry-clipper-history
 pheidi_mongo_database=delta
 pheidi_mongo_replset_name=delta
 pheidi_runnabot_tokens=d22a5ec75f66a0f472f3d856eb01df2321115e0b,33d8accaa7afeace8f44e3a6de409097ea1e67b8,82a7f2838852c04b75bee2b1a8ed236e2f9fc1ef,cab912709f7eb5bb8c21f9177f845561222d3933
+pheidi_runnabot_username=runnabot
 
 [prometheus:vars]
 pager_duty_key=ky6EFGL7Zh-xH8x1qEJV
@@ -153,6 +154,8 @@ env=delta
 github_api_url=https://api.github.com
 github_domain=api.github.com
 github_protocol=https
+hello_runnable_github_id=10224339
+image_builder_version=v4.2.3
 is_github_enterprise=false
 mongo_port=27017
 new_relic_license_key=338516e0826451c297d44dc60aeaf0a0ca4bfead

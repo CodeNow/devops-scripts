@@ -7,7 +7,7 @@
 
 - name: build the image-builder
   tags: deploy
-  command: sudo docker build --no-cache --tag="registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
+  command: sudo docker build --build-arg githubDomain={{ github_domain }} --no-cache --tag="registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
 
 - name: push image-builder
   tags: deploy

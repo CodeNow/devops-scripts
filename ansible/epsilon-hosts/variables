@@ -78,6 +78,7 @@ pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=epsilon
 pheidi_mongo_replset_name=epsilon
 pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
+pheidi_runnabot_username=runnabot-brother
 
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
@@ -115,6 +116,8 @@ domain=runnable-beta.com
 github_api_url=https://api.github.com
 github_domain=api.github.com
 github_protocol=https
+hello_runnable_github_id=10224339
+image_builder_version=v4.2.3
 is_github_enterprise=false
 mongo_port=27017
 node_env=production-epsilon
@@ -123,6 +126,8 @@ pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.12.12.99
+runnabot_github_username=runnabot
+runnabot_github_access_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
 user_content_domain=runnablecloud.com
 vault_auth_token=6f5dddd1-dea2-472d-03b0-51e7fe8ea8de
 vault_token_01=5b58b93e4cbb550d2bebe3324018c978bc89b11ba0a8a4a1430319ab8938dd1802
