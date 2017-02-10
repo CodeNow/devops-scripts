@@ -20,19 +20,9 @@
 - include: consul-template-updater.yml
   vars:
     host: ingress
-    var_file: alpha-drake-proxy.yml
-
-- include: consul-template-updater.yml
-  vars:
-    host: ingress
-    var_file: alpha-navi-proxy.yml
-
-- include: consul-template-updater.yml
-  vars:
-    host: ingress
-    var_file: alpha-ingress-proxy.yml
-
-- include: consul-template-updater.yml
-  vars:
-    host: ingress
-    var_file: alpha-api-socket-server-proxy.yml
+    var_file: alpha-{{ item }}-proxy.yml
+  with_items:
+  - api-socket-server
+  - ingress
+  - drake
+  - navi
