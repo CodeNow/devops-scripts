@@ -1,5 +1,4 @@
 ---
-# start our new container with options and args
 - name: get socket server container ids
   tags: [ configure_proxy, deploy ]
   become: yes
