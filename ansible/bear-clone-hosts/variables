@@ -49,8 +49,6 @@ khronos_mongo_replset_name=bearclone
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
 navi_number_of_containers=1
-_navi_proxy_port=65100
-_navi_proxy_ssl_port=65101
 
 [optimus:vars]
 optimus_aws_access_id=AKIAIVCZL2ARDILEI6AA
