@@ -22,8 +22,8 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e GITHUB_TOKEN={{ big_poppa_github_token }}
   -e NODE_ENV={{ node_env }}
-  {% if big_poppa_intercom_id is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_id | default('undefined') }} {% endif %}
-  {% if big_poppa_intercom_key is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_key | default('undefined') }} {% endif %}
+  {% if big_poppa_intercom_id is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_id }} {% endif %}
+  {% if big_poppa_intercom_key is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_key }} {% endif %}
   -e POSTGRES_CONNECT_STRING=postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}
   -e POSTGRES_POOL_MIN={{ big_poppa_pg_pool_min }}
   -e POSTGRES_POOL_MAX={{ big_poppa_pg_pool_max }}
