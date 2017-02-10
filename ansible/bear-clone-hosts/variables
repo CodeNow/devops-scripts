@@ -10,6 +10,7 @@ api_mongo_database=bearclone
 api_mongo_replset_name=bearclone-rs0
 api_s3_context_bucket=runnable.context.resources.bear-clone2
 api_number_of_containers=1
+api_github_deploy_key_title=Runnable-Bear-Clone
 
 [big-poppa:vars]
 big_poppa_pg_pass=dgLXZdzJwepRAuGx4FRo
