@@ -5,7 +5,6 @@ pager_duty_key: testkey
 
 # registry settings
 registry_env: prod
-registry_port: "{{ _registry_port | default(65001) }}"
 
 # for docker stop old container
 stop_time: 5
@@ -51,7 +50,7 @@ mixpanel_proxy_url: https://mixpanel.{{ domain }}
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
 api_hostname: api.{{ domain }}
-api_port: "{{ _api_port | default(80) }}"
+api_port: 80
 api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
 api_url: https://{{ api_hostname }}
@@ -64,32 +63,30 @@ pg_database: astral
 
 # big-poppa
 big_poppa_pg_database: big_poppa
-big_poppa_port: "{{ _big_poppa_port | default(7788) }}"
+big_poppa_port: 7788
 big_poppa_host_address: "{{ hostvars[groups['big-poppa'][0]]['ansible_default_ipv4']['address'] }}"
 
 # cadvisor
-cadvisor_port: "{{ _cadvisor_port | default(29007) }}"
+cadvisor_port: 29007
 
 # charon
-charon_port: "{{ _charon_port | default(53) }}"
+charon_port: 53
 
 # consul
 consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
-consul_api_port: "{{ _consul_api_port | default(8500) }}"
-consul_https_port: "{{ _consul_https_port | default(8501) }}"
 
 # cream
-cream_port: "{{ _cream_port | default(8899) }}"
+cream_port: 8899
 cream_host_address: "{{ hostvars[groups['cream'][0]]['ansible_default_ipv4']['address'] }}"
 
 # datadog
 datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
+datadog_port: 8125
 datadog_host_address: "{{ ansible_default_ipv4.address }}"
-datadog_port: "{{ _datadog_port | default(8125) }}"
 
 # detention
 detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
-detention_port: "{{ _detention_port | default(9123) }}"
+detention_port: 9123
 detention_hostname: detention.{{ domain }}
 
 # docker log driver
@@ -100,7 +97,7 @@ log_facility: local7
 docker_ca_path: /etc/ssl/docker/ca.pem
 docker_cert_path: /etc/ssl/docker/cert.pem
 docker_key_path: /etc/ssl/docker/key.pem
-docker_port: "{{ _docker_port | default(4242) }}"
+docker_port: 4242
 
 # docker-listener
 docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
@@ -115,19 +112,19 @@ aws_secret_key: "wgJ8gIKbe6dEpJxJHx8tnVWVWRMP8AhrLtOfWNsZ"
 # eru
 
 # fluffy
-fluffy_port: "{{ _fluffy_port | default(80) }}"
+fluffy_port: 80
 fluffy_hostname: "fluffy.{{ domain }}"
 fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
 
 # github-varnish
 github_varnish_host: "{{ hostvars[groups['github-varnish'][0]]['ansible_default_ipv4']['address'] }}"
-github_varnish_port: "{{ _github_varnish_port | default(8765) }}"
+github_varnish_port: 8765
 
 # khronos
 rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
 
 # krain
-krain_port: "{{ _krain_port | default(3100) }}"
+krain_port: 3100
 
 # marketing
 marketing_url: https://"{{ domain }}
@@ -137,14 +134,14 @@ mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_defa
 
 # navi
 navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
-navi_http_port: "{{ _navi_http_port | default(3567) }}"
+navi_http_port: 3567
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
 
 # node_exporter
-node_exporter_port: "{{ _node_exporter_port | default(29006) }}"
+node_exporter_port: 29006
 
 # optimus
-optimus_port: "{{ _optimus_port | default(80) }}"
+optimus_port: 80
 optimus_hostname: optimus.{{ domain }}
 optimus_rollbar_token: a49f9cce09ee46f09df3f603178fba75
 
@@ -156,22 +153,20 @@ pheidi_email_github_token: 115b4d854e34e8a5ba99ab73eefe4bf7a8944d6d
 pheidi_rollbar_token: 6fc422ac645441bea7f6f14853eb01ab
 
 # prometheus
-prometheus_port: "{{ _prometheus_port | default(9090) }}"
+prometheus_port: 9090
 prometheus_aws_access_key: AKIAIFG37NSI6O2QMRRQ
 prometheus_aws_secret_key: 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
 
 # prometheus_alart
-prometheus_alert_port: "{{ _prometheus_alert_port | default(9093) }}"
+prometheus_alert_port: 9093
 prometheus_alert_url: http://"{{ hostvars[groups['prometheus'][0]]['ansible_default_ipv4']['address'] }}:"{{ prometheus_alert_port }}
 
 # rabbit
 rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
-rabbit_port: "{{ _rabbit_port | default(54321) }}"
+rabbit_port: 54321
 
 # redis
 redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_port: "{{ _redis_port | default(6379) }}"
-redis_tls_port: "{{ _redis_tls_port | default(6380) }}"
 registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}"
 
 # sauron
@@ -182,28 +177,24 @@ secret_root: /opt/runnable/secrets
 
 # shiva
 pg_user: shiva
-shiva_port: "{{ _shiva_port | default(3000) }}"
+shiva_port: 3000
 shiva_rollbar_token: 0526a90faec845d796e1ef5361a00526
 
 # swarm
-swarm_master_port: "{{ _swarm_master_port | default(2375) }}"
+swarm_master_port: 2375
 swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}"
 swarm_container_name: swarm
 
 # navi/link
 navi_mongo_database: navi
 navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
-navi_mongo_port: "{{ _navi_mongo_port | default(27017) }}"
+navi_mongo_port: 27017
 
 npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 
 # local-vault
-vault_local_port: "{{ _vault_local_port | default(31836) }}"
+vault_local_port: 31836
 vault_addr: http://127.0.0.1:{{ vault_local_port }}
-
-# Remote vault
-vault_port: "{{ _vault_port | default(8200) }}"
-vault_ssl_port: "{{ _vault_ssl_port | default(8201) }}"
 
 # userland
 userland_host_address: "{{ hostvars[groups['userland'][0]]['ansible_default_ipv4']['address'] }}"
