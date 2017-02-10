@@ -1,0 +1,35 @@
+---
+- name: make sure cert directory is in place
+  tags: [ configure_proxy, certs ]
+  become: true
+  file:
+    dest: /etc/ssl/certs/{{ domain }}
+    state: directory
+
+- name: make sure nginx directory is in place
+  tags: [ configure_proxy, configure_files ]
+  become: true
+  file:
+    dest: /etc/nginx
+    state: directory
+
+- name: put nginx configuration in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: proxy-nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: assert nginx sites-enabled directory
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-enabled
+
+- name: put lets-encrypt conf in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: lets-encrypt.tmpl
+    dest: /etc/nginx/sites-enabled/lets-encrypt.conf

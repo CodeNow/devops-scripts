@@ -40,3 +40,7 @@ consul_seed:
     value: "{{ api_hostname }}"
   - key: api/url
     value: "{{ api_url }}"
+  - key: s3/bucket
+    value: "{{ registry_s3_bucket }}"
+  - key: s3/region
+    value: "{{ registry_s3_region }}"

@@ -4,6 +4,6 @@
   when: dock is not defined
   lineinfile:
     dest=/etc/hosts
-    line="{{ registry_host }} registry.runnable.com"
+    line="{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }} registry.runnable.com"
     state=present
     regexp=".+ registry\.runnable\.com"

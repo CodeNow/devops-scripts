@@ -27,7 +27,7 @@ container_envs: >
   -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_HOST={{ redis_host_address }}
   -e REDIS_PORT={{ redis_tls_port }}
-  -e REGISTRY_HOST={{ registry_host }}
+  -e REGISTRY_HOST={{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}
   -e ROLLBAR_KEY={{ metis_rollbar_key }}
   -e DOCKER_PORT={{ docker_port }}
 

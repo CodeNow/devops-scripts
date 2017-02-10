@@ -29,7 +29,7 @@
       tags: ['master']
       port: '{{ redis_port }}'
     - name: 'registry'
-      host_address: '{{ registry_host }}'
+      host_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}"
       tags: ['master']
       port: '{{ registry_port }}'
 
