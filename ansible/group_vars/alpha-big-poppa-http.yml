@@ -23,8 +23,8 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e GITHUB_TOKEN={{ big_poppa_github_token }}
   -e PORT={{ hosted_ports[0] }}
-  {% if big_poppa_intercom_id is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_id | default('undefined') }} {% endif %}
-  {% if big_poppa_intercom_key is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_key | default('undefined') }} {% endif %}
+  {% if big_poppa_intercom_id is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_id }} {% endif %}
+  {% if big_poppa_intercom_key is defined %} -e INTERCOM_APP_ID={{ big_poppa_intercom_key }} {% endif %}
   -e NODE_ENV={{ node_env }}
   -e PGUSER={{ big_poppa_pg_user }}
   -e PGPASSWORD={{ big_poppa_pg_pass }}

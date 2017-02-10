@@ -1,4 +1,5 @@
 name: consul-template-updater-{{ proxy_service_name }}
+kill_container_name: consul-template-updater-{{ proxy_service_name }}
 
 # container_kill_start settings
 container_image: avthart/consul-template

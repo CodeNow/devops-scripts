@@ -11,7 +11,6 @@ upstream {{ proxy_service_name }} {
 server {
   listen 80;
   client_max_body_size 5g;
-  # This used to be {{ domain }} but this is only for api...?
   server_name api.{{ domain }};
   access_log /var/log/nginx/{{ proxy_service_name }}.access.log;
 

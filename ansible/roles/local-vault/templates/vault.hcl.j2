@@ -1,7 +1,7 @@
 disable_mlock = true
 
 backend "s3" {
-  bucket = "runnable.vault.bear-clone"
+  bucket = "runnable.vault.{{ environment_name }}"
   access_key = "{{ vault_aws_access_key }}"
   secret_key = "{{ vault_aws_secret_key }}"
   region = "us-west-2"

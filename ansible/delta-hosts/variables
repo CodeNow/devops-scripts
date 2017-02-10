@@ -14,6 +14,7 @@ api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production
 api_intercom_app_id=wqzm3rju
 api_intercom_api_key=46e75ada5d21f248787689b35fe80e11efe9303a
+api_github_deploy_key_title=Runnable-io
 
 [big-poppa:vars]
 big_poppa_new_relic_app_name=delta-big-poppa
@@ -140,12 +141,16 @@ vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
+vault_port=8200
+vault_ssl_port=8201
 
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60506
 charon_api_token=5ff90dacd14fb1ff202c6b48c1393ba713adf483
+consul_api_port=8500
+consul_https_port=8501
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:delta
@@ -166,7 +171,10 @@ pg_pass=59a5524e-a772-11e5-bedc-1bdc0db458b3
 pg_user=astral
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+redis_port=6379
 registry_host=10.8.4.126
+registry_port=80
+swarm_master_port=2375
 user_content_domain=runnableapp.com
 vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088
 vault_token_01=0d324dc7d4cbd94790fd08809d06fb1e28e21e185910081c7646e3e49924f6ed01

@@ -5,7 +5,6 @@ CONTAINER_NAME="$2"
 CONTAINERS=`docker ps -a | grep -v '^CONTAINER' | awk '{print $1}'`
 
 if [ "" = "${CONTAINERS}" ] ; then
-    echo "this is 0"
     exit 0
 else
     for container in ${CONTAINERS} ; do

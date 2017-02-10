@@ -9,7 +9,6 @@ npm_version: "2.8.3"
 
 restart_policy: always
 
-redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
 content_domain_certs: /opt/ssl/{{ user_content_domain }}
 
 container_envs: >
@@ -29,9 +28,8 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e REDIS_CACERT={{ redis_ca_cert_path }}
   -e REDIS_IPADDRESS={{ redis_host_address }}
-  -e REDIS_PORT={{ redis_tls_port }}
+  -e REDIS_PORT={{ redis_port }}
   {% if navi_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ navi_intercom_api_key }} {% endif %}
   {% if navi_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ navi_intercom_app_id }} {% endif %}
   {% if navi_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ navi_new_relic_app_name }} {% endif %}
@@ -43,5 +41,4 @@ container_run_opts: >
   -h {{ name }}
   -d
   -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
   {{ container_envs }}

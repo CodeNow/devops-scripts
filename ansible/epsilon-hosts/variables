@@ -11,6 +11,7 @@ api_mongo_replset_name=epsilon-rs0
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
+api_github_deploy_key_title=Runnable-io-beta
 
 [big-poppa:vars]
 big_poppa_pg_pass=
@@ -103,12 +104,16 @@ vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
+vault_port=8200
+vault_ssl_port=8201
 
 [epsilon:vars]
 ansible_ssh_private_key_file=~/.ssh/epsilon.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60519
 charon_api_token=798fd0b696df96cf088de249918bf52f71058553
+consul_api_port=8500
+consul_https_port=8501
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:epsilon
@@ -126,9 +131,12 @@ pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+redis_port=6379
 registry_host=10.12.12.99
+registry_port=80
 runnabot_github_username=runnabot
 runnabot_github_access_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
+swarm_master_port=2375
 user_content_domain=runnablecloud.com
 vault_auth_token=6f5dddd1-dea2-472d-03b0-51e7fe8ea8de
 vault_token_01=5b58b93e4cbb550d2bebe3324018c978bc89b11ba0a8a4a1430319ab8938dd1802
