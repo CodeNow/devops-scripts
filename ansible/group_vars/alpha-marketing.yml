@@ -12,7 +12,7 @@ dockerfile_enviroment: [
   "AWS_ACCESS_KEY {{ aws_access_key }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
   "ANGULAR_URL {{ angular_url }}",
-  "AWS_BUCKET {{ domain }}",
+  "AWS_BUCKET {{ marketing_bucket }}",
   "NODE_ENV {{ node_env }}"
 ]
 
