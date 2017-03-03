@@ -130,6 +130,11 @@ vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
 
+[marketing:vars]
+marketing_bucket=runnable-gamma.com
+marketing_aws_access_key=AKIAICIWKIZEQCMDXLEA
+marketing_aws_secret_key=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
+
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -154,7 +159,6 @@ vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
-marketing_bucket=runnable-gamma.com
 
 [ec2:vars]
 aws_custid=437258487404

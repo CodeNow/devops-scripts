@@ -95,6 +95,9 @@ delta-rabbit
 [web]
 delta-app-services
 
+[marketing]
+delta-app-services
+
 [metabase]
 delta-metabase
 

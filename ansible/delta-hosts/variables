@@ -148,6 +148,11 @@ vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
 
+[marketing:vars]
+marketing_bucket=runnable.com
+marketing_aws_access_key=AKIAIPPPY2JIOHX7QVCA
+marketing_aws_secret_key=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
+
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -174,7 +179,6 @@ vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088
 vault_token_01=0d324dc7d4cbd94790fd08809d06fb1e28e21e185910081c7646e3e49924f6ed01
 vault_token_02=42dc8a69df174e77eb47a63b6ef4709bec57101cb1bff11a71c91b73b8bc046102
 vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f03
-marketing_bucket=runnable.com
 
 [ec2:vars]
 aws_custid=437258487404

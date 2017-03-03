@@ -84,6 +84,9 @@ gamma-rabbit
 [web]
 gamma-app-services
 
+[marketing]
+gamma-app-services
+
 [redis]
 gamma-redis
 
