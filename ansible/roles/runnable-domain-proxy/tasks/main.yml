@@ -78,4 +78,4 @@
   become: yes
   template:
     src: api.tmpl
-    dest: /etc/nginx/template/api.tmpl
+    dest: /etc/nginx/template/api-{{ domain }}.tmpl

@@ -143,6 +143,7 @@ datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma
 domain=runnable-gamma.com
+secondary_domain=runnable.com
 env=gamma
 github_domain=api.github.com
 github_protocol=https

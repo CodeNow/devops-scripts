@@ -6,7 +6,7 @@ proxy_service_name: api
 target_container_name: nginx
 target_updater_file_path: /etc/nginx/sites-enabled
 template_command: /bin/docker kill -s HUP {{ target_container_name }}
-template_path: /etc/nginx/template/api-{{ domain }}.tmpl
+template_path: /etc/nginx/template/api-{{ secondary_domain }}.tmpl
 
 # used by container_kill_start
 container_image: "{{ name }}"
