@@ -1,0 +1,11 @@
+---
+- hosts: redis
+- hosts: agreeable-egret
+  vars_files:
+    - group_vars/alpha-agreeable-egret.yml
+  roles:
+  - role: notify
+    tags: [ notify ]
+  - role: builder
+    tags: [ build ]
+  - role: container_kill_start

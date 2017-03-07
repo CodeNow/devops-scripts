@@ -1,3 +1,11 @@
+[agreeable-egret:vars]
+agreeable_egret_port=65520
+egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+egret_pg_port=32659
+egret_pg_user=egret
+egret_pg_pass=b3UKjxbGblKZtG6c
+egret_pg_database=egret
+
 [api_group:vars]
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
@@ -121,6 +129,11 @@ vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
+
+[marketing:vars]
+marketing_bucket=runnable-gamma.com
+marketing_aws_access_key=AKIAICIWKIZEQCMDXLEA
+marketing_aws_secret_key=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
 
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem

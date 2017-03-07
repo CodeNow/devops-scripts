@@ -9,11 +9,12 @@ do_not_push: yes
 
 dockerfile_enviroment: [
   "API_URL https://{{ api_hostname }}",
-  "AWS_ACCESS_KEY {{ aws_access_key }}",
-  "AWS_SECRET_KEY {{ aws_secret_key }}",
-  "AWS_REGION {{ marketing_aws_region | default('us-standard') }}",
+  "AWS_ACCESS_KEY {{ marketing_aws_access_key }}",
+  "AWS_SECRET_KEY {{ marketing_aws_secret_key }}",
+  "AWS_REGION {{ marketing_aws_region | default('us-east-1') }}",
   "ANGULAR_URL {{ angular_url }}",
-  "AWS_BUCKET {{ domain }}",
+  "AWS_BUCKET {{ marketing_bucket }}",
+  "AWS_REGION {{ web_aws_bucket_region | default('us-east-1') }}",
   "NODE_ENV {{ node_env }}"
 ]
 
