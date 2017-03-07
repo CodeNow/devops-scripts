@@ -1,5 +1,5 @@
 ---
-- hosts: web
+- hosts: marketing
   vars_files:
     - "group_vars/alpha-marketing.yml"
   roles:

@@ -43,6 +43,9 @@ core_file_dir: /docker/app-cores
 ## shared application configs
 ##
 
+# agreeable-egret
+agreeable_egret_hostname: egret.{{ domain }}
+
 #angular
 angular_url: https://app.{{ domain }}
 mixpanel_proxy_url: https://mixpanel.{{ domain }}

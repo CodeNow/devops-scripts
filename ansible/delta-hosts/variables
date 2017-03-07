@@ -1,3 +1,11 @@
+[agreeable-egret:vars]
+agreeable_egret_port=65520
+egret_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
+egret_pg_port=5432
+egret_pg_user=egret
+egret_pg_pass=wwHQ5B4RfY9iKS3m
+egret_pg_database=egret
+
 [api_group:vars]
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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
@@ -144,6 +152,11 @@ vault_aws_region=us-east-1
 vault_port=8200
 vault_ssl_port=8201
 
+[marketing:vars]
+marketing_bucket=runnable.com
+marketing_aws_access_key=AKIAIPPPY2JIOHX7QVCA
+marketing_aws_secret_key=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
+
 [delta:vars]
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -208,3 +221,4 @@ vpc_id=vpc-864c6be3
 [web:vars]
 web_intercom_id=wqzm3rju
 web_sift_public_key=27e9da5c97
+web_aws_bucket_region=us-west-2
