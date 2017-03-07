@@ -14,7 +14,7 @@ dockerfile_enviroment: [
   "MIXPANEL_PROXY_URL {{ mixpanel_proxy_url }}",
   "AWS_ACCESS_KEY {{ aws_access_key }}",
   "AWS_BUCKET app.{{ domain }}",
-  "AWS_REGION {{ web_aws_bucket_region | default('us-standard') }}",
+  "AWS_REGION {{ web_aws_bucket_region | default('us-east-1') }}",
   "AWS_SECRET_KEY {{ aws_secret_key }}",
   "INTERCOM_APP_ID {{ web_intercom_id }}",
   "MARKETING_URL {{ marketing_url }}",
