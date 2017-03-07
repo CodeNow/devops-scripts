@@ -11,13 +11,13 @@
 - name: start vault daemon
   run_once: true
   local_action:
-    command daemon --pidfile=/tmp/vault.pid -- vault server --config=/tmp/vault.hcl
+    shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
   notify:
     - stop vault
 
 - name: pause for start
   pause:
-    seconds: 1
+    seconds: 5
 
 - name: check vault seal
   tags: [ unseal ]

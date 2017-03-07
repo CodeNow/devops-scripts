@@ -45,6 +45,9 @@ gamma-consul-c
 [worker]
 gamma-api-worker
 
+[agreeable-egret]
+gamma-app-services
+
 [eru]
 gamma-app-services
 
@@ -79,6 +82,9 @@ gamma-dock-services
 gamma-rabbit
 
 [web]
+gamma-app-services
+
+[marketing]
 gamma-app-services
 
 [redis]
@@ -128,6 +134,7 @@ gamma-app-services
 gamma-dock-services
 
 [gamma:children]
+agreeable-egret
 api
 arithmancy
 bastion
