@@ -4,7 +4,7 @@ api_aws_secret_access_key=lcPXyGFwyHOxSnIEEFA7Cq1vvKLdzfcTfTouiIgJ
 api_github_client_id=${GITHUB_CLIEND_ID}
 api_github_client_secret=${GITHUB_CLIENT_SECRET}
 api_github_deploy_keys_bucket=runnable.deploykeys.google-grizzly
-api_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
+api_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
 api_mongo_database=google-grizzly
 api_mongo_replset_name=google-grizzly-rs0
 api_s3_context_bucket=runnable.context.resources.google-grizzly
@@ -14,17 +14,17 @@ big_poppa_pg_pass=${POSTGRES_PASSWORD}
 big_poppa_pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
 big_poppa_pg_port=${POSTGRES_PORT}
 big_poppa_pg_user=big_poppa
-big_poppa_github_token=${GITHUB_ACCESS_TOKEN}
-big_poppa_mongo_auth=${MONGO_USERNAME}:${MONGO_PASSWORD}
-big_poppa_mongo_database=${MONGO_DATABASE}
-big_poppa_mongo_replset_name=${MONGO_DATABASE}-rs0
+big_poppa_github_token=118039ff598aae9cb043f55c5d7ac05dbe29afcf
+big_poppa_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
+big_poppa_mongo_database=google-grizzly
+big_poppa_mongo_replset_name=google-grizzly-rs0
 big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
 [cream:vars]
-cream_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN}
-cream_stripe_secret_key=${STRIPE_SECRET_KEY}
-cream_stripe_publishable_key=${STRIPE_PUBLISHABLE_KEY}
+cream_hello_runnable_github_token=118039ff598aae9cb043f55c5d7ac05dbe29afcf
+cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
+cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [docks:vars]
 docker_config=docks
@@ -37,14 +37,14 @@ docks_rollbar_key=${ROLLBAR_TOKEN_DOCKS}
 drake_port=80
 
 [khronos:vars]
-khronos_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
-khronos_mongo_database=${MONGO_DATABASE}
-khronos_mongo_replset_name=${MONGO_DATABASE}
+khronos_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
+khronos_mongo_database=google-grizzly
+khronos_mongo_replset_name=google-grizzly
 
 [metis:vars]
 
 [navi:vars]
-navi_cookie_secret=${COOKIE_SECRET}
+navi_cookie_secret=b7770ba6e7434ea898a83aaddd1380da
 _navi_proxy_port=65100
 _navi_proxy_ssl_port=65101
 
@@ -56,10 +56,10 @@ optimus_github_deploy_keys_bucket=runnable.deploykeys.google-grizzly
 [palantiri:vars]
 
 [pheidi:vars]
-pheidi_mongo_auth=${MONGO_USER}:${MONGO_PASSWORD}
-pheidi_mongo_database=${MONGO_DATABASE}
-pheidi_mongo_replset_name=${MONGO_DATABASE}
-pheidi_runnabot_tokens=${GITHUB_ACCESS_TOKEN}
+pheidi_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
+pheidi_mongo_database=google-grizzly
+pheidi_mongo_replset_name=google-grizzly
+pheidi_runnabot_tokens=118039ff598aae9cb043f55c5d7ac05dbe29afcf
 
 [sauron:vars]
 
@@ -90,7 +90,7 @@ aws_secret_key=lcPXyGFwyHOxSnIEEFA7Cq1vvKLdzfcTfTouiIgJ
 environment_name=google-grizzly
 
 [vault:vars]
-vault_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+vault_hello_runnable_github_token=e4905712f229e60cfa6eb09f9f1dda9bac39bd81
 vault_aws_access_key_id=AKIAJWTGYN3FCQELH5VQ
 vault_aws_secret_key=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
 vault_aws_region=${AWS_REGION}
@@ -110,8 +110,8 @@ node_env=google-grizzly
 pg_user=astral
 pg_pass=${POSTGRES_PASSWORD}
 pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}
-rabbit_password=${RABBIT_PASSWORD}
-rabbit_username=${RABBIT_USERNAME}
+rabbit_password=0cdcd02bb35a4d47b0043a52fd0b8162
+rabbit_username=66d7e55a469543dcbc50b44ace7c31c2
 _registry_port=65001
 _consul_api_port=65200
 _consul_https_port=65201
@@ -120,7 +120,7 @@ user_content_domain=runnable-beta.com
 max_navi_port=65000
 _redis_port=65075
 _redis_tls_port=65076
-api_hello_runnable_github_token=${GITHUB_ACCESS_TOKEN_HELLO_RUNNABLE}
+api_hello_runnable_github_token=e4905712f229e60cfa6eb09f9f1dda9bac39bd81
 vault_auth_token=${REMOTE_VAULT_ROOT_TOKEN}
 vault_token_01=${REMOTE_VAULT_TOKEN_1}
 vault_token_02=${REMOTE_VAULT_TOKEN_2}
