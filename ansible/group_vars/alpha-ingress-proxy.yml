@@ -9,8 +9,8 @@ template_command: /bin/docker kill -s HUP {{ target_container_name }}
 template_path: /etc/nginx/template/api.tmpl
 
 # used by container_kill_start
-container_image: "{{ name }}"
-container_tag: "1.10"
+container_image: "{{ proxy_container_image }}"
+container_tag: "{{ proxy_container_image_version }}"
 
 restart_policy: always
 

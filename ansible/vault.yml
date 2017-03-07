@@ -13,7 +13,7 @@
     tags: [ deploy ]
     uri:
       method=GET
-      url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/seal-status
+      url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/seal-status
       HEADER_X-Vault-Token="{{ vault_auth_token }}"
       return_content=yes
     register: seal_status
@@ -23,7 +23,7 @@
     when: seal_status.json.sealed
     uri:
       method=PUT
-      url=http://{{ ansible_default_ipv4.address }}:8200/v1/sys/unseal
+      url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/unseal
       HEADER_X-Vault-Token="{{ vault_auth_token }}"
       body_format=json
       body='{{ item | to_json }}'

@@ -1,4 +1,15 @@
 ---
+- name: get socket server container ids
+  tags: [ configure_proxy, deploy ]
+  become: yes
+  shell: >
+    docker ps --format {% raw %}"{{\.Image}}\t{{\.ID}}"{% endraw %} |
+    grep socket |
+    cut -f2
+  args:
+    executable: /bin/bash
+  register: new_container_ids
+
 # Get port information from the hosted service
 - name: get socket server ports
   tags: [ configure_proxy, deploy ]
@@ -22,6 +33,13 @@
     msg: |
       proxy target ports -- {{ proxy_target_ports }}
       ip -- {{ target_ip_address }}
+
+- name: assert nginx other-sites-enabled directory
+  tags: [ configure_proxy, deploy ]
+  become: yes
+  file:
+    state: directory
+    dest: /etc/nginx/sites-enabled
 
 - name: put configuration in place
   delegate_to: "{{ nginx_host }}"

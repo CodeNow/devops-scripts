@@ -24,22 +24,26 @@ container_envs: >
   -e DOMAIN={{ domain }}
   -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
   -e FULL_API_DOMAIN=https://api.{{ domain }}
-  -e INTERCOM_ADMIN_ID={{ pheidi_intercom_admin_id }}
-  -e INTERCOM_API_KEY={{ pheidi_intercom_key }}
-  -e INTERCOM_APP_ID={{ pheidi_intercom_id }}
+  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
+  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
+  -e GITHUB_PROTOCOL=http
+  {% if pheidi_intercom_admin_id is defined %} -e INTERCOM_ADMIN_ID={{ pheidi_intercom_admin_id }} {% endif %}
+  {% if pheidi_intercom_key is defined %} -e INTERCOM_API_KEY={{ pheidi_intercom_key }} {% endif %}
+  {% if pheidi_intercom_id is defined %} -e INTERCOM_APP_ID={{ pheidi_intercom_id }} {% endif %}
   -e LOGGLY_TOKEN="{{ loggly_token }}"
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
-  -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
-  -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
-  -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
+  {% if node_env == "production-delta" %} -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem {% endif %}
+  {% if node_env == "production-delta" %} -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem {% endif %}
+  {% if node_env == "production-delta" %} -e MONGO_KEY=/opt/ssl/mongo-client/key.pem {% endif %}
   -e NODE_ENV="{{ node_env }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
   -e RABBITMQ_PORT="{{ rabbit_port }}"
   -e RABBITMQ_USERNAME="{{ rabbit_username }}"
-  -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
+  {% if pheidi_rollbar_token is defined %} -e ROLLBAR_KEY={{ pheidi_rollbar_token }} {% endif %}
   -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
+  -e RUNNABOT_GITHUB_USERNAME={{ pheidi_runnabot_username }}
   -e SENDGRID_KEY={{ sendgrid_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e WEB_URL=https://app.{{ domain }}

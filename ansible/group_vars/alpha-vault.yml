@@ -13,8 +13,8 @@ container_run_opts: >
   -v /opt/vault/client-consul:/opt/vault/client-consul:ro
   -v /opt/vault/server:/opt/vault/server:ro
   -v {{ app_log_dir }}:{{ app_log_dir }}:rw
-  -p {{ ansible_default_ipv4.address }}:8200:8200
-  -p {{ ansible_default_ipv4.address }}:8201:8201
+  -p {{ ansible_default_ipv4.address }}:{{ vault_port }}:{{ vault_port }}
+  -p {{ ansible_default_ipv4.address }}:{{ vault_ssl_port }}:{{ vault_ssl_port }}
   --cap-add IPC_LOCK
   --restart=always
 

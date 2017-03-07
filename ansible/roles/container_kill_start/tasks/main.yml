@@ -20,7 +20,7 @@
 - name: look for running containers running {{ container_image }}
   tags: deploy
   become: true
-  script: findTagRunning.sh {{ container_image }}
+  script: findTagRunning.sh {{ container_image }} {{ kill_container_name | default('') }}
   register: old_containers_id
   changed_when: old_containers_id.stdout | length > 4
 
@@ -31,17 +31,6 @@
   become: yes
   command: docker pull {{ container_image }}:{{ container_tag }}
   when: not do_not_push
-
-# get id of new image
-- name: get id of the docker image
-  tags: deploy
-  become: yes
-  shell: >
-    docker images
-    --no-trunc |
-    grep {{ container_image }}.*{{ container_tag }} |
-    awk '{print $3}'
-  register: new_image_id
 
 # stop the old containers that were running this previously
 - name: stop old containers

@@ -17,7 +17,7 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ drake_worker_rollbar_token }}
+  {% if drake_worker_rollbar_token is defined %} -e ROLLBAR_KEY={{ drake_worker_rollbar_token }} {% endif %}
 
 container_run_opts: >
   -h {{ name }}

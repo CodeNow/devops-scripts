@@ -73,9 +73,23 @@
     src: mixpanel.tmpl
     dest: /etc/nginx/other-sites-enabled/mixpanel.conf
 
+- name: put registry template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: registry.tmpl
+    dest: /etc/nginx/other-sites-enabled/registry.conf
+
 - name: put api template in place
   tags: [ configure_proxy, configure_files ]
   become: yes
   template:
     src: api.tmpl
-    dest: /etc/nginx/template/api.tmpl
+    dest: /etc/nginx/template/
+
+- name: put api-socket-server template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: api-socket-server.tmpl
+    dest: /etc/nginx/template/

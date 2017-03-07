@@ -5,7 +5,6 @@ pager_duty_key: testkey
 
 # registry settings
 registry_env: prod
-registry_port: 80
 
 # for docker stop old container
 stop_time: 5
@@ -78,8 +77,6 @@ charon_port: 53
 
 # consul
 consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
-consul_api_port: 8500
-consul_https_port: 8501
 
 # cream
 cream_port: 8899
@@ -87,8 +84,8 @@ cream_host_address: "{{ hostvars[groups['cream'][0]]['ansible_default_ipv4']['ad
 
 # datadog
 datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
-datadog_host_address: "{{ ansible_default_ipv4.address }}"
 datadog_port: 8125
+datadog_host_address: "{{ ansible_default_ipv4.address }}"
 
 # detention
 detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
@@ -133,10 +130,7 @@ rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
 krain_port: 3100
 
 # marketing
-marketing_url: https://{{ domain }}
-
-# metis
-metis_port: 3000
+marketing_url: https://"{{ domain }}
 
 # mongo
 mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"
@@ -168,7 +162,7 @@ prometheus_aws_secret_key: 1B4lLUBihog7q+cx+QcCRflYP0/KGVTQR29bGvwN
 
 # prometheus_alart
 prometheus_alert_port: 9093
-prometheus_alert_url: http://{{ hostvars[groups['prometheus'][0]]['ansible_default_ipv4']['address'] }}:{{ prometheus_alert_port }}
+prometheus_alert_url: http://"{{ hostvars[groups['prometheus'][0]]['ansible_default_ipv4']['address'] }}:"{{ prometheus_alert_port }}
 
 # rabbit
 rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
@@ -176,9 +170,6 @@ rabbit_port: 54321
 
 # redis
 redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
-redis_port: 6379
-redis_tls_port: 6380
-
 registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}"
 
 # sauron

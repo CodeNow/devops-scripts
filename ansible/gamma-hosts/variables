@@ -19,6 +19,7 @@ api_mongo_replset_name=gamma-rs0
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
 api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
+api_github_deploy_key_title=Runnable-io-gamma
 
 [arithmancy:vars]
 arithmancy_pg_database=arithmancy
@@ -105,6 +106,7 @@ pheidi_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 pheidi_mongo_database=gamma
 pheidi_mongo_replset_name=gamma
 pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
+pheidi_runnabot_username=runnabot-brother
 
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
@@ -129,6 +131,8 @@ vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ
 vault_aws_secret_key=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
 vault_aws_region=us-east-1
+vault_port=8200
+vault_ssl_port=8201
 
 [marketing:vars]
 marketing_bucket=runnable-gamma.com
@@ -139,13 +143,20 @@ marketing_aws_secret_key=gD2stysc/pAD9ehRrbvgMIZoJBw4aCiEKI7If3Do
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
+charon_api_token=e1b68a2cbfefcfee87d72df6d1c07bce886454b9
+consul_api_port=8500
+consul_https_port=8501
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma
 domain=runnable-gamma.com
 env=gamma
-github_domain=api.github.com
+github_api_url=https://api.github.com
+github_domain=github.com
+github_api_domain=api.github.com
 github_protocol=https
+hello_runnable_github_id=10224339
+image_builder_version=v4.2.3
 is_github_enterprise=false
 mongo_port=27017
 node_env=production-gamma
@@ -154,6 +165,9 @@ pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.4.82
+registry_port=80
+redis_port=6379
+swarm_master_port=2375
 user_content_domain=runnable.ninja
 vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05

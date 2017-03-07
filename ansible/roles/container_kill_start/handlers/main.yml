@@ -11,4 +11,4 @@
   tags: deploy
   when: container_ports is defined and is_redis_update_required is defined
   become: yes
-  command: docker run --rm redis redis-cli -h {{redis_host_address}} lset {{redis_key}} 1 {{hosted_protocol | default('http') }}://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}
+  command: docker run --rm redis redis-cli -h {{redis_host_address}} -p {{ redis_port }}lset {{redis_key}} 1 {{hosted_protocol | default('http') }}://{{ansible_default_ipv4.address}}:{{container_ports.stdout}}

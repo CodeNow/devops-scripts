@@ -13,7 +13,7 @@ memory_hard_limit: 1g
 # for container settings
 container_envs: >
   {{ api_base_container_envs }}
-  -e ROLLBAR_KEY={{ api_rollbar_key }}
+  {% if api_rollbar_key is defined %} -e ROLLBAR_KEY={{ api_rollbar_key }} {% endif %}
 
 container_run_opts: >
   -h {{ name }}

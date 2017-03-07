@@ -22,6 +22,7 @@ dockerfile_enviroment: [
   "SIFT_API_KEY {{ web_sift_public_key }}",
   "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
   "USER_CONTENT_DOMAIN {{ user_content_domain }}",
+  "GITHUB_URL {{ github_api_url }}"
 ]
 
 dockerfile_post_install_commands: [

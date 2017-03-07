@@ -16,7 +16,7 @@ container_envs: >
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
   -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ palantiri_rollbar_key }}
+  {% if palantiri_rollbar_key is defined %} -e ROLLBAR_KEY={{ palantiri_rollbar_key }} {% endif %}
   -e RSS_LIMIT=2000000
   -e LOG_LEVEL_STDOUT=trace
   -e SWARM_HOSTNAME={{ swarm_host_address }}

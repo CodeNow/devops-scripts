@@ -63,7 +63,7 @@
   become: yes
   template:
     src: navi.tmpl
-    dest: /etc/nginx/template/navi.tmpl
+    dest: /etc/nginx/template/
 
 - name: setup ip table rule to redir all to port 80
   tags: [ configure_proxy, iptables ]
@@ -79,4 +79,4 @@
     comment="Redirect {{ item }} traffic to port 80"
   with_items:
   - 81:442
-  - 444:65535
+  - 444:{{ max_navi_port  }} # Don't expose all ports if in a single host

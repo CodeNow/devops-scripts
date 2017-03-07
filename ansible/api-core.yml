@@ -31,4 +31,4 @@
     tags: [ datadog ]
 
   - role: container_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+    number_of_containers: "{{ api_number_of_containers | default(ansible_processor_cores) }}"

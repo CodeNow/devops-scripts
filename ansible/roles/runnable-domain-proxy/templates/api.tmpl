@@ -11,7 +11,7 @@ upstream {{ proxy_service_name }} {
 server {
   listen 80;
   client_max_body_size 5g;
-  server_name {{ domain }};
+  server_name api.{{ domain }};
   access_log /var/log/nginx/{{ proxy_service_name }}.access.log;
 
   location / {
@@ -32,7 +32,7 @@ server {
 server {
   listen 443 ssl;
   client_max_body_size 5g;
-  server_name {{ domain }};
+  server_name api.{{ domain }};
   access_log /var/log/nginx/{{ proxy_service_name }}.ssl.access.log;
 
   ssl on;

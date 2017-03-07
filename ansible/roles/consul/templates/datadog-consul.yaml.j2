@@ -2,7 +2,7 @@ init_config:
 
 instances:
   # Where your Consul HTTP Server Lives
-  - url: http://{{ ansible_default_ipv4.address }}:8500
+  - url: http://{{ ansible_default_ipv4.address }}:{{ consul_api_port }}
 
     # Whether to perform checks against the Consul service Catalog
     # catalog_checks: yes

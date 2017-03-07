@@ -46,6 +46,6 @@
     - always
   uri:
     method=PUT
-    url=http://{{ consul_host_address }}:8500/v1/kv/runnable/environment/{{ name }}
+    url=http://{{ consul_host_address }}:{{ consul_api_port }}/v1/kv/runnable/environment/{{ name }}
     body="{{ git_branch }}"
   changed_when: true

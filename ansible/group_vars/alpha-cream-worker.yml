@@ -30,7 +30,7 @@ container_envs: >
   -e RABBITMQ_USERNAME={{ rabbit_username }}
   -e RUNNABLE_API_URL={{ api_url }}
   -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e ROLLBAR_KEY={{ cream_worker_rollbar_token }}
+  {% if cream_worker_rollbar_token is defined %} -e ROLLBAR_KEY={{ cream_worker_rollbar_token }} {% endif %}
   -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
   -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
 
