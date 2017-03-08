@@ -3,11 +3,11 @@ api_aws_access_key_id=AKIAJWTGYN3FCQELH5VQ
 api_aws_secret_access_key=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
 api_github_client_id=de67087e388522f9ea85
 api_github_client_secret=42066c2371a49bb492bd36405914419fc50228a0
-api_github_deploy_keys_bucket=runnable.deploykeys.google-grizzly
+api_github_deploy_keys_bucket=runnable.deploykeys.grizzly
 api_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
-api_mongo_database=google-grizzly
-api_mongo_replset_name=google-grizzly-rs0
-api_s3_context_bucket=runnable.context.resources.google-grizzly
+api_mongo_database=grizzly
+api_mongo_replset_name=grizzly-rs0
+api_s3_context_bucket=runnable.context.resources.grizzly
 
 [big-poppa:vars]
 big_poppa_pg_pass=${POSTGRES_PASSWORD}
@@ -16,8 +16,8 @@ big_poppa_pg_port=${POSTGRES_PORT}
 big_poppa_pg_user=big_poppa
 big_poppa_github_token=118039ff598aae9cb043f55c5d7ac05dbe29afcf
 big_poppa_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
-big_poppa_mongo_database=google-grizzly
-big_poppa_mongo_replset_name=google-grizzly-rs0
+big_poppa_mongo_database=grizzly
+big_poppa_mongo_replset_name=grizzly-rs0
 big_poppa_pg_pool_min=10
 big_poppa_pg_pool_max=20
 
@@ -38,8 +38,8 @@ drake_port=80
 
 [khronos:vars]
 khronos_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
-khronos_mongo_database=google-grizzly
-khronos_mongo_replset_name=google-grizzly
+khronos_mongo_database=grizzly
+khronos_mongo_replset_name=grizzly
 
 [metis:vars]
 
@@ -51,14 +51,14 @@ _navi_proxy_ssl_port=65101
 [optimus:vars]
 optimus_aws_access_id=AKIAJWTGYN3FCQELH5VQ
 optimus_aws_secret_id=lcPXyGFwyHOxSnIEEFA7Cq1vvKLdzfcTfTouiIgJ
-optimus_github_deploy_keys_bucket=runnable.deploykeys.google-grizzly
+optimus_github_deploy_keys_bucket=runnable.deploykeys.grizzly
 
 [palantiri:vars]
 
 [pheidi:vars]
 pheidi_mongo_auth=07603996a3664a7fa9f491e8663603f7:67b0a0a0eabe42b388901f87f3953cd1
-pheidi_mongo_database=google-grizzly
-pheidi_mongo_replset_name=google-grizzly
+pheidi_mongo_database=grizzly
+pheidi_mongo_replset_name=grizzly
 pheidi_runnabot_tokens=118039ff598aae9cb043f55c5d7ac05dbe29afcf
 
 [sauron:vars]
@@ -66,7 +66,7 @@ pheidi_runnabot_tokens=118039ff598aae9cb043f55c5d7ac05dbe29afcf
 [registry:vars]
 registry_s3_access_key=AKIAJWTGYN3FCQELH5VQ
 registry_s3_secret_key=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
-registry_s3_bucket=runnableimages.google-grizzly
+registry_s3_bucket=runnableimages.grizzly
 registry_s3_region=${AWS_REGION}
 
 [shiva:vars]
@@ -78,16 +78,16 @@ shiva_ssh_key_name=${AWS_SSH_KEY_NAME}
 shiva_aws_instance_image_id=${AWS_DOCK_AMI_ID}
 shiva_aws_instance_image_name=${AWS_DOCK_AMI_NAME}
 shiva_aws_instance_type=t2.medium
-shiva_dock_pool_asg_name=google-grizzly-asg-dock-pool
-shiva_aws_launch_configuration_name=google-grizzly-lc-${AWS_LC_VERSION}
+shiva_dock_pool_asg_name=grizzly-asg-dock-pool
+shiva_aws_launch_configuration_name=grizzly-lc-${AWS_LC_VERSION}
 shiva_aws_auto_scaling_group_subnets=${AWS_ASG_SUBNET}
 shiva_aws_auto_scaling_group_max=29
-shiva_aws_auto_scaling_group_prefix=asg-google-grizzly-
+shiva_aws_auto_scaling_group_prefix=asg-grizzly-
 
 [swarm-manager:vars]
 aws_access_key=AKIAJWTGYN3FCQELH5VQ
 aws_secret_key=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
-environment_name=google-grizzly
+environment_name=grizzly
 
 [vault:vars]
 vault_hello_runnable_github_token=e4905712f229e60cfa6eb09f9f1dda9bac39bd81
@@ -99,14 +99,14 @@ vault_unseal_tokens={'one':'${LOCAL_VAULT_TOKEN_1}', 'two': '${LOCAL_VAULT_TOKEN
 _vault_port=65240
 _vault_ssl_port=65241
 
-[google-grizzly:vars]
+[grizzly:vars]
 bastion_sshd_port=60709
-datadog_tags=env:google-grizzly
+datadog_tags=env:grizzly
 datadog_mongodb_user=datadog
 datadog_mongodb_pwd=
 domain=runnable.rocks
 mongo_port=27017
-node_env=google-grizzly
+node_env=grizzly
 pg_user=astral
 pg_pass=${POSTGRES_PASSWORD}
 pg_host=${POSTGRES_HOST}:${POSTGRES_PORT}

@@ -115,7 +115,7 @@ default-main
 [prometheus]
 default-main
 
-[bear-clone:children]
+[grizzly:children]
 api
 bastion
 big-poppa

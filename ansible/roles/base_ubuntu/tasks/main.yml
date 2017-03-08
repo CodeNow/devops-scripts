@@ -1,9 +1,9 @@
 ---
-- name: ensure registry.runnable in /etc/hosts
-  become: true
-  when: dock is not defined
-  lineinfile:
-    dest=/etc/hosts
-    line="{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }} registry.runnable.com"
-    state=present
-    regexp=".+ registry\.runnable\.com"
+# - name: ensure registry.runnable in /etc/hosts
+  # become: true
+  # when: dock is not defined
+  # lineinfile:
+    # dest=/etc/hosts
+    # line="{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }} registry.runnable.com"
+    # state=present
+    # regexp=".+ registry\.runnable\.com"
