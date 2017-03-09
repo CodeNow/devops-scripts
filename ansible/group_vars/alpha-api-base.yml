@@ -57,6 +57,7 @@ api_base_container_envs: >-
   -e REDIS_IPADDRESS={{ redis_host_address }}
   -e REDIS_PORT={{ redis_port }}
   -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
+  -e S3_LOG_BUCKET={{ api_s3_log_bucket }}
   -e SENDGRID_KEY={{ sendgrid_key }}
   -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
