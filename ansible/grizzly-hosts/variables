@@ -67,12 +67,12 @@ pheidi_runnabot_tokens=118039ff598aae9cb043f55c5d7ac05dbe29afcf
 registry_s3_access_key=AKIAJWTGYN3FCQELH5VQ
 registry_s3_secret_key=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
 registry_s3_bucket=runnableimages.grizzly
-registry_s3_region=${AWS_REGION}
+registry_s3_region=us-west-2
 
 [shiva:vars]
 aws_access_key_id=AKIAJWTGYN3FCQELH5VQ
 aws_secret_access_key=AKIAJWTGYN3FCQELH5VQ
-shiva_aws_region=${AWS_REGION}
+shiva_aws_region=us-west-2
 shiva_dock_security_groups=${AWS_DOCK_SG}
 shiva_ssh_key_name=${AWS_SSH_KEY_NAME}
 shiva_aws_instance_image_id=${AWS_DOCK_AMI_ID}
@@ -93,9 +93,9 @@ environment_name=grizzly
 vault_hello_runnable_github_token=e4905712f229e60cfa6eb09f9f1dda9bac39bd81
 vault_aws_access_key_id=AKIAJWTGYN3FCQELH5VQ
 vault_aws_secret_key=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
-vault_aws_region=${AWS_REGION}
-vault_root_token=${LOCAL_VAULT_ROOT_TOKEN}
-vault_unseal_tokens={'one':'${LOCAL_VAULT_TOKEN_1}', 'two': '${LOCAL_VAULT_TOKEN_2}', 'three': '${LOCAL_VAULT_TOKEN_3}', 'four': '${LOCAL_VAULT_TOKEN_4}', 'five': '${LOCAL_VAULT_TOKEN_5}'}
+vault_aws_region=us-west-2
+vault_root_token=10be3a94-8a1c-d76d-d286-75a271ab4ea3
+vault_unseal_tokens={'one':'65c182ed0cd3e91c11b4f413f85ab873f737377dde0481cc7194ad3f16cd1b7601', 'two': '7f94be359f8969f7ddc46bc50464b534c962f0b4ae81d937094c80ebe285a2bf02', 'three': '58b23a68b8cff866d7b01522866649194e726b01390ef2f048a57d1ab5d4832003', 'four': 'effdf75d9ddbfa6ee955272b19c0f54a9f22cb04f9a3d8e198d22fd92874549204', 'five': 'c8db7300ba9d6bffe32159cc9bc20967183250b16e2cf326d93bd2287f25750d05'}
 _vault_port=65240
 _vault_ssl_port=65241
 
