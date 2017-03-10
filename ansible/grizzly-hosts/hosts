@@ -2,13 +2,13 @@
 dafault-bastion
 
 [hipache]
-default-main httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
+gamma-grizzly-main httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
 [userland]
-default-main
+gamma-grizzly-main
 
 [mongodb]
-default-main
+gamma-grizzly-main
 
 [api_group:children]
 worker
@@ -16,104 +16,104 @@ api
 socket-server
 
 [api]
-default-main
+gamma-grizzly-main
 
 [big-poppa]
-default-main
+gamma-grizzly-main
 
 [cream]
-default-main
+gamma-grizzly-main
 
 [consul]
-default-main
+gamma-grizzly-main
 
 [docker-listener]
-default-main
+gamma-grizzly-main
 
 [vault]
-default-main
+gamma-grizzly-main
 
 [worker]
-default-main
+gamma-grizzly-main
 
 [navi]
-default-main
+gamma-grizzly-main
 
 [ingress]
-default-main
+gamma-grizzly-main
 
 [link]
-default-main
+gamma-grizzly-main
 
 [mongo-navi]
-default-main
+gamma-grizzly-main
 
 [charon]
-default-main
+gamma-grizzly-main
 
 [khronos]
-default-main
+gamma-grizzly-main
 
 [optimus]
-default-main
+gamma-grizzly-main
 
 [detention]
-default-main
+gamma-grizzly-main
 
 [palantiri]
-default-main
+gamma-grizzly-main
 
 [rabbitmq]
-default-main
+gamma-grizzly-main
 
 [web]
-default-main
+gamma-grizzly-main
 
 [redis]
-default-main
+gamma-grizzly-main
 
 [redis-slave]
-default-main
+gamma-grizzly-main
 
 [sauron]
-default-main
+gamma-grizzly-main
 
 [shiva]
-default-main
+gamma-grizzly-main
 
 [socket-server]
-default-main
+gamma-grizzly-main
 
 [socket-server-proxy]
-default-main
+gamma-grizzly-main
 
 [registry]
-default-main
+gamma-grizzly-main
 
 [swarm-manager]
-default-main
+gamma-grizzly-main
 
 [metis]
-default-main
+gamma-grizzly-main
 
 [drake]
-default-main
+gamma-grizzly-main
 
 [pheidi]
-default-main
+gamma-grizzly-main
 
 [github-varnish]
-default-main
+gamma-grizzly-main
 
 [single-host-proxy]
-default-main
+gamma-grizzly-main
 
 [docks]
 
 [dock]
 
 [prometheus]
-default-main
+gamma-grizzly-main
 
 [grizzly:children]
 api

@@ -13,7 +13,9 @@
   local_action:
     shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
   notify:
-    - stop vault
+    - stop vault 1
+    - stop vault 2
+    - stop vault 3
 
 - name: pause for start
   pause:

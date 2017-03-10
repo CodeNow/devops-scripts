@@ -1,7 +1,16 @@
 ---
-- name: stop vault
+- name: stop vault 1
+  local_action: shell ps aux | grep vault | grep server | grep -v grep | sed 's/\s\+/ /g' |  cut -d' ' -f2
+  register: vault_pid
+
+- name: stop vault 2
+  debug:
+    msg: "PID for vault {{ vault_pid }}"
+
+- name: stop vault 3
   local_action:
-    shell kill $(ps aux | grep "vault server" | grep -v grep | cut -d' ' -f3)
+    shell kill {{ vault_pid.stdout_lines[0] }}
+  when: vault_pid is defined and vault_pid != ""
 
 - name: remove vault config
   local_action:
