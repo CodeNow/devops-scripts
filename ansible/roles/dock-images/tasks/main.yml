@@ -5,19 +5,15 @@
     name=docker
     state=started
 
-- name: add runnable registry to /etc/hosts
+- name: docker login
   become: true
-  blockinfile:
-    dest: /etc/hosts
-    insertafter: EOF
-    block: |
-      {{ registry_address }} registry.runnable.com
+  command: docker login -u {{ docker_hub_username }} -p {{ docker_hub_password }}
 
 - name: pulling docker images
   become: true
   command: docker pull {{ item }}
   with_items:
-    - "registry.runnable.com/runnable/image-builder:v4.3.0"
+    - "runnable/image-builder:v4.3.0" # private
     - "swarm:1.2.5"
     - "registry:2.3.1"
     - "google/cadvisor:v0.24.1"
@@ -37,6 +33,10 @@
     - "runnable/postgres:9.4"
     - "runnable/mongo:3.2"
     - "runnable/redis:3.2"
+
+- name: docker logout
+  become: true
+  command: docker logout
 
 - name: stopping docker
   become: true
