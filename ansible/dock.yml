@@ -16,7 +16,7 @@
 - include: krain.yml git_branch="v0.3.0"
 
 - hosts: "{{ dock }}"
-  tasks: 
+  tasks:
   - name: remove datadog agent
     become: true
     apt:
@@ -28,4 +28,4 @@
   roles:
   - { role: install-ssm }
   - { role: dock-images }
-  - { role: docks-psad }
+  # - { role: docks-psad }
