@@ -21,19 +21,19 @@
     line="manual"
     create=yes
 
-# - name: create new config file
-  # tags: deploy
-  # become: true
-  # template:
-    # src=upstart.conf
-    # dest=/etc/init/{{ app_name }}.conf
-    # backup=yes
+- name: create new config file
+  tags: deploy,render_node_service_config
+  become: true
+  template:
+    src=upstart.conf
+    dest=/etc/init/{{ app_name }}.conf
+    backup=yes
 
-# - name: restart service {{ app_name }}
-  # tags: deploy
-  # become: true
-  # when: dock is not defined
-  # service:
-    # name={{ app_name }}
-    # state=restarted
-    # enabled=yes
+- name: restart service {{ app_name }}
+  tags: deploy,render_node_service_config
+  become: true
+  when: dock is not defined
+  service:
+    name={{ app_name }}
+    state=restarted
+    enabled=yes
