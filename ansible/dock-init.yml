@@ -11,6 +11,6 @@
   - { role: docker, tags: [docker] }
   - { role: datadog, tags: [datadog] }
   - { role: git_repo }
-  # - { role: dock-init }
-  # - { role: consul_value, tags: [consul_value] }
+  - { role: dock-init, tags: [init] }
+  - { role: consul_value, tags: [consul_value] }
   - { role: ulimits, tags: [ulimits] }

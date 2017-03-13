@@ -19,5 +19,5 @@
   - { role: docker, tags: [ docker ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: ulimits, tags: [ ulimits ] }
-  # - { role: loggly, tags: [ loggly, clean ] }
+  - { role: loggly, tags: [ loggly, clean ] }
   - { role: node }

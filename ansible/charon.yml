@@ -9,5 +9,5 @@
   - { role: notify, tags: [notify] }
   - { role: git_repo }
   - { role: node_service }
-  # - { role: loggly }
+  - { role: loggly }
   - { role: consul_value, tags: [consul_value] }

@@ -28,4 +28,4 @@
   roles:
   - { role: install-ssm }
   - { role: dock-images }
-  # - { role: docks-psad }
+  - { role: docks-psad,  tags: [psad] }
