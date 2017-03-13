@@ -1,0 +1,72 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`host` (target host) needs to be defined to run this role"
+    when: host is not defined
+
+  - add_host:
+      name={{ host }}
+      groups=dock
+
+- hosts: "{{ host }}"
+  roles:
+  - role: builder
+    include_vars: group_vars/alpha-palantiri.yml
+    git_branch: "{{ palantiri_branch }}"
+
+  # - role: build_and_push_image
+    # image: sauron
+    # git_branch={{ sauron_branch }}
+
+  # - role: build_and_push_image
+    # image: shiva
+    # git_branch={{ shiva_branch }}
+
+  # - role: build_and_push_image
+    # image: khronos
+    # git_branch={{ khronos_branch }}
+
+  # - role: build_and_push_image
+    # image: docker-listener
+    # git_branch={{ docker_listener_branch }}
+
+  # - role: build_and_push_image
+    # image: big-poppa
+    # git_branch={{ big_poppa_branch }}
+
+  # - role: build_and_push_image
+    # image: api
+    # git_branch={{ api_branch }}
+
+  # - role: build_and_push_image
+    # image: drake
+    # git_branch={{ drake_branch }}
+
+  # - role: build_and_push_image
+    # image: cream
+    # git_branch={{ cream_branch }}
+
+  # - role: build_and_push_image
+    # git_branch={{ web_branch }}
+
+  # - role: build_and_push_image
+    # image: detention
+    # git_branch={{ detention_branch }}
+
+  # - role: build_and_push_image
+    # image: link
+    # git_branch={{ link_branch }}
+
+  # - role: build_and_push_image
+    # image: navi
+    # git_branch={{ navi_branch }}
+
+  # - role: build_and_push_image
+    # image: optimus
+    # git_branch={{ optimus_branch }}
+
+  # - role: build_and_push_image
+    # image: pheidi
+    # git_branch={{ pheidi_branch }}
+

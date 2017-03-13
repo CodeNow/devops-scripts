@@ -1,6 +1,7 @@
 ---
 - name: ensure registry.runnable in /etc/hosts
   become: true
+  tags: ensure_registry
   when: dock is not defined
   lineinfile:
     dest=/etc/hosts
