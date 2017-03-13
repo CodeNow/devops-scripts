@@ -1,0 +1,10 @@
+#!/bin/bash
+export CONSUL_PORT={{ consul_api_port }}
+export CONSUL_HOSTNAME={{ ansible_default_ipv4.address }}
+export VAULT_PORT=65240
+echo {{ krain_base64['stdout'] }} | base64 --decode >> /etc/init/krain.conf
+echo {{ charon_base64['stdout'] }} | base64 --decode >> /etc/init/charon.conf
+- name: create new config file for krain
+start amazon-ssm-agent
+service krain start
+service charon start vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
