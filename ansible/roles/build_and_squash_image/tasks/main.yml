@@ -1,0 +1,43 @@
+---
+- name: load variables
+  include_vars: "group_vars/alpha-{{ service_name }}.yml"
+
+- debug:
+    var: git_branch
+- debug:
+    var: service_name
+
+- name: build the image
+  include_role:
+    name: builder
+  vars:
+    name: "{{ service_name }}"
+    skip_docker_setup: true
+
+- name: set variables for image
+  set_fact:
+    container_image: "registry.runnable.com/runnable/{{ service_name }}"
+    container_tag: "{{ git_branch }}"
+
+- name: get image id for newly created image
+  become: true
+  shell: docker images -a | grep "{{ container_image  }}" | awk '{print $3}'
+  register: unsquahed_image_id
+
+- name: squash newly created image
+  become: true
+  shell: docker-squash "{{ unsquahed_image_id.stdout }}" -t "{{ container_image }}:{{ container_tag }}"
+
+- name: remove old image
+  become: true
+  shell: docker rmi "{{ unsquahed_image_id.stdout }}"
+
+- name: get all untagged images
+  become: true
+  shell: docker images | grep "^<none>" | awk "{print $3}"
+  register: untagged_images
+
+- name: remove all untagged images
+  become: true
+  when: untagged_images.stdout != ""
+  shell: docker rmi "{{ untagged_images }}"
