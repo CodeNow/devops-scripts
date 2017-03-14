@@ -10,12 +10,12 @@
       groups=dock
 
 - hosts: "{{ host }}"
-  # roles:
-  # - { role: git }
+  roles:
+  - { role: git }
   tasks:
-  # - name: Install docker-squash
-    # pip:
-      # name: docker-squash
+  - name: Install docker-squash
+    pip:
+      name: docker-squash
 
   - name: build and squash all images
     include_role:
