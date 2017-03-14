@@ -5,7 +5,7 @@
   file:
     path=/etc/ssl/docker
     state=directory
- 
+
 - name: copy docker upstart config
   become: true
   copy:

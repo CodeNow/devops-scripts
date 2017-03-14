@@ -10,63 +10,35 @@
       groups=dock
 
 - hosts: "{{ host }}"
-  roles:
-  - role: builder
-    include_vars: group_vars/alpha-palantiri.yml
-    git_branch: "{{ palantiri_branch }}"
+  # roles:
+  # - { role: git }
+  tasks:
+  # - name: Install docker-squash
+    # pip:
+      # name: docker-squash
 
-  # - role: build_and_push_image
-    # image: sauron
-    # git_branch={{ sauron_branch }}
-
-  # - role: build_and_push_image
-    # image: shiva
-    # git_branch={{ shiva_branch }}
-
-  # - role: build_and_push_image
-    # image: khronos
-    # git_branch={{ khronos_branch }}
-
-  # - role: build_and_push_image
-    # image: docker-listener
-    # git_branch={{ docker_listener_branch }}
-
-  # - role: build_and_push_image
-    # image: big-poppa
-    # git_branch={{ big_poppa_branch }}
-
-  # - role: build_and_push_image
-    # image: api
-    # git_branch={{ api_branch }}
-
-  # - role: build_and_push_image
-    # image: drake
-    # git_branch={{ drake_branch }}
-
-  # - role: build_and_push_image
-    # image: cream
-    # git_branch={{ cream_branch }}
-
-  # - role: build_and_push_image
-    # git_branch={{ web_branch }}
-
-  # - role: build_and_push_image
-    # image: detention
-    # git_branch={{ detention_branch }}
-
-  # - role: build_and_push_image
-    # image: link
-    # git_branch={{ link_branch }}
-
-  # - role: build_and_push_image
-    # image: navi
-    # git_branch={{ navi_branch }}
-
-  # - role: build_and_push_image
-    # image: optimus
-    # git_branch={{ optimus_branch }}
-
-  # - role: build_and_push_image
-    # image: pheidi
-    # git_branch={{ pheidi_branch }}
-
+  - name: build and squash all images
+    include_role:
+      name: build_and_squash_image
+      private: true
+      vars_from: main
+    vars:
+      service_name: "{{ item.name }}"
+      name: "{{ item.name }}aaaa"
+      git_branch: "{{ item.git_branch }}"
+    with_items:
+    - { name: 'sauron', git_branch: "{{ sauron_branch }}" }
+    - { name: 'palantiri', git_branch: "{{ palantiri_branch }}" }
+    - { name: 'shiva', git_branch: "{{ astral_branch }}" }
+    - { name: 'khronos', git_branch: "{{ khronos_branch }}" }
+    - { name: 'docker-listener', git_branch: "{{ docker_listener_branch }}" }
+    - { name: 'big-poppa', git_branch: "{{ big_poppa_branch }}" }
+    - { name: 'api', git_branch: "{{ api_branch }}" }
+    - { name: 'drake', git_branch: "{{ drake_branch }}" }
+    - { name: 'cream', git_branch: "{{ cream_branch }}" }
+    - { name: 'web', git_branch: "{{ angular_branch }}" }
+    - { name: 'detention', git_branch: "{{ detention_branch }}" }
+    - { name: 'link', git_branch: "{{ link_branch }}" }
+    - { name: 'navi', git_branch: "{{ navi_branch }}" }
+    - { name: 'optimus', git_branch: "{{ optimus_branch }}" }
+    - { name: 'pheidi', git_branch: "{{ pheidi_branch }}" }
