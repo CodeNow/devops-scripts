@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:{{ node_version | default('argon') }}
 
 {% if hosted_ports is defined %}
 # Expose port to Host

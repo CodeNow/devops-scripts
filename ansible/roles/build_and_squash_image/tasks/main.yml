@@ -1,6 +1,10 @@
 ---
+- name: display service name
+  debug:
+    var: service_name_file
+
 - name: load variables
-  include_vars: "group_vars/alpha-{{ service_name }}.yml"
+  include_vars: "group_vars/alpha-{{ service_name_file }}.yml"
 
 - name: display service name
   debug:
@@ -32,11 +36,15 @@
   ignore_errors: true # Might already be squashed
   shell: docker-squash "{{ unsquahed_image_id.stdout }}" -t "{{ container_image }}:{{ container_tag }}"
 
-- name: remove old image
+- name: add additional tags
   become: true
-  shell: docker rmi "{{ unsquahed_image_id.stdout }}"
+  shell: docker tag "{{ container_image }}:{{ container_tag }}" "registry.runnable.com/runnable/{{ tag_name_item }}:{{ container_tag }}"
+  when: additional_tags is defined
+  with_items: "{{ additional_tags }}"
+  loop_control:
+    loop_var: tag_name_item
 
-- name: remove all untagged images
+- name: remove all dangling images
   become: true
   ignore_errors: true
-  shell: docker rmi $(docker images -a | grep "^<none>" --color=never | awk '{print $3}')
+  shell: docker rmi $(docker images --quiet --filter "dangling=true")
