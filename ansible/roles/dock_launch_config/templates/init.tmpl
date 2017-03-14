@@ -22,3 +22,4 @@ echo {{ charon_base64['stdout'] }} | base64 --decode >> /etc/init/charon.conf
 # Start services
 service krain start
 service charon start
+CONSUL_HOSTNAME=10.4.0.148 CONSUL_PORT=65200 VAULT_PORT=65240 bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
