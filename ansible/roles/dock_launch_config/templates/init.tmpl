@@ -3,7 +3,7 @@
 # Set ENV files
 export CONSUL_PORT={{ consul_api_port }}
 export CONSUL_HOSTNAME={{ ansible_default_ipv4.address }}
-export VAULT_PORT=65240
+export VAULT_PORT={{ vault_port }}
 
 # Set Vault Tokens
 {% for item in tokens %}
@@ -20,6 +20,5 @@ echo {{ krain_base64['stdout'] }} | base64 --decode >> /etc/init/krain.conf
 echo {{ charon_base64['stdout'] }} | base64 --decode >> /etc/init/charon.conf
 
 # Start services
-start amazon-ssm-agent
 service krain start
 service charon start
