@@ -1,10 +1,10 @@
 ---
-- name: ensure registry.runnable in /etc/hosts
-  become: true
-  tags: ensure_registry
-  when: dock is not defined
-  lineinfile:
-    dest=/etc/hosts
-    line="{{ registry_host }} registry.runnable.com"
-    state=present
-    regexp=".+ registry\.runnable\.com"
+# - name: ensure registry.runnable in /etc/hosts
+  # become: true
+  # tags: ensure_registry
+  # when: dock is not defined
+  # lineinfile:
+    # dest=/etc/hosts
+    # line="{{ registry_host }} registry.runnable.com"
+    # state=present
+    # regexp=".+ registry\.runnable\.com"

@@ -13,31 +13,38 @@
   roles:
   - { role: git }
   tasks:
-  - name: Check to see if pip is already installed.
-    command: "pip --version"
-    ignore_errors: true
-    changed_when: false # read-only task
-    check_mode: no
-    register: pip_is_installed
+  - name: set services
+    set_fact:
+      services:
+      - { name: 'detention', git_branch: "{{ detention_branch }}" }
+      - { name: 'sauron', git_branch: "{{ sauron_branch }}" }
+      - { name: 'palantiri', git_branch: "{{ palantiri_branch }}" }
+      - { name: 'shiva', git_branch: "{{ astral_branch }}" }
+      - { name: 'khronos', git_branch: "{{ khronos_branch }}" }
+      - { name: 'docker-listener', git_branch: "{{ docker_listener_branch }}" }
+      - { name: 'drake-http', git_branch: "{{ drake_branch }}", additional_tags: ["drake-worker"] }
+      - { name: 'cream-http', git_branch: "{{ cream_branch }}", additional_tags: ["cream-worker"] }
+      - { name: 'link', git_branch: "{{ link_branch }}" }
+      - { name: 'navi', git_branch: "{{ navi_branch }}" }
+      - { name: 'optimus', git_branch: "{{ optimus_branch }}" }
+      - { name: 'pheidi', git_branch: "{{ pheidi_branch }}" }
+      - { name: 'big-poppa-http', git_branch: "{{ big_poppa_branch }}", additional_tags: ["big-poppa-worker"] }
+      - { name: 'api', git_branch: "{{ api_branch }}", service_name_file: "api-base", additional_tags: ["api-worker", "api-socket-server"] }
 
-  - name: Download pip.
-    get_url: url=https://bootstrap.pypa.io/get-pip.py dest=./
-    when: pip_is_installed.rc != 0
-
-  - name: Install pip.
-    command: "python ./get-pip.py"
-    become: yes
-    when: pip_is_installed.rc != 0
-
-  - name: Install docker-squash
-    become: true
-    pip:
-      name: docker-squash
-      executable: pip
-
-  - name: build and squash all images
+  - name: build images
     include_role:
-      name: build_and_squash_image
+      name: build_image
+      private: true
+      vars_from: main
+    vars:
+      service_name: "{{ item.name }}"
+      service_name_file: "{{ item.service_name_file | default(item.name) }}"
+      git_branch: "{{ item.git_branch }}"
+    with_items: "{{ services }}"
+
+  - name: squash images
+    include_role:
+      name: squash_image
       private: true
       vars_from: main
     vars:
@@ -45,24 +52,9 @@
       service_name_file: "{{ item.service_name_file | default(item.name) }}"
       additional_tags: "{{ item.additional_tags }}"
       git_branch: "{{ item.git_branch }}"
-    with_items:
-    - { name: 'sauron', git_branch: "{{ sauron_branch }}" }
-    - { name: 'palantiri', git_branch: "{{ palantiri_branch }}" }
-    - { name: 'shiva', git_branch: "{{ astral_branch }}" }
-    - { name: 'khronos', git_branch: "{{ khronos_branch }}" }
-    - { name: 'docker-listener', git_branch: "{{ docker_listener_branch }}" }
-    - { name: 'drake-http', git_branch: "{{ drake_branch }}", additional_tags: ["drake-worker"] }
-    - { name: 'cream-http', git_branch: "{{ cream_branch }}", additional_tags: ["cream-worker"] }
-    - { name: 'link', git_branch: "{{ link_branch }}" }
-    - { name: 'navi', git_branch: "{{ navi_branch }}" }
-    - { name: 'optimus', git_branch: "{{ optimus_branch }}" }
-    - { name: 'pheidi', git_branch: "{{ pheidi_branch }}" }
-    - { name: 'big-poppa-http', git_branch: "{{ big_poppa_branch }}", additional_tags: ["big-poppa-worker"] }
-    - { name: 'api', git_branch: "{{ api_branch }}", service_name_file: "api-base", additional_tags: ["api-worker", "api-socket-server"] }
+    with_items: "{{ services }}"
 
-- hosts: "{{ host }}"
-  vars_files:
-    - "group_vars/alpha-detention.yml"
-  roles:
-  - { role: builder, tags: "build", git_branch: "{{ detention_branch }}", repo: "git@github.com:CodeNow/detention.git" }
-
+  - name: remove all dangling images
+    become: true
+    ignore_errors: true
+    shell: docker rmi $(docker images --quiet --filter "dangling=true")
