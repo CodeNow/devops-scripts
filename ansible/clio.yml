@@ -1,5 +1,4 @@
 ---
-- hosts: mongo-clio
 - hosts: rabbitmq
 - hosts: consul
 
