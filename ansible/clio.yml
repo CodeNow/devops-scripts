@@ -5,8 +5,8 @@
 
 - hosts: clio
   vars_files:
-    - "group_vars/alpha-clio.yml"
+    - group_vars/alpha-clio.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: builder, tags: "build" }
+  - { role: notify, tags: notify }
+  - { role: builder, tags: build }
   - { role: container_kill_start }
