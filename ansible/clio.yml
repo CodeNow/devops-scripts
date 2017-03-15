@@ -1,6 +1,7 @@
 ---
 - hosts: rabbitmq
 - hosts: consul
+- hosts: mongo
 
 - hosts: clio
   vars_files:
