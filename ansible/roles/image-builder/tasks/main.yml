@@ -8,9 +8,3 @@
 - name: build the image-builder
   tags: deploy
   command: sudo docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
-
-- name: push image-builder
-  tags: deploy
-  run_once: true
-  command: sudo docker push "{{ image_builder_docker_namespace }}:{{ git_branch }}"
-  when: dock is not defined
