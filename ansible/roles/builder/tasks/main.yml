@@ -51,12 +51,6 @@
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
-- debug:
-    var: name
-
-- debug:
-    var: build_dir
-
 - name: copy secrets into build dir
   tags: [ deploy ]
   become: true
