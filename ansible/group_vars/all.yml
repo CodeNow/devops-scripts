@@ -204,7 +204,7 @@ navi_mongo_port: 27017
 
 # clio
 clio_mongo_database: clio
-clio_mongo_host_address: "{{ hostvars[groups['mongo-clio'][0]]['ansible_default_ipv4']['address'] }}"
+clio_mongo_host_address: "{{ hostvars[groups['mongo'][0]]['ansible_default_ipv4']['address'] }}"
 clio_mongo_port: 27017
 
 npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
