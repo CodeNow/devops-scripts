@@ -1,6 +1,9 @@
 [bastion]
 gamma-bastion
 
+[user-local]
+127.0.0.1
+
 [hipache]
 gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
@@ -134,6 +137,7 @@ gamma-app-services
 gamma-dock-services
 
 [gamma:children]
+user-local
 agreeable-egret
 api
 arithmancy

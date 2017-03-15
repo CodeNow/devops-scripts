@@ -1,5 +1,6 @@
 ---
-- hosts: cream
+- hosts: user-local
+  connection: local
   tasks:
   - fail: msg="`dock` (target dock) needs to be defined to run this role"
     when: dock is not defined
