@@ -2,6 +2,7 @@ name: clio
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
+hosted_ports: ["{{ clio_port }}"]
 repo: git@github.com:CodeNow/{{ name }}.git
 node_version: "4.8.0"
 npm_version: "2.15.11"
@@ -18,4 +19,5 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
   {{ container_envs }}
