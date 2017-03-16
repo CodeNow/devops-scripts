@@ -63,6 +63,9 @@ gamma-navi
 [mongo-navi]
 gamma-navi
 
+[clio]
+gamma-app-services
+
 [charon]
 gamma-app-services
 
