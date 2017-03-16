@@ -120,6 +120,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | arithmancy | [onerepublic - Counting Stars](https://www.youtube.com/watch?v=hT_nvWreIhg) |
 | big poppa | [Big Poppa - The Notorious B.I.G.](https://www.youtube.com/watch?v=phaJXp_zMYM) |
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
+| clio | [Billy Joel - We Didn't Start the Fire](https://www.youtube.com/watch?v=eFTLKWw542g) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
 | deployer | [Roll our](https://www.youtube.com/watch?v=t21DFnu00Dc) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
