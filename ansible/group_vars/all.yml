@@ -76,9 +76,6 @@ cadvisor_port: 29007
 # charon
 charon_port: 53
 
-# clio
-clio_http_url: "http://{{ hostvars[groups['clio'][0]]['ansible_default_ipv4']['address'] }}:8008/"
-
 # consul
 consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
 consul_api_port: 8500
