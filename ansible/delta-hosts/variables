@@ -39,6 +39,11 @@ big_poppa_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 big_poppa_mongo_database=delta
 big_poppa_mongo_replset_name=delta-rs0
 
+[clio:vars]
+clio_mongo_auth=clio:>hjp8XL4GAwBGXPb
+clio_mongo_replset_name=delta-rs0
+clio_mongo_database=clio
+
 [cream:vars]
 cream_hello_runnable_github_token=5ff90dacd14fb1ff202c6b48c1393ba713adf483
 cream_http_rollbar_token=baa03dbd9f814d14ab0c99863ed6a4fb

@@ -42,6 +42,11 @@ big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=gamma
 big_poppa_mongo_replset_name=gamma-rs0
 
+[clio:vars]
+clio_mongo_auth=clio:Fkj8CBoMNpuhe7p*
+clio_mongo_replset_name=gamma-rs0
+clio_mongo_database=clio
+
 [cream:vars]
 cream_hello_runnable_github_token=e1b68a2cbfefcfee87d72df6d1c07bce886454b9
 cream_http_rollbar_token=baa03dbd9f814d14ab0c99863ed6a4fb

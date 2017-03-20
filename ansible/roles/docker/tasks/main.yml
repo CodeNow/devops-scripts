@@ -17,6 +17,7 @@
 
 - name: copy docker certs
   become: true
+  tags: docker_certs
   when: dock is defined
   copy:
     src=certs/
