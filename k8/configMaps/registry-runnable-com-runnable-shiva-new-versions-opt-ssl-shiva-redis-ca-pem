@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry-runnable-com-runnable-shiva-new-versions-opt-ssl-shiva-redis-ca-pem
+data:
+  ca.pem: |
+    -----BEGIN CERTIFICATE-----
+    MIIDLDCCAhSgAwIBAgIUHmFG/hZ26h8J3O5gPI9YaMu9kmgwDQYJKoZIhvcNAQEL
+    BQAwEzERMA8GA1UEAxMIcnVubmFibGUwHhcNMTYwMzEyMjM1NjEyWhcNMjYwMzEw
+    MjM1NjQyWjATMREwDwYDVQQDEwhydW5uYWJsZTCCASIwDQYJKoZIhvcNAQEBBQAD
+    ggEPADCCAQoCggEBANuaHgYmP9kuQnkTqbFEmprAxU7iMIfWPpmc2V2z3VI+y9tH
+    6JNLQRavZa7Ga1uL9p47S1sPqB9R2Mh6dqXkan+DmnvyAS23fKdq+xqrEJZ1tO8X
+    v18ec32uE7mqtTIGE7pDS6dTNO9h2GeG8TI++1PVuasgRFvPMD5uZo3peQ+jolrC
+    dcgTMxYNarrn8DsuICmiQm0Tia02daxD9Z2DPTeBDysaEoYlTDrnF/NTrOjsvRs0
+    tDCSwySW3yDNgViR113bL/AvrNiwtzS6oUjF3zH8dMg5RtguWmLuIP0yanONc+ON
+    NR9E0PTCg0YqNOzAYAerSHYTKxb8p1ADUp0Vml0CAwEAAaN4MHYwDgYDVR0PAQH/
+    BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFL/crQJlyHcbW2bCp+wo
+    cO1eL0mPMB8GA1UdIwQYMBaAFL/crQJlyHcbW2bCp+wocO1eL0mPMBMGA1UdEQQM
+    MAqCCHJ1bm5hYmxlMA0GCSqGSIb3DQEBCwUAA4IBAQC35/sPGnB8WJALnGv+Le08
+    MGBxbqxPEPHyS1n9oDgZMBDQ6yxJjkaMUi3NF7pqPqkHLwjmo/+uOrbzfZN5FJcH
+    JggLbq4/6gC9T3lQJww+Gw4nwV/lFFhV7/1ysvqn7Hy28uVEOV+ZqvL2qlQdwqo8
+    bHw3MriTcmuYH3U0W5/hO0l2fwHWPcNdhR1HWHMOhw64txRCzvVlI7phGd+99a5A
+    /3AT1sMi3h+YntSNqmtx1k6yJqXcyiIUz3j04BE5NC6+EcgIjyM0hb4NQWkqhQA7
+    gM+nEfBidr4g5e2LCmbbSAxWO/t2DOm9hKRe/3OcGXtJjYyN3oBlTcrg1rpDJfgZ
+    -----END CERTIFICATE-----

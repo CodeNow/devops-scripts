@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry-runnable-com-runnable-clio-SAN-5912-fetch-container-instance
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry-runnable-com-runnable-clio-SAN-5912-fetch-container-instance
+    spec:
+      containers:
+        - image: >-
+            registry.runnable.com/runnable/clio:SAN-5912-fetch-container-instance
+          name: >-
+            registry-runnable-com-runnable-clio-SAN-5912-fetch-container-instance
+          args:
+            - /bin/sh
+            - '-c'
+            - ulimit -c unlimited && /usr/local/bin/npm start
+          env:
+            - name: MONGO
+              value: >-
+                mongodb://clio:Fkj8CBoMNpuhe7p*@10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017/clio
+            - name: MONGO_REPLSET_NAME
+              value: gamma-rs0
+            - name: NODE_ENV
+              value: production-gamma
+            - name: RABBITMQ_HOSTNAME
+              value: 10.4.19.17
+            - name: RABBITMQ_PASSWORD
+              value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+            - name: RABBITMQ_PORT
+              value: '54321'
+            - name: RABBITMQ_USERNAME
+              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+            - name: HOME
+              value: /
+            - name: PATH
+              value: >-
+                ./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - name: LC_ALL
+              value: en_US.UTF-8
+          ports:
+            - containerPort: 8008

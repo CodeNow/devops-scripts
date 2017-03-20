@@ -97,10 +97,6 @@ Host gamma-redis
 Host gamma-redis-slave
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
 
-## Gamma Neo4J
-Host gamma-neo4j
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
-
 # Gamma App Services
 Host gamma-app-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22
