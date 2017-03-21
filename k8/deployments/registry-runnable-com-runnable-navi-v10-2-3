@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry-runnable-com-runnable-navi-v10-2-3
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry-runnable-com-runnable-navi-v10-2-3
+    spec:
+      containers:
+        - image: 'registry.runnable.com/runnable/navi:v10.2.3'
+          name: registry-runnable-com-runnable-navi-v10-2-3
+          args:
+            - /bin/sh
+            - '-c'
+            - ulimit -c unlimited && /usr/local/bin/npm start
+          env:
+            - name: API_URL
+              value: 'https://api.runnable-gamma.com'
+            - name: CERT_PATH
+              value: /opt/ssl/runnable.ninja
+            - name: COOKIE_DOMAIN
+              value: .runnable.ninja
+            - name: COOKIE_SECRET
+              value: c90e5fb4e7e511e597309a79f06e9478
+            - name: DATADOG_HOST
+              value: 10.4.7.108
+            - name: DATADOG_PORT
+              value: '8125'
+            - name: ENABLE_LRU_CACHE
+              value: '1'
+            - name: ERROR_URL
+              value: 'http://10.4.13.234:9123'
+            - name: HTTP_PORT
+              value: '3567'
+            - name: LOG_LEVEL_STDOUT
+              value: trace
+            - name: MONGO
+              value: 'mongodb://10.4.7.108:27017/navi'
+            - name: NODE_ENV
+              value: production-gamma
+            - name: RABBITMQ_HOSTNAME
+              value: 10.4.19.17
+            - name: RABBITMQ_PASSWORD
+              value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+            - name: RABBITMQ_PORT
+              value: '54321'
+            - name: RABBITMQ_USERNAME
+              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+            - name: REDIS_IPADDRESS
+              value: 10.4.6.45
+            - name: REDIS_PORT
+              value: '6379'
+            - name: HOME
+              value: /
+            - name: PATH
+              value: >-
+                ./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - name: LC_ALL
+              value: en_US.UTF-8
+          ports:
+            - containerPort: 3567
