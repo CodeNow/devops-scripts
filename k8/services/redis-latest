@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-latest
+spec:
+  selector:
+    app: redis-latest
+  type: LoadBalancer
+  ports:
+    - port: 6379
+      protocol: TCP
+      name: '6379'
