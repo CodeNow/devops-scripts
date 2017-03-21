@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-3-5-3-management
+spec:
+  selector:
+    app: rabbitmq-3-5-3-management
+  type: LoadBalancer
+  ports:
+    - port: 15672
+      protocol: TCP
+      name: '15672'
+    - port: 5672
+      protocol: TCP
+      name: '5672'
