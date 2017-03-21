@@ -1,0 +1,23 @@
+name: clio
+
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+hosted_ports: ["{{ clio_port }}"]
+repo: git@github.com:CodeNow/{{ name }}.git
+node_version: "4.8.0"
+npm_version: "2.15.11"
+
+container_envs: >
+  -e MONGO=mongodb://{{ clio_mongo_auth }}@{{ mongo_hosts }}/{{ clio_mongo_database }}
+  -e MONGO_REPLSET_NAME={{ clio_mongo_replset_name }}
+  -e NODE_ENV={{ node_env }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
+  {{ container_envs }}

@@ -22,6 +22,7 @@ api_base_container_envs: >-
   -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
   -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
+  -e CLIO_HTTP_URL=http://{{ clio_host_address }}:{{ clio_port }}/
   -e COOKIE_DOMAIN={{ domain }}
   -e CREAM_HOST=http://{{ cream_host_address }}:{{ cream_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
@@ -63,3 +64,4 @@ api_base_container_envs: >-
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
   {% if api_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ api_intercom_app_id }} {% endif %}
   {% if api_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ api_intercom_api_key }} {% endif %}
+  -e AWS_ALIAS_HOST={{ api_aws_alias_host }}

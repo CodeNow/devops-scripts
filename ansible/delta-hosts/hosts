@@ -71,6 +71,9 @@ delta-navi
 [mongo-navi]
 delta-navi
 
+[clio]
+delta-app-services
+
 [link]
 delta-navi
 

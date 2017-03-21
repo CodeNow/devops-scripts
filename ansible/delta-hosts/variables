@@ -7,6 +7,7 @@ egret_pg_pass=wwHQ5B4RfY9iKS3m
 egret_pg_database=egret
 
 [api_group:vars]
+api_aws_alias_host=us-west-2.compute.internal
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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
 api_github_client_id=d42d6634d4070c9d9bf9
@@ -38,6 +39,11 @@ big_poppa_intercom_id=wqzm3rju
 big_poppa_mongo_auth=api:72192e5a-a5e1-11e5-add9-0270db32f7ad
 big_poppa_mongo_database=delta
 big_poppa_mongo_replset_name=delta-rs0
+
+[clio:vars]
+clio_mongo_auth=clio:>hjp8XL4GAwBGXPb
+clio_mongo_replset_name=delta-rs0
+clio_mongo_database=clio
 
 [cream:vars]
 cream_hello_runnable_github_token=5ff90dacd14fb1ff202c6b48c1393ba713adf483
