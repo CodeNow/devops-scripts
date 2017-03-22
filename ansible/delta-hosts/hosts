@@ -53,17 +53,17 @@ delta-api-socket
 delta-api-socket-proxy
 
 [deployer]
-delta-app-services
+delta-app-services-1
 
 [docks]
 
 [dock]
 
 [agreeable-egret]
-delta-app-services
+delta-app-services-1
 
 [eru]
-delta-app-services
+delta-app-services-1
 
 [navi]
 delta-navi
@@ -72,13 +72,10 @@ delta-navi
 delta-navi
 
 [clio]
-delta-app-services
+delta-app-services-1
 
 [link]
 delta-navi
-
-[charon]
-delta-app-services
 
 [khronos]
 delta-dock-services
@@ -87,7 +84,7 @@ delta-dock-services
 delta-dock-services
 
 [detention]
-delta-app-services
+delta-app-services-1
 
 [palantiri]
 delta-dock-services
@@ -96,10 +93,10 @@ delta-dock-services
 delta-rabbit
 
 [web]
-delta-app-services
+delta-app-services-1
 
 [marketing]
-delta-app-services
+delta-app-services-1
 
 [metabase]
 delta-metabase
@@ -111,7 +108,7 @@ delta-redis
 delta-redis-slave
 
 [shiva]
-delta-app-services
+delta-app-services-2
 
 [registry]
 delta-registry
@@ -122,26 +119,23 @@ delta-dock-services
 [swarm-manager]
 delta-swarm-manager
 
-[metis]
-delta-app-services
-
 [drake]
-delta-app-services
+delta-app-services-2
 
 [pheidi]
-delta-app-services
+delta-app-services-1
 
 [github-varnish]
-delta-app-services
+delta-app-services-1
 
 [big-poppa]
-delta-app-services
+delta-app-services-2
 
 [cream]
-delta-app-services
+delta-app-services-2
 
 [arithmancy]
-delta-app-services
+delta-app-services-1
 
 [prometheus]
 delta-prometheus
@@ -152,7 +146,6 @@ api
 arithmancy
 bastion
 big-poppa
-charon
 consul
 cream
 dock
@@ -165,7 +158,6 @@ hipache
 ingress
 khronos
 metabase
-metis
 mongodb
 navi
 optimus
