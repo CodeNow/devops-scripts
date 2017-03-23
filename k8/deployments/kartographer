@@ -24,7 +24,7 @@ spec:
             - name: DATADOG_PORT
               value: '8125'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /google-key.json
+              value: /key/google-key.json
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: 000cb6b65858ad0a7590bc2370b5118ff1bc95db
             - name: NODE_ENV
@@ -55,7 +55,7 @@ spec:
             - name: kartographer-kube-config
               mountPath: /
             - name: kartographer-google-key
-              mountPath: /
+              mountPath: /key/
       volumes:
         - name: kartographer-kube-config
           configMap:
