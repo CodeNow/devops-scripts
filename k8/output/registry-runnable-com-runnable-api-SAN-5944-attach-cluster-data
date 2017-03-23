@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-runnable-com-runnable-api-san-5944-attach-cluster-data
+spec:
+  selector:
+    app: registry-runnable-com-runnable-api-san-5944-attach-cluster-data
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      name: '80'

@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: runnable-vault-v0-5-1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: runnable-vault-v0-5-1
+    spec:
+      containers:
+        - image: 'runnable/vault:v0.5.1'
+          name: runnable-vault-v0-5-1
+          args:
+            - vault
+            - server
+            - '-log-level=warn'
+            - '-config=/vault.hcl'
+          env:
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+            - name: VAULT_ZIP
+              value: /tmp/vault.zip
+            - name: VAULT_VERSION
+              value: 0.5.1
+          volumeMounts:
+            - name: runnable-vault-v0-5-1-opt-vault-server
+              mountPath: /opt/vault/server
+            - name: runnable-vault-v0-5-1-vault-hcl
+              mountPath: /
+            - name: runnable-vault-v0-5-1-opt-vault-client-consul
+              mountPath: /opt/vault/client-consul
+          ports:
+            - containerPort: 8200
+            - containerPort: 8201
+      volumes:
+        - name: runnable-vault-v0-5-1-opt-vault-server
+          configMap:
+            name: runnable-vault-v0-5-1-opt-vault-server
+        - name: runnable-vault-v0-5-1-vault-hcl
+          configMap:
+            name: runnable-vault-v0-5-1-vault-hcl
+        - name: runnable-vault-v0-5-1-opt-vault-client-consul
+          configMap:
+            name: runnable-vault-v0-5-1-opt-vault-client-consul

@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry-runnable-com-runnable-deployer-v2-1-0-root--ssh-id_rsa
+data:
+  id_rsa: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpQIBAAKCAQEA6uJ+QX9CEqd/68PrkoveS+b5eCgjBOIqo8Yr+ow362WMyKcP
+    DsV9bVjoBdinVxRIHlhC/Q4cOo8RnULCL+hS7qV1T4grnV7ETvyzXXM0N2Y9BRde
+    KtiAPpAbdr2FiIGY2F0taaJZjvLJ36cnpWw7ue0KRAN8E1yoxk8z14aoNcomzZuV
+    Z33hFniwxlGFbDT9evOJZnLNxUgcGmupXbuAylY3kyQpE07bQkZl7uTYzMchG/kj
+    +W/DvWO9SdfdZ0PE8UWjXY3s3SJX8fxTEin6n0q5+fhCOUDbzRAXZIRRbMLkbmaD
+    XNm+Z3FBLViSxwNF5pYbaWTNiQ7z0wpzz+De8QIDAQABAoIBAQDWdLesG4H7QD3W
+    yIpEwjnT+W6bG6Jlqg4efCjZWL8RySVSat2fsgdEGGG4PMkFA7qZIiL/o6t4d/ow
+    KKzeSvO1exJx7DVOOSFpsOYfk7kAP/PEu0I6QnRNKww4TPAn45PnMKPvB9FXaCuT
+    ba4QJpMdveSalsfpcbeTYOtHhGX+vPT4gbFi/c4KtBj7BY58LscgSUELd5E1eSrt
+    C7sa64aVqAjj1s+KDjDxddrKwG+Ze8BdL9GU2BRQPX01YAzKvjAp3AJNhe80yIcS
+    n0IRALGAA90puzq/StJoJcVtREkB0BkPrPs3EZc59YwIT+YctTHWXCsXmTqiawma
+    y8XtUdGxAoGBAPmYPokaZ1lu+iuGFmNjEdk6Q6F37XN8REN8OZ7Qwy4CpLl6EYjI
+    E5P3jp0J+ahVu6hTWcTjwrmNEz6QOpNh5KJGY+a5QHgLWRT655TNrpcuYgY83j1G
+    RFCpe+rYmioH0HFMXPEShgw/ZiEb8Gsa/DR7STodtm1Rf8KmIFW2QfY1AoGBAPDp
+    m/cMRWcXDM4QBnPD1Qb8EOblxxpSAaHwxJbOrFw0T+pQQ5OjpvEPZnmKzMK3+8RR
+    MGTCVhiBvVvDcd9SQtkHhet5Va4r0LtqXMYargqOep3eqtvYbKhJfxwKbd9oS+jI
+    WN64xZUtXdrF7N/OlQCSuYeRbKkLKAiscK31CK1NAoGAKmsnZaGpItfriG4Xa/iw
+    VdzDFbQOFOxvpZB9MnKEWVN1r1gBlt96BFG0WRgS5/r6E5dm0EFtHJ/PP3i/m8Ct
+    XK7d155wSHaVQy2JIg76txLY8fpyQrOodJT5TGZXfQEq+bZirU3ankZAEyxuZaWG
+    a1zwiwH1uQp6zhfxst9wwmkCgYEAjYwUkUDqfjmy0lfkEpybS7FKlP+ozjQktWtr
+    dlgUOVCbK8bhDZv3+GbeBMeiqz3CdYRmdK0iPN/tzD63Z0lD8ZRUARiXWPBxgcxq
+    mhMO8zDnpl4v8V/l57LXNjiCeeMjxrAAV0wk+xNes63bEVyle2K6E4dEWsYtTXtT
+    8UGpSXkCgYEA1hMOxQlBazgztMhWKuNIG1RWquXG7KaOSXexUzk+wt7ZNdafe00o
+    E7vzdIWr3+tn1yC9o0ZojSAqr15Z/++ayoBfWQL/BXU8VXa0O1w49RYJan7Fjraa
+    lErPdm+coMp9ZZZ39PZsYwQnuQmKUwuuwFvp9xMUlBZw2y7Hx7HGEAE=
+    -----END RSA PRIVATE KEY-----

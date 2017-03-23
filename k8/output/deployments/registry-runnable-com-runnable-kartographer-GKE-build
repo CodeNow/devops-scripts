@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry-runnable-com-runnable-kartographer-GKE-build
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry-runnable-com-runnable-kartographer-GKE-build
+    spec:
+      containers:
+        - image: 'registry.runnable.com/runnable/kartographer:GKE-build'
+          name: registry-runnable-com-runnable-kartographer-GKE-build
+          args:
+            - /bin/sh
+            - '-c'
+            - npm start
+          env:
+            - name: CONFIG_FILE_PATH
+              value: /kube.config
+            - name: DATADOG_HOST
+              value: 10.4.6.251
+            - name: DATADOG_PORT
+              value: '8125'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /google-key.json
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: 000cb6b65858ad0a7590bc2370b5118ff1bc95db
+            - name: NODE_ENV
+              value: production-gamma
+            - name: RABBITMQ_HOSTNAME
+              value: 10.4.19.17
+            - name: RABBITMQ_PASSWORD
+              value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+            - name: RABBITMQ_PORT
+              value: '54321'
+            - name: RABBITMQ_USERNAME
+              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+            - name: ROLLBAR_KEY
+              value: a7f85fda20bd4b9fb7b1197fc04d3c89
+            - name: RUNNABLE_API_URL
+              value: 'https://api.runnable-gamma.com'
+            - name: WORKER_MAX_NUM_RETRIES
+              value: '1'
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+            - name: NPM_CONFIG_LOGLEVEL
+              value: info
+            - name: NODE_VERSION
+              value: 4.2.2
+            - name: KUBECTL_PATH
+              value: /bin/kubectl
+          volumeMounts:
+            - name: >-
+                registry-runnable-com-runnable-kartographer-GKE-build-kube-config
+              mountPath: /
+            - name: >-
+                registry-runnable-com-runnable-kartographer-GKE-build-google-key-json
+              mountPath: /
+      volumes:
+        - name: registry-runnable-com-runnable-kartographer-GKE-build-kube-config
+          configMap:
+            name: registry-runnable-com-runnable-kartographer-GKE-build-kube-config
+        - name: >-
+            registry-runnable-com-runnable-kartographer-GKE-build-google-key-json
+          configMap:
+            name: >-
+              registry-runnable-com-runnable-kartographer-GKE-build-google-key-json

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-latest
+spec:
+  selector:
+    app: mongo-latest
+  type: LoadBalancer
+  ports:
+    - port: 27017
+      protocol: TCP
+      name: '27017'

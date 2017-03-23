@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: >-
+    registry-runnable-com-runnable-api-socket-server-san-5921-socket-events-for-compose
+spec:
+  selector:
+    app: >-
+      registry-runnable-com-runnable-api-socket-server-san-5921-socket-events-for-compose
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      name: '80'
