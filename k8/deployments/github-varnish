@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: github-varnish
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: github-varnish
+    spec:
+      containers:
+        - image: 'registry.runnable.com/runnable/github-varnish:v2.0.2'
+          name: github-varnish
+          args:
+            - /start.sh
+          env:
+            - name: VARNISH_PORT
+              value: '80'
+            - name: VARNISH_MALLOC
+              value: 100M
+            - name: GITHUB_DOMAIN
+              value: api.github.com
+            - name: IS_GITHUB_ENTERPRISE
+              value: 'false'
+            - name: GITHUB_PROTOCOL
+              value: https
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+          ports:
+            - containerPort: 80

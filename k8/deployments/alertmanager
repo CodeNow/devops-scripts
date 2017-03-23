@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: alertmanager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+        - image: 'prom/alertmanager:v0.5.0'
+          name: alertmanager
+          args:
+            - '-config.file=/prometheus-alerts/prometheus-alerts.yml'
+            - '-data.retention'
+            - 720h0m0s
+            - '-storage.path'
+            - data
+            - '-web.external-url'
+            - 'http://localhost'
+            - '-web.listen-address'
+            - ':9093'
+          env:
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+          volumeMounts:
+            - name: prometheus-alerts-conf
+              mountPath: /prometheus-alerts
+          command:
+            - /bin/alertmanager
+          ports:
+            - containerPort: 9093
+      volumes:
+        - name: prometheus-alerts-conf
+          configMap:
+            name: prometheus-alerts-conf

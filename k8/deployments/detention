@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: detention
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: detention
+    spec:
+      containers:
+        - image: 'registry.runnable.com/runnable/detention:v1.3.4'
+          name: detention
+          args:
+            - /bin/sh
+            - '-c'
+            - ulimit -c unlimited && /usr/local/bin/npm start
+          env:
+            - name: ABSOLUTE_URL
+              value: detention.runnable-gamma.com
+            - name: API_URL
+              value: 'https://api.runnable-gamma.com'
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+            - name: NODE_ENV
+              value: production-gamma
+            - name: PORT
+              value: '9123'
+            - name: HOME
+              value: /
+            - name: PATH
+              value: >-
+                ./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - name: LC_ALL
+              value: en_US.UTF-8
+          ports:
+            - containerPort: 9123

@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongo-navi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-navi
+    spec:
+      containers:
+        - image: 'mongo:latest'
+          name: mongo-navi
+          args:
+            - mongod
+          env:
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+            - name: GOSU_VERSION
+              value: '1.7'
+            - name: GPG_KEYS
+              value: "DFFA3DCF326E302C4787673A01C4E7FAAAB2461C \t42F3E95A2C4F08279C4960ADD68FA50FEA312927"
+            - name: MONGO_MAJOR
+              value: '3.2'
+            - name: MONGO_VERSION
+              value: 3.2.6
+          command:
+            - /entrypoint.sh
+          ports:
+            - containerPort: 27017

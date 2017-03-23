@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-alerts-conf
+data:
+  prometheus-alerts: |
+    global:
+      # ResolveTimeout is the time after which an alert is declared resolved
+      # if it has not been updated.
+      resolve_timeout: 5m
+
+      slack_api_url: "https://hooks.slack.com/services/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"
+
+      pagerduty_url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json"
+
+    # The root node of the routing tree.
+    route:
+      # The labels by which incoming alerts are grouped together. For example,
+      # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
+      # be batched into a single group.
+      group_by: ['alertname', 'service', 'host']
+      # When a new group of alerts is created by an incoming alert, wait at
+      # least 'group_wait' to send the initial notification.
+      # This way ensures that you get multiple alerts for the same group that start
+      # firing shortly after another are batched together on the first
+      # notification.
+      group_wait: 30s
+      # A default receiver
+      receiver: slack
+
+      routes:
+      - match_re:
+          reportTo: slack
+        receiver: slack
+
+      - match_re:
+          reportTo: pagerduty
+        receiver: pagerduty
+
+      - match_re:
+          reportTo: drake
+        receiver: drake
+
+    # A list of notification receivers.
+    receivers:
+    - name: 'pagerduty'
+      pagerduty_configs:
+      - send_resolved: true
+        service_key: "ky6EFGL7Zh-xH8x1qEJV"
+
+    - name: 'slack'
+      slack_config:
+      - send_resolved: true
+        channel: ops
+
+    - name: 'drake'
+      slack_config:
+      - send_resolved: false
+        url: "drake.runnable-gamma.com"
+  prometheus-alerts.yml: |
+    global:
+      # ResolveTimeout is the time after which an alert is declared resolved
+      # if it has not been updated.
+      resolve_timeout: 10m
+
+      slack_api_url: "https://hooks.slack.com/services/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"
+
+      pagerduty_url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json"
+
+    # The root node of the routing tree.
+    route:
+      # A default receiver
+      receiver: slack
+
+      continue: true
+
+      routes:
+      - match_re:
+          reportTo: .*pagerduty.*
+        receiver: pagerduty
+
+      - match_re:
+          reportTo: .*drake.*
+        receiver: drake
+
+    # A list of notification receivers.
+    receivers:
+    - name: "pagerduty"
+      pagerduty_configs:
+      - send_resolved: true
+        service_key: "testkey"
+        description: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
+      slack_configs:
+      - send_resolved: true
+        channel: ops
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
+
+    - name: "slack"
+      slack_configs:
+      - send_resolved: true
+        channel: ops
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
+
+    - name: "drake"
+      webhook_configs:
+      - send_resolved: true
+        url: "http://drake.runnable-gamma.com/prometheus"
+      slack_configs:
+      - send_resolved: true
+        channel: ops
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"

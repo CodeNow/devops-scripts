@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: registry-runnable-com-runnable-deployer-v2-1-0-root--ssh-vault-pass
-data:
-  vault-pass: dual-undo-arguable-local-muffle
