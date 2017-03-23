@@ -31,8 +31,8 @@ data:
       user:
         auth-provider:
           config:
-            access-token: ya29.EloUBCVzn9KfXD5AgnADE5vtBn0hohjT-NTOrKK4yAxzSGzgwUrhvOQqqOIwGFJFEJn7HbOFJGzSp2BVq62_Adjc23IEApJ-A8-z-lDkznPmMkrX-5DajZ4tkVw
-            expiry: 2017-03-20T23:35:53.191429513Z
+            access-token: ya29.EloWBM3O3gmJgB0rra5RCoIF2ziMzXL3mggYxdJSSW9JSGO-tphaF1Zbt2adbFdUAK7OR2kiqVODHkAWZehmqF_qk8YXlahtNItgylCUbQvuZWzbxreQh5vzueY
+            expiry: 2017-03-22T19:03:26.583420253Z
           name: gcp
     - name: kubernetes.runnable-gamma.com
       user:
