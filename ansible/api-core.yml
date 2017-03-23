@@ -23,10 +23,6 @@
 
   - role: docker_client
 
-  - role: tls-client
-    tags: [ tls ]
-    tls_service: mongodb
-
   - role: datadog
     tags: [ datadog ]
 
