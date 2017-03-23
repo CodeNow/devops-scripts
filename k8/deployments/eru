@@ -26,7 +26,7 @@ spec:
             - name: AWS_SECRET_KEY
               value: U4hrU3yYIllCCPLjZ32QuyHQ0N05fveDZ0+liVKR
             - name: BIG_POPPA_HOST
-              value: '10.4.13.234:7788'
+              value: 'big-poppa-http:7788'
             - name: CONSUL_HOST
               value: '10.4.5.144:8500'
             - name: DOMAIN

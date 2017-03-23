@@ -40,7 +40,7 @@ spec:
             - name: LOG_LEVEL_STDOUT
               value: trace
             - name: SWARM_HOSTNAME
-              value: 10.4.6.251
+              value: swarm
             - name: SWARM_PORT
               value: '2375'
             - name: HOME

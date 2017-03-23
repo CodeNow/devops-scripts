@@ -38,7 +38,7 @@ spec:
             - name: ROLLBAR_KEY
               value: 83157ae2d50d4b6398e404c0b9978d26
             - name: SWARM_HOSTNAME
-              value: 10.4.6.251
+              value: swarm
             - name: SWARM_PORT
               value: '2375'
             - name: WEAVE_PATH

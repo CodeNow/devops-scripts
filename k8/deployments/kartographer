@@ -52,18 +52,14 @@ spec:
             - name: KUBECTL_PATH
               value: /bin/kubectl
           volumeMounts:
-            - name: >-
-                kartographer-kube-config
+            - name: kartographer-kube-config
               mountPath: /
-            - name: >-
-                kartographer-google-key
+            - name: kartographer-google-key
               mountPath: /
       volumes:
         - name: kartographer-kube-config
           configMap:
             name: kartographer-kube-config
-        - name: >-
-            kartographer-google-key
+        - name: kartographer-google-key
           configMap:
-            name: >-
-              kartographer-google-key
+            name: kartographer-google-key

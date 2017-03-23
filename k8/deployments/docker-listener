@@ -40,7 +40,7 @@ spec:
             - name: ROLLBAR_KEY
               value: 7b5924eccfff415d9fc00c051811e9d7
             - name: SWARM_HOST
-              value: '10.4.6.251:2375'
+              value: 'swarm:2375'
             - name: HOME
               value: /
             - name: PATH
@@ -49,12 +49,9 @@ spec:
             - name: LC_ALL
               value: en_US.UTF-8
           volumeMounts:
-            - name: >-
-                docker-listener-docker-ssl
+            - name: docker-listener-docker-ssl
               mountPath: /etc/ssl/docker
       volumes:
-        - name: >-
-            registry-runnable-com-runnable-docker-listener--build-etc-ssl-docker
+        - name: docker-listener-docker-ssl
           configMap:
-            name: >-
-              docker-listener-docker-ssl
+            name: docker-listener-docker-ssl

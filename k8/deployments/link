@@ -26,7 +26,7 @@ spec:
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
             - name: MONGO
-              value: 'mongodb://10.4.7.108:27017/navi'
+              value: 'mongodb://mongo-navi:27017/navi'
             - name: NODE_ENV
               value: production-gamma
             - name: RABBITMQ_HOSTNAME
