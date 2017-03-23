@@ -60,7 +60,7 @@ spec:
             - name: NODE_ENV
               value: production
             - name: RABBITMQ_HOSTNAME
-              value: 10.4.19.17
+              value: rabbit
             - name: RABBITMQ_PASSWORD
               value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
             - name: RABBITMQ_PORT
@@ -68,7 +68,7 @@ spec:
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
             - name: REDIS_HOSTNAME
-              value: 10.4.6.45
+              value: redis
             - name: REDIS_PORT
               value: '6379'
             - name: RUNNABLE_DOMAIN

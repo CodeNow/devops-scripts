@@ -58,7 +58,7 @@ spec:
             - name: NODE_ENV
               value: production-gamma
             - name: RABBITMQ_HOSTNAME
-              value: 10.4.19.17
+              value: rabbit
             - name: RABBITMQ_PASSWORD
               value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
             - name: RABBITMQ_PORT
@@ -66,7 +66,7 @@ spec:
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
             - name: SWARM_HOST
-              value: 'http://10.4.6.251:2375'
+              value: 'http://swarm:2375'
             - name: USER_CONTENT_DOMAIN
               value: runnable.ninja
             - name: WORKER_MAX_RETRY_DELAY

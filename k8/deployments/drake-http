@@ -30,7 +30,7 @@ spec:
             - name: PORT
               value: '80'
             - name: RABBITMQ_HOSTNAME
-              value: 10.4.19.17
+              value: rabbit
             - name: RABBITMQ_PASSWORD
               value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
             - name: RABBITMQ_PORT
