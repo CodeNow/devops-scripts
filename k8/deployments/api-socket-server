@@ -101,8 +101,6 @@ spec:
               value: us-west-2.compute.internal
             - name: NUM_WORKERS
               value: '1'
-            - name: ROLLBAR_KEY
-              value: cad27f265e8e473c9b293615e7ed0f3a
             - name: HOME
               value: /
             - name: PATH

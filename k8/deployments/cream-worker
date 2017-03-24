@@ -44,9 +44,7 @@ spec:
             - name: RUNNABLE_API_URL
               value: 'https://api.runnable-gamma.com'
             - name: RUNNABLE_USER_CONTENT_DOMAIN
-              value: runnable.ninja
-            - name: ROLLBAR_KEY
-              value: 87924b881c3143968cdb059fe41acbc3
+              value: runnable.ninja3
             - name: STRIPE_API_KEY
               value: sk_test_4De8Zdkfcyb29swkMmjZUMRh
             - name: STRIPE_PUBLISHABLE_KEY

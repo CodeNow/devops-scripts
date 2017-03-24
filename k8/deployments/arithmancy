@@ -34,8 +34,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 1fe145fdeb1a4526b48f5dd82b0d6eb5
             - name: HOME
               value: /
             - name: PATH

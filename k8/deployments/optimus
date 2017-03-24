@@ -31,8 +31,6 @@ spec:
               value: 5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
             - name: S3_DEPLOY_KEY_BUCKET
               value: runnable.deploykeys.production-beta
-            - name: ROLLBAR_KEY
-              value: a49f9cce09ee46f09df3f603178fba75
             - name: LOG_LEVEL
               value: trace
             - name: HOME

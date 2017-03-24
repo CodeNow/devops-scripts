@@ -37,8 +37,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 7b5924eccfff415d9fc00c051811e9d7
             - name: SWARM_HOST
               value: 'swarm:2375'
             - name: HOME

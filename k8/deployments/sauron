@@ -35,8 +35,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 83157ae2d50d4b6398e404c0b9978d26
             - name: SWARM_HOSTNAME
               value: swarm
             - name: SWARM_PORT

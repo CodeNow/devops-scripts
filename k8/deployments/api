@@ -101,8 +101,6 @@ spec:
               value: us-west-2.compute.internal
             - name: IS_QUEUE_WORKER
               value: 'true'
-            - name: ROLLBAR_KEY
-              value: 3edfe8fe4fd640ae9fdbbe08fcb9f121
             - name: HOME
               value: /
             - name: PATH

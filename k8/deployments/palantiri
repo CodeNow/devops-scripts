@@ -33,8 +33,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: f675e9090d6f483ca4e742af2c7f2f83
             - name: RSS_LIMIT
               value: '2000000'
             - name: LOG_LEVEL_STDOUT

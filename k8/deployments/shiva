@@ -46,8 +46,6 @@ spec:
               value: redis
             - name: REGISTRY_HOST
               value: 10.4.4.82
-            - name: ROLLBAR_KEY
-              value: 0526a90faec845d796e1ef5361a00526
             - name: DOCKER_PORT
               value: '4242'
             - name: HOME

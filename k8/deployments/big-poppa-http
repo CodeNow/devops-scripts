@@ -52,8 +52,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 1f1eeea0b1334aaeb50fb7bc4a43241a
             - name: MONGO
               value: >-
                 mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017/gamma

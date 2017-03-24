@@ -36,9 +36,7 @@ spec:
             - name: RABBITMQ_PORT
               value: '54321'
             - name: RABBITMQ_USERNAME
-              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 52ad749ddb8e47b2a8e15312b6b300fb
+              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OMb
             - name: HOME
               value: /
             - name: PATH

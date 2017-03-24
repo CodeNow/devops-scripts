@@ -52,8 +52,6 @@ spec:
               value: '54321'
             - name: RABBITMQ_USERNAME
               value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-            - name: ROLLBAR_KEY
-              value: 6fc422ac645441bea7f6f14853eb01ab
             - name: RUNNABOT_GITHUB_ACCESS_TOKENS
               value: ff3d259c5d988badbb692cc400998e46cdd5f1fc
             - name: SENDGRID_KEY
