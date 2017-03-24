@@ -140,7 +140,6 @@ gamma-app-services
 gamma-dock-services
 
 [gamma:children]
-user-local
 agreeable-egret
 api
 arithmancy
@@ -175,6 +174,7 @@ socket-server
 socket-server-proxy
 swarm-manager
 userland
+user-local
 web
 worker
 
