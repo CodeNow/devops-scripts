@@ -53,7 +53,7 @@ spec:
               value: /bin/kubectl
           volumeMounts:
             - name: kartographer-kube-config
-              mountPath: /
+              mountPath: /key/
             - name: kartographer-google-key
               mountPath: /key/
       volumes:
