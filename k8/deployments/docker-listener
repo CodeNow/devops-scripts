@@ -10,7 +10,7 @@ spec:
         app: docker-listener
     spec:
       containers:
-        - image: registry.runnable.com/runnable/docker-listener:gke-build
+        - image: registry.runnable.com/runnable/docker-listener:GKE-build
           name: docker-listener
           args:
             - /bin/sh

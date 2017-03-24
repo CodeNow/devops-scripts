@@ -10,7 +10,7 @@ spec:
         app: kartographer
     spec:
       containers:
-        - image: registry.runnable.com/runnable/kartographer:gke-build
+        - image: registry.runnable.com/runnable/kartographer:GKE-build
           name: kartographer
           args:
             - /bin/sh
@@ -18,13 +18,13 @@ spec:
             - npm start
           env:
             - name: CONFIG_FILE_PATH
-              value: /kube.config
+              value: /keys/kube.config
             - name: DATADOG_HOST
               value: 10.4.6.251
             - name: DATADOG_PORT
               value: '8125'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /key/google-key.json
+              value: /keys/google-key.json
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: 000cb6b65858ad0a7590bc2370b5118ff1bc95db
             - name: NODE_ENV
