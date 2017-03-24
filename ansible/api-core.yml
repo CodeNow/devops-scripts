@@ -1,7 +1,7 @@
 ---
 - hosts: mongodb
+- hosts: clio
 - hosts: navi
-- hosts: charon
 - hosts: rabbitmq
 - hosts: redis
 - hosts: big-poppa
@@ -22,10 +22,6 @@
     tags: [ build ]
 
   - role: docker_client
-
-  - role: tls-client
-    tags: [ tls ]
-    tls_service: mongodb
 
   - role: datadog
     tags: [ datadog ]
