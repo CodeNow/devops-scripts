@@ -15,17 +15,6 @@
     owner=root
     group=root
 
-- name: copy docker certs
-  become: true
-  tags: docker_certs
-  when: dock is defined
-  copy:
-    src=certs/
-    dest=/etc/ssl/docker
-    mode=0440
-    owner=root
-    group=root
-
 - name: create core file dir
   become: true
   when: docker_config == "runnable" and core_file_dir != "/var/log"
@@ -109,10 +98,6 @@
     owner=root
     group=root
     mode=0755
-
-- name: restart docker
-  when: (copied_config.changed and restart is defined) or dock is defined
-  command: sudo service docker restart
 
 - name: create docker group
   become: true

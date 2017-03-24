@@ -10,22 +10,22 @@ mkdir -p /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 chmod 0711 /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 
-# Set Vault Tokens
+# Set Vault Tokens (Used for fetching templates)
 {% for item in tokens %}
 echo {{ item.value }} > /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}
 {% endfor %}
 
-# Add upstart files
+# Add upstart files for charon and krain
 mkdir -p /docker/app-logs/
 echo {{ krain_base64['stdout'] }} | base64 --decode > /etc/init/krain.conf
 echo {{ charon_base64['stdout'] }} | base64 --decode > /etc/init/charon.conf
 
-# Add Certs
+# Add Certs (Used for genereting Docker client keys + certs)
 mkdir -p /etc/ssl/docker/
-rm /etc/ssl/docker/*
-echo {{ ca_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca.pem
+cho {{ ca_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca.pem
 echo {{ ca_key_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca-key.pem
 echo {{ pass_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/pass
+chmod -R 0440 /etc/ssl/docker/
 
 # Start services
 {% if is_dock_pool %}
