@@ -10,7 +10,7 @@ spec:
         app: sauron
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/sauron:v7.5.1'
+        - image: registry.runnable.com/runnable/sauron:v7.5.1
           name: sauron
           args:
             - /bin/sh

@@ -10,7 +10,7 @@ spec:
         app: drake-worker
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/drake-worker:v2.5.0'
+        - image: registry.runnable.com/runnable/drake-worker:v2.5.0
           name: drake-worker
           args:
             - /bin/sh

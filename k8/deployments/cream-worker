@@ -10,7 +10,7 @@ spec:
         app: cream-worker
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/cream-worker:v1.13.3'
+        - image: registry.runnable.com/runnable/cream-worker:v1.13.3
           name: cream-worker
           args:
             - /bin/sh

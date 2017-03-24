@@ -10,7 +10,7 @@ spec:
         app: kartographer
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/kartographer:gke-build'
+        - image: registry.runnable.com/runnable/kartographer:gke-build
           name: kartographer
           args:
             - /bin/sh

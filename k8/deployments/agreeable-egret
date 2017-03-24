@@ -10,7 +10,7 @@ spec:
         app: agreeable-egret
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/agreeable-egret:v0.2.2'
+        - image: registry.runnable.com/runnable/agreeable-egret:v0.2.2
           name: agreeable-egret
           args:
             - /bin/sh

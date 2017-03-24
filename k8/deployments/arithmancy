@@ -10,7 +10,7 @@ spec:
         app: arithmancy
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/arithmancy:v1.12.0'
+        - image: registry.runnable.com/runnable/arithmancy:v1.12.0
           name: arithmancy
           args:
             - /bin/sh

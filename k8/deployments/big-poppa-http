@@ -10,7 +10,7 @@ spec:
         app: big-poppa-http
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/big-poppa-http:v0.18.2'
+        - image: registry.runnable.com/runnable/big-poppa-http:v0.18.2
           name: big-poppa-http
           args:
             - /bin/sh

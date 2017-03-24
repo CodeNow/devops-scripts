@@ -10,7 +10,7 @@ spec:
         app: cream-http
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/cream-http:v1.13.3'
+        - image: registry.runnable.com/runnable/cream-http:v1.13.3
           name: cream-http
           args:
             - /bin/sh

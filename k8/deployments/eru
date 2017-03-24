@@ -10,7 +10,7 @@ spec:
         app: eru
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/eru:v6.2.3'
+        - image: registry.runnable.com/runnable/eru:v6.2.3
           name: eru
           args:
             - bash

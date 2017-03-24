@@ -10,7 +10,7 @@ spec:
         app: pheidi
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/pheidi:v1.38.6'
+        - image: registry.runnable.com/runnable/pheidi:v1.38.6
           name: pheidi
           args:
             - /bin/sh

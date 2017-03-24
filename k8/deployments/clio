@@ -10,7 +10,7 @@ spec:
         app: clio
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/clio:v1.1.1'
+        - image: registry.runnable.com/runnable/clio:v1.1.1
           name: clio
           args:
             - /bin/sh

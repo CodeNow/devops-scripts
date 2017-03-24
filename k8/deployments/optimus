@@ -10,7 +10,7 @@ spec:
         app: optimus
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/optimus:v5.1.1'
+        - image: registry.runnable.com/runnable/optimus:v5.1.1
           name: optimus
           args:
             - /bin/sh

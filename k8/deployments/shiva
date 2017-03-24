@@ -10,7 +10,7 @@ spec:
         app: shiva
     spec:
       containers:
-        - image: 'registry.runnable.com/runnable/shiva:v7.8.3'
+        - image: registry.runnable.com/runnable/shiva:v7.8.3
           name: shiva
           args:
             - /bin/sh
