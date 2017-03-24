@@ -26,6 +26,8 @@ spec:
               mountPath: /etc/ssl/certs/runnable-gamma.com
             - name: nginx-conf
               mountPath: /etc/nginx
+            - name: nginx-api-conf
+              mountPath: /etc/nginx/sites-enabled
             - name: nginx-mixpanel
               mountPath: /etc/nginx/other-sites-enabled
           ports:
@@ -38,6 +40,9 @@ spec:
         - name: nginx-conf
           configMap:
             name: nginx-conf
+        - name: nginx-api-conf
+          configMap:
+            name: nginx-api-conf
         - name: nginx-mixpanel
           configMap:
             name: nginx-mixpanel
