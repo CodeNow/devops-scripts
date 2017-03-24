@@ -10,7 +10,7 @@ spec:
         app: api-worker
     spec:
       containers:
-        - image: registry.runnable.com/runnable/api-worker:SAN-5944-attach-cluster-data
+        - image: registry.runnable.com/runnable/api:v11.31.0
           name: api-worker
           args:
             - /bin/sh

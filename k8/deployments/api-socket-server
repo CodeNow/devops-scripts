@@ -10,7 +10,7 @@ spec:
         app: api-socket-server
     spec:
       containers:
-        - image: registry.runnable.com/runnable/api-socket-server:v11.29.5
+        - image: rregistry.runnable.com/runnable/api:v11.31.0
           name: api-socket-server
           args:
             - /bin/sh
