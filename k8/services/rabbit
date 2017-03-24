@@ -7,9 +7,11 @@ spec:
     app: rabbit
   type: LoadBalancer
   ports:
-    - port: 15672
+    - port: 54321
+      targetPort: 5672
       protocol: TCP
-      name: '15672'
-    - port: 5672
+      name: '54321'
+    - port: 54320
+      targetPort: 15672
       protocol: TCP
-      name: '5672'
+      name: '54320'
