@@ -112,6 +112,8 @@ spec:
               value: en_US.UTF-8
             - name: NPM_TOKEN
               value: c76363e9-78e0-4667-82ac-e2ac01efcfe2
+          ports:
+            - containerPort: 80
           volumeMounts:
             - name: api-worker-conf
               mountPath: /etc/ssl/docker
