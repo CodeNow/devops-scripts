@@ -6,7 +6,7 @@ spec:
   selector:
     app: github-varnish
   ports:
-    - port: 80
-      targetPort: 8765
+    - port: 8765
+      targetPort: 80
       protocol: TCP
-      name: '80'
+      name: '8765'
