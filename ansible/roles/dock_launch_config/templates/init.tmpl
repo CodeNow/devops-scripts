@@ -2,7 +2,7 @@
 
 # Set ENV files
 export CONSUL_PORT={{ consul_https_port }}
-export CONSUL_HOSTNAME={{ groups['consul'][0] }}
+export CONSUL_HOSTNAME={{ consul_host_address }}
 export VAULT_PORT={{ vault_port }}
 
 # Create directory for env
@@ -34,5 +34,5 @@ start amazon-ssm-agent
 service krain start
 service charon start
 {% if not is_dock_pool %}
-CONSUL_HOSTNAME={{ groups['consul'][0] }} CONSUL_PORT={{ consul_https_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
+CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_https_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% endif %}

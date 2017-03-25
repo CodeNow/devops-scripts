@@ -1,11 +1,8 @@
 ---
+- hosts: redis
+- hosts: consul
+
 - hosts: user-local
   connection: local
-  tasks:
-  - fail: msg="`dock` (target dock) needs to be defined to run this role"
-    when: dock is not defined
-  - add_host:
-      name={{ dock }}
-      groups=dock
   roles:
   - { role: dock_launch_config }

@@ -44,15 +44,15 @@
     - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
 
 - name: encode ca.pem to base64
-  shell: cat ./roles/docker_client/scripts/ca.pem | base64 -w 0
+  shell: cat ./certs/ca.pem | base64 -w 0
   register: ca_pem_base64
 
 - name: encode ca-key.pem to base64
-  shell: cat ./roles/docker_client/scripts/ca-key.pem | base64 -w 0
+  shell: cat ./certs/ca-key.pem | base64 -w 0
   register: ca_key_pem_base64
 
 - name: encode pass to base64
-  shell: cat ./roles/docker_client/scripts/pass | base64 -w 0
+  shell: cat ./certs/pass | base64 -w 0
   register: pass_base64
 
 - name: Generate dock script
