@@ -29,6 +29,8 @@ docker_config: runnable
 slack_token: T029DEC10/B1RSX8LNS/qLLSYEEqkGddohOdE44eDf3j
 slack_channels: [ '#ops' ]
 
+sendgrid_key: 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
+
 loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
 loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
 loggly_username: ops

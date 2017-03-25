@@ -7,9 +7,6 @@ repo: git@github.com:CodeNow/api.git
 restart_policy: always
 has_shrinkwrap: true
 
-# for sendGrid
-sendgrid_key: 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
-
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
