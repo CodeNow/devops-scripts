@@ -3,6 +3,9 @@
 ops_slack_channel_url: https://hooks.slack.com/services/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
 pager_duty_key: testkey
 opts_root: "{{ opts_root | default('/opt/runnable') }}"
+config_maps_path: "{{ opts_root }}/configMaps"
+services_path: "{{ opts_root }}/services"
+deployments_path: "{{ opts_root }}/deployments"
 
 # registry settings
 registry_env: prod

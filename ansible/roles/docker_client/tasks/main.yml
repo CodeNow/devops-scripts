@@ -8,5 +8,5 @@
 
 - name: create config-map yaml
   template:
-    dest: "{{ opts_root }}/configMap"
+    dest: "{{ config_maps_path }}"
     src: config-map.yml

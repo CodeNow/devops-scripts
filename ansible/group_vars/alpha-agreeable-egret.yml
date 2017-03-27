@@ -7,10 +7,6 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.3.1"
 npm_version: "3.7.5"
 
-# Exposes egret
-redis_key: "frontend:{{ agreeable_egret_hostname }}"
-is_redis_update_required: 'yes'
-
 # container settings
 container_envs:
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
@@ -25,9 +21,3 @@ container_envs:
     value: "{{ user_content_domain }}"
   - name: POSTGRES_CONNECT_STRING
     value: postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ egret_pg_host }}/{{ egret_pg_database }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
-  {{ container_envs }}

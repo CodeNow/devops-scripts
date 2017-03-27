@@ -1,4 +1,4 @@
 - name: create service yaml
   template:
-    dest: "{{ opts_root }}/services"
+    dest: "{{ services_path }}/{{ name }}"
     src: service.yml

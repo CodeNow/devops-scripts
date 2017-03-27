@@ -12,7 +12,9 @@ spec:
       containers:
         - image: {{ container_image }}
           name: {{ name }}
+{% if container_envs is defined %}
           args: {{ container_run_args }}
+{% endif %}
 {% if container_envs is defined %}
           env:
 {% for env in container_envs %}

@@ -4,3 +4,4 @@
     - group_vars/alpha-agreeable-egret.yml
   roles:
   - role: k8-deployment
+  - role: k8-service
