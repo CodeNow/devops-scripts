@@ -4,10 +4,6 @@ container_image: registry.runnable.com/runnable/{{ name }}
 
 hosted_ports: [ "{{ api_port }}" ]
 
-# for redis
-redis_key: frontend:{{ api_hostname }}
-is_redis_update_required: yes
-
 memory_hard_limit: 1g
 
 local_envs:

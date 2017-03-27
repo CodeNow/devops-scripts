@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ name }}
+spec:
+  selector:
+    app: {{ name }}
+  ports:
+{% for port in hosted_ports %}
+    - port: {{ port }}
+      protocol: TCP
+      name: '{{ port }}'
+{% endfor %}

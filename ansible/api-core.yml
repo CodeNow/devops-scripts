@@ -7,3 +7,4 @@
     - group_vars/alpha-api.yml
   roles:
   - role: k8-deployment
+  - role: k8-service
