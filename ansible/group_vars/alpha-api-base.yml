@@ -4,7 +4,6 @@ node_version: 4.2.2
 npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
-restart_policy: always
 has_shrinkwrap: true
 
 # for sendGrid
@@ -18,7 +17,7 @@ dockerfile_pre_install_commands: [
 ]
 
 volume_mounts:
- - name: api-docker-ssl-certs
+ - name: {{ name }}-docker-ssl-certs
    path: /etc/ssl/docker
 
 # shared ENV's between api services

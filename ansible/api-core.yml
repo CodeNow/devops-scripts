@@ -6,5 +6,6 @@
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-api.yml
   roles:
+  - role: docker_client
   - role: k8-deployment
   - role: k8-service

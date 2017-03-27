@@ -41,6 +41,5 @@ spec:
         - name: {{ volume.name }}
           configMap:
             name: {{ volume.name }}
-
 {% endfor %}
 {% endif %}

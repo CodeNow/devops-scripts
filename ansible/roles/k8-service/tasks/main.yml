@@ -1,4 +1,4 @@
-- name: put script on machine
+- name: create service yaml
   template:
     dest: "{{ opts_root }}/services"
     src: service.yml
