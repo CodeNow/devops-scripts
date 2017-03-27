@@ -55,7 +55,6 @@ cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=2548f3affd4923602dbf7bbab66eac377b5d3aac
 cream_intercom_id=xs5g95pd
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
-cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [docks:vars]
 docker_config=docks
@@ -166,6 +165,7 @@ vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
+cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [ec2:vars]
 aws_custid=437258487404
