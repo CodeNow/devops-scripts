@@ -52,7 +52,6 @@ cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=173c1b366d11a3ef0f641c6b3327914368e67095
 cream_intercom_id=wqzm3rju
 cream_stripe_secret_key=sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
-cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
 [docks:vars]
 docker_config=docks
@@ -161,6 +160,7 @@ marketing_aws_secret_key=sRvgsTPgHGnZ4cGd37YaF/3fbzv75P01bNBK4kgn
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60506
+cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:delta
