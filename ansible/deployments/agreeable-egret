@@ -10,7 +10,7 @@ spec:
         app: agreeable-egret
     spec:
       containers:
-        - image: registry.runnable.com/runnable/agreeable-egret
+        - image: registry.runnable.com/runnable/agreeable-egret:v1.12.0
           name: agreeable-egret
           args: 
           env:

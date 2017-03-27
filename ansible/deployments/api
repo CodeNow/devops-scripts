@@ -10,7 +10,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: registry.runnable.com/runnable/api
+        - image: registry.runnable.com/runnable/api:v1.12.0
           name: api
           args: 
           env:
