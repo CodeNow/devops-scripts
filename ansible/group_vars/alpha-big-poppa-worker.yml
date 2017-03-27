@@ -12,7 +12,7 @@ dockerfile_enviroment: [
 
 dockerfile_pre_install_commands: [
   "apt-get update",
-  "apt-get install postgresql-client=9.4 -y",
+  "apt-get install postgresql-client -y",
   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 

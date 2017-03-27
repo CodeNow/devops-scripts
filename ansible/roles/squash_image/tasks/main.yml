@@ -1,12 +1,4 @@
 ---
-- name: load variables
-  include_vars: "group_vars/alpha-{{ service_name_file }}.yml"
-
-- name: set variables for image
-  set_fact:
-    container_image: "registry.runnable.com/runnable/{{ service_name }}"
-    container_tag: "{{ git_branch }}"
-
 - name: get image id for newly created image
   become: true
   shell: docker images -a | grep "{{ container_image }}" --color=never | awk '{print $3}'

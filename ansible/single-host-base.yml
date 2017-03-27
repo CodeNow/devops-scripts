@@ -4,7 +4,6 @@
   tasks:
   - fail: msg="`host` (target host) needs to be defined to run this role"
     when: host is not defined
-
   - add_host:
       name={{ host }}
       groups=dock
@@ -12,48 +11,139 @@
 - hosts: "{{ host }}"
   roles:
   - { role: git }
+
+# Create an image for each service
+#
+# Each image (unfortunately) needs its own play in order to get variable scope.
+# This is necessary because
+# - Variables cannot be unset in same play
+# - Variables are set globally and cannot be limited to roles: http://stackoverflow.com/questions/43033926/is-it-possible-to-limit-include-vars-scope-to-current-role
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ detention_branch }}"
+  vars_files:
+  - "group_vars/alpha-detention.yml"
+  roles:
+  - { role: builder, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ palantiri_branch }}"
+  vars_files:
+  - "group_vars/alpha-palantiri.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ khronos_branch }}"
+  vars_files:
+  - "group_vars/alpha-khronos.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ docker_listener_branch }}"
+  vars_files:
+  - "group_vars/alpha-docker-listener.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ drake_branch }}"
+  vars_files:
+  - "group_vars/alpha-drake-http.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ cream_branch }}"
+  vars_files:
+  - "group_vars/alpha-cream-http.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+  # TODO: tag image for worker
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ link_branch }}"
+  vars_files:
+  - "group_vars/alpha-link.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ navi_branch }}"
+  vars_files:
+  - "group_vars/alpha-navi.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ pheidi_branch }}"
+  vars_files:
+  - "group_vars/alpha-pheidi.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ big_poppa_branch }}"
+  vars_files:
+    - "group_vars/alpha-big-poppa-http.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+  # TODO: tag image for worker
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ api_branch }}"
+  vars_files:
+    - "group_vars/alpha-api-base.yml"
+    - "group_vars/alpha-api.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+  # TODO: tag image for worker and socket server
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ sauron_branch }}"
+  vars_files:
+    - "group_vars/alpha-sauron.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ optimus_branch }}"
+  vars_files:
+    - "group_vars/alpha-optimus.yml"
+  roles:
+  - { role: build_image, skip_docker_setup: true }
+  - { role: squash_image }
+
+# End building of images
+
+- hosts: "{{ host }}"
   tasks:
-  - name: set services
-    set_fact:
-      services:
-      - { name: 'detention', git_branch: "{{ detention_branch }}" }
-      - { name: 'sauron', git_branch: "{{ sauron_branch }}" }
-      - { name: 'palantiri', git_branch: "{{ palantiri_branch }}" }
-      - { name: 'shiva', git_branch: "{{ astral_branch }}" }
-      - { name: 'khronos', git_branch: "{{ khronos_branch }}" }
-      - { name: 'docker-listener', git_branch: "{{ docker_listener_branch }}" }
-      - { name: 'drake-http', git_branch: "{{ drake_branch }}", additional_tags: ["drake-worker"] }
-      - { name: 'cream-http', git_branch: "{{ cream_branch }}", additional_tags: ["cream-worker"] }
-      - { name: 'link', git_branch: "{{ link_branch }}" }
-      - { name: 'navi', git_branch: "{{ navi_branch }}" }
-      - { name: 'optimus', git_branch: "{{ optimus_branch }}" }
-      - { name: 'pheidi', git_branch: "{{ pheidi_branch }}" }
-      - { name: 'big-poppa-http', git_branch: "{{ big_poppa_branch }}", additional_tags: ["big-poppa-worker"] }
-      - { name: 'api', git_branch: "{{ api_branch }}", service_name_file: "api-base", additional_tags: ["api-worker", "api-socket-server"] }
-
-  - name: build images
-    include_role:
-      name: build_image
-      private: true
-      vars_from: main
-    vars:
-      service_name: "{{ item.name }}"
-      service_name_file: "{{ item.service_name_file | default(item.name) }}"
-      git_branch: "{{ item.git_branch }}"
-    with_items: "{{ services }}"
-
-  - name: squash images
-    include_role:
-      name: squash_image
-      private: true
-      vars_from: main
-    vars:
-      service_name: "{{ item.name }}"
-      service_name_file: "{{ item.service_name_file | default(item.name) }}"
-      additional_tags: "{{ item.additional_tags }}"
-      git_branch: "{{ item.git_branch }}"
-    with_items: "{{ services }}"
-
   - name: remove all dangling images
     become: true
     ignore_errors: true

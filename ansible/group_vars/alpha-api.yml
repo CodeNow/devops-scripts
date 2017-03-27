@@ -18,7 +18,7 @@ container_envs: >
 container_run_opts: >
   -h {{ name }}
   -d
-  -P
+  -p {{ hosted_ports[0] }}
   -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
   -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
   {{ container_envs }}

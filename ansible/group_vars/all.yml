@@ -116,6 +116,7 @@ docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
 
 # drake
 drake_hostname: drake.{{ domain }}
+drake_port: 80
 
 # ec2
 aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
