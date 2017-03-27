@@ -1,0 +1,70 @@
+container_tag: "{{ git_branch }}"
+container_image: registry.runnable.com/runnable/{{ name }}
+
+node_version: 4.4.7
+npm_version: 2
+
+repo: "git@github.com:CodeNow/big-poppa.git"
+
+# for sendGrid
+sendgrid_key: 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
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+  "apt-get update",
+  "apt-get install postgresql-client=9.3+154ubuntu1 -y",
+  "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
+
+# shared ENV's between api services
+big_poppa_base_container_envs:
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: GITHUB_TOKEN
+    value: "{{ big_poppa_github_token }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ big_poppa_intercom_key | default('undefined') }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ big_poppa_intercom_id | default('undefined') }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: PGUSER
+    value: "{{ big_poppa_pg_user }}"
+  - name: PGPASSWORD
+    value: "{{ big_poppa_pg_pass }}"
+  - name: PGHOST
+    value: "{{ big_poppa_pg_host }}"
+  - name: PGPORT
+    value: "{{ big_poppa_pg_port }}"
+  - name: PGDATABASE
+    value: "{{ big_poppa_pg_database }}"
+  - name: POSTGRES_CONNECT_STRING
+    value: "postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: MONGO
+    value: "mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ big_poppa_mongo_database }}"
+  - name: MONGO_REPLSET_NAME
+    value: "{{ big_poppa_mongo_replset_name }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
+  - name: STRIPE_API_KEY
+    value: "{{ cream_stripe_secret_key }}"
+  - name: STRIPE_PUBLISHABLE_KEY
+    value: "{{ cream_stripe_publishable_key }}"

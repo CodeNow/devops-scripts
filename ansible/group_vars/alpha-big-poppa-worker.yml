@@ -1,46 +1,9 @@
 name: big-poppa-worker
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
-repo: "git@github.com:CodeNow/big-poppa.git"
-node_version: 4.4.7
-npm_version: 2
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ big_poppa_worker_rollbar_token }}"
 
-dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}"
-]
+container_envs: "{{ big_poppa_base_container_envs + envs }}"
 
-dockerfile_pre_install_commands: [
-  "apt-get update",
-  "apt-get install postgresql-client=9.3+154ubuntu1 -y",
-  "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
-]
-
-# for container settings
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e GITHUB_TOKEN={{ big_poppa_github_token }}
-  -e NODE_ENV={{ node_env }}
-  -e INTERCOM_API_KEY={{ big_poppa_intercom_key | default('undefined') }}
-  -e INTERCOM_APP_ID={{ big_poppa_intercom_id | default('undefined') }}
-  -e POSTGRES_CONNECT_STRING=postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ big_poppa_worker_rollbar_token }}
-  -e MONGO=mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ big_poppa_mongo_database }}
-  -e MONGO_REPLSET_NAME={{ big_poppa_mongo_replset_name }}
-  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
-  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
-  -e GITHUB_PROTOCOL=http
-  -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
-  -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  {{container_envs}}
-
-npm_start_command: run start-worker
+container_run_args: npm run start-worker
