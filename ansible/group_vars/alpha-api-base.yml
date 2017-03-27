@@ -17,6 +17,10 @@ dockerfile_pre_install_commands: [
    'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
 ]
 
+volume_mounts:
+ - name: api-docker-ssl-certs
+   path: /etc/ssl/docker
+
 # shared ENV's between api services
 api_base_container_envs:
   - name: AWS_ACCESS_KEY_ID
@@ -99,15 +103,15 @@ api_base_container_envs:
     value: "{{ user_content_domain }}"
   - name: AWS_ALIAS_HOST
     value: "{{ api_aws_alias_host }}"
-  # - name: "{% if api_new_relic_app_name is defined %} NEW_RELIC_APP_NAME {% else %} REMOVE {% endif %}"
-  #   value: "{{ api_new_relic_app_name | default('ansible_undefined') }}"
-  # - name: "{% if api_new_relic_app_name is defined %} NEW_RELIC_LICENSE_KEY {% else %} REMOVE {% endif %}"
-  #   value: "{{ new_relic_license_key | default('ansible_undefined') }}"
-  # - name: NEW_RELIC_LOG_LEVEL
-  #   value: "fatal"
-  # - name: NEW_RELIC_NO_CONFIG_FILE
-  #   value: "true"
-  # - name: "{% if api_intercom_app_id is defined %} INTERCOM_APP_ID {% else %} REMOVE {% endif %}"
-  #   value: "{{ api_intercom_app_id | default('ansible_undefined') }}"
-  # - name: "{% if api_intercom_app_id is defined %} INTERCOM_API_KEY {% else %} REMOVE {% endif %}"
-  #   value: "{{ api_intercom_api_key | default('ansible_undefined') }}"
+  - name: NEW_RELIC_APP_NAME
+    value: "{{ api_new_relic_app_name | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LICENSE_KEY
+    value: "{{ new_relic_license_key | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LOG_LEVEL
+    value: "fatal"
+  - name: NEW_RELIC_NO_CONFIG_FILE
+    value: "true"
+  - name: INTERCOM_APP_ID
+    value: "{{ api_intercom_app_id | default('ansible_undefined') }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ api_intercom_api_key | default('ansible_undefined') }}"

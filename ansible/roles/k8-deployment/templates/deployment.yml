@@ -16,8 +16,10 @@ spec:
 {% if container_envs is defined %}
           env:
 {% for env in container_envs %}
+{% if env.value != 'ansible_undefined' %}
             - name: {{ env.name }}
               value: {{ env.value }}
+{% endif %}
 {% endfor %}
 {% endif %}
 {% if hosted_ports is defined %}

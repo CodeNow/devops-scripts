@@ -16,11 +16,3 @@ local_envs:
 
 # for container settings
 container_envs: "{{ api_base_container_envs + local_envs }}"
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}
