@@ -23,8 +23,8 @@ spec:
               value: github-varnish
             - name: DATADOG_PORT
               value: '8125'
-            - name: LOG_LEVEL
-              value: info
+            - name: DATADOG_SECRET
+              value: I_solemnly_swear_that_I_am_up_to_no_good
             - name: NODE_ENV
               value: production-gamma
             - name: RABBITMQ_HOSTNAME

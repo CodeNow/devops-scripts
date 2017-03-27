@@ -203,7 +203,6 @@ data:
   status.conf: |
     server {
       listen 80;
-      server_name 10.4.0.69;
 
       location /basic_status {
         stub_status;

@@ -18,13 +18,13 @@ api
 socket-server
 
 [api]
-gamma-api
+localhost
 
 [big-poppa]
-gamma-app-services
+localhost
 
 [cream]
-gamma-app-services
+localhost
 
 [consul]
 gamma-consul-a
@@ -32,10 +32,10 @@ gamma-consul-b
 gamma-consul-c
 
 [deployer]
-gamma-app-services
+localhost
 
 [docker-listener]
-gamma-dock-services
+localhost
 
 [vault]
 gamma-consul-a
@@ -46,10 +46,10 @@ gamma-consul-c
 gamma-api-worker
 
 [agreeable-egret]
-gamma-app-services
+localhost ansible_connection=local
 
 [eru]
-gamma-app-services
+localhost
 
 [navi]
 gamma-navi
@@ -64,31 +64,31 @@ gamma-navi
 gamma-navi
 
 [clio]
-gamma-app-services
+localhost
 
 [charon]
-gamma-app-services
+localhost
 
 [khronos]
-gamma-dock-services
+localhost
 
 [optimus]
-gamma-dock-services
+localhost
 
 [detention]
-gamma-app-services
+localhost
 
 [palantiri]
-gamma-dock-services
+localhost
 
 [rabbitmq]
 gamma-rabbit
 
 [web]
-gamma-app-services
+localhost
 
 [marketing]
-gamma-app-services
+localhost
 
 [redis]
 gamma-redis
@@ -97,10 +97,10 @@ gamma-redis
 gamma-redis-slave
 
 [sauron]
-gamma-dock-services
+localhost
 
 [shiva]
-gamma-app-services
+localhost
 
 [socket-server]
 gamma-api-socket
@@ -112,29 +112,29 @@ gamma-api-socket-proxy
 gamma-registry
 
 [swarm-manager]
-gamma-dock-services
+localhost
 
 [metis]
-gamma-app-services
+localhost
 
 [drake]
-gamma-app-services
+localhost
 
 [pheidi]
-gamma-app-services
+localhost
 
 [github-varnish]
-gamma-app-services
+localhost
 
 [arithmancy]
-gamma-app-services
+localhost
 
 [docks]
 
 [dock]
 
 [prometheus]
-gamma-dock-services
+localhost
 
 [gamma:children]
 agreeable-egret

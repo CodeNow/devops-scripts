@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+    spec:
+      containers:
+        - image: {{ container_image }}
+          name: {{ name }}
+          args: {{ container_run_args }}
+{% if container_envs is defined %}
+          env:
+{% for env in container_envs %}
+            - name: {{ env.name }}
+              value: {{ env.value }}
+{% endfor %}
+{% endif %}
+{% if hosted_ports is defined %}
+          ports:
+{% for port in hosted_ports %}
+            - containerPort: {{ port }}
+{% endfor %}
+{% endif %}
+{% if volume_mounts is defined %}
+          volumeMounts:
+{% for volume in volume_mounts %}
+            - name: {{ volume.name }}
+              mountPath: {{ volume.path }}
+{% endfor %}
+{% endif %}
+{% if volume_mounts is defined %}
+      volumes:
+{% for volume in volume_mounts %}
+        - name: {{ volume.name }}
+          configMap:
+            name: {{ volume.name }}
+
+{% endfor %}
+{% endif %}
