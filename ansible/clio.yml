@@ -1,5 +1,4 @@
 ---
-- hosts: rabbitmq
 - hosts: consul
 - hosts: mongodb
 
@@ -7,6 +6,9 @@
   vars_files:
     - group_vars/alpha-clio.yml
   roles:
-  - { role: notify, tags: notify }
-  - { role: builder, tags: build }
-  - { role: container_kill_start }
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service
