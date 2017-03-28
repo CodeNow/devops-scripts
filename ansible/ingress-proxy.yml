@@ -3,14 +3,6 @@
   vars_files:
   - group_vars/alpha-ingress-proxy.yml
   roles:
-  - role: datadog
-    has_dd_integration: yes
-
   - role: runnable-domain-proxy
 
   - role: container_kill_start
-
-- include: consul-template-updater.yml
-  vars:
-    host: ingress
-    var_file: alpha-ingress-proxy.yml

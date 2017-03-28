@@ -1,49 +1,20 @@
 ---
-- name: make sure cert directory is in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  file:
-    dest: /etc/ssl/certs/{{ domain }}
-    state: directory
+- set_fact:
+    ca_data: "{{ lookup('file', '{{ domain }}/ca.pem') }}"
+- set_fact:
+    cert_data: "{{ lookup('file', '{{ domain }}/{{ name }}/cert.pem') }}"
+- set_fact:
+    key_data: "{{ lookup('file', '{{ domain }}/{{ name }}/key.pem') }}"
+- set_fact:
+    chained_data: "{{ lookup('file', '{{ domain }}/{{ name }}/chained.pem') }}"
+- set_fact:
+    dhparam_data: "{{ lookup('file', '{{ domain }}/{{ name }}/dhparam.pem') }}"
 
-- name: put certs in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  register: add_certs
-  copy:
-    src: "{{ domain }}/{{ item }}"
-    dest: /etc/ssl/certs/{{ domain }}/{{ item }}
-    mode: 0400
-    owner: root
-    group: root
-  with_items:
-  - ca.pem
-  - key.pem
-  - cert.pem
-
-- name: create chained cert
-  tags: [ configure_proxy, certs ]
-  become: true
-  when: add_certs.changed
-  shell: >
-    cat
-    /etc/ssl/certs/{{ domain }}/cert.pem
-    /etc/ssl/certs/{{ domain }}/ca.pem
-    >
-    /etc/ssl/certs/{{ domain }}/chained.pem
-
-- name: create dhparam.pem
-  tags: [ configure_proxy, certs ]
-  when: add_certs.changed
-  become: yes
-  command: openssl dhparam -out /etc/ssl/certs/{{ domain }}/dhparam.pem 2048
-
-- name: make sure nginx directory is in place
+- name: create cert config map
   tags: [ configure_proxy, configure_files ]
-  become: true
-  file:
-    dest: /etc/nginx
-    state: directory
+  template:
+    dest: "{{ config_maps_path }}/{{ name }}-certs"
+    src: certs.yml
 
 - name: put nginx configuration in place
   tags: [ configure_proxy, configure_files ]
