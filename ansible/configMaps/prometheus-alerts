@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ name }}-conf
+  name: prometheus-alerts-conf
 data:
   prometheus-alerts.yml: |
     global:
@@ -9,7 +9,7 @@ data:
       # if it has not been updated.
       resolve_timeout: 10m
 
-      slack_api_url: "{{ ops_slack_channel_url }}"
+      slack_api_url: "https://hooks.slack.com/services/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"
 
       pagerduty_url: "https://events.pagerduty.com/generic/2010-04-15/create_event.json"
 
@@ -34,27 +34,27 @@ data:
     - name: "pagerduty"
       pagerduty_configs:
       - send_resolved: true
-        service_key: "{{ pager_duty_key }}"
-        description: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+        service_key: "testkey"
+        description: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
       slack_configs:
       - send_resolved: true
         channel: ops
-        title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
-        text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
 
     - name: "slack"
       slack_configs:
       - send_resolved: true
         channel: ops
-        title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
-        text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"
 
     - name: "drake"
       webhook_configs:
       - send_resolved: true
-        url: "http://{{ drake_hostname }}/prometheus"
+        url: "http://drake.runnable-gamma.com/prometheus"
       slack_configs:
       - send_resolved: true
         channel: ops
-        title: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.summary{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
-        text: "{{ '{{' }} range .Alerts {{ '}}' }} {{ '{{' }} .Annotations.description{{ '}}' }} {{ '{{' }} end {{ '}}' }}"
+        title: "{{ range .Alerts }} {{ .Annotations.summary}} {{ end }}"
+        text: "{{ range .Alerts }} {{ .Annotations.description}} {{ end }}"

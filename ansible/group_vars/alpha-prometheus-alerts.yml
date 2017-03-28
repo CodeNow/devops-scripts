@@ -3,15 +3,14 @@ name: prometheus-alerts
 # container_kill_start settings
 container_image: prom/alertmanager
 container_tag: v0.5.0
-
-prometheus_alert_root: /opt/runnable/prometheus-alerts
+hosted_ports: ["{{ prometheus_alert_port }}"]
 
 memory_hard_limit: 10g
 
-container_run_opts: >
-  -d
-  -p {{ prometheus_alert_port }}:{{ prometheus_alert_port }}
-  -v {{ prometheus_alert_root }}:/prometheus-alerts
+volume_mounts:
+ - name: "{{ name }}-conf"
+   path: /prometheus-alerts
+   kind: configMap
 
 container_run_args: >
   -config.file=/prometheus-alerts/prometheus-alerts.yml
