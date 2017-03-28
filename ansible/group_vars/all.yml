@@ -6,6 +6,7 @@ opts_root: "{{ opts_root | default('/opt/runnable') }}"
 config_maps_path: "{{ opts_root }}/configMaps"
 services_path: "{{ opts_root }}/services"
 deployments_path: "{{ opts_root }}/deployments"
+cron_jobs_path: "{{ opts_root }}/crons"
 
 # registry settings
 registry_env: prod

@@ -1,0 +1,15 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: containers.orphan.prune
+spec:
+  schedule: "13 1,4,7,10,13,16,19,22 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: containers.orphan.prune
+            image: registry.runnable.com/runnable/khronos:v1.12.0
+            args: /khronos/bin/cli.js --queue containers.orphan.prune --job '{}' --host rabbitmq:54321 --username o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM --password wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+          restartPolicy: OnFailure
