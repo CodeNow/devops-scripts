@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-runnable-gamma.com-certs
+  name: nginx-runnable-gamma-com-certs
 data:
   ca.pem: |
     -----BEGIN CERTIFICATE-----
