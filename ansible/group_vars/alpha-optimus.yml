@@ -7,8 +7,7 @@ hosted_ports: ["{{ optimus_port }}"]
 node_version: "4.3.2"
 npm_version: "2.8.3"
 
-
-container_envs: >
+container_envs:
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: DATADOG_HOST

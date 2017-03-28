@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: optimus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: optimus
+    spec:
+      containers:
+        - image: registry.runnable.com/runnable/optimus:v1.12.0
+          name: optimus
+          args: 
+          env:
+            - name: NODE_ENV
+              value: production-gamma
+            - name: DATADOG_HOST
+              value: 192.168.1.53
+            - name: DATADOG_PORT
+              value: 8125
+            - name: PORT
+              value: 80
+            - name: AWS_ACCESS_KEY_ID
+              value: AKIAJPA2ZYSVVA5V7XXQ
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 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
+            - name: S3_DEPLOY_KEY_BUCKET
+              value: runnable.deploykeys.production-beta
+            - name: ROLLBAR_KEY
+              value: a49f9cce09ee46f09df3f603178fba75
+            - name: LOG_LEVEL
+              value: trace
+          ports:
+            - containerPort: 80
