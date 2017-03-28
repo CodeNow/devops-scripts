@@ -1,7 +1,7 @@
 ---
-name: nginx
+name: navi-proxy
 
-container_image: "{{ name }}"
+container_image: "nginx"
 container_tag: "1.10"
 hosted_ports: ["80", "443"]
 
@@ -17,14 +17,3 @@ volume_mounts:
  - name: "{{ name }}-navi-config"
    path: /etc/nginx/sites-enabled
    kind: configMap
-
-container_run_opts: >
-  -d
-  --net=host
-  --name {{ name }}
-  -p 0.0.0.0:443:443
-  -p 0.0.0.0:80:80
-  -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  -v {{ target_updater_file_path }}
-  -v /etc/ssl/certs/{{ user_content_domain }}:/etc/ssl/certs/{{ user_content_domain }}:ro
-  -v /var/log/nginx:/var/log/nginx

@@ -7,6 +7,9 @@ gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDep
 [userland]
 gamma-userland
 
+[navi-proxy]
+localhost
+
 [mongodb]
 gamma-mongo-a
 gamma-mongo-b
@@ -170,6 +173,7 @@ swarm-manager
 userland
 web
 worker
+navi-proxy
 
 [local]
 127.0.0.1

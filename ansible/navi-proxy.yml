@@ -1,8 +1,9 @@
 ---
-- hosts: userland
+- hosts: navi-proxy
   vars_files:
   - group_vars/alpha-navi-proxy.yml
   roles:
   - role: content-domain-proxy
 
-  - role: container_kill_start
+  - role: k8-deployment
+  - role: k8-service

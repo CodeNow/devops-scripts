@@ -22,32 +22,11 @@
     src: proxy-nginx.conf
     dest: "{{ config_maps_path }}/{{ name }}-base-config"
 
-- name: create mixpanel template
-  tags: [ configure_proxy, configure_files ]
-  template:
-    src: mixpanel.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config"
-
 - name: create api template
   tags: [ configure_proxy, configure_files ]
   template:
-    src: api.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-api-config"
-
-
-- name: put nginx configuration in place
-  tags: [ configure_proxy ]
-  become: yes
-  template:
-    src: proxy-nginx.conf
-    dest: /etc/nginx/nginx.conf
-
-- name: put navi template in place
-  tags: [ configure_proxy ]
-  become: yes
-  template:
     src: navi.tmpl
-    dest: /etc/nginx/template/navi.tmpl
+    dest: "{{ config_maps_path }}/{{ name }}-navi-config"
 
 #  TODO: make this a new role and a new deployment
 # - name: setup ip table rule to redir all to port 80
