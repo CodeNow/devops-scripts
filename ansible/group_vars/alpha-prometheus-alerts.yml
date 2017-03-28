@@ -1,6 +1,5 @@
 name: prometheus-alerts
 
-# container_kill_start settings
 container_image: prom/alertmanager
 container_tag: v0.5.0
 hosted_ports: ["{{ prometheus_alert_port }}"]

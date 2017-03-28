@@ -1,8 +1,11 @@
 ---
 - hosts: prometheus
   vars_files:
-    - "group_vars/alpha-prometheus.yml"
+    - group_vars/alpha-prometheus.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: prometheus }
-  - { role: container_kill_start }
+  - role: notify
+
+  - role: prometheus
+
+  - role: k8-deployment
+  - role: k8-service
