@@ -1,7 +1,7 @@
 ---
-name: nginx
+name: ingress-proxy
 
-container_image: "{{ name }}"
+container_image: "nginx"
 container_tag: "1.10"
 hosted_ports: ["80", "443"]
 
@@ -17,6 +17,20 @@ volume_mounts:
  - name: "{{ name }}-mixpanel-config"
    path: /etc/nginx/other-sites-enabled
    kind: configMap
- - name: "{{ name }}-api-config"
+ - name: "{{ name }}-sites-enabled-config"
    path: /etc/nginx/sites-enabled
    kind: configMap
+
+services:
+  - name: api
+    port: "{{ api_port }}"
+  - name: drake
+    port: "{{ drake_port }}"
+  - name: optimus
+    port: "{{ optimus_port }}"
+  - name: apisock
+    port: "{{ api_port }}"
+  - name: eru
+    port: "{{ eru_http_port }}"
+  - name: egret
+    port: "{{ agreeable_egret_port }}"

@@ -126,6 +126,7 @@ aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
 aws_secret_key: "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"
 
 # eru
+eru_http_port: 5501
 
 # fluffy
 fluffy_port: 80

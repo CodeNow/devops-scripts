@@ -28,8 +28,8 @@
     src: mixpanel.tmpl
     dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config"
 
-- name: create api template
+- name: create sites-enabled template
   tags: [ configure_proxy, configure_files ]
   template:
-    src: api.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-api-config"
+    src: sites-enabled.tmpl
+    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config"
