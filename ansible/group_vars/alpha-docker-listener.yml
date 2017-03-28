@@ -1,4 +1,4 @@
-name: docker-listener
+name:  docker-listener
 
 container_image: "registry.runnable.com/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
@@ -6,24 +6,28 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
-restart_policy: "always"
-
-container_envs: >
-  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DOCKER_CERT_PATH=/etc/ssl/docker
-  -e LOGGLY_TOKEN={{ loggly_token }}
-  -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ docker_listener_rollbar_key }}
-  -e SWARM_HOST={{ swarm_host_address }}:{{ swarm_master_port }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  {{ container_envs }}
+container_envs:
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: DOCKER_CERT_PATH
+    value: "/etc/ssl/docker"
+  - name: LOGGLY_TOKEN
+    value: "{{ loggly_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ docker_listener_rollbar_key }}"
+  - name: SWARM_HOST
+    value: "{{ swarm_host_address }}:{{ swarm_master_port }}"
