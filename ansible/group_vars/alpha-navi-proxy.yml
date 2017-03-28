@@ -1,18 +1,22 @@
 ---
 name: nginx
 
-# used by consul template updater
-proxy_service_name: navi
-target_container_name: nginx
-target_updater_file_path: /etc/nginx/sites-enabled
-template_command: /bin/docker kill -s HUP {{ target_container_name }}
-template_path: /etc/nginx/template/navi.tmpl
-
-# used by container_kill_start
 container_image: "{{ name }}"
 container_tag: "1.10"
+hosted_ports: ["80", "443"]
 
-restart_policy: always
+service_type: "LoadBalancer"
+
+volume_mounts:
+ - name: "{{ name }}-{{ user_content_domain }}-certs"
+   path: /etc/ssl/certs/{{ user_content_domain }}
+   kind: configMap
+ - name: "{{ name }}-base-conf"
+   path: /etc/nginx/
+   kind: configMap
+ - name: "{{ name }}-navi-config"
+   path: /etc/nginx/sites-enabled
+   kind: configMap
 
 container_run_opts: >
   -d
