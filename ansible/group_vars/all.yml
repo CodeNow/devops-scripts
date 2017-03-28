@@ -132,7 +132,7 @@ fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
 
 # github-varnish
 github_varnish_host: github-varnish
-github_varnish_port: 8765
+github_varnish_port: 80
 
 # khronos
 rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25

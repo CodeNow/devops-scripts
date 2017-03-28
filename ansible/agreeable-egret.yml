@@ -3,5 +3,7 @@
   vars_files:
     - group_vars/alpha-agreeable-egret.yml
   roles:
+  - role: notify
+
   - role: k8-deployment
   - role: k8-service
