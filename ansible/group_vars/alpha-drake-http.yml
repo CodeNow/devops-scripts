@@ -1,34 +1,13 @@
 name: drake-http
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ drake_port }}"]
-repo: "git@github.com:CodeNow/drake.git"
-node_version: "4.4.7"
-npm_version: 2
 
-# Exposes drake (heh)
-redis_key: "frontend:{{ drake_hostname }}"
-is_redis_update_required: 'yes'
+container_envs:
+  - name: DATADOG_SECRET
+    value: "I_solemnly_swear_that_I_am_up_to_no_good"
+  - name: ROLLBAR_KEY
+    value: "{{ drake_http_rollbar_token }}"
+  - name: PORT
+    value: "{{ drake_port }}"
 
-# for container settings
-container_envs: >
-  -e API_URL={{ api_url }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DATADOG_SECRET=I_solemnly_swear_that_I_am_up_to_no_good
-  -e NODE_ENV={{ node_env }}
-  -e PORT={{ hosted_ports[0] }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ drake_http_rollbar_token }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  {{container_envs}}
-
-npm_start_command: run start-http
+container_run_args: npm run start-http

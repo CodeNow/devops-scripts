@@ -1,13 +1,14 @@
 ---
-- hosts: rabbitmq
 - hosts: consul
 
 - hosts: drake
   vars_files:
+    - group_vars/alpha-drake-base.yml
     - group_vars/alpha-drake-worker.yml
   roles:
   - role: notify
     rollbar_token: "{{ drake_worker_rollbar_token }}"
-    tags: [ notify ]
-  - { role: builder, tags: [ build ] }
-  - { role: container_start }
+
+  - role: builder
+
+  - role: k8-deployment
