@@ -12,10 +12,6 @@ ENV {{ env }}
 {% endfor %}
 {% endif %}
 
-# setup node and npm versions
-RUN npm install -g n@2.1.0
-RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
-
 WORKDIR /{{ name }}
 {% if dockerfile_pre_install_commands is defined %}
 {% for command in dockerfile_pre_install_commands %}
