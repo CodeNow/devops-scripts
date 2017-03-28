@@ -27,9 +27,6 @@ container_envs: >
   -e LOGGLY_TOKEN="{{ loggly_token }}"
   -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
   -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
-  -e MONGO_CACERT=/opt/ssl/mongo-client/ca.pem
-  -e MONGO_CERT=/opt/ssl/mongo-client/cert.pem
-  -e MONGO_KEY=/opt/ssl/mongo-client/key.pem
   -e NODE_ENV="{{ node_env }}"
   -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
   -e RABBITMQ_PASSWORD="{{ rabbit_password }}"

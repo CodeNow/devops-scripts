@@ -7,6 +7,7 @@ egret_pg_pass=b3UKjxbGblKZtG6c
 egret_pg_database=egret
 
 [api_group:vars]
+api_aws_alias_host=us-west-2.compute.internal
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
 api_aws_secret_access_key=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
 api_github_client_id=b6072dc57062faca7fcb
@@ -54,7 +55,6 @@ cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=2548f3affd4923602dbf7bbab66eac377b5d3aac
 cream_intercom_id=xs5g95pd
 cream_stripe_secret_key=sk_test_4De8Zdkfcyb29swkMmjZUMRh
-cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 
 [docks:vars]
 docker_config=docks
@@ -145,6 +145,7 @@ marketing_aws_secret_key=gD2stysc/pAD9ehRrbvgMIZoJBw4aCiEKI7If3Do
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
+cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma

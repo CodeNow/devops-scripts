@@ -7,6 +7,7 @@ egret_pg_pass=wwHQ5B4RfY9iKS3m
 egret_pg_database=egret
 
 [api_group:vars]
+api_aws_alias_host=us-west-2.compute.internal
 api_aws_access_key_id=AKIAJWSSSJYUXKNW2ZDA
 api_aws_secret_access_key=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
 api_github_client_id=d42d6634d4070c9d9bf9
@@ -51,7 +52,6 @@ cream_worker_rollbar_token=87924b881c3143968cdb059fe41acbc3
 cream_intercom_key=173c1b366d11a3ef0f641c6b3327914368e67095
 cream_intercom_id=wqzm3rju
 cream_stripe_secret_key=sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
-cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
 [docks:vars]
 docker_config=docks
@@ -99,9 +99,6 @@ metabase_pg_host=delta-metabase.cnksgdqarobf.us-west-2.rds.amazonaws.com
 metabase_pg_pass=nifty-prowl-sought-muscles
 metabase_pg_port=5432
 metabase_pg_user=metabase
-
-[metis:vars]
-metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
 
 [navi:vars]
 navi_new_relic_app_name=delta-navi
@@ -163,6 +160,7 @@ marketing_aws_secret_key=sRvgsTPgHGnZ4cGd37YaF/3fbzv75P01bNBK4kgn
 ansible_ssh_private_key_file=~/.ssh/delta.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60506
+cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:delta

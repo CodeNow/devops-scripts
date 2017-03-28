@@ -1,7 +1,7 @@
 ---
 - hosts: mongodb
 - hosts: navi
-- hosts: charon
+- hosts: clio
 - hosts: rabbitmq
 - hosts: redis
 - hosts: swarm-manager
@@ -21,7 +21,6 @@
   - { role: redis_key, tags: [ setup, redis_key ] }
   - { role: builder, tags: [ build ] }
   - { role: docker_client }
-  - { role: tls-client, tls_service: mongodb, tags: [ tls ] }
   - { role: datadog, tags: [ datadog ] }
   - { role: container_start, number_of_containers: 8 }
   - role: nginx-proxied-service

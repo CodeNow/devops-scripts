@@ -184,7 +184,6 @@ rabbit_port: 54321
 # redis
 redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
 redis_port: 6379
-redis_tls_port: 6380
 
 registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}"
 

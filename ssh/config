@@ -148,6 +148,12 @@ Host delta-api-socket-proxy
 Host delta-app-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.13.102 22
 
+Host delta-app-services-1
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.255 22
+
+Host delta-app-services-2
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.12.61 22
+
 Host delta-dock-services
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
 
