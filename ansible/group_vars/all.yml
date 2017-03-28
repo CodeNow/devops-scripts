@@ -144,8 +144,8 @@ krain_port: 3100
 # marketing
 marketing_url: https://{{ domain }}
 
-# metis
-metis_port: 3000
+# metabase
+metabase_port: 3000
 
 # mongo
 mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"

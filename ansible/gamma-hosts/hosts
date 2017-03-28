@@ -114,9 +114,6 @@ gamma-registry
 [swarm-manager]
 localhost
 
-[metis]
-localhost
-
 [drake]
 localhost
 
@@ -155,7 +152,6 @@ github-varnish
 hipache
 ingress
 khronos
-metis
 mongodb
 navi
 optimus
