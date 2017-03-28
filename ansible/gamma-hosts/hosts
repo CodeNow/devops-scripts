@@ -43,25 +43,25 @@ gamma-consul-b
 gamma-consul-c
 
 [worker]
-gamma-api-worker
+localhost
 
 [agreeable-egret]
-localhost ansible_connection=local
+localhost
 
 [eru]
 localhost
 
 [navi]
-gamma-navi
+localhost
 
 [ingress]
 localhost
 
 [link]
-gamma-navi
+localhost
 
 [mongo-navi]
-gamma-navi
+localhost
 
 [clio]
 localhost
@@ -91,7 +91,7 @@ localhost
 localhost
 
 [redis]
-gamma-redis
+localhost
 
 [redis-slave]
 gamma-redis-slave
@@ -103,10 +103,10 @@ localhost
 localhost
 
 [socket-server]
-gamma-api-socket
+localhost
 
 [socket-server-proxy]
-gamma-api-socket-proxy
+localhost
 
 [registry]
 gamma-registry
