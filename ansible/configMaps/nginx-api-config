@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ name }}-api-config
+  name: nginx-api-config
 data:
   api.conf: |
     map $http_upgrade $connection_upgrade {
@@ -16,7 +16,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name {{ domain }};
+      server_name runnable-gamma.com;
       access_log /var/log/nginx/api.access.log;
 
       location / {
@@ -37,14 +37,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name {{ domain }};
+      server_name runnable-gamma.com;
       access_log /var/log/nginx/api.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/{{ domain }}/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/{{ domain }}/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/{{ domain }}/ca.pem;
-      ssl_dhparam /etc/ssl/certs/{{ domain }}/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;

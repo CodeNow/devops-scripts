@@ -11,3 +11,6 @@ spec:
       protocol: TCP
       name: '{{ port }}'
 {% endfor %}
+{% if service_type is defined %}
+  type: {{ service_type }}
+{% endif %}

@@ -5,4 +5,5 @@
   roles:
   - role: runnable-domain-proxy
 
-  - role: container_kill_start
+  - role: k8-deployment
+  - role: k8-service

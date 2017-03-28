@@ -55,7 +55,7 @@ localhost
 gamma-navi
 
 [ingress]
-gamma-ingress
+localhost
 
 [link]
 gamma-navi

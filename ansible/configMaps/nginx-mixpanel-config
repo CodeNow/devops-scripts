@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ name }}-mixpanel-config
+  name: nginx-mixpanel-config
 data:
   mixpanel.conf: |
     server {
       listen 80;
       listen [::]:80;
-      server_name mixpanel.{{ domain }};
+      server_name mixpanel.runnable-gamma.com;
       return 301 https://$server_name$request_uri;
     }
 
     server {
       listen 443 ssl;
-      server_name mixpanel.{{ domain }};
+      server_name mixpanel.runnable-gamma.com;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/{{ domain }}/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/{{ domain }}/key.pem;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
 
       location / {
         proxy_pass https://api.mixpanel.com;
