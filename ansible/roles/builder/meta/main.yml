@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: docker, when: skip_docker_setup is not defined }
