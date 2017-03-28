@@ -185,7 +185,6 @@ rabbit_port: 54321
 # redis
 redis_host_address: redis
 redis_port: 6379
-redis_tls_port: 6380
 
 registry_address: registry
 

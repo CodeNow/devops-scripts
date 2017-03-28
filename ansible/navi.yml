@@ -16,8 +16,5 @@
   - role: builder
     tags: [ build ]
 
-  - role: tls-server-ca
-    ca_dest: "{{ redis_ca_cert_path }}"
-
   - role: container_start
     number_of_containers: "{{ ansible_processor_cores }}"

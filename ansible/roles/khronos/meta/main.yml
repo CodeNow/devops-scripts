@@ -1,3 +1,0 @@
----
-dependencies:
-- { role: tls-client-cert, tls_service: mongodb}
