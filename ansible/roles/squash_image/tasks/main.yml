@@ -8,11 +8,3 @@
   become: true
   ignore_errors: true # Might already be squashed
   shell: docker-squash "{{ unsquahed_image_id.stdout }}" -t "{{ container_image }}:{{ container_tag }}"
-
-- name: add additional tags
-  become: true
-  shell: docker tag "{{ container_image }}:{{ container_tag }}" "registry.runnable.com/runnable/{{ tag_name_item }}:{{ container_tag }}"
-  when: additional_tags is defined
-  with_items: "{{ additional_tags }}"
-  loop_control:
-    loop_var: tag_name_item
