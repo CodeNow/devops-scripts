@@ -6,9 +6,6 @@ npm_version: 2
 
 repo: "git@github.com:CodeNow/big-poppa.git"
 
-# for sendGrid
-sendgrid_key: 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
-
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]
@@ -19,8 +16,6 @@ dockerfile_pre_install_commands: [
   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
-
-# shared ENV's between api services
 big_poppa_base_container_envs:
   - name: DATADOG_HOST
     value: "{{ datadog_host_address }}"
