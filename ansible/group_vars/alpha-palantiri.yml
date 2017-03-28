@@ -6,6 +6,11 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
 # container settings
 container_envs: >
   -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}

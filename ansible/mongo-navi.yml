@@ -6,6 +6,9 @@
     - group_vars/alpha-mongo-navi.yml
   roles:
   - role: notify
-    tags: [ notify ]
-  - { role: database }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: database
+  - role: k8-deployment
+  - role: k8-service

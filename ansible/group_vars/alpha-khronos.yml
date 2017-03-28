@@ -6,6 +6,11 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.4.7"
 npm_version: 2
 
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
 ]

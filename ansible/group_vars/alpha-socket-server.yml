@@ -4,6 +4,11 @@ container_image: registry.runnable.com/runnable/{{ name }}
 
 hosted_ports: [ "{{ api_port }}" ]
 
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
 # for redis
 redis_key: frontend:{{ api_socket_server_hostname }}
 is_redis_update_required: yes

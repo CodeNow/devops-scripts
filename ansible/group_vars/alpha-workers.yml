@@ -2,6 +2,11 @@ name: api-worker
 
 container_image: registry.runnable.com/runnable/{{ name }}
 
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
 memory_hard_limit: 1g
 
 # for container settings

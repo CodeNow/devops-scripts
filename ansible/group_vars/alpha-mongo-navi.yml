@@ -1,13 +1,13 @@
-# database vars
 name: mongo-navi
 
-db_path: /opt/mongodb/db
+storage_size_gb: 50
 
-# container_kill_start settings
+volume_mounts:
+  - name: "{{ name }}"
+    path: /data/db
+    kind: persistent
+
 container_image: mongo
-container_tag: latest
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -p 27017:27017
-  -v {{ db_path }}:/data/db:rw
+container_tag: "3.2.6"
+
+hosted_ports: ["{{ mongo_navi_port }}"]

@@ -7,6 +7,7 @@ config_maps_path: "{{ opts_root }}/configMaps"
 services_path: "{{ opts_root }}/services"
 deployments_path: "{{ opts_root }}/deployments"
 cron_jobs_path: "{{ opts_root }}/crons"
+volumes_path: "{{ opts_root }}/volumes"
 
 # registry settings
 registry_env: prod
@@ -149,6 +150,9 @@ metabase_port: 3000
 
 # mongo
 mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"
+
+# mongo_navi
+mongo_navi_port: 27017
 
 # navi
 navi_host_address: navi

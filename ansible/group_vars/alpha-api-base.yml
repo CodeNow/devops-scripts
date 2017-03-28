@@ -19,6 +19,7 @@ dockerfile_pre_install_commands: [
 volume_mounts:
  - name: "{{ name }}-docker-ssl-certs"
    path: /etc/ssl/docker
+   kind: configMap
 
 # shared ENV's between api services
 api_base_container_envs:

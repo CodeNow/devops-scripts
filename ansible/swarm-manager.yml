@@ -1,6 +1,11 @@
 ---
 - hosts: consul
 
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
 - hosts: swarm-manager
   vars_files:
     - "group_vars/alpha-swarm-manager.yml"

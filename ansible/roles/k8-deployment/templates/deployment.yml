@@ -41,7 +41,13 @@ spec:
       volumes:
 {% for volume in volume_mounts %}
         - name: {{ volume.name }}
+{% if volume.kind == "configMap" %}
           configMap:
             name: {{ volume.name }}
+{% endif %}
+{% if volume.kind == "persistent" %}
+          persistentVolumeClaim:
+            claimName: {{ volume.name }}
+{% endif %}
 {% endfor %}
 {% endif %}

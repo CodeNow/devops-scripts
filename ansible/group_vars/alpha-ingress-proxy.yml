@@ -10,9 +10,13 @@ service_type: "LoadBalancer"
 volume_mounts:
  - name: "{{ name }}-{{ domain }}-certs"
    path: /etc/ssl/certs/{{ domain }}
+   kind: configMap
  - name: "{{ name }}-base-conf"
    path: /etc/nginx/
+   kind: configMap
  - name: "{{ name }}-mixpanel-config"
    path: /etc/nginx/other-sites-enabled
+   kind: configMap
  - name: "{{ name }}-api-config"
    path: /etc/nginx/sites-enabled
+   kind: configMap
