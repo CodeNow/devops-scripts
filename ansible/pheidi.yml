@@ -1,8 +1,6 @@
 ---
 - hosts: consul
 - hosts: mongodb
-- hosts: big-poppa
-- hosts: rabbitmq
 
 - hosts: pheidi
   vars_files:
@@ -10,6 +8,7 @@
   roles:
   - role: notify
     rollbar_token: "{{ pheidi_rollbar_token }}"
-    tags: [ notify ]
-  - { role: builder, tags: [build] }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: k8-deployment
