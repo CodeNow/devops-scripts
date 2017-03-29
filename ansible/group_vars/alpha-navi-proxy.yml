@@ -8,7 +8,7 @@ hosted_ports: ["80", "443"]
 service_type: "LoadBalancer"
 
 volume_mounts:
- - name: "{{ name }}-{{ user_content_domain }}-certs"
+ - name: "{{ name }}-{{ user_content_domain | replace('.', '-') }}-certs"
    path: /etc/ssl/certs/{{ user_content_domain }}
    kind: configMap
  - name: "{{ name }}-base-conf"
