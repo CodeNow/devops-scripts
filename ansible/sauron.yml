@@ -1,7 +1,5 @@
 ---
-- hosts: rabbitmq
 - hosts: consul
-- hosts: swarm-manager
 
 - hosts: sauron
   vars_files:
@@ -9,7 +7,8 @@
   roles:
   - role: notify
     rollbar_token: "{{ sauron_rollbar_token }}"
-    tags: [ notify ]
-  - { role: docker_client }
-  - { role: builder, tags: [build] }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: docker_client
+  - role: k8-deployment
