@@ -1,7 +1,5 @@
 name: api
 
-container_image: registry.runnable.com/runnable/{{ name }}
-
 hosted_ports: [ "{{ api_port }}" ]
 
 memory_hard_limit: 1g
@@ -9,5 +7,10 @@ memory_hard_limit: 1g
 envs:
   - name: ROLLBAR_KEY
     value: "{{ api_rollbar_key }}"
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
 
 container_envs: "{{ api_base_container_envs + envs }}"

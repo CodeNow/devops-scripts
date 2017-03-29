@@ -1,15 +1,13 @@
 ---
 - hosts: consul
 
-volume_mounts:
-  - name: "{{ name }}-docker-ssl-certs"
-    path: /etc/ssl/docker
-    kind: configMap
-
 - hosts: swarm-manager
   vars_files:
-    - "group_vars/alpha-swarm-manager.yml"
+    - group_vars/alpha-swarm-manager.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: docker_client, tags: "docker_client" }
-  - { role: container_kill_start }
+  - role: notify
+    rollbar_token: "{{ docker_listener_rollbar_key }}"
+
+  - role: docker_client
+  - role: k8-deployment
+  - role: k8-service

@@ -1,15 +1,16 @@
-name: "swarm-manager"
+name: swarm-manager
 
-# container_kill_start settings
 container_image: swarm
 container_tag: 1.2.3-0
 
+hosted_ports: ["{{ swarm_master_port }}"]
+
 memory_hard_limit: 10g
 
-container_run_opts: >
-  -d
-  -p {{ swarm_master_port }}:2375
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
 
 container_run_args: >
   manage

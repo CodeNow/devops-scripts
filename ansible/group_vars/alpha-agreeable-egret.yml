@@ -7,7 +7,6 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.3.1"
 npm_version: "3.7.5"
 
-# container settings
 container_envs:
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
     value: "{{ api_hello_runnable_github_token }}"

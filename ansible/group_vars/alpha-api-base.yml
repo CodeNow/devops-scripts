@@ -1,4 +1,5 @@
 container_tag: "{{ git_branch }}"
+container_image: registry.runnable.com/runnable/api
 
 node_version: 4.2.2
 npm_version: 4.0.3
