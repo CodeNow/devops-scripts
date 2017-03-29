@@ -1,10 +1,12 @@
-# database vars
 name: redis
-db_path: "/opt/redis/db"
+hosted_ports: ["{{ redis_port }}"]
 
-# container_kill_start settings
+storage_size_gb: 50
+
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /data
+    kind: persistent
+
 container_image: redis
-container_tag: "latest"
-container_run_opts: "-d --name redis -v {{ db_path }}:/data -p {{ redis_port }}:{{ redis_port }}"
-
-hosted_ports: [ "{{ redis_port }}" ]
+container_tag: "3.0.5"

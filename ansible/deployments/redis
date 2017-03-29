@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - image: redis:3.0.5
+          name: redis
+          args: 
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-db-claim
+              mountPath: /data
+      volumes:
+        - name: redis-db-claim
+          persistentVolumeClaim:
+            claimName: redis-db-claim

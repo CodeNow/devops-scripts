@@ -1,4 +1,5 @@
 name: mongo-navi
+hosted_ports: ["{{ mongo_navi_port }}"]
 
 storage_size_gb: 50
 
@@ -9,5 +10,3 @@ volume_mounts:
 
 container_image: mongo
 container_tag: "3.2.6"
-
-hosted_ports: ["{{ mongo_navi_port }}"]
