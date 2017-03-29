@@ -1,7 +1,4 @@
 ---
-- hosts: redis
-- hosts: consul
-
 - hosts: optimus
   vars_files:
     - group_vars/alpha-optimus.yml

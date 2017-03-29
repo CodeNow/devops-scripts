@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: shiva
   vars_files:
     - group_vars/alpha-shiva.yml

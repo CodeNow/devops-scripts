@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: metabase
   vars_files:
     - group_vars/alpha-metabase.yml

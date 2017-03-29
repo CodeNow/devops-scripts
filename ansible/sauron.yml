@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: sauron
   vars_files:
     - group_vars/alpha-sauron.yml

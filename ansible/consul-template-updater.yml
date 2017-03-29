@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: "{{ host }}"
   vars_files:
   - group_vars/{{ var_file }}

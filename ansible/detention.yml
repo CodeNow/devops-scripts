@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: detention
   vars_files:
     - group_vars/alpha-detention.yml

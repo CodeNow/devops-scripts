@@ -1,6 +1,4 @@
 ---
-- hosts: mongodb
-
 - hosts: api
   vars_files:
     - group_vars/alpha-api-base.yml

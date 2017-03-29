@@ -16,7 +16,7 @@ stop_time: 5
 do_not_push: true
 
 # default for container args (which are optional)
-container_run_args: ""
+container_run_args: "npm start"
 
 # REPO_BASE for getting dockerfiles
 repo_base: "{{ lookup('env','REPO_BASE') }}"
@@ -83,7 +83,6 @@ clio_host_address: clio
 clio_port: 8008
 
 # consul
-consul_host_address: consul
 consul_api_port: 8500
 consul_https_port: 8501
 
@@ -141,9 +140,6 @@ marketing_url: https://{{ domain }}
 
 # metabase
 metabase_port: 3000
-
-# mongo
-mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"
 
 # mongo_navi
 mongo_navi_port: 27017

@@ -1,7 +1,4 @@
 ---
-- hosts: consul
-- hosts: mongodb
-
 - hosts: eru
   vars_files:
   - group_vars/alpha-eru.yml

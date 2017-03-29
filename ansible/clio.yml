@@ -1,7 +1,4 @@
 ---
-- hosts: consul
-- hosts: mongodb
-
 - hosts: clio
   vars_files:
     - group_vars/alpha-clio.yml

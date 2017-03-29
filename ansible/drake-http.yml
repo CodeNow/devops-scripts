@@ -1,8 +1,4 @@
 ---
-- hosts: redis
-- hosts: rabbitmq
-- hosts: consul
-
 - hosts: drake
   vars_files:
     - group_vars/alpha-drake-base.yml

@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: arithmancy
   vars_files:
     - group_vars/alpha-arithmancy.yml

@@ -1,7 +1,4 @@
 ---
-- hosts: consul
-- hosts: mongodb
-
 - hosts: pheidi
   vars_files:
     - group_vars/alpha-pheidi.yml

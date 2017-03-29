@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: cream
   vars_files:
     - group_vars/alpha-cream-base.yml

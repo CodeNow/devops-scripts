@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: docker-listener
   vars_files:
     - group_vars/alpha-docker-listener.yml

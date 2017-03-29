@@ -1,7 +1,4 @@
 ---
-- hosts: consul
-- hosts: mongodb
-
 - hosts: big-poppa
   vars_files:
     - group_vars/alpha-big-poppa-base.yml

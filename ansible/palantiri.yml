@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: palantiri
   vars_files:
     - group_vars/alpha-palantiri.yml

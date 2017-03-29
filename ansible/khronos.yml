@@ -1,7 +1,4 @@
 ---
-- hosts: mongodb
-- hosts: consul
-
 - hosts: khronos
   vars_files:
     - group_vars/alpha-khronos.yml

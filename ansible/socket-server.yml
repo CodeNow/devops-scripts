@@ -1,7 +1,4 @@
 ---
-- hosts: mongodb
-- hosts: consul
-
 - hosts: socket-server
   vars_files:
     - group_vars/alpha-api-base.yml

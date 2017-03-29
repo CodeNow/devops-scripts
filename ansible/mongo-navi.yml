@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: mongo-navi
   vars_files:
     - group_vars/alpha-mongo-navi.yml
