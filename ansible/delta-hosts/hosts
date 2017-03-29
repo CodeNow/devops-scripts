@@ -104,9 +104,6 @@ delta-metabase
 [redis]
 delta-redis
 
-[redis-slave]
-delta-redis-slave
-
 [shiva]
 delta-app-services-2
 
@@ -165,7 +162,6 @@ pheidi
 prometheus
 rabbitmq
 redis
-redis-slave
 registry
 sauron
 shiva

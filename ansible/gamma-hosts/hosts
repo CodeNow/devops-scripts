@@ -93,9 +93,6 @@ localhost
 [redis]
 localhost
 
-[redis-slave]
-localhost
-
 [sauron]
 localhost
 
@@ -159,7 +156,6 @@ pheidi
 prometheus
 rabbitmq
 redis
-redis-slave
 registry
 sauron
 shiva

@@ -94,9 +94,6 @@ Host gamma-rabbit
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
-Host gamma-redis-slave
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
-
 # Gamma App Services
 Host gamma-app-services
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22

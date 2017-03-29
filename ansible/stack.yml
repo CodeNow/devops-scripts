@@ -10,7 +10,6 @@
 #- include: mongo-navi.yml
 - include: rabbitmq.yml
 - include: redis.yml
-#- include: redis-slave.yml
 - include: registry.yml
 #
 ## base service tier
