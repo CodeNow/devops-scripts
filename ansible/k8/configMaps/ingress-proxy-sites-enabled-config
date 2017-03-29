@@ -1,0 +1,545 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-proxy-sites-enabled-config
+data:
+  status.conf: |
+    server {
+      listen 80;
+
+      location /basic_status {
+        stub_status;
+      }
+    }
+  user-pixel.conf |
+    server {
+      listen 80;
+      server_name blue.runnable.ninja;
+      location / {
+        return 404;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      server_name blue.runnable.ninja;
+      gzip off;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable.ninja/runnable.ninja.chained.crt;
+      ssl_certificate_key /etc/ssl/private/runnable.ninja.key;
+      ssl_trusted_certificate /etc/ssl/certs/runnable.ninja/ca.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+      ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver 8.8.8.8 8.8.4.4 valid=300s;
+      resolver_timeout 5s;
+
+      location = /pixel.gif {
+        add_header Set-Cookie "isModerating=1; Domain=.runnable.ninja; Path=/; HttpOnly;";
+        empty_gif;
+      }
+
+      location / {
+        return 404;
+      }
+    }
+
+  api.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream api {
+      server api:80 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name api.runnable-gamma.com;
+      access_log /var/log/nginx/api.access.log;
+
+      location / {
+        proxy_pass http://api;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name api.runnable-gamma.com;
+      access_log /var/log/nginx/api.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://api;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  drake.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream drake {
+      server drake:80 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name drake.runnable-gamma.com;
+      access_log /var/log/nginx/drake.access.log;
+
+      location / {
+        proxy_pass http://drake;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name drake.runnable-gamma.com;
+      access_log /var/log/nginx/drake.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://drake;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  optimus.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream optimus {
+      server optimus:80 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name optimus.runnable-gamma.com;
+      access_log /var/log/nginx/optimus.access.log;
+
+      location / {
+        proxy_pass http://optimus;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name optimus.runnable-gamma.com;
+      access_log /var/log/nginx/optimus.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://optimus;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  apisock.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream apisock {
+      server apisock:80 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name apisock.runnable-gamma.com;
+      access_log /var/log/nginx/apisock.access.log;
+
+      location / {
+        proxy_pass http://apisock;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name apisock.runnable-gamma.com;
+      access_log /var/log/nginx/apisock.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://apisock;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  eru.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream eru {
+      server eru:5501 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name eru.runnable-gamma.com;
+      access_log /var/log/nginx/eru.access.log;
+
+      location / {
+        proxy_pass http://eru;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name eru.runnable-gamma.com;
+      access_log /var/log/nginx/eru.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://eru;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  egret.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream egret {
+      server egret:65520 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name egret.runnable-gamma.com;
+      access_log /var/log/nginx/egret.access.log;
+
+      location / {
+        proxy_pass http://egret;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name egret.runnable-gamma.com;
+      access_log /var/log/nginx/egret.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://egret;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+  registry.conf: |
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+    }
+
+    upstream registry {
+      server registry:5000 max_fails=0 fail_timeout=1s;
+    }
+
+    server {
+      listen 80;
+      client_max_body_size 5g;
+      server_name registry.runnable-gamma.com;
+      access_log /var/log/nginx/registry.access.log;
+
+      location / {
+        proxy_pass http://registry;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }
+
+    server {
+      listen 443 ssl;
+      client_max_body_size 5g;
+      server_name registry.runnable-gamma.com;
+      access_log /var/log/nginx/registry.ssl.access.log;
+
+      ssl on;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+
+      ssl_session_cache shared:SSL:10m;
+      ssl_session_timeout 10m;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+      ssl_prefer_server_ciphers on;
+
+      ssl_stapling on;
+      ssl_stapling_verify on;
+      resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+      resolver_timeout 5s;
+
+      location / {
+        proxy_pass http://registry;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+    }

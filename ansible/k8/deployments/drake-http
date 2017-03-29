@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: drake-http
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: drake-http
+    spec:
+      containers:
+        - image: registry.runnable.com/runnable/drake-http:v2.5.0
+          name: drake-http
+          args: npm run start-http
+          env:
+            - name: DATADOG_SECRET
+              value: I_solemnly_swear_that_I_am_up_to_no_good
+            - name: ROLLBAR_KEY
+              value: 52ad749ddb8e47b2a8e15312b6b300fb
+            - name: PORT
+              value: 80
+          ports:
+            - containerPort: 80

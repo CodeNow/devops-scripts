@@ -1,0 +1,15 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: canary.log.run
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: canary.log.run
+            image: registry.runnable.com/runnable/khronos:v6.5.8
+            args: /khronos/bin/cli.js --queue canary.log.run --job '{}' --host rabbitmq:5672 --username o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM --password wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+          restartPolicy: OnFailure

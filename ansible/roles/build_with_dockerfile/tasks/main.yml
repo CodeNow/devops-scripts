@@ -1,18 +1,18 @@
 ---
-# commands to build an image from a repo that contains a Dockerfile
 - name: Ensure Tag Deploy For Prod
-  tags: deploy
+  tags: deploy, build
   when: not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and node_env=="production-delta"
   fail: msg="only tag can be deployed on prod not {{ git_branch }}"
 
 - name: create build folder
+  tags: deploy, build
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}"
     state: directory
 
 - name: pull the git repository
-  tags: deploy
+  tags: deploy, build
   become: true
   git:
     repo: "{{ repo }}"
@@ -23,11 +23,12 @@
     force: yes
 
 - name: build docker image and tag
-  tags: deploy
+  tags: deploy, build
   become: yes
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
 
 - name: push docker image
+  tags: build
   become: yes
   when: not do_not_push
   command: docker push {{ container_image }}:{{ container_tag }}

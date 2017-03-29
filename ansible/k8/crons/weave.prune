@@ -1,0 +1,15 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: weave.prune
+spec:
+  schedule: "13 1,4,7,10,13,16,19,22 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: weave.prune
+            image: registry.runnable.com/runnable/khronos:v6.5.8
+            args: /khronos/bin/cli.js --queue weave.prune --job '{}' --host rabbitmq:5672 --username o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM --password wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+          restartPolicy: OnFailure
