@@ -1,6 +1,3 @@
-container_tag: "{{ git_branch }}"
-container_image: "{{ registry_address }}/runnable/{{ name }}"
-
 node_version: 4.5.0
 npm_version: 2
 
