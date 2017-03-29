@@ -1,9 +1,6 @@
 [bastion]
 gamma-bastion
 
-[hipache]
-gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-
 [userland]
 gamma-userland
 
@@ -85,7 +82,7 @@ localhost
 localhost
 
 [rabbitmq]
-gamma-rabbit
+localhost
 
 [web]
 localhost
@@ -97,7 +94,7 @@ localhost
 localhost
 
 [redis-slave]
-gamma-redis-slave
+localhost
 
 [sauron]
 localhost
@@ -152,7 +149,6 @@ docks
 drake
 eru
 github-varnish
-hipache
 ingress
 khronos
 mongo-navi

@@ -3,7 +3,7 @@ name: mongo-navi
 storage_size_gb: 50
 
 volume_mounts:
-  - name: "{{ name }}"
+  - name: "{{ name }}-db-claim"
     path: /data/db
     kind: persistent
 

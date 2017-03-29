@@ -186,7 +186,7 @@ prometheus_alert_url: http://prometheus:{{ prometheus_alert_port }}
 
 # rabbit
 rabbit_host_address: rabbitmq
-rabbit_port: 54321
+rabbit_port: 5672
 
 # redis
 redis_host_address: redis

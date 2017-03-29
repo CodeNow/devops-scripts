@@ -1,20 +1,20 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ name }}-conf
+  name: rabbitmq-conf
 data:
   rabbitmq.config: |
     [
     {rabbit,
       [
       {default_vhost,       <<"/">>},
-      {default_user,        <<"{{ rabbit_username }}">>},
-      {default_pass,        <<"{{ rabbit_password }}">>},
+      {default_user,        <<"o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM">>},
+      {default_pass,        <<"wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk">>},
       {default_permissions, [<<".*">>, <<".*">>, <<".*">>]}
 
       ]},
     {rabbitmq_management,
       [
-      {http_log_dir, "{{ app_log_dir }}/access.log"}
+      {http_log_dir, "/docker/app-logs/access.log"}
       ]}
     ].

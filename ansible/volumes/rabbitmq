@@ -1,14 +1,14 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: {{ name }}-db
+  name: rabbitmq-db
   labels:
     type: amazonEBS
 spec:
   capacity:
-    storage: {{ storage_size_gb }}Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
   awsElasticBlockStore:
-    volumeID: {{ volume_id }}
+    volumeID: vol-08cb7a2d1218ed9a0
     fsType: ext4
