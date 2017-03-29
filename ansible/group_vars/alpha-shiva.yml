@@ -5,29 +5,32 @@ repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
 npm_version: "2.8.3"
 
-# Overrides the start command in the builder role
-npm_start_command: run shiva-start
+container_run_args: npm run shiva-start
 
-# container settings
-redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e POSTGRES_CONNECT_STRING=postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}
-  -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
-  -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
-  -e NODE_ENV={{ node_env }}
-  -e REGISTRY_HOST={{ registry_host }}
-  -e ROLLBAR_KEY={{ shiva_rollbar_token }}
-  -e DOCKER_PORT={{ docker_port }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  {{ container_envs }}
+container_envs:
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: POSTGRES_CONNECT_STRING
+    value: "postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}"
+  - name: AWS_ACCESS_KEY_ID
+    value: "{{ aws_access_key_id }}"
+  - name: AWS_SECRET_ACCESS_KEY
+    value: "{{ aws_secret_access_key }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: REGISTRY_HOST
+    value: "{{ registry_host }}"
+  - name: ROLLBAR_KEY
+    value: "{{ shiva_rollbar_token }}"
+  - name: DOCKER_PORT
+    value: "{{ docker_port }}"

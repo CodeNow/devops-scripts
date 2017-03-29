@@ -1,6 +1,4 @@
 ---
-- hosts: redis
-- hosts: rabbitmq
 - hosts: consul
 
 - hosts: shiva
@@ -9,7 +7,7 @@
   roles:
   - role: notify
     rollbar_token: "{{ shiva_rollbar_token }}"
-    tags: [ notify ]
-  - { role: builder, tags: [ build ] }
-  - { role: tls-server-ca, ca_dest: "{{ redis_ca_cert_path }}" }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: k8-deployment
