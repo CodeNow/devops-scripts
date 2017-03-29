@@ -20,7 +20,7 @@ spec:
         image: gcr.io/google_containers/kube-registry-proxy:0.4
         env:
         - name: REGISTRY_HOST
-          value: kube-registry.default.svc.cluster.local
+          value: registry
         - name: REGISTRY_PORT
           value: "5000"
         ports:
