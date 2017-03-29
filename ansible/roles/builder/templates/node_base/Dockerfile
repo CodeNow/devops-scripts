@@ -2,7 +2,7 @@
 # node_base Dockerfile
 #
 # Pull base image.
-FROM registry.runnable.com/runnable/base:latest
+FROM {{ registry_address }}/runnable/base:latest
 
 # Node.js @ 0.10.28
 # npm     @ 2.1.18

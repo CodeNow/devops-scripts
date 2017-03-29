@@ -1,7 +1,5 @@
 name: sauron
 
-container_image: "registry.runnable.com/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"

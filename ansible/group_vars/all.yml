@@ -8,9 +8,10 @@ services_path: "{{ opts_root }}/services"
 deployments_path: "{{ opts_root }}/deployments"
 cron_jobs_path: "{{ opts_root }}/crons"
 volumes_path: "{{ opts_root }}/volumes"
+daemon_sets_path: "{{ opts_root }}/daemonSets"
 
-# for docker stop old container
-stop_time: 5
+container_tag: "{{ git_branch }}"
+container_image: "{{ registry_address }}/runnable/{{ name }}"
 
 # For docker built containers
 do_not_push: true
@@ -182,7 +183,7 @@ redis_host_address: redis
 redis_port: 6379
 
 # registry
-registry_address: registry
+registry_address: registry.runnable.com
 registry_port: 5000
 registry_env: prod
 

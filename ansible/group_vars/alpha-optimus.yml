@@ -1,7 +1,5 @@
 name: optimus
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: ["{{ optimus_port }}"]
 node_version: "4.3.2"

@@ -1,8 +1,6 @@
 ---
 name: github-varnish
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: ["{{ github_varnish_port }}"]
 

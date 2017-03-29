@@ -1,4 +1,4 @@
-FROM registry.runnable.com/runnable/{{ base_dockerfile }}:latest
+FROM {{ registry_address }}/runnable/{{ base_dockerfile }}:latest
 
 {% if hosted_ports is defined %}
 # Expose port to Host
@@ -45,4 +45,4 @@ RUN {{ command }}
 {% endif %}
 
 # Define default command.
-CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }} 
+CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}
