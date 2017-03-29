@@ -15,4 +15,4 @@ spec:
           args: npm run start-worker
           env:
             - name: ROLLBAR_KEY
-              value: 14152b8572034943b714da27ca607698
+              value: "14152b8572034943b714da27ca607698"

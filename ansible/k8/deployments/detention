@@ -15,14 +15,14 @@ spec:
           args: 
           env:
             - name: ABSOLUTE_URL
-              value: detention.runnable-gamma.com
+              value: "detention.runnable-gamma.com"
             - name: API_URL
-              value: https://api.runnable-gamma.com
+              value: "https://api.runnable-gamma.com"
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
-              value: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+              value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
             - name: NODE_ENV
-              value: production-gamma
+              value: "production-gamma"
             - name: PORT
-              value: 9123
+              value: "9123"
           ports:
             - containerPort: 9123

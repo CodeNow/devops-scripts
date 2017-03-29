@@ -15,10 +15,10 @@ spec:
           args: npm run start-http
           env:
             - name: DATADOG_SECRET
-              value: I_solemnly_swear_that_I_am_up_to_no_good
+              value: "I_solemnly_swear_that_I_am_up_to_no_good"
             - name: ROLLBAR_KEY
-              value: 52ad749ddb8e47b2a8e15312b6b300fb
+              value: "52ad749ddb8e47b2a8e15312b6b300fb"
             - name: PORT
-              value: 80
+              value: "80"
           ports:
             - containerPort: 80

@@ -20,7 +20,7 @@ spec:
 {% for env in container_envs %}
 {% if env.value != 'ansible_undefined' %}
             - name: {{ env.name }}
-              value: {{ env.value }}
+              value: "{{ env.value }}"
 {% endif %}
 {% endfor %}
 {% endif %}

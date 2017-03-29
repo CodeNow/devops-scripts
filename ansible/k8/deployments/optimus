@@ -15,22 +15,22 @@ spec:
           args: 
           env:
             - name: NODE_ENV
-              value: production-gamma
+              value: "production-gamma"
             - name: DATADOG_HOST
-              value: 192.168.86.3
+              value: "192.168.1.53"
             - name: DATADOG_PORT
-              value: 8125
+              value: "8125"
             - name: PORT
-              value: 80
+              value: "80"
             - name: AWS_ACCESS_KEY_ID
-              value: AKIAJPA2ZYSVVA5V7XXQ
+              value: "AKIAJPA2ZYSVVA5V7XXQ"
             - name: AWS_SECRET_ACCESS_KEY
-              value: 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
+              value: "5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt"
             - name: S3_DEPLOY_KEY_BUCKET
-              value: runnable.deploykeys.production-beta
+              value: "runnable.deploykeys.production-beta"
             - name: ROLLBAR_KEY
-              value: a49f9cce09ee46f09df3f603178fba75
+              value: "a49f9cce09ee46f09df3f603178fba75"
             - name: LOG_LEVEL
-              value: trace
+              value: "trace"
           ports:
             - containerPort: 80

@@ -15,31 +15,31 @@ spec:
           args: 
           env:
             - name: CONSUL_HOST
-              value: consul:8500
+              value: "consul:8500"
             - name: DATADOG_HOST
-              value: 192.168.86.3
+              value: "192.168.1.53"
             - name: DATADOG_PORT
-              value: 8125
+              value: "8125"
             - name: LOGGLY_TOKEN
-              value: f673760d-e0b3-4a93-a15e-2862ea074f91
+              value: "f673760d-e0b3-4a93-a15e-2862ea074f91"
             - name: NODE_ENV
-              value: production-gamma
+              value: "production-gamma"
             - name: RABBITMQ_HOSTNAME
-              value: rabbitmq
+              value: "rabbitmq"
             - name: RABBITMQ_PASSWORD
-              value: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
             - name: RABBITMQ_PORT
-              value: 5672
+              value: "5672"
             - name: RABBITMQ_USERNAME
-              value: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: ROLLBAR_KEY
-              value: 83157ae2d50d4b6398e404c0b9978d26
+              value: "83157ae2d50d4b6398e404c0b9978d26"
             - name: SWARM_HOSTNAME
-              value: swarm
+              value: "swarm"
             - name: SWARM_PORT
-              value: 2375
+              value: "2375"
             - name: WEAVE_PATH
-              value: /bin/weave
+              value: "/bin/weave"
           volumeMounts:
             - name: sauron-docker-ssl-certs
               mountPath: /etc/ssl/docker

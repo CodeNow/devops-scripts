@@ -15,14 +15,14 @@ spec:
           args: 
           env:
             - name: VARNISH_PORT
-              value: 80
+              value: "80"
             - name: VARNISH_MALLOC
-              value: 100M
+              value: "100M"
             - name: GITHUB_DOMAIN
-              value: api.github.com
+              value: "api.github.com"
             - name: IS_GITHUB_ENTERPRISE
-              value: false
+              value: "false"
             - name: GITHUB_PROTOCOL
-              value: https
+              value: "https"
           ports:
             - containerPort: 80

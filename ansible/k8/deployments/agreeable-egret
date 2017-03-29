@@ -15,16 +15,16 @@ spec:
           args: 
           env:
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
-              value: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+              value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
             - name: NODE_ENV
-              value: production-gamma
+              value: "production-gamma"
             - name: RUNNABLE_API_URL
-              value: https://api.runnable-gamma.com
+              value: "https://api.runnable-gamma.com"
             - name: PORT
-              value: 65520
+              value: "65520"
             - name: RUNNABLE_USER_CONTENT_DOMAIN
-              value: runnable.ninja
+              value: "runnable.ninja"
             - name: POSTGRES_CONNECT_STRING
-              value: postgres://egret:b3UKjxbGblKZtG6c@gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/egret
+              value: "postgres://egret:b3UKjxbGblKZtG6c@gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/egret"
           ports:
             - containerPort: 65520
