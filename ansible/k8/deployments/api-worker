@@ -10,7 +10,7 @@ spec:
         app: api-worker
     spec:
       containers:
-        - image: registry.runnable.com/runnable/api-worker:v11.31.1
+        - image: localhost:5000/runnable/api-worker:v11.31.1
           name: api-worker
           args:
             - npm

@@ -10,7 +10,7 @@ spec:
         app: drake-http
     spec:
       containers:
-        - image: registry.runnable.com/runnable/drake-http:v2.5.0
+        - image: localhost:5000/runnable/drake-http:v2.5.0
           name: drake-http
           args:
             - npm

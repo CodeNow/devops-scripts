@@ -10,7 +10,7 @@ spec:
         app: palantiri
     spec:
       containers:
-        - image: registry.runnable.com/runnable/palantiri:v2.3.3
+        - image: localhost:5000/runnable/palantiri:v2.3.3
           name: palantiri
           args:
             - npm

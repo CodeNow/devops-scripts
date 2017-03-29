@@ -10,7 +10,7 @@ spec:
         app: github-varnish
     spec:
       containers:
-        - image: registry.runnable.com/runnable/github-varnish:v2.0.2
+        - image: localhost:5000/runnable/github-varnish:v2.0.2
           name: github-varnish
           args:
             - npm

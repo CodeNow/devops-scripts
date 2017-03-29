@@ -10,7 +10,7 @@ spec:
         app: big-poppa-worker
     spec:
       containers:
-        - image: registry.runnable.com/runnable/big-poppa-worker:v0.18.2
+        - image: localhost:5000/runnable/big-poppa-worker:v0.18.2
           name: big-poppa-worker
           args:
             - npm
