@@ -11,7 +11,8 @@ data:
         stub_status;
       }
     }
-  user-pixel.conf |
+
+  user-pixel.conf: |
     server {
       listen 80;
       server_name blue.runnable.ninja;
