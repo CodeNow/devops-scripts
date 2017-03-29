@@ -55,7 +55,7 @@
   tags: [ deploy ]
   become: true
   copy:
-    src=../../../docker-files/base/{{ file_name_item }}
+    src=../../../secrets/{{ file_name_item }}
     dest={{ build_dir }}/{{ name }}
     owner=ubuntu
     group=ubuntu
