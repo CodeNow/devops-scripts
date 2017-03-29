@@ -1,11 +1,9 @@
 ---
 - hosts: rabbitmq
   vars_files:
-    - "group_vars/alpha-rabbitmq.yml"
+    - group_vars/alpha-rabbitmq.yml
   roles:
   - role: notify
-
-  - role: builder
 
   - role: database
   - role: rabbitmq

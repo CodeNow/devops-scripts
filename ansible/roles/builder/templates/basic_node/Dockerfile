@@ -1,4 +1,4 @@
-FROM {{ registry_address }}/runnable/{{ base_dockerfile }}:latest
+FROM registry.runnable.com/runnable/{{ base_dockerfile }}:latest
 
 {% if hosted_ports is defined %}
 # Expose port to Host

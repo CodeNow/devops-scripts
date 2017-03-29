@@ -12,9 +12,6 @@ spec:
       containers:
         - image: rabbitmq:3.5.3-management
           name: rabbitmq
-          args:
-            - npm
-            - start
           ports:
             - containerPort: 5672
             - containerPort: 15672

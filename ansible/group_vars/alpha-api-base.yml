@@ -3,8 +3,8 @@ npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
 has_shrinkwrap: true
+container_image: "{{ registry_address }}/runnable/api"
 
-# for sendGrid
 sendgrid_key: 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
 
 dockerfile_enviroment: [
@@ -19,7 +19,6 @@ volume_mounts:
    path: /etc/ssl/docker
    kind: configMap
 
-# shared ENV's between api services
 api_base_container_envs:
   - name: AWS_ACCESS_KEY_ID
     value: "{{ api_aws_access_key_id }}"

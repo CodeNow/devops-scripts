@@ -12,9 +12,6 @@ spec:
       containers:
         - image: registry:2.1.1
           name: registry
-          args:
-            - npm
-            - start
           env:
             - name: REGISTRY_STORAGE_S3_ACCESSKEY
               value: "AKIAJK5EN7W6E62A3C3Q"
