@@ -12,7 +12,10 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/cream-http:v1.13.3
           name: cream-http
-          args: npm run start-http
+          args:
+            - npm
+            - run
+            - start-http
           env:
             - name: BIG_POPPA_HOST
               value: "http://big-poppa:7788"

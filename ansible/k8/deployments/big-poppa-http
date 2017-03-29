@@ -10,9 +10,12 @@ spec:
         app: big-poppa-http
     spec:
       containers:
-        - image: registry.runnable.com/runnable/big-poppa-http:v1.12.0
+        - image: registry.runnable.com/runnable/big-poppa-http:v0.18.2
           name: big-poppa-http
-          args: [u'npm', u'run', u'start-http']
+          args:
+            - npm
+            - run
+            - start-http
           env:
             - name: DATADOG_HOST
               value: "192.168.1.53"

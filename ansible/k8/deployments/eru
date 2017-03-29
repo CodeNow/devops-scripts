@@ -12,7 +12,22 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/eru:v6.2.3
           name: eru
-          args: bash -c "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"
+          args:
+            - bash
+            - -c
+            - "supervisord
+            - --configuration
+            - supervisord.conf
+            - &&
+            - sleep
+            - 10
+            - &&
+            - tail
+            - -n
+            - 100
+            - -qf
+            - /tmp/*std*.log
+            - /tmp/supervisord.log"
           env:
             - name: AWS_ACCESS_KEY
               value: "AKIAIFCVEISSC5JMPWDA"
@@ -23,7 +38,7 @@ spec:
             - name: BIG_POPPA_HOST
               value: "big-poppa:7788"
             - name: CONSUL_HOST
-              value: "consul:8500"
+              value: "10.4.5.144:8500"
             - name: DOMAIN
               value: "eru.runnable-gamma.com"
             - name: GITHUB_CLIENT_ID

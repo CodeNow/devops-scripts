@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/optimus:v5.1.1
           name: optimus
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: NODE_ENV
               value: "production-gamma"

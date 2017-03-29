@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/pheidi:v1.38.6
           name: pheidi
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: BIG_POPPA_HOST
               value: "http://big-poppa:7788"

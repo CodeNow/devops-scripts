@@ -12,7 +12,10 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/drake-worker:v2.5.0
           name: drake-worker
-          args: npm run start-worker
+          args:
+            - npm
+            - run
+            - start-worker
           env:
             - name: ROLLBAR_KEY
               value: "14152b8572034943b714da27ca607698"

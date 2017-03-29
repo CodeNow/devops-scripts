@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/detention:v1.3.4
           name: detention
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: ABSOLUTE_URL
               value: "detention.runnable-gamma.com"

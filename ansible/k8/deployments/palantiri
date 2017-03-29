@@ -12,10 +12,12 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/palantiri:v2.3.3
           name: palantiri
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: CONSUL_HOST
-              value: "consul:8500"
+              value: "10.4.5.144:8500"
             - name: NODE_ENV
               value: "production-gamma"
             - name: DATADOG_HOST

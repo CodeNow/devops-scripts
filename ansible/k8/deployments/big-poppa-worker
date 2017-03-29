@@ -12,7 +12,10 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/big-poppa-worker:v0.18.2
           name: big-poppa-worker
-          args: npm run start-worker
+          args:
+            - npm
+            - run
+            - start-worker
           env:
             - name: DATADOG_HOST
               value: "192.168.1.53"

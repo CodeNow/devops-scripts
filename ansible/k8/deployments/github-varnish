@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/github-varnish:v2.0.2
           name: github-varnish
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: VARNISH_PORT
               value: "80"

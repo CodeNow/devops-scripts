@@ -12,7 +12,9 @@ spec:
       containers:
         - image: redis:3.0.5
           name: redis
-          args: 
+          args:
+            - npm
+            - start
           ports:
             - containerPort: 6379
           volumeMounts:

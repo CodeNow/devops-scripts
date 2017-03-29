@@ -10,9 +10,11 @@ spec:
         app: agreeable-egret
     spec:
       containers:
-        - image: registry.runnable.com/runnable/agreeable-egret:v1.12.0
+        - image: registry.runnable.com/runnable/agreeable-egret:v0.2.2
           name: agreeable-egret
-          args: [u'npm', u'start']
+          args:
+            - npm
+            - start
           env:
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"

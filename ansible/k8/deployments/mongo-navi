@@ -12,7 +12,9 @@ spec:
       containers:
         - image: mongo:3.2.6
           name: mongo-navi
-          args: 
+          args:
+            - npm
+            - start
           ports:
             - containerPort: 27017
           volumeMounts:

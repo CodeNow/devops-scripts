@@ -12,7 +12,18 @@ spec:
       containers:
         - image: prom/prometheus:v1.4.1
           name: prometheus
-          args: -alertmanager.url "http://prometheus:9093" -config.file=/prometheus/prometheus.yml -storage.local.path "data" -storage.local.retention 168h0m0s -web.external-url http://localhost -web.listen-address ":9090"
+          args:
+            - -alertmanager.url
+            - "http://prometheus:9093"
+            - -config.file=/prometheus/prometheus.yml
+            - -storage.local.path
+            - "data"
+            - -storage.local.retention
+            - 168h0m0s
+            - -web.external-url
+            - http://localhost
+            - -web.listen-address
+            - ":9090"
 
           ports:
             - containerPort: 9090

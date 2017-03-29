@@ -12,7 +12,13 @@ spec:
       containers:
         - image: swarm:1.2.3-0
           name: swarm-manager
-          args: manage --tlsverify --tlscacert=/etc/ssl/docker/ca.pem --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem consul://consul:8500/swarm
+          args:
+            - manage
+            - --tlsverify
+            - --tlscacert=/etc/ssl/docker/ca.pem
+            - --tlscert=/etc/ssl/docker/cert.pem
+            - --tlskey=/etc/ssl/docker/key.pem
+            - consul://10.4.5.144:8500/swarm
 
           ports:
             - containerPort: 2375

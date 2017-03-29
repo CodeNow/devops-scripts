@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/clio:v1.1.1
           name: clio
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: MONGO
               value: "mongodb://clio:Fkj8CBoMNpuhe7p*@10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017/clio"

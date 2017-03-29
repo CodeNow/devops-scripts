@@ -12,7 +12,10 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/cream-worker:v1.13.3
           name: cream-worker
-          args: npm run start-worker
+          args:
+            - npm
+            - run
+            - start-worker
           env:
             - name: BIG_POPPA_HOST
               value: "http://big-poppa:7788"

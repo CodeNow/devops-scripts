@@ -12,7 +12,10 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/drake-http:v2.5.0
           name: drake-http
-          args: npm run start-http
+          args:
+            - npm
+            - run
+            - start-http
           env:
             - name: DATADOG_SECRET
               value: "I_solemnly_swear_that_I_am_up_to_no_good"

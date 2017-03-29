@@ -12,7 +12,9 @@ spec:
       containers:
         - image: registry.runnable.com/runnable/link:v2.2.2
           name: link
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: API_URL
               value: "https://api.runnable-gamma.com"

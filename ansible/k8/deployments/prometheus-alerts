@@ -12,7 +12,16 @@ spec:
       containers:
         - image: prom/alertmanager:v0.5.0
           name: prometheus-alerts
-          args: -config.file=/prometheus-alerts/prometheus-alerts.yml -data.retention 720h0m0s -storage.path "data" -web.external-url http://localhost -web.listen-address ":9093"
+          args:
+            - -config.file=/prometheus-alerts/prometheus-alerts.yml
+            - -data.retention
+            - 720h0m0s
+            - -storage.path
+            - "data"
+            - -web.external-url
+            - http://localhost
+            - -web.listen-address
+            - ":9093"
 
           ports:
             - containerPort: 9093

@@ -10,9 +10,11 @@ spec:
         app: navi
     spec:
       containers:
-        - image: registry.runnable.com/runnable/navi:v1.12.0
+        - image: registry.runnable.com/runnable/navi:v10.5.2
           name: navi
-          args: 
+          args:
+            - npm
+            - start
           env:
             - name: API_URL
               value: "https://api.runnable-gamma.com"
