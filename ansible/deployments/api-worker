@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: api-socket-server
+  name: api-worker
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: api-socket-server
+        app: api-worker
     spec:
       containers:
         - image: registry.runnable.com/runnable/api:v1.12.0
-          name: api-socket-server
+          name: api-worker
           args: 
           env:
             - name: AWS_ACCESS_KEY_ID
@@ -98,16 +98,14 @@ spec:
               value: fatal
             - name: NEW_RELIC_NO_CONFIG_FILE
               value: true
-            - name: NUM_WORKERS
-              value: 1
+            - name: IS_QUEUE_WORKER
+              value: true
             - name: ROLLBAR_KEY
-              value: cad27f265e8e473c9b293615e7ed0f3a
-          ports:
-            - containerPort: 80
+              value: 3edfe8fe4fd640ae9fdbbe08fcb9f121
           volumeMounts:
-            - name: api-socket-server-docker-ssl-certs
+            - name: api-worker-docker-ssl-certs
               mountPath: /etc/ssl/docker
       volumes:
-        - name: api-socket-server-docker-ssl-certs
+        - name: api-worker-docker-ssl-certs
           configMap:
-            name: api-socket-server-docker-ssl-certs
+            name: api-worker-docker-ssl-certs

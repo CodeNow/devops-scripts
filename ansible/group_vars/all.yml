@@ -106,9 +106,6 @@ log_driver: syslog
 log_facility: local7
 
 # docker
-docker_ca_path: /etc/ssl/docker/ca.pem
-docker_cert_path: /etc/ssl/docker/cert.pem
-docker_key_path: /etc/ssl/docker/key.pem
 docker_port: 4242
 
 # docker-listener

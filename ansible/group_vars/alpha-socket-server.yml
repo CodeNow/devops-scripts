@@ -2,14 +2,7 @@ name: api-socket-server
 
 hosted_ports: [ "{{ api_port }}" ]
 
-volume_mounts:
-  - name: "{{ name }}-docker-ssl-certs"
-    path: /etc/ssl/docker
-    kind: configMap
-
 envs:
-  - name: NUM_WORKERS
-    value: "1"
   - name: ROLLBAR_KEY
     value: "{{ api_socket_server_rollbar_key }}"
 

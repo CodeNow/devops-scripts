@@ -15,7 +15,7 @@ volume_mounts:
 container_run_args: >
   manage
   --tlsverify
-  --tlscacert={{ docker_ca_path }}
-  --tlscert={{ docker_cert_path }}
-  --tlskey={{ docker_key_path }}
+  --tlscacert=/etc/ssl/docker/ca.pem
+  --tlscert=/etc/ssl/docker/cert.pem
+  --tlskey=/etc/ssl/docker/key.pem
   consul://{{ consul_host_address }}:{{ consul_api_port }}/swarm

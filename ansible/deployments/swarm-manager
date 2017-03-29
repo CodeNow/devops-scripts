@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: swarm-manager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: swarm-manager
+    spec:
+      containers:
+        - image: swarm:1.2.3-0
+          name: swarm-manager
+          args: manage --tlsverify --tlscacert=/etc/ssl/docker/ca.pem --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem consul://consul:8500/swarm
+
+          ports:
+            - containerPort: 2375
+          volumeMounts:
+            - name: swarm-manager-docker-ssl-certs
+              mountPath: /etc/ssl/docker
+      volumes:
+        - name: swarm-manager-docker-ssl-certs
+          configMap:
+            name: swarm-manager-docker-ssl-certs
