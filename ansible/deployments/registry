@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+        - image: registry:2.1.1
+          name: registry
+          args: 
+          env:
+            - name: REGISTRY_STORAGE_S3_ACCESSKEY
+              value: AKIAJK5EN7W6E62A3C3Q
+            - name: REGISTRY_STORAGE_S3_SECRETKEY
+              value: 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
+            - name: REGISTRY_STORAGE_S3_REGION
+              value: us-east-1
+            - name: REGISTRY_STORAGE_S3_BUCKET
+              value: runnableimages.beta
+            - name: REGISTRY_ENVIRONMENT
+              value: production
+            - name: REGISTRY_STORAGE
+              value: s3
+          ports:
+            - containerPort: 5000

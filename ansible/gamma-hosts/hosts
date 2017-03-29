@@ -106,7 +106,7 @@ localhost
 localhost
 
 [registry]
-gamma-registry
+localhost
 
 [swarm-manager]
 localhost

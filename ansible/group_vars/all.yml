@@ -9,10 +9,6 @@ deployments_path: "{{ opts_root }}/deployments"
 cron_jobs_path: "{{ opts_root }}/crons"
 volumes_path: "{{ opts_root }}/volumes"
 
-# registry settings
-registry_env: prod
-registry_port: 80
-
 # for docker stop old container
 stop_time: 5
 
@@ -192,7 +188,10 @@ rabbit_port: 5672
 redis_host_address: redis
 redis_port: 6379
 
+# registry
 registry_address: registry
+registry_port: 5000
+registry_env: prod
 
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26

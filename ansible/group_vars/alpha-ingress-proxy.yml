@@ -34,3 +34,5 @@ services:
     port: "{{ eru_http_port }}"
   - name: egret
     port: "{{ agreeable_egret_port }}"
+  - name: registry
+    port: "{{ registry_port }}"
