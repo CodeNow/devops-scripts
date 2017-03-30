@@ -23,7 +23,7 @@ spec:
               mountPath: /etc/ssl/certs/runnable.ninja
             - name: navi-proxy-base-conf
               mountPath: /etc/nginx/
-            - name: navi-proxy-navi-config
+            - name: navi-proxy-navi-conf
               mountPath: /etc/nginx/sites-enabled
       volumes:
         - name: navi-proxy-runnable-ninja-certs
@@ -32,6 +32,6 @@ spec:
         - name: navi-proxy-base-conf
           configMap:
             name: navi-proxy-base-conf
-        - name: navi-proxy-navi-config
+        - name: navi-proxy-navi-conf
           configMap:
-            name: navi-proxy-navi-config
+            name: navi-proxy-navi-conf
