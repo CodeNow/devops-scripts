@@ -27,9 +27,9 @@ data:
       gzip off;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/{{ user_content_domain }}/{{ user_content_domain }}.chained.crt;
-      ssl_certificate_key /etc/ssl/private/{{ user_content_domain }}.key;
-      ssl_trusted_certificate /etc/ssl/certs/{{ user_content_domain }}/ca.pem;
+      ssl_certificate /etc/ssl/certs/{{ domain }}/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/{{ domain }}/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/{{ domain }}/ca.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
