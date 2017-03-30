@@ -27,9 +27,9 @@ data:
       gzip off;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable.ninja/runnable.ninja.chained.crt;
-      ssl_certificate_key /etc/ssl/private/runnable.ninja.key;
-      ssl_trusted_certificate /etc/ssl/certs/runnable.ninja/ca.pem;
+      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
