@@ -2,6 +2,8 @@ name: api-socket-server
 
 hosted_ports: [ "{{ api_port }}" ]
 
+service_name: 'apisock'
+
 envs:
   - name: ROLLBAR_KEY
     value: "{{ api_socket_server_rollbar_key }}"

@@ -4,6 +4,7 @@ name: ingress-proxy
 container_image: "nginx"
 container_tag: "1.10"
 hosted_ports: ["80", "443"]
+container_run_args: ''
 
 service_type: "LoadBalancer"
 
