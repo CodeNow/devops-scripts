@@ -2,12 +2,14 @@ name: drake-http
 
 hosted_ports: ["{{ drake_port }}"]
 
-container_envs:
+envs:
   - name: DATADOG_SECRET
     value: "I_solemnly_swear_that_I_am_up_to_no_good"
   - name: ROLLBAR_KEY
     value: "{{ drake_http_rollbar_token }}"
   - name: PORT
     value: "{{ drake_port }}"
+
+container_envs: "{{ drake_base_container_envs + envs }}"
 
 container_run_args: npm run start-http

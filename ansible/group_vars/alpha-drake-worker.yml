@@ -1,7 +1,9 @@
 name: drake-worker
 
-container_envs:
+envs:
   - name: ROLLBAR_KEY
     value: "{{ drake_worker_rollbar_token }}"
+
+container_envs: "{{ drake_base_container_envs + envs }}"
 
 container_run_args: npm run start-worker

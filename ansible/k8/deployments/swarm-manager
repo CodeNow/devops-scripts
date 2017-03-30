@@ -10,7 +10,7 @@ spec:
         app: swarm-manager
     spec:
       containers:
-        - image: swarm:1.2.3-0
+        - image: runnable/swarm:1.2.3-0
           name: swarm-manager
           args:
             - manage
