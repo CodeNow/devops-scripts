@@ -25,5 +25,5 @@ spec:
           value: "5000"
         ports:
         - name: registry
-          containerPort: {{ registry_port }}
+          containerPort: 80
           hostPort: {{ registry_port }}
