@@ -1,4 +1,5 @@
 name: drake-http
+service_name: drake
 
 hosted_ports: ["{{ drake_port }}"]
 

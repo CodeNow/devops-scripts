@@ -1,4 +1,5 @@
 name: "agreeable-egret"
+service_name: egret
 
 hosted_ports: ["{{ agreeable_egret_port }}"]
 repo: "git@github.com:CodeNow/{{ name }}.git"

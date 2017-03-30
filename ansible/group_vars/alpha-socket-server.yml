@@ -1,8 +1,7 @@
 name: api-socket-server
+service_name: apisock
 
 hosted_ports: [ "{{ api_port }}" ]
-
-service_name: 'apisock'
 
 envs:
   - name: ROLLBAR_KEY

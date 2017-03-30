@@ -1,4 +1,5 @@
 name: api
+service_name: api
 
 hosted_ports: [ "{{ api_port }}" ]
 
