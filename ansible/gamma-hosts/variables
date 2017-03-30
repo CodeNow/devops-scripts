@@ -167,6 +167,9 @@ vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c0
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
 
+vault_root_token=ce538388-0595-4968-1313-e9b0a01347ba
+vault_unseal_tokens={'one':'x0jJy/ce2/1XNAX/nggmx14SmTwtbqFwaOSGprcPhIMB', 'two': '6Fbb4GMMNLEWq2ZwF4Rkl0bLqFoo2b11cpPHYhb1JKAC', 'three': '1Pjh29PMMKS3HlaGIzBAseoO5kkyrbhZhK5yfBVEcvED', 'four': 'amzIU2hes43/ol/1svt25XDtiJKlK9rRMY3iok3gVlsE', 'five': 'VsLyaNiet5heF28Dhk9Sw9woxoG/X9/9x7BXvE5RAAoF'}
+
 [ec2:vars]
 aws_custid=437258487404
 bastion_sshd_port=60709
