@@ -14,9 +14,15 @@ spec:
           name: {{ name }}
 {% if container_run_args != '' %}
           args:
+{% if advance_arg == true %}
+            - bash
+            - -c
+            - {{ container_run_args }}
+{% else %}
 {% for arg in container_run_args.split(' ') %}
             - {{ arg }}
 {% endfor %}
+{% endif %}
 {% endif %}
 {% if container_envs is defined %}
           env:

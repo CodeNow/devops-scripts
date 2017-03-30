@@ -82,4 +82,5 @@ container_envs:
   - name: USER_CONTENT_DOMAIN
     value: "{{ user_content_domain }}"
 
-container_run_args: bash -c "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"
+advance_arg: true
+container_run_args: supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log

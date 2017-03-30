@@ -15,19 +15,7 @@ spec:
           args:
             - bash
             - -c
-            - "supervisord
-            - --configuration
-            - supervisord.conf
-            - &&
-            - sleep
-            - 10
-            - &&
-            - tail
-            - -n
-            - 100
-            - -qf
-            - /tmp/*std*.log
-            - /tmp/supervisord.log"
+            - supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log
           env:
             - name: AWS_ACCESS_KEY
               value: "AKIAIFCVEISSC5JMPWDA"
