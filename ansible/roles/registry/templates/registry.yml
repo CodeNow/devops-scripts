@@ -22,7 +22,7 @@ spec:
         - name: REGISTRY_HOST
           value: registry
         - name: REGISTRY_PORT
-          value: "5000"
+          value: "{{ registry_port }}"
         ports:
         - name: registry
           containerPort: 80
