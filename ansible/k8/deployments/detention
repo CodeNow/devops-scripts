@@ -10,7 +10,7 @@ spec:
         app: detention
     spec:
       containers:
-        - image: localhost:5000/runnable/detention:v1.3.4
+        - image: 127.0.0.1:5000/runnable/detention:v1.3.4
           name: detention
           args:
             - npm

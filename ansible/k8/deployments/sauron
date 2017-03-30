@@ -10,7 +10,7 @@ spec:
         app: sauron
     spec:
       containers:
-        - image: localhost:5000/runnable/sauron:v7.5.1
+        - image: 127.0.0.1:5000/runnable/sauron:v7.5.1
           name: sauron
           args:
             - npm

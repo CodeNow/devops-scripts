@@ -10,7 +10,7 @@ spec:
         app: drake-worker
     spec:
       containers:
-        - image: localhost:5000/runnable/drake-worker:v2.5.0
+        - image: 127.0.0.1:5000/runnable/drake-worker:v2.5.0
           name: drake-worker
           args:
             - npm

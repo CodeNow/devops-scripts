@@ -10,7 +10,7 @@ spec:
         app: link
     spec:
       containers:
-        - image: localhost:5000/runnable/link:v2.2.2
+        - image: 127.0.0.1:5000/runnable/link:v2.2.2
           name: link
           args:
             - npm

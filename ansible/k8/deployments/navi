@@ -10,7 +10,7 @@ spec:
         app: navi
     spec:
       containers:
-        - image: localhost:5000/runnable/navi:v10.5.2
+        - image: 127.0.0.1:5000/runnable/navi:v10.5.2
           name: navi
           args:
             - npm

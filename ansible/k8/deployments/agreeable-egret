@@ -10,7 +10,7 @@ spec:
         app: agreeable-egret
     spec:
       containers:
-        - image: localhost:5000/runnable/agreeable-egret:v0.2.2
+        - image: 127.0.0.1:5000/runnable/agreeable-egret:v0.2.2
           name: agreeable-egret
           args:
             - npm

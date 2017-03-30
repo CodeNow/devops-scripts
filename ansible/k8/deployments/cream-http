@@ -10,7 +10,7 @@ spec:
         app: cream-http
     spec:
       containers:
-        - image: localhost:5000/runnable/cream-http:v1.13.3
+        - image: 127.0.0.1:5000/runnable/cream-http:v1.13.3
           name: cream-http
           args:
             - npm

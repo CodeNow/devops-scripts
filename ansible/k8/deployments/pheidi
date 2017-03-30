@@ -10,7 +10,7 @@ spec:
         app: pheidi
     spec:
       containers:
-        - image: localhost:5000/runnable/pheidi:v1.38.6
+        - image: 127.0.0.1:5000/runnable/pheidi:v1.38.6
           name: pheidi
           args:
             - npm
