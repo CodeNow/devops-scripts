@@ -1,4 +1,5 @@
 name: swarm-manager
+service_name: swarm
 
 container_image: runnable/swarm
 container_tag: "v1.2.3-0"
