@@ -1,5 +1,6 @@
 name: mongo-navi
 hosted_ports: ["{{ mongo_navi_port }}"]
+container_run_args: ''
 
 storage_size_gb: 50
 
