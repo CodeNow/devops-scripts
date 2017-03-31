@@ -12,6 +12,13 @@ spec:
       containers:
         - image: rabbitmq:3.5.3-management
           name: rabbitmq
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - rabbitmq-plugins
+                  - enable
+                  - rabbitmq_management
           ports:
             - containerPort: 5672
             - containerPort: 15672

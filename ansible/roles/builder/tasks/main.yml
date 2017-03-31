@@ -56,7 +56,7 @@
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: push docker image
-  tags: build
+  tags: deploy, build
   become: yes
   ignore_errors: True
   command: docker push {{ container_image }}:{{ container_tag }}

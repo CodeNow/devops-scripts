@@ -12,6 +12,15 @@ spec:
       containers:
         - image: {{ container_image }}:{{ container_tag }}
           name: {{ name }}
+{% if post_start_command is defined %}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+{% for arg in post_start_command.split(' ') %}
+                  - {{ arg }}
+{% endfor %}
+{% endif %}
 {% if container_run_args != '' %}
           args:
 {% if advance_arg is defined and advance_arg == true %}
