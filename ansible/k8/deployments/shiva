@@ -10,7 +10,7 @@ spec:
         app: shiva
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/shiva:v7.8.3
+        - image: 127.0.0.1:5000/runnable/shiva:v7.8.4
           name: shiva
           args:
             - npm

@@ -10,7 +10,7 @@ spec:
         app: api-socket-server
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/api:v11.31.1
+        - image: 127.0.0.1:5000/runnable/api:v11.33.2
           name: api-socket-server
           args:
             - npm

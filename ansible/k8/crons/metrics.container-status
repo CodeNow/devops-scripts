@@ -10,6 +10,6 @@ spec:
         spec:
           containers:
           - name: metrics.container-status
-            image: 127.0.0.1:5000/runnable/khronos:v6.5.8
+            image: 127.0.0.1:5000/runnable/khronos:v6.5.10
             args: /khronos/bin/cli.js --queue metrics.container-status --job '{}' --host rabbitmq:5672 --username o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM --password wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
           restartPolicy: OnFailure

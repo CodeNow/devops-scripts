@@ -1,5 +1,5 @@
 - include: agreeable-egret.yml -e git_branch=v0.2.2
-- include: api.yml -e git_branch=v11.31.1
+- include: api.yml -e git_branch=v11.33.2
 - include: arithmancy.yml -e git_branch=v1.12.0
 - include: big-poppa.yml -e git_branch=v0.18.2
 - include: clio.yml -e git_branch=v1.1.1
@@ -10,7 +10,7 @@
 - include: eru.yml -e git_branch=v6.2.3
 - include: github-varnish.yml -e git_branch=v2.0.2
 - include: ingress-proxy.yml
-- include: khronos.yml -e git_branch=v6.5.8
+- include: khronos.yml -e git_branch=v6.5.10
 - include: link.yml -e git_branch=v2.2.2
 - include: mongo-navi.yml
 - include: navi-proxy.yml
@@ -24,6 +24,6 @@
 - include: redis.yml
 - include: registry.yml
 - include: sauron.yml -e git_branch=v7.5.1
-- include: shiva.yml -e git_branch=v7.8.3
-- include: swarm-cloudwatch-reporter.yml -e git_branch=v2.0.0
 - include: swarm-manager.yml
+- include: shiva.yml -e git_branch=v7.8.4
+- include: swarm-cloudwatch-reporter.yml -e git_branch=v2.0.0

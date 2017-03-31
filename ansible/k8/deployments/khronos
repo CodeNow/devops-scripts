@@ -10,7 +10,7 @@ spec:
         app: khronos
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/khronos:v6.5.8
+        - image: 127.0.0.1:5000/runnable/khronos:v6.5.10
           name: khronos
           args:
             - timeout
