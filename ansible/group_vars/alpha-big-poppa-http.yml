@@ -1,4 +1,5 @@
 name: big-poppa-http
+service_name: big-poppa
 
 hosted_ports: ["{{ big_poppa_port }}"]
 
