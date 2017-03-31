@@ -16,10 +16,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command:
-{% for arg in post_start_command.split(' ') %}
-                  - {{ arg }}
-{% endfor %}
+                command: ["/bin/bash", "-c", "{{ post_start_command }}"]
 {% endif %}
 {% if container_run_args != '' %}
           args:

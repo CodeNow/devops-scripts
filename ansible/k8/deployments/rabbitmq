@@ -15,10 +15,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command:
-                  - rabbitmq-plugins
-                  - enable
-                  - rabbitmq_management
+                command: ["/bin/bash", "-c", "rabbitmq-plugins enable rabbitmq_management"]
           ports:
             - containerPort: 5672
             - containerPort: 15672
