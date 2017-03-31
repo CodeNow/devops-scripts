@@ -34,7 +34,7 @@
   vars_files:
   - "group_vars/alpha-palantiri.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -43,7 +43,7 @@
   vars_files:
   - "group_vars/alpha-khronos.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -52,7 +52,7 @@
   vars_files:
   - "group_vars/alpha-docker-listener.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -61,7 +61,7 @@
   vars_files:
   - "group_vars/alpha-drake-http.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -70,9 +70,9 @@
   vars_files:
   - "group_vars/alpha-cream-http.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
-  - { role: add_image_tags, additional_tags: ['cream-worker']}
+  - { role: add_image_tags, additional_tags: ['-worker']}
 
 - hosts: "{{ host }}"
   vars:
@@ -80,7 +80,7 @@
   vars_files:
   - "group_vars/alpha-link.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -89,7 +89,7 @@
   vars_files:
   - "group_vars/alpha-navi.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -98,7 +98,7 @@
   vars_files:
   - "group_vars/alpha-pheidi.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -107,7 +107,7 @@
   vars_files:
     - "group_vars/alpha-big-poppa-http.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
   - { role: add_image_tags, additional_tags: ['big-poppa-worker']}
 
@@ -118,7 +118,7 @@
     - "group_vars/alpha-api-base.yml"
     - "group_vars/alpha-api.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
   - { role: add_image_tags, additional_tags: ['api-worker', 'api-socket-server']}
 
@@ -128,7 +128,7 @@
   vars_files:
     - "group_vars/alpha-sauron.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -137,7 +137,7 @@
   vars_files:
     - "group_vars/alpha-optimus.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -146,7 +146,7 @@
   vars_files:
     - "group_vars/alpha-clio.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 - hosts: "{{ host }}"
@@ -155,7 +155,7 @@
   vars_files:
     - "group_vars/alpha-agreeable-egret.yml"
   roles:
-  - { role: build_image }
+  - { role: builder }
   - { role: squash_image }
 
 # End building of images
