@@ -1,4 +1,5 @@
 name: cream-http
+service_name: cream
 
 hosted_ports: ["{{ cream_port }}"]
 
