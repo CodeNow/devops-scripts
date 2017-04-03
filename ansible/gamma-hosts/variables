@@ -82,6 +82,9 @@ eru_mongodb_replset=gamma-rs0
 eru_mongodb_username=eru
 eru_subdomain=eru
 
+[kartographer:vars]
+kartographer_hello_runnable_github_token=000cb6b65858ad0a7590bc2370b5118ff1bc95db
+
 [khronos:vars]
 khronos_intercom_api_key=9b4ee7b4f9818b36e368985fda0befa611928876
 khronos_intercom_app_id=xs5g95pd
