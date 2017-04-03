@@ -1,4 +1,4 @@
-name:  docker-listener
+name: docker-listener
 
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
