@@ -1,6 +1,5 @@
 name: kartographer
 
-container_image: registry.runnable.com/runnable/{{ name }}
 repo: "git@github.com:CodeNow/{{ name }}.git"
 
 kube_config: /keys

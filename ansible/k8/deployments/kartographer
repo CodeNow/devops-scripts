@@ -10,7 +10,7 @@ spec:
         app: kartographer
     spec:
       containers:
-        - image: registry.runnable.com/runnable/kartographer:GKE-build
+        - image: 127.0.0.1:5000/runnable/kartographer:GKE-build
           name: kartographer
           args:
             - npm
