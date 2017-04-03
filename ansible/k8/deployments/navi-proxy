@@ -12,9 +12,6 @@ spec:
       containers:
         - image: nginx:1.10
           name: navi-proxy
-          args:
-            - npm
-            - start
           ports:
             - containerPort: 80
             - containerPort: 443

@@ -10,7 +10,7 @@ spec:
         app: api-worker
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/api:v11.33.2
+        - image: 127.0.0.1:5000/runnable/api:GKE-build
           name: api-worker
           args:
             - npm
