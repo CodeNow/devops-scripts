@@ -28,7 +28,6 @@
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
 
 - name: push docker image
-  tags: build
+  tags: build, push
   become: yes
-  when: not do_not_push
   command: docker push {{ container_image }}:{{ container_tag }}
