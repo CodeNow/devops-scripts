@@ -4,7 +4,7 @@ container_image: registry.runnable.com/runnable/{{ name }}
 repo: "git@github.com:CodeNow/{{ name }}.git"
 
 kube_config: /keys
-kube_config_name: kube.config
+kube_config_name: kube-config
 google_key_name: google-key.json
 
 container_envs:
