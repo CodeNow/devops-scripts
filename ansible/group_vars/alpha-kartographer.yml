@@ -1,0 +1,35 @@
+name: kartographer
+
+container_image: registry.runnable.com/runnable/{{ name }}
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+
+kube_config_name: kube.config
+kube_config_path: "{{ secret_root }}/{{ name }}/{{ kube_config_name }}"
+
+google_key_name: google-key.json
+google_key_path: "{{ secret_root }}/{{ name }}/{{ google_key_name }}"
+
+# for container settings
+container_envs: >
+  -e CONFIG_FILE_PATH=/{{ kube_config_name }}
+  -e DATADOG_HOST={{ datadog_host_address }}
+  -e DATADOG_PORT={{ datadog_port }}
+  -e GOOGLE_APPLICATION_CREDENTIALS=/{{ google_key_name }}
+  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ kartographer_hello_runnable_github_token }}
+  -e NODE_ENV={{ node_env }}
+  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
+  -e RABBITMQ_PASSWORD={{ rabbit_password }}
+  -e RABBITMQ_PORT={{ rabbit_port }}
+  -e RABBITMQ_USERNAME={{ rabbit_username }}
+  -e ROLLBAR_KEY={{ kartographer_rollbar_token }}
+  -e RUNNABLE_API_URL={{ api_url }}
+  -e WORKER_MAX_NUM_RETRIES=1
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  -v {{ kube_config_path }}:/{{ kube_config_name }}
+  -v {{ google_key_path }}:/{{ google_key_name }}
+  {{ container_envs }}
+

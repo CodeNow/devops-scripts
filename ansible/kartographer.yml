@@ -1,0 +1,18 @@
+---
+- hosts: rabbitmq
+- hosts: consul
+
+- hosts: kartographer
+  vars_files:
+    - group_vars/alpha-kartographer.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ kartographer_rollbar_token }}"
+    tags: [ notify ]
+
+  - role: build_with_dockerfile
+
+  - role: kartographer
+
+  - role: container_kill_start
+
