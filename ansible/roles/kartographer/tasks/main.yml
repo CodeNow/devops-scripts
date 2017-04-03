@@ -1,21 +1,6 @@
 ---
-- name: create build folder
-  become: true
-  file:
-    path={{ secret_root }}/{{ name }}
-    state=directory
-
-- name: put k8 config file in place
-  become: true
-  tags: ['config']
-  copy:
-    dest={{ kube_config_path }}
-    src={{ env }}.config
-
-- name: put google key file in place
-  become: true
-  tags: ['config']
-  copy:
-    dest={{ google_key_path }}
-    src=google-key.json
-
+- name: create prometheus config
+  tags: [ deploy ]
+  template:
+    dest: "{{ config_maps_path }}/{{ name }}"
+    src: keys.yml

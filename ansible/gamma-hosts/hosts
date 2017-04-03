@@ -130,6 +130,9 @@ localhost
 [prometheus]
 localhost
 
+[kartographer]
+localhost
+
 [gamma:children]
 agreeable-egret
 api
@@ -147,10 +150,12 @@ drake
 eru
 github-varnish
 ingress
+kartographer
 khronos
 mongo-navi
 mongodb
 navi
+navi-proxy
 optimus
 pheidi
 prometheus
@@ -165,7 +170,6 @@ swarm-manager
 userland
 web
 worker
-navi-proxy
 
 [local]
 127.0.0.1
