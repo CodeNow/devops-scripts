@@ -25,7 +25,7 @@ spec:
             - name: BIG_POPPA_HOST
               value: "http://big-poppa:7788"
             - name: CONSUL_HOST
-              value: "10.4.5.144:8500"
+              value: "consul:8500"
             - name: CANARY_API_TOKEN
               value: "undefined"
             - name: CANARY_GITHUB_BRANCHES_INSTANCE_ID

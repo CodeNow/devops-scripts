@@ -5,4 +5,4 @@ hosted_ports: ["{{ consul_api_port }}"]
 container_image: consul
 container_tag: v0.6.4
 
-container_run_args: consul agent
+container_run_args: consul agent -server -client=0.0.0.0 -bootstrap-expect=1 -data-dir=/tmp/db -ui

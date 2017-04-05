@@ -17,7 +17,7 @@ spec:
             - start
           env:
             - name: CONSUL_HOST
-              value: "10.4.5.144:8500"
+              value: "consul:8500"
             - name: DATADOG_HOST
               value: "192.168.1.53"
             - name: DATADOG_PORT
