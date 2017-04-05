@@ -27,9 +27,7 @@ localhost
 localhost
 
 [consul]
-gamma-consul-a
-gamma-consul-b
-gamma-consul-c
+localhost
 
 [deployer]
 localhost
