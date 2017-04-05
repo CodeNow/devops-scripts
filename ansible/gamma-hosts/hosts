@@ -133,6 +133,9 @@ localhost
 [kartographer]
 localhost
 
+[navi-port-router]
+35.184.78.134
+
 [gamma:children]
 agreeable-egret
 api

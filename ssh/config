@@ -10,6 +10,11 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
+Host 35.184.78.134
+  User anandkumarpatel
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile /Users/anandkumarpatel/.ssh/gke
 
 ################################################################################
 # utility

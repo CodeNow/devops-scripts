@@ -27,20 +27,3 @@
   template:
     src: navi.tmpl
     dest: "{{ config_maps_path }}/{{ name }}-navi-config"
-
-#  TODO: make this a new role and a new deployment
-# - name: setup ip table rule to redir all to port 80
-#   tags: [ configure_proxy, iptables ]
-#   become: yes
-#   iptables:
-#     table=nat
-#     chain=PREROUTING
-#     in_interface=eth0
-#     protocol=tcp
-#     destination_port={{ item }}
-#     jump=REDIRECT
-#     to_ports=80
-#     comment="Redirect {{ item }} traffic to port 80"
-#   with_items:
-#   - 81:442
-#   - 444:65535
