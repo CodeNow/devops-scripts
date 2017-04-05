@@ -1,6 +1,4 @@
-name: gke-dock
-
-hosted_ports: ["{{ consul_api_port }}"]
+name: gke-dock-{{ target_host }}
 
 container_image: runnable/swarm
 container_tag: v1.2.3-0
