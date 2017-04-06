@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gke-dock-107-178-219-183
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gke-dock-107-178-219-183
+    spec:
+      containers:
+        - image: runnable/swarm:v1.2.3-0
+          name: gke-dock-107-178-219-183
+          args:
+            - join
+            - --addr=107.178.219.183:4242
+            - consul://consul:8500/swarm

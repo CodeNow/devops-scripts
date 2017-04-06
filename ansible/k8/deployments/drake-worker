@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: drake-worker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: drake-worker
+    spec:
+      containers:
+        - image: 127.0.0.1:5000/runnable/drake-worker:v2.5.0
+          imagePullPolicy: Always
+          name: drake-worker
+          args:
+            - npm
+            - run
+            - start-worker
+          env:
+            - name: API_URL
+              value: "https://api.runnable-gamma.com"
+            - name: DATADOG_HOST
+              value: "192.168.1.53"
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: RABBITMQ_HOSTNAME
+              value: "rabbitmq"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: LOG_LEVEL
+              value: "info"
+            - name: ROLLBAR_KEY
+              value: "14152b8572034943b714da27ca607698"

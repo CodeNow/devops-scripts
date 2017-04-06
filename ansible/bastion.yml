@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: bastion
   roles:
   - role: notify

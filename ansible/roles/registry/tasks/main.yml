@@ -1,0 +1,5 @@
+---
+- name: create registry deamon set
+  template:
+    dest: "{{ daemon_sets_path }}/{{ name }}"
+    src: registry.yml

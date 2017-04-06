@@ -1,23 +1,10 @@
 name: api-socket-server
-
-container_image: registry.runnable.com/runnable/{{ name }}
+service_name: apisock
 
 hosted_ports: [ "{{ api_port }}" ]
 
-# for redis
-redis_key: frontend:{{ api_socket_server_hostname }}
-is_redis_update_required: yes
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ api_socket_server_rollbar_key }}"
 
-# for container settings
-container_envs: >
-  {{ api_base_container_envs }}
-  -e NUM_WORKERS=1
-  -e ROLLBAR_KEY={{ api_socket_server_rollbar_key }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}
+container_envs: "{{ api_base_container_envs + envs }}"

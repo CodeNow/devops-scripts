@@ -1,0 +1,5 @@
+---
+- name: create swarm cron
+  template:
+    dest: "{{ cron_jobs_path }}/{{ name }}"
+    src: swarm-cron.yml

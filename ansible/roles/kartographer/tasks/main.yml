@@ -1,0 +1,6 @@
+---
+- name: create prometheus config
+  tags: [ deploy ]
+  template:
+    dest: "{{ config_maps_path }}/{{ name }}"
+    src: keys.yml

@@ -1,13 +1,16 @@
 name: sauron
 
-container_image: "registry.runnable.com/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
 weave_path: "/bin/weave"
 docker_path: "/bin/docker"
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
 
 dockerfile_pre_install_commands: [
   "curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.2 -o {{ docker_path }}",
@@ -16,23 +19,30 @@ dockerfile_pre_install_commands: [
   "chmod a+x {{ weave_path }}"
 ]
 
-container_envs: >
-  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e LOGGLY_TOKEN="{{ loggly_token }}"
-  -e NODE_ENV="{{ node_env }}"
-  -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
-  -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
-  -e RABBITMQ_PORT="{{ rabbit_port }}"
-  -e RABBITMQ_USERNAME="{{ rabbit_username }}"
-  -e ROLLBAR_KEY={{ sauron_rollbar_key }}
-  -e SWARM_HOSTNAME={{ swarm_host_address }}
-  -e SWARM_PORT={{ swarm_master_port }}
-  -e WEAVE_PATH={{ weave_path }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  {{ container_envs }}
+container_envs:
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: LOGGLY_TOKEN
+    value: "{{ loggly_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ sauron_rollbar_key }}"
+  - name: SWARM_HOSTNAME
+    value: "{{ swarm_host_address }}"
+  - name: SWARM_PORT
+    value: "{{ swarm_master_port }}"
+  - name: WEAVE_PATH
+    value: "{{ weave_path }}"

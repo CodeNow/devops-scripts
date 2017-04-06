@@ -10,6 +10,11 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
+Host 35.184.78.134
+  User anandkumarpatel
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile /Users/anandkumarpatel/.ssh/gke
 
 ################################################################################
 # utility
@@ -93,13 +98,6 @@ Host gamma-rabbit
 ## Gamma Redis
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
-
-Host gamma-redis-slave
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
-
-## Gamma Neo4J
-Host gamma-neo4j
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
 
 # Gamma App Services
 Host gamma-app-services

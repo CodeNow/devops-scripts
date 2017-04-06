@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - image: prom/prometheus:v1.4.1
+          imagePullPolicy: Always
+          name: prometheus
+          args:
+            - -alertmanager.url
+            - "http://prometheus:9093"
+            - -config.file=/prometheus/prometheus.yml
+            - -storage.local.path
+            - "data"
+            - -storage.local.retention
+            - 168h0m0s
+            - -web.external-url
+            - http://localhost
+            - -web.listen-address
+            - ":9090"
+
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-conf
+              mountPath: /prometheus
+      volumes:
+        - name: prometheus-conf
+          configMap:
+            name: prometheus-conf

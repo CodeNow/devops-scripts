@@ -1,0 +1,4 @@
+- name: create service yaml
+  template:
+    dest: "{{ services_path }}/{{ name }}"
+    src: service.yml

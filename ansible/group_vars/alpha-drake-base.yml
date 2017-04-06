@@ -1,0 +1,32 @@
+node_version: "4.4.7"
+npm_version: 2
+
+repo: "git@github.com:CodeNow/drake.git"
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
+drake_base_container_envs:
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: LOG_LEVEL
+    value: "info"

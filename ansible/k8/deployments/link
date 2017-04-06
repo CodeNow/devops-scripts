@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: link
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: link
+    spec:
+      containers:
+        - image: 127.0.0.1:5000/runnable/link:v2.2.2
+          imagePullPolicy: Always
+          name: link
+          args:
+            - npm
+            - start
+          env:
+            - name: API_URL
+              value: "https://api.runnable-gamma.com"
+            - name: DATADOG_HOST
+              value: "192.168.1.53"
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29"
+            - name: MONGO
+              value: "mongodb://mongo-navi:27017/navi"
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: RABBITMQ_HOSTNAME
+              value: "rabbitmq"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: USER_CONTENT_DOMAIN
+              value: "runnable.ninja"

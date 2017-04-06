@@ -1,7 +1,4 @@
 ---
-- hosts: redis
-- hosts: consul
-
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-charon.yml

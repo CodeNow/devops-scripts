@@ -1,27 +1,9 @@
 name: drake-worker
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
-repo: "git@github.com:CodeNow/drake.git"
-node_version: "4.4.7"
-npm_version: 2
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ drake_worker_rollbar_token }}"
 
-# for container settings
-container_envs: >
-  -e API_URL={{ api_url }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e LOG_LEVEL=info
-  -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ drake_worker_rollbar_token }}
+container_envs: "{{ drake_base_container_envs + envs }}"
 
-container_run_opts: >
-  -h {{ name }}
-  -d
-  {{container_envs}}
-
-npm_start_command: run start-worker
+container_run_args: npm run start-worker

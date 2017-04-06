@@ -1,6 +1,8 @@
 ---
 - hosts: registry
   vars_files:
-    - "group_vars/alpha-registry.yml"
+    - group_vars/alpha-registry.yml
   roles:
-  - { role: container_kill_start }
+  - role: registry
+  - role: k8-deployment
+  - role: k8-service

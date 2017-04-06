@@ -1,0 +1,15 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ item.cron_event }}
+spec:
+  schedule: "{{ item.cron_scedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ item.cron_event }}
+            image: {{ container_image }}:{{ container_tag }}
+            args: /khronos/bin/cli.js --event {{ item.cron_event }} --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}
+          restartPolicy: OnFailure

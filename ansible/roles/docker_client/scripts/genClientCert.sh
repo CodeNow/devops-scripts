@@ -1,5 +1,5 @@
 #!/bin/bash
-
+CERT_PATH=/Users/anandkumarpatel/run/devops-scripts/ansible/certs
 if [[ $1 = '' ]]; then
   echo 'script requires a client name'
   exit 1
@@ -28,7 +28,7 @@ openssl req \
 chmod 400 "$CLIENT/client.csr"
 
 echo extendedKeyUsage=clientAuth,serverAuth > "$CLIENT/extfile.cnf"
-echo subjectAltName=IP:10.8.4.40,IP:10.12.12.136,IP:10.8.5.63,IP:10.8.6.59,IP:10.4.6.251,IP:127.0.0.1,DNS:localhost,DNS:swarm-staging-codenow.runnableapp.com >> "$CLIENT/extfile.cnf"
+echo subjectAltName=IP:10.8.4.40,IP:10.12.12.136,IP:10.8.5.63,IP:10.8.6.59,IP:10.4.6.251,IP:127.0.0.1,DNS:localhost,DNS:swarm >> "$CLIENT/extfile.cnf"
 
 # generate cert for client
 openssl x509 \
@@ -36,8 +36,8 @@ openssl x509 \
   -days 365 \
   -sha256 \
   -in "$CLIENT/client.csr" \
-  -CA ca.pem \
-  -CAkey ca-key.pem \
+  -CA $CERT_PATH/ca.pem \
+  -CAkey $CERT_PATH/ca-key.pem \
   -CAcreateserial \
   -out "$CLIENT/cert.pem" \
   -extfile "$CLIENT/extfile.cnf"

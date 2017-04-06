@@ -2,19 +2,22 @@
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
 pager_duty_key: testkey
+opts_root: "{{ opts_root | default('/opt/runnable') }}"
+config_maps_path: "{{ opts_root }}/configMaps"
+services_path: "{{ opts_root }}/services"
+deployments_path: "{{ opts_root }}/deployments"
+cron_jobs_path: "{{ opts_root }}/crons"
+volumes_path: "{{ opts_root }}/volumes"
+daemon_sets_path: "{{ opts_root }}/daemonSets"
 
-# registry settings
-registry_env: prod
-registry_port: 80
-
-# for docker stop old container
-stop_time: 5
+container_tag: "{{ git_branch }}"
+container_image: "{{ registry_address }}/runnable/{{ name }}"
 
 # For docker built containers
 do_not_push: true
 
 # default for container args (which are optional)
-container_run_args: ""
+container_run_args: "npm start"
 
 # REPO_BASE for getting dockerfiles
 repo_base: "{{ lookup('env','REPO_BASE') }}"
@@ -68,7 +71,7 @@ pg_database: astral
 # big-poppa
 big_poppa_pg_database: big_poppa
 big_poppa_port: 7788
-big_poppa_host_address: "{{ hostvars[groups['big-poppa'][0]]['ansible_default_ipv4']['address'] }}"
+big_poppa_host_address: big-poppa
 
 # cadvisor
 cadvisor_port: 29007
@@ -77,17 +80,16 @@ cadvisor_port: 29007
 charon_port: 53
 
 # clio
-clio_host_address: "{{ hostvars[groups['clio'][0]]['ansible_default_ipv4']['address'] }}"
+clio_host_address: clio
 clio_port: 8008
 
 # consul
-consul_host_address: "{{ hostvars[groups['consul'][0]]['ansible_default_ipv4']['address'] }}"
 consul_api_port: 8500
 consul_https_port: 8501
 
 # cream
 cream_port: 8899
-cream_host_address: "{{ hostvars[groups['cream'][0]]['ansible_default_ipv4']['address'] }}"
+cream_host_address: cream
 
 # datadog
 datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
@@ -95,7 +97,7 @@ datadog_host_address: "{{ ansible_default_ipv4.address }}"
 datadog_port: 8125
 
 # detention
-detention_host_address: "{{ hostvars[groups['detention'][0]]['ansible_default_ipv4']['address'] }}"
+detention_host_address: detention
 detention_port: 9123
 detention_hostname: detention.{{ domain }}
 
@@ -104,9 +106,6 @@ log_driver: syslog
 log_facility: local7
 
 # docker
-docker_ca_path: /etc/ssl/docker/ca.pem
-docker_cert_path: /etc/ssl/docker/cert.pem
-docker_key_path: /etc/ssl/docker/key.pem
 docker_port: 4242
 
 # docker-listener
@@ -120,6 +119,7 @@ aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
 aws_secret_key: "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"
 
 # eru
+eru_http_port: 5501
 
 # fluffy
 fluffy_port: 80
@@ -127,8 +127,11 @@ fluffy_hostname: "fluffy.{{ domain }}"
 fluffy_rollbar_token: 6eb108bab1f54687b9b023e5b485967a
 
 # github-varnish
-github_varnish_host: "{{ hostvars[groups['github-varnish'][0]]['ansible_default_ipv4']['address'] }}"
-github_varnish_port: 8765
+github_varnish_host: github-varnish
+github_varnish_port: 80
+
+# kartographer
+kartographer_rollbar_token: a7f85fda20bd4b9fb7b1197fc04d3c89
 
 # khronos
 rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
@@ -139,14 +142,14 @@ krain_port: 3100
 # marketing
 marketing_url: https://{{ domain }}
 
-# metis
-metis_port: 3000
+# metabase
+metabase_port: 3000
 
-# mongo
-mongo_hosts: "{% for host in groups['mongodb'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}{% endfor %}"
+# mongo_navi
+mongo_navi_port: 27017
 
 # navi
-navi_host_address: "{{ hostvars[groups['navi'][0]]['ansible_default_ipv4']['address'] }}"
+navi_host_address: navi
 navi_http_port: 3567
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
 
@@ -172,23 +175,26 @@ prometheus_aws_secret_key: 1B4lLUBihog7q+cx+QcCRflYP0/KGVTQR29bGvwN
 
 # prometheus_alart
 prometheus_alert_port: 9093
-prometheus_alert_url: http://{{ hostvars[groups['prometheus'][0]]['ansible_default_ipv4']['address'] }}:{{ prometheus_alert_port }}
+prometheus_alert_url: http://prometheus:{{ prometheus_alert_port }}
 
 # rabbit
-rabbit_host_address: "{{ hostvars[groups['rabbitmq'][0]]['ansible_default_ipv4']['address'] }}"
-rabbit_port: 54321
+rabbit_host_address: rabbitmq
+rabbit_port: 5672
 
 # redis
-redis_host_address: "{{ hostvars[groups['redis'][0]]['ansible_default_ipv4']['address'] }}"
+redis_host_address: redis
 redis_port: 6379
 
-registry_address: "{{ hostvars[groups['registry'][0]]['ansible_default_ipv4']['address'] }}"
+# registry
+registry_address: registry.runnable.com
+registry_port: 5000
+registry_env: prod
 
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
 
 # secrets
-secret_root: /opt/runnable/secrets
+secret_root: "{{ opts_root }}/secrets"
 
 # shiva
 pg_user: shiva
@@ -197,12 +203,12 @@ shiva_rollbar_token: 0526a90faec845d796e1ef5361a00526
 
 # swarm
 swarm_master_port: 2375
-swarm_host_address: "{{ hostvars[groups['swarm-manager'][0]]['ansible_default_ipv4']['address'] }}"
+swarm_host_address: swarm
 swarm_container_name: swarm
 
 # navi/link
 navi_mongo_database: navi
-navi_mongo_host_address: "{{ hostvars[groups['mongo-navi'][0]]['ansible_default_ipv4']['address'] }}"
+navi_mongo_host_address: mongo-navi
 navi_mongo_port: 27017
 
 npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
@@ -212,4 +218,4 @@ vault_local_port: 31836
 vault_addr: http://127.0.0.1:{{ vault_local_port }}
 
 # userland
-userland_host_address: "{{ hostvars[groups['userland'][0]]['ansible_default_ipv4']['address'] }}"
+userland_host_address: userland

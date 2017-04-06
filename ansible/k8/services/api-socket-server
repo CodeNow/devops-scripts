@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apisock
+spec:
+  selector:
+    app: api-socket-server
+  ports:
+    - port: 80
+      protocol: TCP
+      name: '80'

@@ -1,17 +1,13 @@
 ---
-- hosts: rabbitmq
-- hosts: mongodb
-- hosts: consul
-- hosts: swarm-manager
-- hosts: big-poppa
 - hosts: khronos
   vars_files:
     - group_vars/alpha-khronos.yml
   roles:
   - role: notify
     rollbar_token: "{{ rollbar_khronos_token }}"
-    tags: [ notify ]
-  - { role: docker_client }
-  - { role: builder, tags: [ build ] }
-  - { role: khronos, tags: [ deploy ] }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: khronos
+  - role: docker_client
+  - role: k8-deployment

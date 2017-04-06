@@ -1,25 +1,29 @@
 name: link
 
-container_image: registry.runnable.com/runnable/{{ name }}
-container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 node_version: "4.2.1"
 npm_version: "2.14.7"
 
-container_envs: >
-  -e API_URL={{ api_url }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN=5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
-  -e MONGO=mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}
-  -e NODE_ENV={{ node_env }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  {{ container_envs }}
+container_envs:
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29"
+  - name: MONGO
+    value: "mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"

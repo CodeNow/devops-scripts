@@ -1,11 +1,11 @@
 [bastion]
 gamma-bastion
 
-[hipache]
-gamma-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
-
 [userland]
 gamma-userland
+
+[navi-proxy]
+localhost
 
 [mongodb]
 gamma-mongo-a
@@ -18,24 +18,22 @@ api
 socket-server
 
 [api]
-gamma-api
+localhost
 
 [big-poppa]
-gamma-app-services
+localhost
 
 [cream]
-gamma-app-services
+localhost
 
 [consul]
-gamma-consul-a
-gamma-consul-b
-gamma-consul-c
+localhost
 
 [deployer]
-gamma-app-services
+localhost
 
 [docker-listener]
-gamma-dock-services
+localhost
 
 [vault]
 gamma-consul-a
@@ -43,98 +41,98 @@ gamma-consul-b
 gamma-consul-c
 
 [worker]
-gamma-api-worker
+localhost
 
 [agreeable-egret]
-gamma-app-services
+localhost
 
 [eru]
-gamma-app-services
+localhost
 
 [navi]
-gamma-navi
+localhost
 
 [ingress]
-gamma-ingress
+localhost
 
 [link]
-gamma-navi
+localhost
 
 [mongo-navi]
-gamma-navi
+localhost
 
 [clio]
-gamma-app-services
+localhost
 
 [charon]
-gamma-app-services
+localhost
 
 [khronos]
-gamma-dock-services
+localhost
 
 [optimus]
-gamma-dock-services
+localhost
 
 [detention]
-gamma-app-services
+localhost
 
 [palantiri]
-gamma-dock-services
+localhost
 
 [rabbitmq]
-gamma-rabbit
+localhost
 
 [web]
-gamma-app-services
+localhost
 
 [marketing]
-gamma-app-services
+localhost
 
 [redis]
-gamma-redis
-
-[redis-slave]
-gamma-redis-slave
+localhost
 
 [sauron]
-gamma-dock-services
+localhost
 
 [shiva]
-gamma-app-services
+localhost
 
 [socket-server]
-gamma-api-socket
+localhost
 
 [socket-server-proxy]
-gamma-api-socket-proxy
+localhost
 
 [registry]
-gamma-registry
+localhost
 
 [swarm-manager]
-gamma-dock-services
-
-[metis]
-gamma-app-services
+localhost
 
 [drake]
-gamma-app-services
+localhost
 
 [pheidi]
-gamma-app-services
+localhost
 
 [github-varnish]
-gamma-app-services
+localhost
 
 [arithmancy]
-gamma-app-services
+localhost
 
 [docks]
 
 [dock]
 
 [prometheus]
-gamma-dock-services
+localhost
+
+[kartographer]
+localhost
+
+[navi-port-router]
+35.184.78.134
 
 [gamma:children]
 agreeable-egret
@@ -152,18 +150,18 @@ docks
 drake
 eru
 github-varnish
-hipache
 ingress
+kartographer
 khronos
-metis
+mongo-navi
 mongodb
 navi
+navi-proxy
 optimus
 pheidi
 prometheus
 rabbitmq
 redis
-redis-slave
 registry
 sauron
 shiva

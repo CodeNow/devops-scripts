@@ -1,82 +1,29 @@
 ---
-- name: make sure cert directory is in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  file:
-    dest: /etc/ssl/certs/{{ user_content_domain }}
-    state: directory
+- set_fact:
+    ca_data: "{{ lookup('file', '{{ user_content_domain }}/ca.pem') }}"
+- set_fact:
+    cert_data: "{{ lookup('file', '{{ user_content_domain }}/cert.pem') }}"
+- set_fact:
+    key_data: "{{ lookup('file', '{{ user_content_domain }}/key.pem') }}"
+- set_fact:
+    chained_data: "{{ lookup('file', '{{ user_content_domain }}/chained.pem') }}"
+- set_fact:
+    dhparam_data: "{{ lookup('file', '{{ user_content_domain }}/dhparam.pem') }}"
 
-- name: put certs in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  register: add_certs
-  copy:
-    src: "{{ user_content_domain }}/{{ item }}"
-    dest: /etc/ssl/certs/{{ user_content_domain }}/{{ item }}
-    mode: 0400
-    owner: root
-    group: root
-  with_items:
-  - ca.pem
-  - key.pem
-  - cert.pem
+- name: create cert config map
+  tags: [ configure_proxy, configure_files ]
+  template:
+    src: certs.yml
+    dest: "{{ config_maps_path }}/{{ name }}-certs"
 
-- name: create chained cert
-  tags: [ configure_proxy, certs ]
-  become: true
-  when: add_certs.changed
-  shell: >
-    cat
-    /etc/ssl/certs/{{ user_content_domain }}/cert.pem
-    /etc/ssl/certs/{{ user_content_domain }}/ca.pem
-    >
-    /etc/ssl/certs/{{ user_content_domain }}/chained.pem
-
-- name: create dhparam.pem
-  tags: [ configure_proxy, certs ]
-  become: yes
-  command: openssl dhparam -out /etc/ssl/certs/{{ user_content_domain }}/dhparam.pem 2048
-
-- name: make sure nginx directory is in place
-  tags: [ configure_proxy ]
-  become: true
-  file:
-    dest: /etc/nginx
-    state: directory
-
-- name: put nginx configuration in place
-  tags: [ configure_proxy ]
-  become: yes
+- name: create proxy template
+  tags: [ configure_proxy, configure_files ]
   template:
     src: proxy-nginx.conf
-    dest: /etc/nginx/nginx.conf
+    dest: "{{ config_maps_path }}/{{ name }}-base-config"
 
-- name: assert nginx template directory
-  tags: [ configure_proxy ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/template
-
-- name: put navi template in place
-  tags: [ configure_proxy ]
-  become: yes
+- name: create api template
+  tags: [ configure_proxy, configure_files ]
   template:
     src: navi.tmpl
-    dest: /etc/nginx/template/navi.tmpl
-
-- name: setup ip table rule to redir all to port 80
-  tags: [ configure_proxy, iptables ]
-  become: yes
-  iptables:
-    table=nat
-    chain=PREROUTING
-    in_interface=eth0
-    protocol=tcp
-    destination_port={{ item }}
-    jump=REDIRECT
-    to_ports=80
-    comment="Redirect {{ item }} traffic to port 80"
-  with_items:
-  - 81:442
-  - 444:65535
+    dest: "{{ config_maps_path }}/{{ name }}-navi-config"

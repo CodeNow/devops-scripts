@@ -1,4 +1,14 @@
 ---
-- name: create database directory
-  become: true
-  file: path={{ db_path }} state=directory
+- name: ensure volume id exist
+  fail: msg="`volume_id` is note defined. Must have created a volume of size {{ storage_size_gb }} aws ec2 create-volume --region us-west-2 --availability-zone us-west-2a --size {{ storage_size_gb }} --volume-type gp2"
+  when: volume_id is not defined
+
+- name: create volume yaml
+  template:
+    dest: "{{ volumes_path }}/{{ name }}"
+    src: volume.yml
+
+- name: create volume claim yaml
+  template:
+    dest: "{{ volumes_path }}/{{ name }}-claim"
+    src: volume-claim.yml

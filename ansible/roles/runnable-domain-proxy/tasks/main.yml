@@ -1,81 +1,35 @@
 ---
-- name: make sure cert directory is in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  file:
-    dest: /etc/ssl/certs/{{ domain }}
-    state: directory
+- set_fact:
+    ca_data: "{{ lookup('file', '{{ domain }}/ca.pem') }}"
+- set_fact:
+    cert_data: "{{ lookup('file', '{{ domain }}/cert.pem') }}"
+- set_fact:
+    key_data: "{{ lookup('file', '{{ domain }}/key.pem') }}"
+- set_fact:
+    chained_data: "{{ lookup('file', '{{ domain }}/chained.pem') }}"
+- set_fact:
+    dhparam_data: "{{ lookup('file', '{{ domain }}/dhparam.pem') }}"
 
-- name: put certs in place
-  tags: [ configure_proxy, certs ]
-  become: true
-  register: add_certs
-  copy:
-    src: "{{ domain }}/{{ item }}"
-    dest: /etc/ssl/certs/{{ domain }}/{{ item }}
-    mode: 0400
-    owner: root
-    group: root
-  with_items:
-  - ca.pem
-  - key.pem
-  - cert.pem
-
-- name: create chained cert
-  tags: [ configure_proxy, certs ]
-  become: true
-  when: add_certs.changed
-  shell: >
-    cat
-    /etc/ssl/certs/{{ domain }}/cert.pem
-    /etc/ssl/certs/{{ domain }}/ca.pem
-    >
-    /etc/ssl/certs/{{ domain }}/chained.pem
-
-- name: create dhparam.pem
-  tags: [ configure_proxy, certs ]
-  when: add_certs.changed
-  become: yes
-  command: openssl dhparam -out /etc/ssl/certs/{{ domain }}/dhparam.pem 2048
-
-- name: make sure nginx directory is in place
+- name: create cert config map
   tags: [ configure_proxy, configure_files ]
-  become: true
-  file:
-    dest: /etc/nginx
-    state: directory
+  template:
+    src: certs.yml
+    dest: "{{ config_maps_path }}/{{ name }}-certs"
 
-- name: put nginx configuration in place
+- name: create proxy template
   tags: [ configure_proxy, configure_files ]
-  become: yes
   template:
     src: proxy-nginx.conf
-    dest: /etc/nginx/nginx.conf
+    dest: "{{ config_maps_path }}/{{ name }}-base-config"
 
-- name: assert nginx template directory
+- name: create mixpanel template
   tags: [ configure_proxy, configure_files ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/template
-
-- name: assert nginx other-sites-enabled directory
-  tags: [ configure_proxy, configure_files ]
-  become: yes
-  file:
-    state: directory
-    dest: /etc/nginx/other-sites-enabled
-
-- name: put mixpanel template in place
-  tags: [ configure_proxy, configure_files ]
-  become: yes
   template:
     src: mixpanel.tmpl
-    dest: /etc/nginx/other-sites-enabled/mixpanel.conf
+    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config"
 
-- name: put api template in place
+- name: create sites-enabled template
   tags: [ configure_proxy, configure_files ]
-  become: yes
   template:
-    src: api.tmpl
-    dest: /etc/nginx/template/api.tmpl
+    src: sites-enabled.tmpl
+    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config"
