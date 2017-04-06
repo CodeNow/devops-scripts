@@ -154,6 +154,7 @@ volume_id=vol-040eb379856609100
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
+builder=gamma-navi
 consul_host_address=consul
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
