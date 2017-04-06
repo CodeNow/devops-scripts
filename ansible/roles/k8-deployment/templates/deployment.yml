@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: {{ container_image }}:{{ container_tag }}
+          imagePullPolicy: Always
           name: {{ name }}
 {% if post_start_command is defined %}
           lifecycle:
