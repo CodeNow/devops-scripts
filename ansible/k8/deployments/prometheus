@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: prom/prometheus:v1.4.1
+          imagePullPolicy: Always
           name: prometheus
           args:
             - -alertmanager.url

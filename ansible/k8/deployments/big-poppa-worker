@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/big-poppa-worker:v0.18.2
+          imagePullPolicy: Always
           name: big-poppa-worker
           args:
             - npm

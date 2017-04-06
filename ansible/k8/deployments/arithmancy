@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/arithmancy:v1.12.0
+          imagePullPolicy: Always
           name: arithmancy
           args:
             - npm

@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: runnable/swarm:v1.2.3-0
+          imagePullPolicy: Always
           name: swarm-manager
           args:
             - manage

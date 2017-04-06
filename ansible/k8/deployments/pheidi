@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/pheidi:v1.38.6
+          imagePullPolicy: Always
           name: pheidi
           args:
             - npm

@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/link:v2.2.2
+          imagePullPolicy: Always
           name: link
           args:
             - npm

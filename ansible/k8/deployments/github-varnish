@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/github-varnish:v2.0.2
+          imagePullPolicy: Always
           name: github-varnish
           env:
             - name: VARNISH_PORT

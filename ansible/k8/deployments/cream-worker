@@ -10,7 +10,8 @@ spec:
         app: cream-worker
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/cream-worker:v1.13.3
+        - image: 127.0.0.1:5000/runnable/cream-worker:v1.14.0
+          imagePullPolicy: Always
           name: cream-worker
           args:
             - npm
@@ -24,7 +25,7 @@ spec:
             - name: DATADOG_PORT
               value: "8125"
             - name: GIT_BRANCH
-              value: "v1.13.3"
+              value: "v1.14.0"
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: "e1b68a2cbfefcfee87d72df6d1c07bce886454b9"
             - name: INTERCOM_API_KEY

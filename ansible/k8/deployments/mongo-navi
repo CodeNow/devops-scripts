@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: mongo:3.2.6
+          imagePullPolicy: Always
           name: mongo-navi
           ports:
             - containerPort: 27017

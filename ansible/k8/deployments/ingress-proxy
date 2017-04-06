@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: nginx:1.10
+          imagePullPolicy: Always
           name: ingress-proxy
           ports:
             - containerPort: 80

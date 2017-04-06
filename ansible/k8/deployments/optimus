@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: 127.0.0.1:5000/runnable/optimus:v5.1.1
+          imagePullPolicy: Always
           name: optimus
           args:
             - npm

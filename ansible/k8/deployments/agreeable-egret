@@ -10,7 +10,8 @@ spec:
         app: agreeable-egret
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/agreeable-egret:v0.2.2
+        - image: 127.0.0.1:5000/runnable/agreeable-egret:v0.4.1
+          imagePullPolicy: Always
           name: agreeable-egret
           args:
             - npm

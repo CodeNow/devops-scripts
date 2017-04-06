@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: rabbitmq:3.5.3-management
+          imagePullPolicy: Always
           name: rabbitmq
           lifecycle:
             postStart:

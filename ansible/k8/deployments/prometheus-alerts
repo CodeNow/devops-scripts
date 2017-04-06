@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
         - image: prom/alertmanager:v0.5.0
+          imagePullPolicy: Always
           name: prometheus-alerts
           args:
             - -config.file=/prometheus-alerts/prometheus-alerts.yml
