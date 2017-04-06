@@ -5,6 +5,7 @@ egret_pg_port=5432
 egret_pg_user=egret
 egret_pg_pass=wwHQ5B4RfY9iKS3m
 egret_pg_database=egret
+egret_rollbar_key=c7661d7446fd457db85ce192e52f42b4
 
 [api_group:vars]
 api_aws_alias_host=us-west-2.compute.internal
