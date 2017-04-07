@@ -7,10 +7,10 @@
 
 - name: build the image-builder
   tags: deploy
-  command: sudo docker build --no-cache --tag="registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
+  become: true
+  command: docker build --no-cache --tag="{{ image_builder_docker_namespace }}:{{ git_branch }}" /opt/runnable/image-builder
 
-- name: push image-builder
+- name: tag the image-builder with registry.runnable.com
   tags: deploy
-  run_once: true
-  command: sudo docker push "registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}"
-  when: dock is not defined
+  become: true
+  command: docker tag {{ image_builder_docker_namespace }}:{{ git_branch }} registry.runnable.com/{{ image_builder_docker_namespace }}:{{ git_branch }}
