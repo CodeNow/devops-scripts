@@ -22,7 +22,7 @@ echo {{ charon_base64['stdout'] }} | base64 --decode > /etc/init/charon.conf
 
 # Add Certs (Used for genereting Docker client keys + certs)
 mkdir -p /etc/ssl/docker/
-cho {{ ca_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca.pem
+echo {{ ca_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca.pem
 echo {{ ca_key_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca-key.pem
 echo {{ pass_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/pass
 chmod -R 0440 /etc/ssl/docker/
@@ -34,5 +34,5 @@ start amazon-ssm-agent
 service krain start
 service charon start
 {% if not is_dock_pool %}
-CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_https_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
+CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% endif %}
