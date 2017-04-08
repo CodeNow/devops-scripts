@@ -17,6 +17,7 @@
       with_items: "{{ consul_seed }}"
 
     - name: get values from consul
+      tags: consul_values
       run_once: true
       when: read_values is defined
       uri:
@@ -26,6 +27,7 @@
       register: values
 
     - name: print values to screen
+      tags: consul_values
       run_once: true
       when: read_values is defined
       debug: msg="{{ item.item.key }}" -> "{{ item.json[0].Value | b64decode }}"

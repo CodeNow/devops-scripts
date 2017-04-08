@@ -5,19 +5,10 @@
     name=docker
     state=started
 
-- name: add runnable registry to /etc/hosts
-  become: true
-  blockinfile:
-    dest: /etc/hosts
-    insertafter: EOF
-    block: |
-      {{ registry_address }} registry.runnable.com
-
 - name: pulling docker images
   become: true
   command: docker pull {{ item }}
   with_items:
-    - "registry.runnable.com/runnable/image-builder:v4.3.0"
     - "swarm:1.2.5"
     - "registry:2.3.1"
     - "google/cadvisor:v0.24.1"
