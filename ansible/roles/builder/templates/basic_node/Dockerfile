@@ -1,5 +1,9 @@
 FROM node:{{ node_version }}
 
+{% if npm_version is defined %}
+RUN npm install npm@{{ npm_version }} -g
+{% endif %}
+
 {% if hosted_ports is defined %}
 # Expose port to Host
 EXPOSE {% for hosted_port in hosted_ports %}{{ hosted_port }} {% endfor %}
@@ -29,7 +33,7 @@ ADD ./repo/package.json /{{ name }}/package.json
 
 # Add shrinkwrap from the current build context (`.` is the repo) first
 # If we change a non first-level dependency, this will break cache as expected
-{% if has_shrinkwrap is defined %}
+{% if has_shrinkwrap is defined  and has_shrinkwrap %}
 ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
 {% endif %}
 

@@ -48,6 +48,7 @@ core_file_dir: /docker/app-cores
 
 # agreeable-egret
 agreeable_egret_hostname: egret.{{ domain }}
+agreeable_egret_port: 65520
 
 #angular
 angular_url: https://app.{{ domain }}
