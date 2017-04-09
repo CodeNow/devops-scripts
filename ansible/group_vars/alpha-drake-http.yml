@@ -2,8 +2,8 @@ name: drake-http
 
 container_image: registry.runnable.com/runnable/{{ name }}
 container_tag: "{{ git_branch }}"
-hosted_ports: ["{{ drake_port }}"]
 repo: "git@github.com:CodeNow/drake.git"
+hosted_ports: ["{{ drake_port }}"]
 node_version: "4.4.7"
 npm_version: 2
 
@@ -18,7 +18,7 @@ container_envs: >
   -e DATADOG_PORT={{ datadog_port }}
   -e DATADOG_SECRET=I_solemnly_swear_that_I_am_up_to_no_good
   -e NODE_ENV={{ node_env }}
-  -e PORT={{ hosted_ports[0] }}
+  -e PORT={{ drake_port }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
   -e RABBITMQ_PASSWORD={{ rabbit_password }}
   -e RABBITMQ_PORT={{ rabbit_port }}
@@ -32,3 +32,5 @@ container_run_opts: >
   {{container_envs}}
 
 npm_start_command: run start-http
+
+container_run_args: npm {{ npm_start_command  }}

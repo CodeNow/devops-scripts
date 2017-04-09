@@ -43,3 +43,5 @@ container_run_opts: >
   {{container_envs}}
 
 npm_start_command: run start-http
+
+container_run_args: npm {{ npm_start_command  }}

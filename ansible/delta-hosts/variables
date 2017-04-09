@@ -1,5 +1,4 @@
 [agreeable-egret:vars]
-agreeable_egret_port=65520
 egret_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com
 egret_pg_port=5432
 egret_pg_user=egret
