@@ -9,3 +9,4 @@
     rollbar_token: "{{ rollbar_web_token }}"
     tags: [ notify ]
   - { role: builder, tags: "build" }
+  - { role: container_start }

@@ -159,6 +159,24 @@
   - { role: builder }
   - { role: squash_image }
 
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ angular_branch }}"
+  vars_files:
+    - "group_vars/alpha-web.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ runnable_branch }}"
+  vars_files:
+    - "group_vars/alpha-web.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
 # End building of images
 
 - hosts: "{{ host }}"

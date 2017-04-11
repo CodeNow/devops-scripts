@@ -6,24 +6,27 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
 rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
-do_not_push: yes
 
-dockerfile_enviroment: [
-  "API_SOCK_URL https://{{ api_socket_server_hostname }}",
-  "API_URL https://{{ api_hostname }}",
-  "MIXPANEL_PROXY_URL {{ mixpanel_proxy_url }}",
-  "AWS_ACCESS_KEY {{ aws_access_key }}",
-  "AWS_BUCKET app.{{ domain }}",
-  "AWS_REGION {{ web_aws_bucket_region | default('us-east-1') }}",
-  "AWS_SECRET_KEY {{ aws_secret_key }}",
-  "INTERCOM_APP_ID {{ web_intercom_id }}",
-  "MARKETING_URL {{ marketing_url }}",
-  "NODE_ENV production",
-  "SIFT_API_KEY {{ web_sift_public_key }}",
-  "STRIPE_TOKEN {{ cream_stripe_publishable_key }}",
-  "USER_CONTENT_DOMAIN {{ user_content_domain }}",
-]
+container_envs: >
+  -e API_SOCK_URL=https://{{ api_socket_server_hostname }}
+  -e API_URL=https://{{ api_hostname }}
+  -e MIXPANEL_PROXY_URL={{ mixpanel_proxy_url }}
+  -e AWS_ACCESS_KEY={{ aws_access_key }}
+  -e AWS_BUCKET app.{{ domain }}
+  -e AWS_REGION={{ web_aws_bucket_region | default('us-east-1') }}
+  -e AWS_SECRET_KEY={{ aws_secret_key }}
+  -e INTERCOM_APP_ID={{ web_intercom_id }}
+  -e MARKETING_URL={{ marketing_url }}
+  -e NODE_ENV production
+  -e SIFT_API_KEY={{ web_sift_public_key }}
+  -e STRIPE_TOKEN={{ cream_stripe_publishable_key }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
 
-dockerfile_post_install_commands: [
-  "npm run gruntDeploy"
-]
+container_run_opts: >
+  -h {{ name }}
+  -d
+  {{container_envs}}
+
+npm_start_command: run gruntDeploy
+
+container_run_args: npm {{ npm_start_command }}
