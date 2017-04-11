@@ -170,9 +170,9 @@
 
 - hosts: "{{ host }}"
   vars:
-  - git_branch: "{{ runnable_branch }}"
+  - git_branch: "{{ enterprise_sign_in_branch }}"
   vars_files:
-    - "group_vars/alpha-web.yml"
+    - "group_vars/alpha-enterprise-sign-in.yml"
   roles:
   - { role: builder }
   - { role: squash_image }
