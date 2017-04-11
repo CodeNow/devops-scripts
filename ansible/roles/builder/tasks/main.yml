@@ -83,7 +83,23 @@
   loop_control:
     loop_var: file_name_item
 
+- name: set whether image will be pushed
+  set_fact:
+    push_image: >
+      git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") and # Is a tag
+      ((node_env is defined and node_env=="production-delta") or force_push_image) # Is prod or force_push
+
+- name: login to docker hub
+  become: yes
+  when: push_image
+  command: docker login -u {{ docker_username }} -p {{ docker_password }}
+
 - name: push docker image
   become: yes
-  when: not do_not_push
+  when: push_image
   command: docker push {{ container_image }}:{{ container_tag }}
+
+- name: logout of docker hub
+  become: yes
+  when: push_image
+  command: docker logout

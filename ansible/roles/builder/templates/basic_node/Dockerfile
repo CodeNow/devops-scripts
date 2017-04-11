@@ -42,7 +42,8 @@ WORKDIR /{{ name }}
 RUN npm install --production
 
 # move the current build context (`.` is the repo) to /{{ name }}
-ADD ./repo /{{ name }}
+ADD ./repo ./
+RUN rm -rf ./.git
 
 {% if dockerfile_post_install_commands is defined %}
 {% for command in dockerfile_post_install_commands %}
@@ -51,7 +52,6 @@ RUN {{ command }}
 {% endif %}
 
 RUN rm /root/.ssh/id_rsa
-RUN rm /root/.ssh/known_hosts
 
 # Define default command.
-CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }} 
+CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}
