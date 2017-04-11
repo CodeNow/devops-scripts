@@ -1,6 +1,6 @@
 name: navi
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "{{ navi_http_port }}" ]

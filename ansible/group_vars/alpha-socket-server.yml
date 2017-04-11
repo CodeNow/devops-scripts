@@ -1,6 +1,6 @@
 name: api-socket-server
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: runnable/{{ name }}
 
 hosted_ports: [ "{{ api_port }}" ]
 
