@@ -22,7 +22,7 @@ https://github.com/CodeNow/devops-scripts
 
 5. Unzip file obtained above into `devops-scripts/ansible/secrets`
 
-6. copy .pem files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
+6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
 
 7. Install two required tools onto your machine:
 ```bash
