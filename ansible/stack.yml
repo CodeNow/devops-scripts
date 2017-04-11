@@ -14,7 +14,7 @@
 - include: link.yml -e git_branch=v2.2.2
 - include: mongo-navi.yml
 - include: navi-proxy.yml
-- include: navi.yml -e git_branch=v10.5.2
+- include: navi.yml -e git_branch=v10.5.3
 - include: optimus.yml -e git_branch=v5.1.1
 - include: palantiri.yml -e git_branch=v2.3.3
 - include: pheidi.yml -e git_branch=v1.38.6

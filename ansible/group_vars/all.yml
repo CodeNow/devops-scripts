@@ -186,7 +186,7 @@ redis_host_address: redis
 redis_port: 6379
 
 # registry
-registry_address: registry.runnable.com
+registry_address: 127.0.0.1:{{ registry_port }}
 registry_port: 5000
 registry_env: prod
 
