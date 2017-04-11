@@ -1,4 +1,6 @@
 name: rabbitmq
+service_name: rabbitmq
+
 hosted_ports: [ "{{ rabbit_port }}", 15672 ]
 
 storage_size_gb: 50
