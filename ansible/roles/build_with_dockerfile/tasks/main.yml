@@ -5,6 +5,7 @@
   fail: msg="only tag can be deployed on prod not {{ git_branch }}"
 
 - name: create build folder
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: true
   file:
@@ -12,6 +13,7 @@
     state: directory
 
 - name: pull the git repository
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: true
   git:
@@ -23,11 +25,14 @@
     force: yes
 
 - name: build docker image and tag
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: yes
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
 
 - name: push docker image
-  tags: build, push
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: yes
+  ignore_errors: True
   command: docker push {{ container_image }}:{{ container_tag }}
