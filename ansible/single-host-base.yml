@@ -170,6 +170,15 @@
 
 - hosts: "{{ host }}"
   vars:
+  - git_branch: "{{ astral_branch }}"
+  vars_files:
+    - "group_vars/alpha-shiva.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
   - git_branch: "{{ enterprise_sign_in_branch }}"
   vars_files:
     - "group_vars/alpha-enterprise-sign-in.yml"
