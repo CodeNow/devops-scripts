@@ -55,7 +55,7 @@
   tags: [ deploy ]
   become: true
   copy:
-    src=../../../secrets/docker-client/{{ file_name_item }}
+    src=./secrets/docker-client/{{ file_name_item }}
     dest={{ build_dir }}/{{ name }}
     owner=ubuntu
     group=ubuntu

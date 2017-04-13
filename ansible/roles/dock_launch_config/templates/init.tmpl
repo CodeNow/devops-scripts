@@ -5,6 +5,10 @@ export CONSUL_PORT={{ consul_api_port }}
 export CONSUL_HOSTNAME={{ consul_host_address }}
 export VAULT_PORT={{ vault_port }}
 
+{% if ( S3_ACCESS_KEY is not defined or
+        S3_SECRET_KEY is not defined or
+        AWS_ACCESS_KEY is not defined or
+        AWS_SECRET_KEY is not defined ) %}
 # Create directory for env
 mkdir -p /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
@@ -14,6 +18,7 @@ chmod 0711 /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 {% for item in tokens %}
 echo {{ item.value }} > /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}
 {% endfor %}
+{% endif %}
 
 # Add upstart files for charon and krain
 mkdir -p /docker/app-logs/
