@@ -5,10 +5,12 @@ export CONSUL_PORT={{ consul_api_port }}
 export CONSUL_HOSTNAME={{ consul_host_address }}
 export VAULT_PORT={{ vault_port }}
 
-{% if ( S3_ACCESS_KEY is not defined or
-        S3_SECRET_KEY is not defined or
-        AWS_ACCESS_KEY is not defined or
-        AWS_SECRET_KEY is not defined ) %}
+{% set has_token = ( s3_access_key is defined and
+        s3_secret_key is defined and
+        aws_access_key is defined and
+        aws_secret_key is defined ) %}
+
+{% if not has_token %}
 # Create directory for env
 mkdir -p /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
@@ -18,9 +20,6 @@ chmod 0711 /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 {% for item in tokens %}
 echo {{ item.value }} > /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}
 {% endfor %}
-{% set hasToken = false %}
-{% else %}
-{% set hasToken = true %}
 {% endif %}
 
 # Add upstart files for charon and krain
@@ -42,8 +41,8 @@ start amazon-ssm-agent
 service krain start
 service charon start
 {% if not is_dock_pool %}
-{% if hasToken %}
-CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} S3_ACCESS_KEY={{ S3_ACCESS_KEY }} S3_SECRET_KEY={{ S3_SECRET_KEY }} AWS_ACCESS_KEY={{ AWS_ACCESS_KEY }} AWS_SECRET_KEY={{ AWS_SECRET_KEY }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
+{% if has_token %}
+CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} S3_ACCESS_KEY={{ s3_access_key }} S3_SECRET_KEY={{ s3_secret_key }} AWS_ACCESS_KEY={{ aws_access_key }} AWS_SECRET_KEY={{ aws_secret_key }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% else %}
 CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% endif %}
