@@ -43,9 +43,9 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: RUNNABLE_API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: RUNNABLE_USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
             - name: STRIPE_API_KEY
               value: "sk_test_4De8Zdkfcyb29swkMmjZUMRh"
             - name: STRIPE_PUBLISHABLE_KEY

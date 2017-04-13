@@ -19,7 +19,7 @@ spec:
             - start-http
           env:
             - name: API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: DATADOG_HOST
               value: "192.168.1.53"
             - name: DATADOG_PORT

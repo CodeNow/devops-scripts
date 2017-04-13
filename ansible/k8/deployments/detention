@@ -18,9 +18,9 @@ spec:
             - start
           env:
             - name: ABSOLUTE_URL
-              value: "detention.runnable-gamma.com"
+              value: "detention.runnable-beta.com"
             - name: API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
             - name: NODE_ENV

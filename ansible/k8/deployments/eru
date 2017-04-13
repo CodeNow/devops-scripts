@@ -29,7 +29,7 @@ spec:
             - name: CONSUL_HOST
               value: "consul:8500"
             - name: DOMAIN
-              value: "eru.runnable-gamma.com"
+              value: "eru.runnable-beta.com"
             - name: GITHUB_CLIENT_ID
               value: "8abb08f83f6d1c52bd1a"
             - name: GITHUB_CLIENT_SECRET
@@ -71,9 +71,9 @@ spec:
             - name: REDIS_PORT
               value: "6379"
             - name: RUNNABLE_DOMAIN
-              value: "runnable-gamma.com"
+              value: "runnable-beta.com"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
           ports:
             - containerPort: 5501
             - containerPort: 5502

@@ -52,7 +52,7 @@ data:
     - name: "drake"
       webhook_configs:
       - send_resolved: true
-        url: "http://drake.runnable-gamma.com/prometheus"
+        url: "http://drake.runnable-beta.com/prometheus"
       slack_configs:
       - send_resolved: true
         channel: ops

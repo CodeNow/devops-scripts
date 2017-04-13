@@ -18,7 +18,7 @@ spec:
             - start
           env:
             - name: API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: DATADOG_HOST
               value: "192.168.1.53"
             - name: DATADOG_PORT
@@ -38,4 +38,4 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"

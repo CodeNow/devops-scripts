@@ -22,11 +22,11 @@ spec:
             - name: NODE_ENV
               value: "production-gamma"
             - name: RUNNABLE_API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: PORT
               value: "65520"
             - name: RUNNABLE_USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
             - name: POSTGRES_CONNECT_STRING
               value: "postgres://egret:b3UKjxbGblKZtG6c@gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/egret"
           ports:

@@ -18,9 +18,9 @@ spec:
             - start
           env:
             - name: API_URL
-              value: "https://api.runnable-gamma.com"
+              value: "https://api.runnable-beta.com"
             - name: COOKIE_DOMAIN
-              value: ".runnable.ninja"
+              value: ".runnablecloud.com"
             - name: COOKIE_SECRET
               value: "c90e5fb4e7e511e597309a79f06e9478"
             - name: DATADOG_HOST
