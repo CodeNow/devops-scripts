@@ -20,6 +20,14 @@ volume_mounts:
    kind: configMap
 
 api_base_container_envs:
+  - name: DOCKER_IMAGE_BUILDER_CACHE
+    value: "/home/anandkumarpatel/cache"
+  - name: VALID_REDIR_TLDS
+    value: "{{ domain }},runnablecloud.com"
+  - name: FULL_API_DOMAIN
+    value: "{{ api_url }}"
+  - name: FULL_FRONTEND_DOMAIN
+    value: "https://{{ domain }}"
   - name: AWS_ACCESS_KEY_ID
     value: "{{ api_aws_access_key_id }}"
   - name: AWS_SECRET_ACCESS_KEY

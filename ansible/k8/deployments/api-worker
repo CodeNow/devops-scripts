@@ -17,6 +17,14 @@ spec:
             - npm
             - start
           env:
+            - name: DOCKER_IMAGE_BUILDER_CACHE
+              value: "/home/anandkumarpatel/cache"
+            - name: VALID_REDIR_TLDS
+              value: "runnable-beta.com,runnablecloud.com"
+            - name: FULL_API_DOMAIN
+              value: "https://api.runnable-beta.com"
+            - name: FULL_FRONTEND_DOMAIN
+              value: "https://runnable-beta.com"
             - name: AWS_ACCESS_KEY_ID
               value: "AKIAIDC4WVMTCGV7KRVQ"
             - name: AWS_SECRET_ACCESS_KEY
