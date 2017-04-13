@@ -17,8 +17,8 @@ spec:
             - containerPort: 80
             - containerPort: 443
           volumeMounts:
-            - name: ingress-proxy-runnable-gamma-com-certs
-              mountPath: /etc/ssl/certs/runnable-gamma.com
+            - name: ingress-proxy-runnable-beta-com-certs
+              mountPath: /etc/ssl/certs/runnable-beta.com
             - name: ingress-proxy-base-conf
               mountPath: /etc/nginx/
             - name: ingress-proxy-mixpanel-config
@@ -26,9 +26,9 @@ spec:
             - name: ingress-proxy-sites-enabled-config
               mountPath: /etc/nginx/sites-enabled
       volumes:
-        - name: ingress-proxy-runnable-gamma-com-certs
+        - name: ingress-proxy-runnable-beta-com-certs
           configMap:
-            name: ingress-proxy-runnable-gamma-com-certs
+            name: ingress-proxy-runnable-beta-com-certs
         - name: ingress-proxy-base-conf
           configMap:
             name: ingress-proxy-base-conf

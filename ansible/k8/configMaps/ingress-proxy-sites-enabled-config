@@ -15,7 +15,7 @@ data:
   user-pixel.conf: |
     server {
       listen 80;
-      server_name blue.runnable.ninja;
+      server_name blue.runnablecloud;
       location / {
         return 404;
       }
@@ -23,14 +23,14 @@ data:
 
     server {
       listen 443 ssl;
-      server_name blue.runnable.ninja;
+      server_name blue.runnablecloud;
       gzip off;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -45,7 +45,7 @@ data:
       resolver_timeout 5s;
 
       location = /pixel.gif {
-        add_header Set-Cookie "isModerating=1; Domain=.runnable.ninja; Path=/; HttpOnly;";
+        add_header Set-Cookie "isModerating=1; Domain=.runnablecloud; Path=/; HttpOnly;";
         empty_gif;
       }
 
@@ -67,7 +67,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name api.runnable-gamma.com;
+      server_name api.runnable-beta.com;
       access_log /var/log/nginx/api.access.log;
 
       location / {
@@ -88,14 +88,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name api.runnable-gamma.com;
+      server_name api.runnable-beta.com;
       access_log /var/log/nginx/api.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -137,7 +137,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name drake.runnable-gamma.com;
+      server_name drake.runnable-beta.com;
       access_log /var/log/nginx/drake.access.log;
 
       location / {
@@ -158,14 +158,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name drake.runnable-gamma.com;
+      server_name drake.runnable-beta.com;
       access_log /var/log/nginx/drake.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -207,7 +207,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name optimus.runnable-gamma.com;
+      server_name optimus.runnable-beta.com;
       access_log /var/log/nginx/optimus.access.log;
 
       location / {
@@ -228,14 +228,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name optimus.runnable-gamma.com;
+      server_name optimus.runnable-beta.com;
       access_log /var/log/nginx/optimus.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -277,7 +277,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name apisock.runnable-gamma.com;
+      server_name apisock.runnable-beta.com;
       access_log /var/log/nginx/apisock.access.log;
 
       location / {
@@ -298,14 +298,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name apisock.runnable-gamma.com;
+      server_name apisock.runnable-beta.com;
       access_log /var/log/nginx/apisock.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -347,7 +347,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name eru.runnable-gamma.com;
+      server_name eru.runnable-beta.com;
       access_log /var/log/nginx/eru.access.log;
 
       location / {
@@ -368,14 +368,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name eru.runnable-gamma.com;
+      server_name eru.runnable-beta.com;
       access_log /var/log/nginx/eru.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -417,7 +417,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name egret.runnable-gamma.com;
+      server_name egret.runnable-beta.com;
       access_log /var/log/nginx/egret.access.log;
 
       location / {
@@ -438,14 +438,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name egret.runnable-gamma.com;
+      server_name egret.runnable-beta.com;
       access_log /var/log/nginx/egret.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -487,7 +487,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name registry.runnable-gamma.com;
+      server_name registry.runnable-beta.com;
       access_log /var/log/nginx/registry.access.log;
 
       location / {
@@ -508,14 +508,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name registry.runnable-gamma.com;
+      server_name registry.runnable-beta.com;
       access_log /var/log/nginx/registry.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
@@ -557,7 +557,7 @@ data:
     server {
       listen 80;
       client_max_body_size 5g;
-      server_name rabbitmq.runnable-gamma.com;
+      server_name rabbitmq.runnable-beta.com;
       access_log /var/log/nginx/rabbitmq.access.log;
 
       location / {
@@ -578,14 +578,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 5g;
-      server_name rabbitmq.runnable-gamma.com;
+      server_name rabbitmq.runnable-beta.com;
       access_log /var/log/nginx/rabbitmq.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable-gamma.com/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable-gamma.com/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable-gamma.com/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable-gamma.com/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnable-beta.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnable-beta.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnable-beta.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnable-beta.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;
