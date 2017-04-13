@@ -11,6 +11,8 @@
     - app_name: "krain"
     - enviroment_vars: enviroment_vars
 
+# this requires the use of gnu/coreutils base64 (`brew install coreutils`)
+# Allows us to use same base64 locally and in host
 - name: encode krain config to base64
   shell: cat ~/{{ app_name }}.conf | base64 -w 0
   register: krain_base64
@@ -29,7 +31,9 @@
     - app_name: "charon"
     - enviroment_vars: enviroment_vars
 
-- name: encode krain config to base64
+# this requires the use of gnu/coreutils base64 (`brew install coreutils`)
+# Allows us to use same base64 locally and in host
+- name: encode charon config to base64
   shell: cat ~/{{ app_name }}.conf | base64 -w 0
   register: charon_base64
   vars:
