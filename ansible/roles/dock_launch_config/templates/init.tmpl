@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Set ENV files
-export CONSUL_PORT={{ consul_api_port }}
-export CONSUL_HOSTNAME={{ consul_host_address }}
-export VAULT_PORT={{ vault_port }}
-
 {% set has_token = ( s3_access_key is defined and
         s3_secret_key is defined and
         aws_access_key is defined and
@@ -41,9 +36,14 @@ start amazon-ssm-agent
 service krain start
 service charon start
 {% if not is_dock_pool %}
+CONSUL_HOSTNAME={{ consul_host_address }} \
+CONSUL_PORT={{ consul_api_port }} \
+VAULT_PORT={{ vault_port }} \
 {% if has_token %}
-CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} S3_ACCESS_KEY={{ s3_access_key }} S3_SECRET_KEY={{ s3_secret_key }} AWS_ACCESS_KEY={{ aws_access_key }} AWS_SECRET_KEY={{ aws_secret_key }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
-{% else %}
-CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
+S3_ACCESS_KEY={{ s3_access_key }} \
+S3_SECRET_KEY={{ s3_secret_key }} \
+AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }} \
+AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }} \
 {% endif %}
+bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% endif %}
