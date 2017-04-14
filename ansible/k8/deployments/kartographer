@@ -20,7 +20,7 @@ spec:
             - name: CONFIG_FILE_PATH
               value: "/keys/kube-config"
             - name: DATADOG_HOST
-              value: "10.106.128.19"
+              value: "192.168.86.3"
             - name: DATADOG_PORT
               value: "8125"
             - name: GOOGLE_APPLICATION_CREDENTIALS

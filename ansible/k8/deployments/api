@@ -38,7 +38,7 @@ spec:
             - name: CREAM_HOST
               value: "http://cream:8899"
             - name: DATADOG_HOST
-              value: "10.106.128.19"
+              value: "192.168.86.3"
             - name: DATADOG_PORT
               value: "8125"
             - name: DOCKER_BUILD_LINE_TIMEOUT_MS
