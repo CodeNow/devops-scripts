@@ -32,7 +32,7 @@ container_envs:
   - name: RUNNABLE_API_URL
     value: "{{ api_url }}"
   - name: WORKER_MAX_NUM_RETRIES
-    value: "1"
+    value: "2"
 
 volume_mounts:
   - name: "{{ name }}-keys"

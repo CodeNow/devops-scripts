@@ -20,7 +20,7 @@ spec:
             - name: CONFIG_FILE_PATH
               value: "/keys/kube-config"
             - name: DATADOG_HOST
-              value: "192.168.86.3"
+              value: "192.168.1.53"
             - name: DATADOG_PORT
               value: "8125"
             - name: GOOGLE_APPLICATION_CREDENTIALS
@@ -42,7 +42,7 @@ spec:
             - name: RUNNABLE_API_URL
               value: "https://api.runnable-beta.com"
             - name: WORKER_MAX_NUM_RETRIES
-              value: "1"
+              value: "2"
           volumeMounts:
             - name: kartographer-keys
               mountPath: /keys
