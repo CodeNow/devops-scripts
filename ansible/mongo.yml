@@ -1,5 +1,5 @@
 ---
-- hosts: mongo-navi
+- hosts: mongo
   vars_files:
     - group_vars/alpha-mongo.yml
   roles:
