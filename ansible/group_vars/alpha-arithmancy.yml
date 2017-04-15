@@ -12,7 +12,7 @@ container_envs:
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: POSTGRES_CONNECT_STRING
-    value: "postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}"
+    value: "postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ pg_host }}/{{ arithmancy_pg_database }}"
   - name: RABBITMQ_HOSTNAME
     value: "{{ rabbit_host_address }}"
   - name: RABBITMQ_PASSWORD

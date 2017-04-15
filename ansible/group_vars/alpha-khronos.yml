@@ -89,7 +89,7 @@ container_envs:
   - name: INTERCOM_APP_ID
     value: "{{ khronos_intercom_app_id | default('undefined') }}"
   - name: KHRONOS_MONGO
-    value: "mongodb://{{ khronos_mongo_auth }}@{{ mongo_hosts }}/{{ khronos_mongo_database }}"
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME

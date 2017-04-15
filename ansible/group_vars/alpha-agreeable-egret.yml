@@ -1,4 +1,4 @@
-name: "agreeable-egret"
+name: agreeable-egret
 service_name: egret
 
 hosted_ports: ["{{ agreeable_egret_port }}"]
@@ -18,4 +18,4 @@ container_envs:
   - name: RUNNABLE_USER_CONTENT_DOMAIN
     value: "{{ user_content_domain }}"
   - name: POSTGRES_CONNECT_STRING
-    value: postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ egret_pg_host }}/{{ egret_pg_database }}
+    value: postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ pg_host }}/{{ egret_pg_database }}

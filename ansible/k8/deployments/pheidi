@@ -38,9 +38,9 @@ spec:
             - name: LOGGLY_TOKEN
               value: "f673760d-e0b3-4a93-a15e-2862ea074f91"
             - name: MONGO
-              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/gamma"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/api"
             - name: MONGO_REPLSET_NAME
-              value: "gamma"
+              value: "epsilon-rs0"
             - name: NODE_ENV
               value: "production-gamma"
             - name: RABBITMQ_HOSTNAME

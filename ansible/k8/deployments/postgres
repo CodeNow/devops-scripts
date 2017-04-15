@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - image: postgres:9.5.2
+          imagePullPolicy: Always
+          name: postgres
+          ports:
+            - containerPort: 32659
+          volumeMounts:
+            - name: postgres-db-claim
+              mountPath: /data/db
+      volumes:
+        - name: postgres-db-claim
+          persistentVolumeClaim:
+            claimName: postgres-db-claim

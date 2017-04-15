@@ -1,0 +1,13 @@
+name: postgres
+hosted_ports: ["{{ pg_port }}"]
+container_run_args: ''
+
+storage_size_gb: 50
+
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /data/db
+    kind: persistent
+
+container_image: postgres
+container_tag: "9.5.2"

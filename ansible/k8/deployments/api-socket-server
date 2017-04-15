@@ -70,9 +70,9 @@ spec:
             - name: MIXPANEL_APP_ID
               value: "c41affa4b08818443365c526cbb51606"
             - name: MONGO_REPLSET_NAME
-              value: "gamma-rs0"
+              value: "epsilon-rs0"
             - name: MONGO
-              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/gamma"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/api"
             - name: NAVI_HOST
               value: "http://navi:3567"
             - name: NODE_ENV
@@ -96,7 +96,7 @@ spec:
             - name: S3_CONTEXT_RESOURCE_BUCKET
               value: "runnable.context.resources.production-beta"
             - name: S3_LOG_BUCKET
-              value: "production-gamma.container-logs"
+              value: "production-epsilon.container-logs"
             - name: SENDGRID_KEY
               value: "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"
             - name: SWARM_HOST

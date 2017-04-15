@@ -20,7 +20,7 @@ spec:
             - name: MONGO
               value: "mongodb://clio:Fkj8CBoMNpuhe7p*@mongo/clio"
             - name: MONGO_REPLSET_NAME
-              value: "gamma-rs0"
+              value: "epsilon-rs0"
             - name: NODE_ENV
               value: "production-gamma"
             - name: PORT

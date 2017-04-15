@@ -36,9 +36,9 @@ container_envs:
   - name: LOGGLY_TOKEN
     value: "{{ loggly_token }}"
   - name: MONGO
-    value: "mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}"
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: MONGO_REPLSET_NAME
-    value: "{{ pheidi_mongo_replset_name }}"
+    value: "{{ api_mongo_replset_name }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME

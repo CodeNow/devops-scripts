@@ -54,15 +54,15 @@ container_envs:
   - name: LOG_LEVEL
     value: "trace"
   - name: MONGODB_DATABASE
-    value: "{{ eru_mongodb_database }}"
+    value: "{{ api_mongo_database }}"
   - name: MONGODB_HOSTS
     value: "{{ mongo_hosts }}"
   - name: MONGODB_PASSWORD
-    value: "{{ eru_mongodb_password }}"
+    value: "{{ api_mongo_database }}"
   - name: MONGODB_REPLSET
-    value: "{{ eru_mongodb_replset }}"
+    value: "{{ api_mongo_database }}"
   - name: MONGODB_USERNAME
-    value: "{{ eru_mongodb_username }}"
+    value: "{{ api_mongo_database }}"
   - name: NODE_ENV
     value: "production"
   - name: RABBITMQ_HOSTNAME

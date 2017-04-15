@@ -48,7 +48,7 @@ spec:
             - name: INTERCOM_APP_ID
               value: "xs5g95pd"
             - name: KHRONOS_MONGO
-              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/gamma"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/api"
             - name: NODE_ENV
               value: "production-gamma"
             - name: RABBITMQ_HOSTNAME

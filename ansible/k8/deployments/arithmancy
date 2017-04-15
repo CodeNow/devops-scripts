@@ -24,7 +24,7 @@ spec:
             - name: NODE_ENV
               value: "production-gamma"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://arithmancy_gamma:arithmancy-gamma@arithmancy-gamma.cnksgdqarobf.us-west-2.rds.amazonaws.com/arithmancy"
+              value: "postgres://arithmancy_epsilon:arithmancy-epsilon@epsilon-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/arithmancy"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

@@ -12,10 +12,10 @@ container_envs:
   - name: MB_DB_DBNAME
     value: "{{ metabase_pg_database }}"
   - name: MB_DB_PORT
-    value: "{{ metabase_pg_port }}"
+    value: "{{ pg_port }}"
   - name: MB_DB_USER
     value: "{{ metabase_pg_user }}"
   - name: MB_DB_PASS
     value: "{{ metabase_pg_pass }}"
   - name: MB_DB_HOST
-    value: "{{ metabase_pg_host }}"
+    value: "{{ pg_host }}"

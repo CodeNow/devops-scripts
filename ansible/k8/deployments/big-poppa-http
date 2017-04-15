@@ -35,13 +35,13 @@ spec:
             - name: PGPASSWORD
               value: "JFmZDuVYPt9vUxk4DBjj"
             - name: PGHOST
-              value: "gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659"
+              value: "epsilon-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659"
             - name: PGPORT
               value: "32659"
             - name: PGDATABASE
               value: "big_poppa"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://big_poppa:JFmZDuVYPt9vUxk4DBjj@gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/big_poppa"
+              value: "postgres://big_poppa:JFmZDuVYPt9vUxk4DBjj@epsilon-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/big_poppa"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD
@@ -51,9 +51,9 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: MONGO
-              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/gamma"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/api"
             - name: MONGO_REPLSET_NAME
-              value: "gamma-rs0"
+              value: "epsilon-rs0"
             - name: GITHUB_VARNISH_HOST
               value: "github-varnish"
             - name: GITHUB_VARNISH_PORT

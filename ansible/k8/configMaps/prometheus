@@ -125,7 +125,7 @@ data:
       # drop all servers not in this env and not a dock
       relabel_configs:
       - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
-        regex:         gamma-asg-dock-pool
+        regex:         epsilon-asg-dock-pool
         action:        drop
 
       - source_labels: [__meta_ec2_tag_env]
@@ -157,7 +157,7 @@ data:
       # drop all servers not in this env and not a dock
       relabel_configs:
       - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
-        regex:         gamma-asg-dock-pool
+        regex:         epsilon-asg-dock-pool
         action:        drop
 
       - source_labels: [__meta_ec2_tag_env]

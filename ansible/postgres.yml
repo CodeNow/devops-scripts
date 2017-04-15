@@ -1,0 +1,10 @@
+---
+- hosts: postgres
+  vars_files:
+    - group_vars/alpha-postgres.yml
+  roles:
+  - role: notify
+
+  - role: database
+  - role: k8-deployment
+  - role: k8-service

@@ -31,13 +31,13 @@ big_poppa_base_container_envs:
   - name: PGPASSWORD
     value: "{{ big_poppa_pg_pass }}"
   - name: PGHOST
-    value: "{{ big_poppa_pg_host }}"
+    value: "{{ pg_host }}"
   - name: PGPORT
-    value: "{{ big_poppa_pg_port }}"
+    value: "{{ pg_port }}"
   - name: PGDATABASE
     value: "{{ big_poppa_pg_database }}"
   - name: POSTGRES_CONNECT_STRING
-    value: "postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}"
+    value: "postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ pg_host }}/{{ big_poppa_pg_database }}"
   - name: RABBITMQ_HOSTNAME
     value: "{{ rabbit_host_address }}"
   - name: RABBITMQ_PASSWORD
@@ -47,7 +47,7 @@ big_poppa_base_container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: MONGO
-    value: "mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ big_poppa_mongo_database }}"
+    value: "mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: MONGO_REPLSET_NAME
     value: "{{ big_poppa_mongo_replset_name }}"
   - name: GITHUB_VARNISH_HOST
