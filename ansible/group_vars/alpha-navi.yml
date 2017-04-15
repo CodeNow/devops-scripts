@@ -25,7 +25,7 @@ container_envs:
   - name: LOG_LEVEL_STDOUT
     value: "trace"
   - name: MONGO
-    value: "mongodb://{{ navi_mongo_host_address }}:{{ navi_mongo_port }}/{{ navi_mongo_database }}"
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ navi_mongo_database }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME

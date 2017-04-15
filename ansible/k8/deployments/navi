@@ -36,7 +36,7 @@ spec:
             - name: LOG_LEVEL_STDOUT
               value: "trace"
             - name: MONGO
-              value: "mongodb://mongo-navi:27017/navi"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/navi"
             - name: NODE_ENV
               value: "production-gamma"
             - name: RABBITMQ_HOSTNAME

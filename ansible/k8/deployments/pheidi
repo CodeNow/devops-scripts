@@ -38,7 +38,7 @@ spec:
             - name: LOGGLY_TOKEN
               value: "f673760d-e0b3-4a93-a15e-2862ea074f91"
             - name: MONGO
-              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017/gamma"
+              value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/gamma"
             - name: MONGO_REPLSET_NAME
               value: "gamma"
             - name: NODE_ENV

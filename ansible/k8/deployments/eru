@@ -49,7 +49,7 @@ spec:
             - name: MONGODB_DATABASE
               value: "gamma"
             - name: MONGODB_HOSTS
-              value: "10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017"
+              value: "mongo"
             - name: MONGODB_PASSWORD
               value: "success-nan-europium-rerun-sheep"
             - name: MONGODB_REPLSET

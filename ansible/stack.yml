@@ -12,7 +12,7 @@
 - include: ingress-proxy.yml
 - include: khronos.yml -e git_branch=v6.5.11
 - include: link.yml -e git_branch=v2.2.2
-- include: mongo-navi.yml
+- include: mongo.yml
 - include: navi-proxy.yml
 - include: navi.yml -e git_branch=v10.5.3
 - include: optimus.yml -e git_branch=v5.1.1

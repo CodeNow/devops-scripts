@@ -145,9 +145,6 @@ marketing_url: https://{{ domain }}
 # metabase
 metabase_port: 3000
 
-# mongo_navi
-mongo_navi_port: 27017
-
 # navi
 navi_host_address: navi
 navi_http_port: 3567
@@ -208,8 +205,6 @@ swarm_container_name: swarm
 
 # navi/link
 navi_mongo_database: navi
-navi_mongo_host_address: mongo-navi
-navi_mongo_port: 27017
 
 npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 

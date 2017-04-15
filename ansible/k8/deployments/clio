@@ -18,7 +18,7 @@ spec:
             - start
           env:
             - name: MONGO
-              value: "mongodb://clio:Fkj8CBoMNpuhe7p*@10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017/clio"
+              value: "mongodb://clio:Fkj8CBoMNpuhe7p*@mongo/clio"
             - name: MONGO_REPLSET_NAME
               value: "gamma-rs0"
             - name: NODE_ENV
