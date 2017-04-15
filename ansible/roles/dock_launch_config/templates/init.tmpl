@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Set ENV files
-export CONSUL_PORT={{ consul_api_port }}
-export CONSUL_HOSTNAME={{ consul_host_address }}
-export VAULT_PORT={{ vault_port }}
+{% set has_token = ( ec2_describe_aws_access_key is defined and
+        ec2_describe_aws_secret_key is defined and
+        dock_registry_s3_access_key is defined and
+        dock_registry_s3_secret_key is defined ) %}
 
+{% if not has_token %}
 # Create directory for env
 mkdir -p /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
@@ -14,6 +15,7 @@ chmod 0711 /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
 {% for item in tokens %}
 echo {{ item.value }} > /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}
 {% endfor %}
+{% endif %}
 
 # Add upstart files for charon and krain
 mkdir -p /docker/app-logs/
@@ -34,5 +36,14 @@ start amazon-ssm-agent
 service krain start
 service charon start
 {% if not is_dock_pool %}
-CONSUL_HOSTNAME={{ consul_host_address }} CONSUL_PORT={{ consul_api_port }} VAULT_PORT={{ vault_port }} bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
+CONSUL_HOSTNAME={{ consul_host_address }} \
+CONSUL_PORT={{ consul_api_port }} \
+VAULT_PORT={{ vault_port }} \
+{% if has_token %}
+S3_ACCESS_KEY={{ dock_registry_s3_access_key }} \
+S3_SECRET_KEY={{ dock_registry_s3_secret_key }} \
+AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }} \
+AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }} \
+{% endif %}
+bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 {% endif %}
