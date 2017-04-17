@@ -31,7 +31,7 @@ spec:
             - name: NODE_ENV
               value: "production-gamma"
             - name: PGUSER
-              value: "big_poppa"
+              value: "epsilon"
             - name: PGPASSWORD
               value: "JFmZDuVYPt9vUxk4DBjj"
             - name: PGHOST
@@ -41,7 +41,7 @@ spec:
             - name: PGDATABASE
               value: "big_poppa"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://big_poppa:JFmZDuVYPt9vUxk4DBjj@postgres:32659/big_poppa"
+              value: "postgres://epsilon:JFmZDuVYPt9vUxk4DBjj@postgres:32659/big_poppa"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

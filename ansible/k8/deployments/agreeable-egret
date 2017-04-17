@@ -28,6 +28,6 @@ spec:
             - name: RUNNABLE_USER_CONTENT_DOMAIN
               value: "runnablecloud.com"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://egret:b3UKjxbGblKZtG6c@postgres:32659/egret"
+              value: "postgres://epsilon:JFmZDuVYPt9vUxk4DBjj@postgres:32659/egret"
           ports:
             - containerPort: 65520

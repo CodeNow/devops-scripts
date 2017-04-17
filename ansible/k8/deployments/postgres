@@ -13,6 +13,11 @@ spec:
         - image: postgres:9.5.2
           imagePullPolicy: Always
           name: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "JFmZDuVYPt9vUxk4DBjj"
+            - name: POSTGRES_USER
+              value: "epsilon"
           ports:
             - containerPort: 32659
           volumeMounts:
