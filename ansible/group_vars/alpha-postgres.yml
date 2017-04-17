@@ -11,3 +11,9 @@ volume_mounts:
 
 container_image: postgres
 container_tag: "9.5.2"
+
+container_envs:
+  - name: POSTGRES_PASSWORD
+    value: "{{ pg_pass }}"
+  - name: POSTGRES_USER
+    value: "{{ pg_user }}"
