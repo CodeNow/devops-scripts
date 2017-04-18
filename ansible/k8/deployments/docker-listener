@@ -28,7 +28,7 @@ spec:
             - name: LOGGLY_TOKEN
               value: "f673760d-e0b3-4a93-a15e-2862ea074f91"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

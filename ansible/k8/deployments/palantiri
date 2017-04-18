@@ -20,7 +20,7 @@ spec:
             - name: CONSUL_HOST
               value: "consul:8500"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: DATADOG_HOST
               value: "192.168.1.53"
             - name: DATADOG_PORT

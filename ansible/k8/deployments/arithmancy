@@ -22,7 +22,7 @@ spec:
             - name: DATADOG_PORT
               value: "8125"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: POSTGRES_CONNECT_STRING
               value: "postgres://epsilon:JFmZDuVYPt9vUxk4DBjj@postgres:5432/arithmancy"
             - name: RABBITMQ_HOSTNAME

@@ -129,7 +129,7 @@ data:
         action:        drop
 
       - source_labels: [__meta_ec2_tag_env]
-        regex:         production-gamma
+        regex:         production-epsilon
         action:        keep
 
       - source_labels: [__meta_ec2_tag_role]
@@ -161,7 +161,7 @@ data:
         action:        drop
 
       - source_labels: [__meta_ec2_tag_env]
-        regex:         production-gamma
+        regex:         production-epsilon
         action:        keep
 
       - source_labels: [__meta_ec2_tag_role]

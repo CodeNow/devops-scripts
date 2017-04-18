@@ -18,7 +18,7 @@ spec:
             - start
           env:
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: DATADOG_HOST
               value: "192.168.1.53"
             - name: DATADOG_PORT

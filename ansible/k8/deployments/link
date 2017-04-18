@@ -28,7 +28,7 @@ spec:
             - name: MONGO
               value: "mongodb://navi:4ff6a7d7f262448a98e2d1700e5980ef@mongo/navi"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

@@ -20,7 +20,7 @@ spec:
             - name: MONGO
               value: "mongodb://clio:Fkj8CBoMNpuhe7p6@mongo/clio"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: PORT
               value: "8008"
             - name: RABBITMQ_HOSTNAME

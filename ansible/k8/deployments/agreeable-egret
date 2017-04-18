@@ -20,7 +20,7 @@ spec:
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RUNNABLE_API_URL
               value: "https://api.runnable-beta.com"
             - name: PORT

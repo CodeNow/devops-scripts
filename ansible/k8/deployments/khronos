@@ -10,7 +10,7 @@ spec:
         app: khronos
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/khronos:v6.5.11
+        - image: 127.0.0.1:5000/runnable/khronos:v6.5.12
           imagePullPolicy: Always
           name: khronos
           args:
@@ -50,7 +50,7 @@ spec:
             - name: KHRONOS_MONGO
               value: "mongodb://api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb@mongo/api"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

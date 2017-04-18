@@ -43,7 +43,7 @@ spec:
             - name: INTERCOM_APP_ID
               value: "xs5g95pd"
             - name: LOG_ENVIRONMENT
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: LOG_LEVEL
               value: "trace"
             - name: MONGODB_DATABASE

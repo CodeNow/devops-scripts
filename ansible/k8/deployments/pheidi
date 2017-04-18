@@ -42,7 +42,7 @@ spec:
             - name: MONGO_REPLSET_NAME
               value: "epsilon-rs0"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

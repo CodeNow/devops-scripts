@@ -10,7 +10,7 @@ spec:
         app: shiva
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/shiva:v7.8.4
+        - image: 127.0.0.1:5000/runnable/shiva:v7.8.5
           imagePullPolicy: Always
           name: shiva
           args:
@@ -35,7 +35,7 @@ spec:
             - name: AWS_SECRET_ACCESS_KEY
               value: "GrOO85hfoc7+bwT2GjoWbLyzyNbOKb2/XOJbCJsv"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: REGISTRY_HOST
               value: "10.4.4.82"
             - name: ROLLBAR_KEY

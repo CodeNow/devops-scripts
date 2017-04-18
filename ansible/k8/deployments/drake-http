@@ -25,7 +25,7 @@ spec:
             - name: DATADOG_PORT
               value: "8125"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

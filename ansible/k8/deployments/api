@@ -10,7 +10,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: 127.0.0.1:5000/runnable/api:GKE-build
+        - image: 127.0.0.1:5000/runnable/api:v11.36.0
           imagePullPolicy: Always
           name: api
           args:
@@ -76,7 +76,7 @@ spec:
             - name: NAVI_HOST
               value: "http://navi:3567"
             - name: NODE_ENV
-              value: "production-gamma"
+              value: "production-epsilon"
             - name: NUM_WORKERS
               value: "1"
             - name: OPTIMUS_HOST
