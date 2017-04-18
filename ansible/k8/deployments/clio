@@ -18,7 +18,7 @@ spec:
             - start
           env:
             - name: MONGO
-              value: "mongodb://clio:Fkj8CBoMNpuhe7p*@mongo/clio"
+              value: "mongodb://clio:Fkj8CBoMNpuhe7p6@mongo/clio"
             - name: NODE_ENV
               value: "production-gamma"
             - name: PORT
