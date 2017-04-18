@@ -23,7 +23,12 @@ spec:
           volumeMounts:
             - name: postgres-db-claim
               mountPath: /data/db
+            - name: postgres-init-user-db
+              mountPath: /docker-entrypoint-initdb.d/
       volumes:
         - name: postgres-db-claim
           persistentVolumeClaim:
             claimName: postgres-db-claim
+        - name: postgres-init-user-db
+          configMap:
+            name: postgres-init-user-db

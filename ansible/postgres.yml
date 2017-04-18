@@ -6,5 +6,6 @@
   - role: notify
 
   - role: database
+  - role: postgres
   - role: k8-deployment
   - role: k8-service

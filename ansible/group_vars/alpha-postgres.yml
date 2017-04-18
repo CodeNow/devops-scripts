@@ -8,6 +8,9 @@ volume_mounts:
   - name: "{{ name }}-db-claim"
     path: /data/db
     kind: persistent
+  - name: "{{ name }}-init-user-db"
+    path: /docker-entrypoint-initdb.d/
+    kind: configMap
 
 container_image: postgres
 container_tag: "9.5.2"

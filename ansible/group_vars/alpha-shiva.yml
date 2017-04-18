@@ -19,8 +19,6 @@ container_envs:
     value: "{{ rabbit_port }}"
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
-  - name: POSTGRES_CONNECT_STRING
-    value: "postgres://{{ pg_user }}:{{ pg_pass }}@{{ pg_host }}/{{ pg_database }}"
   - name: AWS_ACCESS_KEY_ID
     value: "{{ aws_access_key_id }}"
   - name: AWS_SECRET_ACCESS_KEY

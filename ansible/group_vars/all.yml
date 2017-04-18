@@ -49,6 +49,7 @@ core_file_dir: /docker/app-cores
 
 # agreeable-egret
 agreeable_egret_hostname: egret.{{ domain }}
+egret_pg_database: egret
 
 #angular
 angular_url: https://app.{{ domain }}
@@ -64,6 +65,7 @@ api_url: https://{{ api_hostname }}
 
 # arithmancy
 arithmancy_rollbar_key: 1fe145fdeb1a4526b48f5dd82b0d6eb5
+arithmancy_pg_database: arithmancy
 
 # astral
 pg_database: astral
