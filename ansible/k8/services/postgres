@@ -6,6 +6,6 @@ spec:
   selector:
     app: postgres
   ports:
-    - port: 32659
+    - port: 5432
       protocol: TCP
-      name: '32659'
+      name: '5432'

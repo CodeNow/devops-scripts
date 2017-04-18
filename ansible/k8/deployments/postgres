@@ -19,7 +19,7 @@ spec:
             - name: POSTGRES_USER
               value: "epsilon"
           ports:
-            - containerPort: 32659
+            - containerPort: 5432
           volumeMounts:
             - name: postgres-db-claim
               mountPath: /data/db
