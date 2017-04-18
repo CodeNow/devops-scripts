@@ -41,10 +41,11 @@ spec:
 {% endfor %}
 {% endif %}
 {% if add_capabilities is defined %}
-          capabilities:
-            add:
+          securityContext:
+            capabilities:
+              add:
 {% for cap in add_capabilities %}
-            - {{ cap }}
+              - {{ cap }}
 {% endfor %}
 {% endif %}
 {% if hosted_ports is defined %}
