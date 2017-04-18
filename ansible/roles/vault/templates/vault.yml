@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ name }}
 data:
-  vault.conf: |
+  vault.hcl: |
     backend "consul" {
       advertise_addr = "http://vault.{{ domain }}:{{ vault_api_port }}"
       address = "consul.{{ domain }}:{{ consul_api_port }}"

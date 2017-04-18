@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: vault
 data:
-  vault.conf: |
+  vault.hcl: |
     backend "consul" {
       advertise_addr = "http://vault.runnable-beta.com:8200"
       address = "consul.runnable-beta.com:8500"

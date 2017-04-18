@@ -14,5 +14,8 @@ container_run_args: >
   -log-level=warn
   -config=/config/vault.hcl
 
+add_capabilities:
+  - IPC_LOCK
+
 # for the love of all that you find holy, don't change the following unless you _KNOW WHAT YOU ARE DOING_.
 vault_seed_policy: "{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Action\\\": [\\\"ec2:DescribeInstances\\\", \\\"ec2:DescribeTags\\\"], \\\"Resource\\\": [\\\"*\\\"], \\\"Effect\\\": \\\"Allow\\\", \\\"Sid\\\": \\\"Stmt1445655064000\\\"}]}"

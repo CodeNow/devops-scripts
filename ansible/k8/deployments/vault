@@ -19,6 +19,9 @@ spec:
             - -log-level=warn
             - -config=/config/vault.hcl
 
+          capabilities:
+            add:
+            - IPC_LOCK
           ports:
             - containerPort: 8200
           volumeMounts:

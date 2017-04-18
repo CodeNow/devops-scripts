@@ -40,6 +40,13 @@ spec:
 {% endif %}
 {% endfor %}
 {% endif %}
+{% if add_capabilities is defined %}
+          capabilities:
+            add:
+{% for cap in add_capabilities %}
+            - {{ cap }}
+{% endfor %}
+{% endif %}
 {% if hosted_ports is defined %}
           ports:
 {% for port in hosted_ports %}
