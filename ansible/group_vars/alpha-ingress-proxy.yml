@@ -39,3 +39,7 @@ services:
     port: "{{ registry_port }}"
   - name: rabbitmq
     port: "15672"
+  - name: consul
+    port: "{{ consul_api_port }}"
+  - name: vault
+    port: "{{ vault_api_port }}"
