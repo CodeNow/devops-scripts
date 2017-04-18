@@ -1,0 +1,6 @@
+---
+- name: create cert config map
+  tags: [ configure_proxy, configure_files ]
+  template:
+    src: init-user-db.sh
+    dest: "{{ config_maps_path }}/{{ name }}-init-user-db"
