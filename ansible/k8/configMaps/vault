@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault
+data:
+  vault.conf: |
+    backend "consul" {
+      advertise_addr = "http://vault.runnable-beta.com:8200"
+      address = "consul.runnable-beta.com:8500"
+      scheme = "http"
+      path = "vault"
+    }
+
+    listener "tcp" {
+      address = "0.0.0.0:8200"
+      tls_disable = 1
+    }
+
+    max_lease_ttl = "8760h"

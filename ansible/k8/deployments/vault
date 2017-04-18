@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vault
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vault
+    spec:
+      containers:
+        - image: runnable/vault:v0.5.1
+          imagePullPolicy: Always
+          name: vault
+          args:
+            - vault
+            - server
+            - -log-level=warn
+            - -config=/config/vault.hcl
+
+          ports:
+            - containerPort: 8200
+          volumeMounts:
+            - name: vault
+              mountPath: /config
+      volumes:
+        - name: vault
+          configMap:
+            name: vault
