@@ -9,7 +9,7 @@ container_envs:
   - name: MONGO
     value: "mongodb://{{ clio_mongo_auth }}@{{ mongo_hosts }}/{{ clio_mongo_database }}"
   - name: MONGO_REPLSET_NAME
-    value: "{{ clio_mongo_replset_name }}"
+    value: "{{ clio_mongo_replset_name | default('ansible_undefined') }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: PORT
