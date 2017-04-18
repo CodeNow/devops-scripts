@@ -12,12 +12,12 @@ container_envs: >
   -e API_URL=https://{{ api_hostname }}
   -e MIXPANEL_PROXY_URL={{ mixpanel_proxy_url }}
   -e AWS_ACCESS_KEY={{ aws_access_key }}
-  -e AWS_BUCKET app.{{ domain }}
+  -e AWS_BUCKET=app.{{ domain }}
   -e AWS_REGION={{ web_aws_bucket_region | default('us-east-1') }}
   -e AWS_SECRET_KEY={{ aws_secret_key }}
   -e INTERCOM_APP_ID={{ web_intercom_id }}
   -e MARKETING_URL={{ marketing_url }}
-  -e NODE_ENV production
+  -e NODE_ENV=production
   -e SIFT_API_KEY={{ web_sift_public_key }}
   -e STRIPE_TOKEN={{ cream_stripe_publishable_key }}
   -e USER_CONTENT_DOMAIN={{ user_content_domain }}
