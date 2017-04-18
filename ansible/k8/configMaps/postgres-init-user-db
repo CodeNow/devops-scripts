@@ -9,9 +9,9 @@ data:
 
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
         CREATE DATABASE egret;
-        GRANT ALL PRIVILEGES ON DATABASE egret TO egret;
+        GRANT ALL PRIVILEGES ON DATABASE egret TO epsilon;
         CREATE DATABASE arithmancy;
-        GRANT ALL PRIVILEGES ON DATABASE arithmancy TO arithmancy;
+        GRANT ALL PRIVILEGES ON DATABASE arithmancy TO epsilon;
         CREATE DATABASE big_poppa;
-        GRANT ALL PRIVILEGES ON DATABASE big_poppa TO big_poppa;
+        GRANT ALL PRIVILEGES ON DATABASE big_poppa TO epsilon;
     EOSQL
