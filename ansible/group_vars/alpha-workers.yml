@@ -1,6 +1,6 @@
 name: api-worker
 
-container_image: runnable/{{ name }}
+container_image: registry.runnable.com/runnable/{{ name }}
 
 memory_hard_limit: 1g
 
