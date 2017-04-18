@@ -5,8 +5,8 @@ metadata:
 data:
   vault.hcl: |
     backend "consul" {
-      advertise_addr = "http://vault.runnable-beta.com:8200"
-      address = "consul.runnable-beta.com:8500"
+      advertise_addr = "http://vault.runnable-beta.com"
+      address = "consul.runnable-beta.com"
       scheme = "http"
       path = "vault"
     }
