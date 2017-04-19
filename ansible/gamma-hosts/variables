@@ -1,7 +1,6 @@
 [agreeable-egret:vars]
 agreeable_egret_port=65520
 egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-egret_pg_port=32659
 egret_pg_user=egret
 egret_pg_pass=b3UKjxbGblKZtG6c
 egret_pg_database=egret
@@ -32,7 +31,6 @@ arithmancy_pg_user=arithmancy_gamma
 [big-poppa:vars]
 big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
 big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-big_poppa_pg_port=32659
 big_poppa_pg_user=big_poppa
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
 big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
@@ -167,9 +165,11 @@ github_protocol=https
 is_github_enterprise=false
 mongo_hosts=10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
 mongo_port=27017
+navi_mongo=mongo
 node_env=production-gamma
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
+pg_port=32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 registry_host=10.4.4.82

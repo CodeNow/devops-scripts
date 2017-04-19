@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-conf
+data:
+  rabbitmq.config: |
+    [
+      {rabbit,
+        [
+          {default_vhost,       <<"/">>},
+          {default_user,        <<"o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM">>},
+          {default_pass,        <<"wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk">>},
+          {default_permissions, [<<".*">>, <<".*">>, <<".*">>]}
+        ]},
+      {rabbitmq_management,
+        [
+          {load_definitions, "/etc/rabbitmq/schema.json"}
+        ]}
+    ].
+
+  schema.json: |
+    {
+      "rabbit_version": "3.5.3",
+      "users": [],
+      "vhosts": [
+        {
+          "name": "/"
+        }
+      ],
+      "permissions": [],
+      "parameters": [],
+      "policies": [],
+      "queues": [],
+      "exchanges": [
+        {
+          "name": "application.url.visited",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "organization.integration.prbot.disabled",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "routing.cache.invalidated",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "asg.update.requested",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "organization.disallowed",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        }
+      ],
+      "bindings": []
+    }
