@@ -1,4 +1,8 @@
-FROM registry.runnable.com/runnable/{{ base_dockerfile }}:latest
+FROM node:{{ node_version }}
+
+{% if npm_version is defined %}
+RUN npm install npm@{{ npm_version }} -g
+{% endif %}
 
 {% if hosted_ports is defined %}
 # Expose port to Host
@@ -12,22 +16,24 @@ ENV {{ env }}
 {% endfor %}
 {% endif %}
 
-# setup node and npm versions
-RUN npm install -g n@2.1.0
-RUN n {{ node_version }} && npm install -g npm@{{ npm_version }}
-
+WORKDIR /{{ name }}
 {% if dockerfile_pre_install_commands is defined %}
 {% for command in dockerfile_pre_install_commands %}
 RUN {{ command }}
 {% endfor %}
 {% endif %}
 
+RUN mkdir /root/.ssh/
+ADD id_rsa /root/.ssh/id_rsa
+ADD known_hosts /root/.ssh/known_hosts
+RUN chmod 600 /root/.ssh/id_rsa
+
 # Add package.json from the current build context (`.` is the repo) second
 ADD ./repo/package.json /{{ name }}/package.json
 
 # Add shrinkwrap from the current build context (`.` is the repo) first
 # If we change a non first-level dependency, this will break cache as expected
-{% if has_shrinkwrap is defined %}
+{% if has_shrinkwrap is defined  and has_shrinkwrap %}
 ADD ./repo/npm-shrinkwrap.json /{{ name }}/npm-shrinkwrap.json
 {% endif %}
 
@@ -43,6 +49,9 @@ ADD ./repo /{{ name }}
 RUN {{ command }}
 {% endfor %}
 {% endif %}
+
+RUN rm /root/.ssh/id_rsa
+RUN rm /root/.ssh/known_hosts
 
 # Define default command.
 CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}

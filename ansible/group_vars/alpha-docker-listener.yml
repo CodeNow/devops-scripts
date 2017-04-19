@@ -35,3 +35,6 @@ container_envs:
     value: "{{ docker_listener_rollbar_key }}"
   - name: SWARM_HOST
     value: "{{ swarm_host_address }}:{{ swarm_master_port }}"
+  - name: IMAGE_INSPECT_LIST
+    value: "localhost,runnable/image-builder"
+

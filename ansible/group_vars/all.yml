@@ -32,6 +32,8 @@ docker_config: runnable
 slack_token: T029DEC10/B1RSX8LNS/qLLSYEEqkGddohOdE44eDf3j
 slack_channels: [ '#ops' ]
 
+sendgrid_key: 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
+
 loggly_token: f673760d-e0b3-4a93-a15e-2862ea074f91
 loggly_password: TebejAcutHeH_Ch0tR9ru4anaT6CRu*3
 loggly_username: ops
@@ -115,6 +117,7 @@ docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
 
 # drake
 drake_hostname: drake.{{ domain }}
+drake_port: 80
 
 # ec2
 aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
@@ -209,6 +212,9 @@ swarm_container_name: swarm
 navi_mongo_database: navi
 
 npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
+
+# remote vault
+vault_port: 8200
 
 # local-vault
 vault_local_port: 31836

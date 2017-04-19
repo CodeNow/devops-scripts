@@ -17,6 +17,14 @@ envs:
   - name: NEW_RELIC_NO_CONFIG_FILE
     value: "true"
 
-container_envs: "{{ big_poppa_base_container_envs + envs }}"
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+  "apt-get update",
+  "apt-get install postgresql-client=9.4+165+deb8u2 -y",
+  "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
 
 container_run_args: npm run start-http

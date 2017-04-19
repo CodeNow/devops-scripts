@@ -1,6 +1,9 @@
 [bastion]
 delta-bastion
 
+[user-local]
+127.0.0.1
+
 [hipache]
 delta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
 
@@ -168,6 +171,7 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
+user-local
 userland
 web
 worker

@@ -1,7 +1,7 @@
 ---
 - name: Ensure Tag Deploy For Prod
   tags: deploy, build
-  when: node_env=="production-delta" and not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$")
+  when: node_env is defined and node_env=="production-delta" and not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$")
   fail: msg="only tag can be deployed on prod not {{ git_branch }}"
 
 - name: create build folder
@@ -44,8 +44,9 @@
 - name: ensure latest tag is deployed
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  fail: msg="Cannot deploy {{ git_branch }} because latest is {{latest_tag.stdout}}. Bypass with `-t i_am_deploying_an_old_tag`"
-  when: node_env=="production-delta" and latest_tag.stdout != git_branch and i_am_deploying_an_old_tag is not defined
+  fail: msg="Cannot deploy -{{ git_branch }}- because latest is -{{latest_tag.stdout}}-. Bypass with `-t i_am_deploying_an_old_tag`"
+  when: (node_env is not defined or node_env is defined and node_env=="production-delta") and
+        (latest_tag.stdout != git_branch and i_am_deploying_an_old_tag is not defined)
 
 - name: copy dockerfile to build folder
   delegate_to: "{{ builder }}"
@@ -55,12 +56,39 @@
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
+- name: copy secrets into build dir
+  tags: [ deploy ]
+  become: true
+  copy:
+    src=./secrets/docker-client/{{ file_name_item }}
+    dest={{ build_dir }}/{{ name }}
+    owner=ubuntu
+    group=ubuntu
+    mode=0700
+  with_items:
+    - id_rsa
+    - known_hosts
+  loop_control:
+    loop_var: file_name_item
+
 - name: build docker image and tag
   delegate_to: "{{ builder }}"
   tags: deploy, build
   become: yes
   ignore_errors: True
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+
+- name: remove secrets from build dir
+  tags: [ deploy ]
+  become: true
+  file:
+    path: "{{ build_dir }}/{{ name }}/{{ file_name_item }}"
+    state: absent
+  with_items:
+    - id_rsa
+    - known_hosts
+  loop_control:
+    loop_var: file_name_item
 
 - name: push docker image
   delegate_to: "{{ builder }}"

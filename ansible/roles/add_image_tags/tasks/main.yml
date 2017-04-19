@@ -1,0 +1,8 @@
+---
+- name: add additional tags
+  become: true
+  shell: docker tag "{{ container_image }}:{{ container_tag }}" "registry.runnable.com/runnable/{{ tag_name_item }}:{{ container_tag }}"
+  when: additional_tags is defined
+  with_items: "{{ additional_tags }}"
+  loop_control:
+    loop_var: tag_name_item

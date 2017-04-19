@@ -18,11 +18,13 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the “Keys of Power” from someone who can already deploy (ask Anand if you don’t know). Depending on what you want to deploy you'll receive `*.pem` files.
+4. Obtain the "Ansible Secrets" zip from one password
 
-5. Move the “Keys of Power” .pem  files to your `~/.ssh` directory
+5. Unzip file obtained above into `devops-scripts/ansible/secrets`
 
-6. Install two required tools onto your machine:
+6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
+
+7. Install two required tools onto your machine:
 ```bash
 brew update && brew install vault daemon
 ```

@@ -7,6 +7,8 @@ node_version: "0.12.0"
 npm_version: "2.1.18"
 
 dockerfile_post_install_commands: [
+  "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
+  "chmod +x /usr/bin/sass",
   "npm run grunt"
 ]
 
