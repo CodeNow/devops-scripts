@@ -1,0 +1,41 @@
+---
+- name: get containers
+  tags: deploy
+  become: yes
+  script: findTagRunning.sh {{ container_image }}
+  register: container_ids
+
+- name: wait for container to stop
+  become: yes
+  script: findTagRunning.sh {{ container_image }}
+  register: result
+  tags: deploy
+  until: result.stdout_lines|length == 0
+  retries: 100
+  delay: 1
+
+- name: get container exit code
+  tags: deploy
+  become: true
+  command: docker inspect -f {% raw %}{{.State.ExitCode}}{% endraw %} {{ container_ids.stdout_lines[0] }}
+  register: container_exit_code
+
+- name: get logs
+  tags: deploy
+  shell: source /home/ubuntu/.bash_aliases && loglast {{ name }} "n 200"
+  args:
+     executable: /bin/bash
+  when: container_exit_code.stdout != "0"
+  register: last_200_lines_of_logs
+
+- name: display logs for debugging purposes
+  tags: deploy
+  when: container_exit_code.stdout != "0"
+  debug:
+    var: last_200_lines_of_logs
+
+- name: assert container exited with no errors
+  tags: deploy
+  when: container_exit_code.stdout != "0"
+  fail:
+    msg: "Container did not exit with code 0 (Code: {{ container_exit_code.stdout }})"

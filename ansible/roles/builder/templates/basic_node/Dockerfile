@@ -54,4 +54,4 @@ RUN rm /root/.ssh/id_rsa
 RUN rm /root/.ssh/known_hosts
 
 # Define default command.
-CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }} 
+CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}
