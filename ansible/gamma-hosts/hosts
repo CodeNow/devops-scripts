@@ -130,7 +130,7 @@ localhost
 localhost
 
 [navi-port-router]
-35.184.78.134
+gamma-userland
 
 [gamma:children]
 agreeable-egret
