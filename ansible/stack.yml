@@ -22,8 +22,8 @@
 - include: prometheus.yml
 - include: rabbitmq.yml
 - include: registry.yml
-- include: mongo.yml
 - include: sauron.yml -e git_branch=v7.5.1
+- include: mongo.yml
 - include: swarm-manager.yml
 - include: shiva.yml -e git_branch=v7.8.5
 - include: swarm-cloudwatch-reporter.yml -e git_branch=v2.0.0

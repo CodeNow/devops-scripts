@@ -90,7 +90,7 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: REDIS_IPADDRESS
-              value: "redis"
+              value: "10.4.6.45"
             - name: REDIS_PORT
               value: "6379"
             - name: S3_CONTEXT_RESOURCE_BUCKET

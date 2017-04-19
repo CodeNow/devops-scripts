@@ -164,6 +164,7 @@ github_domain=api.github.com
 github_protocol=https
 is_github_enterprise=false
 mongo_hosts=10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
+redis_host_address=10.4.6.45
 mongo_port=27017
 navi_mongo=mongo
 node_env=production-gamma

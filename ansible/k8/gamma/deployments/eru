@@ -67,7 +67,7 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: REDIS_HOSTNAME
-              value: "redis"
+              value: "10.4.6.45"
             - name: REDIS_PORT
               value: "6379"
             - name: RUNNABLE_DOMAIN

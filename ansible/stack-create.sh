@@ -4,7 +4,7 @@ if [ -z "$TEST_FN" ]; then
   exit 1
 fi
 
-for APP in agreeable-egret api arithmancy big-poppa clio cream detention docker-listener drake eru github-varnish ingress-proxy khronos link mongo navi-proxy navi optimus palantiri pheidi prometheus-alerts prometheus rabbitmq redis registry sauron mongo swarm-manager; do
+for APP in agreeable-egret api arithmancy big-poppa clio cream detention docker-listener drake eru github-varnish ingress-proxy khronos link mongo navi-proxy navi optimus palantiri pheidi prometheus-alerts prometheus rabbitmq registry sauron mongo swarm-manager; do
   GIT_BRANCH=`util::get_latest_tag $APP 2>/dev/null`
   if [ -z "$GIT_BRANCH" ]; then
     echo - include: $APP.yml
