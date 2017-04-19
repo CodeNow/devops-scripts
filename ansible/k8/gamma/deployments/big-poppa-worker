@@ -41,7 +41,7 @@ spec:
             - name: PGDATABASE
               value: "big_poppa"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://big_poppa:JFmZDuVYPt9vUxk4DBjj@gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com/big_poppa"
+              value: "postgres://big_poppa:JFmZDuVYPt9vUxk4DBjj@gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659/big_poppa"
             - name: RABBITMQ_HOSTNAME
               value: "rabbitmq"
             - name: RABBITMQ_PASSWORD

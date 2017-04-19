@@ -37,7 +37,7 @@ big_poppa_base_container_envs:
   - name: PGDATABASE
     value: "{{ big_poppa_pg_database }}"
   - name: POSTGRES_CONNECT_STRING
-    value: "postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ pg_host }}/{{ big_poppa_pg_database }}"
+    value: "postgres://{{ big_poppa_pg_user }}:{{ big_poppa_pg_pass }}@{{ big_poppa_pg_host }}/{{ big_poppa_pg_database }}"
   - name: RABBITMQ_HOSTNAME
     value: "{{ rabbit_host_address }}"
   - name: RABBITMQ_PASSWORD
