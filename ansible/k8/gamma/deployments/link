@@ -38,4 +38,4 @@ spec:
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"

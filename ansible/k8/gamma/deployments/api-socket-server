@@ -102,7 +102,7 @@ spec:
             - name: SWARM_HOST
               value: "http://swarm:2375"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
             - name: AWS_ALIAS_HOST
               value: "us-west-2.compute.internal"
             - name: NEW_RELIC_LOG_LEVEL

@@ -58,6 +58,6 @@ spec:
             - name: SENDGRID_KEY
               value: "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"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
             - name: WEB_URL
               value: "https://app.runnable-gamma.com"

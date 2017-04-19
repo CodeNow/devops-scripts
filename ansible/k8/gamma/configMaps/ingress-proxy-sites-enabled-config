@@ -15,7 +15,7 @@ data:
   user-pixel.conf: |
     server {
       listen 80;
-      server_name blue.runnable.ninja;
+      server_name blue.runnablecloud.com;
       location / {
         return 404;
       }
@@ -23,7 +23,7 @@ data:
 
     server {
       listen 443 ssl;
-      server_name blue.runnable.ninja;
+      server_name blue.runnablecloud.com;
       gzip off;
 
       ssl on;
@@ -45,7 +45,7 @@ data:
       resolver_timeout 5s;
 
       location = /pixel.gif {
-        add_header Set-Cookie "isModerating=1; Domain=.runnable.ninja; Path=/; HttpOnly;";
+        add_header Set-Cookie "isModerating=1; Domain=.runnablecloud.com; Path=/; HttpOnly;";
         empty_gif;
       }
 

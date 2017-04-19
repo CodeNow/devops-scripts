@@ -62,7 +62,7 @@ spec:
             - name: SWARM_HOST
               value: "http://swarm:2375"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
             - name: WORKER_MAX_RETRY_DELAY
               value: "3600000"
           volumeMounts:

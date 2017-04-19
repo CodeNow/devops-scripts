@@ -16,7 +16,7 @@ data:
     server {
       listen 80;
       client_max_body_size 200m;
-      server_name runnable.ninja;
+      server_name runnablecloud.com;
       access_log /var/log/nginx/navi.access.log;
 
       location / {
@@ -41,14 +41,14 @@ data:
     server {
       listen 443 ssl;
       client_max_body_size 200m;
-      server_name runnable.ninja;
+      server_name runnablecloud.com;
       access_log /var/log/nginx/navi.ssl.access.log;
 
       ssl on;
-      ssl_certificate /etc/ssl/certs/runnable.ninja/chained.pem;
-      ssl_certificate_key /etc/ssl/certs/runnable.ninja/key.pem;
-      ssl_trusted_certificate /etc/ssl/certs/runnable.ninja/ca.pem;
-      ssl_dhparam /etc/ssl/certs/runnable.ninja/dhparam.pem;
+      ssl_certificate /etc/ssl/certs/runnablecloud.com/chained.pem;
+      ssl_certificate_key /etc/ssl/certs/runnablecloud.com/key.pem;
+      ssl_trusted_certificate /etc/ssl/certs/runnablecloud.com/ca.pem;
+      ssl_dhparam /etc/ssl/certs/runnablecloud.com/dhparam.pem;
 
       ssl_session_cache shared:SSL:10m;
       ssl_session_timeout 10m;

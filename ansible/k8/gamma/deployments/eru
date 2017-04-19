@@ -73,7 +73,7 @@ spec:
             - name: RUNNABLE_DOMAIN
               value: "runnable-gamma.com"
             - name: USER_CONTENT_DOMAIN
-              value: "runnable.ninja"
+              value: "runnablecloud.com"
           ports:
             - containerPort: 5501
             - containerPort: 5502

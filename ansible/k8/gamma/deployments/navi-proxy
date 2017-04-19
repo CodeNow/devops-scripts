@@ -17,16 +17,16 @@ spec:
             - containerPort: 80
             - containerPort: 443
           volumeMounts:
-            - name: navi-proxy-runnable-ninja-certs
-              mountPath: /etc/ssl/certs/runnable.ninja
+            - name: navi-proxy-runnablecloud-com-certs
+              mountPath: /etc/ssl/certs/runnablecloud.com
             - name: navi-proxy-base-conf
               mountPath: /etc/nginx/
             - name: navi-proxy-navi-conf
               mountPath: /etc/nginx/sites-enabled
       volumes:
-        - name: navi-proxy-runnable-ninja-certs
+        - name: navi-proxy-runnablecloud-com-certs
           configMap:
-            name: navi-proxy-runnable-ninja-certs
+            name: navi-proxy-runnablecloud-com-certs
         - name: navi-proxy-base-conf
           configMap:
             name: navi-proxy-base-conf
