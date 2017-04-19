@@ -127,8 +127,6 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
 [swarm-manager:vars]
-aws_access_key=AKIAIB5W3E6HR6Q52HEQ
-aws_secret_key=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
 environment_name=gamma
 
 [vault:vars]
