@@ -1,3 +1,9 @@
+---
+- name: create cron folder
+  file:
+    state: directory
+    path: "{{ cron_jobs_path }}"
+
 - name: create cron_queues
   template:
     dest: "{{ cron_jobs_path }}/{{ item.cron_queue }}"

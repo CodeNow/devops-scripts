@@ -1,4 +1,9 @@
 ---
+- name: create daemon folder
+  file:
+    state: directory
+    path: "{{ daemon_sets_path }}"
+
 - name: create registry deamon set
   template:
     dest: "{{ daemon_sets_path }}/{{ name }}"

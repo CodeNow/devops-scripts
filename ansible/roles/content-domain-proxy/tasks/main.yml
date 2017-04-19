@@ -10,6 +10,11 @@
 - set_fact:
     dhparam_data: "{{ lookup('file', '{{ user_content_domain }}/dhparam.pem') }}"
 
+- name: create configMap folder
+  file:
+    state: directory
+    path: "{{ config_maps_path }}"
+
 - name: create cert config map
   tags: [ configure_proxy, configure_files ]
   template:

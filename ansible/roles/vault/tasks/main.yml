@@ -1,4 +1,9 @@
 ---
+- name: create configMap folder
+  file:
+    state: directory
+    path: "{{ config_maps_path }}"
+
 - name: create vault config
   tags: [ deploy ]
   template:

@@ -6,6 +6,11 @@
 - set_fact:
     key_data: "{{ lookup('file', 'certs/{{ name }}/key.pem') }}"
 
+- name: create configMap folder
+  file:
+    state: directory
+    path: "{{ config_maps_path }}"
+
 - name: create docker ssl cert config maps
   template:
     dest: "{{ config_maps_path }}/{{ name }}-docker-ssl-certs"

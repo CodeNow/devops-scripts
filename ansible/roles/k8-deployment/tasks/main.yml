@@ -1,3 +1,9 @@
+---
+- name: create deployment folder
+  file:
+    state: directory
+    path: "{{ deployments_path }}"
+
 - name: create deployment yaml
   template:
     dest: "{{ deployments_path }}/{{ name }}"

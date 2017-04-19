@@ -1,4 +1,9 @@
 ---
+- name: create volume folder
+  file:
+    state: directory
+    path: "{{ volumes_path }}"
+
 - name: ensure volume id exist
   fail: msg="`volume_id` is note defined. Must have created a volume of size {{ storage_size_gb }} aws ec2 create-volume --region us-west-2 --availability-zone us-west-2a --size {{ storage_size_gb }} --volume-type gp2"
   when: volume_id is not defined
