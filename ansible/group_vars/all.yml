@@ -7,6 +7,7 @@ pager_duty_key: testkey
 registry_env: prod
 registry_port: 80
 registry_host: "quay.io"
+quay_api_token: QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa
 
 # for docker stop old container
 stop_time: 5

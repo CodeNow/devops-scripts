@@ -23,7 +23,7 @@
     url: https://quay.io/api/v1/repository/runnable/{{ repository_name | default(name) }}/tag/?limit=1&specificTag={{ container_tag }}
     method: GET
     headers:
-      Authorization: 'Bearer QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa'
+      Authorization: 'Bearer {{ quay_api_token }}'
   register: currently_built_tags
 
 - name: set number of images built
@@ -133,6 +133,32 @@
     - known_hosts
   loop_control:
     loop_var: file_name_item
+
+- name: get image id for newly created image
+  tags: deploy
+  become: true
+  when: build_image and push_image
+  shell: docker images -a | grep "{{ container_image }}" | grep "{{ container_tag }}" | awk '{print $3}'
+  register: unsquahed_image_id
+
+- name: squash newly created image (Expect this to take some time [5 min. approx])
+  tags: deploy
+  when: build_image and push_image
+  become: true
+  shell: docker-squash "{{ unsquahed_image_id.stdout_lines[0] }}" -t "{{ container_image }}:{{ container_tag }}"
+
+- name: get number of layers
+  tags: deploy
+  when: build_image and push_image
+  become: true
+  shell: docker history "{{ container_image }}:{{ container_tag }}" | wc -l
+  register: number_of_layers
+
+- name: Ensure only squashed images are pushed
+  tags: deploy
+  # One line for layer and one line for headers
+  when: build_image and push_image and (number_of_layers is defined and number_of_layers.stdout != "2")
+  fail: msg="Only squashed layers can be pushed to registry"
 
 - name: login to registry
   tags: deploy
