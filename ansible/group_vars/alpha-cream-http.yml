@@ -1,6 +1,6 @@
 name: cream-http
 
-container_image: runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ cream_port }}"]
 repo: "git@github.com:CodeNow/cream.git"

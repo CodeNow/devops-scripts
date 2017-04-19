@@ -1,7 +1,7 @@
 ---
 name: eru
 
-container_image: runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "5501", "5502" ]
