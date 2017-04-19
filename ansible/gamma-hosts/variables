@@ -1,4 +1,5 @@
 [agreeable-egret:vars]
+egret_port=65520
 egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
 egret_pg_user=egret
 egret_pg_pass=b3UKjxbGblKZtG6c

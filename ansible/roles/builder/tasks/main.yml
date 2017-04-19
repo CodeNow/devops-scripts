@@ -57,7 +57,8 @@
     dest: "{{ build_dir }}/{{ name }}"
 
 - name: copy secrets into build dir
-  tags: [ deploy ]
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: true
   copy:
     src=./secrets/docker-client/{{ file_name_item }}
@@ -79,7 +80,8 @@
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: remove secrets from build dir
-  tags: [ deploy ]
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}/{{ file_name_item }}"

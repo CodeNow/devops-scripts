@@ -41,6 +41,8 @@ spec:
               value: "7b5924eccfff415d9fc00c051811e9d7"
             - name: SWARM_HOST
               value: "swarm:2375"
+            - name: IMAGE_INSPECT_LIST
+              value: "localhost,runnable/image-builder"
           volumeMounts:
             - name: docker-listener-docker-ssl-certs
               mountPath: /etc/ssl/docker
