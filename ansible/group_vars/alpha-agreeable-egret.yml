@@ -1,6 +1,6 @@
 name: "agreeable-egret"
 
-container_image: "registry.runnable.com/runnable/{{ name }}"
+container_image: "runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ agreeable_egret_port }}"]
 repo: "git@github.com:CodeNow/{{ name }}.git"

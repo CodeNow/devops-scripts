@@ -1,6 +1,6 @@
 name: clio
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: runnable/{{ name }}
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ clio_port }}"]
 repo: git@github.com:CodeNow/{{ name }}.git
