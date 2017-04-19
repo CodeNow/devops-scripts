@@ -42,10 +42,6 @@
     # Use `-e "force_push_image=true"` in the command line to force image push
     push_image: '{{ is_prod_and_tag and (no_images_found or (force_image_push is defined and force_image_push)) }}'
 
-- name: debug
-  debug:
-    msg: 'build_image: {{ build_image }}, push_image: {{ push_image }}, no_images_found: {{ no_images_found }}, is_prod_and_tag: {{ is_prod_and_tag }}'
-
 - name: create build folder
   become: true
   when: build_image
