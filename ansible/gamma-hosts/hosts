@@ -7,10 +7,8 @@ gamma-userland
 [navi-proxy]
 localhost
 
-[mongodb]
-gamma-mongo-a
-gamma-mongo-b
-gamma-mongo-c
+[mongo]
+localhost
 
 [api_group:children]
 worker
@@ -154,7 +152,7 @@ ingress
 kartographer
 khronos
 mongo-navi
-mongodb
+mongo
 navi
 navi-proxy
 optimus
