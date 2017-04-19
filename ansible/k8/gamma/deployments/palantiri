@@ -18,7 +18,7 @@ spec:
             - start
           env:
             - name: CONSUL_HOST
-              value: "consul:8500"
+              value: "10.4.5.144:8500"
             - name: NODE_ENV
               value: "production-gamma"
             - name: DATADOG_HOST

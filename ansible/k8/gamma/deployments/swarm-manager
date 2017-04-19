@@ -19,7 +19,7 @@ spec:
             - --tlscacert=/etc/ssl/docker/ca.pem
             - --tlscert=/etc/ssl/docker/cert.pem
             - --tlskey=/etc/ssl/docker/key.pem
-            - consul://consul:8500/swarm
+            - consul://10.4.5.144:8500/swarm
 
           ports:
             - containerPort: 2375
