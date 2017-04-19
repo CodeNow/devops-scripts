@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: web
   vars_files:
     - group_vars/alpha-enterprise-sign-in.yml
