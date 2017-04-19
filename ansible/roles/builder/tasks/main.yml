@@ -100,9 +100,9 @@
   loop_control:
     loop_var: file_name_item
 
-# - name: push docker image
-#   delegate_to: "{{ builder }}"
-#   tags: deploy, build
-#   become: yes
-#   ignore_errors: True
-#   command: docker push {{ container_image }}:{{ container_tag }}
+- name: push docker image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  ignore_errors: True
+  command: docker push {{ container_image }}:{{ container_tag }}
