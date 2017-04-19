@@ -56,6 +56,13 @@
     src: "{{ dockerfile }}"
     dest: "{{ build_dir }}/{{ name }}"
 
+- name: copy .dockerignore file into build folder
+  tags: deploy
+  become: true
+  template:
+    src: ".dockerignore"
+    dest: "{{ build_dir }}/{{ name }}"
+
 - name: copy secrets into build dir
   delegate_to: "{{ builder }}"
   tags: deploy, build
