@@ -6,18 +6,9 @@
   register: container_ids
 
 - name: wait for container to stop
+  tags: deploy
   become: yes
-  script: findTagRunning.sh {{ container_image }}
-  register: result
-  tags: deploy
-  until: result.stdout_lines|length == 0
-  retries: 100
-  delay: 1
-
-- name: get container exit code
-  tags: deploy
-  become: true
-  command: docker inspect -f {% raw %}{{.State.ExitCode}}{% endraw %} {{ container_ids.stdout_lines[0] }}
+  command: docker wait {{ container_ids.stdout | trim }}
   register: container_exit_code
 
 - name: get logs

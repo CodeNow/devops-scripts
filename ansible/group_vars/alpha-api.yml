@@ -1,6 +1,6 @@
 name: api
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 
 hosted_ports: [ "{{ api_port }}" ]
 

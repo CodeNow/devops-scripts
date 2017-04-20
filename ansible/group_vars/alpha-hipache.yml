@@ -1,7 +1,7 @@
 # container_kill_start settings
 name: hipache
 
-container_image: registry.runnable.com/runnable/hipache
+container_image: "{{ registry_host }}/runnable/hipache"
 container_tag: latest
 hosted_ports: [ 80, 443 ]
 

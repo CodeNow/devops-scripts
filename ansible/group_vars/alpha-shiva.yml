@@ -1,5 +1,5 @@
 name: shiva
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
@@ -21,7 +21,6 @@ container_envs: >
   -e AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
   -e AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
   -e NODE_ENV={{ node_env }}
-  -e REGISTRY_HOST={{ registry_host }}
   -e ROLLBAR_KEY={{ shiva_rollbar_token }}
   -e DOCKER_PORT={{ docker_port }}
 

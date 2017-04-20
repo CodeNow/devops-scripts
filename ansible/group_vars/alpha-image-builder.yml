@@ -1,7 +1,7 @@
 app_name: image-builder
 name: "{{ app_name }}"
 # namespace (can include "registry.runnable.com:")
-image_builder_docker_namespace: runnable/image-builder
+image_builder_docker_namespace: "{{ registry_host }}/runnable/image-builder"
 app_repo: git@github.com:CodeNow/{{ app_name }}.git
 
 # consul values

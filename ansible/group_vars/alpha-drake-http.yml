@@ -1,6 +1,6 @@
 name: drake-http
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/drake.git"
 hosted_ports: ["{{ drake_port }}"]

@@ -1,7 +1,7 @@
 ---
 name: nginx
 
-docker_image: runnable/sticky-nginx
+docker_image: "{{ registry_host }}/runnable/sticky-nginx"
 docker_image_version: v1.8.1
 
 docker_restart_command: kill -s SIGHUP
