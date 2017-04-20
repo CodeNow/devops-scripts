@@ -1,6 +1,6 @@
 name: cream-worker
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/cream.git"
 node_version: 4.5.0

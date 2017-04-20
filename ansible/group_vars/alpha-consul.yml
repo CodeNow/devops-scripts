@@ -6,7 +6,7 @@ db_path: /etc/consul.d
 # for container_kill_start
 pause_length_minutes: 3
 
-container_image: runnable/consul
+container_image: "{{ registry_host }}/runnable/consul"
 container_tag: v0.6.3
 
 container_run_opts: >

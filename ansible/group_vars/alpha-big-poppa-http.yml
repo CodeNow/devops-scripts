@@ -1,6 +1,6 @@
 name: big-poppa-http
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ big_poppa_port }}"]
 repo: "git@github.com:CodeNow/big-poppa.git"

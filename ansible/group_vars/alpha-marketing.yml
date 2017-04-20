@@ -1,6 +1,6 @@
 name: "runnable.com"
 
-container_image: registry.runnable.com/runnable/{{ name }}
+container_image: "{{ registry_host }}/runnable/{{ name }}"
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.3.1"
