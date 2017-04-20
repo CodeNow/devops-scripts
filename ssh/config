@@ -10,12 +10,6 @@ Host delta*
   StrictHostKeyChecking no
   Identityfile ~/.ssh/delta.pem
 
-Host 35.184.78.134
-  User anandkumarpatel
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  IdentityFile /Users/anandkumarpatel/.ssh/gke
-
 ################################################################################
 # utility
 ################################################################################
@@ -47,30 +41,12 @@ Host 10.4.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
   IdentityFile ~/.ssh/gamma.pem
 
-## Gamma Ingress
-Host gamma-ingress
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.236 22
-
 ## Gamma Userland Hipache
 Host gamma-userland
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.2.208 22
 
-## Gamma App Hipache
-Host gamma-hipache
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.165 22
-
-## Gamma API
-Host gamma-api
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.3 22
-
 Host gamma-api-worker
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.9.84 22
-
-Host gamma-api-socket
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.4 22
-
-Host gamma-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.69 22
 
 Host gamma-consul-a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.144 22
@@ -91,29 +67,9 @@ Host gamma-mongo-b
 Host gamma-mongo-c
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.116 22
 
-## Gamma Rabbit
-Host gamma-rabbit
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.19.17 22
-
 ## Gamma Redis
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
-
-# Gamma App Services
-Host gamma-app-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22
-
-# Gamma Dock Services
-Host gamma-dock-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
-
-# Gamma Navi
-Host gamma-navi
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
-
-# Gamma Registry
-Host gamma-registry
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 ################################################################################
 # Delta

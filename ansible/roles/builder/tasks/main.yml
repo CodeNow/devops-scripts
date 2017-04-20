@@ -6,7 +6,7 @@
 
 - name: create build folder
   delegate_to: "{{ builder }}"
-  tags: build
+  tags: deploy, build
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}"
