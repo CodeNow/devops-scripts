@@ -63,3 +63,5 @@ container_envs:
     value: "{{ github_varnish_host }}"
   - name: GITHUB_VARNISH_PORT
     value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
