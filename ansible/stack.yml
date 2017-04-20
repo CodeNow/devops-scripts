@@ -1,5 +1,5 @@
 - include: agreeable-egret.yml -e git_branch=v0.4.1
-# - include: api.yml -e git_branch=v11.36.0
+- include: api.yml -e git_branch=v11.36.0
 - include: arithmancy.yml -e git_branch=v1.12.0
 - include: big-poppa.yml -e git_branch=v0.18.4
 - include: clio.yml -e git_branch=v1.1.1
