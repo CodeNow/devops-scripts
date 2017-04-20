@@ -163,8 +163,8 @@
 - name: login to registry
   tags: deploy
   become: yes
-  when: build_image and push_image
-  command: docker login -u {{ registry_username }} -p {{ registry_token }} {{ registry_host }}
+  when: (build_image and push_image) or (not build_image)
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
 
 - name: push docker image
   tags: deploy
@@ -172,8 +172,14 @@
   when: build_image and push_image
   command: docker push {{ container_image }}:{{ container_tag }}
 
+- name: pull docker image
+  tags: deploy
+  become: yes
+  when: not build_image
+  command: docker pull {{ container_image }}:{{ container_tag }}
+
 - name: logout of registry
   tags: deploy
   become: yes
-  when: build_image and push_image
+  when: (build_image and push_image) or (not build_image)
   command: docker logout
