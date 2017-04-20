@@ -59,3 +59,7 @@ container_envs:
     value: "{{ user_content_domain }}"
   - name: WEB_URL
     value: "https://app.{{ domain }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
