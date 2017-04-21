@@ -11,7 +11,7 @@
       name={{ dock }}
       groups=dock
 
-- include: image-builder.yml git_branch="v4.3.0"
+- include: image-builder.yml git_branch="v4.4.0"
 
 - hosts: "{{ dock }}"
   tasks:
