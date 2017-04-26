@@ -93,6 +93,7 @@ consul_https_port: 8501
 # cream
 cream_port: 8899
 cream_host_address: "{{ hostvars[groups['cream'][0]]['ansible_default_ipv4']['address'] }}"
+cream_stripe_publishable_key: pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 
 # datadog
 datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
