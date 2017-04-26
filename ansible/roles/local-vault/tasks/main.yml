@@ -12,8 +12,6 @@
   run_once: true
   local_action:
     shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
-  notify:
-    - stop vault
 
 - name: pause for start
   pause:
@@ -41,9 +39,9 @@
     VAULT_ADDR: "{{ vault_addr }}"
     VAULT_TOKEN: "{{ vault_root_token }}"
   with_items:
-  - "{{ vault_unseal_tokens.one }}"
-  - "{{ vault_unseal_tokens.two }}"
-  - "{{ vault_unseal_tokens.three }}"
+  - "x0jJy/ce2/1XNAX/nggmx14SmTwtbqFwaOSGprcPhIMB"
+  - "6Fbb4GMMNLEWq2ZwF4Rkl0bLqFoo2b11cpPHYhb1JKAC"
+  - "1Pjh29PMMKS3HlaGIzBAseoO5kkyrbhZhK5yfBVEcvED"
 
 - name: pause to unseal
   pause:

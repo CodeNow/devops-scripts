@@ -6,6 +6,6 @@
   roles:
   - { role: notify, tags: notify }
   - { role: database }
-  - { role: datadog, tags: [ datadog ] }
+  # - { role: datadog, tags: [ datadog ] }
   - { role: consul }
   - { role: container_kill_start }
