@@ -73,6 +73,13 @@
     src: mixpanel.tmpl
     dest: /etc/nginx/other-sites-enabled/mixpanel.conf
 
+- name: put nginx status template in place
+  tags: [ configure_proxy, configure_files ]
+  become: yes
+  template:
+    src: nginx-status.conf
+    dest: /etc/nginx/other-sites-enabled/nginx-status.conf
+
 - name: put api template in place
   tags: [ configure_proxy, configure_files ]
   become: yes
