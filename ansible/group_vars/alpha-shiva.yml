@@ -5,12 +5,20 @@ repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
 npm_version: "2.8.3"
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
 # Overrides the start command in the builder role
 npm_start_command: run shiva-start
 
 # container settings
 redis_ca_cert_path: /opt/ssl/{{ name }}/redis/ca.pem
 container_envs: >
+  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   -e DATADOG_HOST={{ datadog_host_address }}
   -e DATADOG_PORT={{ datadog_port }}
   -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
