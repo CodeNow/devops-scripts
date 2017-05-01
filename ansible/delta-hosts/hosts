@@ -11,7 +11,7 @@ localhost
 delta-userland
 
 [ingress]
-delta-ingress
+localhost
 
 [api_group:children]
 worker
@@ -145,7 +145,6 @@ docks
 drake
 eru
 github-varnish
-hipache
 ingress
 khronos
 metabase
@@ -165,7 +164,6 @@ shiva
 socket-server
 socket-server-proxy
 swarm-manager
-user-local
 userland
 web
 worker

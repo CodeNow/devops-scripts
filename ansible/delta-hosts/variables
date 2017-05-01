@@ -84,8 +84,6 @@ eru_mongodb_replset=delta-rs0
 eru_mongodb_username=eru
 eru_subdomain=eru
 
-[kartographer:vars]
-
 [khronos:vars]
 khronos_intercom_api_key=14771f14efb617900724a16345e57beb55ba9beb
 khronos_intercom_app_id=wqzm3rju
