@@ -187,6 +187,7 @@ node_env=production-delta
 pg_host=delta-infradb.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=59a5524e-a772-11e5-bedc-1bdc0db458b3
 pg_port=5432
+rabbit_host_address=10.8.4.195
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address=10.8.4.9

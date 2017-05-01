@@ -1,19 +1,14 @@
 [bastion]
 delta-bastion
 
-[user-local]
-127.0.0.1
+[navi-port-router]
+delta-userland
 
-[hipache]
-delta-hipache httpsCheckForBackend80=false prependIncomingPort=true subDomainDepth=4
+[navi-proxy]
+localhost
 
 [userland]
 delta-userland
-
-[mongodb]
-delta-mongo-a
-delta-mongo-b
-delta-mongo-c
 
 [ingress]
 delta-ingress
@@ -24,7 +19,7 @@ api
 socket-server
 
 [api]
-delta-api
+localhost
 
 [consul]
 delta-consul-a
@@ -32,7 +27,7 @@ delta-consul-b
 delta-consul-c
 
 [docker-listener]
-delta-dock-services
+localhost
 
 [vault]
 delta-consul-a
@@ -40,98 +35,101 @@ delta-consul-b
 delta-consul-c
 
 [worker]
-delta-api-worker
+localhost
 
 [socket-server]
-delta-api-socket
+localhost
 
 [socket-server-proxy]
-delta-api-socket-proxy
+localhost
 
 [deployer]
-delta-app-services-1
+localhost
 
 [docks]
 
 [dock]
 
 [agreeable-egret]
-delta-app-services-1
+localhost
 
 [eru]
-delta-app-services-1
+localhost
 
 [navi]
-delta-navi
+localhost
 
 [mongo-navi]
-delta-navi
+localhost
+
+[mongo]
+localhost
 
 [clio]
-delta-app-services-1
+localhost
 
 [link]
-delta-navi
+localhost
 
 [khronos]
-delta-dock-services
+localhost
 
 [optimus]
-delta-dock-services
+localhost
 
 [detention]
-delta-app-services-1
+localhost
 
 [palantiri]
-delta-dock-services
+localhost
 
 [rabbitmq]
 delta-rabbit
 
 [web]
-delta-app-services-1
+localhost
 
 [marketing]
-delta-app-services-1
+localhost
 
 [metabase]
-delta-metabase
+localhost
 
 [redis]
 delta-redis
 
 [shiva]
-delta-app-services-2
+localhost
 
 [registry]
 delta-registry
 
 [sauron]
-delta-dock-services
+localhost
 
 [swarm-manager]
-delta-swarm-manager
+localhost
 
 [drake]
-delta-app-services-2
+localhost
 
 [pheidi]
-delta-app-services-1
+localhost
 
 [github-varnish]
-delta-app-services-1
+localhost
 
 [big-poppa]
-delta-app-services-2
+localhost
 
 [cream]
-delta-app-services-2
+localhost
 
 [arithmancy]
-delta-app-services-1
+localhost
 
 [prometheus]
-delta-prometheus
+localhost
 
 [delta:children]
 agreeable-egret
@@ -151,8 +149,11 @@ hipache
 ingress
 khronos
 metabase
-mongodb
+mongo-navi
+mongo
 navi
+navi-port-router
+navi-proxy
 optimus
 pheidi
 prometheus

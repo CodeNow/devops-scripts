@@ -20,7 +20,6 @@
 - include: pheidi.yml -e git_branch=v1.38.7
 - include: prometheus-alerts.yml
 - include: prometheus.yml
-- include: rabbitmq.yml
 - include: registry.yml
 - include: sauron.yml -e git_branch=v7.5.1
 - include: swarm-manager.yml
