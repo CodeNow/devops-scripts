@@ -102,7 +102,7 @@ delta-redis
 localhost
 
 [registry]
-delta-registry
+localhost
 
 [sauron]
 localhost
