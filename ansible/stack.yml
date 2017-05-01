@@ -1,7 +1,7 @@
 - include: agreeable-egret.yml -e git_branch=v0.4.1
-- include: api.yml -e git_branch=v11.36.0
+- include: api.yml -e git_branch=v11.39.1
 - include: arithmancy.yml -e git_branch=v1.12.0
-- include: big-poppa.yml -e git_branch=v0.18.4
+- include: big-poppa.yml -e git_branch=v0.18.5
 - include: clio.yml -e git_branch=v1.1.1
 - include: cream.yml -e git_branch=v1.14.0
 - include: detention.yml -e git_branch=v1.3.4
@@ -16,8 +16,8 @@
 - include: navi-proxy.yml
 - include: navi.yml -e git_branch=v10.5.3
 - include: optimus.yml -e git_branch=v5.1.1
-- include: palantiri.yml -e git_branch=v2.3.3
-- include: pheidi.yml -e git_branch=v1.38.6
+- include: palantiri.yml -e git_branch=v2.4.6
+- include: pheidi.yml -e git_branch=v1.38.7
 - include: prometheus-alerts.yml
 - include: prometheus.yml
 - include: rabbitmq.yml
@@ -25,5 +25,5 @@
 - include: sauron.yml -e git_branch=v7.5.1
 - include: mongo.yml
 - include: swarm-manager.yml
-- include: shiva.yml -e git_branch=v7.8.5
+- include: shiva.yml -e git_branch=v7.9.0
 - include: swarm-cloudwatch-reporter.yml -e git_branch=v2.0.0
