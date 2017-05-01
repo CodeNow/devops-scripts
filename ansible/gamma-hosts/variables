@@ -1,13 +1,13 @@
 [agreeable-egret:vars]
-egret_port=65520
-egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-egret_pg_user=egret
-egret_pg_pass=b3UKjxbGblKZtG6c
 egret_pg_database=egret
+egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+egret_pg_pass=b3UKjxbGblKZtG6c
+egret_pg_user=egret
+egret_port=65520
 
 [api_group:vars]
-api_aws_alias_host=us-west-2.compute.internal
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
+api_aws_alias_host=us-west-2.compute.internal
 api_aws_secret_access_key=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
 api_github_client_id=b6072dc57062faca7fcb
 api_github_client_secret=ba73a9294dc4bfaa7ed02ba187f73918506e4293
@@ -17,9 +17,9 @@ api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database=gamma
 api_mongo_replset_name=gamma-rs0
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
-api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 api_s3_log_bucket=production-gamma.container-logs
+api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 
 [arithmancy:vars]
 arithmancy_pg_database=arithmancy
@@ -29,17 +29,17 @@ arithmancy_pg_port=5432
 arithmancy_pg_user=arithmancy_gamma
 
 [big-poppa:vars]
-big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
-big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-big_poppa_pg_user=big_poppa
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
 big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
-big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
-big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
 big_poppa_intercom_id=xs5g95pd
+big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
 big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=gamma
 big_poppa_mongo_replset_name=gamma-rs0
+big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
+big_poppa_pg_user=big_poppa
+big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
 
 [clio:vars]
 clio_mongo_auth=clio:Fkj8CBoMNpuhe7p*
@@ -162,7 +162,6 @@ github_domain=api.github.com
 github_protocol=https
 is_github_enterprise=false
 mongo_hosts=10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
-redis_host_address=10.4.6.45
 mongo_port=27017
 navi_mongo=mongo
 node_env=production-gamma
@@ -171,6 +170,7 @@ pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
 pg_port=32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+redis_host_address=10.4.6.45
 registry_host=10.4.4.82
 secrets_path=gamma-hosts/secrets
 user_content_domain=runnablecloud.com
