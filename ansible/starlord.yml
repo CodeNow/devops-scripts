@@ -1,0 +1,12 @@
+---
+- hosts: rabbitmq
+- hosts: consul
+- hosts: user-vault
+
+- hosts: starlord
+  vars_files:
+    - group_vars/alpha-starlord.yml
+  roles:
+  - { role: notify, tags: notify }
+  - { role: builder, tags: build }
+  - { role: container_kill_start }

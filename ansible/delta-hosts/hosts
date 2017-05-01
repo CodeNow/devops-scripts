@@ -47,6 +47,9 @@ delta-consul-a
 delta-consul-b
 delta-consul-c
 
+[user-vault]
+delta-dock-services
+
 [worker]
 delta-api-worker
 

@@ -45,6 +45,9 @@ gamma-consul-a
 gamma-consul-b
 gamma-consul-c
 
+[user-vault]
+gamma-dock-services
+
 [worker]
 gamma-api-worker
 
