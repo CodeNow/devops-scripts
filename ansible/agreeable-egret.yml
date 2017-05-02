@@ -5,6 +5,7 @@
     - group_vars/alpha-agreeable-egret.yml
   roles:
   - role: notify
+    rollbar_token: "{{ egret_rollbar_token }}"
     tags: [ notify ]
   - role: builder
     tags: [ build ]

@@ -19,6 +19,7 @@ container_envs: >
   -e PORT={{ hosted_ports[0] }}
   -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
   -e POSTGRES_CONNECT_STRING=postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ egret_pg_host }}/{{ egret_pg_database }}
+  -e ROLLBAR_KEY={{ egret_rollbar_key }}
 
 container_run_opts: >
   -h {{ name }}
