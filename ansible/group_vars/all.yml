@@ -216,6 +216,9 @@ npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 # remote vault
 vault_port: 8200
 
+# user-vault
+user_vault_port: 8200
+
 # local-vault
 vault_local_port: 31836
 vault_addr: http://127.0.0.1:{{ vault_local_port }}

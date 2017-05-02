@@ -1,0 +1,17 @@
+name: starlord
+
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: git@github.com:CodeNow/{{ name }}.git
+node_version: "6.10.2"
+npm_version: "3.10.10"
+
+container_envs: >
+  -e NODE_ENV={{ node_env }}
+  -e VAULT_ENDPOINT=http://{{ user_vault_host_address }}:{{ user_vault_port }}
+  -e VAULT_TOKEN={{ starlord_vault_token }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  {{ container_envs }}

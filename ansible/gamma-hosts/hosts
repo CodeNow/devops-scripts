@@ -38,6 +38,9 @@ gamma-consul-a
 gamma-consul-b
 gamma-consul-c
 
+[user-vault]
+localhost
+
 [worker]
 localhost
 
@@ -93,6 +96,9 @@ localhost
 localhost
 
 [shiva]
+localhost
+
+[starlord]
 localhost
 
 [socket-server]
@@ -165,7 +171,9 @@ sauron
 shiva
 socket-server
 socket-server-proxy
+starlord
 swarm-manager
+user-vault
 userland
 web
 worker

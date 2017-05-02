@@ -126,6 +126,9 @@ registry_s3_region=us-east-1
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
+[starlord:vars]
+starlord_vault_token=1234
+
 [swarm-manager:vars]
 environment_name=gamma
 
