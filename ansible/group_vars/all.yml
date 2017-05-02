@@ -18,9 +18,6 @@ registry_address: "quay.io"
 container_image: "{{ registry_address }}/runnable/{{ name }}"
 quay_api_token: QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa
 
-# for docker stop old container
-stop_time: 5
-
 # For docker built containers
 do_not_push: true
 
