@@ -182,12 +182,6 @@
   when: build_image
   command: docker push {{ container_image }}:{{ container_tag }}
 
-- name: pull docker image
-  tags: deploy, build
-  become: yes
-  when: not build_image
-  command: docker pull {{ container_image }}:{{ container_tag }}
-
 - name: logout of registry
   tags: deploy, build
   become: yes
