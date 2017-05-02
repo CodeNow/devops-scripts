@@ -1,7 +1,5 @@
 name: "detention"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ detention_port }}"]
 node_version: "0.12.0"
