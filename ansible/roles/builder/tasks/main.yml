@@ -153,13 +153,13 @@
 
 - name: squash newly created image (Expect this to take some time [5 min. approx])
   tags: deploy, build
-  when: build_image
+  when: build_image and inject_ca
   become: true
   shell: docker-squash "{{ unsquahed_image_id.stdout_lines[0] }}" -t "{{ container_image }}:{{ container_tag }}"
 
 - name: get number of layers
   tags: deploy, build
-  when: build_image
+  when: build_image and inject_ca
   become: true
   shell: docker history "{{ container_image }}:{{ container_tag }}" | wc -l
   register: number_of_layers
@@ -167,7 +167,7 @@
 - name: Ensure only squashed images are pushed
   tags: deploy, build
   # One line for layer and one line for headers
-  when: build_image and (number_of_layers is defined and number_of_layers.stdout != "2")
+  when: build_image and inject_ca and (number_of_layers is defined and number_of_layers.stdout != "2")
   fail: msg="Only squashed layers can be pushed to registry"
 
 - name: login to registry
