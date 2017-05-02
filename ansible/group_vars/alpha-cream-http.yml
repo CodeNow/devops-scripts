@@ -1,6 +1,8 @@
 name: cream-http
 service_name: cream
 
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ cream_port }}"]
 
 envs:

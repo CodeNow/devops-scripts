@@ -1,6 +1,8 @@
 name: api-socket-server
 service_name: apisock
 
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+
 hosted_ports: [ "{{ api_port }}" ]
 
 envs:

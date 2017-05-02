@@ -1,5 +1,7 @@
 name: api-worker
 
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+
 memory_hard_limit: 1g
 
 envs:

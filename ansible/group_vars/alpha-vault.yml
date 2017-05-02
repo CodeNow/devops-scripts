@@ -3,7 +3,7 @@ name: vault
 # for database role
 db_path: /opt/runnable/vault
 
-container_image: runnable/vault
+container_image: "{{ registry_host }}/runnable/vault"
 container_tag: v0.5.1
 
 container_run_opts: >

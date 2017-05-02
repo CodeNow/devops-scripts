@@ -1,6 +1,8 @@
 ---
 name: deployer
 
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
 repo: git@github.com:CodeNow/devops-scripts.git
 
 container_envs: >-

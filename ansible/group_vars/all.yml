@@ -12,6 +12,14 @@ daemon_sets_path: "{{ opts_root }}/daemonSets"
 
 container_tag: "{{ git_branch }}"
 container_image: "{{ registry_address }}/runnable/{{ name }}"
+# registry settings
+registry_env: prod
+registry_port: 80
+registry_host: "quay.io"
+quay_api_token: QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa
+
+# for docker stop old container
+stop_time: 5
 
 # For docker built containers
 do_not_push: true

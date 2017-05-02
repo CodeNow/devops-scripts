@@ -90,6 +90,9 @@ Host 10.8.*.*
 Host delta-api
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.25 22
 
+Host delta-api-2
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.12.242 22
+
 Host delta-api-worker
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.24 22
 

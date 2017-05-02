@@ -1,6 +1,8 @@
 name: big-poppa-http
 service_name: big-poppa
 
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
 hosted_ports: ["{{ big_poppa_port }}"]
 
 envs:

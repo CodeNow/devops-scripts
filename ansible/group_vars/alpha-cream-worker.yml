@@ -3,6 +3,11 @@ name: cream-worker
 envs:
   - name: ROLLBAR_KEY
     value: "{{ cream_worker_rollbar_token }}"
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/cream.git"
+node_version: 4.5.0
+npm_version: 2
 
 container_envs: "{{ cream_base_container_envs + envs }}"
 

@@ -3,6 +3,11 @@ name: drake-worker
 envs:
   - name: ROLLBAR_KEY
     value: "{{ drake_worker_rollbar_token }}"
+container_image: "{{ registry_host }}/runnable/{{ name }}"
+container_tag: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/drake.git"
+node_version: "4.4.7"
+npm_version: 2
 
 container_envs: "{{ drake_base_container_envs + envs }}"
 
