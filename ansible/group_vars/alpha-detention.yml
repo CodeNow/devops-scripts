@@ -1,11 +1,6 @@
 name: "detention"
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-container_image: "registry.runnable.com/runnable/{{ name }}"
-=======
 container_image: "{{ registry_host }}/runnable/{{ name }}"
->>>>>>> a74b8570c6c4f549df72f8e8861e170ddd060f5a
 container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ detention_port }}"]

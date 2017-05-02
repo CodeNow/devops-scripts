@@ -189,7 +189,6 @@ rabbit_host_address=10.8.4.195
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address=10.8.4.9
-registry_host=10.8.4.126
 secrets_path=delta-hosts/secrets
 user_content_domain=runnableapp.com
 vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088

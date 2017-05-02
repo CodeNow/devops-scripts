@@ -1,15 +1,9 @@
 name: "fluffy"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ fluffy_port }}"]
 node_version: "4.2.2"
 npm_version: "2.1.18"
-
-# for redis
-redis_key: "frontend:{{ fluffy_hostname }}"
-is_redis_update_required: 'yes'
 
 dockerfile_post_install_commands: [
  "git clone -b master --single-branch git@github.com:CodeNow/devops-scripts /opt/devops-scripts",
@@ -17,14 +11,10 @@ dockerfile_post_install_commands: [
  "cd /opt/docks-cli && npm install && npm link ."
 ]
 
-# container settings
-container_envs: >
-  -e PORT={{ hosted_ports[0] }}
-  -e NODE_ENV={{ node_env }}
-  -e DEVOPS_SCRIPTS_PATH="opt/devops-scripts"
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  {{container_envs}}
+container_envs:
+  - name: PORT
+    value: "{{ hosted_ports[0] }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: DEVOPS_SCRIPTS_PATH
+    value: "opt/devops-scripts"

@@ -1,6 +1,5 @@
 name: api
 service_name: api
-container_image: "{{ registry_host }}/runnable/{{ name }}"
 
 hosted_ports: [ "{{ api_port }}" ]
 

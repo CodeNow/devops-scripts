@@ -4,8 +4,6 @@ envs:
   - name: ROLLBAR_KEY
     value: "{{ big_poppa_worker_rollbar_token }}"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/big-poppa.git"
 node_version: 4.4.7
 npm_version: 2

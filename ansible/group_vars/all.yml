@@ -11,11 +11,11 @@ volumes_path: "{{ opts_root }}/volumes"
 daemon_sets_path: "{{ opts_root }}/daemonSets"
 
 container_tag: "{{ git_branch }}"
-container_image: "{{ registry_address }}/runnable/{{ name }}"
 # registry settings
 registry_env: prod
 registry_port: 80
-registry_host: "quay.io"
+registry_address: "quay.io"
+container_image: "{{ registry_address }}/runnable/{{ name }}"
 quay_api_token: QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa
 
 # for docker stop old container
