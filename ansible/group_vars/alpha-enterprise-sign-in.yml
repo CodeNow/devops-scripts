@@ -1,7 +1,6 @@
 name: "enterprise-sign-in"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+inject_ca: false
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.8.0"
 npm_version: "2.15.11"

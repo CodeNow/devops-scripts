@@ -3,17 +3,25 @@
   vars_files:
     - group_vars/alpha-vault.yml
   tasks:
-    - name: make sure httplib2 is installed
-      run_once: true
-      become: true
-      apt: package=python-httplib2 state=present
+    - name: unseal vault
+      tags: [ deploy ]
+      uri:
+        method=PUT
+        url={{ vault_url }}/v1/sys/unseal
+        HEADER_X-Vault-Token="{{ vault_auth_token }}"
+        body_format=json
+        body='{{ item | to_json }}'
+      with_items:
+      - key: "{{ vault_token_01 }}"
+      - key: "{{ vault_token_02 }}"
+      - key: "{{ vault_token_03 }}"
 
     - name: put values into vault
       run_once: true
       when: write_values is defined
       uri:
         method=PUT
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/{{ item.key }}
+        url={{ vault_url }}/v1/{{ item.key }}
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item.data | to_json }}'
@@ -25,7 +33,7 @@
       when: write_values is defined
       uri:
         method=GET
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/mounts
+        url={{ vault_url }}/v1/sys/mounts
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         return_content=yes
       register: mounts
@@ -36,7 +44,7 @@
       uri:
         method=POST
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/mounts/aws_1h
+        url={{ vault_url }}/v1/sys/mounts/aws_1h
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json }}'
@@ -53,7 +61,7 @@
       uri:
         method=POST
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/mounts/aws_1yr
+        url={{ vault_url }}/v1/sys/mounts/aws_1yr
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json }}'
@@ -70,7 +78,7 @@
       uri:
         method=POST
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/aws_1h/config/root
+        url={{ vault_url }}/v1/aws_1h/config/root
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json }}'
@@ -87,7 +95,7 @@
       uri:
         method=POST
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/aws_1yr/config/root
+        url={{ vault_url }}/v1/aws_1yr/config/root
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json }}'
@@ -104,7 +112,7 @@
       uri:
         method=GET
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/aws_1h/roles/dock-init
+        url={{ vault_url }}/v1/aws_1h/roles/dock-init
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         status_code=200,404
       register: role
@@ -115,7 +123,7 @@
       uri:
         method=POST
         follow_redirects=all
-        url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/aws_1h/roles/dock-init
+        url={{ vault_url }}/v1/aws_1h/roles/dock-init
         HEADER_X-Vault-Token="{{ vault_auth_token }}"
         body_format=json
         body='{{ item | to_json | replace("\\\\", "") }}'

@@ -1,29 +1,27 @@
 name: optimus
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+inject_ca: false
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: ["{{ optimus_port }}"]
 node_version: "4.3.2"
 npm_version: "2.8.3"
 
-# for redis
-redis_key: frontend:{{ optimus_hostname }}
-is_redis_update_required: yes
-
-container_envs: >
-  -e NODE_ENV={{ node_env }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e PORT={{ hosted_ports[0] }}
-  -e AWS_ACCESS_KEY_ID={{ optimus_aws_access_id }}
-  -e AWS_SECRET_ACCESS_KEY={{ optimus_aws_secret_id }}
-  -e S3_DEPLOY_KEY_BUCKET={{ optimus_github_deploy_keys_bucket }}
-  -e ROLLBAR_KEY=a49f9cce09ee46f09df3f603178fba75
-  -e LOG_LEVEL=trace
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  {{ container_envs }}
+container_envs:
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: PORT
+    value: "{{ optimus_port }}"
+  - name: AWS_ACCESS_KEY_ID
+    value: "{{ optimus_aws_access_id }}"
+  - name: AWS_SECRET_ACCESS_KEY
+    value: "{{ optimus_aws_secret_id }}"
+  - name: S3_DEPLOY_KEY_BUCKET
+    value: "{{ optimus_github_deploy_keys_bucket }}"
+  - name: ROLLBAR_KEY
+    value: "a49f9cce09ee46f09df3f603178fba75"
+  - name: LOG_LEVEL
+    value: "trace"

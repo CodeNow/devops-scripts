@@ -1,0 +1,39 @@
+---
+- hosts: navi-port-router
+  tasks:
+    - name: ensure target target_ip
+      fail: msg="`target_ip`  needs to be defined to run this role. Ip of navi proxy"
+      when: target_ip is not defined
+
+    - name: ensure ip_forward is one
+      become: yes
+      command: echo 1 > /proc/sys/net/ipv4/ip_forward
+
+    - name: proxy 80:442, 444:65535 to 80 and 443 to 443
+      tags: deploy
+      become: yes
+      iptables:
+        table=nat
+        chain=PREROUTING
+        in_interface=eth0
+        protocol=tcp
+        destination_port={{ item.from }}
+        jump=DNAT
+        to_destination={{ target_ip }}:{{ item.to }}
+        comment="Redirect {{ item.from }} traffic to navi"
+      with_items:
+        - from: 80:442
+          to: 80
+        - from: 444:65535
+          to: 80
+        - from: 443
+          to: 443
+
+    - name: proxy 80:442, 444:65535 to 80
+      tags: deploy
+      become: yes
+      iptables:
+        table=nat
+        chain=POSTROUTING
+        jump=MASQUERADE
+        comment="MASQUERADE"

@@ -1,23 +1,25 @@
 ---
 # commands to build an image
+#
+# commands to build an image
 - name: check if image is a tag and check environment
-  tags: deploy
+  tags: deploy, build
   set_fact:
     is_image_tag: '{{ git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$") }}'
     is_production_delta: '{{  node_env is defined and node_env=="production-delta" }}'
 
 - name: Ensure Tag Deploy For Prod
-  tags: deploy
+  tags: deploy, build
   when: (is_production_delta and not is_image_tag)
   fail: msg="only tag can be deployed on prod not {{ container_tag }}"
 
 - name: set if is image tag and production delta
-  tags: deploy
+  tags: deploy, build
   set_fact:
     is_prod_and_tag: "{{ is_image_tag and is_production_delta }}"
 
 - name: query registry for tag
-  tags: deploy
+  tags: deploy, build
   uri:
     # Overwrite the name of the image repository (`runnable-angular`, big-poppa-http) with `repository_name`
     url: https://quay.io/api/v1/repository/runnable/{{ repository_name | default(name) }}/tag/?limit=1&specificTag={{ container_tag }}
@@ -27,22 +29,20 @@
   register: currently_built_tags
 
 - name: set number of images built
-  tags: deploy
+  tags: deploy, build
   set_fact:
     no_images_found: "{{ currently_built_tags|json_query('json.tags')|length == 0  }}"
 
 - name: set number of images built
-  tags: deploy
+  tags: deploy, build
   set_fact:
-    # Only build the image if no images are found
-    # Use built images in staging/gamma unless forced
-    build_image: '{{ no_images_found or (force_image_push is defined and force_image_push) }}'
-    # Only push the image if on prod environment
-    # Also, only push image if and no images are found or image push is forced
-    # Use `-e "force_push_image=true"` in the command line to force image push
-    push_image: '{{ is_prod_and_tag and (no_images_found or (force_image_push is defined and force_image_push)) }}'
+    # Only build the image if no images are found or image is not a tag
+    # Use built tag images in staging/gamma unless forced
+    build_image: '{{ no_images_found or not is_image_tag or (force_image_push is defined and force_image_push) }}'
 
 - name: create build folder
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: true
   when: build_image
   file:
@@ -50,7 +50,8 @@
     state: directory
 
 - name: pull the git repository
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: true
   git:
@@ -62,7 +63,8 @@
     force: yes
 
 - name: get new tags from remote
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: true
   shell: "git fetch --tags"
@@ -70,7 +72,8 @@
     chdir: "{{ build_dir }}/{{ name }}/repo"
 
 - name: get latest tag name
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: true
   shell: "git describe --tags `git rev-list --tags --max-count=1`"
@@ -79,12 +82,14 @@
   register: latest_tag
 
 - name: ensure latest tag is deployed
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   fail: msg="Cannot deploy {{ container_tag}} because latest is {{latest_tag.stdout}}. Bypass with `-t i_am_deploying_an_old_tag`"
   when: build_image and is_production_delta and (latest_tag.stdout != container_tag and i_am_deploying_an_old_tag is not defined)
 
 - name: copy dockerfile to build folder
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: true
   template:
@@ -92,7 +97,8 @@
     dest: "{{ build_dir }}/{{ name }}"
 
 - name: copy .dockerignore file into build folder
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: true
   template:
@@ -100,8 +106,9 @@
     dest: "{{ build_dir }}/{{ name }}"
 
 - name: copy secrets into build dir
-  tags: [ deploy ]
-  when: build_image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  when: build_image and inject_ca
   become: true
   copy:
     src=./secrets/docker-client/{{ file_name_item }}
@@ -116,14 +123,17 @@
     loop_var: file_name_item
 
 - name: build docker image and tag
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   when: build_image
   become: yes
+  ignore_errors: True
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
 
 - name: remove secrets from build dir
-  tags: [ deploy ]
-  when: build_image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  when: build_image and inject_ca
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}/{{ file_name_item }}"
@@ -135,51 +145,50 @@
     loop_var: file_name_item
 
 - name: get image id for newly created image
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: true
-  when: build_image and push_image
+  when: build_image
   shell: docker images -a | grep "{{ container_image }}" | grep "{{ container_tag }}" | awk '{print $3}'
   register: unsquahed_image_id
 
 - name: squash newly created image (Expect this to take some time [5 min. approx])
-  tags: deploy
-  when: build_image and push_image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  when: build_image and inject_ca
   become: true
   shell: docker-squash "{{ unsquahed_image_id.stdout_lines[0] }}" -t "{{ container_image }}:{{ container_tag }}"
 
 - name: get number of layers
-  tags: deploy
-  when: build_image and push_image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  when: build_image and inject_ca
   become: true
   shell: docker history "{{ container_image }}:{{ container_tag }}" | wc -l
   register: number_of_layers
 
 - name: Ensure only squashed images are pushed
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   # One line for layer and one line for headers
-  when: build_image and push_image and (number_of_layers is defined and number_of_layers.stdout != "2")
+  when: build_image and inject_ca and (number_of_layers is defined and number_of_layers.stdout != "2")
   fail: msg="Only squashed layers can be pushed to registry"
 
 - name: login to registry
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: yes
-  when: (build_image and push_image) or (not build_image)
   command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
 
 - name: push docker image
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: yes
-  when: build_image and push_image
+  when: build_image
   command: docker push {{ container_image }}:{{ container_tag }}
 
-- name: pull docker image
-  tags: deploy
-  become: yes
-  when: not build_image
-  command: docker pull {{ container_image }}:{{ container_tag }}
-
 - name: logout of registry
-  tags: deploy
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
   become: yes
-  when: (build_image and push_image) or (not build_image)
   command: docker logout

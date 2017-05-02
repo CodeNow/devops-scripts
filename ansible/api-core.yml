@@ -1,30 +1,14 @@
 ---
-- hosts: mongodb
-- hosts: clio
-- hosts: navi
-- hosts: rabbitmq
-- hosts: redis
-- hosts: big-poppa
-- hosts: cream
-- hosts: swarm-manager
-- hosts: consul
-
 - hosts: api
   vars_files:
     - group_vars/alpha-api-base.yml
     - group_vars/alpha-api.yml
   roles:
   - role: notify
-    rollbar_token: "{{ api_rollbar_key }}"
-    tags: [ notify ]
+    rollbar_token: "{{ api_rollbar_token }}"
 
   - role: builder
-    tags: [ build ]
 
   - role: docker_client
-
-  - role: datadog
-    tags: [ datadog ]
-
-  - role: container_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+  - role: k8-deployment
+  - role: k8-service

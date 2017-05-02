@@ -1,64 +1,17 @@
-- name: Put khronos cron queues scripts in place
-  become: yes
-  tags: cron
-  template:
-    src: "khronos-cron-queues.sh"
-    mode: 0744
-    dest: /opt/runnable/{{ item.script }}
-  with_items:
-  - { cron_queues: "{{ main_cron_queues }}", script: "main-cron.sh"}
-  - { cron_queues: "{{ canary_cron_queues }}", script: "canary-cron.sh"}
-  - { cron_queues: "{{ hourly_canary_cron_queues }}", script: "hourly-canary-cron.sh"}
+---
+- name: create cron folder
+  file:
+    state: directory
+    path: "{{ cron_jobs_path }}"
 
-- name: Put khronos cron events scripts in place
-  become: yes
-  tags: cron
+- name: create cron_queues
   template:
-    src: "khronos-cron-events.sh"
-    mode: 0744
-    dest: /opt/runnable/{{ item.script }}
-  with_items:
-  - { cron_event: "time.one-day.passed", script: "1_day_passed_cron_event.sh"}
-  - { cron_event: "time.four-hours.passed", script: "4_hours_passed_cron_event.sh"}
-  - { cron_event: "time.one-hour.passsed", script: "1_hour_passed_cron_event.sh"}
-  - { cron_event: "time.thirty-minutes.passed", script: "30_minutes_passed_cron_event.sh"}
-  - { cron_event: "time.five-minutes.passed", script: "5_minutes_passed_cron_event.sh"}
+    dest: "{{ cron_jobs_path }}/{{ item.cron_queue }}"
+    src: queue-cron.yml
+  with_items: "{{ cron_queues }}"
 
-- name: Put Khronos script into crontab
-  become: yes
-  tags: cron
-  cron:
-    name: "{{ item.name }}"
-    job: /opt/runnable/{{ item.script }} >> {{ app_log_dir }}/{{ item.script }}.log 2>&1
-    minute: "{{ item.minute | default('*') }}"
-    hour: "{{ item.hour | default('*') }}"
-    state: "{{ item.state | default('present') }}"
-  with_items:
-  - name: Khronos CLI - Fourth Hour Cleanup Queue
-    minute: 13
-    hour: 1,4,7,10,13,16,19,22
-    script: main-cron.sh
-  - name: Khronos CLI - Canary Queue
-    minute: "*/5"
-    script: canary-cron.sh
-    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Ever 30 Minutes Canary Queue
-    minute: "*/30"
-    script: hourly-canary-cron.sh
-    state: "{% if node_env == 'production-delta' %}present{% else %}absent{% endif %}"
-  - name: Khronos CLI - Daily Time Event
-    hour: 10 # 10 am UTC / 2 am PST
-    script: 1_day_passed_cron_event.sh
-  - name: Khronos CLI - 4-Hourly Time Event
-    minute: 13
-    hour: 1,4,7,10,13,16,19,22
-    script: 4_hours_passed_cron_event.sh
-  - name: Khronos CLI - Hourly Time Event
-    minute: 49
-    script: 1_hour_passed_cron_event.sh
-  - name: Khronos CLI - Half-Hourly Time Event
-    minute: "*/30"
-    script: 30_minutes_passed_cron_event.sh
-  - name: Khronos CLI - Every 5 minutes Time Event
-    minute: "*/5"
-    script: 5_minutes_passed_cron_event.sh
+- name: create cron_events
+  template:
+    dest: "{{ cron_jobs_path }}/{{ item.cron_event }}"
+    src: event-cron.yml
+  with_items: "{{ cron_events }}"

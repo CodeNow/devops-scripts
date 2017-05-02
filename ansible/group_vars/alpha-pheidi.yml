@@ -1,10 +1,11 @@
 name: pheidi
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+inject_ca: false
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
+
+sendgrid_key: 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
 
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
@@ -14,32 +15,54 @@ dockerfile_pre_install_commands: [
    "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
-container_envs: >
-  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DOMAIN={{ domain }}
-  -e EMAIL_GITHUB_ACCESS_TOKEN={{ pheidi_email_github_token }}
-  -e FULL_API_DOMAIN=https://api.{{ domain }}
-  -e INTERCOM_ADMIN_ID={{ pheidi_intercom_admin_id }}
-  -e INTERCOM_API_KEY={{ pheidi_intercom_key }}
-  -e INTERCOM_APP_ID={{ pheidi_intercom_id }}
-  -e LOGGLY_TOKEN="{{ loggly_token }}"
-  -e MONGO=mongodb://{{ pheidi_mongo_auth }}@{{ mongo_hosts }}/{{ pheidi_mongo_database }}
-  -e MONGO_REPLSET_NAME={{ pheidi_mongo_replset_name }}
-  -e NODE_ENV="{{ node_env }}"
-  -e RABBITMQ_HOSTNAME="{{ rabbit_host_address }}"
-  -e RABBITMQ_PASSWORD="{{ rabbit_password }}"
-  -e RABBITMQ_PORT="{{ rabbit_port }}"
-  -e RABBITMQ_USERNAME="{{ rabbit_username }}"
-  -e ROLLBAR_KEY={{ pheidi_rollbar_token }}
-  -e RUNNABOT_GITHUB_ACCESS_TOKENS={{ pheidi_runnabot_tokens }}
-  -e SENDGRID_KEY={{ sendgrid_key }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e WEB_URL=https://app.{{ domain }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongo-client:ro
-  {{ container_envs }}
+container_envs:
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: DOMAIN
+    value: "{{ domain }}"
+  - name: EMAIL_GITHUB_ACCESS_TOKEN
+    value: "{{ pheidi_email_github_token }}"
+  - name: FULL_API_DOMAIN
+    value: "https://api.{{ domain }}"
+  - name: INTERCOM_ADMIN_ID
+    value: "{{ pheidi_intercom_admin_id }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ pheidi_intercom_key }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ pheidi_intercom_id }}"
+  - name: LOGGLY_TOKEN
+    value: "{{ loggly_token }}"
+  - name: MONGO
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
+  - name: MONGO_REPLSET_NAME
+    value: "{{ api_mongo_replset_name }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ pheidi_rollbar_token }}"
+  - name: RUNNABOT_GITHUB_ACCESS_TOKENS
+    value: "{{ pheidi_runnabot_tokens }}"
+  - name: SENDGRID_KEY
+    value: "{{ sendgrid_key }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: WEB_URL
+    value: "https://app.{{ domain }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"

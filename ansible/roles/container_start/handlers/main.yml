@@ -1,5 +1,6 @@
 ---
 - name: get new container ports
+  delegate_to: "{{ builder }}"
   tags: deploy
   when: hosted_ports is defined
   become: yes
@@ -8,12 +9,14 @@
   with_items: "{{ new_container_ids.stdout_lines }}"
 
 - name: remove all hosts from redis key
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   command: docker run --rm redis redis-cli -h {{ redis_host_address }} ltrim {{ redis_key }} 0 0
   when: is_redis_update_required is defined and container_ports is defined
 
 - name: put new hosts on redis keys
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   command: docker run --rm redis redis-cli -h {{ redis_host_address }} rpush {{ redis_key }} {{ hosted_protocol | default('http') }}://{{ ansible_default_ipv4.address }}:{{ item.stdout }}
@@ -21,6 +24,7 @@
   with_items: "{{ container_ports.results }}"
 
 - name: stop old containers
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   command: docker stop --time={{ stop_time }} {{ item }}

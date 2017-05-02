@@ -1,16 +1,21 @@
 # container start
 name: "registry"
 
-container_image: "registry"
+container_image: "{{ name }}"
 container_tag: "2.1.1"
-hosted_ports: ["80"]
+hosted_ports: ["{{ registry_port }}"]
+container_run_args: ''
 
-container_envs: >
-  -e REGISTRY_STORAGE_S3_ACCESSKEY={{ registry_s3_access_key }}
-  -e REGISTRY_STORAGE_S3_SECRETKEY={{ registry_s3_secret_key }}
-  -e REGISTRY_STORAGE_S3_REGION={{ registry_s3_region }}
-  -e REGISTRY_STORAGE_S3_BUCKET={{ registry_s3_bucket }}
-  -e REGISTRY_ENVIRONMENT=production
-  -e REGISTRY_STORAGE=s3
-
-container_run_opts: "-d -p {{ hosted_ports[0] }}:5000 {{container_envs}}"
+container_envs:
+  - name: REGISTRY_STORAGE_S3_ACCESSKEY
+    value: "{{ registry_s3_access_key }}"
+  - name: REGISTRY_STORAGE_S3_SECRETKEY
+    value: "{{ registry_s3_secret_key }}"
+  - name: REGISTRY_STORAGE_S3_REGION
+    value: "{{ registry_s3_region }}"
+  - name: REGISTRY_STORAGE_S3_BUCKET
+    value: "{{ registry_s3_bucket }}"
+  - name: REGISTRY_ENVIRONMENT
+    value: "production"
+  - name: REGISTRY_STORAGE
+    value: "s3"

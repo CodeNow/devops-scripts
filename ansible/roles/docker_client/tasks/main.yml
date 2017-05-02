@@ -1,24 +1,17 @@
 ---
-- name: create docker cert directory
-  become: true
+- set_fact:
+    ca_data: "{{ lookup('file', 'certs/ca.pem') }}"
+- set_fact:
+    cert_data: "{{ lookup('file', 'certs/{{ name }}/cert.pem') }}"
+- set_fact:
+    key_data: "{{ lookup('file', 'certs/{{ name }}/key.pem') }}"
+
+- name: create configMap folder
   file:
-    path=/opt/ssl/docker/{{ name }}
-    state=directory
+    state: directory
+    path: "{{ config_maps_path }}"
 
-- name: copy docker CA
-  become: true
-  copy:
-    src=certs/ca.pem
-    dest=/opt/ssl/docker/{{ name }}
-    mode=0440
-    owner=root
-    group=root
-
-- name: copy docker client key and cert
-  become: true
-  copy:
-    src=certs/{{ name }}/
-    dest=/opt/ssl/docker/{{ name }}
-    mode=0440
-    owner=root
-    group=root
+- name: create docker ssl cert config maps
+  template:
+    dest: "{{ config_maps_path }}/{{ name }}-docker-ssl-certs"
+    src: certs.yml
