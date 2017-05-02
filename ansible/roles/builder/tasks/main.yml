@@ -108,7 +108,7 @@
 - name: copy secrets into build dir
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
+  when: build_image and inject_ca
   become: true
   copy:
     src=./secrets/docker-client/{{ file_name_item }}
@@ -133,7 +133,7 @@
 - name: remove secrets from build dir
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
+  when: build_image and inject_ca
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}/{{ file_name_item }}"
@@ -145,6 +145,7 @@
     loop_var: file_name_item
 
 - name: get image id for newly created image
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: true
   when: build_image
@@ -152,12 +153,14 @@
   register: unsquahed_image_id
 
 - name: squash newly created image (Expect this to take some time [5 min. approx])
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   when: build_image and inject_ca
   become: true
   shell: docker-squash "{{ unsquahed_image_id.stdout_lines[0] }}" -t "{{ container_image }}:{{ container_tag }}"
 
 - name: get number of layers
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   when: build_image and inject_ca
   become: true
@@ -165,12 +168,14 @@
   register: number_of_layers
 
 - name: Ensure only squashed images are pushed
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   # One line for layer and one line for headers
   when: build_image and inject_ca and (number_of_layers is defined and number_of_layers.stdout != "2")
   fail: msg="Only squashed layers can be pushed to registry"
 
 - name: login to registry
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: yes
   command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
@@ -183,6 +188,7 @@
   command: docker push {{ container_image }}:{{ container_tag }}
 
 - name: logout of registry
+  delegate_to: "{{ builder }}"
   tags: deploy, build
   become: yes
   command: docker logout

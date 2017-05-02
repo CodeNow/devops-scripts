@@ -152,7 +152,6 @@ api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
 builder=gamma-api-worker
 consul_host_address=10.4.5.144
-container_image="{{ registry_address }}/runnable/gamma-{{ name }}"
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
@@ -161,6 +160,7 @@ domain=runnable-gamma.com
 env=gamma
 github_domain=api.github.com
 github_protocol=https
+image_pull_secret_name=runnable-gamma-pull-secret
 is_github_enterprise=false
 mongo_hosts=10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
 mongo_port=27017
@@ -178,8 +178,8 @@ vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
-registry_username=runnable+gammapull
-registry_token=RV8IZ818DDRUMUJNNDDPS0AE4HJXBSFTDSC06X4COUMQZWDZD628IXB0TOO5UL79
+registry_username=runnable+gamma
+registry_token=8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
 
 [ec2:vars]
 aws_custid=437258487404

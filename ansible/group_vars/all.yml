@@ -14,7 +14,8 @@ container_tag: "{{ git_branch }}"
 # registry settings
 registry_env: prod
 registry_port: 80
-registry_address: "quay.io"
+registry_host: "quay.io"
+registry_address: "{{ registry_host }}"
 container_image: "{{ registry_address }}/runnable/{{ name }}"
 inject_ca: true
 quay_api_token: QB9UzzNhwClqMgRyMgNGrSGLdUYZPJLJALdcpKRa
@@ -192,11 +193,6 @@ rabbit_port: 5672
 # redis
 redis_host_address: redis
 redis_port: 6379
-
-# registry
-registry_address: 127.0.0.1:{{ registry_port }}
-registry_port: 5000
-registry_env: prod
 
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
