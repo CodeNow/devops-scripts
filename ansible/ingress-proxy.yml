@@ -8,6 +8,10 @@
 
   - role: runnable-domain-proxy
 
+  - role: runnable-domain-proxy
+    domain: runnable.com
+    when: secondary_domain is defined
+
   - role: container_kill_start
 
 - include: consul-template-updater.yml
