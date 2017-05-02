@@ -1,6 +1,7 @@
 name: agreeable-egret
 service_name: egret
 
+inject_ca: false
 hosted_ports: ["{{ egret_port }}"]
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.3.1"

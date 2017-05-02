@@ -1,5 +1,6 @@
 name: clio
 
+inject_ca: false
 hosted_ports: ["{{ clio_port }}"]
 repo: git@github.com:CodeNow/{{ name }}.git
 node_version: "4.8.0"

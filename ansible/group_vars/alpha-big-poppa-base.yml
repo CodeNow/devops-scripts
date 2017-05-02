@@ -1,6 +1,7 @@
 node_version: 4.4.7
 npm_version: 2
 
+inject_ca: false
 repo: "git@github.com:CodeNow/big-poppa.git"
 
 dockerfile_enviroment: [
