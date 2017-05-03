@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ingress-proxy
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: ingress-proxy
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      containers:
+        - image: nginx:1.10
+          imagePullPolicy: Always
+          name: ingress-proxy
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: ingress-proxy-runnable-io-certs
+              mountPath: /etc/ssl/certs/runnable.io
+            - name: ingress-proxy-base-conf
+              mountPath: /etc/nginx/
+            - name: ingress-proxy-mixpanel-config
+              mountPath: /etc/nginx/other-sites-enabled
+            - name: ingress-proxy-sites-enabled-config
+              mountPath: /etc/nginx/sites-enabled
+      volumes:
+        - name: ingress-proxy-runnable-io-certs
+          configMap:
+            name: ingress-proxy-runnable-io-certs
+        - name: ingress-proxy-base-conf
+          configMap:
+            name: ingress-proxy-base-conf
+        - name: ingress-proxy-mixpanel-config
+          configMap:
+            name: ingress-proxy-mixpanel-config
+        - name: ingress-proxy-sites-enabled-config
+          configMap:
+            name: ingress-proxy-sites-enabled-config
