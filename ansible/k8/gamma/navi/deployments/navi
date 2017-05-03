@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: navi
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: navi
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      containers:
+        - image: quay.io/runnable/navi:v10.5.3
+          imagePullPolicy: Always
+          name: navi
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - start
+          env:
+            - name: API_URL
+              value: "https://api.runnable-gamma.com"
+            - name: COOKIE_DOMAIN
+              value: ".runnablecloud.com"
+            - name: COOKIE_SECRET
+              value: "c90e5fb4e7e511e597309a79f06e9478"
+            - name: DATADOG_HOST
+              value: "datadog"
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: ENABLE_LRU_CACHE
+              value: "1"
+            - name: ERROR_URL
+              value: "http://detention:9123"
+            - name: HTTP_PORT
+              value: "3567"
+            - name: LOG_LEVEL_STDOUT
+              value: "trace"
+            - name: MONGO
+              value: "mongodb://mongo/navi"
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: RABBITMQ_HOSTNAME
+              value: "rabbitmq"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: REDIS_IPADDRESS
+              value: "10.4.6.45"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: NEW_RELIC_LOG_LEVEL
+              value: "fatal"
+            - name: NEW_RELIC_NO_CONFIG_FILE
+              value: "true"
+          ports:
+            - containerPort: 3567

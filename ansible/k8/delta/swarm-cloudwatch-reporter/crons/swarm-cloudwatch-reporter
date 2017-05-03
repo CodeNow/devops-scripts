@@ -1,0 +1,19 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: swarm-cloudwatch-reporter
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: runnable-kubernetes-pull-secret
+          containers:
+          - name: swarm-cloudwatch-reporter
+            image: quay.io/runnable/furry-cactus:v2.0.0
+            args:
+              - npm
+              - start
+          restartPolicy: OnFailure

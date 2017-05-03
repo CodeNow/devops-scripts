@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: detention
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: detention
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      containers:
+        - image: quay.io/runnable/detention:v1.3.4
+          imagePullPolicy: Always
+          name: detention
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - start
+          env:
+            - name: ABSOLUTE_URL
+              value: "detention.runnable-gamma.com"
+            - name: API_URL
+              value: "https://api.runnable-gamma.com"
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: PORT
+              value: "9123"
+          ports:
+            - containerPort: 9123
