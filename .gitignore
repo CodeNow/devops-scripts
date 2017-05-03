@@ -10,7 +10,7 @@ ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
 ansible/certs/*
-ansible/k8/**/configMaps
+ansible/k8/**/configMaps/*cert*
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
