@@ -27,7 +27,7 @@ localhost
 [consul]
 localhost
 
-[deployer]
+[datadog]
 localhost
 
 [docker-listener]
@@ -138,7 +138,7 @@ big-poppa
 charon
 consul
 cream
-deployer
+datadog
 dock
 docker-listener
 docks

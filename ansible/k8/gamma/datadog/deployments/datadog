@@ -24,7 +24,7 @@ spec:
               memory: 1500M
           env:
             - name: TAGS
-              value: "env:production-delta"
+              value: "env:production-gamma"
             - name: API_KEY
               value: "d3ab5d85bca924f9d4e33d307beacb4a"
           ports:
