@@ -3,7 +3,12 @@ name: datadog
 container_image: datadog/docker-dd-agent
 container_tag: latest-dogstatsd
 hosted_ports: ["{{ datadog_port }}"]
+protocol: UDP
 
 container_envs:
   - name: TAGS
     value: "env:{{ node_env }}"
+  - name: API_KEY
+    value: "{{ datadog_api_key }}"
+
+container_run_args: ''
