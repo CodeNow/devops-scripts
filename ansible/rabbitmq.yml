@@ -1,10 +1,11 @@
 ---
 - hosts: rabbitmq
   vars_files:
-    - "group_vars/alpha-rabbitmq.yml"
+    - group_vars/alpha-rabbitmq.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: database }
-  - { role: rabbitmq }
-  - { role: container_kill_start }
-  - { role: datadog, tags: "datadog" }
+  - role: notify
+
+  - role: database
+  - role: rabbitmq
+  - role: k8-deployment
+  - role: k8-service

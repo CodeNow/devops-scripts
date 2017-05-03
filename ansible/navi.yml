@@ -1,20 +1,12 @@
 ---
-- hosts: redis
-- hosts: detention
-- hosts: mongo-navi
-- hosts: rabbitmq
-- hosts: consul
-
 - hosts: navi
   vars_files:
     - group_vars/alpha-navi.yml
   roles:
   - role: notify
     rollbar_token: "{{ navi_rollbar_token }}"
-    tags: [ notify ]
 
   - role: builder
-    tags: [ build ]
 
-  - role: container_start
-    number_of_containers: "{{ ansible_processor_cores }}"
+  - role: k8-deployment
+  - role: k8-service

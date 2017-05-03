@@ -1,17 +1,23 @@
 ---
 - name: get containers
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   script: findTagRunning.sh {{ container_image }}
   register: container_ids
 
 - name: wait for container to stop
+  delegate_to: "{{ builder }}"
+  become: yes
+  script: findTagRunning.sh {{ container_image }}
+  register: result
   tags: deploy
   become: yes
   command: docker wait {{ container_ids.stdout | trim }}
   register: container_exit_code
 
 - name: get logs
+  delegate_to: "{{ builder }}"
   tags: deploy
   shell: source /home/ubuntu/.bash_aliases && loglast {{ name }} "n 200"
   args:
@@ -20,12 +26,14 @@
   register: last_200_lines_of_logs
 
 - name: display logs for debugging purposes
+  delegate_to: "{{ builder }}"
   tags: deploy
   when: container_exit_code.stdout != "0"
   debug:
     var: last_200_lines_of_logs
 
 - name: assert container exited with no errors
+  delegate_to: "{{ builder }}"
   tags: deploy
   when: container_exit_code.stdout != "0"
   fail:

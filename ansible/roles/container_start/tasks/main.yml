@@ -1,6 +1,7 @@
 ---
 # get current running container with this image
 - name: "look for running containers running {{ container_image }}"
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: true
   script: findTagRunning.sh {{ container_image }}
@@ -8,12 +9,14 @@
   changed_when: old_containers_ids.stdout != ''
 
 - name: get latest images
+  delegate_to: "{{ builder }}"
   tags: deploy
   when: not do_not_push
   become: yes
   command: docker pull {{ container_image }}:{{ container_tag }}
 
 - name: get id of latest image
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   shell: >
@@ -23,17 +26,20 @@
   register: new_image_id
 
 - name: default number of containers
+  delegate_to: "{{ builder }}"
   tags: deploy
   when: number_of_containers is undefined
   set_fact:
     number_of_containers: 1
 
 - name: print number of contaienrs
+  delegate_to: "{{ builder }}"
   tags: deploy
   debug:
     msg: starting this many containers -- {{ number_of_containers }}
 
 - name: start new container
+  delegate_to: "{{ builder }}"
   tags: deploy
   become: yes
   shell: |

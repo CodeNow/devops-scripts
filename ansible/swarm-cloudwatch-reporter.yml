@@ -4,30 +4,6 @@
   - group_vars/alpha-swarm-manager-metrics.yml
   roles:
   - role: builder
-    tags: [ build ]
-  tasks:
-  - name: run container
-    tags: test_swarm_stats
-    when: test_swarm_stats is defined
-    become: yes
-    shell: >-
-      docker run
-      -e DRY_RUN=true
-      {{ container_run_opts }}
-      {{ container_image }}:{{ container_tag }}
-      {{ container_run_args }}
 
-  - name: put script into cron
-    tags: [ deploy ]
-    become: yes
-    cron:
-      name: swarm-cloudwatch-reporter
-      cron_file: 10-swarm-cloudwatch
-      user: root
-      state: present
-      job: >-
-        docker run
-        --rm
-        {{ container_run_opts }}
-        {{ container_image }}:{{ container_tag }}
-        {{ container_run_args }}
+  - role: docker_client
+  - role: swarm-cloudwatch-reporter

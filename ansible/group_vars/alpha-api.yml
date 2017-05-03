@@ -1,25 +1,18 @@
 name: api
-
-container_image: "{{ registry_host }}/runnable/{{ name }}"
+service_name: api
 
 hosted_ports: [ "{{ api_port }}" ]
 
-# for redis
-redis_key: frontend:{{ api_hostname }}
-is_redis_update_required: yes
+memory_hard_limit: 1G
+num_replicas: 16
 
-memory_hard_limit: 1g
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ api_rollbar_key }}"
 
-# for container settings
-container_envs: >
-  {{ api_base_container_envs }}
-  -e ROLLBAR_KEY={{ api_rollbar_key }}
-  -e LOG_LEVEL=warn
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
 
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -p {{ hosted_ports[0] }}
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  -v /opt/ssl/mongodb-client:/opt/ssl/mongodb-client:ro
-  {{ container_envs }}
+container_envs: "{{ api_base_container_envs + envs }}"

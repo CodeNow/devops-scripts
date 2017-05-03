@@ -1,37 +1,27 @@
-## configure security group policy
-- include: sg_configure.yml
-#
-## Install Datadog Agent
+- include: agreeable-egret.yml -e git_branch=v0.4.1
+- include: api.yml -e git_branch=v11.39.1
+- include: arithmancy.yml -e git_branch=v1.12.0
+- include: big-poppa.yml -e git_branch=v0.18.6
+- include: clio.yml -e git_branch=v1.1.1
+- include: cream.yml -e git_branch=v1.14.0
 - include: datadog.yml
-#
-## begin with databases:
-- include: consul.yml
-- include: vault.yml
-#- include: mongo-navi.yml
-- include: rabbitmq.yml
-- include: redis.yml
-#- include: redis-slave.yml
-- include: registry.yml
-#
-## base service tier
-#- include: consul-values.yml
-- include: detention.yml git_branch="{{ detention_branch }}" -t deploy
-- include: eru.yml git_branch="{{ eru_branch }}" -t deploy
-- include: hipache.yml
-- include: khronos.yml git_branch="{{ khronos_branch }}" -t deploy
-- include: link.yml git_branch="{{ link_branch }}" -t deploy
-- include: metis.yml git_branch="{{ metis_branch }}" -t deploy
-- include: optimus.yml git_branch="{{ optimus_branch }}" -t deploy
-- include: palantiri.yml git_branch="{{ palantiri_branch }}" -t deploy
-- include: sauron.yml git_branch="{{ sauron_branch }}" -t deploy
-- include: shiva.yml git_branch="{{ astral_branch }}" -t deploy
+- include: detention.yml -e git_branch=v1.3.4
+- include: docker-listener.yml -e git_branch=v10.8.3
+- include: drake.yml -e git_branch=v2.5.0
+- include: eru.yml -e git_branch=v6.2.3
+- include: github-varnish.yml -e git_branch=v2.0.2
+- include: ingress-proxy.yml
+- include: khronos.yml -e git_branch=v6.5.12
+- include: link.yml -e git_branch=v2.2.2
+- include: mongo.yml
+- include: navi-proxy.yml
+- include: navi.yml -e git_branch=v10.5.3
+- include: optimus.yml -e git_branch=v5.1.2
+- include: palantiri.yml -e git_branch=v2.4.6
+- include: pheidi.yml -e git_branch=v1.38.7
+- include: prometheus-alerts.yml
+- include: prometheus.yml
+- include: sauron.yml -e git_branch=v7.5.1
 - include: swarm-manager.yml
-- include: web.yml git_branch="{{ angular_branch }}" -t deploy
-#
-## secondary services and configuration
-- include: api.yml git_branch="{{ api_branch }}" -t deploy
-- include: navi.yml git_branch="{{ navi_branch }}" -t deploy
-- include: vault-values.yml -e write_values="true"
-- include: consul-services.yml
-- include: consul-values.yml -e write_values="true"
-# run with: `--extra-vars "@current_versions.yml"`
+- include: shiva.yml -e git_branch=v7.9.0
+- include: swarm-cloudwatch-reporter.yml -e git_branch=v2.0.0

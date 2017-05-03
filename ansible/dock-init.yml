@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: "{{ dock }}"
   vars_files:
     - group_vars/alpha-dock-init.yml
