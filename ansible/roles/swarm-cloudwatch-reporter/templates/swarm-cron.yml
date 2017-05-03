@@ -1,0 +1,28 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ name }}
+spec:
+  schedule: "{{ cron_scedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: {{ image_pull_secret_name }}
+          containers:
+          - name: {{ name }}
+            image: {{ container_image }}:{{ container_tag }}
+{% if container_envs is defined %}
+            env:
+{% for env in container_envs %}
+{% if env.value != 'ansible_undefined' %}
+              - name: {{ env.name }}
+                value: {{ env.value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+            args:
+              - npm
+              - start
+          restartPolicy: OnFailure

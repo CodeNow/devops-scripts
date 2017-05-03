@@ -1,7 +1,4 @@
 ---
-- hosts: rabbitmq
-- hosts: redis
-
 - hosts: consul
   roles:
   - { role: consul-services }

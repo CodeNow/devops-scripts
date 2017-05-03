@@ -1,0 +1,47 @@
+node_version: 4.5.0
+npm_version: 2
+
+inject_ca: false
+repo: "git@github.com:CodeNow/cream.git"
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
+cream_base_container_envs:
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: DATADOG_HOST
+    value: "{{ datadog_host_address }}"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: GIT_BRANCH
+    value: "{{ git_branch }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ cream_hello_runnable_github_token }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ cream_intercom_key | default('ansible_undefined') }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ cream_intercom_id | default('ansible_undefined') }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: RUNNABLE_API_URL
+    value: "{{ api_url }}"
+  - name: RUNNABLE_USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: STRIPE_API_KEY
+    value: "{{ cream_stripe_secret_key }}"
+  - name: STRIPE_PUBLISHABLE_KEY
+    value: "{{ cream_stripe_publishable_key }}"

@@ -1,5 +1,9 @@
 ---
-- hosts: all
+- hosts: datadog
+  vars_files:
+    - group_vars/alpha-datadog.yml
   roles:
-  - { role: apt_update }
-  - { role: datadog, tags: ["datadog"] }
+  - role: notify
+
+  - role: k8-deployment
+  - role: k8-service

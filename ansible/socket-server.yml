@@ -1,15 +1,4 @@
 ---
-- hosts: mongodb
-- hosts: navi
-- hosts: clio
-- hosts: rabbitmq
-- hosts: redis
-- hosts: swarm-manager
-- hosts: consul
-- hosts: big-poppa
-- hosts: cream
-- hosts: socket-server-proxy
-
 - hosts: socket-server
   vars_files:
     - group_vars/alpha-api-base.yml
@@ -17,13 +6,9 @@
   roles:
   - role: notify
     rollbar_token: "{{ api_socket_server_rollbar_key }}"
-    tags: [ notify ]
-  - { role: redis_key, tags: [ setup, redis_key ] }
-  - { role: builder, tags: [ build ] }
-  - { role: docker_client }
-  - { role: datadog, tags: [ datadog ] }
-  - { role: container_start, number_of_containers: 8 }
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
-    target_ip_address: "{{ hostvars[groups['socket-server'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 01-socket-server.conf ]
+
+  - role: builder
+
+  - role: docker_client
+  - role: k8-deployment
+  - role: k8-service

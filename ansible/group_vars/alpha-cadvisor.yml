@@ -3,7 +3,7 @@ name: cadvisor
 container_image: google/{{ name }}
 container_tag: "v0.24.1"
 
-memory_hard_limit: 100mb
+memory_hard_limit: 100M
 
 container_run_opts: >
   --name={{ name }}

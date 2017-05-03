@@ -1,5 +1,7 @@
 ---
 - name: Check to see if pip is already installed.
+  become: true
+  delegate_to: "{{ builder }}"
   command: "pip --version"
   ignore_errors: true
   changed_when: false # read-only task
@@ -7,15 +9,19 @@
   register: pip_is_installed
 
 - name: Download pip.
+  become: true
+  delegate_to: "{{ builder }}"
   get_url: url=https://bootstrap.pypa.io/get-pip.py dest=./
   when: pip_is_installed.rc != 0
 
 - name: Install pip.
+  delegate_to: "{{ builder }}"
   command: "python ./get-pip.py"
-  become: yes
+  become: true
   when: pip_is_installed.rc != 0
 
 - name: Install docker-squash
+  delegate_to: "{{ builder }}"
   become: true
   pip:
     name: docker-squash

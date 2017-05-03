@@ -1,15 +1,12 @@
 ---
-- hosts: rabbitmq
-- hosts: consul
-- hosts: swarm-manager
-
 - hosts: docker-listener
   vars_files:
     - group_vars/alpha-docker-listener.yml
   roles:
   - role: notify
     rollbar_token: "{{ docker_listener_rollbar_key }}"
-    tags: [ notify ]
-  - { role: docker_client }
-  - { role: builder, tags: "build" }
-  - { role: container_kill_start }
+
+  - role: builder
+
+  - role: docker_client
+  - role: k8-deployment

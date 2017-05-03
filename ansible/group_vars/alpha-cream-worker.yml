@@ -1,44 +1,9 @@
 name: cream-worker
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
-repo: "git@github.com:CodeNow/cream.git"
-node_version: 4.5.0
-npm_version: 2
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ cream_worker_rollbar_token }}"
 
-dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}"
-]
+container_envs: "{{ cream_base_container_envs + envs }}"
 
-dockerfile_pre_install_commands: [
-   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
-]
-
-# for container settings
-container_envs: >
-  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e GIT_BRANCH={{ git_branch }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ cream_hello_runnable_github_token }}
-  -e NODE_ENV={{ node_env }}
-  {% if cream_intercom_key is defined %} -e INTERCOM_API_KEY={{ cream_intercom_key }} {% endif %}
-  {% if cream_intercom_id is defined %} -e INTERCOM_APP_ID={{ cream_intercom_id }} {% endif %}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e RUNNABLE_API_URL={{ api_url }}
-  -e RUNNABLE_USER_CONTENT_DOMAIN={{ user_content_domain }}
-  -e ROLLBAR_KEY={{ cream_worker_rollbar_token }}
-  -e STRIPE_API_KEY={{ cream_stripe_secret_key }}
-  -e STRIPE_PUBLISHABLE_KEY={{ cream_stripe_publishable_key }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  {{container_envs}}
-
-npm_start_command: run start-worker
-
-container_run_args: npm {{ npm_start_command  }}
+container_run_args: npm run start-worker

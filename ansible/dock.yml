@@ -1,6 +1,4 @@
 ---
-- hosts: registry
-
 - hosts: localhost
   connection: local
   tasks:
