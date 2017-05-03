@@ -22,9 +22,6 @@ spec:
             limits:
               cpu: "1550m"
               memory: 1500M
-          args:
-            - npm
-            - start
           env:
             - name: TAGS
               value: "env:production-delta"
