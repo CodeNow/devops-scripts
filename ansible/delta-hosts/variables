@@ -154,6 +154,11 @@ starlord_vault_token=1234
 [swarm-manager:vars]
 environment_name=delta
 
+[user-vault:vars]
+user_vault_s3_access_key=1234
+user_vault_s3_secret_key=5678
+user_vault_s3_bucket=delta-user-vault
+
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ

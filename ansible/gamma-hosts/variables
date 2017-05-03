@@ -132,6 +132,12 @@ starlord_vault_token=1234
 [swarm-manager:vars]
 environment_name=gamma
 
+[user-vault:vars]
+user_vault_s3_access_key=AKIAIOTM4MKOJJVUL7IQ
+user_vault_s3_secret_key=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
+user_vault_s3_bucket=gamma-user-vault
+vault_config_file=user-vault.yml
+
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 vault_aws_access_key_id=AKIAJ7R4UIM45KH2WGWQ

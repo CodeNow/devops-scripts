@@ -1,5 +1,5 @@
 ---
-- hosts: vault
+- hosts: user-vault
   vars_files:
     - group_vars/alpha-user-vault.yml
   roles:
