@@ -42,30 +42,8 @@ Host 10.4.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p
   IdentityFile ~/.ssh/gamma.pem
 
-## Gamma Ingress
-Host gamma-ingress
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.236 22
-
-## Gamma Userland Hipache
-Host gamma-userland
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.2.208 22
-
-## Gamma App Hipache
-Host gamma-hipache
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.165 22
-
-## Gamma API
-Host gamma-api
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.3 22
-
-Host gamma-api-worker
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.9.84 22
-
-Host gamma-api-socket
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.14.4 22
-
-Host gamma-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.0.69 22
+Host gamma-builder
+  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.8.95 22
 
 Host gamma-consul-a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.5.144 22
@@ -76,7 +54,6 @@ Host gamma-consul-b
 Host gamma-consul-c
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.196 22
 
-## Gamma MongoDB
 Host gamma-mongo-a
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.56 22
 
@@ -86,36 +63,9 @@ Host gamma-mongo-b
 Host gamma-mongo-c
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.116 22
 
-## Gamma Rabbit
-Host gamma-rabbit
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.19.17 22
-
-## Gamma Redis
 Host gamma-redis
   ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.45 22
 
-Host gamma-redis-slave
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.10.84 22
-
-## Gamma Neo4J
-Host gamma-neo4j
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.210 22
-
-# Gamma App Services
-Host gamma-app-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.13.234 22
-
-# Gamma Dock Services
-Host gamma-dock-services
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.6.251 22
-
-# Gamma Navi
-Host gamma-navi
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.7.108 22
-
-# Gamma Registry
-Host gamma-registry
-  ProxyCommand ssh -q ubuntu@gamma-bastion nc 10.4.4.82 22
 
 ################################################################################
 # Delta
@@ -132,33 +82,8 @@ Host 10.8.*.*
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@delta-bastion nc %h %p
   IdentityFile ~/.ssh/delta.pem
 
-## Delta API
-Host delta-api
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.25 22
-
-Host delta-api-2
+Host delta-builder
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.12.242 22
-
-Host delta-api-worker
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.24 22
-
-Host delta-api-socket
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.23 22
-
-Host delta-api-socket-proxy
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.46 22
-
-Host delta-app-services
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.13.102 22
-
-Host delta-app-services-1
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.255 22
-
-Host delta-app-services-2
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.12.61 22
-
-Host delta-dock-services
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.5.63 22
 
 Host delta-consul-a
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.6.122 22
@@ -169,29 +94,14 @@ Host delta-consul-b
 Host delta-consul-c
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.86 22
 
-Host delta-ingress
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.219 22
-
 Host delta-metabase
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.14.193 22
-
-Host delta-registry
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.126 22
 
 Host delta-redis
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.9 22
 
-Host delta-redis-slave
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.9.0 22
-
 Host delta-rabbit
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.195 22
-
-Host delta-neo4j
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.7.191 22
-
-Host delta-hipache
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.135 22
 
 Host delta-userland
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.244 22
