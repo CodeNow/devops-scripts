@@ -8,7 +8,7 @@ spec:
   ports:
 {% for port in hosted_ports %}
     - port: {{ port }}
-      protocol: {{ protocol | default(TCP) }}
+      protocol: {{ protocol | default("TCP") }}
       name: '{{ port }}'
 {% endfor %}
 {% if service_type is defined %}
