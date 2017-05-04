@@ -22,6 +22,10 @@ spec:
             limits:
               cpu: "1550m"
               memory: 1500M
+          args:
+            - bash
+            - -c
+            - "sed -i -e \"s/^# tags:.*$/tags: ${TAGS}/\" /etc/dd-agent/datadog.conf && supervisord -n -c /etc/dd-agent/supervisor.conf"
           env:
             - name: TAGS
               value: "env:production-delta"

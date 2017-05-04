@@ -34,7 +34,7 @@ spec:
 {% if advance_arg is defined and advance_arg == true %}
             - bash
             - -c
-            - {{ container_run_args }}
+            - "{{ container_run_args }}"
 {% else %}
 {% for arg in container_run_args.split(' ') %}
             - {{ arg }}
