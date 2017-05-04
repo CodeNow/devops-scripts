@@ -74,6 +74,12 @@ spec:
               value: "runnablecloud.com"
             - name: WORKER_MAX_RETRY_DELAY
               value: "3600000"
+            - name: GITHUB_VARNISH_HOST
+              value: "github-varnish"
+            - name: GITHUB_VARNISH_PORT
+              value: "80"
+            - name: GITHUB_PROTOCOL
+              value: "http"
           volumeMounts:
             - name: khronos-docker-ssl-certs
               mountPath: /etc/ssl/docker

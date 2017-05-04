@@ -107,5 +107,11 @@ container_envs:
     value: "{{ user_content_domain }}"
   - name: WORKER_MAX_RETRY_DELAY
     value: "3600000"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
 
 container_run_args: timeout 1h npm start
