@@ -7,7 +7,7 @@ data:
     storage "s3" {
       access_key = "{{ user_vault_s3_access_key }}"
       secret_key = "{{ user_vault_s3_secret_key }}"
-      bucket = "{{ user_vault_s3_bucket }}",
+      bucket = "{{ user_vault_s3_bucket }}"
       region = "us-west-2"
     }
 

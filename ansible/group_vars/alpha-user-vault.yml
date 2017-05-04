@@ -1,7 +1,7 @@
 name: user-vault
 
-container_image: runnable/vault
-container_tag: v0.5.1
+container_image: vault
+container_tag: 0.7.0
 hosted_ports: ["{{ user_vault_port }}"]
 
 volume_mounts:
