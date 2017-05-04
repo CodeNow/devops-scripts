@@ -176,6 +176,7 @@
 - name: login to registry
   delegate_to: "{{ builder }}"
   tags: deploy, build
+  when: build_image
   become: yes
   command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
 
@@ -189,5 +190,6 @@
 - name: logout of registry
   delegate_to: "{{ builder }}"
   tags: deploy, build
+  when: build_image
   become: yes
   command: docker logout
