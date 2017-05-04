@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
       containers:
-        - image: quay.io/runnable/api:SAN-6298-compose-events
+        - image: quay.io/runnable/api:v11.39.1
           imagePullPolicy: Always
           name: api-worker
           resources:
