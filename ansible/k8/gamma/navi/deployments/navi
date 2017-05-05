@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
       containers:
-        - image: quay.io/runnable/navi:v10.5.3
+        - image: quay.io/runnable/navi:v10.5.4
           imagePullPolicy: Always
           name: navi
           resources:
