@@ -1,7 +1,7 @@
 - include: agreeable-egret.yml -e git_branch=v0.4.1
-- include: api.yml -e git_branch=v11.39.1
+- include: api.yml -e git_branch=v11.39.2
 - include: arithmancy.yml -e git_branch=v1.12.0
-- include: big-poppa.yml -e git_branch=v0.18.6
+- include: big-poppa.yml -e git_branch=v0.18.7
 - include: clio.yml -e git_branch=v1.1.1
 - include: cream.yml -e git_branch=v1.14.0
 - include: datadog.yml
@@ -15,7 +15,7 @@
 - include: link.yml -e git_branch=v2.2.2
 - include: mongo.yml
 - include: navi-proxy.yml
-- include: navi.yml -e git_branch=v10.5.3
+- include: navi.yml -e git_branch=v10.5.4
 - include: optimus.yml -e git_branch=v5.1.2
 - include: palantiri.yml -e git_branch=v2.4.6
 - include: pheidi.yml -e git_branch=v1.38.7

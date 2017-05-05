@@ -24,7 +24,7 @@ spec:
               memory: 15G
           args:
             - -alertmanager.url
-            - "http://prometheus:9093"
+            - "http://prometheus-alerts:9093"
             - -config.file=/prometheus/prometheus.yml
             - -storage.local.path
             - "data"

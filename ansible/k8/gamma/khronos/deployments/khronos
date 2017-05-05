@@ -49,7 +49,9 @@ spec:
             - name: CANARY_REBUILD_NAVI_URL
               value: "undefined"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: INTERCOM_API_KEY
