@@ -33,7 +33,9 @@ spec:
             - name: COOKIE_SECRET
               value: "e80173940e7bdd84734e868b6ea054a0"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: ENABLE_LRU_CACHE

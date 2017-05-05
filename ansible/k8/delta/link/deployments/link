@@ -29,7 +29,9 @@ spec:
             - name: API_URL
               value: "https://api.runnable.io"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
