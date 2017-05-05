@@ -9,7 +9,7 @@ container_run_args: npm run shiva-start
 
 container_envs:
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: RABBITMQ_HOSTNAME

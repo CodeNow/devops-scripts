@@ -27,6 +27,7 @@ spec:
             - 1h
             - npm
             - start
+
           env:
             - name: API_SOCKET_SERVER
               value: "https://apisock.runnable.io"
@@ -51,7 +52,9 @@ spec:
             - name: CANARY_REBUILD_NAVI_URL
               value: "http://canary-build-staging-runnabletest.runnableapp.com:8000/"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: INTERCOM_API_KEY
@@ -82,6 +85,7 @@ spec:
               value: "80"
             - name: GITHUB_PROTOCOL
               value: "http"
+
           volumeMounts:
             - name: khronos-docker-ssl-certs
               mountPath: /etc/ssl/docker

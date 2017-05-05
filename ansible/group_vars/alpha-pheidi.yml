@@ -17,7 +17,7 @@ container_envs:
   - name: BIG_POPPA_HOST
     value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: DOMAIN

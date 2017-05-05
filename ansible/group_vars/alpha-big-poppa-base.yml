@@ -16,7 +16,7 @@ dockerfile_pre_install_commands: [
 
 big_poppa_base_container_envs:
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: GITHUB_TOKEN

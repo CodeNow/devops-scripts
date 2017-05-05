@@ -44,9 +44,16 @@ spec:
 {% if container_envs is defined %}
           env:
 {% for env in container_envs %}
-{% if env.value != 'ansible_undefined' %}
+{% if (env.value is defined and env.value != 'ansible_undefined') or env.valueFrom is defined %}
             - name: {{ env.name }}
+{% if env.value is defined %}
               value: "{{ env.value }}"
+{% endif %}
+{% if env.valueFrom is defined %}
+              valueFrom:
+                fieldRef:
+                  fieldPath: {{ env.valueFrom }}
+{% endif %}
 {% endif %}
 {% endfor %}
 {% endif %}

@@ -14,7 +14,7 @@ container_envs:
   - name: CONSUL_HOST
     value: "{{ consul_host_address }}:{{ consul_api_port }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: DOCKER_CERT_PATH

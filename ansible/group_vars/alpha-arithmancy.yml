@@ -7,7 +7,7 @@ npm_version: "2.14.7"
 
 container_envs:
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: NODE_ENV

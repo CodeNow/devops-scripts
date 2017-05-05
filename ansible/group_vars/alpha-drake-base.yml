@@ -16,7 +16,7 @@ drake_base_container_envs:
   - name: API_URL
     value: "{{ api_url }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: NODE_ENV
