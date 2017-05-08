@@ -1,6 +1,6 @@
 # Configuring Vault
 
-Vault is specifically setup to be manually setup. This is not automated for a reason.
+Vault is specifically designed to be manually setup. This is not automated for a reason.
 
 ```
 kubectl port-forward INSTERT_VAULT_ID 8300:8200
