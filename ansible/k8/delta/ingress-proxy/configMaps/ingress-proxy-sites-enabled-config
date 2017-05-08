@@ -6,8 +6,7 @@ data:
   status.conf: |
     server {
       listen 80;
-      listen [::]:80;
-      server_name localhost;
+      server_name status.runnable.io;
 
       location /nginx_status {
         access_log off;
@@ -18,7 +17,7 @@ data:
   user-pixel.conf: |
     server {
       listen 80;
-      server_name blue.runnableapp.com;
+      server_name blue.runnable.io;
       location / {
         return 404;
       }
@@ -26,7 +25,7 @@ data:
 
     server {
       listen 443 ssl;
-      server_name blue.runnableapp.com;
+      server_name blue.runnable.io;
       gzip off;
 
       ssl on;
@@ -48,7 +47,7 @@ data:
       resolver_timeout 5s;
 
       location = /pixel.gif {
-        add_header Set-Cookie "isModerating=1; Domain=.runnableapp.com; Path=/; HttpOnly;";
+        add_header Set-Cookie "isModerating=1; Domain=.runnable.io; Path=/; HttpOnly;";
         empty_gif;
       }
 
