@@ -29,13 +29,15 @@ spec:
             - name: API_URL
               value: "https://api.runnable.io"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: HELLO_RUNNABLE_GITHUB_TOKEN
               value: "5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29"
             - name: MONGO
-              value: "mongodb://mongo/navi"
+              value: "mongodb://10.8.6.41/navi"
             - name: NODE_ENV
               value: "production-delta"
             - name: RABBITMQ_HOSTNAME

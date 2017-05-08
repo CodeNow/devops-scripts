@@ -82,7 +82,7 @@ container_envs:
   - name: CANARY_REBUILD_NAVI_URL
     value: "{{ khronos_canary_rebuild_navi_url | default('undefined') }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: INTERCOM_API_KEY
@@ -107,5 +107,11 @@ container_envs:
     value: "{{ user_content_domain }}"
   - name: WORKER_MAX_RETRY_DELAY
     value: "3600000"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
 
 container_run_args: timeout 1h npm start

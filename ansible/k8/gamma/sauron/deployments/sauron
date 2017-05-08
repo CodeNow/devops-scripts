@@ -29,7 +29,9 @@ spec:
             - name: CONSUL_HOST
               value: "10.4.5.144:8500"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: LOGGLY_TOKEN

@@ -29,7 +29,9 @@ spec:
             - name: NODE_ENV
               value: "production-delta"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: PORT

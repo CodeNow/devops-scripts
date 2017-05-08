@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
       containers:
-        - image: quay.io/runnable/eru:v6.2.3
+        - image: quay.io/runnable/eru:v6.2.4
           imagePullPolicy: Always
           name: eru
           resources:
@@ -25,7 +25,7 @@ spec:
           args:
             - bash
             - -c
-            - supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log
+            - "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"
           env:
             - name: AWS_ACCESS_KEY
               value: "AKIAIFCVEISSC5JMPWDA"
@@ -60,11 +60,11 @@ spec:
             - name: MONGODB_HOSTS
               value: "10.8.4.216:27017,10.8.10.254:27017,10.8.13.89:27017"
             - name: MONGODB_PASSWORD
-              value: "delta"
+              value: "tilde-rawboned-lotus-hideaway-diastole"
             - name: MONGODB_REPLSET
-              value: "delta"
+              value: "delta-rs0"
             - name: MONGODB_USERNAME
-              value: "delta"
+              value: "eru"
             - name: NODE_ENV
               value: "production"
             - name: RABBITMQ_HOSTNAME

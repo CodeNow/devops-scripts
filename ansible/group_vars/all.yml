@@ -180,9 +180,9 @@ prometheus_port: 9090
 prometheus_aws_access_key: AKIAIFG37NSI6O2QMRRQ
 prometheus_aws_secret_key: 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
 
-# prometheus_alart
+# prometheus_alert
 prometheus_alert_port: 9093
-prometheus_alert_url: http://prometheus:{{ prometheus_alert_port }}
+prometheus_alert_url: http://prometheus-alerts:{{ prometheus_alert_port }}
 
 # rabbit
 rabbit_host_address: rabbitmq

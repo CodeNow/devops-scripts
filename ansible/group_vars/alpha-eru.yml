@@ -21,7 +21,7 @@ dockerfile_pre_install_commands: [
 ]
 
 dockerfile_post_install_commands: [
-  apt-get update && apt-get install -y supervisor
+  apt-get update && apt-get install -y supervisor,
   npm run build
 ]
 
@@ -55,15 +55,15 @@ container_envs:
   - name: LOG_LEVEL
     value: "trace"
   - name: MONGODB_DATABASE
-    value: "{{ api_mongo_database }}"
+    value: "{{ eru_mongodb_database }}"
   - name: MONGODB_HOSTS
     value: "{{ mongo_hosts }}"
   - name: MONGODB_PASSWORD
-    value: "{{ api_mongo_database }}"
+    value: "{{ eru_mongodb_password }}"
   - name: MONGODB_REPLSET
-    value: "{{ api_mongo_database }}"
+    value: "{{ eru_mongodb_replset }}"
   - name: MONGODB_USERNAME
-    value: "{{ api_mongo_database }}"
+    value: "{{ eru_mongodb_username }}"
   - name: NODE_ENV
     value: "production"
   - name: RABBITMQ_HOSTNAME

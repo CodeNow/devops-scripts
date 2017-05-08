@@ -10,7 +10,7 @@ container_envs:
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: PORT

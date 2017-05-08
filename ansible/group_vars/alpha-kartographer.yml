@@ -10,7 +10,7 @@ container_envs:
   - name: CONFIG_FILE_PATH
     value: "{{ kube_config }}/{{ kube_config_name }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: GOOGLE_APPLICATION_CREDENTIALS

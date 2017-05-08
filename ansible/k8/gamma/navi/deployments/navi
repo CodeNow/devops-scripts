@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
       containers:
-        - image: quay.io/runnable/navi:v10.5.3
+        - image: quay.io/runnable/navi:v10.5.4
           imagePullPolicy: Always
           name: navi
           resources:
@@ -33,7 +33,9 @@ spec:
             - name: COOKIE_SECRET
               value: "c90e5fb4e7e511e597309a79f06e9478"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: ENABLE_LRU_CACHE

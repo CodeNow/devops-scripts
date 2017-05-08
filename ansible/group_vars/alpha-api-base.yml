@@ -1,4 +1,4 @@
-node_version: 4.2.2
+node_version: 4.4.3
 npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
@@ -39,7 +39,7 @@ api_base_container_envs:
   - name: CREAM_HOST
     value: "http://{{ cream_host_address }}:{{ cream_port }}"
   - name: DATADOG_HOST
-    value: "{{ datadog_host_address }}"
+    valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: DOCKER_BUILD_LINE_TIMEOUT_MS

@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
       containers:
-        - image: quay.io/runnable/navi:v10.5.3
+        - image: quay.io/runnable/navi:v10.5.4
           imagePullPolicy: Always
           name: navi
           resources:
@@ -33,7 +33,9 @@ spec:
             - name: COOKIE_SECRET
               value: "e80173940e7bdd84734e868b6ea054a0"
             - name: DATADOG_HOST
-              value: "datadog"
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
             - name: DATADOG_PORT
               value: "8125"
             - name: ENABLE_LRU_CACHE
@@ -45,7 +47,7 @@ spec:
             - name: LOG_LEVEL_STDOUT
               value: "trace"
             - name: MONGO
-              value: "mongodb://mongo/navi"
+              value: "mongodb://10.8.6.41/navi"
             - name: NODE_ENV
               value: "production-delta"
             - name: RABBITMQ_HOSTNAME

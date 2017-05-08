@@ -5,5 +5,4 @@
   roles:
   - role: notify
 
-  - role: k8-deployment
-  - role: k8-service
+  - role: datadog-daemon
