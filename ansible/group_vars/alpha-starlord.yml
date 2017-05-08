@@ -6,7 +6,7 @@ inject_ca: false
 repo: git@github.com:CodeNow/{{ name }}.git
 node_version: "6.10.2"
 
-envs:
+container_envs:
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: VAULT_ENDPOINT

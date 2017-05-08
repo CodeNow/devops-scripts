@@ -219,6 +219,7 @@ vault_port: 8200
 
 # user-vault
 user_vault_port: 8200
+user_vault_host_address: user-vault
 
 # local-vault
 vault_local_port: 31836
