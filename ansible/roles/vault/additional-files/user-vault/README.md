@@ -22,7 +22,9 @@ Grab the keys, put them in 1password
 
 Verify the vault unsealed
 
-`vault auth $rootToken`
+`vault auth`
+Paste in the $rootToken
+
 
 Now to setup the policies:
 
@@ -40,13 +42,13 @@ Now to setup new token for starlord:
 
 `vault token-create -policy="organizations-writeonly" -ttl="8760h"`
 
-Take the response of this and save it in the configuration for the environment you want.
+Take the response of this and save it in the configuration for the environment you want as the `starlord_vault_token`
 
 Create a new token for the docks, so they can create readonly tokens.
 
 `vault token-create -policy="dock-user-creator" -ttl="8760h"`
 
-Save that token as the dock-creator token
+Save that token as the `dock_vault_user_creation_access_token`
 
-This allows the vault user to create a new user!
+This allows the vault user to create a new user using:
 vault write -f auth/token/create/organizations-readonly

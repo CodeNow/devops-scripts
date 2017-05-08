@@ -143,7 +143,7 @@ aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
 [starlord:vars]
-starlord_vault_token=1234
+starlord_vault_token=319ff979-b066-87c7-1172-6f3b5305d749
 
 [swarm-manager:vars]
 environment_name=delta
@@ -201,6 +201,7 @@ vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f0
 rabbit_port=54321
 registry_username=runnable+deltapush
 registry_token=4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
+dock_vault_user_creation_access_token=ddf20c34-019c-5b24-9c0d-1b44e3edf29a
 
 [web:vars]
 web_intercom_id=wqzm3rju
