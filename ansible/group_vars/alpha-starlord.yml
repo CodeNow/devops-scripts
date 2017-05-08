@@ -21,8 +21,3 @@ container_envs:
     value: "{{ rabbit_port }}"
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  {{ container_envs }}
