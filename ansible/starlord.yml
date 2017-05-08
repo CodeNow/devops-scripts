@@ -5,5 +5,4 @@
   roles:
   - role: notify
   - role: builder
-  - role: docker_client
   - role: k8-deployment
