@@ -17,6 +17,20 @@ dockerfile_pre_install_commands: [
    'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
 ]
 
+prod_cron_queues:
+  - cron_queue: canary.build.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.github-branch.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.log.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.network.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: metrics.container-status
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.failover.run
+    cron_scedule: "*/30 * * * *"
+
 cron_queues:
   - cron_queue: containers.image-builder.prune
     cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
@@ -30,18 +44,6 @@ cron_queues:
     cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
   - cron_queue: weave.prune
     cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
-  - cron_queue: canary.build.run
-    cron_scedule: "*/5 * * * *"
-  - cron_queue: canary.github-branch.run
-    cron_scedule: "*/5 * * * *"
-  - cron_queue: canary.log.run
-    cron_scedule: "*/5 * * * *"
-  - cron_queue: canary.network.run
-    cron_scedule: "*/5 * * * *"
-  - cron_queue: metrics.container-status
-    cron_scedule: "*/5 * * * *"
-  - cron_queue: canary.failover.run
-    cron_scedule: "*/30 * * * *"
 
 cron_events:
   - cron_event: time.one-day.passed
