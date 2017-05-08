@@ -27,7 +27,7 @@
     src: proxy-nginx.conf
     dest: "{{ config_maps_path }}/{{ name }}-base-config"
 
-- name: create api template
+- name: create navi template
   tags: [ configure_proxy, configure_files ]
   template:
     src: navi.tmpl
