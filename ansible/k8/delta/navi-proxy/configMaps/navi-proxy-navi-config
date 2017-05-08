@@ -6,14 +6,14 @@ data:
   status.conf: |
     server {
       listen 80;
-      listen [::]:80;
-      server_name localhost;
+      server_name status.runnableapp.com;
 
       location /nginx_status {
         access_log off;
         stub_status on;
       }
     }
+
 
   navi.conf: |
     map $http_upgrade $connection_upgrade {
