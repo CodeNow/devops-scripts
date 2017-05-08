@@ -127,6 +127,7 @@ drake_port: 80
 # ec2
 aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
 aws_secret_key: "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"
+aws_region: "us-west-2"
 
 # eru
 eru_http_port: 5501

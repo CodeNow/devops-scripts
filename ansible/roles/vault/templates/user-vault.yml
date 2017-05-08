@@ -8,7 +8,7 @@ data:
       access_key = "{{ user_vault_s3_access_key }}"
       secret_key = "{{ user_vault_s3_secret_key }}"
       bucket = "{{ user_vault_s3_bucket }}"
-      region = "us-west-2"
+      region = "{{ aws_region }}"
     }
 
     listener "tcp" {
