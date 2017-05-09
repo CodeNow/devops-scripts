@@ -10,9 +10,17 @@ spec:
         spec:
           imagePullSecrets:
             - name: runnable-kubernetes-pull-secret
+          restartPolicy: Never
           containers:
           - name: swarm-cloudwatch-reporter
             image: quay.io/runnable/furry-cactus:v2.0.0
+            env:
+              - name: DATADOG_HOST
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: DATADOG_PORT
+                value: "8125"
             args:
               - npm
               - start

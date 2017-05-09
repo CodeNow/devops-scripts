@@ -10,11 +10,18 @@ spec:
         spec:
           imagePullSecrets:
             - name: {{ image_pull_secret_name }}
+          restartPolicy: Never
           containers:
           - name: {{ name }}
             image: {{ container_image }}:{{ container_tag }}
-{% if container_envs is defined %}
             env:
+              - name: DATADOG_HOST
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: DATADOG_PORT
+                value: "{{ datadog_port }}"
+{% if container_envs is defined %}
 {% for env in container_envs %}
 {% if env.value != 'ansible_undefined' %}
               - name: {{ env.name }}

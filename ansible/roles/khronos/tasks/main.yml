@@ -10,6 +10,13 @@
     src: queue-cron.yml
   with_items: "{{ cron_queues }}"
 
+- name: create cron_queues
+  when: node_env=="production-delta"
+  template:
+    dest: "{{ cron_jobs_path }}/{{ item.cron_queue }}"
+    src: queue-cron.yml
+  with_items: "{{ prod_cron_queues }}"
+
 - name: create cron_events
   template:
     dest: "{{ cron_jobs_path }}/{{ item.cron_event }}"

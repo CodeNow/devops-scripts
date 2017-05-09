@@ -1,3 +1,5 @@
+We should treat our k8 files as compiled files, since we don't actually (http://blog.andrewray.me/dealing-with-compiled-files-in-git/). We should probably wait some time until we actually have more confidence in our compilation.
+
 [//]: # (Let's get your best description here about what's happend! Here's a list as well, if you like:)
 
 * I removed this function
