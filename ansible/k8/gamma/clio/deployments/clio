@@ -42,5 +42,11 @@ spec:
               value: "5672"
             - name: RABBITMQ_USERNAME
               value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
           ports:
             - containerPort: 8008
