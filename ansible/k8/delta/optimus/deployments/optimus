@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: optimus
       containers:
         - image: quay.io/runnable/optimus:v5.1.2
           imagePullPolicy: Always

@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: api
       containers:
         - image: quay.io/runnable/api:v11.39.2
           imagePullPolicy: Always
@@ -128,6 +129,8 @@ spec:
               value: "wqzm3rju"
             - name: INTERCOM_API_KEY
               value: "46e75ada5d21f248787689b35fe80e11efe9303a"
+            - name: USER_VAULT_ENDPOINT
+              value: "http://user-vault:8200"
             - name: ROLLBAR_KEY
               value: "a90d9c262c7c48cfabbd32fd0a1bc61c"
           ports:

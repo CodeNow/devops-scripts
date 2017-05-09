@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: prometheus-alerts
       containers:
         - image: prom/alertmanager:v0.5.0
           imagePullPolicy: Always

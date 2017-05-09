@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: cream-worker
       containers:
         - image: quay.io/runnable/cream-worker:v1.14.0
           imagePullPolicy: Always

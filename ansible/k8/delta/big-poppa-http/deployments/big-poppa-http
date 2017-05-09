@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: big-poppa-http
       containers:
         - image: quay.io/runnable/big-poppa-http:v0.18.7
           imagePullPolicy: Always
