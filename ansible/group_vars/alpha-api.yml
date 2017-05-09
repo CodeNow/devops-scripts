@@ -9,8 +9,6 @@ num_replicas: 16
 envs:
   - name: ROLLBAR_KEY
     value: "{{ api_rollbar_key }}"
-  - name: RUNNABLE_USER_VAULT_ENDPOINT
-    value: "http://{{ user_vault_host_address }}:{{ user_vault_port }}"
 
 volume_mounts:
   - name: "{{ name }}-docker-ssl-certs"
