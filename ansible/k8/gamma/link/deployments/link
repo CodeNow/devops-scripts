@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: link
       containers:
         - image: quay.io/runnable/link:v2.2.2
           imagePullPolicy: Always

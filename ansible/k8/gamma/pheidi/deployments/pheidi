@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: pheidi
       containers:
         - image: quay.io/runnable/pheidi:v1.38.7
           imagePullPolicy: Always

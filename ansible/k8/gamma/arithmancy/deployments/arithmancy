@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: arithmancy
       containers:
         - image: quay.io/runnable/arithmancy:v1.12.0
           imagePullPolicy: Always

@@ -8,28 +8,34 @@ spec:
     spec:
       template:
         spec:
+          volumes:
+            - name: {{ name }}-docker-ssl-certs
+              configMap:
+                name: {{ name }}-docker-ssl-certs
           imagePullSecrets:
             - name: {{ image_pull_secret_name }}
           restartPolicy: Never
           containers:
-          - name: {{ name }}
-            image: {{ container_image }}:{{ container_tag }}
-            env:
-              - name: DATADOG_HOST
-                valueFrom:
-                  fieldRef:
-                    fieldPath: spec.nodeName
-              - name: DATADOG_PORT
-                value: "{{ datadog_port }}"
+            - name: {{ name }}
+              volumeMounts:
+                - name: {{ name }}-docker-ssl-certs
+                  mountPath: /etc/ssl/docker
+              image: {{ container_image }}:{{ container_tag }}
+              env:
+                - name: DATADOG_HOST
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: spec.nodeName
+                - name: DATADOG_PORT
+                  value: "{{ datadog_port }}"
 {% if container_envs is defined %}
 {% for env in container_envs %}
 {% if env.value != 'ansible_undefined' %}
-              - name: {{ env.name }}
-                value: {{ env.value }}
+                - name: {{ env.name }}
+                  value: "{{ env.value }}"
 {% endif %}
 {% endfor %}
 {% endif %}
-            args:
-              - npm
-              - start
-          restartPolicy: OnFailure
+              args:
+                - npm
+                - start

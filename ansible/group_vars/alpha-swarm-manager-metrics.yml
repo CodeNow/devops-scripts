@@ -17,7 +17,7 @@ volume_mounts:
     path: /etc/ssl/docker
     kind: configMap
 
-container_run_opts:
+container_envs:
   - name: AWS_ACCESS_KEY
     value: "{{ aws_access_key }}"
   - name: AWS_SECRET_KEY

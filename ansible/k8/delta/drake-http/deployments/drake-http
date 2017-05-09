@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: drake-http
       containers:
         - image: quay.io/runnable/drake-http:v2.5.0
           imagePullPolicy: Always
