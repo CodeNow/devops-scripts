@@ -123,9 +123,6 @@ aws_secret_access_key=GrOO85hfoc7+bwT2GjoWbLyzyNbOKb2/XOJbCJsv
 [starlord:vars]
 starlord_vault_token=8d6b414a-2e6d-65fb-f0b8-c6200ae688ad
 
-[swarm-manager:vars]
-environment_name=gamma
-
 [user-vault:vars]
 user_vault_s3_access_key=AKIAIOTM4MKOJJVUL7IQ
 user_vault_s3_secret_key=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

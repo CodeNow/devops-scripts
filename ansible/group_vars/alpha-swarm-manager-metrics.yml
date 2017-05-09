@@ -23,9 +23,9 @@ container_envs:
   - name: AWS_SECRET_KEY
     value: "{{ aws_secret_key }}"
   - name: DOCKER_CERT_PATH
-    value: "/opt/ssl/docker/swarm-manager"
+    value: "/etc/ssl/docker"
   - name: ENVIRONMENT
-    value: "{{ environment_name }}"
+    value: "{{ env }}"
   - name: SWARM_HOSTNAME
     value: "{{ swarm_host_address }}"
   - name: SWARM_PORT
