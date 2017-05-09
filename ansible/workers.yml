@@ -7,7 +7,5 @@
   - role: notify
     rollbar_token: "{{ api_workers_rollbar_key }}"
 
-  - role: builder
-
   - role: docker_client
   - role: k8-deployment

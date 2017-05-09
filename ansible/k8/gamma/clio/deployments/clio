@@ -11,6 +11,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: clio
       containers:
         - image: quay.io/runnable/clio:v1.1.1
           imagePullPolicy: Always

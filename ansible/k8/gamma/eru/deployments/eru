@@ -11,8 +11,9 @@ spec:
     spec:
       imagePullSecrets:
         - name: runnable-kubernetes-pull-secret
+      hostname: eru
       containers:
-        - image: quay.io/runnable/eru:v6.2.3
+        - image: quay.io/runnable/eru:v6.2.4
           imagePullPolicy: Always
           name: eru
           resources:
@@ -60,11 +61,11 @@ spec:
             - name: MONGODB_HOSTS
               value: "10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017"
             - name: MONGODB_PASSWORD
-              value: "gamma"
+              value: "success-nan-europium-rerun-sheep"
             - name: MONGODB_REPLSET
-              value: "gamma"
+              value: "gamma-rs0"
             - name: MONGODB_USERNAME
-              value: "gamma"
+              value: "eru"
             - name: NODE_ENV
               value: "production"
             - name: RABBITMQ_HOSTNAME
