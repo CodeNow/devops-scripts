@@ -8,4 +8,4 @@
   tags: [ deploy ]
   template:
     dest: "{{ config_maps_path }}/{{ name }}"
-    src: vault.yml
+    src: "{{ vault_config_file | default('vault.yml') }}"

@@ -1,0 +1,9 @@
+---
+- hosts: user-vault
+  vars_files:
+    - group_vars/alpha-user-vault.yml
+  roles:
+  - role: notify
+  - role: vault
+  - role: k8-deployment
+  - role: k8-service

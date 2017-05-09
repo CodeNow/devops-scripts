@@ -120,8 +120,17 @@ sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
+[starlord:vars]
+starlord_vault_token=8d6b414a-2e6d-65fb-f0b8-c6200ae688ad
+
 [swarm-manager:vars]
 environment_name=gamma
+
+[user-vault:vars]
+user_vault_s3_access_key=AKIAIOTM4MKOJJVUL7IQ
+user_vault_s3_secret_key=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
+user_vault_s3_bucket=gamma-user-vault
+vault_config_file=user-vault.yml
 
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -173,6 +182,7 @@ vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d700
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
 registry_username=runnable+gamma
 registry_token=8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
+dock_vault_user_creation_access_token=137f441f-db71-40a2-8448-10a565323b1e
 
 [web:vars]
 web_intercom_id=xs5g95pd

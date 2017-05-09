@@ -142,8 +142,17 @@ sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
+[starlord:vars]
+starlord_vault_token=319ff979-b066-87c7-1172-6f3b5305d749
+
 [swarm-manager:vars]
 environment_name=delta
+
+[user-vault:vars]
+user_vault_s3_access_key=AKIAJRB2ERCOLHGNYAFQ
+user_vault_s3_secret_key=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
+user_vault_s3_bucket=delta-user-vault
+vault_config_file=user-vault.yml
 
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -192,6 +201,7 @@ vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f0
 rabbit_port=54321
 registry_username=runnable+deltapush
 registry_token=4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
+dock_vault_user_creation_access_token=ddf20c34-019c-5b24-9c0d-1b44e3edf29a
 
 [web:vars]
 web_intercom_id=wqzm3rju

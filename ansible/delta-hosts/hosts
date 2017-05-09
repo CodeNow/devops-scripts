@@ -34,6 +34,9 @@ delta-consul-a
 delta-consul-b
 delta-consul-c
 
+[user-vault]
+localhost
+
 [worker]
 localhost
 
@@ -104,6 +107,9 @@ localhost
 [sauron]
 localhost
 
+[starlord]
+localhost
+
 [swarm-manager]
 localhost
 
@@ -162,7 +168,9 @@ sauron
 shiva
 socket-server
 socket-server-proxy
+starlord
 swarm-manager
+user-vault
 userland
 web
 worker

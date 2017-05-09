@@ -127,6 +127,7 @@ drake_port: 80
 # ec2
 aws_access_key: "AKIAIWRXWZ4P3MIMY3LA"
 aws_secret_key: "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"
+aws_region: "us-west-2"
 
 # eru
 eru_http_port: 5501
@@ -216,6 +217,10 @@ npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
 
 # remote vault
 vault_port: 8200
+
+# user-vault
+user_vault_port: 8200
+user_vault_host_address: user-vault
 
 # local-vault
 vault_local_port: 31836
