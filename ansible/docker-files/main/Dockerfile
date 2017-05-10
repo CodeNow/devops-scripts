@@ -1,4 +1,4 @@
-FROM registry.runnable.com/runnable/ansible_base
+FROM {{ registry_address }}/runnable/ansible_base
 
 ENV REPO_BASE /repos
 

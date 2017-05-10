@@ -23,10 +23,12 @@ RUN {{ command }}
 {% endfor %}
 {% endif %}
 
+{% if inject_ca %}
 RUN mkdir /root/.ssh/
 ADD id_rsa /root/.ssh/id_rsa
 ADD known_hosts /root/.ssh/known_hosts
 RUN chmod 600 /root/.ssh/id_rsa
+{% endif %}
 
 # Add package.json from the current build context (`.` is the repo) second
 ADD ./repo/package.json /{{ name }}/package.json
@@ -50,8 +52,10 @@ RUN {{ command }}
 {% endfor %}
 {% endif %}
 
+{% if inject_ca %}
 RUN rm /root/.ssh/id_rsa
 RUN rm /root/.ssh/known_hosts
+{% endif %}
 
 # Define default command.
 CMD ulimit -c unlimited && /usr/local/bin/npm {{ npm_start_command | default('start') }}

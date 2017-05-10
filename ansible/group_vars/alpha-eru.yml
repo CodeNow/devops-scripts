@@ -1,8 +1,7 @@
 ---
 name: eru
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+inject_ca: false
 repo: git@github.com:CodeNow/{{ name }}.git
 hosted_ports: [ "5501", "5502" ]
 node_version: 4.4.4
@@ -16,49 +15,73 @@ dockerfile_enviroment: [
   "RABBITMQ_PASSWORD {{ rabbit_password }}",
   "RABBITMQ_PORT {{ rabbit_port }}"
 ]
+
 dockerfile_pre_install_commands: [
-   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+  'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
 ]
 
-dockerfile_post_install_commands:
-- apt-get update && apt-get install -y supervisor
-- npm run build
+dockerfile_post_install_commands: [
+  apt-get update && apt-get install -y supervisor,
+  npm run build
+]
 
-container_envs: >-
-  -e AWS_ACCESS_KEY={{ eru_aws_access_key_id }}
-  -e AWS_ENVIRONMENT={{ eru_aws_environment }}
-  -e AWS_SECRET_KEY={{ eru_aws_secret_access_key }}
-  -e BIG_POPPA_HOST={{ big_poppa_host_address }}:{{ big_poppa_port }}
-  -e CONSUL_HOST={{ consul_host_address }}:{{ consul_api_port }}
-  -e DOMAIN={{ eru_subdomain }}.{{ domain }}
-  -e GITHUB_CLIENT_ID={{ eru_github_id }}
-  -e GITHUB_CLIENT_SECRET={{ eru_github_secret }}
-  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
-  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
-  -e INTERCOM_API_KEY={{ eru_intercom_key }}
-  -e INTERCOM_APP_ID={{ eru_intercom_id }}
-  -e LOG_ENVIRONMENT={{ node_env }}
-  -e LOG_LEVEL=trace
-  -e MONGODB_DATABASE={{ eru_mongodb_database }}
-  -e MONGODB_HOSTS={{ mongo_hosts }}
-  -e MONGODB_PASSWORD={{ eru_mongodb_password }}
-  -e MONGODB_REPLSET={{ eru_mongodb_replset }}
-  -e MONGODB_USERNAME={{ eru_mongodb_username }}
-  -e NODE_ENV=production
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e REDIS_HOSTNAME={{ redis_host_address }}
-  -e REDIS_PORT={{ redis_port }}
-  -e RUNNABLE_DOMAIN={{ domain }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
+container_envs:
+  - name: AWS_ACCESS_KEY
+    value: "{{ eru_aws_access_key_id }}"
+  - name: AWS_ENVIRONMENT
+    value: "{{ eru_aws_environment }}"
+  - name: AWS_SECRET_KEY
+    value: "{{ eru_aws_secret_access_key }}"
+  - name: BIG_POPPA_HOST
+    value: "{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: DOMAIN
+    value: "{{ eru_subdomain }}.{{ domain }}"
+  - name: GITHUB_CLIENT_ID
+    value: "{{ eru_github_id }}"
+  - name: GITHUB_CLIENT_SECRET
+    value: "{{ eru_github_secret }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ eru_intercom_key }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ eru_intercom_id }}"
+  - name: LOG_ENVIRONMENT
+    value: "{{ node_env }}"
+  - name: LOG_LEVEL
+    value: "trace"
+  - name: MONGODB_DATABASE
+    value: "{{ eru_mongodb_database }}"
+  - name: MONGODB_HOSTS
+    value: "{{ mongo_hosts }}"
+  - name: MONGODB_PASSWORD
+    value: "{{ eru_mongodb_password }}"
+  - name: MONGODB_REPLSET
+    value: "{{ eru_mongodb_replset }}"
+  - name: MONGODB_USERNAME
+    value: "{{ eru_mongodb_username }}"
+  - name: NODE_ENV
+    value: "production"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: REDIS_HOSTNAME
+    value: "{{ redis_host_address }}"
+  - name: REDIS_PORT
+    value: "{{ redis_port }}"
+  - name: RUNNABLE_DOMAIN
+    value: "{{ domain }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
 
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v /var/log:/var/log:rw
-  {{ container_envs }}
-
-container_run_args: bash -c "supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log"
+advance_arg: true
+container_run_args: supervisord --configuration supervisord.conf && sleep 10 && tail -n 100 -qf /tmp/*std*.log /tmp/supervisord.log

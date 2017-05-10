@@ -1,10 +1,12 @@
 ---
 - name: get image id for newly created image
+  delegate_to: "{{ builder }}"
   become: true
   shell: docker images -a | grep "{{ container_image }}" | grep "{{ container_tag }}" | awk '{print $3}'
   register: unsquahed_image_id
 
 - name: squash newly created image
+  delegate_to: "{{ builder }}"
   become: true
   ignore_errors: true # Might already be squashed
   shell: docker-squash "{{ unsquahed_image_id.stdout_lines[0] }}" -t "{{ container_image }}:{{ container_tag }}"

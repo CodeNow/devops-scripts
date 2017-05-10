@@ -1,13 +1,13 @@
 [agreeable-egret:vars]
-egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-egret_pg_port=32659
-egret_pg_user=egret
-egret_pg_pass=b3UKjxbGblKZtG6c
 egret_pg_database=egret
+egret_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+egret_pg_pass=b3UKjxbGblKZtG6c
+egret_pg_user=egret
+egret_port=65520
 
 [api_group:vars]
-api_aws_alias_host=us-west-2.compute.internal
 api_aws_access_key_id=AKIAIDC4WVMTCGV7KRVQ
+api_aws_alias_host=us-west-2.compute.internal
 api_aws_secret_access_key=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
 api_github_client_id=b6072dc57062faca7fcb
 api_github_client_secret=ba73a9294dc4bfaa7ed02ba187f73918506e4293
@@ -17,9 +17,9 @@ api_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database=gamma
 api_mongo_replset_name=gamma-rs0
 api_rollbar_key=a90d9c262c7c48cfabbd32fd0a1bc61c
-api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 api_s3_context_bucket=runnable.context.resources.production-beta
 api_s3_log_bucket=production-gamma.container-logs
+api_workers_rollbar_key=3edfe8fe4fd640ae9fdbbe08fcb9f121
 
 [arithmancy:vars]
 arithmancy_pg_database=arithmancy
@@ -29,18 +29,17 @@ arithmancy_pg_port=5432
 arithmancy_pg_user=arithmancy_gamma
 
 [big-poppa:vars]
-big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
-big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-big_poppa_pg_port=32659
-big_poppa_pg_user=big_poppa
 big_poppa_github_token=e11a1264130fb62ce045bf03118bf123f980c205
 big_poppa_http_rollbar_token=1f1eeea0b1334aaeb50fb7bc4a43241a
-big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
-big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
 big_poppa_intercom_id=xs5g95pd
+big_poppa_intercom_key=92d281df5653eb72f8f4b322cf0689be893d4965
 big_poppa_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 big_poppa_mongo_database=gamma
 big_poppa_mongo_replset_name=gamma-rs0
+big_poppa_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+big_poppa_pg_pass=JFmZDuVYPt9vUxk4DBjj
+big_poppa_pg_user=big_poppa
+big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9
 
 [clio:vars]
 clio_mongo_auth=clio:Fkj8CBoMNpuhe7p*
@@ -81,6 +80,9 @@ eru_mongodb_replset=gamma-rs0
 eru_mongodb_username=eru
 eru_subdomain=eru
 
+[kartographer:vars]
+kartographer_hello_runnable_github_token=000cb6b65858ad0a7590bc2370b5118ff1bc95db
+
 [khronos:vars]
 khronos_intercom_api_key=9b4ee7b4f9818b36e368985fda0befa611928876
 khronos_intercom_app_id=xs5g95pd
@@ -88,8 +90,8 @@ khronos_mongo_auth=api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
 
-[metis:vars]
-metis_rollbar_key=fdc8565a7ce64c6d9432c34be425937c
+[mongo-navi:vars]
+volume_id=vol-0daf05c3686a7e0a8
 
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
@@ -114,20 +116,18 @@ pheidi_runnabot_tokens=ff3d259c5d988badbb692cc400998e46cdd5f1fc
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
 
-[registry:vars]
-registry_s3_access_key=AKIAJK5EN7W6E62A3C3Q
-registry_s3_bucket=runnableimages.beta
-registry_s3_secret_key=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
-registry_s3_region=us-east-1
-
 [shiva:vars]
 aws_access_key_id=AKIAJ3RCYU6FCULAJP2Q
 aws_secret_access_key=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
 
-[swarm-manager:vars]
-aws_access_key=AKIAIB5W3E6HR6Q52HEQ
-aws_secret_key=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
-environment_name=gamma
+[starlord:vars]
+starlord_vault_token=8d6b414a-2e6d-65fb-f0b8-c6200ae688ad
+
+[user-vault:vars]
+user_vault_s3_access_key=AKIAIOTM4MKOJJVUL7IQ
+user_vault_s3_secret_key=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
+user_vault_s3_bucket=gamma-user-vault
+vault_config_file=user-vault.yml
 
 [vault:vars]
 vault_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
@@ -140,10 +140,18 @@ marketing_bucket=runnable-gamma.com
 marketing_aws_access_key=AKIAICIWKIZEQCMDXLEA
 marketing_aws_secret_key=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
 
+[rabbitmq:vars]
+volume_id=vol-08cb7a2d1218ed9a0
+
+[redis:vars]
+volume_id=vol-040eb379856609100
+
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem
 api_hello_runnable_github_token=88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port=60709
+builder=gamma-builder
+consul_host_address=10.4.5.144
 cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
@@ -153,42 +161,25 @@ env=gamma
 github_domain=api.github.com
 github_protocol=https
 is_github_enterprise=false
+mongo_hosts=10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
 mongo_port=27017
+navi_mongo=mongo
 node_env=production-gamma
 pg_host=gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass=e9G7zYRCxYmxG9HQ8J9x2BDB
+pg_port=32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
-user_content_domain=runnable.ninja
+redis_host_address=10.4.6.45
+secrets_path=gamma-hosts/secrets
+user_content_domain=runnablecloud.com
 vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
-registry_host=quay.io
-registry_username=runnable+gammapull
-registry_token=RV8IZ818DDRUMUJNNDDPS0AE4HJXBSFTDSC06X4COUMQZWDZD628IXB0TOO5UL79
-
-[ec2:vars]
-aws_custid=437258487404
-bastion_sshd_port=60709
-region=us-west-2
-vpc_id=vpc-c53464a0
-sg_api=sg-3b0c7b5f
-sg_app_services=sg-35d14052
-sg_bastion=sg-91eb81f5
-sg_consul=sg-899616ee
-sg_dock=sg-577a0d33
-sg_dock_services=sg-12d14075
-sg_hipache=sg-e70c7883
-sg_mongo=sg-977a0df3
-sg_nat=sg-b595ffd1
-sg_navi=sg-45633421
-sg_rabbit=sg-44b7cb20
-sg_rds=sg-081e596c
-sg_redis=sg-477b0c23
-sg_registry=sg-c8d140af
-sg_userland=sg-12ce9876
-sg_web=sg-fe8bf49a
+registry_username=runnable+gamma
+registry_token=8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
+dock_vault_user_creation_access_token=137f441f-db71-40a2-8448-10a565323b1e
 
 [web:vars]
 web_intercom_id=xs5g95pd

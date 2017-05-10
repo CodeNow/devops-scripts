@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cream-http
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: cream-http
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: cream-http
+      containers:
+        - image: quay.io/runnable/cream-http:v1.14.0
+          imagePullPolicy: Always
+          name: cream-http
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - run
+            - start-http
+          env:
+            - name: BIG_POPPA_HOST
+              value: "http://big-poppa:7788"
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: GIT_BRANCH
+              value: "v1.14.0"
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "5ff90dacd14fb1ff202c6b48c1393ba713adf483"
+            - name: INTERCOM_API_KEY
+              value: "173c1b366d11a3ef0f641c6b3327914368e67095"
+            - name: INTERCOM_APP_ID
+              value: "wqzm3rju"
+            - name: NODE_ENV
+              value: "production-delta"
+            - name: RABBITMQ_HOSTNAME
+              value: "10.8.4.195"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "54321"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: RUNNABLE_API_URL
+              value: "https://api.runnable.io"
+            - name: RUNNABLE_USER_CONTENT_DOMAIN
+              value: "runnableapp.com"
+            - name: STRIPE_API_KEY
+              value: "sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw"
+            - name: STRIPE_PUBLISHABLE_KEY
+              value: "pk_live_5yYYZlYIwY3LwvKFaXY0jNlm"
+            - name: ROLLBAR_KEY
+              value: "baa03dbd9f814d14ab0c99863ed6a4fb"
+            - name: PORT
+              value: "8899"
+          ports:
+            - containerPort: 8899
