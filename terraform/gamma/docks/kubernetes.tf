@@ -138,16 +138,16 @@ resource "aws_iam_role_policy" "nodes-kubernetes-dock-runnable-gamma-com" {
   policy = "${file("${path.module}/data/aws_iam_role_policy_nodes.kubernetes-dock.runnable-gamma.com_policy")}"
 }
 
-resource "aws_key_pair" "kubernetes-kubernetes-dock-runnable-gamma-com-0c3539e22a63ffed1bcfbe6d74b1e71e" {
-  key_name   = "kubernetes.kubernetes-dock.runnable-gamma.com-0c:35:39:e2:2a:63:ff:ed:1b:cf:be:6d:74:b1:e7:1e"
-  public_key = "${file("${path.module}/data/aws_key_pair_kubernetes.kubernetes-dock.runnable-gamma.com-0c3539e22a63ffed1bcfbe6d74b1e71e_public_key")}"
+resource "aws_key_pair" "kubernetes-kubernetes-dock-runnable-gamma-com-4bca284b36f7e9c6fa81617b4808935f" {
+  key_name   = "kubernetes.kubernetes-dock.runnable-gamma.com-4b:ca:28:4b:36:f7:e9:c6:fa:81:61:7b:48:08:93:5f"
+  public_key = "${file("${path.module}/data/aws_key_pair_kubernetes.kubernetes-dock.runnable-gamma.com-4bca284b36f7e9c6fa81617b4808935f_public_key")}"
 }
 
 resource "aws_launch_configuration" "master-us-west-2a-masters-kubernetes-dock-runnable-gamma-com" {
   name_prefix                 = "master-us-west-2a.masters.kubernetes-dock.runnable-gamma.com-"
   image_id                    = "ami-aaf84aca"
-  instance_type               = "m3.medium"
-  key_name                    = "${aws_key_pair.kubernetes-kubernetes-dock-runnable-gamma-com-0c3539e22a63ffed1bcfbe6d74b1e71e.id}"
+  instance_type               = "m4.large"
+  key_name                    = "${aws_key_pair.kubernetes-kubernetes-dock-runnable-gamma-com-4bca284b36f7e9c6fa81617b4808935f.id}"
   iam_instance_profile        = "${aws_iam_instance_profile.masters-kubernetes-dock-runnable-gamma-com.id}"
   security_groups             = ["${aws_security_group.masters-kubernetes-dock-runnable-gamma-com.id}"]
   associate_public_ip_address = true
@@ -155,13 +155,8 @@ resource "aws_launch_configuration" "master-us-west-2a-masters-kubernetes-dock-r
 
   root_block_device = {
     volume_type           = "gp2"
-    volume_size           = 20
+    volume_size           = 100
     delete_on_termination = true
-  }
-
-  ephemeral_block_device = {
-    device_name  = "/dev/sdc"
-    virtual_name = "ephemeral0"
   }
 
   lifecycle = {
@@ -172,8 +167,8 @@ resource "aws_launch_configuration" "master-us-west-2a-masters-kubernetes-dock-r
 resource "aws_launch_configuration" "nodes-kubernetes-dock-runnable-gamma-com" {
   name_prefix                 = "nodes.kubernetes-dock.runnable-gamma.com-"
   image_id                    = "ami-aaf84aca"
-  instance_type               = "t2.medium"
-  key_name                    = "${aws_key_pair.kubernetes-kubernetes-dock-runnable-gamma-com-0c3539e22a63ffed1bcfbe6d74b1e71e.id}"
+  instance_type               = "m4.large"
+  key_name                    = "${aws_key_pair.kubernetes-kubernetes-dock-runnable-gamma-com-4bca284b36f7e9c6fa81617b4808935f.id}"
   iam_instance_profile        = "${aws_iam_instance_profile.nodes-kubernetes-dock-runnable-gamma-com.id}"
   security_groups             = ["${aws_security_group.nodes-kubernetes-dock-runnable-gamma-com.id}"]
   associate_public_ip_address = true
@@ -333,7 +328,7 @@ resource "aws_security_group_rule" "ssh-external-to-node-0-0-0-0--0" {
 
 resource "aws_subnet" "us-west-2a-kubernetes-dock-runnable-gamma-com" {
   vpc_id            = "vpc-c53464a0"
-  cidr_block        = "10.4.32.0/19"
+  cidr_block        = "10.4.64.0/19"
   availability_zone = "us-west-2a"
 
   tags = {
