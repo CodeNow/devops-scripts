@@ -20,7 +20,7 @@ spec:
               volumeMounts:
                 - name: swarm-cloudwatch-reporter-docker-ssl-certs
                   mountPath: /etc/ssl/docker
-              image: quay.io/runnable/furry-cactus:master
+              image: quay.io/runnable/furry-cactus:v2.0.0
               env:
                 - name: DATADOG_HOST
                   valueFrom:
@@ -33,7 +33,7 @@ spec:
                 - name: AWS_SECRET_KEY
                   value: "wgJ8gIKbe6dEpJxJHx8tnVWVWRMP8AhrLtOfWNsZ"
                 - name: DOCKER_CERT_PATH
-                  value: "/opt/ssl/docker/swarm-manager"
+                  value: "/etc/ssl/docker"
                 - name: ENVIRONMENT
                   value: "delta"
                 - name: SWARM_HOSTNAME
