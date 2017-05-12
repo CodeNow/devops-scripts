@@ -30,7 +30,7 @@
   tags: vault_files
   become: true
   copy:
-    dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}"
+    dest="/opt/runnable/dock-init/consul-resources/user-vault/{{ node_env }}/{{ item.file_name }}"
     content="{{ item.value }}"
     mode="0400"
   with_items:
