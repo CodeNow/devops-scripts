@@ -131,6 +131,7 @@ aws_region: "us-west-2"
 
 # eru
 eru_http_port: 5501
+eru_graphql_port: 5502
 
 # fluffy
 fluffy_port: 80

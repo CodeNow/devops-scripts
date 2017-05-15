@@ -24,14 +24,14 @@ volume_mounts:
 
 services:
   - name: api
-    port: "{{ api_port }}"
+    ports: ["{{ api_port }}"]
   - name: drake
-    port: "{{ drake_port }}"
+    ports: ["{{ drake_port }}"]
   - name: optimus
-    port: "{{ optimus_port }}"
+    ports: ["{{ optimus_port }}"]
   - name: apisock
-    port: "{{ api_port }}"
+    ports: ["{{ api_port }}"]
   - name: eru
-    port: "{{ eru_http_port }}"
+    ports: ["{{ eru_http_port }}","{{ eru_graphql_port }}"]
   - name: egret
-    port: "{{ egret_port }}"
+    ports: ["{{ egret_port }}"]

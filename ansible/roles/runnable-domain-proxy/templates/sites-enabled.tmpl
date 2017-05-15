@@ -64,7 +64,9 @@ data:
     }
 
     upstream {{ service.name }} {
-      server {{ service.name }}:{{ service.port }} max_fails=0 fail_timeout=1s;
+      {% for port in service.ports %}
+      server {{ service.name }}:{{ port }} max_fails=0 fail_timeout=1s;
+      {% endfor %}
     }
 
     server {
