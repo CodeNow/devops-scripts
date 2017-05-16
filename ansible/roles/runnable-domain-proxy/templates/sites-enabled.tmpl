@@ -63,9 +63,11 @@ data:
       '' close;
     }
 
-    upstream {{ service.name }} {
-      server {{ service.name }}:{{ service.port }} max_fails=0 fail_timeout=1s;
+    {% for upstream in service.upstreams %}
+    upstream {{ service.name }}_{{ upstream.name }} {
+      server {{ service.name }}:{{ upstream.port }} max_fails=0 fail_timeout=1s;
     }
+    {% endfor %}
 
     server {
       listen 80;
@@ -73,8 +75,9 @@ data:
       server_name {{ service.name }}.{{ domain }};
       access_log /var/log/nginx/{{ service.name }}.access.log;
 
-      location / {
-        proxy_pass http://{{ service.name }};
+      {% for upstream in service.upstreams %}
+      location {{ upstream.route }} {
+        proxy_pass http://{{ service.name }}_{{ upstream.name }};
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -86,6 +89,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+      {% endfor %}
     }
 
     server {
@@ -112,12 +116,12 @@ data:
       resolver kube-dns.kube-system.svc.cluster.local valid=5s;
       resolver_timeout 5s;
 
-      location / {
-        proxy_pass http://{{ service.name }};
+      {% for upstream in service.upstreams %}
+      location {{ upstream.route }} {
+        proxy_pass http://{{ service.name }}_{{ upstream.name }};
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -126,5 +130,6 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+      {% endfor %}
     }
 {% endfor %}
