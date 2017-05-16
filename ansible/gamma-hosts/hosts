@@ -68,6 +68,9 @@ localhost
 [charon]
 localhost
 
+[keymaker]
+localhost
+
 [khronos]
 localhost
 
