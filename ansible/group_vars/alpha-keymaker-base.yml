@@ -1,5 +1,4 @@
-node_version: 4.4.7
-npm_version: 2
+node_version: 6.10.2
 
 inject_ca: false
 repo: "git@github.com:CodeNow/keymaker.git"
