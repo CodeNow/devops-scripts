@@ -84,6 +84,12 @@ eru_mongodb_replset=delta-rs0
 eru_mongodb_username=eru
 eru_subdomain=eru
 
+[keymaker:vars]
+keymaker_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:{{ pg_port }}
+keymaker_pg_pass=PASSWORD
+keymaker_pg_user=keymaker
+keymaker_new_relic_app_name=delta-big-poppa
+
 [khronos:vars]
 khronos_intercom_api_key=14771f14efb617900724a16345e57beb55ba9beb
 khronos_intercom_app_id=wqzm3rju

@@ -1,0 +1,52 @@
+node_version: 4.4.7
+npm_version: 2
+
+inject_ca: false
+repo: "git@github.com:CodeNow/keymaker.git"
+
+dockerfile_pre_install_commands: [
+  "apt-get update",
+  "apt-get install postgresql-client=9.4+165+deb8u2 -y"
+]
+
+keymaker_base_container_envs:
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: PGUSER
+    value: "{{ keymaker_pg_user }}"
+  - name: PGPASSWORD
+    value: "{{ keymaker_pg_pass }}"
+  - name: PGHOST
+    value: "{{ pg_host }}"
+  - name: PGPORT
+    value: "{{ pg_port }}"
+  - name: PGDATABASE
+    value: "{{ keymaker_pg_database }}"
+  - name: POSTGRES_CONNECT_STRING
+    value: "postgres://{{ keymaker_pg_user }}:{{ keymaker_pg_pass }}@{{ keymaker_pg_host }}/{{ keymaker_pg_database }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
+  - name: NEW_RELIC_APP_NAME
+    value: "{{ keymaker_new_relic_app_name | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LICENSE_KEY
+    value: "{{ new_relic_license_key | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LOG_LEVEL
+    value: "fatal"
+  - name: NEW_RELIC_NO_CONFIG_FILE
+    value: "true"

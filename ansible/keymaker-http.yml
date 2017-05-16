@@ -1,0 +1,9 @@
+---
+- hosts: keymaker
+  vars_files:
+    - group_vars/alpha-keymaker-base.yml
+    - group_vars/alpha-keymaker-http.yml
+  roles:
+  - role: builder
+  - role: k8-deployment
+  - role: k8-service
