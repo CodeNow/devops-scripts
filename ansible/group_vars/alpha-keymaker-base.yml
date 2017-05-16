@@ -4,11 +4,6 @@ npm_version: 2
 inject_ca: false
 repo: "git@github.com:CodeNow/keymaker.git"
 
-dockerfile_pre_install_commands: [
-  "apt-get update",
-  "apt-get install postgresql-client=9.4+165+deb8u2 -y"
-]
-
 keymaker_base_container_envs:
   - name: DATADOG_HOST
     valueFrom: "spec.nodeName"
