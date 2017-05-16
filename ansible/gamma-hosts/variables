@@ -85,7 +85,7 @@ kartographer_hello_runnable_github_token=000cb6b65858ad0a7590bc2370b5118ff1bc95d
 
 [keymaker:vars]
 keymaker_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
-keymaker_pg_pass=PASSWORD
+keymaker_pg_pass=n4CsuCiWgbx.2BVJ
 keymaker_pg_user=keymaker
 
 [khronos:vars]
