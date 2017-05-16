@@ -88,7 +88,7 @@ eru_subdomain=eru
 keymaker_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:{{ pg_port }}
 keymaker_pg_pass=8MsajH7RQuJ+fTCh
 keymaker_pg_user=keymaker
-keymaker_new_relic_app_name=delta-big-poppa
+keymaker_new_relic_app_name=delta-keymaker
 
 [khronos:vars]
 khronos_intercom_api_key=14771f14efb617900724a16345e57beb55ba9beb
