@@ -13,7 +13,7 @@ spec:
         - name: runnable-kubernetes-pull-secret
       hostname: api
       containers:
-        - image: quay.io/runnable/api:v11.39.2
+        - image: quay.io/runnable/api:v11.41.2
           imagePullPolicy: Always
           name: api
           resources:
