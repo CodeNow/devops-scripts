@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: datadog
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: datadog
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      containers:
+        - image: datadog/docker-dd-agent:latest-dogstatsd
+          imagePullPolicy: Always
+          name: datadog
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          env:
+            - name: TAGS
+              value: "env:production-gamma"
+            - name: API_KEY
+              value: "d3ab5d85bca924f9d4e33d307beacb4a"
+          ports:
+            - containerPort: 8125

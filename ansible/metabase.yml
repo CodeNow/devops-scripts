@@ -1,10 +1,9 @@
 ---
-- hosts: consul
-
 - hosts: metabase
   vars_files:
     - group_vars/alpha-metabase.yml
   roles:
   - role: notify
-    tags: [ notify ]
-  - { role: container_kill_start }
+
+  - role: k8-deployment
+  - role: k8-service

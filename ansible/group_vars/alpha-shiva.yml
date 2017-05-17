@@ -1,6 +1,6 @@
 name: shiva
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+
+inject_ca: false
 repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
 npm_version: "2.8.3"
@@ -14,13 +14,6 @@ dockerfile_pre_install_commands: [
 
 # Overrides the start command in the builder role
 npm_start_command: run shiva-start
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -P
-  -v {{ redis_ca_cert_path }}:{{ redis_ca_cert_path }}
-  {{ container_envs }}
 
 container_envs:
   - name: BIG_POPPA_HOST

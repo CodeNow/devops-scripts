@@ -1,12 +1,11 @@
 ---
-- hosts: redis
-- hosts: consul
-
 - hosts: detention
   vars_files:
-    - "group_vars/alpha-detention.yml"
+    - group_vars/alpha-detention.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: redis_key, tags: ["setup", "redis_key"] }
-  - { role: builder, tags: "build" }
-  - { role: container_kill_start }
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

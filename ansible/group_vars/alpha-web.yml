@@ -1,7 +1,5 @@
 name: "runnable-angular"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: egret
+spec:
+  selector:
+    app: agreeable-egret
+  ports:
+    - port: 65520
+      protocol: TCP
+      name: '65520'

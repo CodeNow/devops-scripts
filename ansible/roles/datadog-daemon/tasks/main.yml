@@ -1,0 +1,11 @@
+---
+- name: create daemon set folder
+  file:
+    state: directory
+    path: "{{ daemon_sets_path }}"
+
+- name: create datadog daemonset
+  tags: [ deploy ]
+  template:
+    dest: "{{ daemon_sets_path }}/{{ name }}"
+    src: datadog-deamon.yml

@@ -1,6 +1,4 @@
 ---
-- hosts: consul
-
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - "group_vars/alpha-swarm-daemon.yml"

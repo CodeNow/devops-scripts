@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eru
+spec:
+  selector:
+    app: eru
+  ports:
+    - port: 5501
+      protocol: TCP
+      name: '5501'
+    - port: 5502
+      protocol: TCP
+      name: '5502'

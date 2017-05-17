@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ name }}-{{ domain |replace('.', '-') }}-certs
+data:
+  ca.pem: |
+    {{ ca_data | indent(4) }}
+  cert.pem: |
+    {{ cert_data | indent(4) }}
+  chained.pem: |
+    {{ chained_data | indent(4) }}
+  dhparam.pem: |
+    {{ dhparam_data | indent(4) }}
+  key.pem: |
+    {{ key_data | indent(4) }}

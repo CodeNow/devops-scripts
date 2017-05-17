@@ -1,10 +1,10 @@
 ---
-- hosts: mongodb
+- hosts: mongo
   vars_files:
     - group_vars/alpha-mongo.yml
   roles:
-  - { role: notify, tags: [ notify ] }
-  - { role: database }
-  - { role: mongo-server, tags: [ tls ] }
-  - { role: container_kill_start }
-  - { role: datadog, tags: [ datadog ] }
+  - role: notify
+
+  - role: database
+  - role: k8-deployment
+  - role: k8-service

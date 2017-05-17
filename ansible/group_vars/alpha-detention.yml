@@ -1,15 +1,9 @@
 name: "detention"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 hosted_ports: ["{{ detention_port }}"]
 node_version: "0.12.0"
 npm_version: "2.1.18"
-
-# for redis
-redis_key: "frontend:{{ detention_hostname }}"
-is_redis_update_required: 'yes'
 
 dockerfile_post_install_commands: [
   "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
@@ -17,15 +11,14 @@ dockerfile_post_install_commands: [
   "npm run grunt"
 ]
 
-container_envs: >
-  -e ABSOLUTE_URL={{ detention_hostname }}
-  -e API_URL={{ api_url }}
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
-  -e NODE_ENV={{ node_env }}
-  -e PORT={{ hosted_ports[0] }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -p {{ hosted_ports[0] }}:{{ hosted_ports[0] }}
-  {{ container_envs }}
+container_envs:
+  - name: ABSOLUTE_URL
+    value: "{{ detention_hostname }}"
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ api_hello_runnable_github_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: PORT
+    value: "{{ detention_port }}"

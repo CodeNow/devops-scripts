@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: github-varnish
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: github-varnish
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: github-varnish
+      containers:
+        - image: quay.io/runnable/github-varnish:v2.0.2
+          imagePullPolicy: Always
+          name: github-varnish
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          env:
+            - name: VARNISH_PORT
+              value: "80"
+            - name: VARNISH_MALLOC
+              value: "100M"
+            - name: GITHUB_DOMAIN
+              value: "api.github.com"
+            - name: IS_GITHUB_ENTERPRISE
+              value: "false"
+            - name: GITHUB_PROTOCOL
+              value: "https"
+          ports:
+            - containerPort: 80

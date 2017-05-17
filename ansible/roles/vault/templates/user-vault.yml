@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ name }}
+data:
+  vault.hcl: |
+    storage "s3" {
+      access_key = "{{ user_vault_s3_access_key }}"
+      secret_key = "{{ user_vault_s3_secret_key }}"
+      bucket = "{{ user_vault_s3_bucket }}"
+      region = "{{ aws_region }}"
+    }
+
+    listener "tcp" {
+      address = "0.0.0.0:{{ user_vault_port }}"
+      tls_disable = 1
+    }
+
+    max_lease_ttl = "8760h"
