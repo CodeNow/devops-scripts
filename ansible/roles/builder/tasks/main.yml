@@ -31,6 +31,7 @@
 - name: set number of images built
   tags: deploy, build
   set_fact:
+    # Quay IO includes deleted images in this query through the `end_ts` property
     no_images_found: "{{ currently_built_tags|json_query('json.tags')|length == 0  }}"
 
 - name: set number of images built

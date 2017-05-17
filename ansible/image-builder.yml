@@ -1,5 +1,5 @@
 ---
-- hosts: api
+- hosts: user-local
   vars_files:
     - group_vars/alpha-image-builder.yml
   roles:
