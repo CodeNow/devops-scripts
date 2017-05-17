@@ -2,7 +2,6 @@ name: keymaker-http
 service_name: keymaker
 
 hosted_ports: ["{{ keymaker_port }}"]
-num_replicas: 4
 
 envs:
   - name: PORT
