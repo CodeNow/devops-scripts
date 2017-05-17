@@ -10,16 +10,6 @@ keymaker_base_container_envs:
     value: "{{ datadog_port }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
-  - name: PGUSER
-    value: "{{ keymaker_pg_user }}"
-  - name: PGPASSWORD
-    value: "{{ keymaker_pg_pass }}"
-  - name: PGHOST
-    value: "{{ pg_host }}"
-  - name: PGPORT
-    value: "{{ pg_port }}"
-  - name: PGDATABASE
-    value: "{{ keymaker_pg_database }}"
   - name: POSTGRES_CONNECT_STRING
     value: "postgres://{{ keymaker_pg_user }}:{{ keymaker_pg_pass }}@{{ keymaker_pg_host }}/{{ keymaker_pg_database }}"
   - name: RABBITMQ_HOSTNAME

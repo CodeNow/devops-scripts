@@ -4,5 +4,4 @@
     - group_vars/alpha-keymaker-base.yml
     - group_vars/alpha-keymaker-worker.yml
   roles:
-  - role: builder
   - role: k8-deployment
