@@ -33,7 +33,7 @@ echo subjectAltName=IP:127.0.0.1,DNS:localhost,DNS:swarm >> "$CLIENT/extfile.cnf
 # generate cert for client
 openssl x509 \
   -req \
-  -days 365 \
+  -days 3650 \
   -sha256 \
   -in "$CLIENT/client.csr" \
   -CA $CERT_PATH/ca.pem \
