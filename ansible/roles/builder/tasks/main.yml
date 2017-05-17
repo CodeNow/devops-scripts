@@ -192,4 +192,4 @@
   tags: deploy, build
   when: build_image
   become: yes
-  command: docker logout
+  command: docker logout {{ registry_host }}

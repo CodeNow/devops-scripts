@@ -1,10 +1,13 @@
 ---
+- hosts: api
+  vars_files:
+    - group_vars/alpha-image-builder.yml
+  roles:
+  - { role: builder }
+
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-image-builder.yml
   roles:
-  - { role: notify, tags: [notify] }
-  - { role: node, tags: [setup]  }
-  - { role: git_repo }
-  - { role: image-builder }
+  - { role: pull-image }
   - { role: consul_value, tags: [consul_value] }
