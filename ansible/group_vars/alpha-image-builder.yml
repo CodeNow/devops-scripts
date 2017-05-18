@@ -1,11 +1,7 @@
 app_name: image-builder
 name: "{{ app_name }}"
 
-inject_ca: false
 repo: git@github.com:CodeNow/{{ name }}.git
-node_version: "4.2.2"
-npm_version: "2.15.11"
-use_default_dockerfile: true
 
 # consul values
 consul_values:
