@@ -1,0 +1,14 @@
+name: keymaker-http
+service_name: keymaker
+
+hosted_ports: ["{{ keymaker_port }}"]
+
+envs:
+  - name: PORT
+    value: "{{ keymaker_port }}"
+  - name: ROLLBAR_KEY
+    value: "{{ keymaker_http_rollbar_token }}"
+
+container_envs: "{{ keymaker_base_container_envs + envs }}"
+
+container_run_args: npm run start-http
