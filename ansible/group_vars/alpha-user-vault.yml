@@ -4,6 +4,8 @@ container_image: vault
 container_tag: 0.7.0
 hosted_ports: ["{{ user_vault_port }}"]
 
+service_type: "LoadBalancer"
+
 volume_mounts:
  - name: "{{ name }}"
    path: /config

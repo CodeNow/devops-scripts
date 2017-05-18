@@ -145,6 +145,13 @@ github_varnish_port: 80
 # kartographer
 kartographer_rollbar_token: a7f85fda20bd4b9fb7b1197fc04d3c89
 
+# keymaker
+keymaker_pg_database: keymaker
+keymaker_port: 3008
+keymaker_host_address: keymaker
+keymaker_http_rollbar_token: 4cfd134be18b4f1ca8e05925088360ff
+keymaker_worker_rollbar_token: b6685a5db05d4550afe1c8545c095b29
+
 # khronos
 rollbar_khronos_token: 5a140828cce14410812d34a3ef936f25
 

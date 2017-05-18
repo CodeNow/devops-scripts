@@ -62,7 +62,7 @@ data:
       '' close;
     }
 
-    upstream api {
+    upstream api_base {
       server api:80 max_fails=0 fail_timeout=1s;
     }
 
@@ -73,7 +73,7 @@ data:
       access_log /var/log/nginx/api.access.log;
 
       location / {
-        proxy_pass http://api;
+        proxy_pass http://api_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -85,6 +85,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
 
     server {
@@ -112,11 +113,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://api;
+        proxy_pass http://api_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -125,6 +125,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
   drake.conf: |
     map $http_upgrade $connection_upgrade {
@@ -132,7 +133,7 @@ data:
       '' close;
     }
 
-    upstream drake {
+    upstream drake_base {
       server drake:80 max_fails=0 fail_timeout=1s;
     }
 
@@ -143,7 +144,7 @@ data:
       access_log /var/log/nginx/drake.access.log;
 
       location / {
-        proxy_pass http://drake;
+        proxy_pass http://drake_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -155,6 +156,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
 
     server {
@@ -182,11 +184,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://drake;
+        proxy_pass http://drake_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -195,6 +196,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
   optimus.conf: |
     map $http_upgrade $connection_upgrade {
@@ -202,7 +204,7 @@ data:
       '' close;
     }
 
-    upstream optimus {
+    upstream optimus_base {
       server optimus:80 max_fails=0 fail_timeout=1s;
     }
 
@@ -213,7 +215,7 @@ data:
       access_log /var/log/nginx/optimus.access.log;
 
       location / {
-        proxy_pass http://optimus;
+        proxy_pass http://optimus_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -225,6 +227,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
 
     server {
@@ -252,11 +255,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://optimus;
+        proxy_pass http://optimus_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -265,6 +267,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
   apisock.conf: |
     map $http_upgrade $connection_upgrade {
@@ -272,7 +275,7 @@ data:
       '' close;
     }
 
-    upstream apisock {
+    upstream apisock_base {
       server apisock:80 max_fails=0 fail_timeout=1s;
     }
 
@@ -283,7 +286,7 @@ data:
       access_log /var/log/nginx/apisock.access.log;
 
       location / {
-        proxy_pass http://apisock;
+        proxy_pass http://apisock_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -295,6 +298,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
 
     server {
@@ -322,11 +326,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://apisock;
+        proxy_pass http://apisock_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -335,6 +338,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
   eru.conf: |
     map $http_upgrade $connection_upgrade {
@@ -342,8 +346,12 @@ data:
       '' close;
     }
 
-    upstream eru {
+    upstream eru_base {
       server eru:5501 max_fails=0 fail_timeout=1s;
+    }
+
+    upstream eru_graphql {
+      server eru:5502 max_fails=0 fail_timeout=1s;
     }
 
     server {
@@ -353,7 +361,7 @@ data:
       access_log /var/log/nginx/eru.access.log;
 
       location / {
-        proxy_pass http://eru;
+        proxy_pass http://eru_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -365,6 +373,21 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
+      location /graphql {
+        proxy_pass http://eru_graphql;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+
     }
 
     server {
@@ -392,11 +415,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://eru;
+        proxy_pass http://eru_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -405,6 +427,21 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
+      location /graphql {
+        proxy_pass http://eru_graphql;
+        proxy_http_version 1.1;
+        proxy_set_header upgrade $http_upgrade;
+        proxy_set_header connection $connection_upgrade;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header x-forwarded-host $http_host;
+        proxy_set_header x-real-ip $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+        proxy_set_header x-forwarded-protocol $scheme;
+        proxy_set_header x-forwarded-proto $scheme;
+      }
+
     }
   egret.conf: |
     map $http_upgrade $connection_upgrade {
@@ -412,7 +449,7 @@ data:
       '' close;
     }
 
-    upstream egret {
+    upstream egret_base {
       server egret:65520 max_fails=0 fail_timeout=1s;
     }
 
@@ -423,7 +460,7 @@ data:
       access_log /var/log/nginx/egret.access.log;
 
       location / {
-        proxy_pass http://egret;
+        proxy_pass http://egret_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
@@ -435,6 +472,7 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
 
     server {
@@ -462,11 +500,10 @@ data:
       resolver_timeout 5s;
 
       location / {
-        proxy_pass http://egret;
+        proxy_pass http://egret_base;
         proxy_http_version 1.1;
         proxy_set_header upgrade $http_upgrade;
         proxy_set_header connection $connection_upgrade;
-
 
         proxy_set_header Host $http_host;
         proxy_set_header x-forwarded-host $http_host;
@@ -475,4 +512,5 @@ data:
         proxy_set_header x-forwarded-protocol $scheme;
         proxy_set_header x-forwarded-proto $scheme;
       }
+
     }
