@@ -1,0 +1,15 @@
+---
+- name: login to registry
+  tags: deploy
+  become: yes
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
+
+- name: pull image
+  tags: deploy
+  become: true
+  command: docker pull {{ container_image }}:{{ container_tag }}
+
+- name: logout of registry
+  tags: deploy
+  become: yes
+  command: docker logout {{ registry_host }}

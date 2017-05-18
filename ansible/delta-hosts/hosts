@@ -37,6 +37,9 @@ delta-consul-c
 [user-vault]
 localhost
 
+[user-local]
+localhost
+
 [worker]
 localhost
 
@@ -72,6 +75,9 @@ localhost
 localhost
 
 [link]
+localhost
+
+[keymaker]
 localhost
 
 [khronos]
