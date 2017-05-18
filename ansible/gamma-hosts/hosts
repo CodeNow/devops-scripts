@@ -135,6 +135,9 @@ localhost
 [kartographer]
 localhost
 
+[user-local]
+localhost
+
 [navi-port-router]
 gamma-userland
 
