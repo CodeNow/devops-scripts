@@ -91,7 +91,7 @@
 - name: copy dockerfile to build folder
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image and use_default_dockerfile is not defined
+  when: build_image
   become: true
   template:
     src: "{{ dockerfile }}"
