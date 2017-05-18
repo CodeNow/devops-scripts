@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shiva
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: shiva
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: shiva
+      containers:
+        - image: quay.io/runnable/shiva:v7.9.0
+          imagePullPolicy: Always
+          name: shiva
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - run
+            - shiva-start
+          env:
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: RABBITMQ_HOSTNAME
+              value: "10.8.4.195"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "54321"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: AWS_ACCESS_KEY_ID
+              value: "AKIAJ3RCYU6FCULAJP2Q"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "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"
+            - name: NODE_ENV
+              value: "production-delta"
+            - name: REGISTRY_HOST
+              value: "quay.io"
+            - name: ROLLBAR_KEY
+              value: "0526a90faec845d796e1ef5361a00526"
+            - name: DOCKER_PORT
+              value: "4242"

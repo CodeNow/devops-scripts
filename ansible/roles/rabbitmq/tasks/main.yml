@@ -1,14 +1,10 @@
 ---
-# commands to build an image
-- name: create build folder
-  become: true
+- name: create configMap folder
   file:
-    path="{{ config_path }}"
-    state=directory
+    state: directory
+    path: "{{ config_maps_path }}"
 
-- name: copy dockerfile to build folder
-  become: true
+- name: create rabbit config yaml
   template:
-    src="rabbitmq.config"
-    dest="{{ config_path }}"
-  tags: 'genConfig'
+    dest: "{{ config_maps_path }}/{{ name }}"
+    src: rabbitmq.config

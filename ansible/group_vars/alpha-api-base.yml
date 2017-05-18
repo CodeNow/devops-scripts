@@ -1,11 +1,9 @@
-container_tag: "{{ git_branch }}"
-
-node_version: 4.2.2
+node_version: 4.4.3
 npm_version: 4.0.3
 
 repo: git@github.com:CodeNow/api.git
-restart_policy: always
 has_shrinkwrap: true
+container_image: "{{ registry_address }}/runnable/api"
 
 dockerfile_enviroment: [
   "NPM_TOKEN {{ npm_token }}"
@@ -14,51 +12,111 @@ dockerfile_pre_install_commands: [
    'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
 ]
 
-# shared ENV's between api services
-api_base_container_envs: >-
-  -e AWS_ACCESS_KEY_ID={{ api_aws_access_key_id }}
-  -e AWS_SECRET_ACCESS_KEY={{ api_aws_secret_access_key }}
-  -e BIG_POPPA_HOST=http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
-  -e CLIO_HTTP_URL=http://{{ clio_host_address }}:{{ clio_port }}/
-  -e COOKIE_DOMAIN={{ domain }}
-  -e CREAM_HOST=http://{{ cream_host_address }}:{{ cream_port }}
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e DOCKER_BUILD_LINE_TIMEOUT_MS=3600000
-  -e DOMAIN={{ domain }}
-  -e GITHUB_CALLBACK_URL={{ api_url }}/auth/github/callback
-  -e GITHUB_CLIENT_ID={{ api_github_client_id }}
-  -e GITHUB_CLIENT_SECRET={{ api_github_client_secret }}
-  -e GITHUB_DEPLOY_KEYS_BUCKET={{ api_github_deploy_keys_bucket }}
-  -e GITHUB_HOOK_URL={{ api_url }}/actions/github
-  -e GITHUB_WEBHOOK_URL=https://{{ drake_hostname }}/github
-  -e GITHUB_VARNISH_HOST={{ github_varnish_host }}
-  -e GITHUB_VARNISH_PORT={{ github_varnish_port }}
-  -e GITHUB_PROTOCOL=http
-  -e HELLO_RUNNABLE_GITHUB_TOKEN={{ api_hello_runnable_github_token }}
-  -e KRAIN_PORT={{ krain_port }}
-  -e MIXPANEL_APP_ID={{ api_mixpanel_app_id }}
-  -e MONGO_REPLSET_NAME={{ api_mongo_replset_name }}
-  -e MONGO=mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}
-  -e NAVI_HOST=http://{{ navi_host_address }}:{{ navi_http_port }}
-  {% if api_new_relic_app_name is defined %} -e NEW_RELIC_APP_NAME={{ api_new_relic_app_name }} {% endif %}
-  {% if api_new_relic_app_name is defined %} -e NEW_RELIC_LICENSE_KEY={{ new_relic_license_key }} {% endif %}
-  {% if api_new_relic_app_name is defined %} -e NEW_RELIC_LOG_LEVEL=fatal {% endif %}
-  {% if api_new_relic_app_name is defined %} -e NEW_RELIC_NO_CONFIG_FILE=true {% endif %}
-  -e NODE_ENV={{ node_env }}
-  -e NUM_WORKERS=1
-  -e OPTIMUS_HOST=http://{{ optimus_hostname }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e REDIS_IPADDRESS={{ redis_host_address }}
-  -e REDIS_PORT={{ redis_port }}
-  -e S3_CONTEXT_RESOURCE_BUCKET={{ api_s3_context_bucket }}
-  -e S3_LOG_BUCKET={{ api_s3_log_bucket }}
-  -e SENDGRID_KEY={{ sendgrid_key }}
-  -e SWARM_HOST=http://{{ swarm_host_address }}:{{ swarm_master_port }}
-  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
-  {% if api_intercom_app_id is defined %} -e INTERCOM_APP_ID={{ api_intercom_app_id }} {% endif %}
-  {% if api_intercom_api_key is defined %} -e INTERCOM_API_KEY={{ api_intercom_api_key }} {% endif %}
-  -e AWS_ALIAS_HOST={{ api_aws_alias_host }}
+volume_mounts:
+ - name: "{{ name }}-docker-ssl-certs"
+   path: /etc/ssl/docker
+   kind: configMap
+
+api_base_container_envs:
+  - name: DOCKER_IMAGE_BUILDER_CACHE
+    value: "/home/anandkumarpatel/cache"
+  - name: VALID_REDIR_TLDS
+    value: "{{ domain }},runnablecloud.com"
+  - name: FULL_API_DOMAIN
+    value: "{{ api_url }}"
+  - name: FULL_FRONTEND_DOMAIN
+    value: "https://{{ domain }}"
+  - name: AWS_ACCESS_KEY_ID
+    value: "{{ api_aws_access_key_id }}"
+  - name: AWS_SECRET_ACCESS_KEY
+    value: "{{ api_aws_secret_access_key }}"
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: CLIO_HTTP_URL
+    value: "http://{{ clio_host_address }}:{{ clio_port }}/"
+  - name: COOKIE_DOMAIN
+    value: "{{ domain }}"
+  - name: CREAM_HOST
+    value: "http://{{ cream_host_address }}:{{ cream_port }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: DOCKER_BUILD_LINE_TIMEOUT_MS
+    value: "3600000"
+  - name: DOMAIN
+    value: "{{ domain }}"
+  - name: GITHUB_CALLBACK_URL
+    value: "{{ api_url }}/auth/github/callback"
+  - name: GITHUB_CLIENT_ID
+    value: "{{ api_github_client_id }}"
+  - name: GITHUB_CLIENT_SECRET
+    value: "{{ api_github_client_secret }}"
+  - name: GITHUB_DEPLOY_KEYS_BUCKET
+    value: "{{ api_github_deploy_keys_bucket }}"
+  - name: GITHUB_HOOK_URL
+    value: "{{ api_url }}/actions/github"
+  - name: GITHUB_WEBHOOK_URL
+    value: "https://{{ drake_hostname }}/github"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ api_hello_runnable_github_token }}"
+  - name: KRAIN_PORT
+    value: "{{ krain_port }}"
+  - name: MIXPANEL_APP_ID
+    value: "{{ api_mixpanel_app_id }}"
+  - name: MONGO_REPLSET_NAME
+    value: "{{ api_mongo_replset_name }}"
+  - name: MONGO
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
+  - name: NAVI_HOST
+    value: "http://{{ navi_host_address }}:{{ navi_http_port }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: NUM_WORKERS
+    value: "1"
+  - name: OPTIMUS_HOST
+    value: "http://{{ optimus_hostname }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: REDIS_IPADDRESS
+    value: "{{ redis_host_address }}"
+  - name: REDIS_PORT
+    value: "{{ redis_port }}"
+  - name: S3_CONTEXT_RESOURCE_BUCKET
+    value: "{{ api_s3_context_bucket }}"
+  - name: S3_LOG_BUCKET
+    value: "{{ api_s3_log_bucket }}"
+  - name: SENDGRID_KEY
+    value: "{{ sendgrid_key }}"
+  - name: SWARM_HOST
+    value: "http://{{ swarm_host_address }}:{{ swarm_master_port }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: AWS_ALIAS_HOST
+    value: "{{ api_aws_alias_host }}"
+  - name: NEW_RELIC_APP_NAME
+    value: "{{ api_new_relic_app_name | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LICENSE_KEY
+    value: "{{ new_relic_license_key | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LOG_LEVEL
+    value: "fatal"
+  - name: NEW_RELIC_NO_CONFIG_FILE
+    value: "true"
+  - name: INTERCOM_APP_ID
+    value: "{{ api_intercom_app_id | default('ansible_undefined') }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ api_intercom_api_key | default('ansible_undefined') }}"
+  - name: USER_VAULT_ENDPOINT
+    value: "http://{{ user_vault_host_address }}:{{ user_vault_port }}"

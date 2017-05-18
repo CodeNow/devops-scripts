@@ -1,0 +1,9 @@
+---
+- hosts: consul
+  vars_files:
+    - group_vars/alpha-consul-single.yml
+  roles:
+  - role: notify
+
+  - role: k8-deployment
+  - role: k8-service

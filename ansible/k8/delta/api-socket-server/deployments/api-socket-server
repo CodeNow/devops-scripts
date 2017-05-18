@@ -1,0 +1,144 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api-socket-server
+spec:
+  replicas:  8 
+  template:
+    metadata:
+      labels:
+        app: api-socket-server
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: api-socket-server
+      containers:
+        - image: quay.io/runnable/api:v11.41.2
+          imagePullPolicy: Always
+          name: api-socket-server
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - start
+          env:
+            - name: DOCKER_IMAGE_BUILDER_CACHE
+              value: "/home/anandkumarpatel/cache"
+            - name: VALID_REDIR_TLDS
+              value: "runnable.io,runnablecloud.com"
+            - name: FULL_API_DOMAIN
+              value: "https://api.runnable.io"
+            - name: FULL_FRONTEND_DOMAIN
+              value: "https://runnable.io"
+            - name: AWS_ACCESS_KEY_ID
+              value: "AKIAJWSSSJYUXKNW2ZDA"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "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"
+            - name: BIG_POPPA_HOST
+              value: "http://big-poppa:7788"
+            - name: CLIO_HTTP_URL
+              value: "http://clio:8008/"
+            - name: COOKIE_DOMAIN
+              value: "runnable.io"
+            - name: CREAM_HOST
+              value: "http://cream:8899"
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: DOCKER_BUILD_LINE_TIMEOUT_MS
+              value: "3600000"
+            - name: DOMAIN
+              value: "runnable.io"
+            - name: GITHUB_CALLBACK_URL
+              value: "https://api.runnable.io/auth/github/callback"
+            - name: GITHUB_CLIENT_ID
+              value: "d42d6634d4070c9d9bf9"
+            - name: GITHUB_CLIENT_SECRET
+              value: "d6cfde38fef5723e25e52629e3d25825c8a704c9"
+            - name: GITHUB_DEPLOY_KEYS_BUCKET
+              value: "runnable.deploykeys.production"
+            - name: GITHUB_HOOK_URL
+              value: "https://api.runnable.io/actions/github"
+            - name: GITHUB_WEBHOOK_URL
+              value: "https://drake.runnable.io/github"
+            - name: GITHUB_VARNISH_HOST
+              value: "github-varnish"
+            - name: GITHUB_VARNISH_PORT
+              value: "80"
+            - name: GITHUB_PROTOCOL
+              value: "http"
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
+            - name: KRAIN_PORT
+              value: "3100"
+            - name: MIXPANEL_APP_ID
+              value: "57260a5b6fc972e9c69184882efd009e"
+            - name: MONGO_REPLSET_NAME
+              value: "delta-rs0"
+            - name: MONGO
+              value: "mongodb://api:72192e5a-a5e1-11e5-add9-0270db32f7ad@10.8.4.216:27017,10.8.10.254:27017,10.8.13.89:27017/delta"
+            - name: NAVI_HOST
+              value: "http://navi:3567"
+            - name: NODE_ENV
+              value: "production-delta"
+            - name: NUM_WORKERS
+              value: "1"
+            - name: OPTIMUS_HOST
+              value: "http://optimus.runnable.io"
+            - name: RABBITMQ_HOSTNAME
+              value: "10.8.4.195"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "54321"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: REDIS_IPADDRESS
+              value: "10.8.4.9"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: S3_CONTEXT_RESOURCE_BUCKET
+              value: "runnable.context.resources.production"
+            - name: S3_LOG_BUCKET
+              value: "production-delta.container-logs"
+            - name: SENDGRID_KEY
+              value: "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"
+            - name: SWARM_HOST
+              value: "http://swarm:2375"
+            - name: USER_CONTENT_DOMAIN
+              value: "runnableapp.com"
+            - name: AWS_ALIAS_HOST
+              value: "us-west-2.compute.internal"
+            - name: NEW_RELIC_APP_NAME
+              value: "delta-api-production"
+            - name: NEW_RELIC_LICENSE_KEY
+              value: "338516e0826451c297d44dc60aeaf0a0ca4bfead"
+            - name: NEW_RELIC_LOG_LEVEL
+              value: "fatal"
+            - name: NEW_RELIC_NO_CONFIG_FILE
+              value: "true"
+            - name: INTERCOM_APP_ID
+              value: "wqzm3rju"
+            - name: INTERCOM_API_KEY
+              value: "46e75ada5d21f248787689b35fe80e11efe9303a"
+            - name: USER_VAULT_ENDPOINT
+              value: "http://user-vault:8200"
+            - name: ROLLBAR_KEY
+              value: "cad27f265e8e473c9b293615e7ed0f3a"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: api-socket-server-docker-ssl-certs
+              mountPath: /etc/ssl/docker
+      volumes:
+        - name: api-socket-server-docker-ssl-certs
+          configMap:
+            name: api-socket-server-docker-ssl-certs

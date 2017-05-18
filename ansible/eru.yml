@@ -1,20 +1,11 @@
 ---
-- hosts: consul
-- hosts: mongodb
-- hosts: redis
-- hosts: rabbitmq
-- hosts: big-poppa
-- hosts: socket-server-proxy
-- hosts: github-varnish
-
 - hosts: eru
   vars_files:
   - group_vars/alpha-eru.yml
   roles:
-  - { role: notify, tags: [ notify ] }
-  - { role: builder, tags: [ build ] }
-  - role: container_start
-  - role: nginx-proxied-service
-    nginx_host: "{{ groups['socket-server-proxy'][0] }}"
-    target_ip_address: "{{ hostvars[groups['eru'][0]]['ansible_default_ipv4']['address'] }}"
-    templates: [ 11-eru-server.conf ]
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

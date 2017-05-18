@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cream-worker
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: cream-worker
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: cream-worker
+      containers:
+        - image: quay.io/runnable/cream-worker:v1.14.0
+          imagePullPolicy: Always
+          name: cream-worker
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - run
+            - start-worker
+          env:
+            - name: BIG_POPPA_HOST
+              value: "http://big-poppa:7788"
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: GIT_BRANCH
+              value: "v1.14.0"
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "e1b68a2cbfefcfee87d72df6d1c07bce886454b9"
+            - name: INTERCOM_API_KEY
+              value: "2548f3affd4923602dbf7bbab66eac377b5d3aac"
+            - name: INTERCOM_APP_ID
+              value: "xs5g95pd"
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: RABBITMQ_HOSTNAME
+              value: "rabbitmq"
+            - name: RABBITMQ_PASSWORD
+              value: "wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_USERNAME
+              value: "o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM"
+            - name: RUNNABLE_API_URL
+              value: "https://api.runnable-gamma.com"
+            - name: RUNNABLE_USER_CONTENT_DOMAIN
+              value: "runnablecloud.com"
+            - name: STRIPE_API_KEY
+              value: "sk_test_4De8Zdkfcyb29swkMmjZUMRh"
+            - name: STRIPE_PUBLISHABLE_KEY
+              value: "pk_test_sHr5tQaPtgwiE2cpW6dQkzi8"
+            - name: ROLLBAR_KEY
+              value: "87924b881c3143968cdb059fe41acbc3"

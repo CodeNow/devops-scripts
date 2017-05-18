@@ -1,13 +1,13 @@
-# database vars
-name: mongodb
+name: mongo
+hosted_ports: ["{{ mongo_port }}"]
+container_run_args: ''
 
-db_path: /opt/mongodb/db
+storage_size_gb: 50
 
-# container_kill_start settings
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /data/db
+    kind: persistent
+
 container_image: mongo
-container_tag: latest
-container_run_opts: -d --name mongodb -p 27017:27017 -v {{ db_path }}:/data/db:rw
-
-# do not monitor docker-daemon for mongo, as there is none
-no_datadog_docker_monitoring: true
-has_dd_integration: true
+container_tag: "3.2.6"

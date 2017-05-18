@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ name }}-db
+  labels:
+    type: amazonEBS
+spec:
+  capacity:
+    storage: {{ storage_size_gb }}Gi
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    volumeID: {{ volume_id }}
+    fsType: ext4

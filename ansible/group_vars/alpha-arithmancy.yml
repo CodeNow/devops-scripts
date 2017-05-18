@@ -1,25 +1,26 @@
 name: "arithmancy"
 
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+inject_ca: false
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.2.2"
 npm_version: "2.14.7"
 
-# container settings
-container_envs: >
-  -e DATADOG_HOST={{ datadog_host_address }}
-  -e DATADOG_PORT={{ datadog_port }}
-  -e NODE_ENV={{ node_env }}
-  -e POSTGRES_CONNECT_STRING=postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}
-  -e RABBITMQ_HOSTNAME={{ rabbit_host_address }}
-  -e RABBITMQ_PASSWORD={{ rabbit_password }}
-  -e RABBITMQ_PORT={{ rabbit_port }}
-  -e RABBITMQ_USERNAME={{ rabbit_username }}
-  -e ROLLBAR_KEY={{ arithmancy_rollbar_key }}
-
-container_run_opts: >
-  -h {{ name }}
-  -d
-  -v /opt/ssl/docker/{{ name }}:/etc/ssl/docker:ro
-  {{ container_envs }}
+container_envs:
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: POSTGRES_CONNECT_STRING
+    value: "postgres://{{ arithmancy_pg_user }}:{{ arithmancy_pg_pass }}@{{ arithmancy_pg_host }}/{{ arithmancy_pg_database }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ arithmancy_rollbar_key }}"

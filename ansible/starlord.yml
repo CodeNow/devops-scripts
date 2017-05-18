@@ -1,0 +1,8 @@
+---
+- hosts: starlord
+  vars_files:
+    - group_vars/alpha-starlord.yml
+  roles:
+  - role: notify
+  - role: builder
+  - role: k8-deployment

@@ -1,8 +1,0 @@
----
-- hosts: ec2
-  connection: local
-  vars_files:
-    - "group_vars/ec2_sg.yml"
-  roles:
-  - { role: notify, tags: "notify" }
-  - { role: ec2/sg_configure }

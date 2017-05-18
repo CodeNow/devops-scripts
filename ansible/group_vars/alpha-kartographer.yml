@@ -1,0 +1,40 @@
+name: kartographer
+
+repo: "git@github.com:CodeNow/{{ name }}.git"
+
+kube_config: /keys
+kube_config_name: kube-config
+google_key_name: google-key.json
+
+container_envs:
+  - name: CONFIG_FILE_PATH
+    value: "{{ kube_config }}/{{ kube_config_name }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: "{{ kube_config }}/{{ google_key_name }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ kartographer_hello_runnable_github_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ kartographer_rollbar_token }}"
+  - name: RUNNABLE_API_URL
+    value: "{{ api_url }}"
+  - name: WORKER_MAX_NUM_RETRIES
+    value: "2"
+
+volume_mounts:
+  - name: "{{ name }}-keys"
+    path: /keys
+    kind: configMap

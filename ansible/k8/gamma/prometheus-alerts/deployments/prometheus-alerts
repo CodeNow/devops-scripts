@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus-alerts
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: prometheus-alerts
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: prometheus-alerts
+      containers:
+        - image: prom/alertmanager:v0.5.0
+          imagePullPolicy: Always
+          name: prometheus-alerts
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 10G
+          args:
+            - -config.file=/prometheus-alerts/prometheus-alerts.yml
+            - -data.retention
+            - 720h0m0s
+            - -storage.path
+            - "data"
+            - -web.external-url
+            - http://localhost
+            - -web.listen-address
+            - ":9093"
+
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: prometheus-alerts-conf
+              mountPath: /prometheus-alerts
+      volumes:
+        - name: prometheus-alerts-conf
+          configMap:
+            name: prometheus-alerts-conf

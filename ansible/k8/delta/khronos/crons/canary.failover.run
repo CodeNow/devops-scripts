@@ -1,0 +1,27 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: canary.failover.run
+spec:
+  schedule: "*/30 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: runnable-kubernetes-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: canary-failover-run
+            image: quay.io/runnable/khronos:v6.5.12
+            env:
+              - name: DATADOG_HOST
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: DATADOG_PORT
+                value: "8125"
+            args:
+              - bash
+              - -c
+              - /khronos/bin/cli.js --queue canary.failover.run --job '{}' --host 10.8.4.195:54321 --username o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM --password wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk

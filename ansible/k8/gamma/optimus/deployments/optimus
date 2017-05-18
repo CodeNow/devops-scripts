@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: optimus
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: optimus
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: optimus
+      containers:
+        - image: quay.io/runnable/optimus:v5.1.2
+          imagePullPolicy: Always
+          name: optimus
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - start
+          env:
+            - name: NODE_ENV
+              value: "production-gamma"
+            - name: DATADOG_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DATADOG_PORT
+              value: "8125"
+            - name: PORT
+              value: "80"
+            - name: AWS_ACCESS_KEY_ID
+              value: "AKIAJPA2ZYSVVA5V7XXQ"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "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"
+            - name: S3_DEPLOY_KEY_BUCKET
+              value: "runnable.deploykeys.production-beta"
+            - name: ROLLBAR_KEY
+              value: "a49f9cce09ee46f09df3f603178fba75"
+            - name: LOG_LEVEL
+              value: "trace"
+          ports:
+            - containerPort: 80

@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: agreeable-egret
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: agreeable-egret
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: agreeable-egret
+      containers:
+        - image: quay.io/runnable/agreeable-egret:v0.4.1
+          imagePullPolicy: Always
+          name: agreeable-egret
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 1500M
+          args:
+            - npm
+            - start
+          env:
+            - name: HELLO_RUNNABLE_GITHUB_TOKEN
+              value: "88ddc423c2312d02a8bbcaad76dd4c374a30e4af"
+            - name: NODE_ENV
+              value: "production-delta"
+            - name: RUNNABLE_API_URL
+              value: "https://api.runnable.io"
+            - name: PORT
+              value: "5432"
+            - name: RUNNABLE_USER_CONTENT_DOMAIN
+              value: "runnableapp.com"
+            - name: POSTGRES_CONNECT_STRING
+              value: "postgres://egret:wwHQ5B4RfY9iKS3m@delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com/egret"
+          ports:
+            - containerPort: 5432

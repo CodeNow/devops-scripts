@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ name }}
+data:
+  vault.hcl: |
+    backend "consul" {
+      advertise_addr = "{{ vault_url }}"
+      address = "consul.{{ domain }}"
+      scheme = "http"
+      path = "vault"
+    }
+
+    listener "tcp" {
+      address = "0.0.0.0:{{ vault_api_port }}"
+      tls_disable = 1
+    }
+
+    max_lease_ttl = "8760h"

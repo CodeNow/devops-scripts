@@ -1,8 +1,10 @@
 ---
 - hosts: redis
   vars_files:
-    - "group_vars/alpha-redis.yml"
+    - group_vars/alpha-redis.yml
   roles:
-  - { role: notify, tags: "notify" }
-  - { role: database }
-  - { role: container_kill_start }
+  - role: notify
+
+  - role: database
+  - role: k8-deployment
+  - role: k8-service

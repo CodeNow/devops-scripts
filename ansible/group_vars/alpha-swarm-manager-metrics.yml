@@ -1,28 +1,32 @@
 ---
 name: swarm-cloudwatch-reporter
 
-repo: git@github.com:CodeNow/furry-cactus.git
-container_image: "{{ registry_host }}/runnable/{{ name }}"
-container_tag: "{{ git_branch }}"
+repository_name: furry-cactus
+container_image: "{{ registry_address }}/runnable/{{ repository_name }}"
+repo: git@github.com:CodeNow/{{ repository_name }}.git
 node_version: "4.4.7"
 npm_version: 3
-do_not_push: true
-
-log_driver: json-file
 
 dockerfile_pre_install_commands:
 - npm config set progress false
 
-container_run_opts: >-
-  --log-driver={{ log_driver }}
-  -e AWS_ACCESS_KEY={{ aws_access_key }}
-  -e AWS_SECRET_KEY={{ aws_secret_key }}
-  -e DOCKER_CERT_PATH=/opt/ssl/docker/swarm-manager
-  -e ENVIRONMENT={{ environment_name }}
-  -e SWARM_HOSTNAME={{ ansible_default_ipv4.address }}
-  -e SWARM_PORT={{ swarm_master_port }}
-  -v /opt/runnable/get-info.js:/get-info.js:ro
-  -v /opt/ssl/docker/swarm-manager:/opt/ssl/docker/swarm-manager:ro
-  -v /var/log:/var/log
+cron_scedule: "*/5 * * * *"
 
-container_run_args: npm start >> /var/log/{{ name }}.log 2>&1
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
+container_envs:
+  - name: AWS_ACCESS_KEY
+    value: "{{ aws_access_key }}"
+  - name: AWS_SECRET_KEY
+    value: "{{ aws_secret_key }}"
+  - name: DOCKER_CERT_PATH
+    value: "/etc/ssl/docker"
+  - name: ENVIRONMENT
+    value: "{{ env }}"
+  - name: SWARM_HOSTNAME
+    value: "{{ swarm_host_address }}"
+  - name: SWARM_PORT
+    value: "{{ swarm_master_port }}"
