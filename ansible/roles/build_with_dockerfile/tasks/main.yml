@@ -30,9 +30,20 @@
   become: yes
   command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
 
+- name: login to registry
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
+
 - name: push docker image
   delegate_to: "{{ builder }}"
   tags: deploy, build
   become: yes
-  ignore_errors: True
   command: docker push {{ container_image }}:{{ container_tag }}
+
+- name: logout of registry
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker logout {{ registry_host }}
