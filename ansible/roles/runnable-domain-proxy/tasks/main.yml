@@ -19,22 +19,22 @@
   tags: [ configure_proxy, configure_files ]
   template:
     src: certs.yml
-    dest: "{{ config_maps_path }}/{{ name }}-certs"
+    dest: "{{ config_maps_path }}/{{ name }}-certs.yml"
 
 - name: create proxy template
   tags: [ configure_proxy, configure_files ]
   template:
     src: proxy-nginx.conf
-    dest: "{{ config_maps_path }}/{{ name }}-base-config"
+    dest: "{{ config_maps_path }}/{{ name }}-base-config.yml"
 
 - name: create mixpanel template
   tags: [ configure_proxy, configure_files ]
   template:
     src: mixpanel.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config"
+    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config.yml"
 
 - name: put api template in place
   tags: [ configure_proxy, configure_files ]
   template:
     src: sites-enabled.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config"
+    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config.yml"
