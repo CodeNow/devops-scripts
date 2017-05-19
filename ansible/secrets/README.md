@@ -18,4 +18,6 @@ This directory should have the following files:
     ca.pem
     cert.pem
     key.pem
+    chained.pem
+    dhparam.pem
 ```

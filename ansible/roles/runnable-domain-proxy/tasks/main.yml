@@ -1,14 +1,14 @@
 ---
 - set_fact:
-    ca_data: "{{ lookup('file', '{{ domain }}/ca.pem') }}"
+    ca_data: "{{ lookup('file', 'secrets/domain/{{ domain }}/ca.pem') }}"
 - set_fact:
-    cert_data: "{{ lookup('file', '{{ domain }}/cert.pem') }}"
+    cert_data: "{{ lookup('file', 'secrets/domain/{{ domain }}/cert.pem') }}"
 - set_fact:
-    key_data: "{{ lookup('file', '{{ domain }}/key.pem') }}"
+    key_data: "{{ lookup('file', 'secrets/domain/{{ domain }}/key.pem') }}"
 - set_fact:
-    chained_data: "{{ lookup('file', '{{ domain }}/chained.pem') }}"
+    chained_data: "{{ lookup('file', 'secrets/domain/{{ domain }}/chained.pem') }}"
 - set_fact:
-    dhparam_data: "{{ lookup('file', '{{ domain }}/dhparam.pem') }}"
+    dhparam_data: "{{ lookup('file', 'secrets/domain/{{ domain }}/dhparam.pem') }}"
 
 - name: create configMap folder
   file:
