@@ -1,8 +1,8 @@
 ---
 - set_fact:
-    ca_data: "{{ lookup('file', 'certs/ca.pem') }}"
-    cert_data: "{{ lookup('file', 'certs/{{ name }}/cert.pem') }}"
-    key_data: "{{ lookup('file', 'certs/{{ name }}/key.pem') }}"
+    ca_data: "{{ lookup('file', 'secrets/certs/ca.pem') }}"
+    cert_data: "{{ lookup('file', 'secrets/certs/{{ name }}/cert.pem') }}"
+    key_data: "{{ lookup('file', 'secrets/certs/{{ name }}/key.pem') }}"
 
 - name: create configMap folder
   file:
