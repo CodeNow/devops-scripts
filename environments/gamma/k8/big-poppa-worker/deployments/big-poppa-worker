@@ -13,7 +13,7 @@ spec:
         - name: runnable-kubernetes-pull-secret
       hostname: big-poppa-worker
       containers:
-        - image: quay.io/runnable/big-poppa-worker:v0.18.6
+        - image: quay.io/runnable/big-poppa-worker:v0.18.7
           imagePullPolicy: Always
           name: big-poppa-worker
           resources:
