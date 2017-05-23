@@ -37,6 +37,9 @@ delta-consul-c
 [user-vault]
 localhost
 
+[user-local]
+localhost
+
 [worker]
 localhost
 
