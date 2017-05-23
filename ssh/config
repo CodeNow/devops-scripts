@@ -103,8 +103,8 @@ Host delta-redis
 Host delta-rabbit
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.195 22
 
-Host delta-userland
-  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.244 22
+Host delta-navi-port-router
+  ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.0.111 22
 
 Host delta-mongo-a
   ProxyCommand ssh -q ubuntu@delta-bastion nc 10.8.4.216 22

@@ -2,7 +2,7 @@
 delta-bastion
 
 [navi-port-router]
-delta-userland
+delta-navi-port-router
 
 [navi-proxy]
 localhost
