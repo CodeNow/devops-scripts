@@ -45,7 +45,7 @@ spec:
             - name: PGUSER
               value: "cwallace"
             - name: PGPASSWORD
-              value: "189a4a90-60d9-11e6-92c9-7b1a5b7c8417"
+              value: "27eed36a27a54ffd"
             - name: PGHOST
               value: "delta-infradb.cnksgdqarobf.us-west-2.rds.amazonaws.com"
             - name: PGPORT
@@ -53,7 +53,7 @@ spec:
             - name: PGDATABASE
               value: "big_poppa"
             - name: POSTGRES_CONNECT_STRING
-              value: "postgres://cwallace:189a4a90-60d9-11e6-92c9-7b1a5b7c8417@delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:5432/big_poppa"
+              value: "postgres://cwallace:27eed36a27a54ffd@delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:5432/big_poppa"
             - name: RABBITMQ_HOSTNAME
               value: "10.8.4.195"
             - name: RABBITMQ_PASSWORD
