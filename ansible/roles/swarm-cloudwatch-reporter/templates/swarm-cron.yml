@@ -4,6 +4,7 @@ metadata:
   name: {{ name }}
 spec:
   schedule: "{{ cron_scedule }}"
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
