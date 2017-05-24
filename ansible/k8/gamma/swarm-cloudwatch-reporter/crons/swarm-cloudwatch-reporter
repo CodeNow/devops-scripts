@@ -4,6 +4,7 @@ metadata:
   name: swarm-cloudwatch-reporter
 spec:
   schedule: "*/5 * * * *"
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
