@@ -35,6 +35,14 @@ Host gamma-bastion
   HostName 54.69.34.161
   Port 60709
 
+
+Host 10.4.131.176
+  User admin
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/gamma.pem
+
+
 Host 10.4.*.*
   User ubuntu
   ForwardAgent yes

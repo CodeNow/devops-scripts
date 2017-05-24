@@ -1,17 +1,48 @@
 ---
 - hosts: localhost
   connection: local
+  gather_facts: False
   tasks:
-  - fail: msg="`dock` (target dock) needs to be defined to run this role"
-    when: dock is not defined
+    - name: Launch instance
+      ec2:
+         key_name: "{{ env }}-key"
+         group: "{{ dock_security_group }}"
+         instance_type: "{{ dock_instance_type }}"
+         image: "{{ dock_image }}"
+         region: "{{ dock_region }}"
+         vpc_subnet_id: "{{ dock_vpc_subnet_id }}"
+         aws_access_key: "{{ dock_aws_access_key }}"
+         aws_secret_key: "{{ dock_aws_access_secret }}"
+         count: 1
+         assign_public_ip: False
+         state: running
+         wait: true
+      register: ec2
 
-  - add_host:
-      name={{ dock }}
-      groups=dock
+    - name: log ec2
+      debug:
+        var: ec2
 
-  roles:
-  - { role: install-ssm }
-  - { role: dock-images }
+    - name: Add new instance to host group
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: launched
+      with_items: "{{ ec2.instances }}"
 
-- include: dock-init.yml git_branch="v10.1.2"
-- include: krain.yml git_branch="v0.3.1"
+    - name: Wait for SSH to come up
+      wait_for:
+        host: "{{ item.public_dns_name }}"
+        port: 22
+        delay: 60
+        timeout: 320
+        state: started
+      with_items: "{{ ec2.instances }}"
+
+# - name: Configure instance(s)
+#   hosts: launched
+#   roles:
+#   - { role: install-ssm }
+#   - { role: dock-images }
+
+# - include: dock-init.yml git_branch="SAN-6341-kubernetes"
+# - include: krain.yml git_branch="v0.3.1"

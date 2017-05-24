@@ -29,6 +29,10 @@ https://github.com/CodeNow/devops-scripts
 ```bash
 brew update && brew install vault daemon
 ```
+and
+```bash
+pip install boto
+```
 
 At this point you should be capable of deploying; keep reading to find out how to actually perform a deploy!
 
