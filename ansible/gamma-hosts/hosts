@@ -41,6 +41,9 @@ gamma-consul-c
 [user-vault]
 localhost
 
+[user-local]
+localhost
+
 [worker]
 localhost
 
@@ -66,6 +69,9 @@ localhost
 localhost
 
 [charon]
+localhost
+
+[keymaker]
 localhost
 
 [khronos]

@@ -2,7 +2,7 @@
 delta-bastion
 
 [navi-port-router]
-delta-userland
+delta-navi-port-router
 
 [navi-proxy]
 localhost
@@ -35,6 +35,9 @@ delta-consul-b
 delta-consul-c
 
 [user-vault]
+localhost
+
+[user-local]
 localhost
 
 [worker]
@@ -72,6 +75,9 @@ localhost
 localhost
 
 [link]
+localhost
+
+[keymaker]
 localhost
 
 [khronos]

@@ -83,6 +83,11 @@ eru_subdomain=eru
 [kartographer:vars]
 kartographer_hello_runnable_github_token=000cb6b65858ad0a7590bc2370b5118ff1bc95db
 
+[keymaker:vars]
+keymaker_pg_host=gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+keymaker_pg_pass=n4CsuCiWgbx.2BVJ
+keymaker_pg_user=keymaker
+
 [khronos:vars]
 khronos_intercom_api_key=9b4ee7b4f9818b36e368985fda0befa611928876
 khronos_intercom_app_id=xs5g95pd
@@ -156,6 +161,7 @@ cream_stripe_publishable_key=pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:gamma
+dock_vault_user_creation_access_token=137f441f-db71-40a2-8448-10a565323b1e
 domain=runnable-gamma.com
 env=gamma
 github_domain=api.github.com
@@ -171,15 +177,15 @@ pg_port=32659
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address=10.4.6.45
+registry_token=8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
+registry_username=runnable+gamma
 secrets_path=gamma-hosts/secrets
 user_content_domain=runnablecloud.com
+user_vault_load_balancer=aa8364af12f5a11e7bb9e02301ded9ea-905956029.us-west-2.elb.amazonaws.com
 vault_auth_token=f9a39e92-99f3-66a0-a27d-a6e07717d30d
 vault_token_01=2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
 vault_token_02=3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
 vault_token_03=ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
-registry_username=runnable+gamma
-registry_token=8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
-dock_vault_user_creation_access_token=137f441f-db71-40a2-8448-10a565323b1e
 
 [web:vars]
 web_intercom_id=xs5g95pd

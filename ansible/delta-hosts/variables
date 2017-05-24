@@ -41,7 +41,7 @@ big_poppa_mongo_database=delta
 big_poppa_mongo_replset_name=delta-rs0
 big_poppa_new_relic_app_name=delta-big-poppa
 big_poppa_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:{{ pg_port }}
-big_poppa_pg_pass=189a4a90-60d9-11e6-92c9-7b1a5b7c8417
+big_poppa_pg_pass=27eed36a27a54ffd
 big_poppa_pg_user=cwallace
 big_poppa_worker_rollbar_token=98cabb8440024e3a8242cf3220b802c9:5432
 
@@ -83,6 +83,12 @@ eru_mongodb_password=tilde-rawboned-lotus-hideaway-diastole
 eru_mongodb_replset=delta-rs0
 eru_mongodb_username=eru
 eru_subdomain=eru
+
+[keymaker:vars]
+keymaker_pg_host=delta-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:{{ pg_port }}
+keymaker_pg_pass=8MsajH7RQuJ+fTCh
+keymaker_pg_user=keymaker
+keymaker_new_relic_app_name=delta-keymaker
 
 [khronos:vars]
 khronos_intercom_api_key=14771f14efb617900724a16345e57beb55ba9beb
@@ -172,6 +178,7 @@ cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:delta
+dock_vault_user_creation_access_token=ddf20c34-019c-5b24-9c0d-1b44e3edf29a
 domain=runnable.io
 env=delta
 github_domain=api.github.com
@@ -187,18 +194,18 @@ pg_pass=59a5524e-a772-11e5-bedc-1bdc0db458b3
 pg_port=5432
 rabbit_host_address=10.8.4.195
 rabbit_password=wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+rabbit_port=54321
 rabbit_username=o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address=10.8.4.9
+registry_token=4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
+registry_username=runnable+deltapush
 secrets_path=delta-hosts/secrets
 user_content_domain=runnableapp.com
+user_vault_load_balancer=ab5d35e6f344211e797770ac76ff2aaa-2031464484.us-west-2.elb.amazonaws.com
 vault_auth_token=578c9767-5af8-8490-0954-5d330f27b088
 vault_token_01=0d324dc7d4cbd94790fd08809d06fb1e28e21e185910081c7646e3e49924f6ed01
 vault_token_02=42dc8a69df174e77eb47a63b6ef4709bec57101cb1bff11a71c91b73b8bc046102
 vault_token_03=47f3cb74f5374fa3c51c90fd25e3d4cc851034de97584995fce5fc5382342f1f03
-rabbit_port=54321
-registry_username=runnable+deltapush
-registry_token=4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
-dock_vault_user_creation_access_token=ddf20c34-019c-5b24-9c0d-1b44e3edf29a
 
 [web:vars]
 web_intercom_id=wqzm3rju
