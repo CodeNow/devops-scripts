@@ -9,22 +9,9 @@
       name={{ dock }}
       groups=dock
 
-- include: image-builder.yml git_branch="v4.4.0"
-
-- hosts: "{{ dock }}"
-  tasks:
-  - name: remove datadog agent
-    become: true
-    apt:
-      name=datadog-agent
-      state=absent
-      purge=yes
-      force=yes
-
   roles:
   - { role: install-ssm }
   - { role: dock-images }
 
-- include: charon.yml git_branch="v5.0.1"
 - include: dock-init.yml git_branch="v10.1.2"
 - include: krain.yml git_branch="v0.3.1"

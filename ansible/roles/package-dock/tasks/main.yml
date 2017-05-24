@@ -60,10 +60,3 @@
     dest: /usr/local/bin
     copy: no
     mode: 0755
-
-- name: Download weave 1.5.0
-  become: true
-  get_url:
-    url=https://github.com/weaveworks/weave/releases/download/v1.5.0/weave
-    dest=/usr/local/bin
-    mode=0755
