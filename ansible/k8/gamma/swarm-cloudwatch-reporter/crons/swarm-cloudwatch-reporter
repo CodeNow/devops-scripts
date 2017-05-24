@@ -15,6 +15,9 @@ spec:
           imagePullSecrets:
             - name: runnable-kubernetes-pull-secret
           restartPolicy: Never
+          successfulJobsHistoryLimit: 5
+          failedJobsHistoryLimit: 5
+          concurrencyPolicy: Replace
           containers:
             - name: swarm-cloudwatch-reporter
               volumeMounts:
