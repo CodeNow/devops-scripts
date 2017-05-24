@@ -21,11 +21,13 @@ https://github.com/CodeNow/devops-scripts
 
 4. Obtain the "Ansible Secrets" zip from one password
 
-5. Unzip file obtained above into `devops-scripts/ansible/secrets`
+5. Unzip file obtained above into `devops-scripts/ansible/secrets/docker-client`
 
-6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
+6. Copy "known_hosts" from one password to `devops-scripts/ansible/secrets/docker-client`
 
-7. Install two required tools onto your machine:
+7. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
+
+8. Install two required tools onto your machine:
 ```bash
 brew update && brew install vault daemon
 ```
