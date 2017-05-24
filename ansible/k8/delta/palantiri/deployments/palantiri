@@ -13,7 +13,7 @@ spec:
         - name: runnable-kubernetes-pull-secret
       hostname: palantiri
       containers:
-        - image: quay.io/runnable/palantiri:v2.4.6
+        - image: quay.io/runnable/palantiri:v2.4.8
           imagePullPolicy: Always
           name: palantiri
           resources:
