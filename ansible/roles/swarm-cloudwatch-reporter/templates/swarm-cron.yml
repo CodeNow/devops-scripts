@@ -4,10 +4,10 @@ metadata:
   name: {{ name }}
 spec:
   schedule: "{{ cron_scedule }}"
-  concurrencyPolicy: Replace
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
-      activeDeadlineSeconds: 300
+      activeDeadlineSeconds: 600
       template:
         spec:
           volumes:
