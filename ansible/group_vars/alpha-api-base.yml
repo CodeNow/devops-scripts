@@ -119,4 +119,4 @@ api_base_container_envs:
   - name: INTERCOM_API_KEY
     value: "{{ api_intercom_api_key | default('ansible_undefined') }}"
   - name: USER_VAULT_ENDPOINT
-    value: "http://{{ user_vault_host_address }}:{{ user_vault_port }}"
+    value: "http://{{ user_vault_load_balancer }}:{{ user_vault_port }}"
