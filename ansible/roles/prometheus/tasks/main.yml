@@ -7,5 +7,5 @@
 - name: create prometheus config
   tags: [ deploy ]
   template:
-    dest: "{{ config_maps_path }}/{{ name }}"
+    dest: "{{ config_maps_path }}/{{ name }}.yml"
     src: prometheus.yml
