@@ -193,6 +193,7 @@ dock_region=us-west-2
 dock_vpc_subnet_id=subnet-9cb197f9
 dock_aws_access_key=AKIAJ3RCYU6FCULAJP2Q
 dock_aws_access_secret=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
+dock_root_disk_size_gb=50
 
 [web:vars]
 web_intercom_id=xs5g95pd

@@ -1,9 +1,9 @@
 ---
-- hosts: "{{ dock }}"
+- hosts: dock
   vars_files:
     - group_vars/alpha-dock-init.yml
   roles:
-  - { role: package-dock, tags: [dock, package] }
-  - { role: package-aws, tags: [dock, package] }
+  - { role: package-dock, tags: [ package ] }
+  - { role: package-aws, tags: [ package ] }
   - { role: git_repo }
   - { role: dock-init }

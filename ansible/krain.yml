@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ dock | default('docks') }}"
+- hosts: dock
   vars_files:
     - group_vars/alpha-krain.yml
   roles:

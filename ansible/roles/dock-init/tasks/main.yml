@@ -9,8 +9,6 @@
   file:
     dest="/opt/runnable/dock-init/consul-resources/vault/{{ node_env }}"
     state=directory
-    owner=ubuntu
-    group=ubuntu
     mode="0711"
 
 - name: copy vault auth files
