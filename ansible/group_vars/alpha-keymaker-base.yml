@@ -34,3 +34,5 @@ keymaker_base_container_envs:
     value: "fatal"
   - name: NEW_RELIC_NO_CONFIG_FILE
     value: "true"
+  - name: LOG_LEVEL
+    value: "{{ keymaker_log_level }}"
