@@ -46,6 +46,8 @@ api_base_container_envs:
     value: "3600000"
   - name: DOMAIN
     value: "{{ domain }}"
+  - name: KEYMAKER_HOST
+    value: "http://{{ keymaker_host_Address }}::{{ keymaker_port }}/"
   - name: GITHUB_CALLBACK_URL
     value: "{{ api_url }}/auth/github/callback"
   - name: GITHUB_CLIENT_ID
