@@ -1,64 +1,69 @@
 # ---
-# - hosts: localhost
-#   connection: local
-#   gather_facts: False
-#   tasks:
-#     - name: Launch instance
-#       ec2:
-#          key_name: "{{ env }}-key"
-#          group_id: "{{ dock_security_group }}"
-#          instance_type: "{{ dock_instance_type }}"
-#          image: "{{ dock_image }}"
-#          region: "{{ dock_region }}"
-#          vpc_subnet_id: "{{ dock_vpc_subnet_id }}"
-#          aws_access_key: "{{ dock_aws_access_key }}"
-#          aws_secret_key: "{{ dock_aws_access_secret }}"
-#          volumes:
-#           - device_name: /dev/xvda
-#             volume_type: gp2
-#             volume_size: "{{ dock_root_disk_size_gb }}"
-#          count: 1
-#          assign_public_ip: False
-#          state: present
-#          wait: true
-#       register: ec2
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    # - fail: msg="`ami_version` is not defined"
+    #   when: ami_version is not defined
 
-#     - name: log ec2
-#       debug:
-#         var: ec2
+    - name: Launch instance
+      ec2:
+         key_name: "{{ env }}-key"
+         group_id: "{{ dock_security_group }}"
+         instance_type: "{{ dock_instance_type }}"
+         image: "{{ dock_image }}"
+         region: "{{ dock_region }}"
+         vpc_subnet_id: "{{ dock_vpc_subnet_id }}"
+         aws_access_key: "{{ dock_aws_access_key }}"
+         aws_secret_key: "{{ dock_aws_access_secret }}"
+         instance_profile_name: "{{ dock_iam_name }}"
+         volumes:
+          - device_name: /dev/xvda
+            volume_type: gp2
+            volume_size: "{{ dock_root_disk_size_gb }}"
+         count: 1
+         assign_public_ip: False
+         state: present
+         wait: true
+      register: ec2
 
-#     - name: Add new instance to host group
-#       add_host:
-#         hostname: "{{ ec2.instances[0].private_ip }}"
-#         groupname: dock
+    - name: log ec2
+      debug:
+        var: ec2
 
-#     - name: wait for it
-#       delegate_to: "{{ env }}-bastion"
-#       wait_for:
-#         port: 22
-#         host: "{{ ec2.instances[0].private_ip }}"
-#         state: started
-#         delay: 10
+    - name: Add new instance to host group
+      add_host:
+        hostname: "{{ ec2.instances[0].private_ip }}"
+        groupname: dock
 
-# - name: Configure instance(s)
-#   hosts: dock
-#   roles:
-#   - { role: install-ssm }
-#   - { role: dock-images }
+    - name: wait for it
+      delegate_to: "{{ env }}-bastion"
+      wait_for:
+        port: 22
+        host: "{{ ec2.instances[0].private_ip }}"
+        state: started
+        delay: 10
+
+- name: Configure instance(s)
+  hosts: dock
+  roles:
+  - { role: install-ssm }
+  - { role: dock-images }
 
 - include: dock-init.yml git_branch="SAN-6341-kubernetes"
 - include: krain.yml git_branch="v0.3.1"
 
-- hosts: dock
-  tasks:
-    - name: create dock image
-      register: image
-      ec2_ami:
-        aws_access_key: "{{ dock_aws_access_key }}"
-        aws_secret_key: "{{ dock_aws_access_secret }}"
-        instance_id: "{{ ec2.instance_ids[0] }}"
-        wait: yes
-        name: dock-ami-build-{{ ami_version }}
-        tags:
-          env: "{{ env }}"
-          role: "dock"
+# - hosts: dock
+#   tasks:
+#     - name: create dock image
+#       register: image
+#       ec2_ami:
+#         aws_access_key: "{{ dock_aws_access_key }}"
+#         aws_secret_key: "{{ dock_aws_access_secret }}"
+#         region: "{{ dock_region }}"
+#         instance_id: "{{ ec2.instance_ids[0] }}"
+#         wait: yes
+#         name: dock-ami-build-{{ ami_version }}
+#         tags:
+#           env: "{{ env }}"
+#           role: "dock"

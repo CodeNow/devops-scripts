@@ -32,6 +32,7 @@ Host delta-staging-data
 ################################################################################
 
 Host gamma-bastion
+  User ubuntu
   HostName 54.69.34.161
   Port 60709
 

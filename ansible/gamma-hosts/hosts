@@ -131,7 +131,6 @@ localhost
 [docks]
 
 [dock]
-10.4.154.107
 
 [prometheus]
 localhost
@@ -185,4 +184,4 @@ worker
 127.0.0.1
 
 [targets]
-localhost ansible_connection=local bastion_name=gamma-bastion gather_facts=False ansible_python_interpreter=python
+localhost ansible_connection=local bastion_name=gamma-bastion gather_facts=False ansible_python_interpreter=python ansible_ssh_user=admin
