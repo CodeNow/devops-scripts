@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas:  1 
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      imagePullSecrets:
+        - name: runnable-kubernetes-pull-secret
+      hostname: prometheus
+      containers:
+        - image: prom/prometheus:v1.4.1
+          imagePullPolicy: Always
+          name: prometheus
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: 15G
+          args:
+            - -alertmanager.url
+            - "http://prometheus-alerts:9093"
+            - -config.file=/prometheus/prometheus.yml
+            - -storage.local.path
+            - "/data"
+            - -storage.local.retention
+            - 168h0m0s
+            - -web.external-url
+            - http://localhost
+            - -web.listen-address
+            - ":9090"
+
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-conf
+              mountPath: /prometheus
+            - name: prometheus-db-claim
+              mountPath: /data
+      volumes:
+        - name: prometheus-conf
+          configMap:
+            name: prometheus-conf
+        - name: prometheus-db-claim
+          persistentVolumeClaim:
+            claimName: prometheus-db-claim
