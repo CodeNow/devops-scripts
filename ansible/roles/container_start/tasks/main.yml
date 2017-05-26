@@ -38,6 +38,12 @@
   debug:
     msg: starting this many containers -- {{ number_of_containers }}
 
+- name: login to registry
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
+
 - name: start new container
   delegate_to: "{{ builder }}"
   tags: deploy
@@ -68,3 +74,9 @@
     - remove all hosts from redis key
     - put new hosts on redis keys
     - stop old containers
+
+- name: logout of registry
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  command: docker logout {{ registry_host }}
