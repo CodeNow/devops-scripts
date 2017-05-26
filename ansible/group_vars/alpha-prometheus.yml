@@ -6,15 +6,20 @@ hosted_ports: ["{{ prometheus_port }}"]
 
 memory_hard_limit: 15G
 
+storage_size_gb: 100
+
 volume_mounts:
- - name: "{{ name }}-conf"
-   path: /prometheus
-   kind: configMap
+  - name: "{{ name }}-conf"
+    path: /prometheus
+    kind: configMap
+  - name: "{{ name }}-db-claim"
+    path: /data
+    kind: persistent
 
 container_run_args: >
   -alertmanager.url "{{ prometheus_alert_url }}"
   -config.file=/prometheus/prometheus.yml
-  -storage.local.path "data"
+  -storage.local.path "/data"
   -storage.local.retention 168h0m0s
   -web.external-url http://localhost
   -web.listen-address ":{{ prometheus_port }}"

@@ -140,6 +140,7 @@ pheidi_runnabot_tokens=d22a5ec75f66a0f472f3d856eb01df2321115e0b,33d8accaa7afeace
 
 [prometheus:vars]
 pager_duty_key=ky6EFGL7Zh-xH8x1qEJV
+volume_id=vol-0dc9ca42481538a30
 
 [sauron:vars]
 sauron_rollbar_key=83157ae2d50d4b6398e404c0b9978d26
