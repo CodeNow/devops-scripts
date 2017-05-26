@@ -6,4 +6,3 @@
   - { role: package-dock, tags: [ package ] }
   - { role: package-aws, tags: [ package ] }
   - { role: git_repo }
-  - { role: dock-init }

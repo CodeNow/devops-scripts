@@ -44,6 +44,21 @@
         state: started
         delay: 10
 
+    - name: Ensure tags are present on a resource
+      tags: tag
+      ec2_tag:
+        region: "{{ dock_region }}"
+        aws_access_key: "{{ dock_aws_access_key }}"
+        aws_secret_key: "{{ dock_aws_access_secret }}"
+        resource: "{{ ec2.instance_ids[0] }}"
+        state: present
+        tags:
+          KubernetesCluster: kubernetes-dock.runnable-gamma.com
+          env: production-gamma
+          k8s.io/role/node: 1
+          org: 1111
+          runnable-org-id: 8888
+
 - name: Configure instance(s)
   hosts: dock
   roles:
