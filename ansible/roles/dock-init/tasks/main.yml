@@ -20,6 +20,7 @@
     mode="0400"
   with_items:
   - { file_name: 'auth-token', value: "{{ vault_auth_token }}" }
+  - { file_name: 'user-vault-auth-token', value: "{{ dock_vault_user_creation_access_token }}" }
   - { file_name: 'token-01', value: "{{ vault_token_01 }}" }
   - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
   - { file_name: 'token-03', value: "{{ vault_token_03 }}" }

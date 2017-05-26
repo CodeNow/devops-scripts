@@ -19,16 +19,16 @@
   tags: [ configure_proxy, configure_files ]
   template:
     src: certs.yml
-    dest: "{{ config_maps_path }}/{{ name }}-certs"
+    dest: "{{ config_maps_path }}/{{ name }}-certs.yml"
 
 - name: create proxy template
   tags: [ configure_proxy, configure_files ]
   template:
     src: proxy-nginx.conf
-    dest: "{{ config_maps_path }}/{{ name }}-base-config"
+    dest: "{{ config_maps_path }}/{{ name }}-base-config.yml"
 
 - name: create navi template
   tags: [ configure_proxy, configure_files ]
   template:
     src: navi.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-navi-config"
+    dest: "{{ config_maps_path }}/{{ name }}-navi-config.yml"

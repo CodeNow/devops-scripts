@@ -13,7 +13,7 @@ spec:
         - name: runnable-kubernetes-pull-secret
       hostname: shiva
       containers:
-        - image: quay.io/runnable/shiva:v7.9.0
+        - image: quay.io/runnable/shiva:v7.11.0
           imagePullPolicy: Always
           name: shiva
           resources:

@@ -6,5 +6,5 @@
 
 - name: create deployment yaml
   template:
-    dest: "{{ deployments_path }}/{{ name }}"
+    dest: "{{ deployments_path }}/{{ name }}.yml"
     src: deployment.yml

@@ -39,6 +39,8 @@ service charon start
 CONSUL_HOSTNAME={{ consul_host_address }} \
 CONSUL_PORT={{ consul_api_port }} \
 VAULT_PORT={{ vault_port }} \
+USER_VAULT_HOSTNAME={{ user_vault_load_balancer }} \
+USER_VAULT_PORT={{ user_vault_port }} \
 {% if has_token %}
 S3_ACCESS_KEY={{ dock_registry_s3_access_key }} \
 S3_SECRET_KEY={{ dock_registry_s3_secret_key }} \
