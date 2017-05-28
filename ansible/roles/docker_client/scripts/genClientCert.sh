@@ -1,5 +1,5 @@
 #!/bin/bash
-CERT_PATH=/Users/anandkumarpatel/run/devops-scripts/ansible/certs
+CERT_PATH=/Users/anandkumarpatel/run/devops-scripts/ansible/secrets/certs
 if [[ $1 = '' ]]; then
   echo 'script requires a client name'
   exit 1
