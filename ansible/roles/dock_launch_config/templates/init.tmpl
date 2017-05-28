@@ -6,46 +6,52 @@
         dock_registry_s3_secret_key is defined ) %}
 
 {% if not has_token %}
-# Create directory for env
-mkdir -p /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
-chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
-chmod 0711 /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}
-
-# Set Vault Tokens (Used for fetching templates)
-{% for item in tokens %}
-echo {{ item.value }} > /opt/runnable/dock-init/consul-resources/vault/{{ node_env }}/{{ item.file_name }}
-{% endfor %}
+export VAULT_TOKEN={{ vault_auth_token }}
+export USER_VAULT_TOKEN={{ dock_vault_user_creation_access_token }}
 {% endif %}
-
-# Add upstart files for charon and krain
-mkdir -p /docker/app-logs/
-echo {{ krain_base64['stdout'] }} | base64 --decode > /etc/init/krain.conf
-echo {{ charon_base64['stdout'] }} | base64 --decode > /etc/init/charon.conf
 
 # Add Certs (Used for genereting Docker client keys + certs)
-mkdir -p /etc/ssl/docker/
-echo {{ ca_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca.pem
-echo {{ ca_key_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca-key.pem
-echo {{ pass_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/pass
-chmod -R 0440 /etc/ssl/docker/
+export DOCKER_CERT_CA_BASE64={{ ca_pem_base64['stdout'] }}
+export DOCKER_CERT_CA_KEY_BASE64={{ ca_key_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca-key.pem
+export DOCKER_CERT_PASS={{ pass_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/pass
 
-# Start services
-{% if is_dock_pool %}
-start amazon-ssm-agent
-{% endif %}
 service krain start
-service charon start
-{% if not is_dock_pool %}
-CONSUL_HOSTNAME={{ consul_host_address }} \
-CONSUL_PORT={{ consul_api_port }} \
-VAULT_PORT={{ vault_port }} \
-USER_VAULT_HOSTNAME={{ user_vault_load_balancer }} \
-USER_VAULT_PORT={{ user_vault_port }} \
+
+CONSUL_HOSTNAME={{ consul_host_address }}
+CONSUL_PORT={{ consul_api_port }}
+VAULT_PORT={{ vault_port }}
+USER_VAULT_HOSTNAME={{ user_vault_load_balancer }}
+USER_VAULT_PORT={{ user_vault_port }}
+
 {% if has_token %}
-S3_ACCESS_KEY={{ dock_registry_s3_access_key }} \
-S3_SECRET_KEY={{ dock_registry_s3_secret_key }} \
-AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }} \
-AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }} \
+S3_ACCESS_KEY={{ dock_registry_s3_access_key }}
+S3_SECRET_KEY={{ dock_registry_s3_secret_key }}
+AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }}
+AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }}
 {% endif %}
 bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
-{% endif %}
+
+// TODO: fix me
+export CONSUL_HOSTNAME=
+export VAULT_HOSTNAME=
+export CONSUL_PORT=8500
+export VAULT_PORT=8200
+export USER_VAULT_HOSTNAME=
+export USER_VAULT_PORT=8200
+export K8_TOKEN=
+export K8_HOST=
+sudo docker run
+  --rm \
+  -v /var/run/systemd:/var/run/systemd \
+  --uts=host \
+  --privileged \
+  --cap-add SYS_ADMIN \
+  -v /opt/runnable/dock-init:/opt/runnable/dock-init \
+  -v /etc/sysconfig/docker:/etc/sysconfig/docker \
+  -v /var/log:/var/log \
+  -v /etc/ssl/docker:/etc/ssl/docker \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  quay.io/runnable/dock-init:SAN-6341-kubernetes
+
+# Set Vault Tokens (Used for fetching templates)
+

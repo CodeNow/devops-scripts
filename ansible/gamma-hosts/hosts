@@ -68,9 +68,6 @@ localhost
 [clio]
 localhost
 
-[charon]
-localhost
-
 [keymaker]
 localhost
 
@@ -144,17 +141,20 @@ localhost
 [navi-port-router]
 gamma-userland
 
+[dock-init]
+localhost
+
 [gamma:children]
 agreeable-egret
 api
 arithmancy
 bastion
 big-poppa
-charon
 consul
 cream
 datadog
 dock
+dock-init
 docker-listener
 docks
 drake

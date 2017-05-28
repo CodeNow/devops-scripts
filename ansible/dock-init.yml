@@ -1,8 +1,6 @@
 ---
-- hosts: dock
+- hosts: dock-init
   vars_files:
     - group_vars/alpha-dock-init.yml
   roles:
-  - { role: package-dock, tags: [ package ] }
-  - { role: package-aws, tags: [ package ] }
-  - { role: git_repo }
+  - role: builder

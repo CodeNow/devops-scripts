@@ -85,9 +85,6 @@ big_poppa_host_address: big-poppa
 # cadvisor
 cadvisor_port: 29007
 
-# charon
-charon_port: 53
-
 # clio
 clio_host_address: clio
 clio_port: 8008

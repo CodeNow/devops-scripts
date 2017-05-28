@@ -62,10 +62,9 @@
 - name: Configure instance(s)
   hosts: dock
   roles:
-  - { role: install-ssm }
   - { role: dock-images }
 
-- include: dock-init.yml git_branch="SAN-6341-kubernetes"
+# - include: dock-init.yml git_branch="SAN-6341-kubernetes"
 - include: krain.yml git_branch="v0.3.1"
 
 # - hosts: dock

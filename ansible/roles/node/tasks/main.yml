@@ -10,3 +10,11 @@
     name=npm
     version={{npm_version|default('2.15.3')}}
     global=yes
+
+- name: Install make
+  become: true
+  apt:
+    pkg=make
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800

@@ -1,11 +1,4 @@
 name: dock-init
-app_name: "{{ name }}"
-app_repo: git@github.com:CodeNow/{{ name }}.git
-
-# for docker role
-docker_config: dock
-
-# consul values
-consul_values:
-  - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
+repo: "git@github.com:CodeNow/{{ name }}.git"
+inject_ca: false
+build_with_dockerfile: true

@@ -1,9 +1,4 @@
-app_name: image-builder
-name: "{{ app_name }}"
-
+name: image-builder
 repo: git@github.com:CodeNow/{{ name }}.git
-
-# consul values
-consul_values:
-  - key: "{{ name }}/version"
-    value: "{{ git_branch }}"
+inject_ca: false
+build_with_dockerfile: true
