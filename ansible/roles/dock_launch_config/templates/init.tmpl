@@ -1,57 +1,215 @@
 #!/bin/bash
+#
+# START nodeup The following is nodeup from kops
+# Copyright 2016 The Kubernetes Authors All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+NODEUP_URL=https://kubeupv2.s3.amazonaws.com/kops/1.6.0/linux/amd64/nodeup
+NODEUP_HASH=
+
+
+
+function ensure-install-dir() {
+  INSTALL_DIR="/var/cache/kubernetes-install"
+  # On ContainerOS, we install to /var/lib/toolbox install (because of noexec)
+  if [[ -d /var/lib/toolbox ]]; then
+    INSTALL_DIR="/var/lib/toolbox/kubernetes-install"
+  fi
+  mkdir -p ${INSTALL_DIR}
+  cd ${INSTALL_DIR}
+}
+
+# Retry a download until we get it. Takes a hash and a set of URLs.
+#
+# $1 is the sha1 of the URL. Can be "" if the sha1 is unknown.
+# $2+ are the URLs to download.
+download-or-bust() {
+  local -r hash="$1"
+  shift 1
+
+  urls=( $* )
+  while true; do
+    for url in "${urls[@]}"; do
+      local file="${url##*/}"
+      rm -f "${file}"
+      if ! curl -f --ipv4 -Lo "${file}" --connect-timeout 20 --retry 6 --retry-delay 10 "${url}"; then
+        echo "== Failed to download ${url}. Retrying. =="
+      elif [[ -n "${hash}" ]] && ! validate-hash "${file}" "${hash}"; then
+        echo "== Hash validation of ${url} failed. Retrying. =="
+      else
+        if [[ -n "${hash}" ]]; then
+          echo "== Downloaded ${url} (SHA1 = ${hash}) =="
+        else
+          echo "== Downloaded ${url} =="
+        fi
+        return
+      fi
+    done
+
+    echo "All downloads failed; sleeping before retrying"
+    sleep 60
+  done
+}
+
+validate-hash() {
+  local -r file="$1"
+  local -r expected="$2"
+  local actual
+
+  actual=$(sha1sum ${file} | awk '{ print $1 }') || true
+  if [[ "${actual}" != "${expected}" ]]; then
+    echo "== ${file} corrupted, sha1 ${actual} doesn't match expected ${expected} =="
+    return 1
+  fi
+}
+
+function split-commas() {
+  echo $1 | tr "," "\n"
+}
+
+function try-download-release() {
+  # TODO(zmerlynn): Now we REALLY have no excuse not to do the reboot
+  # optimization.
+
+  local -r nodeup_urls=( $(split-commas "${NODEUP_URL}") )
+  local -r nodeup_filename="${nodeup_urls[0]##*/}"
+  if [[ -n "${NODEUP_HASH:-}" ]]; then
+    local -r nodeup_hash="${NODEUP_HASH}"
+  else
+  # TODO: Remove?
+    echo "Downloading sha1 (not found in env)"
+    download-or-bust "" "${nodeup_urls[@]/%/.sha1}"
+    local -r nodeup_hash=$(cat "${nodeup_filename}.sha1")
+  fi
+
+  echo "Downloading nodeup (${nodeup_urls[@]})"
+  download-or-bust "${nodeup_hash}" "${nodeup_urls[@]}"
+
+  chmod +x nodeup
+}
+
+function download-release() {
+  # In case of failure checking integrity of release, retry.
+  until try-download-release; do
+    sleep 15
+    echo "Couldn't download release. Retrying..."
+  done
+
+  echo "Running nodeup"
+  # We can't run in the foreground because of https://github.com/docker/docker/issues/23793
+  ( cd ${INSTALL_DIR}; ./nodeup --install-systemd-unit --conf=${INSTALL_DIR}/kube_env.yaml --v=8  )
+}
+
+####################################################################################
+
+/bin/systemd-machine-id-setup || echo "failed to set up ensure machine-id configured"
+
+echo "== nodeup node config starting =="
+ensure-install-dir
+
+cat > kube_env.yaml << __EOF_KUBE_ENV
+Assets:
+- 57afca200aa6cec74fcc3072cae12385014f59c0@https://storage.googleapis.com/kubernetes-release/release/v1.6.2/bin/linux/amd64/kubelet
+- 984095cd0fe8a8172ab92e2ee0add49dfc46e0c2@https://storage.googleapis.com/kubernetes-release/release/v1.6.2/bin/linux/amd64/kubectl
+- 1d9788b0f5420e1a219aad2cb8681823fc515e7c@https://storage.googleapis.com/kubernetes-release/network-plugins/cni-0799f5732f2a11b329d9e3d51b9c8f2e3759f2ff.tar.gz
+- a821df4b965dbb119ed207c397b605a1fd99db3c@https://kubeupv2.s3.amazonaws.com/kops/1.6.0/linux/amd64/utils.tar.gz
+ClusterName: kubernetes-dock.runnable-gamma.com
+ConfigBase: s3://runnable-gamma-kubernetes-dock-config/kubernetes-dock.runnable-gamma.com
+InstanceGroupName: nodes
+Tags:
+- _automatic_upgrades
+- _aws
+channels:
+- s3://runnable-gamma-kubernetes-dock-config/kubernetes-dock.runnable-gamma.com/addons/bootstrap-channel.yaml
+protokubeImage:
+  hash: ca9f3a641d4130616f09403afbf5eed749633a86
+  name: protokube:1.6.0
+  source: https://kubeupv2.s3.amazonaws.com/kops/1.6.0/images/protokube.tar.gz
+
+__EOF_KUBE_ENV
+
+download-release
+echo "== nodeup node config done =="
+
+# END nodeup
+#
 
 {% set has_token = ( ec2_describe_aws_access_key is defined and
         ec2_describe_aws_secret_key is defined and
         dock_registry_s3_access_key is defined and
         dock_registry_s3_secret_key is defined ) %}
 
-{% if not has_token %}
-export VAULT_TOKEN={{ vault_auth_token }}
-export USER_VAULT_TOKEN={{ dock_vault_user_creation_access_token }}
-{% endif %}
-
-# Add Certs (Used for genereting Docker client keys + certs)
-export DOCKER_CERT_CA_BASE64={{ ca_pem_base64['stdout'] }}
-export DOCKER_CERT_CA_KEY_BASE64={{ ca_key_pem_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/ca-key.pem
-export DOCKER_CERT_PASS={{ pass_base64['stdout'] }} | base64 --decode > /etc/ssl/docker/pass
-
 service krain start
-
-CONSUL_HOSTNAME={{ consul_host_address }}
-CONSUL_PORT={{ consul_api_port }}
-VAULT_PORT={{ vault_port }}
-USER_VAULT_HOSTNAME={{ user_vault_load_balancer }}
-USER_VAULT_PORT={{ user_vault_port }}
-
-{% if has_token %}
-S3_ACCESS_KEY={{ dock_registry_s3_access_key }}
-S3_SECRET_KEY={{ dock_registry_s3_secret_key }}
-AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }}
-AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }}
+{% if is_dock_pool %}
+start amazon-ssm-agent
 {% endif %}
-bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
 
-// TODO: fix me
-export CONSUL_HOSTNAME=
-export VAULT_HOSTNAME=
-export CONSUL_PORT=8500
-export VAULT_PORT=8200
-export USER_VAULT_HOSTNAME=
-export USER_VAULT_PORT=8200
-export K8_TOKEN=
-export K8_HOST=
-sudo docker run
-  --rm \
-  -v /var/run/systemd:/var/run/systemd \
-  --uts=host \
-  --privileged \
-  --cap-add SYS_ADMIN \
-  -v /opt/runnable/dock-init:/opt/runnable/dock-init \
-  -v /etc/sysconfig/docker:/etc/sysconfig/docker \
-  -v /var/log:/var/log \
-  -v /etc/ssl/docker:/etc/ssl/docker \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  quay.io/runnable/dock-init:SAN-6341-kubernetes
+{% if not is_dock_pool %}
+docker login -u="{{ dock_quay_user }}" -p="{{ dock_quay_password }}" quay.io
 
-# Set Vault Tokens (Used for fetching templates)
+docker run --rm \
+--uts=host --privileged --cap-add SYS_ADMIN \
+-v /opt/runnable/dock-init:/opt/runnable/dock-init \
+-v /etc/sysconfig/docker:/etc/sysconfig/docker \
+-v /var/log:/var/log \
+-v /etc/ssl/docker:/etc/ssl/docker \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /var/run/systemd:/var/run/systemd \
+-e DOCKER_CERT_CA_BASE64={{ ca_pem_base64['stdout'] }} \
+-e DOCKER_CERT_CA_KEY_BASE64={{ ca_key_pem_base64['stdout'] }} \
+-e DOCKER_CERT_PASS={{ pass_base64['stdout'] }} \
+{% if not has_token %}
+-e VAULT_TOKEN={{ vault_auth_token }} \
+-e USER_VAULT_TOKEN={{ dock_vault_user_creation_access_token }} \
+{% endif %}
+{% if has_token %}
+-e S3_ACCESS_KEY={{ dock_registry_s3_access_key }}
+-e S3_SECRET_KEY={{ dock_registry_s3_secret_key }}
+-e AWS_ACCESS_KEY={{ ec2_describe_aws_access_key }}
+-e AWS_SECRET_KEY={{ ec2_describe_aws_secret_key }}
+{% endif %}
+-e CONSUL_HOSTNAME={{ consul_host_address }} \
+-e VAULT_HOSTNAME={{ consul_host_address }} \
+-e CONSUL_PORT={{ consul_api_port }} \
+-e VAULT_PORT={{ vault_port }} \
+-e USER_VAULT_HOSTNAME={{ user_vault_load_balancer }} \
+-e USER_VAULT_PORT={{ user_vault_port }} \
+-e K8_TOKEN={{ dock_k8_token }} \
+-e K8_HOST={{ dock_k8_host }} \
+quay.io/runnable/dock-init:SAN-6341-kubernetes
 
+docker logout quay.io
+
+systemctl restart docker
+{% endif %}
+
+docker pull "quay.io/runnable/image-builder:v4.4.0"
+docker pull "swarm:1.2.5"
+docker pull "registry:2.3.1"
+docker pull "node:argon"
+docker pull "ruby:2.3"
+docker pull "python:2.7"
+docker pull "php:7.0-apache"
+docker pull "runnable/node-starter"
+docker pull "runnable/rails-starter"
+docker pull "runnable/django-starter"
+docker pull "runnable/laravel-starter"
+docker pull "runnable/mysql:5.6"
+docker pull "runnable/postgres:9.4"
+docker pull "runnable/mongo:3.2"
+docker pull "runnable/redis:3.2"
