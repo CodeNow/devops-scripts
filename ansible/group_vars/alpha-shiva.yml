@@ -5,9 +5,19 @@ repo: git@github.com:CodeNow/astral.git
 node_version: "4.2.1"
 npm_version: "2.8.3"
 
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
+# Overrides the start command in the builder role
 container_run_args: npm run shiva-start
 
 container_envs:
+  - name: BIG_POPPA_HOST
+    value: http://{{ big_poppa_host_address }}:{{ big_poppa_port }}
   - name: DATADOG_HOST
     valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
