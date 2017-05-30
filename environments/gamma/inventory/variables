@@ -97,7 +97,7 @@ khronos_mongo_database=gamma
 khronos_mongo_replset_name=gamma
 
 [mongo-navi:vars]
-volume_id=vol-0daf05c3686a7e0a8
+mongo_volume_id=vol-0daf05c3686a7e0a8
 
 [navi:vars]
 navi_cookie_secret=c90e5fb4e7e511e597309a79f06e9478
@@ -147,10 +147,10 @@ marketing_aws_access_key=AKIAICIWKIZEQCMDXLEA
 marketing_aws_secret_key=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
 
 [rabbitmq:vars]
-volume_id=vol-08cb7a2d1218ed9a0
+rabbitt_volume_id=vol-08cb7a2d1218ed9a0
 
 [redis:vars]
-volume_id=vol-040eb379856609100
+redis_volume_id=vol-040eb379856609100
 
 [gamma:vars]
 ansible_ssh_private_key_file=~/.ssh/gamma.pem

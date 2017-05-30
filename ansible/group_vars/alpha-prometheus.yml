@@ -8,6 +8,8 @@ memory_hard_limit: 15G
 
 storage_size_gb: 100
 
+volume_id: "{{ prometheus_volume_id }}"
+
 volume_mounts:
   - name: "{{ name }}-conf"
     path: /prometheus
