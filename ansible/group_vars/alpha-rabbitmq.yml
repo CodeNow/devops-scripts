@@ -5,6 +5,8 @@ hosted_ports: [ "{{ rabbit_port }}", 15672 ]
 
 storage_size_gb: 50
 
+volume_id: "{{ rabbit_volume_id }}"
+
 volume_mounts:
   - name: "{{ name }}-db-claim"
     path: /var/lib/rabbitmq

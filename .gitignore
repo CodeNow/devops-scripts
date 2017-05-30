@@ -13,6 +13,8 @@ enviroments/**/k8/**/configMaps/*cert*
 environments/*/secrets/**/*
 # Leaving for now while PR is merged
 environments/*/k8
+# Meant to not break anything. Might remove later
+environments/self-hosted-test
 *.retry
 *.tfstate*
 terraform/credentials.tfvars

@@ -1,4 +1,15 @@
 ---
+- name: create chained cert
+  tags: [ certs ]
+  shell: |
+    cat {{ domains_root }}/{{ user_content_domain }}/cert.pem  > {{ domains_root }}/{{ user_content_domain }}/chained.pem
+    echo "" >> {{ domains_root }}/{{ user_content_domain }}/chained.pem # Add newline
+    cat {{ domains_root }}/{{ user_content_domain }}/ca.pem  > {{ domains_root }}/{{ user_content_domain }}/chained.pem
+
+- name: create dhparam.pem
+  tags: [ certs ]
+  command: openssl dhparam -out {{ domains_root }}/{{ user_content_domain }}/dhparam.pem 2048
+
 - set_fact:
     ca_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/ca.pem') }}"
 - set_fact:
