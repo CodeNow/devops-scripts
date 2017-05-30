@@ -6,7 +6,7 @@
       var: groups
   - name: generate client certs
     shell:
-      cmd: ./roles/docker_client/scripts/genClientCert.sh "{{ item }}" "{{ groups['main'][0] }} {{ certs_root }}"
+      cmd: "./roles/docker_client/scripts/genClientCert.sh {{ item }} {{ certs_root }}"
       chdir: ./
     with_items:
       - "api"
