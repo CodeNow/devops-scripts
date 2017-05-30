@@ -9,8 +9,9 @@ npm-debug.log
 ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
-ansible/certs/*
-ansible/k8/**/configMaps/*cert*
+enviroments/**/k8/**/configMaps/*cert*
+enviroments/gamma/secrets/*
+enviroments/delta/secrets/*
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
