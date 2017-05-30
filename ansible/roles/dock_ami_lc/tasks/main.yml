@@ -1,0 +1,85 @@
+---
+- name: encode ca.pem to base64
+  shell: cat ./certs/ca.pem | gbase64 -w 0
+  register: ca_pem_base64
+
+- name: encode ca-key.pem to base64
+  shell: cat ./certs/ca-key.pem | gbase64 -w 0
+  register: ca_key_pem_base64
+
+- name: encode pass to base64
+  shell: cat ./certs/pass | gbase64 -w 0
+  register: pass_base64
+
+- name: Generate dock script
+  template:
+    src=init.tmpl
+    dest=./dock.sh
+  vars:
+    is_dock_pool: false
+
+- name: Generate dock script
+  template:
+    src=init.tmpl
+    dest=./dock-pool.sh
+  vars:
+    is_dock_pool: true
+
+- name: create dock image
+  register: ami
+  ec2_ami:
+    aws_access_key: "{{ dock_aws_access_key }}"
+    aws_secret_key: "{{ dock_aws_access_secret }}"
+    region: "{{ dock_region }}"
+    instance_id: "{{ instance_id }}"
+    wait: yes
+    name: dock-ami-build-{{ ami_version }}
+    tags:
+      env: "production-{{ env }}"
+      role: "dock"
+
+- name: create dock lc
+  ec2_lc:
+    name: "{{ env }}-lc-{{ ami_version }}"
+    image_id: "{{ ami.image_id }}"
+    key_name: "{{ env }}-key"
+    state: present
+    region: "{{ dock_region }}"
+    aws_access_key: "{{ dock_aws_access_key }}"
+    aws_secret_key: "{{ dock_aws_access_secret }}"
+    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}" ]
+    instance_type: "{{ dock_instance_type }}"
+    user_data: "{{ lookup('file', './dock.sh') }}"
+    instance_profile_name: "{{ dock_iam_name }}"
+    volumes:
+    - device_name: /dev/xvda
+      volume_type: gp2
+      volume_size: "{{ dock_root_disk_size_gb }}"
+      delete_on_termination: true
+
+- name: create pool lc
+  ec2_lc:
+    name: "{{ env }}-pool-lc-{{ ami_version }}"
+    image_id: "{{ ami.image_id }}"
+    key_name: "{{ env }}-key"
+    state: present
+    region: "{{ dock_region }}"
+    aws_access_key: "{{ dock_aws_access_key }}"
+    aws_secret_key: "{{ dock_aws_access_secret }}"
+    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}" ]
+    instance_type: "{{ dock_instance_type }}"
+    user_data: "{{ lookup('file', './dock-pool.sh') }}"
+    instance_profile_name: "{{ dock_iam_name }}"
+    volumes:
+    - device_name: /dev/xvda
+      volume_type: gp2
+      volume_size: "{{ dock_root_disk_size_gb }}"
+      delete_on_termination: true
+
+- name: terminate instance
+  ec2:
+    region: "{{ dock_region }}"
+    aws_access_key: "{{ dock_aws_access_key }}"
+    aws_secret_key: "{{ dock_aws_access_secret }}"
+    instance_ids: '{{ instance_id }}'
+    state: 'absent'
