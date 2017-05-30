@@ -32,7 +32,7 @@ openssl req \
 chmod 400 "$CLIENT/client.csr"
 
 echo extendedKeyUsage=clientAuth,serverAuth > "$CLIENT/extfile.cnf"
-echo subjectAltName=IP:IP:127.0.0.1,DNS:localhost,DNS:swarm >> "$CLIENT/extfile.cnf"
+echo subjectAltName=IP:127.0.0.1,DNS:localhost,DNS:swarm >> "$CLIENT/extfile.cnf"
 
 # generate cert for client
 openssl x509 \
