@@ -202,7 +202,9 @@ redis_port: 6379
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
 
 # secrets
-secret_root: "{{ opts_root }}/secrets"
+secret_root: "./secrets"
+secret_user_vault_token: "{{ secret_root }}/user-vault-token"
+secret_docker_client: "{{ secret_root }}/docker-client"
 
 # shiva
 pg_user: shiva

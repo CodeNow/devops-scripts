@@ -174,7 +174,6 @@ dock_quay_user=runnable+kubernetes
 dock_region=us-west-2
 dock_root_disk_size_gb=50
 dock_security_group=sg-577a0d33
-dock_vault_user_creation_access_token=137f441f-db71-40a2-8448-10a565323b1e
 dock_vpc_subnet_id=subnet-9cb197f9
 domain=runnable-gamma.com
 env=gamma

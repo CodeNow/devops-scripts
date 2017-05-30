@@ -112,7 +112,7 @@
   when: build_image and inject_ca and build_with_dockerfile is not defined
   become: true
   copy:
-    src=./secrets/docker-client/{{ file_name_item }}
+    src={{ secret_docker_client }}/{{ file_name_item }}
     dest={{ build_dir }}/{{ name }}
     owner=ubuntu
     group=ubuntu

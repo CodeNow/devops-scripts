@@ -175,7 +175,7 @@ docker run --rm \
 -e DOCKER_CERT_PASS={{ pass_base64['stdout'] }} \
 {% if not has_token %}
 -e VAULT_TOKEN={{ vault_auth_token }} \
--e USER_VAULT_TOKEN={{ dock_vault_user_creation_access_token }} \
+-e USER_VAULT_TOKEN="{{ lookup('file', '{{ secret_user_vault_token }}') }}" \
 {% endif %}
 {% if has_token %}
 -e S3_ACCESS_KEY={{ dock_registry_s3_access_key }}
