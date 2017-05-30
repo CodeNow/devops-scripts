@@ -1,14 +1,14 @@
 ---
 - set_fact:
-    ca_data: "{{ lookup('file', '{{ domain }}/ca.pem') }}"
+    ca_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/ca.pem') }}"
 - set_fact:
-    cert_data: "{{ lookup('file', '{{ domain }}/cert.pem') }}"
+    cert_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/cert.pem') }}"
 - set_fact:
-    key_data: "{{ lookup('file', '{{ domain }}/key.pem') }}"
+    key_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/key.pem') }}"
 - set_fact:
-    chained_data: "{{ lookup('file', '{{ domain }}/chained.pem') }}"
+    chained_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/chained.pem') }}"
 - set_fact:
-    dhparam_data: "{{ lookup('file', '{{ domain }}/dhparam.pem') }}"
+    dhparam_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/dhparam.pem') }}"
 
 - name: create configMap folder
   file:
@@ -19,22 +19,22 @@
   tags: [ configure_proxy, configure_files ]
   template:
     src: certs.yml
-    dest: "{{ config_maps_path }}/{{ name }}-certs.yml"
+    dest: "{{ config_maps_path }}/{{ name }}-certs"
 
 - name: create proxy template
   tags: [ configure_proxy, configure_files ]
   template:
     src: proxy-nginx.conf
-    dest: "{{ config_maps_path }}/{{ name }}-base-config.yml"
+    dest: "{{ config_maps_path }}/{{ name }}-base-config"
 
 - name: create mixpanel template
   tags: [ configure_proxy, configure_files ]
   template:
     src: mixpanel.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config.yml"
+    dest: "{{ config_maps_path }}/{{ name }}-mixpanel-config"
 
 - name: put api template in place
   tags: [ configure_proxy, configure_files ]
   template:
     src: sites-enabled.tmpl
-    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config.yml"
+    dest: "{{ config_maps_path }}/{{ name }}-sites-enabled-config"

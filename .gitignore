@@ -11,7 +11,6 @@ ca.srl
 ansible/roles/hipache/templates/runnable*
 enviroments/**/k8/**/configMaps/*cert*
 environments/*/secrets/**/*
-environments/*/secrets/**/*
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
