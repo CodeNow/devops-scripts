@@ -1,8 +1,8 @@
 ---
 - set_fact:
-    ca_data: "{{ lookup('file', 'certs/ca.pem') }}"
-    cert_data: "{{ lookup('file', 'certs/{{ name }}/cert.pem') }}"
-    key_data: "{{ lookup('file', 'certs/{{ name }}/key.pem') }}"
+    ca_data: "{{ lookup('file', '{{ certs_root }}/ca.pem') }}"
+    cert_data: "{{ lookup('file', '{{ certs_root }}/{{ name }}/cert.pem') }}"
+    key_data: "{{ lookup('file', '{{ certs_root }}/{{ name }}/key.pem') }}"
 
 - name: create configMap folder
   file:
@@ -11,5 +11,5 @@
 
 - name: create docker ssl cert config maps
   template:
-    dest: "{{ config_maps_path }}/{{ name }}-docker-ssl-certs.yml"
+    dest: "{{ config_maps_path }}/{{ name }}-docker-ssl-certs"
     src: certs.yml
