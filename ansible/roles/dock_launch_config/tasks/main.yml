@@ -47,16 +47,35 @@
     - { file_name: 'token-02', value: "{{ vault_token_02 }}" }
     - { file_name: 'token-03', value: "{{ vault_token_03 }}" }
 
+- name: Get stats for CA
+  stat:
+    path: "./{{ certs_root }}/ca.pem"
+  register: ca_stats
+
+- name: Get stats for CA key
+  stat:
+    path: "./{{ certs_root }}/ca-key.pem"
+  register: ca_key_stats
+
+- name: Get stats for pass file
+  stat:
+    path: "./{{ certs_root }}/pass"
+  register: pass_stats
+
+- fail:
+    msg: "Whoops! file ownership has changed"
+  when: not ca_stats.stat.exists or not ca_key_stats.stat.exists or not pass_stats.stat.exists
+
 - name: encode ca.pem to base64
-  shell: cat ./secrets/certs/ca.pem | gbase64 -w 0
+  shell: "cat ./{{ certs_root }}/ca.pem | gbase64 -w 0"
   register: ca_pem_base64
 
 - name: encode ca-key.pem to base64
-  shell: cat ./secrets/certs/ca-key.pem | gbase64 -w 0
+  shell: "cat ./{{ certs_root }}/ca-key.pem | gbase64 -w 0"
   register: ca_key_pem_base64
 
 - name: encode pass to base64
-  shell: cat ./secrets/certs/pass | gbase64 -w 0
+  shell: "cat ./{{ certs_root }}/pass | gbase64 -w 0"
   register: pass_base64
 
 - name: Generate dock script
