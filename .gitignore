@@ -10,8 +10,9 @@ ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
 enviroments/**/k8/**/configMaps/*cert*
-environments/gamma/secrets/**/*
-environments/delta/secrets/**/*
+environments/*/secrets/**/*
+# Leaving for now while PR is merged
+environments/*/k8
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
