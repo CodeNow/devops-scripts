@@ -6,16 +6,11 @@ fi
 
 echo 'WARN: hard coded alpha-api-old gamma-services and beta-services for SWARM'
 if [[ $2 = '' ]]; then
-  echo 'script requires a client ip address'
-  exit 1
-fi
-
-if [[ $3 = '' ]]; then
   echo 'script requires a path for secrets'
   exit 1
 fi
 
-CERT_PATH=$3
+CERT_PATH=$2
 if [ ! -d "$CERT_PATH" ]; then
   echo 'The specified directory for certs does not exist'
 fi
@@ -37,12 +32,12 @@ openssl req \
 chmod 400 "$CLIENT/client.csr"
 
 echo extendedKeyUsage=clientAuth,serverAuth > "$CLIENT/extfile.cnf"
-echo subjectAltName=IP:$2 >> "$CLIENT/extfile.cnf"
+echo subjectAltName=IP:IP:127.0.0.1,DNS:localhost,DNS:swarm >> "$CLIENT/extfile.cnf"
 
 # generate cert for client
 openssl x509 \
   -req \
-  -days 365 \
+  -days 3650 \
   -sha256 \
   -in "$CLIENT/client.csr" \
   -CA $CERT_PATH/ca.pem \
@@ -58,4 +53,4 @@ chmod 644 "$CLIENT/key.pem"
 
 # cleanup files we do not need
 rm $CLIENT/extfile.cnf
-rm -f $CLIENT/client.csr
+rm $CLIENT/client.csr
