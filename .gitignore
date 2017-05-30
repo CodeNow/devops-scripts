@@ -20,4 +20,5 @@ environments/self-hosted-test
 terraform/credentials.tfvars
 terraform/.build
 ansible/secrets/*
+ansible/single-host-part-*.yml
 .idea
