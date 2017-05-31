@@ -38,9 +38,9 @@
       env: "production-{{ env }}"
       role: "dock"
 
-  - name: check if image is a tag and check environment
-    set_fact:
-      ami_id: "{{ ami.image_id }}"
+- name: set ami_id
+  set_fact:
+    ami_id: "{{ ami.image_id }}"
 
 - name: create dock lc
   tags: create_lc

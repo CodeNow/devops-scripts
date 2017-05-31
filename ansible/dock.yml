@@ -35,7 +35,7 @@
          wait: true
       register: ec2
 
-    - name: check if image is a tag and check environment
+    - name: set instance id
       set_fact:
         instance_id: "{{ ec2.instance_ids[0] }}"
 
