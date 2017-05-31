@@ -122,7 +122,7 @@ marketing_bucket: runnable-gamma.com
 marketing_aws_access_key: AKIAICIWKIZEQCMDXLEA
 marketing_aws_secret_key: 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
 
-rabbitt_volume_id: vol-08cb7a2d1218ed9a0
+rabbit_volume_id: vol-08cb7a2d1218ed9a0
 
 redis_volume_id: vol-040eb379856609100
 
