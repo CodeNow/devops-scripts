@@ -52,7 +52,7 @@
     region: "{{ dock_region }}"
     aws_access_key: "{{ dock_aws_access_key }}"
     aws_secret_key: "{{ dock_aws_access_secret }}"
-    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}" ]
+    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}"]
     instance_type: "{{ dock_instance_type }}"
     user_data: "{{ lookup('file', './dock.sh') }}"
     instance_profile_name: "{{ dock_iam_name }}"
@@ -72,7 +72,7 @@
     region: "{{ dock_region }}"
     aws_access_key: "{{ dock_aws_access_key }}"
     aws_secret_key: "{{ dock_aws_access_secret }}"
-    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}" ]
+    security_groups: ["{{ dock_security_group }}", "{{ dock_k8_security_group }}"]
     instance_type: "{{ dock_instance_type }}"
     user_data: "{{ lookup('file', './dock-pool.sh') }}"
     instance_profile_name: "{{ dock_iam_name }}"
