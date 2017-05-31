@@ -1,8 +1,17 @@
 ---
+# Defaults
+github_domain: api.github.com
+github_protocol: https
+
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
 pager_duty_key: testkey
-opts_root: "./k8/{{ env }}/{{ name }}"
+environment_root: "../environments/{{ env }}/"
+opts_root: "{{ environment_root }}/k8/{{ name }}"
+secrets_root: "{{ environment_root }}/secrets/"
+certs_root: "{{ secrets_root }}/certs/"
+domains_root: "{{ secrets_root }}/domains/"
+docker_client_root: "{{ secrets_root }}/docker-client/"
 config_maps_path: "{{ opts_root }}/configMaps"
 services_path: "{{ opts_root }}/services"
 deployments_path: "{{ opts_root }}/deployments"
@@ -56,6 +65,7 @@ core_file_dir: /docker/app-cores
 # agreeable-egret
 agreeable_egret_hostname: egret.{{ domain }}
 egret_pg_database: egret
+egret_port: 65520
 
 #angular
 angular_url: https://app.{{ domain }}
@@ -91,6 +101,7 @@ charon_port: 53
 # clio
 clio_host_address: clio
 clio_port: 8008
+clio_mongo_database: clio
 
 # consul
 consul_api_port: 8500
@@ -116,6 +127,7 @@ log_facility: local7
 
 # docker
 docker_port: 4242
+docker_config: docks
 
 # docker-listener
 docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7

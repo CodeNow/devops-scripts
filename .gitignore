@@ -9,11 +9,16 @@ npm-debug.log
 ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
-ansible/certs/*
-ansible/k8/**/configMaps/*cert*
+enviroments/**/k8/**/configMaps/*cert*
+environments/*/secrets/**/*
+# Leaving for now while PR is merged
+environments/*/k8
+# Meant to not break anything. Might remove later
+environments/self-hosted-test
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
 terraform/.build
 ansible/secrets/*
+ansible/single-host-part-*.yml
 .idea
