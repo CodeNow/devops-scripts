@@ -1,9 +1,7 @@
 ---
-- hosts: user-local
+- hosts: localhost
   connection: local
   tasks:
-  - debug:
-      var: groups
   - name: generate client certs
     shell:
       cmd: "./roles/docker_client/scripts/genClientCert.sh {{ item }} {{ certs_root }}"
