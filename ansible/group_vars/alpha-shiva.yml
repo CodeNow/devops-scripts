@@ -34,3 +34,5 @@ container_envs:
     value: "{{ docker_port }}"
   - name: USER_VAULT_LOAD_BALANCER
     value: "{{ user_vault_load_balancer }}"
+  - name: KUBERNETES_CLUSTER
+    value: "{{ dock_k8_cluster_domain }}"
