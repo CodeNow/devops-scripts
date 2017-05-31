@@ -197,6 +197,8 @@ echo docker logout quay.io >> $DOCK_INIT_PATH
 echo systemctl restart docker >> $DOCK_INIT_PATH
 echo rm $DOCK_INIT_PATH >> $DOCK_INIT_PATH
 
+chmod +x $DOCK_INIT_PATH
+
 {% if not is_dock_pool %}
 $DOCK_INIT_PATH
 {% endif %}
