@@ -38,10 +38,15 @@
       env: "production-{{ env }}"
       role: "dock"
 
+  - name: check if image is a tag and check environment
+    set_fact:
+      ami_id: "{{ ami.image_id }}"
+
 - name: create dock lc
+  tags: create_lc
   ec2_lc:
     name: "{{ env }}-lc-{{ ami_version }}"
-    image_id: "{{ ami.image_id }}"
+    image_id: "{{ ami_id }}"
     key_name: "{{ env }}-key"
     state: present
     region: "{{ dock_region }}"
@@ -58,9 +63,10 @@
       delete_on_termination: true
 
 - name: create pool lc
+  tags: create_lc
   ec2_lc:
     name: "{{ env }}-pool-lc-{{ ami_version }}"
-    image_id: "{{ ami.image_id }}"
+    image_id: "{{ ami_id }}"
     key_name: "{{ env }}-key"
     state: present
     region: "{{ dock_region }}"

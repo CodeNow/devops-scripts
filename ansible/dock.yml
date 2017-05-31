@@ -5,6 +5,12 @@
     - fail: msg="`ami_version` is not defined"
       when: ami_version is not defined
 
+    - fail: msg="`dock_init_version` is not defined"
+      when: dock_init_version is not defined
+
+    - fail: msg="`image_builder_version` is not defined"
+      when: image_builder_version is not defined
+
     - name: Launch instance
       ec2:
          key_name: "{{ env }}-key"

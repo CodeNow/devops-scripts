@@ -6,7 +6,7 @@ app_name: krain
 app_repo: git@github.com:CodeNow/krain.git
 
 enviroment_vars:
-  FS_ID_FILE_ROOT: /docker/image/overlay/layerdb/mounts/%%CONTAINERID%%/mount-id
-  FS_ROOT: /docker/overlay
+  FS_ID_FILE_ROOT: /var/lib/docker/image/overlay/layerdb/mounts/%%%CONTAINERID%%%/mount-id
+  FS_ROOT: /var/lib/docker/overlay
   FS_POSTFIX: /merged
   NODE_ENV: default

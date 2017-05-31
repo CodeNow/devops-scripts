@@ -191,14 +191,14 @@ docker run --rm \
 -e USER_VAULT_PORT={{ user_vault_port }} \
 -e K8_TOKEN={{ dock_k8_token }} \
 -e K8_HOST={{ dock_k8_host }} \
-quay.io/runnable/dock-init:SAN-6341-kubernetes
+quay.io/runnable/dock-init:{{ dock_init_version }}
 
 docker logout quay.io
 
 systemctl restart docker
 {% endif %}
 
-docker pull "quay.io/runnable/image-builder:v4.4.0"
+docker pull "quay.io/runnable/image-builder:{{ image_builder_version }}"
 docker pull "swarm:1.2.5"
 docker pull "registry:2.3.1"
 docker pull "node:argon"
