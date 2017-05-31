@@ -120,3 +120,7 @@ api_base_container_envs:
     value: "{{ api_intercom_api_key | default('ansible_undefined') }}"
   - name: USER_VAULT_ENDPOINT
     value: "http://{{ user_vault_load_balancer }}:{{ user_vault_port }}"
+  - name: KEYMAKER_HTTP_URL
+    value: "http://keymaker.runnable-gamma.com:3008/"
+  - name: GITHUB_UPGRADE_REDIRECT_URL
+    value: "https://runnable-gamma.com//githubAuthUpgrade/"
