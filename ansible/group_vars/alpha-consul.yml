@@ -26,6 +26,8 @@ container_run_opts: >
   -p {{ ansible_default_ipv4.address }}:{{ consul_https_port }}:{{ consul_https_port }}
   --restart=always
 
+storage_size_gb: 10
+
 container_run_args: >
   consul agent
   --config-file /consul.json
