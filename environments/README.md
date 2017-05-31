@@ -1,4 +1,16 @@
-# Secrets
+# Environments
+
+Environments should have the following structure:
+
+```
+main.yml (main variable file)
+inventory
+  hosts
+k8 (directory, automatically populated)
+secrets (directory, see below)
+```
+
+### Secrets
 
 This directory should have the following files:
 
