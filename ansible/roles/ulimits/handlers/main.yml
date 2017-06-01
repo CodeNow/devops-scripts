@@ -1,9 +1,0 @@
-- name: reboot server
-  become: true
-  shell:
-    reboot
-
-- name: load kernel parameters
-  become: true
-  shell:
-    sysctl -p
