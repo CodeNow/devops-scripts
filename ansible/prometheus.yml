@@ -7,5 +7,6 @@
 
   - role: prometheus
 
+  - role: database
   - role: k8-deployment
   - role: k8-service

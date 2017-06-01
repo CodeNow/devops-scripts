@@ -1,14 +1,26 @@
 ---
+- name: create chained cert
+  tags: [ certs ]
+  shell: |
+    cat {{ domains_root }}/{{ domain }}/cert.pem  > {{ domains_root }}/{{ domain }}/chained.pem
+    echo "" >> {{ domains_root }}/{{ domain }}/chained.pem # Add newline
+    cat {{ domains_root }}/{{ domain }}/ca.pem  > {{ domains_root }}/{{ domain }}/chained.pem
+
+- name: create dhparam.pem
+  tags: [ certs ]
+  command: openssl dhparam -out {{ domains_root }}/{{ domain }}/dhparam.pem 2048
+
 - set_fact:
-    ca_data: "{{ lookup('file', '{{ domain }}/ca.pem') }}"
+    ca_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/ca.pem') }}"
 - set_fact:
-    cert_data: "{{ lookup('file', '{{ domain }}/cert.pem') }}"
+    cert_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/cert.pem') }}"
 - set_fact:
-    key_data: "{{ lookup('file', '{{ domain }}/key.pem') }}"
+    key_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/key.pem') }}"
 - set_fact:
-    chained_data: "{{ lookup('file', '{{ domain }}/chained.pem') }}"
+    chained_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/chained.pem') }}"
 - set_fact:
-    dhparam_data: "{{ lookup('file', '{{ domain }}/dhparam.pem') }}"
+    # NOTE: We currently have no way of generating this file
+    dhparam_data: "{{ lookup('file', '{{ domains_root }}/{{ domain }}/dhparam.pem') }}"
 
 - name: create configMap folder
   file:

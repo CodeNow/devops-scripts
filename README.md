@@ -19,9 +19,9 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the "Ansible Secrets" zip from one password
+4. Obtain the "Ansible Secrets" zip for the environment you want to deploy (or create the new environment following [./environments/README.md](./environments/README.md))
 
-5. Unzip file obtained above into `devops-scripts/ansible/secrets`
+5. Unzip file obtained above into `devops-scripts/environments/${YOUR_ENV}/secrets`
 
 6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
 
@@ -75,14 +75,15 @@ of the docker image needed to run the service on our architecture.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -t deploy
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy
 ```
 
 ##### Arguments
 - `[inventory_dir]` - The environment inventory files (servers and variables). Should be one of the following:
-  - `stage-hosts` - Runnable sandbox staging environment services
-  - `gamma-hosts` - Gamma services (internal use only; production mirror)
-  - `delta-hosts` - Delta services (real production)
+  - `/enviroments/stage` - Runnable sandbox staging environment services
+  - `/environments/gamma` - Gamma services (internal use only; production mirror)
+  - `/environments/delta` - Delta services (real production)
+- `[main-var-file]` - The file with the main variables for the environment
 - `[service-playbook]` - The playbook for the service you wish to deploy, ex:
   - `api.yml` - Deploys both the api and the api-workers services
   - `shiva.yml` - Deploys the shiva micro-service
@@ -102,14 +103,14 @@ being tested in the production mirror.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -e build_args=--no-cache
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy -e build_args=--no-cache
 ```
 
 ##### Arguments
 - `[inventory_dir]` - The environment inventory files (servers and variables).
+- `[main-var-file]` - The file with the main variables for the environment
 - `[service-playbook]` - The playbook for the service you wish to deploy.
 - `[branch-or-tag]` - The branch or tag you wish to deploy.
-
 
 ## Reverting
 If, for some reason, the new deploy is not operating as expected you can quickly revert by referencing the tag you collected in Step 1.

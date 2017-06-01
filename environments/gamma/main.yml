@@ -1,0 +1,175 @@
+egret_pg_database: egret
+egret_pg_host: gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+egret_pg_pass: b3UKjxbGblKZtG6c
+egret_pg_user: egret
+egret_port: 65520
+
+api_aws_access_key_id: AKIAIDC4WVMTCGV7KRVQ
+api_aws_alias_host: us-west-2.compute.internal
+api_aws_secret_access_key: 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
+api_github_client_id: b6072dc57062faca7fcb
+api_github_client_secret: ba73a9294dc4bfaa7ed02ba187f73918506e4293
+api_github_deploy_keys_bucket: runnable.deploykeys.production-beta
+api_mixpanel_app_id: c41affa4b08818443365c526cbb51606
+api_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+api_mongo_database: gamma
+api_mongo_replset_name: gamma-rs0
+api_rollbar_key: a90d9c262c7c48cfabbd32fd0a1bc61c
+api_s3_context_bucket: runnable.context.resources.production-beta
+api_s3_log_bucket: production-gamma.container-logs
+api_workers_rollbar_key: 3edfe8fe4fd640ae9fdbbe08fcb9f121
+
+arithmancy_pg_database: arithmancy
+arithmancy_pg_host: arithmancy-gamma.cnksgdqarobf.us-west-2.rds.amazonaws.com
+arithmancy_pg_pass: arithmancy-gamma
+arithmancy_pg_port: 5432
+arithmancy_pg_user: arithmancy_gamma
+
+big_poppa_github_token: e11a1264130fb62ce045bf03118bf123f980c205
+big_poppa_http_rollbar_token: 1f1eeea0b1334aaeb50fb7bc4a43241a
+big_poppa_intercom_id: xs5g95pd
+big_poppa_intercom_key: 92d281df5653eb72f8f4b322cf0689be893d4965
+big_poppa_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+big_poppa_mongo_database: gamma
+big_poppa_mongo_replset_name: gamma-rs0
+big_poppa_pg_host: gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+big_poppa_pg_pass: JFmZDuVYPt9vUxk4DBjj
+big_poppa_pg_user: big_poppa
+big_poppa_worker_rollbar_token: 98cabb8440024e3a8242cf3220b802c9
+
+clio_mongo_auth: clio:Fkj8CBoMNpuhe7p*
+clio_mongo_replset_name: gamma-rs0
+clio_mongo_database: clio
+
+cream_hello_runnable_github_token: e1b68a2cbfefcfee87d72df6d1c07bce886454b9
+cream_http_rollbar_token: baa03dbd9f814d14ab0c99863ed6a4fb
+cream_worker_rollbar_token: 87924b881c3143968cdb059fe41acbc3
+cream_intercom_key: 2548f3affd4923602dbf7bbab66eac377b5d3aac
+cream_intercom_id: xs5g95pd
+cream_stripe_secret_key: sk_test_4De8Zdkfcyb29swkMmjZUMRh
+
+docker_config: docks
+docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
+
+docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
+
+drake_port: 80
+drake_http_rollbar_token: 52ad749ddb8e47b2a8e15312b6b300fb
+drake_worker_rollbar_token: 14152b8572034943b714da27ca607698
+
+eru_aws_access_key_id: AKIAIFCVEISSC5JMPWDA
+eru_aws_environment: gamma
+eru_aws_secret_access_key: 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
+eru_github_id: 8abb08f83f6d1c52bd1a
+eru_github_secret: 74a23ee56486d57b14f292283cb04625f600917c
+eru_intercom_id: xs5g95pd
+eru_intercom_key: ro-9367eb0eb11542323371dcf25b8e260891f89b36
+eru_mongodb_database: gamma
+eru_mongodb_password: success-nan-europium-rerun-sheep
+eru_mongodb_replset: gamma-rs0
+eru_mongodb_username: eru
+eru_subdomain: eru
+
+kartographer_hello_runnable_github_token: 000cb6b65858ad0a7590bc2370b5118ff1bc95db
+
+keymaker_pg_host: gamma-big-poppa.cnksgdqarobf.us-west-2.rds.amazonaws.com:32659
+keymaker_pg_pass: n4CsuCiWgbx.2BVJ
+keymaker_pg_user: keymaker
+keymaker_log_level: trace
+
+khronos_intercom_api_key: 9b4ee7b4f9818b36e368985fda0befa611928876
+khronos_intercom_app_id: xs5g95pd
+khronos_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+khronos_mongo_database: gamma
+khronos_mongo_replset_name: gamma
+
+mongo_volume_id: vol-0daf05c3686a7e0a8
+
+navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
+
+optimus_aws_access_id: AKIAJPA2ZYSVVA5V7XXQ
+optimus_aws_secret_id: 5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
+optimus_github_deploy_keys_bucket: runnable.deploykeys.production-beta
+
+palantiri_rollbar_key: f675e9090d6f483ca4e742af2c7f2f83
+
+pheidi_intercom_admin_id: 22382
+pheidi_intercom_id: xs5g95pd
+pheidi_intercom_key: ac207e26721127c7db60544b78988c75c2e20e12
+pheidi_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+pheidi_mongo_database: gamma
+pheidi_mongo_replset_name: gamma
+pheidi_runnabot_tokens: ff3d259c5d988badbb692cc400998e46cdd5f1fc
+
+sauron_rollbar_key: 83157ae2d50d4b6398e404c0b9978d26
+
+aws_access_key_id: AKIAJ3RCYU6FCULAJP2Q
+aws_secret_access_key: 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
+
+starlord_vault_token: 8d6b414a-2e6d-65fb-f0b8-c6200ae688ad
+
+user_vault_s3_access_key: AKIAIOTM4MKOJJVUL7IQ
+user_vault_s3_secret_key: 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
+user_vault_s3_bucket: gamma-user-vault
+vault_config_file: user-vault.yml
+
+vault_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+vault_aws_access_key_id: AKIAJ7R4UIM45KH2WGWQ
+vault_aws_secret_key: 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
+vault_aws_region: us-east-1
+
+marketing_bucket: runnable-gamma.com
+marketing_aws_access_key: AKIAICIWKIZEQCMDXLEA
+marketing_aws_secret_key: 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
+
+rabbit_volume_id: vol-08cb7a2d1218ed9a0
+
+redis_volume_id: vol-040eb379856609100
+
+ansible_ssh_private_key_file: ~/.ssh/gamma.pem
+api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
+bastion_sshd_port: 60709
+builder: gamma-builder
+consul_host_address: 10.4.5.144
+cream_stripe_publishable_key: pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
+datadog_mongodb_pwd: sqa3WBgkCgZsFZuex0kBNahZ
+datadog_mongodb_user: datadog
+datadog_tags: env:gamma
+domain: runnable-gamma.com
+env: gamma
+github_domain: api.github.com
+github_protocol: https
+is_github_enterprise: false
+mongo_hosts: 10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
+mongo_port: 27017
+navi_mongo: mongo
+node_env: production-gamma
+pg_host: gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
+pg_pass: e9G7zYRCxYmxG9HQ8J9x2BDB
+pg_port: 32659
+rabbit_password: wKK7g7NWKpQXEeSzyWB7mIpxZIL8H2mDSf3Q6czR3Vk
+rabbit_username: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
+redis_host_address: 10.4.6.45
+registry_token: 8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
+registry_username: runnable+gamma
+secrets_path: gamma-hosts/secrets
+user_content_domain: runnablecloud.com
+user_vault_load_balancer: aa8364af12f5a11e7bb9e02301ded9ea-905956029.us-west-2.elb.amazonaws.com
+vault_auth_token: f9a39e92-99f3-66a0-a27d-a6e07717d30d
+vault_token_01: 2c0be2adf99931bc9ed443000e87bbcd0ef096dddc79f6add97ebe8fa7e93d2c05
+vault_token_02: 3489b87c913058740537bbbd4503f3720d74f7cb0f4e0c30a9436e1e52a18d7003
+vault_token_03: ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a02
+dock_instance_type: t2.medium
+dock_iam_name: nodes.{{ dock_k8_cluster_domain }}
+dock_k8_cluster_domain: kubernetes-dock.runnable-gamma.com
+dock_k8_host: api.{{ dock_k8_cluster_domain }}
+dock_k8_token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRvY2tzLXRva2VuLXMxNjA1Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImRvY2tzIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNTQwNGQ2MmQtNDBlNy0xMWU3LTg2MDUtMDI4OGIwYzI2N2IwIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6ZG9ja3MifQ.tXFk9UOoqGhfyC-mmLc1GvECS5HsqiAWWQAGn7Th7j-aaJER3X6Ai6YmHYhd7acVGj8DL3hngh-i5bQ0lNDpfVVQPTJQnwsKnwEH_QAjbBAWhQ3LPwK-F0hNQf18rr-swQXRG2WOeD2cAftvm--Jr5qddRQxx9cUHs9ZygHW8WnNKkzj3V0j_Uf2XYPEzcd7o0ZnYRYwzDVBJxs2eLxzymnCQQsgzosGiaYIWcERpqMUex6-oa4mua8BBEJ1zZdJrLS2APFQhdzFODh9eqKBGKZR_AgOgI_wARDnMGOh2nCU2LZbU1YWiqTJUcCE2B3fCnCK84Cl-MfX5Y61XNpG_Q
+dock_quay_password: B2S8ULN74BXGGHW8WT7GGWHVR9PLKPL76NVC2SNPAUP1W6EPTUFKXF5T560OHPO2
+dock_quay_user: runnable+kubernetes
+dock_root_disk_size_gb: 50
+dock_region: us-west-2
+dock_security_group: sg-577a0d33
+dock_k8_security_group: sg-e090fc9b
+
+web_intercom_id: xs5g95pd
+web_sift_public_key: eea9746dff

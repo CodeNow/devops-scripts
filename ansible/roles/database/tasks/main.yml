@@ -10,10 +10,10 @@
 
 - name: create volume yaml
   template:
-    dest: "{{ volumes_path }}/{{ name }}"
+    dest: "{{ volumes_path }}/{{ name }}.yml"
     src: volume.yml
 
 - name: create volume claim yaml
   template:
-    dest: "{{ volumes_path }}/{{ name }}-claim"
+    dest: "{{ volumes_path }}/{{ name }}-claim.yml"
     src: volume-claim.yml
