@@ -6,3 +6,4 @@ dock_key_name: gamma-key
 dock_region: us-west-2
 dock_security_group: sg-577a0d33
 dock_vpc_subnet_id: subnet-9cb197f9
+dock_root_disk_size_gb: 50
