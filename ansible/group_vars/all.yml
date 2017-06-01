@@ -9,6 +9,7 @@ pager_duty_key: testkey
 environment_root: "../environments/{{ env }}/"
 opts_root: "{{ environment_root }}/k8/{{ name }}"
 secrets_root: "{{ environment_root }}/secrets/"
+secret_user_vault_token: "{{ secrets_root }}/user-vault-token"
 certs_root: "{{ secrets_root }}/certs/"
 domains_root: "{{ secrets_root }}/domains/"
 docker_client_root: "{{ secrets_root }}/docker-client/"
@@ -216,12 +217,6 @@ redis_port: 6379
 
 # sauron
 sauron_rollbar_token: 83157ae2d50d4b6398e404c0b9978d26
-
-# secrets
-secret_root: "./secrets"
-secret_env_root: "./{{ env }}-hosts/secrets"
-secret_user_vault_token: "{{ secret_env_root }}/user-vault-token"
-secret_docker_client: "{{ secret_root }}/docker-client"
 
 # shiva
 pg_user: shiva
