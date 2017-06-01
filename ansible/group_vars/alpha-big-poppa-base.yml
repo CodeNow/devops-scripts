@@ -58,6 +58,6 @@ big_poppa_base_container_envs:
   - name: GITHUB_PROTOCOL
     value: "http"
   - name: STRIPE_API_KEY
-    value: "{{ cream_stripe_secret_key }}"
+    value: "{{ cream_stripe_secret_key | default('ansible-undefined') }}"
   - name: STRIPE_PUBLISHABLE_KEY
-    value: "{{ cream_stripe_publishable_key }}"
+    value: "{{ cream_stripe_publishable_key | default('ansible-undefined') }}"

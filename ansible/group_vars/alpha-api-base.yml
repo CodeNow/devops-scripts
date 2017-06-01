@@ -73,7 +73,7 @@ api_base_container_envs:
   - name: KRAIN_PORT
     value: "{{ krain_port }}"
   - name: MIXPANEL_APP_ID
-    value: "{{ api_mixpanel_app_id }}"
+    value: "{{ api_mixpanel_app_id | default('ansible-undefined') }}"
   - name: MONGO_AUTH
     value: "{{ api_mongo_auth }}"
   - name: MONGO_DB
