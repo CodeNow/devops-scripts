@@ -16,4 +16,5 @@ ansible/k8/**/configMaps/*cert*
 terraform/credentials.tfvars
 terraform/.build
 ansible/secrets/*
+ansible/**/secrets/*
 .idea

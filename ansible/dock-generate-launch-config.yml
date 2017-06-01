@@ -1,8 +1,0 @@
----
-- hosts: redis
-- hosts: consul
-
-- hosts: user-local
-  connection: local
-  roles:
-  - { role: dock_launch_config }

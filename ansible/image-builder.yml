@@ -3,11 +3,10 @@
   vars_files:
     - group_vars/alpha-image-builder.yml
   roles:
-  - { role: build_with_dockerfile }
+  - { role: builder }
 
 - hosts: "{{ dock | default('docks') }}"
   vars_files:
     - group_vars/alpha-image-builder.yml
   roles:
   - { role: pull-image }
-  - { role: consul_value, tags: [consul_value] }

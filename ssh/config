@@ -32,11 +32,12 @@ Host delta-staging-data
 ################################################################################
 
 Host gamma-bastion
+  User ubuntu
   HostName 54.69.34.161
   Port 60709
 
 Host 10.4.*.*
-  User ubuntu
+  User admin
   ForwardAgent yes
   StrictHostKeyChecking no
   ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@gamma-bastion nc %h %p

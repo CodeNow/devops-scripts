@@ -1,30 +1,94 @@
----
 - hosts: localhost
   connection: local
+  gather_facts: False
+  vars_files:
+  - group_vars/alpha-dock.yml
   tasks:
-  - fail: msg="`dock` (target dock) needs to be defined to run this role"
-    when: dock is not defined
+    - fail: msg="`ami_version` is not defined"
+      when: ami_version is not defined
 
-  - add_host:
-      name={{ dock }}
-      groups=dock
+    - fail: msg="`dock_init_version` is not defined"
+      when: dock_init_version is not defined
 
-- include: image-builder.yml git_branch="v4.5.0"
+    - fail: msg="`image_builder_version` is not defined"
+      when: image_builder_version is not defined
 
-- hosts: "{{ dock }}"
-  tasks:
-  - name: remove datadog agent
-    become: true
-    apt:
-      name=datadog-agent
-      state=absent
-      purge=yes
-      force=yes
+    - name: Launch instance
+      ec2:
+         key_name: "{{ dock_key_name` }}"
+         group_id:
+          - "{{ dock_k8_security_group }}"
+         instance_type: "{{ dock_instance_type }}"
+         image: "{{ dock_image }}"
+         region: "{{ dock_region }}"
+         vpc_subnet_id: "{{ dock_vpc_subnet_id }}"
+         aws_access_key: "{{ dock_aws_access_key }}"
+         aws_secret_key: "{{ dock_aws_access_secret }}"
+         volumes:
+          - device_name: /dev/xvda
+            volume_type: gp2
+            volume_size: "{{ dock_root_disk_size_gb }}"
+            delete_on_termination: true
+         count: 1
+         assign_public_ip: False
+         state: present
+         wait: true
+      register: ec2
 
+    - name: set instance id
+      set_fact:
+        instance_id: "{{ ec2.instance_ids[0] }}"
+
+    - name: Add new instance to host group
+      add_host:
+        hostname: "{{ ec2.instances[0].private_ip }}"
+        groupname: dock
+
+    - name: wait for it
+      delegate_to: "{{ dock_bastion }}"
+      wait_for:
+        port: 22
+        host: "{{ ec2.instances[0].private_ip }}"
+        state: started
+        delay: 10
+
+- name: Configure instance(s)
+  hosts: dock
+  vars_files:
+  - group_vars/alpha-dock.yml
   roles:
-  - { role: install-ssm }
-  - { role: dock-images }
+  - role: install-ssm
 
-- include: charon.yml git_branch="v5.0.3"
-- include: dock-init.yml git_branch="v10.1.4"
 - include: krain.yml git_branch="v0.3.1"
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+  - group_vars/alpha-dock.yml
+  tasks:
+  - name: create dock image
+    register: ami
+    ec2_ami:
+      aws_access_key: "{{ dock_aws_access_key }}"
+      aws_secret_key: "{{ dock_aws_access_secret }}"
+      region: "{{ dock_region }}"
+      instance_id: "{{ instance_id }}"
+      wait: yes
+      name: dock-ami-build-{{ ami_version }}
+      tags:
+        role: "dock"
+
+  - name: set ami_id
+    set_fact:
+      ami_id: "{{ ami.image_id }}"
+
+  - debug: msg="created ami {{ ami_id }}"
+
+  - name: terminate instance
+    ec2:
+      region: "{{ dock_region }}"
+      aws_access_key: "{{ dock_aws_access_key }}"
+      aws_secret_key: "{{ dock_aws_access_secret }}"
+      instance_ids: '{{ instance_id }}'
+      state: 'absent'

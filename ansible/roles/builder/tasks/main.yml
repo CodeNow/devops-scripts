@@ -28,13 +28,13 @@
       Authorization: 'Bearer {{ quay_api_token }}'
   register: currently_built_tags
 
-- name: set number of images built
+- name: check to see if image exist
   tags: deploy, build
   set_fact:
     # Quay IO includes deleted images in this query through the `end_ts` property
     no_images_found: "{{ currently_built_tags|json_query('json.tags')|length == 0  }}"
 
-- name: set number of images built
+- name: check to see if we should build this image
   tags: deploy, build
   set_fact:
     # Only build the image if no images are found or image is not a tag
@@ -91,7 +91,7 @@
 - name: copy dockerfile to build folder
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
+  when: build_image and build_with_dockerfile is not defined
   become: true
   template:
     src: "{{ dockerfile }}"
@@ -100,7 +100,7 @@
 - name: copy .dockerignore file into build folder
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
+  when: build_image and build_with_dockerfile is not defined
   become: true
   template:
     src: ".dockerignore"
@@ -109,10 +109,10 @@
 - name: copy secrets into build dir
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image and inject_ca
+  when: build_image and inject_ca and build_with_dockerfile is not defined
   become: true
   copy:
-    src=./secrets/docker-client/{{ file_name_item }}
+    src={{ secret_docker_client }}/{{ file_name_item }}
     dest={{ build_dir }}/{{ name }}
     owner=ubuntu
     group=ubuntu
@@ -123,17 +123,29 @@
   loop_control:
     loop_var: file_name_item
 
+- name: set build folder
+  tags: build, deploy
+  when: build_image and build_with_dockerfile is node defined
+  set_fact:
+    build_path: "{{ build_dir }}/{{ name }}"
+
+- name: set build folder
+  tags: build, deploy
+  when: build_image and build_with_dockerfile is defined
+  set_fact:
+    build_path: "{{ build_dir }}/{{ name }}/repo"
+
 - name: build docker image and tag
   delegate_to: "{{ builder }}"
   tags: deploy, build
   when: build_image
   become: yes
-  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}"
+  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_path }}"
 
 - name: remove secrets from build dir
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image and inject_ca
+  when: build_image and inject_ca and build_with_dockerfile is not defined
   become: true
   file:
     path: "{{ build_dir }}/{{ name }}/{{ file_name_item }}"

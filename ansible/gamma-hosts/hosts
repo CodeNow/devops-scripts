@@ -68,9 +68,6 @@ localhost
 [clio]
 localhost
 
-[charon]
-localhost
-
 [keymaker]
 localhost
 
@@ -144,17 +141,20 @@ localhost
 [navi-port-router]
 gamma-userland
 
+[dock-init]
+localhost
+
 [gamma:children]
 agreeable-egret
 api
 arithmancy
 bastion
 big-poppa
-charon
 consul
 cream
 datadog
 dock
+dock-init
 docker-listener
 docks
 drake
@@ -187,4 +187,4 @@ worker
 127.0.0.1
 
 [targets]
-localhost ansible_connection=local bastion_name=gamma-bastion gather_facts=False
+localhost ansible_connection=local bastion_name=gamma-bastion gather_facts=False ansible_python_interpreter=python ansible_ssh_user=admin

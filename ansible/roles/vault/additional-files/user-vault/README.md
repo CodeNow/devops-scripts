@@ -7,7 +7,7 @@ kubectl port-forward INSTERT_VAULT_ID 8300:8200
 export VAULT_ADDR=http://localhost:8300
 ```
 
-The first time you setup vault we need to manually configure a bunch 
+The first time you setup vault we need to manually configure a bunch
 of things so we don't pass around the root token.
 
 `vault init`
@@ -43,12 +43,6 @@ Now to setup new token for starlord:
 `vault token-create -policy="organizations-writeonly" -ttl="8760h"`
 
 Take the response of this and save it in the configuration for the environment you want as the `starlord_vault_token`
-
-Create a new token for the docks, so they can create readonly tokens.
-
-`vault token-create -policy="dock-user-creator" -ttl="8760h"`
-
-Save that token as the `dock_vault_user_creation_access_token`
 
 This allows the vault user to create a new user using:
 vault write -f auth/token/create/organizations-readonly

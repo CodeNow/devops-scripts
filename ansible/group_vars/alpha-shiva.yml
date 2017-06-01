@@ -32,3 +32,9 @@ container_envs:
     value: "{{ shiva_rollbar_token }}"
   - name: DOCKER_PORT
     value: "{{ docker_port }}"
+  - name: USER_VAULT_LOAD_BALANCER
+    value: "{{ user_vault_load_balancer }}"
+  - name: KUBERNETES_CLUSTER
+    value: "{{ dock_k8_cluster_domain }}"
+  - name: AWS_LAUNCH_CONFIGURATION_NAME
+    value: "{{ env }}-lc-3.0.0"

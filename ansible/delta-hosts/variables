@@ -179,7 +179,6 @@ cream_stripe_publishable_key=pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd=sqa3WBgkCgZsFZuex0kBNahZ
 datadog_mongodb_user=datadog
 datadog_tags=env:delta
-dock_vault_user_creation_access_token=ddf20c34-019c-5b24-9c0d-1b44e3edf29a
 domain=runnable.io
 env=delta
 github_domain=api.github.com
