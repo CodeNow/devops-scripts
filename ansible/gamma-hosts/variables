@@ -193,6 +193,9 @@ dock_k8_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3Nlc
 dock_quay_password=B2S8ULN74BXGGHW8WT7GGWHVR9PLKPL76NVC2SNPAUP1W6EPTUFKXF5T560OHPO2
 dock_quay_user=runnable+kubernetes
 dock_root_disk_size_gb=50
+dock_region=us-west-2
+dock_security_group=sg-577a0d33
+dock_k8_security_group=sg-e090fc9b
 
 [web:vars]
 web_intercom_id=xs5g95pd
