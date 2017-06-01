@@ -7,6 +7,4 @@
     rollbar_token: "{{ rollbar_web_token }}"
 
   - role: builder
-
-  - role: container_start
-  - role: wait_for_container_exit
+  - role: k8-job
