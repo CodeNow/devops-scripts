@@ -156,7 +156,7 @@ echo "== nodeup node config done =="
 
 service krain start
 {% if is_dock_pool %}
-start amazon-ssm-agent
+service amazon-ssm-agent start
 {% endif %}
 export DOCK_INIT_PATH=/opt/runnable/dock-init.sh
 echo docker login -u="{{ dock_quay_user }}" -p="{{ dock_quay_password }}" quay.io >> $DOCK_INIT_PATH
@@ -193,8 +193,9 @@ echo docker run --rm \
 quay.io/runnable/dock-init:{{ dock_init_version }} >> $DOCK_INIT_PATH
 
 echo docker logout quay.io >> $DOCK_INIT_PATH
-
+echo rm /etc/docker/key.json >> $DOCK_INIT_PATH
 echo systemctl restart docker >> $DOCK_INIT_PATH
+
 echo rm $DOCK_INIT_PATH >> $DOCK_INIT_PATH
 
 chmod +x $DOCK_INIT_PATH
