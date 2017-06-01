@@ -125,6 +125,7 @@
 
 - name: set build folder
   tags: build, deploy
+  when: build_image and build_with_dockerfile is node defined
   set_fact:
     build_path: "{{ build_dir }}/{{ name }}"
 
