@@ -114,6 +114,10 @@ log_facility: local7
 # docker
 docker_port: 4242
 
+# docks
+dock_aws_access_key: AKIAJ3RCYU6FCULAJP2Q
+dock_aws_access_secret: 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
+
 # docker-listener
 docker_listener_rollbar_key: 7b5924eccfff415d9fc00c051811e9d7
 
