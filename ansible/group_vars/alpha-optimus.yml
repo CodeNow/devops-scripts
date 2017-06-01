@@ -22,6 +22,6 @@ container_envs:
   - name: S3_DEPLOY_KEY_BUCKET
     value: "{{ optimus_github_deploy_keys_bucket }}"
   - name: ROLLBAR_KEY
-    value: "{{ optimus_rollbar_token }}"
+    value: "{{ optimus_rollbar_token | default('ansible-undefined') }}"
   - name: LOG_LEVEL
     value: "trace"

@@ -29,7 +29,7 @@ container_envs:
   - name: REGISTRY_HOST
     value: "{{ registry_host }}"
   - name: ROLLBAR_KEY
-    value: "{{ shiva_rollbar_token }}"
+    value: "{{ shiva_rollbar_token | default('ansible-undefined') }}"
   - name: DOCKER_PORT
     value: "{{ docker_port }}"
   - name: USER_VAULT_LOAD_BALANCER

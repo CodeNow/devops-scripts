@@ -7,7 +7,7 @@ envs:
   - name: DATADOG_SECRET
     value: "I_solemnly_swear_that_I_am_up_to_no_good"
   - name: ROLLBAR_KEY
-    value: "{{ drake_http_rollbar_token }}"
+    value: "{{ drake_http_rollbar_token | default('ansible-undefined') }}"
   - name: PORT
     value: "{{ drake_port }}"
 

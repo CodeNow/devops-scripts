@@ -23,4 +23,4 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ arithmancy_rollbar_key }}"
+    value: "{{ arithmancy_rollbar_key | default('ansible-undefined') }}"
