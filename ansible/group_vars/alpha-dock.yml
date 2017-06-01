@@ -1,8 +1,8 @@
-dock_region=us-west-2
-dock_image=ami-aaf84aca
-dock_instance_type=m4.large
-dock_k8_security_group=sg-e090fc9b
-dock_security_group=sg-577a0d33
-dock_vpc_subnet_id=subnet-9cb197f9
-dock_bastion=gamma-bastion
-dock_key_name=gamma-kay
+dock_bastion: gamma-bastion
+dock_image: ami-aaf84aca
+dock_instance_type: m4.large
+dock_k8_security_group: sg-e090fc9b
+dock_key_name: gamma-key
+dock_region: us-west-2
+dock_security_group: sg-577a0d33
+dock_vpc_subnet_id: subnet-9cb197f9

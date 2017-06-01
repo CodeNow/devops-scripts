@@ -7,15 +7,9 @@
     - fail: msg="`ami_version` is not defined"
       when: ami_version is not defined
 
-    - fail: msg="`dock_init_version` is not defined"
-      when: dock_init_version is not defined
-
-    - fail: msg="`image_builder_version` is not defined"
-      when: image_builder_version is not defined
-
     - name: Launch instance
       ec2:
-         key_name: "{{ dock_key_name` }}"
+         key_name: "{{ dock_key_name }}"
          group_id:
           - "{{ dock_k8_security_group }}"
          instance_type: "{{ dock_instance_type }}"
@@ -78,12 +72,6 @@
       name: dock-ami-build-{{ ami_version }}
       tags:
         role: "dock"
-
-  - name: set ami_id
-    set_fact:
-      ami_id: "{{ ami.image_id }}"
-
-  - debug: msg="created ami {{ ami_id }}"
 
   - name: terminate instance
     ec2:
