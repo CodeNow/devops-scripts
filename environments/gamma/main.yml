@@ -48,7 +48,6 @@ cream_intercom_key: 2548f3affd4923602dbf7bbab66eac377b5d3aac
 cream_intercom_id: xs5g95pd
 cream_stripe_secret_key: sk_test_4De8Zdkfcyb29swkMmjZUMRh
 
-docker_config: docks
 docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
 
 docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751

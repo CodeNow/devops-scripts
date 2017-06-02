@@ -49,7 +49,6 @@
 
 - name: install network checks for dock services
   become: true
-  when: docker_config == "docks"
   template:
     src=tcp_check.yaml.j2
     dest=/etc/dd-agent/conf.d/tcp_check.yaml
