@@ -5,7 +5,6 @@ github_protocol: https
 
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
-pager_duty_key: testkey
 environment_root: "../environments/{{ env }}/"
 opts_root: "{{ environment_root }}/k8/{{ name }}"
 secrets_root: "{{ environment_root }}/secrets/"

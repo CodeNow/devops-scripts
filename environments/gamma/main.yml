@@ -50,8 +50,6 @@ cream_stripe_secret_key: sk_test_4De8Zdkfcyb29swkMmjZUMRh
 
 docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
 
-docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
-
 drake_port: 80
 drake_http_rollbar_token: 52ad749ddb8e47b2a8e15312b6b300fb
 drake_worker_rollbar_token: 14152b8572034943b714da27ca607698
@@ -89,6 +87,8 @@ navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
 optimus_aws_access_id: AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id: 5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
 optimus_github_deploy_keys_bucket: runnable.deploykeys.production-beta
+
+pager_duty_key: testkey
 
 palantiri_rollbar_key: f675e9090d6f483ca4e742af2c7f2f83
 
