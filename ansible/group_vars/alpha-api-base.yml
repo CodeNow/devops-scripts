@@ -59,7 +59,7 @@ api_base_container_envs:
   - name: GITHUB_HOOK_URL
     value: "{{ api_url }}/actions/github"
   - name: GITHUB_UPGRADE_REDIRECT_URL
-    value: "https://{{ domain }}/githubAuthUpgrade/"
+    value: "https://app.{{ domain }}/githubAuthUpgrade/"
   - name: GITHUB_WEBHOOK_URL
     value: "https://{{ drake_hostname }}/github"
   - name: GITHUB_VARNISH_HOST
