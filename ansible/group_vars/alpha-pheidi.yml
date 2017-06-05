@@ -49,7 +49,7 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ pheidi_rollbar_token | default('ansible-undefined') }}"
+    value: "{{ pheidi_rollbar_token | default('ansible_undefined') }}"
   - name: RUNNABOT_GITHUB_ACCESS_TOKENS
     value: "{{ pheidi_runnabot_tokens }}"
   - name: SENDGRID_KEY

@@ -28,7 +28,7 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ kartographer_rollbar_token | default('ansible-undefined') }}"
+    value: "{{ kartographer_rollbar_token | default('ansible_undefined') }}"
   - name: RUNNABLE_API_URL
     value: "{{ api_url }}"
   - name: WORKER_MAX_NUM_RETRIES

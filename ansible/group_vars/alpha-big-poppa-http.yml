@@ -8,7 +8,7 @@ envs:
   - name: PORT
     value: "{{ big_poppa_port }}"
   - name: ROLLBAR_KEY
-    value: "{{ big_poppa_http_rollbar_token | default('ansible-undefined') }}"
+    value: "{{ big_poppa_http_rollbar_token | default('ansible_undefined') }}"
   - name: NEW_RELIC_APP_NAME
     value: "{{ big_poppa_new_relic_app_name | default('ansible_undefined') }}"
   - name: NEW_RELIC_LICENSE_KEY

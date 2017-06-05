@@ -8,7 +8,7 @@ num_replicas: 16
 
 envs:
   - name: ROLLBAR_KEY
-    value: "{{ api_rollbar_key | default('ansible-undefined') }}"
+    value: "{{ api_rollbar_key | default('ansible_undefined') }}"
 
 volume_mounts:
   - name: "{{ name }}-docker-ssl-certs"

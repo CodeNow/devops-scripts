@@ -13,3 +13,5 @@ volume_mounts:
 
 container_image: mongo
 container_tag: "3.2.6"
+
+container_run_args: mongod

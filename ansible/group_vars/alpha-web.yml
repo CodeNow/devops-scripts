@@ -26,9 +26,9 @@ container_envs:
   - name: NODE_ENV
     value: production
   - name: SIFT_API_KEY
-    value: "{{ web_sift_public_key | default('ansible-undefined') }}"
+    value: "{{ web_sift_public_key | default('ansible_undefined') }}"
   - name: STRIPE_TOKEN
-    value: "{{ cream_stripe_publishable_key | default('ansible-undefined') }}"
+    value: "{{ cream_stripe_publishable_key | default('ansible_undefined') }}"
   - name: USER_CONTENT_DOMAIN
     value: "{{ user_content_domain }}"
 
