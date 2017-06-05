@@ -2,9 +2,14 @@ name: kartographer
 
 repo: "git@github.com:CodeNow/{{ name }}.git"
 
+inject_ca: false
+build_with_dockerfile: true
+
+node_version: "4.2.3"
+npm_version: "4.0.3"
+
 kube_config: /keys
 kube_config_name: kube-config
-google_key_name: google-key.json
 
 container_envs:
   - name: CONFIG_FILE_PATH
@@ -13,8 +18,6 @@ container_envs:
     valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
-  - name: GOOGLE_APPLICATION_CREDENTIALS
-    value: "{{ kube_config }}/{{ google_key_name }}"
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
     value: "{{ kartographer_hello_runnable_github_token }}"
   - name: NODE_ENV
@@ -36,5 +39,5 @@ container_envs:
 
 volume_mounts:
   - name: "{{ name }}-keys"
-    path: /keys
+    path: "{{ kube_config }}"
     kind: configMap

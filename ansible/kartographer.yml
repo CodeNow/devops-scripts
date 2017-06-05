@@ -1,0 +1,12 @@
+---
+- hosts: kartographer
+  vars_files:
+    - group_vars/alpha-kartographer.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ kartographer_rollbar_token }}"
+
+  - role: builder
+
+  - role: kartographer
+  - role: k8-deployment

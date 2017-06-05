@@ -4,6 +4,4 @@ metadata:
   name: {{ name }}-keys
 data:
   {{ kube_config_name }}: |
-    {{ lookup('file', '{{ secrets_path }}/{{ name }}/{{ kube_config_name }}') | indent(4) }}
-  {{ google_key_name }}: |
-    {{ lookup('file', '{{ secrets_path }}/{{ name }}/{{ google_key_name }}') | indent(4) }}
+    {{ lookup('file', '{{ secrets_root }}/dock-k8/{{ kube_config_name }}') | indent(4) }}

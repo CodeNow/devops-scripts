@@ -66,16 +66,16 @@
 - name: get new tags from remote
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
+  when: build_image and is_production_delta
   become: true
   shell: "git fetch --tags"
   args:
     chdir: "{{ build_dir }}/{{ name }}/repo"
 
 - name: get latest tag name
+  when: build_image and is_production_delta
   delegate_to: "{{ builder }}"
   tags: deploy, build
-  when: build_image
   become: true
   shell: "git describe --tags `git rev-list --tags --max-count=1`"
   args:
