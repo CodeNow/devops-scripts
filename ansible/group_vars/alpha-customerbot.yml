@@ -41,6 +41,10 @@ container_envs:
     value: "{{ rabbit_port }}"
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
+  - name: RUNNABLE_API_URL
+    value: "{{ customerbot_runnable_api_url }}"
+  - name: RUNNABLE_USER_CONTENT_DOMAIN
+    value: "{{ customerbot_runnable_user_content_domain }}"
   - name: SLACK_WHITELIST
     value: "{{ customerbot_slack_whitelist }}"
   - name: STRIPE_SECRET_KEY
