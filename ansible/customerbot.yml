@@ -1,0 +1,10 @@
+---
+- hosts: customerbot
+  vars_files:
+    - group_vars/alpha-customerbot.yml
+  roles:
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
