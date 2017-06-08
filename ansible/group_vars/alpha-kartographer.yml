@@ -30,8 +30,8 @@ container_envs:
     value: "{{ rabbit_port }}"
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
-  - name: ROLLBAR_KEY
-    value: "{{ kartographer_rollbar_token }}"
+  # - name: ROLLBAR_KEY
+  #   value: "{{ kartographer_rollbar_token }}"
   - name: RUNNABLE_API_URL
     value: "{{ api_url }}"
   - name: WORKER_MAX_NUM_RETRIES
