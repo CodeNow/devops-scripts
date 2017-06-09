@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible v2.2.0.0 (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.2.1.0 (the deploy automation tool we use to deploy projects to production)
 Installation: http://docs.ansible.com/intro_installation.html
 Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip
 
