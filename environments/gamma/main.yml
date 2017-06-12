@@ -50,13 +50,13 @@ cream_stripe_secret_key: sk_test_4De8Zdkfcyb29swkMmjZUMRh
 
 customerbot_app_name: customerbot-dev
 customerbot_bot_api_key: xoxb-124083371828-QVryLuIIJL8YL1eiMmGNKdih
-customerbot_datadog_api_key: c9171c92f8cdebf81d51191d6523d65a
+customerbot_datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
 customerbot_datadog_app_key: 54a74a9c827bd7792f238f55cf3e1979d32065e6
 customerbot_github_access_token: c0be376ab39b9a363308d0928f9f80ee549c5af9
 customerbot_intercom_api_key: 9b4ee7b4f9818b36e368985fda0befa611928876
 customerbot_intercom_app_id: xs5g95pd
-customerbot_jira_password: sohail
-customerbot_jira_username: runnable-runnable-runnabl
+customerbot_jira_password: ?hzcwzfGcg98FNuG)%ebWyFcTaCyFN#zoEm
+customerbot_jira_username: sohail
 customerbot_runnable_api_url: https://api.runnable-gamma.com/
 customerbot_runnable_user_content_domain: runnable.ninja
 customerbot_slack_whitelist: sohail,praful,keno,yash,anand,jorgito,nathan
