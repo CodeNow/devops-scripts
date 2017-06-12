@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible v2.2.0.0 (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.2.1.0 (the deploy automation tool we use to deploy projects to production)
 Installation: http://docs.ansible.com/intro_installation.html
 Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip
 
@@ -130,6 +130,7 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | clio | [Billy Joel - We Didn't Start the Fire](https://www.youtube.com/watch?v=eFTLKWw542g) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
+| customerbot | [Trailer Park Boys Theme](https://www.youtube.com/watch?v=dI6Drn3OA70) |
 | deployer | [Roll our](https://www.youtube.com/watch?v=t21DFnu00Dc) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
 | docker-listener | [Call Me Maybe - Carly Rae Jepsen](https://www.youtube.com/watch?v=fWNaR-rxAic) |

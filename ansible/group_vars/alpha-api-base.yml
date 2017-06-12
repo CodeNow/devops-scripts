@@ -58,6 +58,8 @@ api_base_container_envs:
     value: "{{ api_github_deploy_keys_bucket }}"
   - name: GITHUB_HOOK_URL
     value: "{{ api_url }}/actions/github"
+  - name: GITHUB_UPGRADE_REDIRECT_URL
+    value: "https://app.{{ domain }}/githubAuthUpgrade/"
   - name: GITHUB_WEBHOOK_URL
     value: "https://{{ drake_hostname }}/github"
   - name: GITHUB_VARNISH_HOST
@@ -72,6 +74,12 @@ api_base_container_envs:
     value: "{{ krain_port }}"
   - name: MIXPANEL_APP_ID
     value: "{{ api_mixpanel_app_id }}"
+  - name: MONGO_AUTH
+    value: "{{ api_mongo_auth }}"
+  - name: MONGO_DB
+    value: "{{ api_mongo_database }}"
+  - name: MONGO_HOSTS
+    value: "{{ mongo_hosts }}"
   - name: MONGO_REPLSET_NAME
     value: "{{ api_mongo_replset_name }}"
   - name: MONGO

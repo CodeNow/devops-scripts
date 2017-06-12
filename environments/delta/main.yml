@@ -52,6 +52,20 @@ cream_intercom_key: 173c1b366d11a3ef0f641c6b3327914368e67095
 cream_intercom_id: wqzm3rju
 cream_stripe_secret_key: sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
 
+customerbot_app_name: customerbot
+customerbot_bot_api_key: xoxb-32654916690-Sn4Ez4u9sG5EXHWB3ouRBHa8
+customerbot_datadog_api_key: d3ab5d85bca924f9d4e33d307beacb4a
+customerbot_datadog_app_key: 54a74a9c827bd7792f238f55cf3e1979d32065e6
+customerbot_github_access_token: c0be376ab39b9a363308d0928f9f80ee549c5af9
+customerbot_intercom_api_key: ef28806417aef605ca74573ff080c9d5eb0d6384
+customerbot_intercom_app_id: wqzm3rju
+customerbot_jira_password: ?hzcwzfGcg98FNuG)%ebWyFcTaCyFN#zoEm
+customerbot_jira_username: sohail
+customerbot_runnable_api_url: https://api.runnable.io/
+customerbot_runnable_user_content_domain: runnable.io
+customerbot_slack_whitelist: sohail,praful,keno,yash,anand,jorgito,nathan
+customerbot_stripe_secret_key: sk_live_ZWLZtu5rxJ0ylSoF8xrHtNOw
+
 docker_config: docks
 docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
 

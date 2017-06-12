@@ -24,6 +24,9 @@ localhost
 [cream]
 localhost
 
+[customerbot]
+localhost
+
 [consul]
 localhost
 
@@ -152,6 +155,7 @@ bastion
 big-poppa
 consul
 cream
+customerbot
 datadog
 dock
 dock-init

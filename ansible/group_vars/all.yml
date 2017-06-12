@@ -125,7 +125,6 @@ log_facility: local7
 
 # docker
 docker_port: 4242
-docker_config: docks
 
 # docks
 dock_aws_access_key: AKIAJ3RCYU6FCULAJP2Q
