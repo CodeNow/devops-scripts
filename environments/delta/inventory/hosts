@@ -134,6 +134,9 @@ localhost
 [cream]
 localhost
 
+[customerbot]
+localhost
+
 [arithmancy]
 localhost
 
@@ -151,6 +154,7 @@ bastion
 big-poppa
 consul
 cream
+customerbot
 dock
 docker-listener
 docks
