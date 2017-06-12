@@ -1,0 +1,51 @@
+name: customerbot
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "6.11.0"
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
+container_envs:
+  - name: APP_NAME
+    value: "{{ customerbot_app_name }}"
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: BOT_API_KEY
+    value: "{{ customerbot_bot_api_key }}"
+  - name: DATADOG_API_KEY
+    value: "{{ customerbot_datadog_api_key }}"
+  - name: DATADOG_APP_KEY
+    value: "{{ customerbot_datadog_app_key }}"
+  - name: GITHUB_ACCESS_TOKEN
+    value: "{{ customerbot_github_access_token }}"
+  - name: INTERCOM_APP_API_KEY
+    value: "{{ customerbot_intercom_api_key }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ customerbot_intercom_app_id }}"
+  - name: JIRA_PASSWORD
+    value: "{{ customerbot_jira_password }}"
+  - name: JIRA_USERNAME
+    value: "{{ customerbot_jira_username }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: RUNNABLE_API_URL
+    value: "{{ customerbot_runnable_api_url }}"
+  - name: RUNNABLE_USER_CONTENT_DOMAIN
+    value: "{{ customerbot_runnable_user_content_domain }}"
+  - name: SLACK_WHITELIST
+    value: "{{ customerbot_slack_whitelist }}"
+  - name: STRIPE_SECRET_KEY
+    value: "{{ customerbot_stripe_secret_key }}"
