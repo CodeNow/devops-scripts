@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible v2.2.0.0 (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.2.1.0 (the deploy automation tool we use to deploy projects to production)
 Installation: http://docs.ansible.com/intro_installation.html
 Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip
 
@@ -126,23 +126,24 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | clio | [Billy Joel - We Didn't Start the Fire](https://www.youtube.com/watch?v=eFTLKWw542g) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
-| deployer | [Roll our](https://www.youtube.com/watch?v=t21DFnu00Dc) |
+| customerbot | [Trailer Park Boys Theme](https://www.youtube.com/watch?v=dI6Drn3OA70) |
+| deployer | [Rollout - Ludacris](https://www.youtube.com/watch?v=t21DFnu00Dc) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
 | docker-listener | [Call Me Maybe - Carly Rae Jepsen](https://www.youtube.com/watch?v=fWNaR-rxAic) |
 | drake | [Drake - Hotline Bling](https://www.youtube.com/watch?v=uxpDa-c-4Mc)
 | filibuster | [He's a Pirate - Pirates Of The Caribbean](https://www.youtube.com/watch?v=yRh-dzrI4Z4) |
-| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.] (https://www.youtube.com/watch?v=4g5770gaais) |
+| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.](https://www.youtube.com/watch?v=4g5770gaais) |
 | github-proxy | [Proxy - Martin Garrix](https://www.youtube.com/watch?v=NWB6-PJw4Mk) |
 | khronos | [Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU) |
 | krain | [Men at Work - Down Under](https://www.youtube.com/watch?v=XfR9iY5y94s) |
 | link | [Zelda Main Theme Song](https://www.youtube.com/watch?v=cGufy1PAeTU) |
-| mavis | [Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
+| mavis | [Fairy Tail Theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
 | navi | [Ocarina of Time: Lost Woods The Legend of Zelda](https://www.youtube.com/watch?v=iOGpdGEEcJM) |
 | optimus | [Original Transformers Opening Theme](https://www.youtube.com/watch?v=nLS2N9mHWaw) |
 | pheidi | [Chariots of Fire Theme](https://www.youtube.com/watch?v=CSav51fVlKU) |
-| runnable-angular | [Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
-| sauron | [Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
-| Security Groups | [Out of the Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
+| runnable-angular | [Push It To The Limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
+| sauron | [Sauron Theme Song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
+| Security Groups | [Out Of The Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
 | shiva | [FFXIV Shiva Theme](https://www.youtube.com/watch?v=noJiH8HLZw4) |
 | starlord | [Blue Swede - Hooked on a Feeling](https://www.youtube.com/watch?v=NrI-UBIB8Jk) |
 | swarm-deamon | [Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q) |

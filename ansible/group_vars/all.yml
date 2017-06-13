@@ -229,7 +229,7 @@ swarm_container_name: swarm
 link_hello_runnable_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
 navi_mongo_database: navi
 
-npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
+npm_token: c0c4b32a-3de5-4e27-9d32-56c1616746d8
 
 # remote vault
 vault_port: 8200

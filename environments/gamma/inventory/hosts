@@ -24,6 +24,9 @@ localhost
 [cream]
 localhost
 
+[customerbot]
+localhost
+
 [consul]
 localhost
 
@@ -153,6 +156,7 @@ big-poppa
 charon
 consul
 cream
+customerbot
 datadog
 dock
 docker-listener
