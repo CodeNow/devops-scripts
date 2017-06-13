@@ -4,7 +4,7 @@
   shell: |
     cat {{ domains_root }}/{{ domain }}/cert.pem  > {{ domains_root }}/{{ domain }}/chained.pem
     echo "" >> {{ domains_root }}/{{ domain }}/chained.pem # Add newline
-    cat {{ domains_root }}/{{ domain }}/ca.pem  > {{ domains_root }}/{{ domain }}/chained.pem
+    cat {{ domains_root }}/{{ domain }}/ca.pem  >> {{ domains_root }}/{{ domain }}/chained.pem
 
 - name: create dhparam.pem
   tags: [ certs ]
