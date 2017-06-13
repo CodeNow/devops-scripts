@@ -56,7 +56,7 @@ data:
       - source_labels: [__meta_ec2_tag_env]
         target_label:  env
 
-    # pulls server list from ec2 and drops all servers that are not production gamma or a dock
+    # pulls server list from ec2 and drops all servers that are not in env or a dock
     - job_name:         server_info
       # keys to access this region and port of prom
       ec2_sd_configs:

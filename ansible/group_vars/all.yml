@@ -5,7 +5,6 @@ github_protocol: https
 
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
-pager_duty_key: testkey
 environment_root: "../environments/{{ env }}/"
 opts_root: "{{ environment_root }}/k8/{{ name }}"
 secrets_root: "{{ environment_root }}/secrets/"
@@ -40,8 +39,6 @@ repo_base: "{{ lookup('env','REPO_BASE') }}"
 dockerfile: basic_node/Dockerfile
 docker_network: 172.17.0.0/16
 base_dockerfile: node_base
-
-docker_config: runnable
 
 # slack rooms to send notifications
 slack_token: T029DEC10/B1RSX8LNS/qLLSYEEqkGddohOdE44eDf3j

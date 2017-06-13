@@ -62,7 +62,6 @@ customerbot_runnable_user_content_domain: runnable.ninja
 customerbot_slack_whitelist: sohail,praful,keno,yash,anand,jorgito,nathan
 customerbot_stripe_secret_key: sk_test_4De8Zdkfcyb29swkMmjZUMRh
 
-docker_config: docks
 docks_rollbar_key: d1af6567ed0f464fb1d676f38fd31751
 
 drake_port: 80
@@ -102,6 +101,8 @@ navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
 optimus_aws_access_id: AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id: 5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
 optimus_github_deploy_keys_bucket: runnable.deploykeys.production-beta
+
+pager_duty_key: testkey
 
 palantiri_rollbar_key: f675e9090d6f483ca4e742af2c7f2f83
 

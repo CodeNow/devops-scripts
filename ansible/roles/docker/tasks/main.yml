@@ -15,27 +15,6 @@
     owner=root
     group=root
 
-- name: create core file dir
-  become: true
-  when: docker_config == "runnable" and core_file_dir != "/var/log"
-  tags: coreDump
-  file:
-    path="{{ core_file_dir }}"
-    state=directory
-    owner=root
-    group=root
-    mode=0755
-
-- name: change core dump path
-  become: true
-  when: docker_config == "runnable"
-  tags: coreDump
-  sysctl:
-    name=kernel.core_pattern
-    reload=true
-    state=present
-    value="{{ core_file_dir }}/core.%h.%e.%t"
-
 - name: install aufs with linux-image-extra-{{ ansible_kernel }}
   become: true
   tags: aufs
@@ -70,7 +49,7 @@
 - name: copy docker config file
   become: true
   template:
-    src={{ docker_config }}
+    src=dock
     dest=/etc/default/docker
   register: copied_config
   tags: genDockerConfig
