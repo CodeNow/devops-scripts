@@ -3,6 +3,8 @@ hosted_ports: ["{{ redis_port }}"]
 
 storage_size_gb: 50
 
+volume_id: "{{ redis_volume_id }}"
+
 volume_mounts:
   - name: "{{ name }}-db-claim"
     path: /data

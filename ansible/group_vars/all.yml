@@ -1,8 +1,16 @@
 ---
+# Defaults
+github_domain: api.github.com
+github_protocol: https
+
 # ops
 ops_slack_channel_url: https://hooks.slack.com/services/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
-pager_duty_key: testkey
-opts_root: "./k8/{{ env }}/{{ name }}"
+environment_root: "../environments/{{ env }}/"
+opts_root: "{{ environment_root }}/k8/{{ name }}"
+secrets_root: "{{ environment_root }}/secrets/"
+certs_root: "{{ secrets_root }}/certs/"
+domains_root: "{{ secrets_root }}/domains/"
+docker_client_root: "{{ secrets_root }}/docker-client/"
 config_maps_path: "{{ opts_root }}/configMaps"
 services_path: "{{ opts_root }}/services"
 deployments_path: "{{ opts_root }}/deployments"
@@ -32,8 +40,6 @@ dockerfile: basic_node/Dockerfile
 docker_network: 172.17.0.0/16
 base_dockerfile: node_base
 
-docker_config: runnable
-
 # slack rooms to send notifications
 slack_token: T029DEC10/B1RSX8LNS/qLLSYEEqkGddohOdE44eDf3j
 slack_channels: [ '#ops' ]
@@ -56,6 +62,7 @@ core_file_dir: /docker/app-cores
 # agreeable-egret
 agreeable_egret_hostname: egret.{{ domain }}
 egret_pg_database: egret
+egret_port: 65520
 
 #angular
 angular_url: https://app.{{ domain }}
@@ -91,6 +98,7 @@ charon_port: 53
 # clio
 clio_host_address: clio
 clio_port: 8008
+clio_mongo_database: clio
 
 # consul
 consul_api_port: 8500
@@ -221,7 +229,7 @@ swarm_container_name: swarm
 link_hello_runnable_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
 navi_mongo_database: navi
 
-npm_token: c76363e9-78e0-4667-82ac-e2ac01efcfe2
+npm_token: c0c4b32a-3de5-4e27-9d32-56c1616746d8
 
 # remote vault
 vault_port: 8200

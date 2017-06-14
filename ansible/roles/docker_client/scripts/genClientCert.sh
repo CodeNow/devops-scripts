@@ -1,17 +1,21 @@
 #!/bin/bash
-CERT_PATH=/Users/anandkumarpatel/run/devops-scripts/ansible/certs
 if [[ $1 = '' ]]; then
   echo 'script requires a client name'
   exit 1
 fi
-CLIENT=./files/certs/$1
 
 echo 'WARN: hard coded alpha-api-old gamma-services and beta-services for SWARM'
-# if [[ $2 = '' ]]; then
-#   echo 'script requires a client ip address'
-#   exit 1
-# fi
+if [[ $2 = '' ]]; then
+  echo 'script requires a path for secrets'
+  exit 1
+fi
 
+CERT_PATH=$2
+if [ ! -d "$CERT_PATH" ]; then
+  echo 'The specified directory for certs does not exist'
+fi
+
+CLIENT=./$CERT_PATH/$1
 mkdir $CLIENT
 
 # generate key for client
@@ -38,6 +42,7 @@ openssl x509 \
   -in "$CLIENT/client.csr" \
   -CA $CERT_PATH/ca.pem \
   -CAkey $CERT_PATH/ca-key.pem \
+  -passin file:$CERT_PATH/pass \
   -CAcreateserial \
   -out "$CLIENT/cert.pem" \
   -extfile "$CLIENT/extfile.cnf"

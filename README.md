@@ -9,7 +9,7 @@ Scripts for managing our deployments.
 Before you can deploy you'll need to install the appropriate tools, scripts, and keys on your local machine.
 To do so, execute the following steps:
 
-1. Install Ansible v2.2.0.0 (the deploy automation tool we use to deploy projects to production)
+1. Install Ansible v2.2.1.0 (the deploy automation tool we use to deploy projects to production)
 Installation: http://docs.ansible.com/intro_installation.html
 Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip
 
@@ -19,9 +19,9 @@ https://github.com/CodeNow/devops-scripts
 3. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the "Ansible Secrets" zip from one password
+4. Obtain the "Ansible Secrets" zip for the environment you want to deploy (or create the new environment following [./environments/README.md](./environments/README.md))
 
-5. Unzip file obtained above into `devops-scripts/ansible/secrets`
+5. Unzip file obtained above into `devops-scripts/environments/${YOUR_ENV}/secrets`
 
 6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
 
@@ -71,14 +71,15 @@ of the docker image needed to run the service on our architecture.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -t deploy
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy
 ```
 
 ##### Arguments
 - `[inventory_dir]` - The environment inventory files (servers and variables). Should be one of the following:
-  - `stage-hosts` - Runnable sandbox staging environment services
-  - `gamma-hosts` - Gamma services (internal use only; production mirror)
-  - `delta-hosts` - Delta services (real production)
+  - `/enviroments/stage` - Runnable sandbox staging environment services
+  - `/environments/gamma` - Gamma services (internal use only; production mirror)
+  - `/environments/delta` - Delta services (real production)
+- `[main-var-file]` - The file with the main variables for the environment
 - `[service-playbook]` - The playbook for the service you wish to deploy, ex:
   - `api.yml` - Deploys both the api and the api-workers services
   - `shiva.yml` - Deploys the shiva micro-service
@@ -98,14 +99,14 @@ being tested in the production mirror.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e git_branch=[branch-or-tag] -e build_args=--no-cache
+ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy -e build_args=--no-cache
 ```
 
 ##### Arguments
 - `[inventory_dir]` - The environment inventory files (servers and variables).
+- `[main-var-file]` - The file with the main variables for the environment
 - `[service-playbook]` - The playbook for the service you wish to deploy.
 - `[branch-or-tag]` - The branch or tag you wish to deploy.
-
 
 ## Reverting
 If, for some reason, the new deploy is not operating as expected you can quickly revert by referencing the tag you collected in Step 1.
@@ -125,23 +126,24 @@ It is the custom at Runnable to play a song to the entire team when deploying. F
 | charon | [Enter Sandman - Metallica](https://www.youtube.com/watch?v=CD-E-LDc384) |
 | clio | [Billy Joel - We Didn't Start the Fire](https://www.youtube.com/watch?v=eFTLKWw542g) |
 | cream | [C.R.E.A.M. - Wu-Tang Clan](https://www.youtube.com/watch?v=PBwAxmrE194) |
-| deployer | [Roll our](https://www.youtube.com/watch?v=t21DFnu00Dc) |
+| customerbot | [Trailer Park Boys Theme](https://www.youtube.com/watch?v=dI6Drn3OA70) |
+| deployer | [Rollout - Ludacris](https://www.youtube.com/watch?v=t21DFnu00Dc) |
 | detention | [Unbreakable Kimmy Schmidt](https://youtu.be/CV9xF8CjhJk?t=21s) |
 | docker-listener | [Call Me Maybe - Carly Rae Jepsen](https://www.youtube.com/watch?v=fWNaR-rxAic) |
 | drake | [Drake - Hotline Bling](https://www.youtube.com/watch?v=uxpDa-c-4Mc)
 | filibuster | [He's a Pirate - Pirates Of The Caribbean](https://www.youtube.com/watch?v=yRh-dzrI4Z4) |
-| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.] (https://www.youtube.com/watch?v=4g5770gaais) |
+| Full Stack Deploy (`all.yml`) | [The Cleveland Orchestra (George Szell conducting) Ludwig von Beethoven Symphony No. 9 "Chorale (Ode To Joy)" Opus 125 IV.](https://www.youtube.com/watch?v=4g5770gaais) |
 | github-proxy | [Proxy - Martin Garrix](https://www.youtube.com/watch?v=NWB6-PJw4Mk) |
 | khronos | [Time After Time - Cyndi Lauper](https://www.youtube.com/watch?v=VdQY7BusJNU) |
 | krain | [Men at Work - Down Under](https://www.youtube.com/watch?v=XfR9iY5y94s) |
 | link | [Zelda Main Theme Song](https://www.youtube.com/watch?v=cGufy1PAeTU) |
-| mavis | [Fairy Tail theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
+| mavis | [Fairy Tail Theme song](https://www.youtube.com/watch?v=R4UFCTMrV-o) |
 | navi | [Ocarina of Time: Lost Woods The Legend of Zelda](https://www.youtube.com/watch?v=iOGpdGEEcJM) |
 | optimus | [Original Transformers Opening Theme](https://www.youtube.com/watch?v=nLS2N9mHWaw) |
 | pheidi | [Chariots of Fire Theme](https://www.youtube.com/watch?v=CSav51fVlKU) |
-| runnable-angular | [Push it to the limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
-| sauron | [Sauron theme song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
-| Security Groups | [Out of the Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
+| runnable-angular | [Push It To The Limit - Scarface](https://www.youtube.com/watch?v=9D-QD_HIfjA) |
+| sauron | [Sauron Theme Song from LOTR](https://www.youtube.com/watch?v=V_rk9VBrXMY) |
+| Security Groups | [Out Of The Woods - Tayor Swift](https://www.youtube.com/watch?v=JLf9q36UsBk)
 | shiva | [FFXIV Shiva Theme](https://www.youtube.com/watch?v=noJiH8HLZw4) |
 | starlord | [Blue Swede - Hooked on a Feeling](https://www.youtube.com/watch?v=NrI-UBIB8Jk) |
 | swarm-deamon | [Pink Floyd - Another Brick In The Wall](https://www.youtube.com/watch?v=5IpYOF4Hi6Q) |
