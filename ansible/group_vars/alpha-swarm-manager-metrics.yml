@@ -14,6 +14,8 @@ dockerfile_pre_install_commands:
 
 cron_scedule: "*/5 * * * *"
 
+inject_ca: false
+
 volume_mounts:
   - name: "{{ name }}-docker-ssl-certs"
     path: /etc/ssl/docker
