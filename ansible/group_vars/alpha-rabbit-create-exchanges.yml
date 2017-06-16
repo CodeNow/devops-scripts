@@ -1,0 +1,13 @@
+name: rabbit-create-exchanges
+
+container_image: tutum/curl
+container_tag: "latest"
+
+advance_arg: true
+
+container_run_args: >
+  curl -o exchanges.txt  https://gist.githubusercontent.com/thejsj/a9d32a8c01cdd12e8e8e7e09b58935c4/raw/e37d7d7b8942120b30d1ba82f65173b8f16f112a/gistfile1.txt &&
+  EXCHANGES=$(cat exchanges.txt) &&
+  echo 'Exchanges: $EXCHANGES' &&
+  for exchange in $EXCHANGES; do curl -i -u {{ rabbit_username }}:{{ rabbit_password }} -H 'content-type:application/json' -XPUT -d '{\"type\":\"fanout\",\"auto_delete\":false,\"durable\":true,\"arguments\":[]}' http://rabbitmq:15672/api/exchanges/%2f/$exchange; done &&
+  echo Finished

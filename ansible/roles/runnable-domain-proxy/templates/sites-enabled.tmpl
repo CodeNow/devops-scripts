@@ -57,6 +57,7 @@ data:
     }
 
 {% for service in services %}
+{% if 'include' not in service or service.include != false %}
   {{ service.name }}.conf: |
     map $http_upgrade $connection_upgrade {
       default upgrade;
@@ -134,4 +135,5 @@ data:
 
 {% endfor %}
     }
+{% endif %}
 {% endfor %}

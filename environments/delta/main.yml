@@ -161,6 +161,7 @@ ansible_ssh_private_key_file: ~/.ssh/delta.pem
 api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port: 60506
 builder: delta-builder
+consul_url: "{{ ansible_default_ipv4.address }}"
 consul_host_address: 10.8.6.122
 cream_stripe_publishable_key: pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd: sqa3WBgkCgZsFZuex0kBNahZ
@@ -187,6 +188,7 @@ rabbit_username: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address: 10.8.4.9
 registry_token: 4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
 registry_username: runnable+deltapush
+rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: delta-hosts/secrets
 user_content_domain: runnableapp.com
 user_vault_load_balancer: ab5d35e6f344211e797770ac76ff2aaa-2031464484.us-west-2.elb.amazonaws.com

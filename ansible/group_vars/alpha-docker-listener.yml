@@ -32,7 +32,7 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ docker_listener_rollbar_key }}"
+    value: "{{ docker_listener_rollbar_key | default('ansible_undefined') }}"
   - name: SWARM_HOST
     value: "{{ swarm_host_address }}:{{ swarm_master_port }}"
   - name: IMAGE_INSPECT_LIST

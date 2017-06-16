@@ -2,7 +2,7 @@ name: postgres
 hosted_ports: ["{{ pg_port }}"]
 container_run_args: ''
 
-storage_size_gb: 50
+storage_size_gb: "{{ postgres_storage_size_gb }}"
 
 volume_mounts:
   - name: "{{ name }}-db-claim"

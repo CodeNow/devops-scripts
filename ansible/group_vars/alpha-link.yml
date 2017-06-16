@@ -15,7 +15,7 @@ container_envs:
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
     value: "{{ link_hello_runnable_token }}"
   - name: MONGO
-    value: "mongodb://{{ navi_mongo }}/{{ navi_mongo_database }}"
+    value: "mongodb://{{ navi_mongo_auth }}@{{ mongo_hosts }}/{{ navi_mongo_database }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME
