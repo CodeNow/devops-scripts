@@ -2,7 +2,7 @@ name: mongo
 hosted_ports: ["{{ mongo_port }}"]
 container_run_args: ''
 
-storage_size_gb: 50
+storage_size_gb: "{{ mongo_storage_size_gb }}"
 
 volume_id: "{{ mongo_volume_id }}"
 

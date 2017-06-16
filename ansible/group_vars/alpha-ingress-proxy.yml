@@ -43,17 +43,18 @@ services:
       - name: base
         route: "/"
         port: "{{ api_port }}"
-  # TODO: Find a way to NOT have to deploy these
-  # - name: eru
-    # upstreams:
-      # - name: base
-        # route: "/"
-        # port: "{{ eru_http_port }}"
-      # - name: graphql
-        # route: "/graphql"
-        # port: "{{ eru_graphql_port }}"
-  # - name: egret
-    # upstreams:
-      # - name: base
-        # route: "/"
-        # port: "{{ egret_port }}"
+  - name: eru
+    include: "{{ include_eru_proxy | default(true) }}"
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ eru_http_port }}"
+      - name: graphql
+        route: "/graphql"
+        port: "{{ eru_graphql_port }}"
+  - name: egret
+    include: "{{ include_ergre_proxy | default(true) }}"
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ egret_port }}"

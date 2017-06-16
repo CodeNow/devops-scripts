@@ -6,7 +6,7 @@ hosted_ports: ["{{ prometheus_port }}"]
 
 memory_hard_limit: 15G
 
-storage_size_gb: 100
+storage_size_gb: "{{ prometheus_storage_size_gb }}"
 
 volume_id: "{{ prometheus_volume_id }}"
 
