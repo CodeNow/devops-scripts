@@ -4,5 +4,6 @@
   - group_vars/alpha-swarm-manager-metrics.yml
   roles:
   - role: builder
+
   - role: docker_client
   - role: swarm-cloudwatch-reporter
