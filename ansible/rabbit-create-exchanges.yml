@@ -1,6 +1,0 @@
----
-- hosts: rabbitmq
-  vars_files:
-    - group_vars/alpha-rabbit-create-exchanges.yml
-  roles:
-  - role: k8-job

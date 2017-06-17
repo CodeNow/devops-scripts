@@ -3,34 +3,27 @@ name: "runnable-angular"
 repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
+rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 
-container_envs:
-  - name: API_SOCK_URL
-    value: "https://{{ api_socket_server_hostname }}"
-  - name: API_URL
-    value: "https://{{ api_hostname }}"
-  - name: MIXPANEL_PROXY_URL
-    value: "{{ mixpanel_proxy_url }}"
-  - name: AWS_ACCESS_KEY
-    value: "{{ aws_access_key }}"
-  - name: AWS_BUCKET
-    value: "app.{{ domain }}"
-  - name: AWS_REGION
-    value: "{{ web_aws_bucket_region | default('us-east-1') }}"
-  - name: AWS_SECRET_KEY
-    value: "{{ aws_secret_key }}"
-  - name: INTERCOM_APP_ID
-    value: "{{ web_intercom_id }}"
-  - name: MARKETING_URL
-    value: "{{ marketing_url }}"
-  - name: NODE_ENV
-    value: production
-  - name: SIFT_API_KEY
-    value: "{{ web_sift_public_key | default('ansible_undefined') }}"
-  - name: STRIPE_TOKEN
-    value: "{{ cream_stripe_publishable_key | default('ansible_undefined') }}"
-  - name: USER_CONTENT_DOMAIN
-    value: "{{ user_content_domain }}"
+container_envs: >
+  -e API_SOCK_URL=https://{{ api_socket_server_hostname }}
+  -e API_URL=https://{{ api_hostname }}
+  -e MIXPANEL_PROXY_URL={{ mixpanel_proxy_url }}
+  -e AWS_ACCESS_KEY={{ aws_access_key }}
+  -e AWS_BUCKET=app.{{ domain }}
+  -e AWS_REGION={{ web_aws_bucket_region | default('us-east-1') }}
+  -e AWS_SECRET_KEY={{ aws_secret_key }}
+  -e INTERCOM_APP_ID={{ web_intercom_id }}
+  -e MARKETING_URL={{ marketing_url }}
+  -e NODE_ENV=production
+  -e SIFT_API_KEY={{ web_sift_public_key }}
+  -e STRIPE_TOKEN={{ cream_stripe_publishable_key }}
+  -e USER_CONTENT_DOMAIN={{ user_content_domain }}
+
+container_run_opts: >
+  -h {{ name }}
+  -d
+  {{container_envs}}
 
 npm_start_command: run gruntDeploy
 

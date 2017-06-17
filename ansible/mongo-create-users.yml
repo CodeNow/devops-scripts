@@ -1,6 +1,0 @@
----
-- hosts: mongo
-  vars_files:
-    - group_vars/alpha-mongo-create-users.yml
-  roles:
-  - role: k8-job

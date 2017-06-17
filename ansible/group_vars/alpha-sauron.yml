@@ -40,7 +40,7 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ sauron_rollbar_key | default('ansible_undefined') }}"
+    value: "{{ sauron_rollbar_key }}"
   - name: SWARM_HOSTNAME
     value: "{{ swarm_host_address }}"
   - name: SWARM_PORT

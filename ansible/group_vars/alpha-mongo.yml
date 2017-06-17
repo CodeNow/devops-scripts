@@ -2,7 +2,7 @@ name: mongo
 hosted_ports: ["{{ mongo_port }}"]
 container_run_args: ''
 
-storage_size_gb: "{{ mongo_storage_size_gb }}"
+storage_size_gb: 50
 
 volume_id: "{{ mongo_volume_id }}"
 
@@ -13,5 +13,3 @@ volume_mounts:
 
 container_image: mongo
 container_tag: "3.2.6"
-
-container_run_args: mongod
