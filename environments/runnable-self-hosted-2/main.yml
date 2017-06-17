@@ -110,6 +110,7 @@ is_github_enterprise: false
 mongo_port: 27017
 navi_mongo_auth: "{{ mongo_user }}:{{ mongo_password }}"
 navi_mongo_database: "navi"
+navi_mongo_hosts: "mongo"
 node_env: "{{ environment }}"
 pg_host: "{{ postgres_host }}"
 pg_pass: "{{ postgres_password }}"
