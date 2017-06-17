@@ -9,5 +9,5 @@ container_run_args: >
   mongo mongo/admin --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'root',db:'admin'}]});\" &&
   mongo mongo/api --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'readWrite',db:'api'}]});\" &&
   mongo mongo/clio --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'readWrite',db:'clio'}]});\" &&
-  mongo mongo/navi --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'readWrite',db:'navi'}]});\" &&
+  mongo mongo/navi --eval \"db.createUser({user:'{{ navi_mongo_user | default(mongo_user) }}',pwd:'{{ navi_mongo_password | default(mogno_password) }}',roles:[{role:'readWrite',db:'navi'}]});\" &&
   echo Finished

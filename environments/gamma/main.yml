@@ -11,7 +11,9 @@ api_github_client_id: b6072dc57062faca7fcb
 api_github_client_secret: ba73a9294dc4bfaa7ed02ba187f73918506e4293
 api_github_deploy_keys_bucket: runnable.deploykeys.production-beta
 api_mixpanel_app_id: c41affa4b08818443365c526cbb51606
-api_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+mongo_user: api
+mongo_password: 3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+api_mongo_auth: "{{ mongo_user }}:{{ mongo_password }}"
 api_mongo_database: gamma
 api_mongo_replset_name: gamma-rs0
 api_rollbar_key: a90d9c262c7c48cfabbd32fd0a1bc61c
@@ -95,6 +97,10 @@ khronos_mongo_database: gamma
 khronos_mongo_replset_name: gamma
 
 mongo_volume_id: vol-0daf05c3686a7e0a8
+
+navi_mongo_user: navi
+navi_mongo_password: 3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+navi_mongo_auth: "{{ navi_mongo_user }}:{{ navi_mongo_password }}"
 
 navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
 

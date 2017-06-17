@@ -239,6 +239,8 @@ swarm_container_name: swarm
 # navi/link
 link_hello_runnable_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
 navi_mongo_database: navi
+navi_mongo_auth: "{{ api_mongo_auth }}"
+navi_mongo_hosts: "{{ mongo_hosts }}"
 
 npm_token: c0c4b32a-3de5-4e27-9d32-56c1616746d8
 
