@@ -4,4 +4,5 @@
     - group_vars/alpha-enterprise-sign-in.yml
   roles:
   - { role: builder, tags: "build" }
-  - { role: k8-job }
+  - { role: container_start }
+  - { role: wait_for_container_exit }

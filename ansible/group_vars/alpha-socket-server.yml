@@ -6,6 +6,6 @@ hosted_ports: [ "{{ api_port }}" ]
 
 envs:
   - name: ROLLBAR_KEY
-    value: "{{ api_socket_server_rollbar_key | default('ansible_undefined') }}"
+    value: "{{ api_socket_server_rollbar_key }}"
 
 container_envs: "{{ api_base_container_envs + envs }}"

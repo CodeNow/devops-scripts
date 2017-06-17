@@ -8,4 +8,5 @@
 
   - role: builder
 
-  - role: k8-job
+  - role: container_start
+  - role: wait_for_container_exit

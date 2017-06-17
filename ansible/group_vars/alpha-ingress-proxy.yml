@@ -44,7 +44,6 @@ services:
         route: "/"
         port: "{{ api_port }}"
   - name: eru
-    include: "{{ include_eru_proxy | default(true) }}"
     upstreams:
       - name: base
         route: "/"
@@ -53,7 +52,6 @@ services:
         route: "/graphql"
         port: "{{ eru_graphql_port }}"
   - name: egret
-    include: "{{ include_ergre_proxy | default(true) }}"
     upstreams:
       - name: base
         route: "/"

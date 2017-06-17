@@ -14,7 +14,7 @@ environments/*/secrets/**/*
 # Leaving for now while PR is merged
 environments/*/k8
 # Meant to not break anything. Might remove later
-environments/runnable-on-prem-test
+environments/self-hosted-test
 *.retry
 *.tfstate*
 terraform/credentials.tfvars
