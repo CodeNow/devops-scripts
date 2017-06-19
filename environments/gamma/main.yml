@@ -143,6 +143,7 @@ ansible_ssh_private_key_file: ~/.ssh/gamma.pem
 api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port: 60709
 builder: gamma-builder
+consul_url: "{{ ansible_default_ipv4.address }}"
 consul_host_address: 10.4.5.144
 cream_stripe_publishable_key: pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd: sqa3WBgkCgZsFZuex0kBNahZ
@@ -166,6 +167,7 @@ rabbit_username: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address: 10.4.6.45
 registry_token: 8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
 registry_username: runnable+gamma
+rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: gamma-hosts/secrets
 user_content_domain: runnablecloud.com
 user_vault_load_balancer: aa8364af12f5a11e7bb9e02301ded9ea-905956029.us-west-2.elb.amazonaws.com

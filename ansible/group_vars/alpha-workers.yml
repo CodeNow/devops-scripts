@@ -7,6 +7,6 @@ envs:
   - name: IS_QUEUE_WORKER
     value: "true"
   - name: ROLLBAR_KEY
-    value: "{{ api_workers_rollbar_key }}"
+    value: "{{ api_workers_rollbar_key | default('ansible_undefined') }}"
 
 container_envs: "{{ api_base_container_envs + envs }}"

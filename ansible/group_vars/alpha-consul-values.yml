@@ -1,0 +1,9 @@
+name: consul-update
+
+container_image: tutum/curl
+container_tag: latest
+
+advance_arg: true
+
+container_run_args: >
+  {% for item in consul_seed %} curl -X PUT http://{{ consul_url }}:8500/v1/kv/{{ item.key }} --data {{ item.value }} && {% endfor %} echo Finished

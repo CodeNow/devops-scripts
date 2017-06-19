@@ -5,14 +5,16 @@
   tasks:
     - name: make sure httplib2 is installed
       become: true
-      apt: package=python-httplib2 state=present
+      pip:
+        name: httplib2
+        executable: pip
 
     - name: put values into consul
       run_once: true
       when: write_values is defined
       uri:
         method=PUT
-        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+        url={{ consul_url }}/v1/kv/{{ item.key }}
         body="{{ item.value }}"
       with_items: "{{ consul_seed }}"
 
@@ -22,7 +24,7 @@
       when: read_values is defined
       uri:
         method=GET
-        url=http://{{ ansible_default_ipv4.address }}:8500/v1/kv/{{ item.key }}
+        url={{ consul_url }}/v1/kv/{{ item.key }}
       with_items: "{{ consul_seed }}"
       register: values
 

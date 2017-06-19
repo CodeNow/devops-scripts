@@ -7,7 +7,7 @@ envs:
   - name: PORT
     value: "{{ keymaker_port }}"
   - name: ROLLBAR_KEY
-    value: "{{ keymaker_http_rollbar_token }}"
+    value: "{{ keymaker_http_rollbar_token | default('ansible_undefined') }}"
 
 container_envs: "{{ keymaker_base_container_envs + envs }}"
 

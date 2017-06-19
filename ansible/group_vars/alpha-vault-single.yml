@@ -1,6 +1,6 @@
 name: vault
 
-container_image: runnable/vault
+container_image: quay.io/runnable/vault
 container_tag: v0.5.1
 hosted_ports: ["{{ vault_api_port }}"]
 

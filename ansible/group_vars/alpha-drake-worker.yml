@@ -2,7 +2,7 @@ name: drake-worker
 
 envs:
   - name: ROLLBAR_KEY
-    value: "{{ drake_worker_rollbar_token }}"
+    value: "{{ drake_worker_rollbar_token | default('ansible_undefined') }}"
 
 container_envs: "{{ drake_base_container_envs + envs }}"
 
