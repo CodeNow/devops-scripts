@@ -74,7 +74,7 @@ of the docker image needed to run the service on our architecture.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy
+ansible-playbook -i ../[inventory_dir] [service-playbook] -e @../environments/[gamma-or-delta]/main.yml -e git_branch=[branch-or-tag] -t deploy
 ```
 
 ##### Arguments
@@ -102,7 +102,7 @@ being tested in the production mirror.
 
 ##### Command
 ```
-ansible-playbook -i ./[inventory_dir] [service-playbook] -e @[main-var-file] -e git_branch=[branch-or-tag] -t deploy -e build_args=--no-cache
+ansible-playbook -i ../[inventory_dir] [service-playbook] -e @../environments/[gamma-or-delta]/main.yml] -e git_branch=[branch-or-tag] -t deploy -e build_args=--no-cache
 ```
 
 ##### Arguments
