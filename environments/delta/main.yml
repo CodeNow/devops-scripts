@@ -15,7 +15,6 @@ api_intercom_app_id: wqzm3rju
 api_mixpanel_app_id: 57260a5b6fc972e9c69184882efd009e
 api_mongo_user: api
 api_mongo_password: 72192e5a-a5e1-11e5-add9-0270db32f7ad
-api_mongo_auth: "{{ api_mongo_user }}:{{ api_mongo_password }}"
 api_mongo_database: delta
 api_mongo_replset_name: delta-rs0
 api_new_relic_app_name: delta-api-production
@@ -43,7 +42,8 @@ big_poppa_pg_pass: 27eed36a27a54ffd
 big_poppa_pg_user: cwallace
 big_poppa_worker_rollbar_token: 98cabb8440024e3a8242cf3220b802c9:5432
 
-clio_mongo_auth: clio:>hjp8XL4GAwBGXPb
+clio_mongo_user: "clio"
+clio_mongo_password: ">hjp8XL4GAwBGXPb"
 clio_mongo_replset_name: delta-rs0
 clio_mongo_database: clio
 
@@ -118,7 +118,8 @@ navi_new_relic_app_name: delta-navi
 navi_cookie_secret: e80173940e7bdd84734e868b6ea054a0
 navi_intercom_api_key: 6f6400402170e78fa1ad4418608aacc63512122b
 navi_intercom_app_id: wqzm3rju
-
+navi_mongo_user: "navi"
+navi_mongo_password: "365bbf0e5a944d3fb94598dd5f69d789"
 
 optimus_aws_access_id: AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id: tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y

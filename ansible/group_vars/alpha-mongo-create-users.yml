@@ -5,9 +5,14 @@ container_tag: "3.2.6"
 
 advance_arg: true
 
+admin_mongo_query: "db.createUser({user:'{{ api_mongo_user }}',pwd:'{{ api_mongo_password }}',roles:[{role:'root',db:'admin'}]});"
+api_mongo_query: "db.createUser({user:'{{ api_mongo_user }}',pwd:'{{ api_mongo_password }}',roles:[{role:'readWrite',db:'api'}]});"
+clio_mongo_query: "db.createUser({user:'{{ clio_mongo_user }}',pwd:'{{ clio_mongo_password }}',roles:[{role:'readWrite',db:'clio'}]});"
+navi_mongo_query: "db.createUser({user:'{{ navi_mongo_user }}',pwd:'{{ navi_mongo_password }}',roles:[{role:'readWrite',db:'navi'}]});"
+
 container_run_args: >
-  mongo mongo/admin --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'root',db:'admin'}]});\" &&
-  mongo mongo/api --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'readWrite',db:'api'}]});\" &&
-  mongo mongo/clio --eval \"db.createUser({user:'{{ mongo_user }}',pwd:'{{ mongo_password }}',roles:[{role:'readWrite',db:'clio'}]});\" &&
-  mongo mongo/navi --eval \"db.createUser({user:'{{ navi_mongo_user | default(mongo_user) }}',pwd:'{{ navi_mongo_password | default(mogno_password) }}',roles:[{role:'readWrite',db:'navi'}]});\" &&
+  mongo {{ mongo_hosts }}/admin --eval \"{{ admin_mongo_query }}\" &&
+  mongo {{ mongo_hosts }}/{{ api_mongo_database }} --eval \"{{ api_mongo_query }}\" &&
+  mongo {{ mongo_hosts }}/{{ clio_mongo_database }} --eval \"{{ clio_mongo_query }}\" &&
+  mongo {{ navi_mongo_hosts }}/{{ navi_mongo_database }} --eval \"{{ navi_mongo_query }}\" &&
   echo Finished
