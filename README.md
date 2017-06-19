@@ -16,19 +16,19 @@ Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansibl
 2. Install JMESPath: 
 `pip install jmespath-terminal`
 
-2. Get the latest devops-scripts (the recipes that we use to deploy various projects)
+3. Get the latest devops-scripts (the recipes that we use to deploy various projects)
 https://github.com/CodeNow/devops-scripts
 
-3. Change to the devops scripts repo directory and run the following command:
+4. Change to the devops scripts repo directory and run the following command:
 `ln -s /<local-path-to-devops-scripts>/ssh/config ~/.ssh/config`
 
-4. Obtain the "Ansible Secrets" zip for the environment you want to deploy (or create the new environment following [./environments/README.md](./environments/README.md))
+5. Obtain the "Ansible Secrets" zip for the environment you want to deploy (or create the new environment following [./environments/README.md](./environments/README.md))
 
-5. Unzip file obtained above into `devops-scripts/environments/${YOUR_ENV}/secrets`
+6. Unzip file obtained above into `devops-scripts/environments/${YOUR_ENV}/secrets`
 
-6. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
+7. Copy the `*.pem` files from `devops-scripts/ansible/secrets` to your `~/.ssh` directory
 
-7. Install two required tools onto your machine:
+8. Install two required tools onto your machine:
 ```bash
 brew update && brew install vault daemon
 ```
