@@ -13,6 +13,9 @@ To do so, execute the following steps:
 Installation: http://docs.ansible.com/intro_installation.html
 Upgrading: `sudo pip install ansible==2.2.1.0` or http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip
 
+2. Install JMESPath: 
+`pip install jmespath-terminal`
+
 2. Get the latest devops-scripts (the recipes that we use to deploy various projects)
 https://github.com/CodeNow/devops-scripts
 
