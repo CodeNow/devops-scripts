@@ -76,6 +76,7 @@ api_port: 80
 api_socket_server_hostname: apisock.{{ domain }}
 api_socket_server_rollbar_key: cad27f265e8e473c9b293615e7ed0f3a
 api_url: https://{{ api_hostname }}
+api_mongo_user: api
 api_mongo_auth: "{{ api_mongo_user }}:{{ api_mongo_password }}"
 sendgrid_key: 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
 
@@ -101,6 +102,7 @@ charon_port: 53
 clio_host_address: clio
 clio_port: 8008
 clio_mongo_database: clio
+clio_mongo_user: clio
 clio_mongo_auth: "{{ clio_mongo_user }}:{{ clio_mongo_password }}"
 
 # consul
@@ -182,6 +184,7 @@ mongo_storage_size_gb: 50
 # navi
 navi_host_address: navi
 navi_http_port: 3567
+navi_mongo_hosts: "mongo"
 navi_rollbar_token: 719269e87b9b42848472542a8b2059ae
 
 # node_exporter
@@ -241,6 +244,7 @@ swarm_container_name: swarm
 # navi/link
 link_hello_runnable_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
 navi_mongo_database: navi
+navi_mongo_user: "navi"
 navi_mongo_auth: "{{ navi_mongo_user }}:{{ navi_mongo_password }}"
 navi_mongo_hosts: "{{ mongo_hosts }}"
 
