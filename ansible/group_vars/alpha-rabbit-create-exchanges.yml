@@ -1,7 +1,7 @@
 name: rabbit-create-exchanges
 
 container_image: tutum/curl
-container_tag: "latest"
+container_tag: "trusty"
 
 advance_arg: true
 
