@@ -30,4 +30,4 @@ container_envs:
   - name: AWS_SECRET_ACCESS_KEY
     value: "{{ aws_secret_key }}"
 
-container_run_args: gulp gulp build:dev && gulp push
+container_run_args: gulp build:dev && gulp push

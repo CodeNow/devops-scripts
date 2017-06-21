@@ -20,12 +20,12 @@ environment: runnable-self-hosted-2
 # User Provided
 domain: runnable-test-main-2.info
 user_content_domain: runnable-test-navi-2.info
-vault_auth_token: 642c3bba-ae85-31c8-b07a-876171b64717
-vault_token_01: 69b6ebaa8569f877116d4e5c640f173efb7b9da7ff271548e582558032d50dbb01
-vault_token_02: 52766f0ff9770253d8b26780c88944ccd5f14ae52891140de1a120dd7ee1879702
-vault_token_03: f89e74ab796ec590f73277681010a3765cbe3a8d42c680b71a7da31192d9533403
-vault_token_04: afaf475f57aad3923f58480d05701c88a9d2bf5e4b8e1e61b3d0a03d121efc7804
-vault_token_05: 05475cfbd7b3145110d858e5dde9fb32209dcf3621d98adb480c23f1fe2628db05
+vault_auth_token: aedf98bc-a3a2-9039-aa62-588a14375050
+vault_token_01: cbfa1af0a7fb4872d18a46bbc9beafe92f9a098b6224c0791c4ff5ba8f683cee01
+vault_token_02: 8df029dd46e6e178ffb6ba6e74a5133e7ee4cce6acee9524e34b536ca695f6fc02
+vault_token_03: 4ef13587d41ba08b2716c849ee3caaef6eaa036939eb90d7bbf7482c9cc2b26003
+vault_token_04: 79c90465f8d97178913880a53da2b7fe2232d86af29d169a4dd99595146067f704
+vault_token_05: bac8183f6a24308b4998f282a73b0e2f327c17e56798136915658ed52e37236b05
 rabbit_password: 047a6b3ce2c74be694afb2ac3a960c44
 rabbit_username: b56cbb97644743809559fa0297c8e51d
 mongo_user: 93ce22876b554eba8c5d392a5d57ee71
@@ -120,3 +120,4 @@ include_eru_proxy: false
 include_ergre_proxy: false
 
 web_intercom_id: "{{ intercom_id }}"
+web_aws_bucket_region: "{{ aws_region }}"
