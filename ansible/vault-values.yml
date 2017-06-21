@@ -3,19 +3,6 @@
   vars_files:
     - group_vars/alpha-vault.yml
   tasks:
-    - name: unseal vault
-      tags: [ deploy ]
-      uri:
-        method=PUT
-        url={{ vault_url }}/v1/sys/unseal
-        HEADER_X-Vault-Token="{{ vault_auth_token }}"
-        body_format=json
-        body='{{ item | to_json }}'
-      with_items:
-      - key: "{{ vault_token_01 }}"
-      - key: "{{ vault_token_02 }}"
-      - key: "{{ vault_token_03 }}"
-
     - name: put values into vault
       run_once: true
       when: write_values is defined

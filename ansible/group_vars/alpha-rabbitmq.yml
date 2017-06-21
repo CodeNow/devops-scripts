@@ -3,7 +3,7 @@ service_name: rabbitmq
 
 hosted_ports: [ "{{ rabbit_port }}", 15672 ]
 
-storage_size_gb: 50
+storage_size_gb: "{{ rabbit_storage_size_gb }}"
 
 volume_id: "{{ rabbit_volume_id }}"
 

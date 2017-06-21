@@ -13,7 +13,7 @@ api_github_deploy_keys_bucket: runnable.deploykeys.production
 api_intercom_api_key: 46e75ada5d21f248787689b35fe80e11efe9303a
 api_intercom_app_id: wqzm3rju
 api_mixpanel_app_id: 57260a5b6fc972e9c69184882efd009e
-api_mongo_auth: api:72192e5a-a5e1-11e5-add9-0270db32f7ad
+api_mongo_password: 72192e5a-a5e1-11e5-add9-0270db32f7ad
 api_mongo_database: delta
 api_mongo_replset_name: delta-rs0
 api_new_relic_app_name: delta-api-production
@@ -41,7 +41,7 @@ big_poppa_pg_pass: 27eed36a27a54ffd
 big_poppa_pg_user: cwallace
 big_poppa_worker_rollbar_token: 98cabb8440024e3a8242cf3220b802c9:5432
 
-clio_mongo_auth: clio:>hjp8XL4GAwBGXPb
+clio_mongo_password: ">hjp8XL4GAwBGXPb"
 clio_mongo_replset_name: delta-rs0
 clio_mongo_database: clio
 
@@ -116,7 +116,7 @@ navi_new_relic_app_name: delta-navi
 navi_cookie_secret: e80173940e7bdd84734e868b6ea054a0
 navi_intercom_api_key: 6f6400402170e78fa1ad4418608aacc63512122b
 navi_intercom_app_id: wqzm3rju
-
+navi_mongo_password: "365bbf0e5a944d3fb94598dd5f69d789"
 
 optimus_aws_access_id: AKIAJWSSSJYUXKNW2ZDA
 optimus_aws_secret_id: tyvGiCbj5jWCiQnMLvfrfD64dFo8i6prkdcga86y
@@ -161,6 +161,7 @@ ansible_ssh_private_key_file: ~/.ssh/delta.pem
 api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port: 60506
 builder: delta-builder
+consul_url: "{{ ansible_default_ipv4.address }}"
 consul_host_address: 10.8.6.122
 cream_stripe_publishable_key: pk_live_5yYYZlYIwY3LwvKFaXY0jNlm
 datadog_mongodb_pwd: sqa3WBgkCgZsFZuex0kBNahZ
@@ -174,7 +175,7 @@ github_protocol: https
 is_github_enterprise: false
 mongo_hosts: 10.8.4.216:27017,10.8.10.254:27017,10.8.13.89:27017
 mongo_port: 27017
-navi_mongo: 10.8.6.41
+navi_mongo_hosts: "10.8.6.41"
 new_relic_license_key: 338516e0826451c297d44dc60aeaf0a0ca4bfead
 node_env: production-delta
 pg_host: delta-infradb.cnksgdqarobf.us-west-2.rds.amazonaws.com
@@ -187,6 +188,7 @@ rabbit_username: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address: 10.8.4.9
 registry_token: 4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
 registry_username: runnable+deltapush
+rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: delta-hosts/secrets
 user_content_domain: runnableapp.com
 user_vault_load_balancer: ab5d35e6f344211e797770ac76ff2aaa-2031464484.us-west-2.elb.amazonaws.com

@@ -11,7 +11,7 @@ api_github_client_id: b6072dc57062faca7fcb
 api_github_client_secret: ba73a9294dc4bfaa7ed02ba187f73918506e4293
 api_github_deploy_keys_bucket: runnable.deploykeys.production-beta
 api_mixpanel_app_id: c41affa4b08818443365c526cbb51606
-api_mongo_auth: api:3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
+api_mongo_password: 3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 api_mongo_database: gamma
 api_mongo_replset_name: gamma-rs0
 api_rollbar_key: a90d9c262c7c48cfabbd32fd0a1bc61c
@@ -37,7 +37,7 @@ big_poppa_pg_pass: JFmZDuVYPt9vUxk4DBjj
 big_poppa_pg_user: big_poppa
 big_poppa_worker_rollbar_token: 98cabb8440024e3a8242cf3220b802c9
 
-clio_mongo_auth: clio:Fkj8CBoMNpuhe7p*
+clio_mongo_password: "Fkj8CBoMNpuhe7p*"
 clio_mongo_replset_name: gamma-rs0
 clio_mongo_database: clio
 
@@ -96,6 +96,8 @@ khronos_mongo_replset_name: gamma
 
 mongo_volume_id: vol-0daf05c3686a7e0a8
 
+navi_mongo_hosts: mongo
+navi_mongo_password: 3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
 
 optimus_aws_access_id: AKIAJPA2ZYSVVA5V7XXQ
@@ -145,6 +147,7 @@ ansible_ssh_private_key_file: ~/.ssh/gamma.pem
 api_hello_runnable_github_token: 88ddc423c2312d02a8bbcaad76dd4c374a30e4af
 bastion_sshd_port: 60709
 builder: gamma-builder
+consul_url: "{{ ansible_default_ipv4.address }}"
 consul_host_address: 10.4.5.144
 cream_stripe_publishable_key: pk_test_sHr5tQaPtgwiE2cpW6dQkzi8
 datadog_mongodb_pwd: sqa3WBgkCgZsFZuex0kBNahZ
@@ -158,7 +161,6 @@ github_protocol: https
 is_github_enterprise: false
 mongo_hosts: 10.4.7.56:27017,10.4.8.241:27017,10.4.13.116:27017
 mongo_port: 27017
-navi_mongo: mongo
 node_env: production-gamma
 pg_host: gamma-infrastructure-db.cnksgdqarobf.us-west-2.rds.amazonaws.com
 pg_pass: e9G7zYRCxYmxG9HQ8J9x2BDB
@@ -168,6 +170,7 @@ rabbit_username: o2mdLh9N9Ke2GzhoK8xsruYPhIQFN7iEL44dQJoq7OM
 redis_host_address: 10.4.6.45
 registry_token: 8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
 registry_username: runnable+gamma
+rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: gamma-hosts/secrets
 user_content_domain: runnablecloud.com
 user_vault_load_balancer: aa8364af12f5a11e7bb9e02301ded9ea-905956029.us-west-2.elb.amazonaws.com

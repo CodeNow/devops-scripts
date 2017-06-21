@@ -28,7 +28,7 @@ container_envs:
   - name: RABBITMQ_USERNAME
     value: "{{ rabbit_username }}"
   - name: ROLLBAR_KEY
-    value: "{{ palantiri_rollbar_key }}"
+    value: "{{ palantiri_rollbar_key | default('ansible_undefined') }}"
   - name: RSS_LIMIT
     value: "2000000"
   - name: LOG_LEVEL_STDOUT
