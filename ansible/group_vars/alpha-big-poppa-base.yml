@@ -27,6 +27,8 @@ big_poppa_base_container_envs:
     value: "{{ big_poppa_intercom_id | default('undefined') }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
+  - name: ON_PREM
+    value: "{{ is_on_prem | lower }}"
   - name: PGUSER
     value: "{{ big_poppa_pg_user }}"
   - name: PGPASSWORD

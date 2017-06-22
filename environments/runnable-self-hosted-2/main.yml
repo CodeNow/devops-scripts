@@ -2,8 +2,8 @@
 aws_region: us-west-2
 aws_access_key_id: AKIAIDCQ7YKWQPHXXVPA # TODO, add to terraform
 aws_secret_access_key: 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 # TODO, Add to terraform
-postgres_host:  tf-002e1957463ef252970bd5f0bd.cnksgdqarobf.us-west-2.rds.amazonaws.com
-postgres_password: WfhbflI8jIz0Rr-Japuc-iLHPbg
+postgres_host: tf-00764cdb5ae0cde9ec08f55623.cnksgdqarobf.us-west-2.rds.amazonaws.com
+postgres_password: 8pl2ZwYWGAp0AWmFxrDPWhOsd40
 postgres_user: runnable
 # User vault is accesible from cluster
 user_vault_load_balancer: "user-vault"
@@ -33,8 +33,8 @@ mongo_password: 1c1d692441314b0cb060d6e70f78a5a4
 github_token: 1bae48fd096d795b4730c65d6da86d3dbd741c82
 github_client_id: 41aa03dc2948c3bc9b8c
 github_client_secret: 4e7d070cd472945e2837fbca0748be15edf77edc
-hello_runnable_github_token: d26acd9aad355430cc26584247e0ac3f0ee462af
-hello_runnable_github_id: 28722728
+hello_runnable_github_token: b8f69dac0882b3a2c3e259b9b48b44ec6789a834
+hello_runnable_github_id: 29638669
 navi_cookie_secret: fb4acc7a69f04c10b84e943eb8538768
 dock_vault_user_creation_access_token:
 
@@ -118,6 +118,7 @@ pg_pass: "{{ postgres_password }}"
 pg_port: 5432
 include_eru_proxy: false
 include_ergre_proxy: false
+is_on_prem: true
 
 web_intercom_id: "{{ intercom_id }}"
 web_aws_bucket_region: "{{ aws_region }}"
