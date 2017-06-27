@@ -14,3 +14,10 @@ spec:
 {% if service_type is defined %}
   type: {{ service_type }}
 {% endif %}
+{% if service_load_balancer_ranges is defined %}
+  loadBalancerSourceRanges:
+{% for range in service_load_balancer_ranges %}
+  - {{ range }}
+{% endfor %}
+{% endif %}
+
