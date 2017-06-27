@@ -37,7 +37,7 @@ container_envs:
   - name: MONGO
     value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: MONGO_REPLSET_NAME
-    value: "{{ api_mongo_replset_name }}"
+    value: "{{ api_mongo_replset_name | default('ansible_undefined') }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME

@@ -68,6 +68,8 @@ api_base_container_envs:
     value: "{{ github_varnish_port }}"
   - name: GITHUB_PROTOCOL
     value: "http"
+  - name: HELLO_RUNNABLE_GITHUB_ID
+    value: "{{ hello_runnable_github_id }}"
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
     value: "{{ api_hello_runnable_github_token }}"
   - name: KRAIN_PORT
@@ -81,7 +83,7 @@ api_base_container_envs:
   - name: MONGO_HOSTS
     value: "{{ mongo_hosts }}"
   - name: MONGO_REPLSET_NAME
-    value: "{{ api_mongo_replset_name }}"
+    value: "{{ api_mongo_replset_name | default('ansible_undefined') }}"
   - name: MONGO
     value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: NAVI_HOST
