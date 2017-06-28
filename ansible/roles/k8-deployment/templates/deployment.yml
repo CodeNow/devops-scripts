@@ -33,7 +33,7 @@ spec:
 {% if tcp_readiness_probe_port is defined %}
           readinessProbe:
             tcpSocket:
-              port: {{ http_readiness_probe_port }}
+              port: {{ tcp_readiness_probe_port }}
             initialDelaySeconds: 5
             periodSeconds: 5
 {% endif %}
