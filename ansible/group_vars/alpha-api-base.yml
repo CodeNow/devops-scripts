@@ -17,7 +17,7 @@ volume_mounts:
    path: /etc/ssl/docker
    kind: configMap
 
-tcp_readiness_probe_port: 80
+tcp_readiness_probe_port: "{{ api_port }}"
 
 api_base_container_envs:
   - name: DOCKER_IMAGE_BUILDER_CACHE
