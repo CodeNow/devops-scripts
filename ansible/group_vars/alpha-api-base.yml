@@ -17,6 +17,8 @@ volume_mounts:
    path: /etc/ssl/docker
    kind: configMap
 
+http_readiness_probe_port: 80
+
 api_base_container_envs:
   - name: DOCKER_IMAGE_BUILDER_CACHE
     value: "/home/anandkumarpatel/cache"
