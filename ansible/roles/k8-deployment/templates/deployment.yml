@@ -30,10 +30,9 @@ spec:
               exec:
                 command: ["/bin/bash", "-c", "{{ post_start_command }}"]
 {% endif %}
-{% if http_readiness_probe_port is defined %}
+{% if tcp_readiness_probe_port is defined %}
           readinessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: {{ http_readiness_probe_port }}
             initialDelaySeconds: 5
             periodSeconds: 5
