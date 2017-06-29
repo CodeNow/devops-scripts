@@ -8,4 +8,4 @@ container_tag: v0.6.4
 container_run_args: consul agent -server -client=0.0.0.0 -bootstrap-expect=1 -data-dir=/tmp/db -ui
 
 service_type: "LoadBalancer"
-service_load_balancer_ranges: ["{{ docks_ip_range }}"]
+# service_load_balancer_ranges: ["{{ docks_ip_range }}"]

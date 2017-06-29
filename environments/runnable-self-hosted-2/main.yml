@@ -16,17 +16,17 @@ mongo_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 rabbit_volume_id: vol-03b21a05ad0d1030e # TODO, add to terraform
 redis_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 environment: runnable-self-hosted-2
-docks_ip_range: "10.10.0.0/16"
+docks_ip_range: "10.0.0.0/8"
 
 # User Provided
 domain: runnable-test-main-2.info
 user_content_domain: runnable-test-navi-2.info
-vault_auth_token: aedf98bc-a3a2-9039-aa62-588a14375050
-vault_token_01: cbfa1af0a7fb4872d18a46bbc9beafe92f9a098b6224c0791c4ff5ba8f683cee01
-vault_token_02: 8df029dd46e6e178ffb6ba6e74a5133e7ee4cce6acee9524e34b536ca695f6fc02
-vault_token_03: 4ef13587d41ba08b2716c849ee3caaef6eaa036939eb90d7bbf7482c9cc2b26003
-vault_token_04: 79c90465f8d97178913880a53da2b7fe2232d86af29d169a4dd99595146067f704
-vault_token_05: bac8183f6a24308b4998f282a73b0e2f327c17e56798136915658ed52e37236b05
+vault_auth_token: 079094d8-9852-c091-f50e-9db200ca6053
+vault_token_01: 4912f3702fd174662020a3bcab4ae05ce0c432c2b78aee7183e8ec51c3ec3f7501
+vault_token_02: 1997da00dc760190288eb21ee8a5e9bb115d65daef3c232eb66e580a9a3cfe4f02
+vault_token_03: aae1fa2d57d2a7ba3a697655f41f02c65afd87ada1a5b3bac02b1a0b5d2d79a003
+vault_token_04: 69e5fefb9b2849f9fe13d5d98eb2689574851259cb5547a5f90f8a9f0fc5636b04
+vault_token_05: da93ded6108cefd3ecf41192920883e83f25f02e85ccd7318f4ac89ec8d4e48405
 rabbit_password: 047a6b3ce2c74be694afb2ac3a960c44
 rabbit_username: b56cbb97644743809559fa0297c8e51d
 mongo_user: 93ce22876b554eba8c5d392a5d57ee71
