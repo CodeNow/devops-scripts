@@ -132,3 +132,18 @@ Host 127.0.0.1
   UserKnownHostsFile /dev/null
   User core
   LogLevel QUIET
+
+################################################################################
+# Self Hosted
+################################################################################
+
+Host self-hosted-2-bastion
+  HostName 34.212.166.255
+  Port 22
+
+Host 10.10.*.*
+  User ubuntu
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh -o StrictHostKeyChecking=no -q ubuntu@self-hosted-2-bastion nc %h %p
+  IdentityFile ~/.ssh/gamma.pem
