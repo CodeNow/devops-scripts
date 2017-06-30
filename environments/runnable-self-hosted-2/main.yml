@@ -6,17 +6,17 @@ postgres_host: tf-00764cdb5ae0cde9ec08f55623.cnksgdqarobf.us-west-2.rds.amazonaw
 postgres_password: 8pl2ZwYWGAp0AWmFxrDPWhOsd40
 postgres_user: runnable
 # User vault is accesible from cluster
-user_vault_load_balancer: "user-vault"
+user_vault_load_balancer: "vault.{{ domain }}"
 mongo_hosts: 'mongo'
 # Accessible from dock
-consul_host_address: 'consul-host'
+consul_host_address: 'consul.{{ domain }}' # TODO: Make private
 # Accessible from dock
 redis_host_address:
 mongo_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 rabbit_volume_id: vol-03b21a05ad0d1030e # TODO, add to terraform
 redis_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 environment: runnable-self-hosted-2
-docks_ip_range: "10.0.0.0/8"
+docks_ip_range: "10.0.0.0/8" # NOTE: Not usable because of loss of IP address from docks to k8s cluster
 
 # User Provided
 domain: runnable-test-main-2.info
@@ -116,3 +116,9 @@ is_on_prem: true
 
 web_intercom_id: "{{ intercom_id }}"
 web_aws_bucket_region: "{{ aws_region }}"
+
+# Docks
+ec2_describe_aws_access_key: "{{ aws_access_key_id }}"
+ec2_describe_aws_secret_key: "{{ aws_secret_access_key }}"
+dock_registry_s3_access_key: "{{ aws_access_key_id  }}"
+dock_registry_s3_secret_key: "{{ aws_secret_access_key }}"

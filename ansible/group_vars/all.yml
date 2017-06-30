@@ -109,6 +109,8 @@ clio_mongo_auth: "{{ clio_mongo_user }}:{{ clio_mongo_password }}"
 consul_api_port: 8500
 consul_https_port: 8501
 consul_storage_size_gb: 10
+# Host to be used from inside the kubernetes cluster
+consul_internal_host_address: 'consul'
 
 # cream
 cream_port: 8899

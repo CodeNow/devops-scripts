@@ -20,7 +20,7 @@ spec:
           resources:
             requests:
               cpu: "250m"
-              memory: "500M"
+              memory: {{ memory_request | default("1500M") }}
             limits:
               cpu: "1550m"
               memory: {{ memory_hard_limit | default("1500M") }}

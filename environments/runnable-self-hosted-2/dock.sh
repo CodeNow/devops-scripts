@@ -1,16 +1,6 @@
 #!/bin/bash
 
 
-# Create directory for env
-mkdir -p /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2
-chown ubuntu:ubuntu /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2
-chmod 0711 /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2
-
-# Set Vault Tokens (Used for fetching templates)
-echo aedf98bc-a3a2-9039-aa62-588a14375050 > /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2/auth-token
-echo cbfa1af0a7fb4872d18a46bbc9beafe92f9a098b6224c0791c4ff5ba8f683cee01 > /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2/token-01
-echo 8df029dd46e6e178ffb6ba6e74a5133e7ee4cce6acee9524e34b536ca695f6fc02 > /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2/token-02
-echo 4ef13587d41ba08b2716c849ee3caaef6eaa036939eb90d7bbf7482c9cc2b26003 > /opt/runnable/dock-init/consul-resources/vault/runnable-self-hosted-2/token-03
 
 # Add upstart files for charon and krain
 mkdir -p /docker/app-logs/
@@ -27,9 +17,13 @@ chmod -R 0440 /etc/ssl/docker/
 # Start services
 service krain start
 service charon start
-CONSUL_HOSTNAME=consul-host \
+CONSUL_HOSTNAME=consul.runnable-test-main-2.info \
 CONSUL_PORT=8500 \
 VAULT_PORT=8200 \
-USER_VAULT_HOSTNAME=user-vault \
+USER_VAULT_HOSTNAME=vault.runnable-test-main-2.info \
 USER_VAULT_PORT=8200 \
+S3_ACCESS_KEY=AKIAIDCQ7YKWQPHXXVPA \
+S3_SECRET_KEY=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 \
+AWS_ACCESS_KEY=AKIAIDCQ7YKWQPHXXVPA \
+AWS_SECRET_KEY=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 \
 bash /opt/runnable/dock-init/init.sh | tee /var/log/user-script-dock-init.log
