@@ -12,7 +12,5 @@ dockerfile_pre_install_commands: [
   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
 ]
 
-advance_arg: true
-
-container_run_args: npm run start-worker || sleep 999
+container_run_args: npm run start-worker
 

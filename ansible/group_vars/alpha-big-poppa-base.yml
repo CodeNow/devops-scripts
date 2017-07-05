@@ -28,7 +28,7 @@ big_poppa_base_container_envs:
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: ON_PREM
-    value: "{{ is_on_prem | lower }}"
+    value: "{{ is_on_prem | default('ansible_undefined') | lower }}"
   - name: PGUSER
     value: "{{ big_poppa_pg_user }}"
   - name: PGPASSWORD

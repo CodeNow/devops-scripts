@@ -3,7 +3,8 @@ service_name: api
 
 hosted_ports: [ "{{ api_port }}" ]
 
-memory_hard_limit: 1G
+memory_hard_limit: 5G
+memory_request: 1G
 num_replicas: 16
 
 envs:
