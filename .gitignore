@@ -10,7 +10,8 @@ ca.srl
 .DS_Store
 ansible/roles/hipache/templates/runnable*
 enviroments/**/k8/**/configMaps/*cert*
-environments/*/secrets/**/*
+environments/**/dock.sh
+environments/**/dock-pool.sh
 # Leaving for now while PR is merged
 environments/*/k8
 # Meant to not break anything. Might remove later
