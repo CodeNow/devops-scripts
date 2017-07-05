@@ -184,6 +184,7 @@ metabase_port: 3000
 mongo_storage_size_gb: 50
 
 # navi
+navi_extra_ports: [11211,15672,25672,27017,29015,3000,3001,3306,4000,4607,5000,5200,5400,5432,6379,6969,8000,8080,9000,9292,9300]
 navi_host_address: navi
 navi_http_port: 3567
 navi_mongo_hosts: "mongo"
