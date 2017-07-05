@@ -99,7 +99,6 @@ mongo_volume_id: vol-0daf05c3686a7e0a8
 navi_mongo_hosts: mongo
 navi_mongo_password: 3f5210b8-8fe3-11e5-8e62-07b6eff19ecb
 navi_cookie_secret: c90e5fb4e7e511e597309a79f06e9478
-navi_extra_ports: [8080, 8000, 3000, 8001]
 
 optimus_aws_access_id: AKIAJPA2ZYSVVA5V7XXQ
 optimus_aws_secret_id: 5V70AUxfIyHeLvlYZe0xaYevDAdgTOWOn5G7nHlt
