@@ -27,6 +27,9 @@ data:
 
     server {
       listen 80;
+{% for port in navi_extra_ports %}
+      listen {{ port }};
+{% endfor %}
       client_max_body_size 200m;
       server_name {{ user_content_domain }};
       access_log /var/log/nginx/navi.access.log;
