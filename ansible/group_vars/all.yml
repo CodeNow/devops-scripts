@@ -68,7 +68,6 @@ egret_port: 65520
 #angular
 angular_url: https://app.{{ domain }}
 mixpanel_proxy_url: https://mixpanel.{{ domain }}
-super_user: HelloRunnable
 
 # api
 api_github_hook_secret: 3V3RYTHINGisAW3S0ME!
