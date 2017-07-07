@@ -30,6 +30,13 @@ spec:
               exec:
                 command: ["/bin/bash", "-c", "{{ post_start_command }}"]
 {% endif %}
+{% if tcp_readiness_probe_port is defined %}
+          readinessProbe:
+            tcpSocket:
+              port: {{ tcp_readiness_probe_port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+{% endif %}
 {% if container_run_args != '' %}
           args:
 {% if advance_arg is defined and advance_arg == true %}

@@ -3,7 +3,8 @@ name: navi-proxy
 
 container_image: "nginx"
 container_tag: "1.10"
-hosted_ports: ["80", "443"]
+
+hosted_ports:  "{{ navi_extra_ports + [80, 443] }}"
 
 service_type: "LoadBalancer"
 container_run_args: ''
