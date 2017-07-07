@@ -1,0 +1,6 @@
+---
+- hosts: mongo
+  vars_files:
+    - group_vars/alpha-mongo-seed-db.yml
+  roles:
+  - role: k8-job
