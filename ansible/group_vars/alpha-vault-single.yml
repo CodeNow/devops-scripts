@@ -18,6 +18,7 @@ add_capabilities:
   - IPC_LOCK
 
 service_type: "LoadBalancer"
+service_load_balancer_ranges: ["{{ dock_subnet_cidr }}"]
 
 # Describes policy needed by Vault to create IAM users for orgs to get their org ids
 # Docks will not come up if policy is incorrect
