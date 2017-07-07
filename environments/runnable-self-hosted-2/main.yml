@@ -21,6 +21,7 @@ docks_ip_range: "10.0.0.0/8" # NOTE: Not usable because of loss of IP address fr
 # User Provided
 domain: runnable-test-main-2.info
 user_content_domain: runnable-test-navi-2.info
+super_user: runnable-self-hosted-2-hello-runnable
 vault_auth_token: 079094d8-9852-c091-f50e-9db200ca6053
 vault_token_01: 4912f3702fd174662020a3bcab4ae05ce0c432c2b78aee7183e8ec51c3ec3f7501
 vault_token_02: 1997da00dc760190288eb21ee8a5e9bb115d65daef3c232eb66e580a9a3cfe4f02
