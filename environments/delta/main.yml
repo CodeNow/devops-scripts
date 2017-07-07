@@ -190,6 +190,7 @@ registry_token: 4PX2AU9QIJSCDLZEXILYX6ZP2RCXY1HR10WVZKWVR0JW8DS5IIY87D96V0RACMK5
 registry_username: runnable+deltapush
 rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: delta-hosts/secrets
+super_user: HelloRunnable
 user_content_domain: runnableapp.com
 user_vault_load_balancer: ab5d35e6f344211e797770ac76ff2aaa-2031464484.us-west-2.elb.amazonaws.com
 vault_auth_token: 578c9767-5af8-8490-0954-5d330f27b088

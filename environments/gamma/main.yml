@@ -172,6 +172,7 @@ registry_token: 8G0NT1HZQZHYXU7OB1QAI8HA1560V6R68DE6R6B8YJWQAED82JAFCD057ZWIDT76
 registry_username: runnable+gamma
 rollbar_web_token: "162a053bebd34e9eb6e2860543c7ae79"
 secrets_path: gamma-hosts/secrets
+super_user: HelloRunnable
 user_content_domain: runnablecloud.com
 user_vault_load_balancer: aa8364af12f5a11e7bb9e02301ded9ea-905956029.us-west-2.elb.amazonaws.com
 vault_auth_token: f9a39e92-99f3-66a0-a27d-a6e07717d30d

@@ -11,6 +11,8 @@ container_envs:
     value: "https://{{ api_hostname }}"
   - name: MIXPANEL_PROXY_URL
     value: "{{ mixpanel_proxy_url }}"
+  - name: SUPER_USER
+    value: "{{ super_user }}"
   - name: AWS_ACCESS_KEY
     value: "{{ aws_access_key }}"
   - name: AWS_BUCKET
