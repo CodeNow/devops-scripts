@@ -5,6 +5,8 @@ container_image: quay.io/runnable/api
 container_run_args: npm run migrate-up
 
 container_envs:
+  - name: LOG_LEVEL
+    value: trace
   - name: DOCKER_IMAGE_BUILDER_CACHE
     value: "/home/anandkumarpatel/cache"
   - name: VALID_REDIR_TLDS
