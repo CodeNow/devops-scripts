@@ -18,7 +18,7 @@ jobs_path: "{{ opts_root }}/jobs"
 cron_jobs_path: "{{ opts_root }}/crons"
 volumes_path: "{{ opts_root }}/volumes"
 daemon_sets_path: "{{ opts_root }}/daemonSets"
-dock_subnet_cidr: "{{ dock_subnet_cidr }}"
+dock_subnet_cidr: "10.10.2.0/24"
 
 container_tag: "{{ git_branch }}"
 # registry settings
