@@ -2,8 +2,7 @@ name: mongo-seed-db
 
 container_image: quay.io/runnable/api
 
-container_run_args: >
-  npm run migrate-up
+container_run_args: npm run migrate-up
 
 container_envs:
   - name: DOCKER_IMAGE_BUILDER_CACHE
