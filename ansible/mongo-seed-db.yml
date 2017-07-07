@@ -1,6 +1,7 @@
 ---
 - hosts: api
   vars_files:
+    - group_vars/alpha-api-base.yml
     - group_vars/alpha-mongo-seed-db.yml
   roles:
   - role: k8-job
