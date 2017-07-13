@@ -4,6 +4,7 @@ container_image: mongo
 container_tag: "3.2.6"
 
 advance_arg: true
+restart_policy: "Never"
 
 admin_mongo_query: "db.createUser({user:'{{ api_mongo_user }}',pwd:'{{ api_mongo_password }}',roles:[{role:'root',db:'admin'}]});"
 api_mongo_query: "db.createUser({user:'{{ api_mongo_user }}',pwd:'{{ api_mongo_password }}',roles:[{role:'readWrite',db:'api'}]});"

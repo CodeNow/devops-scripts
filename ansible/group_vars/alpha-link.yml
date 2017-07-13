@@ -13,7 +13,7 @@ container_envs:
   - name: DATADOG_PORT
     value: "{{ datadog_port }}"
   - name: HELLO_RUNNABLE_GITHUB_TOKEN
-    value: "{{ link_hello_runnable_token }}"
+    value: "{{ link_hello_runnable_github_token }}"
   - name: MONGO
     value: "mongodb://{{ navi_mongo_auth }}@{{ navi_mongo_hosts }}/{{ navi_mongo_database }}"
   - name: NODE_ENV

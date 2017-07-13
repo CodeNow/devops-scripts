@@ -10,7 +10,7 @@ enviroment_vars:
   DATADOG_PORT: "{{ datadog_port }}"
   DOMAIN_FILTER: "{{ user_content_domain }}"
   PORT: "{{ hosted_ports[0] }}"
-  REDIS_HOST: "{{ redis_host_address }}"
+  REDIS_HOST: "{{ redis_external_host_address }}"
   REDIS_PORT: "{{ redis_port }}"
 
 # consul values

@@ -4,6 +4,8 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "0.10.38"
 npm_version: "2.1.18"
 
+restart_policy: "Never"
+
 container_envs:
   - name: API_SOCK_URL
     value: "https://{{ api_socket_server_hostname }}"

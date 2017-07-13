@@ -12,7 +12,7 @@ volume_mounts:
 
 container_envs:
   - name: CONSUL_HOST
-    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+    value: "{{ consul_internal_host_address }}:{{ consul_api_port }}"
   - name: DATADOG_HOST
     valueFrom: "spec.nodeName"
   - name: DATADOG_PORT
@@ -21,6 +21,10 @@ container_envs:
     value: "/etc/ssl/docker"
   - name: LOGGLY_TOKEN
     value: "{{ loggly_token }}"
+  - name: LOG_LEVEL
+    value: "debug"
+  - name: STDOUT_LOG_LEVEL
+    value: "debug"
   - name: NODE_ENV
     value: "{{ node_env }}"
   - name: RABBITMQ_HOSTNAME

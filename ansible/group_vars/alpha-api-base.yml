@@ -60,6 +60,8 @@ api_base_container_envs:
     value: "{{ api_github_client_secret }}"
   - name: GITHUB_DEPLOY_KEYS_BUCKET
     value: "{{ api_github_deploy_keys_bucket }}"
+  - name: GITHUB_DEPLOY_KEY_TITLE
+    value: "Runnable-{{ environment }}"
   - name: GITHUB_HOOK_URL
     value: "{{ api_url }}/actions/github"
   - name: GITHUB_UPGRADE_REDIRECT_URL
@@ -116,6 +118,8 @@ api_base_container_envs:
     value: "{{ api_s3_log_bucket }}"
   - name: SENDGRID_KEY
     value: "{{ sendgrid_key }}"
+  - name: LOG_LEVEL
+    value: "trace"
   - name: SWARM_HOST
     value: "http://{{ swarm_host_address }}:{{ swarm_master_port }}"
   - name: USER_CONTENT_DOMAIN
