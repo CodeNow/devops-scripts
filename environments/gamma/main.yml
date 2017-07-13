@@ -182,3 +182,4 @@ vault_token_03: ac4e1e9800cbf77283298d08172a2f0e46d0b7cbc457c47788d04768af12584a
 
 web_intercom_id: xs5g95pd
 web_sift_public_key: eea9746dff
+web_aws_bucket_region: us-west-2
