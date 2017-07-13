@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ name }}
+  labels:
+    type: job
 spec:
   template:
     metadata:
@@ -11,7 +13,7 @@ spec:
       imagePullSecrets:
         - name: {{ image_pull_secret_name }}
       hostname: {{ name }}
-      restartPolicy: OnFailure
+      restartPolicy: {{ restart_policy | default("OnFailure") }}
       containers:
         - image: {{ container_image }}:{{ container_tag }}
           imagePullPolicy: Always

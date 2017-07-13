@@ -2,6 +2,8 @@ apiVersion: batch/v2alpha1
 kind: CronJob
 metadata:
   name: {{ item.cron_queue }}
+  labels:
+    type: cron-job
 spec:
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 1
