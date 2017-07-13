@@ -16,7 +16,7 @@ mongo_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 rabbit_volume_id: vol-03b21a05ad0d1030e # TODO, add to terraform
 redis_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 environment: runnable-self-hosted-2
-docks_ip_range: "10.0.0.0/8" # NOTE: Not usable because of loss of IP address from docks to k8s cluster
+docks_ip_range: "34.223.211.0/24" # NOTE: Not usable because of loss of IP address from docks to k8s cluster
 
 # User Provided
 domain: runnable-test-main-2.info
@@ -32,11 +32,11 @@ rabbit_password: 047a6b3ce2c74be694afb2ac3a960c44
 rabbit_username: b56cbb97644743809559fa0297c8e51d
 mongo_user: 93ce22876b554eba8c5d392a5d57ee71
 mongo_password: 1c1d692441314b0cb060d6e70f78a5a4
-github_token: 1bae48fd096d795b4730c65d6da86d3dbd741c82
+github_token: c9a3140944a239a337a92ab1a1e022b000131c3b # thejsj
 github_client_id: 41aa03dc2948c3bc9b8c
 github_client_secret: 4e7d070cd472945e2837fbca0748be15edf77edc
-hello_runnable_github_token: b8f69dac0882b3a2c3e259b9b48b44ec6789a834
-hello_runnable_github_id: 29638669
+hello_runnable_github_token: d9980e93ce53e6312457c72528ee76640e0dbbe7 # runnable-self-hosted-2-hello-runnable
+hello_runnable_github_id: 29638669 # runnable-self-hosted-2-hello-runnable
 navi_cookie_secret: fb4acc7a69f04c10b84e943eb8538768
 dock_vault_user_creation_access_token:
 
@@ -57,7 +57,9 @@ api_mongo_password: "{{ mongo_password }}"
 api_mongo_database: "api"
 api_s3_context_bucket: "runnable.context.resources.{{ environment }}"
 api_s3_log_bucket: "{{ environment }}.container-logs"
+
 redis_host_address: "redis"
+redis_external_host_address: "redis.{{ domain }}"
 
 big_poppa_github_token: "{{ github_token }}"
 big_poppa_intercom_id: "{{ intercom_id }}"
@@ -99,6 +101,8 @@ vault_consul_address: "consul:8500"
 marketing_bucket: "{{ domain }}"
 marketing_aws_access_key: "{{ aws_access_key_id }}"
 marketing_aws_secret_key: "{{ aws_secret_access_key }}"
+
+link_hello_runnable_github_token: "{{ hello_runnable_github_token }}"
 
 api_hello_runnable_github_token: "{{ hello_runnable_github_token }}"
 bastion_sshd_port: 22
