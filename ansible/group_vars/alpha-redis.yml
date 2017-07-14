@@ -13,3 +13,6 @@ volume_mounts:
 container_image: redis
 container_tag: "3.0.5"
 container_run_args: ''
+
+service_type: "LoadBalancer"
+service_load_balancer_ranges: ["{{ docks_ip_range }}"]

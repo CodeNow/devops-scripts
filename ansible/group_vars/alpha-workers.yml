@@ -1,6 +1,7 @@
 name: api-worker
 
-memory_hard_limit: 1G
+memory_hard_limit: 5G
+memory_request: 1G
 num_replicas: 4
 
 envs:

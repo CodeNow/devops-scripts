@@ -1,0 +1,34 @@
+# Docks Services
+- include: swarm-manager.yml
+- include: palantiri.yml git_branch="{{ palantiri_branch }}"
+- include: sauron.yml git_branch="{{ sauron_branch }}"
+- include: khronos.yml git_branch="{{ khronos_branch }}"
+- include: docker-listener.yml git_branch="{{ docker_listener_branch }}"
+
+## TODO: Add keymaker
+## TODO: Add starloard
+## TODO: Add furry-cactus for ASG auto-scaling
+
+# Proxies
+- include: ingress-proxy.yml
+- include: navi-proxy.yml
+- include: github-varnish.yml git_branch="{{ github_varnish_branch }}"
+
+# Main
+- include: big-poppa.yml git_branch="{{ big_poppa_branch }}"
+- include: api.yml git_branch="{{ api_branch }}"
+- include: drake.yml git_branch="{{ drake_branch }}"
+
+# Networking services
+- include: detention.yml git_branch="{{ detention_branch }}"
+- include: link.yml git_branch="{{ link_branch }}"
+- include: navi.yml git_branch="{{ navi_branch }}"
+
+# Other
+- include: optimus.yml git_branch="{{ optimus_branch }}"
+- include: pheidi.yml git_branch="{{ pheidi_branch }}"
+- include: clio.yml git_branch="{{ clio_branch }}"
+
+# Frontend
+- include: web.yml git_branch="{{ runnable_angular_branch }}"
+- include: enterprise-sign-in.yml git_branch="{{ enterprise_signin_branch }}"

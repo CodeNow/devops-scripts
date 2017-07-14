@@ -109,6 +109,8 @@ clio_mongo_auth: "{{ clio_mongo_user }}:{{ clio_mongo_password }}"
 consul_api_port: 8500
 consul_https_port: 8501
 consul_storage_size_gb: 10
+# Host to be used from inside the kubernetes cluster
+consul_internal_host_address: 'consul'
 
 # cream
 cream_port: 8899
@@ -243,7 +245,7 @@ swarm_host_address: swarm
 swarm_container_name: swarm
 
 # navi/link
-link_hello_runnable_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
+link_hello_runnable_github_token: 5d8f7029d3d6941b0fc62a7eb8c605d8e0bc7c29
 navi_mongo_database: navi
 navi_mongo_user: "navi"
 navi_mongo_auth: "{{ navi_mongo_user }}:{{ navi_mongo_password }}"

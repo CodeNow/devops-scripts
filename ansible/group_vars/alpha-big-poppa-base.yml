@@ -27,6 +27,8 @@ big_poppa_base_container_envs:
     value: "{{ big_poppa_intercom_id | default('undefined') }}"
   - name: NODE_ENV
     value: "{{ node_env }}"
+  - name: ON_PREM
+    value: "{{ is_on_prem | default('ansible_undefined') | lower }}"
   - name: PGUSER
     value: "{{ big_poppa_pg_user }}"
   - name: PGPASSWORD
@@ -50,7 +52,7 @@ big_poppa_base_container_envs:
   - name: MONGO
     value: "mongodb://{{ big_poppa_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
   - name: MONGO_REPLSET_NAME
-    value: "{{ big_poppa_mongo_replset_name }}"
+    value: "{{ big_poppa_mongo_replset_name | default('ansible_undefined') }}"
   - name: GITHUB_VARNISH_HOST
     value: "{{ github_varnish_host }}"
   - name: GITHUB_VARNISH_PORT

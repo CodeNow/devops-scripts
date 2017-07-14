@@ -5,6 +5,8 @@ repo: "git@github.com:CodeNow/{{ name }}.git"
 node_version: "4.8.0"
 npm_version: "2.15.11"
 
+restart_policy: "Never"
+
 dockerfile_post_install_commands: [
   "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
   "chmod +x /usr/bin/sass",
@@ -30,4 +32,4 @@ container_envs:
   - name: AWS_SECRET_ACCESS_KEY
     value: "{{ aws_secret_key }}"
 
-container_run_args: gulp gulp build:dev && gulp push
+container_run_args: gulp build:dev && gulp push

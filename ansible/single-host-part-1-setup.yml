@@ -1,0 +1,4 @@
+- include: consul-values.yml -e write_values="true" -e read_values="true" # Only run the first time
+# TODO: Do we still need this?
+# - include: consul-services.yml # Only run the first time
+- include: vault-values.yml -e write_values="true" -e write_root_creds="true"

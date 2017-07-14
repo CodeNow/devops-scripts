@@ -68,7 +68,7 @@ container_envs:
   - name: BIG_POPPA_HOST
     value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
   - name: CONSUL_HOST
-    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+    value: "{{ consul_internal_host_address }}:{{ consul_api_port }}"
   - name: CANARY_API_TOKEN
     value: "{{ khronos_canary_token | default('undefined') }}"
   - name: CANARY_API_FAILOVER_TOKEN

@@ -1,29 +1,14 @@
-node_version: 4.4.3
-npm_version: 4.0.3
+name: mongo-seed-db
 
-repo: git@github.com:CodeNow/api.git
-has_shrinkwrap: true
-container_image: "{{ registry_address }}/runnable/api"
+container_image: quay.io/runnable/api
 
-dockerfile_enviroment: [
-  "NPM_TOKEN {{ npm_token }}"
-]
-dockerfile_pre_install_commands: [
-   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
-]
+container_run_args: npm run migrate-up
 
-volume_mounts:
- - name: "{{ name }}-docker-ssl-certs"
-   path: /etc/ssl/docker
-   kind: configMap
-
-tcp_readiness_probe_port: "{{ api_port }}"
-
-api_base_container_envs:
+container_envs:
+  - name: LOG_LEVEL
+    value: trace
   - name: DOCKER_IMAGE_BUILDER_CACHE
     value: "/home/anandkumarpatel/cache"
-  - name: "DOCKER_IMAGE_BUILDER_HOST_CONFIG_PATH"
-    value: "/root/.docker/config.json"
   - name: VALID_REDIR_TLDS
     value: "{{ domain }},runnablecloud.com"
   - name: FULL_API_DOMAIN
@@ -60,8 +45,6 @@ api_base_container_envs:
     value: "{{ api_github_client_secret }}"
   - name: GITHUB_DEPLOY_KEYS_BUCKET
     value: "{{ api_github_deploy_keys_bucket }}"
-  - name: GITHUB_DEPLOY_KEY_TITLE
-    value: "Runnable-{{ environment }}"
   - name: GITHUB_HOOK_URL
     value: "{{ api_url }}/actions/github"
   - name: GITHUB_UPGRADE_REDIRECT_URL
@@ -118,8 +101,6 @@ api_base_container_envs:
     value: "{{ api_s3_log_bucket }}"
   - name: SENDGRID_KEY
     value: "{{ sendgrid_key }}"
-  - name: LOG_LEVEL
-    value: "trace"
   - name: SWARM_HOST
     value: "http://{{ swarm_host_address }}:{{ swarm_master_port }}"
   - name: USER_CONTENT_DOMAIN

@@ -2,39 +2,41 @@
 aws_region: us-west-2
 aws_access_key_id: AKIAIDCQ7YKWQPHXXVPA # TODO, add to terraform
 aws_secret_access_key: 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 # TODO, Add to terraform
-postgres_host:  tf-002e1957463ef252970bd5f0bd.cnksgdqarobf.us-west-2.rds.amazonaws.com
-postgres_password: WfhbflI8jIz0Rr-Japuc-iLHPbg
+postgres_host: tf-00764cdb5ae0cde9ec08f55623.cnksgdqarobf.us-west-2.rds.amazonaws.com
+postgres_password: 8pl2ZwYWGAp0AWmFxrDPWhOsd40
 postgres_user: runnable
 # User vault is accesible from cluster
-user_vault_load_balancer: "user-vault"
+user_vault_load_balancer: "vault.{{ domain }}"
 mongo_hosts: 'mongo'
 # Accessible from dock
-consul_host_address: 'consul-host'
+consul_host_address: 'consul.{{ domain }}' # TODO: Make private
 # Accessible from dock
 redis_host_address:
 mongo_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 rabbit_volume_id: vol-03b21a05ad0d1030e # TODO, add to terraform
 redis_volume_id: vol-0b364425ec3f190ce # TODO, add to terraform
 environment: runnable-self-hosted-2
+docks_ip_range: "34.223.211.0/24" # NOTE: Not usable because of loss of IP address from docks to k8s cluster
 
 # User Provided
 domain: runnable-test-main-2.info
 user_content_domain: runnable-test-navi-2.info
-vault_auth_token: 642c3bba-ae85-31c8-b07a-876171b64717
-vault_token_01: 69b6ebaa8569f877116d4e5c640f173efb7b9da7ff271548e582558032d50dbb01
-vault_token_02: 52766f0ff9770253d8b26780c88944ccd5f14ae52891140de1a120dd7ee1879702
-vault_token_03: f89e74ab796ec590f73277681010a3765cbe3a8d42c680b71a7da31192d9533403
-vault_token_04: afaf475f57aad3923f58480d05701c88a9d2bf5e4b8e1e61b3d0a03d121efc7804
-vault_token_05: 05475cfbd7b3145110d858e5dde9fb32209dcf3621d98adb480c23f1fe2628db05
+super_user: runnable-self-hosted-2-hello-runnable
+vault_auth_token: 079094d8-9852-c091-f50e-9db200ca6053
+vault_token_01: 4912f3702fd174662020a3bcab4ae05ce0c432c2b78aee7183e8ec51c3ec3f7501
+vault_token_02: 1997da00dc760190288eb21ee8a5e9bb115d65daef3c232eb66e580a9a3cfe4f02
+vault_token_03: aae1fa2d57d2a7ba3a697655f41f02c65afd87ada1a5b3bac02b1a0b5d2d79a003
+vault_token_04: 69e5fefb9b2849f9fe13d5d98eb2689574851259cb5547a5f90f8a9f0fc5636b04
+vault_token_05: da93ded6108cefd3ecf41192920883e83f25f02e85ccd7318f4ac89ec8d4e48405
 rabbit_password: 047a6b3ce2c74be694afb2ac3a960c44
 rabbit_username: b56cbb97644743809559fa0297c8e51d
 mongo_user: 93ce22876b554eba8c5d392a5d57ee71
 mongo_password: 1c1d692441314b0cb060d6e70f78a5a4
-github_token: 1bae48fd096d795b4730c65d6da86d3dbd741c82
+github_token: c9a3140944a239a337a92ab1a1e022b000131c3b # thejsj
 github_client_id: 41aa03dc2948c3bc9b8c
 github_client_secret: 4e7d070cd472945e2837fbca0748be15edf77edc
-hello_runnable_github_token: d26acd9aad355430cc26584247e0ac3f0ee462af
-hello_runnable_github_id: 28722728
+hello_runnable_github_token: d9980e93ce53e6312457c72528ee76640e0dbbe7 # runnable-self-hosted-2-hello-runnable
+hello_runnable_github_id: 29638669 # runnable-self-hosted-2-hello-runnable
 navi_cookie_secret: fb4acc7a69f04c10b84e943eb8538768
 dock_vault_user_creation_access_token:
 
@@ -43,9 +45,6 @@ registry_username: "runnable+zendeskpull"
 registry_token: FJQPM3VZKWCIMPO6TWQ9BD3TPWJD008HHH0RCDC3RKYO4AHMQ89RN4H4E94QUUCY
 intercom_id: wqzm3rju
 intercom_key: dG9rOjcyYzAwMzMzX2MxMGVfNDBiYl9iY2M3XzcxYzExMzFkYTI1ODoxOjA
-
-#
-mongo_replset_name: "{{ environment }}-rs0"
 
 api_aws_access_key_id: "{{ aws_access_key_id }}"
 api_aws_alias_host: "{{ aws_region }}.compute.internal"
@@ -56,17 +55,17 @@ api_github_deploy_keys_bucket: "runnable.deploykeys.{{ environment }}"
 api_mongo_user: "{{ mongo_user }}"
 api_mongo_password: "{{ mongo_password }}"
 api_mongo_database: "api"
-api_mongo_replset_name: "{{ mongo_replset_name }}"
 api_s3_context_bucket: "runnable.context.resources.{{ environment }}"
 api_s3_log_bucket: "{{ environment }}.container-logs"
+
 redis_host_address: "redis"
+redis_external_host_address: "redis.{{ domain }}"
 
 big_poppa_github_token: "{{ github_token }}"
 big_poppa_intercom_id: "{{ intercom_id }}"
 big_poppa_intercom_key: "{{ intercom_key }}"
 big_poppa_mongo_auth: "{{ mongo_user }}:{{ mongo_password }}"
 big_poppa_mongo_database: "{{ api_mongo_database }}"
-big_poppa_mongo_replset_name: "{{ mongo_replset_name }}"
 big_poppa_pg_host: "{{ postgres_host }}"
 big_poppa_pg_pass: "{{ postgres_password}}"
 big_poppa_pg_user: "{{ postgres_user }}"
@@ -81,7 +80,6 @@ khronos_intercom_api_key: "{{ intercom_key }}"
 khronos_intercom_app_id: "{{ intercom_id }}"
 khronos_mongo_auth: "{{ mongo_user }}:{{ mongo_password }}"
 khronos_mongo_database: "{{ api_mongo_database }}"
-khronos_mongo_replset_name: "{{ mongo_replset_name }}"
 
 optimus_aws_access_id: "{{ aws_access_key_id }}"
 optimus_aws_secret_id: "{{ aws_secret_access_key }}"
@@ -92,7 +90,6 @@ pheidi_intercom_id: "{{ intercom_id }}"
 pheidi_intercom_key: "{{ intercom_key }}"
 pheidi_mongo_auth: "{{ mongo_user }}:{{ mongo_password }}"
 pheidi_mongo_database: "{{ api_mongo_database }}"
-pheidi_mongo_replset_name: "{{ mongo_replset_name }}"
 pheidi_runnabot_tokens: "{{ github_token }}"
 
 vault_hello_runnable_github_token: "{{ hello_runnable_github_id }}"
@@ -104,6 +101,8 @@ vault_consul_address: "consul:8500"
 marketing_bucket: "{{ domain }}"
 marketing_aws_access_key: "{{ aws_access_key_id }}"
 marketing_aws_secret_key: "{{ aws_secret_access_key }}"
+
+link_hello_runnable_github_token: "{{ hello_runnable_github_token }}"
 
 api_hello_runnable_github_token: "{{ hello_runnable_github_token }}"
 bastion_sshd_port: 22
@@ -118,5 +117,13 @@ pg_pass: "{{ postgres_password }}"
 pg_port: 5432
 include_eru_proxy: false
 include_ergre_proxy: false
+is_on_prem: true
 
 web_intercom_id: "{{ intercom_id }}"
+web_aws_bucket_region: "{{ aws_region }}"
+
+# Docks
+ec2_describe_aws_access_key: "{{ aws_access_key_id }}"
+ec2_describe_aws_secret_key: "{{ aws_secret_access_key }}"
+dock_registry_s3_access_key: "{{ aws_access_key_id  }}"
+dock_registry_s3_secret_key: "{{ aws_secret_access_key }}"

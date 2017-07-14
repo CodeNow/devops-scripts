@@ -22,7 +22,7 @@ dockerfile_pre_install_commands: [
 
 container_envs:
   - name: CONSUL_HOST
-    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+    value: "{{ consul_internal_host_address }}:{{ consul_api_port }}"
   - name: DATADOG_HOST
     valueFrom: "spec.nodeName"
   - name: DATADOG_PORT

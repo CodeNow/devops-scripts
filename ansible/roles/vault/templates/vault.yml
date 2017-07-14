@@ -5,7 +5,7 @@ metadata:
 data:
   vault.hcl: |
     backend "consul" {
-      advertise_addr = "{{ vault_url }}"
+      advertise_addr = "http://vault:{{ vault_api_port }}"
       address = "{{ vault_consul_address }}"
       scheme = "http"
       path = "vault"

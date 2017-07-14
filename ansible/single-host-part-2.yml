@@ -1,0 +1,7 @@
+# Databases
+- include: mongo.yml
+- include: rabbitmq.yml
+- include: redis.yml
+- include: mongo-create-users.yml
+- include: mongo-seed-db.yml
+- include: rabbit-create-exchanges.yml
