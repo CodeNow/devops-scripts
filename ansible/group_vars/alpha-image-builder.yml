@@ -1,0 +1,9 @@
+app_name: image-builder
+name: "{{ app_name }}"
+
+repo: git@github.com:CodeNow/{{ name }}.git
+
+# consul values
+consul_values:
+  - key: "{{ name }}/version"
+    value: "{{ git_branch }}"

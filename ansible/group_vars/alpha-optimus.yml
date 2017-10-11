@@ -1,0 +1,27 @@
+name: optimus
+
+inject_ca: false
+repo: git@github.com:CodeNow/{{ name }}.git
+hosted_ports: ["{{ optimus_port }}"]
+node_version: "4.3.2"
+npm_version: "2.8.3"
+
+container_envs:
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: PORT
+    value: "{{ optimus_port }}"
+  - name: AWS_ACCESS_KEY_ID
+    value: "{{ optimus_aws_access_id }}"
+  - name: AWS_SECRET_ACCESS_KEY
+    value: "{{ optimus_aws_secret_id }}"
+  - name: S3_DEPLOY_KEY_BUCKET
+    value: "{{ optimus_github_deploy_keys_bucket }}"
+  - name: ROLLBAR_KEY
+    value: "{{ optimus_rollbar_token | default('ansible_undefined') }}"
+  - name: LOG_LEVEL
+    value: "trace"

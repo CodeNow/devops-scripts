@@ -1,0 +1,5 @@
+---
+- name: install git
+  apt: name=git state=present
+  become: true
+  when: "ansible_distribution == 'Ubuntu'"

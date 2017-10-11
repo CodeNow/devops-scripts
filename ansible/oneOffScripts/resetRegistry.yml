@@ -1,0 +1,25 @@
+---
+# DOCUMENTATION https://github.com/CodeNow/devops-scripts/wiki/Reset-Customer-Local-Registry
+- hosts: docks
+  gather_facts: no
+  tasks:
+  - fail: msg="`vault_token` needs to be defined for this role"
+    when: vault_token is not defined
+
+  - fail: msg="`consul_host_address` needs to be defined for this role"
+    when: consul_host_address is not defined
+
+  - name: put script on machine
+    become: yes
+    template:
+      dest: /tmp/reset-registry.sh
+      src: reset-registry.sh.j2
+      mode: 0550
+
+  - name: run script
+    become: yes
+    command: /tmp/reset-registry.sh
+
+  - name: remove script
+    become: yes
+    command: shred -u /tmp/reset-registry.sh

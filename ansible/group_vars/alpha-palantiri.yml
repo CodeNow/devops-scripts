@@ -1,0 +1,39 @@
+name: palantiri
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
+container_envs:
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ palantiri_rollbar_key | default('ansible_undefined') }}"
+  - name: RSS_LIMIT
+    value: "2000000"
+  - name: LOG_LEVEL_STDOUT
+    value: "trace"
+  - name: SWARM_HOSTNAME
+    value: "{{ swarm_host_address }}"
+  - name: SWARM_PORT
+    value: "{{ swarm_master_port }}"

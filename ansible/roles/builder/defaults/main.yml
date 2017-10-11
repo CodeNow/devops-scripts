@@ -1,0 +1,3 @@
+---
+build_dir: /opts/builds/docker_build
+npm_start_command: start

@@ -1,0 +1,22 @@
+name: agreeable-egret
+service_name: egret
+
+inject_ca: false
+hosted_ports: ["{{ egret_port }}"]
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.3.1"
+npm_version: "3.7.5"
+
+container_envs:
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ api_hello_runnable_github_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RUNNABLE_API_URL
+    value: "{{ api_url }}"
+  - name: PORT
+    value: "{{ hosted_ports[0] }}"
+  - name: RUNNABLE_USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: POSTGRES_CONNECT_STRING
+    value: postgres://{{ egret_pg_user }}:{{ egret_pg_pass }}@{{ egret_pg_host }}/{{ egret_pg_database }}

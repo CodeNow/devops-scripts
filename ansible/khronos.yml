@@ -1,0 +1,13 @@
+---
+- hosts: khronos
+  vars_files:
+    - group_vars/alpha-khronos.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ rollbar_khronos_token }}"
+
+  - role: builder
+
+  - role: khronos
+  - role: docker_client
+  - role: k8-deployment

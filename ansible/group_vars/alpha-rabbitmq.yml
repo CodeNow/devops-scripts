@@ -1,0 +1,22 @@
+name: rabbitmq
+service_name: rabbitmq
+
+hosted_ports: [ "{{ rabbit_port }}", 15672 ]
+
+storage_size_gb: "{{ rabbit_storage_size_gb }}"
+
+volume_id: "{{ rabbit_volume_id }}"
+
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /var/lib/rabbitmq
+    kind: persistent
+  - name: "{{ name }}-conf"
+    path: /etc/rabbitmq/
+    kind: configMap
+
+container_image: rabbitmq
+container_tag: "3.5.3-management"
+container_run_args: ''
+
+post_start_command: sleep 5; rabbitmq-plugins enable rabbitmq_management; true

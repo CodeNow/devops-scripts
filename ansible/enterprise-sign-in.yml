@@ -1,0 +1,7 @@
+---
+- hosts: web
+  vars_files:
+    - group_vars/alpha-enterprise-sign-in.yml
+  roles:
+  - { role: builder, tags: "build" }
+  - { role: k8-job }

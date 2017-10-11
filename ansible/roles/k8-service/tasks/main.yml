@@ -1,0 +1,10 @@
+---
+- name: create service folder
+  file:
+    state: directory
+    path: "{{ services_path }}"
+
+- name: create service yaml
+  template:
+    dest: "{{ services_path }}/{{ name }}.yml"
+    src: service.yml

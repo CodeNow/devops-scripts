@@ -1,0 +1,45 @@
+---
+- name: create chained cert
+  tags: [ certs ]
+  shell: |
+    cat {{ domains_root }}/{{ user_content_domain }}/cert.pem  > {{ domains_root }}/{{ user_content_domain }}/chained.pem
+    echo "" >> {{ domains_root }}/{{ user_content_domain }}/chained.pem # Add newline
+    cat {{ domains_root }}/{{ user_content_domain }}/ca.pem  >> {{ domains_root }}/{{ user_content_domain }}/chained.pem
+
+- name: create dhparam.pem
+  tags: [ certs ]
+  command: openssl dhparam -out {{ domains_root }}/{{ user_content_domain }}/dhparam.pem 2048
+
+- set_fact:
+    ca_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/ca.pem') }}"
+- set_fact:
+    cert_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/cert.pem') }}"
+- set_fact:
+    key_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/key.pem') }}"
+- set_fact:
+    chained_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/chained.pem') }}"
+- set_fact:
+    dhparam_data: "{{ lookup('file', '{{ domains_root }}/{{ user_content_domain }}/dhparam.pem') }}"
+
+- name: create configMap folder
+  file:
+    state: directory
+    path: "{{ config_maps_path }}"
+
+- name: create cert config map
+  tags: [ configure_proxy, configure_files ]
+  template:
+    src: certs.yml
+    dest: "{{ config_maps_path }}/{{ name }}-certs.yml"
+
+- name: create proxy template
+  tags: [ configure_proxy, configure_files ]
+  template:
+    src: proxy-nginx.conf
+    dest: "{{ config_maps_path }}/{{ name }}-base-config.yml"
+
+- name: create navi template
+  tags: [ configure_proxy, configure_files ]
+  template:
+    src: navi.tmpl
+    dest: "{{ config_maps_path }}/{{ name }}-navi-config.yml"

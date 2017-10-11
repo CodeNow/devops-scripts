@@ -1,0 +1,6 @@
+- hosts: docks
+  gather_facts: no
+  tasks:
+  - name: pull weave image
+    become: true
+    shell: 'sudo docker pull weaveworks/weave:1.4.6'

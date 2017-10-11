@@ -1,0 +1,5 @@
+---
+- name: upgrade a server
+  become: true
+  apt:
+     upgrade=full

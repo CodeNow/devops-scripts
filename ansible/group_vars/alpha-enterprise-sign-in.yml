@@ -1,0 +1,33 @@
+name: "enterprise-sign-in"
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.8.0"
+npm_version: "2.15.11"
+
+dockerfile_post_install_commands: [
+  "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
+  "chmod +x /usr/bin/sass",
+  "npm install -g gulp",
+  "npm install"
+]
+
+advance_arg: true
+
+container_envs:
+  - name: API_URL
+    value: "https://{{ api_hostname }}"
+  - name: ANGULAR_URL
+    value: "{{ angular_url }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: AWS_REGION
+    value: "{{ web_aws_bucket_region | default('us-east-1') }}"
+  - name: AWS_BUCKET_NAME
+    value: "{{ domain }}"
+  - name: AWS_ACCESS_KEY_ID
+    value: "{{ aws_access_key }}"
+  - name: AWS_SECRET_ACCESS_KEY
+    value: "{{ aws_secret_key }}"
+
+container_run_args: gulp gulp build:dev && gulp push

@@ -1,0 +1,12 @@
+---
+- hosts: palantiri
+  vars_files:
+    - group_vars/alpha-palantiri.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ palantiri_rollbar_token }}"
+
+  - role: builder
+
+  - role: docker_client
+  - role: k8-deployment

@@ -1,0 +1,22 @@
+name: postgres
+hosted_ports: ["{{ pg_port }}"]
+container_run_args: ''
+
+storage_size_gb: "{{ postgres_storage_size_gb }}"
+
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /data/db
+    kind: persistent
+  - name: "{{ name }}-init-user-db"
+    path: /docker-entrypoint-initdb.d/
+    kind: configMap
+
+container_image: postgres
+container_tag: "9.5.2"
+
+container_envs:
+  - name: POSTGRES_PASSWORD
+    value: "{{ pg_pass }}"
+  - name: POSTGRES_USER
+    value: "{{ pg_user }}"

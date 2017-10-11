@@ -1,0 +1,12 @@
+---
+- hosts: docker-listener
+  vars_files:
+    - group_vars/alpha-docker-listener.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ docker_listener_rollbar_key }}"
+
+  - role: builder
+
+  - role: docker_client
+  - role: k8-deployment

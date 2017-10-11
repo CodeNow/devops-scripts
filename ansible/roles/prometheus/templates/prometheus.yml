@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ name }}-conf
+data:
+  alerts.conf: |
+    {{ lookup('file', 'alerts.conf') | indent(4) }}
+
+  prometheus.yml: |
+    # my global config
+    global:
+      scrape_interval:     1m
+      evaluation_interval: 1m
+
+    rule_files:
+    - "alerts.conf"
+
+    scrape_configs:
+    # monitor self to get metrics for prometheus
+    - job_name:     prometheus
+      metrics_path: /metrics
+      static_configs:
+        - targets: [ 'localhost:{{ prometheus_port }}' ]
+
+
+    # pulls server list from ec2 and drops all servers that are not in env or a dock
+    - job_name:         container_info
+      scrape_interval:     30m
+      # keys to access this region and port of prom
+      ec2_sd_configs:
+        - region:     us-west-2
+          access_key: {{ prometheus_aws_access_key }}
+          secret_key: {{ prometheus_aws_secret_key }}
+          port:       {{ cadvisor_port }}
+
+      # drop all servers not in this env and not a dock
+      relabel_configs:
+      - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
+        regex:         {{ env }}-asg-dock-pool
+        action:        drop
+
+      - source_labels: [__meta_ec2_tag_env]
+        regex:         {{ node_env }}
+        action:        keep
+
+      - source_labels: [__meta_ec2_tag_role]
+        regex:         dock
+        action:        keep
+
+      - source_labels: [__meta_ec2_tag_org]
+        target_label:  githubOrgId
+
+      - source_labels: [__meta_ec2_private_ip]
+        target_label:  hostIp
+
+      - source_labels: [__meta_ec2_tag_env]
+        target_label:  env
+
+    # pulls server list from ec2 and drops all servers that are not in env or a dock
+    - job_name:         server_info
+      # keys to access this region and port of prom
+      ec2_sd_configs:
+        - region:     us-west-2
+          access_key: {{ prometheus_aws_access_key }}
+          secret_key: {{ prometheus_aws_secret_key }}
+          port:       {{ node_exporter_port }}
+
+      # drop all servers not in this env and not a dock
+      relabel_configs:
+      - source_labels: [__meta_ec2_tag_aws_autoscaling_groupName]
+        regex:         {{ env }}-asg-dock-pool
+        action:        drop
+
+      - source_labels: [__meta_ec2_tag_env]
+        regex:         {{ node_env }}
+        action:        keep
+
+      - source_labels: [__meta_ec2_tag_role]
+        regex:         dock
+        action:        keep
+
+      - source_labels: [__meta_ec2_tag_org]
+        target_label:  githubOrgId
+
+      - source_labels: [__meta_ec2_private_ip]
+        target_label:  hostIp
+
+      - source_labels: [__meta_ec2_tag_env]
+        target_label:  env

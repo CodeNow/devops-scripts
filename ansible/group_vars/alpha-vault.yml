@@ -1,0 +1,41 @@
+name: vault
+
+# for database role
+db_path: /opt/runnable/vault
+
+container_image: "{{ registry_host }}/runnable/vault"
+container_tag: v0.5.1
+
+container_run_opts: >
+  -d
+  -h {{ inventory_hostname }}
+  -v /opt/runnable/vault/vault.hcl:/vault.hcl:ro
+  -v /opt/vault/client-consul:/opt/vault/client-consul:ro
+  -v /opt/vault/server:/opt/vault/server:ro
+  -v {{ app_log_dir }}:{{ app_log_dir }}:rw
+  -p {{ ansible_default_ipv4.address }}:{{ vault_port }}:{{ vault_port }}
+  -p {{ ansible_default_ipv4.address }}:8201:8201
+  --cap-add IPC_LOCK
+  --restart=always
+
+container_run_args: >
+  vault server
+  -log-level=warn
+  -config=/vault.hcl
+
+# vault seed data
+# pulled 2015/16/12 - Bryan
+vault_seed_values:
+  - key: secret/loggly
+    data:
+      token: "{{ loggly_token }}"
+  - key: secret/rabbitmq
+    data:
+      username: "{{ rabbit_username }}"
+      password: "{{ rabbit_password }}"
+  - key: secret/github/hellorunnable
+    data:
+      token: "{{ vault_hello_runnable_github_token }}"
+
+# for the love of all that you find holy, don't change the following unless you _KNOW WHAT YOU ARE DOING_.
+vault_seed_policy: "{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Action\\\": [\\\"ec2:DescribeInstances\\\", \\\"ec2:DescribeTags\\\"], \\\"Resource\\\": [\\\"*\\\"], \\\"Effect\\\": \\\"Allow\\\", \\\"Sid\\\": \\\"Stmt1445655064000\\\"}]}"

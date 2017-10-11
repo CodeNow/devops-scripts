@@ -1,0 +1,22 @@
+- hosts: docks
+  gather_facts: no
+  tasks:
+  - fail: msg="`name` needs to be defined for this role"
+    when: name is not defined
+
+  - name: stop service
+    become: true
+    service:
+      name={{ name }}
+      state=stopped
+
+  - name: remove files
+    become: true
+    file:
+      path={{ item }}
+      state=absent
+    with_items:
+      - /etc/init/{{ name }}.conf
+      - /etc/init/{{ name }}.conf.bak
+      - /etc/init/{{ name }}.override
+      - /opt/runnable/{{ name }}

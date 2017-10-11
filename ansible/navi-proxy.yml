@@ -1,0 +1,9 @@
+---
+- hosts: navi-proxy
+  vars_files:
+  - group_vars/alpha-navi-proxy.yml
+  roles:
+  - role: content-domain-proxy
+
+  - role: k8-deployment
+  - role: k8-service

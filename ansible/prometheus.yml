@@ -1,0 +1,12 @@
+---
+- hosts: prometheus
+  vars_files:
+    - group_vars/alpha-prometheus.yml
+  roles:
+  - role: notify
+
+  - role: prometheus
+
+  - role: database
+  - role: k8-deployment
+  - role: k8-service

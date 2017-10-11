@@ -1,0 +1,21 @@
+---
+name: navi-proxy
+
+container_image: "nginx"
+container_tag: "1.10"
+
+hosted_ports:  "{{ navi_extra_ports + [80, 443] }}"
+
+service_type: "LoadBalancer"
+container_run_args: ''
+
+volume_mounts:
+ - name: "{{ name }}-{{ user_content_domain | replace('.', '-') }}-certs"
+   path: /etc/ssl/certs/{{ user_content_domain }}
+   kind: configMap
+ - name: "{{ name }}-base-conf"
+   path: /etc/nginx/
+   kind: configMap
+ - name: "{{ name }}-navi-conf"
+   path: /etc/nginx/sites-enabled
+   kind: configMap

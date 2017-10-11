@@ -1,0 +1,19 @@
+name: prometheus-alerts
+
+container_image: prom/alertmanager
+container_tag: v0.6.2
+hosted_ports: ["{{ prometheus_alert_port }}"]
+
+memory_hard_limit: 10G
+
+volume_mounts:
+ - name: "{{ name }}-conf"
+   path: /prometheus-alerts
+   kind: configMap
+
+container_run_args: >
+  -config.file=/prometheus-alerts/prometheus-alerts.yml
+  -data.retention 720h0m0s
+  -storage.path "data"
+  -web.external-url http://localhost
+  -web.listen-address ":{{ prometheus_alert_port }}"

@@ -1,0 +1,25 @@
+---
+# - name: get the username running the deploy
+#   tags:
+#     - always
+#   local_action: command whoami
+#   register: local_username
+#   delegate_to: 127.0.0.1
+
+# - name: send start message
+#   run_once: yes
+#   changed_when: True
+#   tags:
+#     - always
+#   slack:
+#     token={{ slack_token }}
+#     channel={{ item }}
+#     msg="{{ local_username.stdout }} is {{ notify_start_message }}"
+#   with_items:
+#     - "{{ slack_channels }}"
+#     - "{{ extra_channels | default([]) }}"
+#   notify:
+#     - send done message
+#     - send rollbar message for deploy
+#     - send datadog message for deploy
+#     - put deployed version in consul

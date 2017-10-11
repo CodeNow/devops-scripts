@@ -1,0 +1,39 @@
+name: "runnable-angular"
+
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "0.10.38"
+npm_version: "2.1.18"
+
+container_envs:
+  - name: API_SOCK_URL
+    value: "https://{{ api_socket_server_hostname }}"
+  - name: API_URL
+    value: "https://{{ api_hostname }}"
+  - name: MIXPANEL_PROXY_URL
+    value: "{{ mixpanel_proxy_url }}"
+  - name: SUPER_USER
+    value: "{{ super_user }}"
+  - name: AWS_ACCESS_KEY
+    value: "{{ aws_access_key }}"
+  - name: AWS_BUCKET
+    value: "app.{{ domain }}"
+  - name: AWS_REGION
+    value: "{{ web_aws_bucket_region | default('us-east-1') }}"
+  - name: AWS_SECRET_KEY
+    value: "{{ aws_secret_key }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ web_intercom_id }}"
+  - name: MARKETING_URL
+    value: "{{ marketing_url }}"
+  - name: NODE_ENV
+    value: production
+  - name: SIFT_API_KEY
+    value: "{{ web_sift_public_key | default('ansible_undefined') }}"
+  - name: STRIPE_TOKEN
+    value: "{{ cream_stripe_publishable_key | default('ansible_undefined') }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+
+npm_start_command: run gruntDeploy
+
+container_run_args: npm {{ npm_start_command }}

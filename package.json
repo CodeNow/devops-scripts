@@ -1,0 +1,25 @@
+{
+  "name": "ansible",
+  "version": "0.0.1",
+  "description": "ansible",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/CodeNow/devops-scripts"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/CodeNow/devops-scripts/issues"
+  },
+  "homepage": "https://github.com/CodeNow/devops-scripts",
+  "dependencies": {
+    "aws-sdk": "^2.1.48"
+  }
+}

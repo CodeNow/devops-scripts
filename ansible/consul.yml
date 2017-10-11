@@ -1,0 +1,11 @@
+---
+- hosts: consul
+  serial: 1
+  vars_files:
+    - group_vars/alpha-consul.yml
+  roles:
+  - { role: notify, tags: notify }
+  - { role: database }
+  - { role: datadog, tags: [ datadog ] }
+  - { role: consul }
+  - { role: container_kill_start }

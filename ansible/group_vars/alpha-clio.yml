@@ -1,0 +1,29 @@
+name: clio
+
+inject_ca: false
+hosted_ports: ["{{ clio_port }}"]
+repo: git@github.com:CodeNow/{{ name }}.git
+node_version: "4.8.0"
+npm_version: "2.15.11"
+
+container_envs:
+  - name: MONGO
+    value: "mongodb://{{ clio_mongo_auth }}@{{ mongo_hosts }}/{{ clio_mongo_database }}"
+  - name: MONGO_REPLSET_NAME
+    value: "{{ clio_mongo_replset_name | default('ansible_undefined') }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: PORT
+    value: "{{ clio_port }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"

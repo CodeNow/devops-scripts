@@ -1,0 +1,66 @@
+name: pheidi
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+
+dockerfile_pre_install_commands: [
+   "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc"
+]
+
+container_envs:
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: DOMAIN
+    value: "{{ domain }}"
+  - name: EMAIL_GITHUB_ACCESS_TOKEN
+    value: "{{ pheidi_email_github_token }}"
+  - name: FULL_API_DOMAIN
+    value: "https://api.{{ domain }}"
+  - name: INTERCOM_ADMIN_ID
+    value: "{{ pheidi_intercom_admin_id }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ pheidi_intercom_key }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ pheidi_intercom_id }}"
+  - name: LOGGLY_TOKEN
+    value: "{{ loggly_token }}"
+  - name: MONGO
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
+  - name: MONGO_REPLSET_NAME
+    value: "{{ api_mongo_replset_name }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ pheidi_rollbar_token | default('ansible_undefined') }}"
+  - name: RUNNABOT_GITHUB_ACCESS_TOKENS
+    value: "{{ pheidi_runnabot_tokens }}"
+  - name: SENDGRID_KEY
+    value: "{{ sendgrid_key }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: WEB_URL
+    value: "https://app.{{ domain }}"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"

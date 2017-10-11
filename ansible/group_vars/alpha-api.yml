@@ -1,0 +1,18 @@
+name: api
+service_name: api
+
+hosted_ports: [ "{{ api_port }}" ]
+
+memory_hard_limit: 1G
+num_replicas: 16
+
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ api_rollbar_key | default('ansible_undefined') }}"
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
+container_envs: "{{ api_base_container_envs + envs }}"

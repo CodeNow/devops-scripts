@@ -1,0 +1,49 @@
+---
+- name: Ensure Tag Deploy For Prod
+  tags: deploy, build
+  when: node_env=="production-delta" and not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$")
+  fail: msg="only tag can be deployed on prod not {{ git_branch }}"
+
+- name: create build folder
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: true
+  file:
+    path: "{{ build_dir }}/{{ name }}"
+    state: directory
+
+- name: pull the git repository
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: true
+  git:
+    repo: "{{ repo }}"
+    dest: "{{ build_dir }}/{{ name }}/repo"
+    version: "{{ git_branch }}"
+    update: yes
+    accept_hostkey: yes
+    force: yes
+
+- name: build docker image and tag
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker build {{ build_args | default("") }} --tag="{{ container_image }}:{{ container_tag }}" "{{ build_dir }}/{{ name }}/repo"
+
+- name: login to registry
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
+
+- name: push docker image
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker push {{ container_image }}:{{ container_tag }}
+
+- name: logout of registry
+  delegate_to: "{{ builder }}"
+  tags: deploy, build
+  become: yes
+  command: docker logout {{ registry_host }}

@@ -1,0 +1,60 @@
+---
+name: ingress-proxy
+
+container_image: "nginx"
+container_tag: "1.10"
+hosted_ports: ["80", "443"]
+container_run_args: ''
+
+service_type: "LoadBalancer"
+
+volume_mounts:
+ - name: "{{ name }}-{{ domain | replace('.', '-') }}-certs"
+   path: /etc/ssl/certs/{{ domain }}
+   kind: configMap
+ - name: "{{ name }}-base-conf"
+   path: /etc/nginx/
+   kind: configMap
+ - name: "{{ name }}-mixpanel-config"
+   path: /etc/nginx/other-sites-enabled
+   kind: configMap
+ - name: "{{ name }}-sites-enabled-config"
+   path: /etc/nginx/sites-enabled
+   kind: configMap
+
+services:
+  - name: api
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ api_port }}"
+  - name: drake
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ drake_port }}"
+  - name: optimus
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ optimus_port }}"
+  - name: apisock
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ api_port }}"
+  - name: eru
+    include: "{{ include_eru_proxy | default(true) }}"
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ eru_http_port }}"
+      - name: graphql
+        route: "/graphql"
+        port: "{{ eru_graphql_port }}"
+  - name: egret
+    include: "{{ include_ergre_proxy | default(true) }}"
+    upstreams:
+      - name: base
+        route: "/"
+        port: "{{ egret_port }}"

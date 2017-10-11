@@ -1,0 +1,51 @@
+---
+- name: send done message
+  tags:
+    - always
+  slack:
+    token={{ slack_token }}
+    channel={{ item }}
+    msg="{{ local_username.stdout }} is {{ notify_end_message }}"
+  with_items:
+    - "{{ slack_channels }}"
+    - "{{ extra_channels | default([]) }}"
+  changed_when: true
+
+- name: send rollbar message for deploy
+  when: rollbar_token is defined and node_env is defined and git_branch is defined
+  tags:
+    - rollbar
+    - always
+  rollbar_deployment:
+    token={{ rollbar_token }}
+    environment={{ node_env }}
+    revision={{ git_branch }}
+    rollbar_user={{ local_username.stdout }}
+  changed_when: true
+
+- name: send datadog message for deploy
+  when: datadog_api_key is defined and datadog_tags is defined and git_branch is defined
+  ignore_errors: true
+  tags:
+    - datadog
+    - always
+  datadog_event:
+    api_key={{ datadog_api_key }}
+    title="{{ name }} Deployment"
+    text="{{ local_username.stdout }} deployed {{ name }}@{{ git_branch }} to {{ node_env }}"
+    alert_type=success
+    tags="{{ datadog_tags }},host:{{ ansible_hostname }}"
+  changed_when: true
+
+- name: put deployed version in consul
+  delegate_to: "{{ groups['consul'][0] }}"
+  run_once: true
+  when: git_branch is defined and name is defined and consul_host_address is defined
+  tags:
+    - consul-environment
+    - always
+  uri:
+    method=PUT
+    url=http://{{ consul_host_address }}:8500/v1/kv/runnable/environment/{{ name }}
+    body="{{ git_branch }}"
+  changed_when: true

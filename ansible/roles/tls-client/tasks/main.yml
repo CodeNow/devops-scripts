@@ -1,0 +1,31 @@
+---
+- name: make directory for client certificates
+  tags: [ tls_client ]
+  become: yes
+  file:
+    dest: /opt/ssl/{{ tls_service }}-client
+    state: directory
+
+- name: put client CA in place for service
+  tags: [ tls_client ]
+  become: yes
+  copy:
+    dest: /opt/ssl/{{ tls_service }}-client/ca.pem
+    content: "{{ new_client_certs.data.issuing_ca }}"
+    mode: 0400
+
+- name: put client certificate in place for service
+  tags: [ tls_client ]
+  become: yes
+  copy:
+    dest: /opt/ssl/{{ tls_service }}-client/cert.pem
+    content: "{{ new_client_certs.data.certificate }}"
+    mode: 0400
+
+- name: put client private key in place for service
+  tags: [ tls_client ]
+  become: yes
+  copy:
+    dest: /opt/ssl/{{ tls_service }}-client/key.pem
+    content: "{{ new_client_certs.data.private_key }}"
+    mode: 0400

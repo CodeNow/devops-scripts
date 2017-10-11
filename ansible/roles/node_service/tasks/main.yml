@@ -1,0 +1,39 @@
+---
+- name: remove node_modules
+  tags: deploy
+  when: remove_node_modules is defined
+  file:
+    path=/opt/runnable/{{ app_name }}/node_modules
+    state=absent
+
+- name: npm install {{ app_name }}
+  tags: deploy
+  npm:
+    path=/opt/runnable/{{ app_name }}
+    state=latest
+    production=yes
+
+- name: make override file
+  tags: deploy
+  become: true
+  lineinfile:
+    dest="/etc/init/{{ app_name }}.override"
+    line="manual"
+    create=yes
+
+- name: create new config file
+  tags: deploy,render_node_service_config
+  become: true
+  template:
+    src=upstart.conf
+    dest=/etc/init/{{ app_name }}.conf
+    backup=yes
+
+- name: restart service {{ app_name }}
+  tags: deploy,render_node_service_config
+  become: true
+  when: dock is not defined
+  service:
+    name={{ app_name }}
+    state=restarted
+    enabled=yes

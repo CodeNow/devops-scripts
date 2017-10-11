@@ -1,0 +1,8 @@
+---
+- hosts: datadog
+  vars_files:
+    - group_vars/alpha-datadog.yml
+  roles:
+  - role: notify
+
+  - role: datadog-daemon

@@ -1,0 +1,13 @@
+---
+- hosts: drake
+  vars_files:
+    - group_vars/alpha-drake-base.yml
+    - group_vars/alpha-drake-http.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ drake_http_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

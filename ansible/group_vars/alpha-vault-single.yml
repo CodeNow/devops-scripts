@@ -1,0 +1,22 @@
+name: vault
+
+container_image: quay.io/runnable/vault
+container_tag: v0.5.1
+hosted_ports: ["{{ vault_api_port }}"]
+
+volume_mounts:
+ - name: "{{ name }}"
+   path: /config
+   kind: configMap
+
+container_run_args: >
+  vault server
+  -log-level=warn
+  -config=/config/vault.hcl
+
+add_capabilities:
+  - IPC_LOCK
+
+# Describes policy needed by Vault to create IAM users for orgs to get their org ids
+# Docks will not come up if policy is incorrect
+vault_seed_policy: "{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Action\\\": [\\\"ec2:DescribeInstances\\\", \\\"ec2:DescribeTags\\\"], \\\"Resource\\\": [\\\"*\\\"], \\\"Effect\\\": \\\"Allow\\\", \\\"Sid\\\": \\\"Stmt1445655064000\\\"}]}"

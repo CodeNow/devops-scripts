@@ -1,0 +1,9 @@
+name: cream-worker
+
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ cream_worker_rollbar_token }}"
+
+container_envs: "{{ cream_base_container_envs + envs }}"
+
+container_run_args: npm run start-worker

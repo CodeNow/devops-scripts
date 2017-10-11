@@ -1,0 +1,24 @@
+node_modules
+*.pem
+pass
+.pass
+hellorunnable
+dump.rdb
+erl_crash.dump
+npm-debug.log
+ca.srl
+.DS_Store
+ansible/roles/hipache/templates/runnable*
+enviroments/**/k8/**/configMaps/*cert*
+environments/*/secrets/**/*
+# Leaving for now while PR is merged
+environments/*/k8
+# Meant to not break anything. Might remove later
+environments/runnable-on-prem-test
+*.retry
+*.tfstate*
+terraform/credentials.tfvars
+terraform/.build
+ansible/secrets/*
+ansible/single-host-part-*.yml
+.idea

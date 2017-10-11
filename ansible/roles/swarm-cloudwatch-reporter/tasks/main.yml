@@ -1,0 +1,10 @@
+---
+- name: create cron folder
+  file:
+    state: directory
+    path: "{{ cron_jobs_path }}"
+
+- name: create swarm cron
+  template:
+    dest: "{{ cron_jobs_path }}/{{ name }}.yml"
+    src: swarm-cron.yml

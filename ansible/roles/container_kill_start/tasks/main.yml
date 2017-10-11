@@ -1,0 +1,85 @@
+- name: look for stopped {{ container_image }} containers
+  tags: deploy
+  become: yes
+  shell: >
+    docker ps -a |
+    grep Exited |
+    grep {{ container_image }} |
+    awk '{print $1}'
+  register: stopped_containers
+  changed_when: stopped_containers.stdout != ''
+
+- name: removed stopped {{ container_image }} containers
+  tags: deploy
+  become: yes
+  when: stopped_containers.changed
+  shell: docker rm {{ item }}
+  with_items: "{{ stopped_containers.stdout_lines }}"
+
+# get current running container with this image
+- name: look for running containers running {{ container_image }}
+  tags: deploy
+  become: true
+  script: findTagRunning.sh {{ container_image }}
+  register: old_containers_id
+  changed_when: old_containers_id.stdout | length > 4
+
+# get latest image
+# tag will default to latest
+- name: pull down docker image {{ container_image }}:{{ container_tag }}
+  tags: deploy
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
+  when: not do_not_push
+
+# get id of new image
+- name: get id of the docker image
+  tags: deploy
+  become: yes
+  shell: >
+    docker images
+    --no-trunc |
+    grep {{ container_image }}.*{{ container_tag }} |
+    awk '{print $3}'
+  register: new_image_id
+
+# stop the old containers that were running this previously
+- name: stop old containers
+  tags: deploy
+  when: old_containers_id.changed
+  become: yes
+  command: docker stop -t {{ stop_time }} {{ old_containers_id.stdout }}
+
+# remove the old containers that were running previously
+- name: remove old containers
+  tags: deploy
+  when: old_containers_id.changed
+  become: yes
+  command: docker rm {{ old_containers_id.stdout }}
+
+- name: pause to allow for any odd conditions in system caching tables
+  tags: deploy
+  when: pause_length_minutes is defined and old_containers_id.changed
+  pause: minutes={{ pause_length_minutes }}
+
+# start our new container with options and args
+- name: start container
+  tags: deploy
+  become: yes
+  command: |
+    docker run \
+    --memory {{ memory_hard_limit | default ( "1g" ) }} \
+    --log-driver={{ log_driver }} \
+    {% if log_driver == "syslog" %}
+      --log-opt syslog-facility={{ log_facility }} \
+      --log-opt tag="{{ log_tag | default ( name ) }}" \
+    {% endif %}
+    -v {{ app_log_dir }}:{{ app_log_dir }}:rw \
+    --restart={{ restart_policy | default('always') }} \
+    {{ container_run_opts | trim }} \
+    {{ container_image }}:{{ container_tag }} \
+    {{ container_run_args | trim }}
+  register: new_container_id
+  notify:
+    - get new container ports
+    - update redis key

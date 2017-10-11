@@ -1,0 +1,16 @@
+---
+- hosts: rabbitmq
+
+- hosts: deployer
+  vars_files:
+  - group_vars/alpha-deployer.yml
+  roles:
+  - role: copy_secret_file
+    file_names:
+    - "{{ env }}.pem"
+    - id_rsa
+    - vault-pass
+
+
+  - { role: build_with_dockerfile }
+  - { role: container_kill_start }

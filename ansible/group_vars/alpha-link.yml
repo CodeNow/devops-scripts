@@ -1,0 +1,30 @@
+name: link
+
+inject_ca: false
+repo: git@github.com:CodeNow/{{ name }}.git
+node_version: "4.2.1"
+npm_version: "2.14.7"
+
+container_envs:
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ link_hello_runnable_token }}"
+  - name: MONGO
+    value: "mongodb://{{ navi_mongo_auth }}@{{ navi_mongo_hosts }}/{{ navi_mongo_database }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"

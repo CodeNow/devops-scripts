@@ -1,0 +1,23 @@
+name: big-poppa-http
+service_name: big-poppa
+
+hosted_ports: ["{{ big_poppa_port }}"]
+num_replicas: 4
+
+envs:
+  - name: PORT
+    value: "{{ big_poppa_port }}"
+  - name: ROLLBAR_KEY
+    value: "{{ big_poppa_http_rollbar_token | default('ansible_undefined') }}"
+  - name: NEW_RELIC_APP_NAME
+    value: "{{ big_poppa_new_relic_app_name | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LICENSE_KEY
+    value: "{{ new_relic_license_key | default('ansible_undefined') }}"
+  - name: NEW_RELIC_LOG_LEVEL
+    value: "fatal"
+  - name: NEW_RELIC_NO_CONFIG_FILE
+    value: "true"
+
+container_envs: "{{ big_poppa_base_container_envs + envs }}"
+
+container_run_args: npm run start-http

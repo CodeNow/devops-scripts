@@ -1,0 +1,14 @@
+---
+- hosts: "{{ dock }}"
+  vars_files:
+    - group_vars/alpha-dock-init.yml
+  roles:
+  - { role: notify, tags: [notify] }
+  - { role: package-dock, tags: [dock, package] }
+  - { role: package-aws, tags: [dock, package] }
+  - { role: docker, tags: [docker] }
+  - { role: datadog, tags: [datadog] }
+  - { role: git_repo }
+  - { role: dock-init }
+  - { role: consul_value, tags: [consul_value] }
+  - { role: ulimits, tags: [ulimits] }

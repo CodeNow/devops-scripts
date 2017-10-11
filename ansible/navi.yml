@@ -1,0 +1,12 @@
+---
+- hosts: navi
+  vars_files:
+    - group_vars/alpha-navi.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ navi_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

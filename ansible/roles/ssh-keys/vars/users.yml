@@ -1,0 +1,24 @@
+---
+runnable_admin_group: runnadmin
+
+users:
+  bkendall:
+    name: Bryan Kendall
+    groups: runnadmin
+    pub_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC40ubXFxuA9VmslDPtVSlzjtPNDbq5hcun5Td9Znjt7Lyk8dw2DQrM4wbzbB8dqn+J9yWJGv3xOj/043tpam69rf77VxZOrzNBL3fe9S+1LdQ9c8VBHZDYvSrQKdmAPO61RheCA6P96fUW4MgxsmTovXbF4Bl9RMw1vLE5xJaagtiF3L5LU3SpMt56oPrkUKP9lglVLymjqvguFTJBEfqzBJflxx0mMjQ6dX2HXA8iUTI3vZ6Q3Ti2vask90qgK5fREckkx6IhDgVeoeD/IOJNPYWkm7CgSgvrzkBxKLNRl7MZx85b524LhjVjVOEyfEIg9jDsEejtwVanOY7gdQ/vKmxXxAGvQJKEXBwqBSFI4zZnfJQ6D5f95Isxz8PCIqtnJScMmIKmTo7vSFWGhEWT8vfon67Y5nzNuNLrnW9cQIIZ60jeG2NesPYnsTCMRCS0lxRhb1nJdW1xtoeS7mnc8SHAyFDpKKarE8WXsi1XAfUTaSTgZ9BuAxMynvxUgqN7Ru9DHJ05QNu/ZNAgtvLCy5lvGjk9+6wuXy2gU27fvt6XIdWC064y/fURpq/qSd+irSNJ3Nk37X2rOJuRN9HlscxUtfbJTnvtIo026MXCn65xOh+Vj4Dv1ZugJs0mLyIK2BBi5SSHMBkiUOi4MOqEfIND604pXnG/yWsK9c33Fw== bryan@init.me
+
+  anand:
+    name: Anandkumar Patel
+    groups: runnadmin
+    pub_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCv3cxgdayF7qF8vuGUMt5rWIfaTd3sqOhaK82CIe/aTSlyIuXqGKhTcHWzttAvTlfLFC5qXBJBScZPhXYE7t0YCxaDrmQvuhJ40fu8ZpROEmY9T7WzgBx1uB0mmqPXCrX1oyuUF2n4YVcG5dF1Y3p9d/1ZFCcwKEh8Pi3H4LMRHaph72yNFJUit0Bp8b3sTvQQZ62g9ztCzL5tgaY0jc8vnXGssOGm/TuNMPaXydDVGSK1JDqw0xUhbofZ4/I3JFEhZ9mlPlhu4f1Ts+uX6DnXExgfOM/uN7XuaK6VJBggJRielRlGWxztkzT2owtJsJE9Ave5cQfifjCwYB3TRLQx anandkumarpatel@gmail.com
+
+  kahn:
+    name: Ryan Kahn
+    groups: runnadmin
+    pub_key: >
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtaCZTriyt5xsjIfKMqwimK+IgtSe8AokOcMnaAMMZ6LB9zeaq42/oWe0J6GqpqBAJ2EPFQkmdT5qVKbf5ragGhpNkkFFLzziMibeDXauc9aIryox2KoZBv8E8g3zPmV7caOrrLqz7NR9Gf4P3xYv5drUNUWsrDaUD0E022PEJHwmTa86PCcHmguI56KyicNi2MRFa4J+E4yIHcIZ3fHMXtvh7DxQnmRyDuZFjGb+Xl00HbyPzSBychq92cN49S3XupEPH7xtEkmar2DlOZaW3wDXgQ2VD+2ax11hefV/XgfI/ToXCNnR9gf+F5sLOpCrqszM57HoA0GWAkiNwrjmD kahn@runnable.com
+
+delete:
+  casey:

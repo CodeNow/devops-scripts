@@ -1,0 +1,53 @@
+---
+- name: create configuration directory
+  become: yes
+  file:
+    path: /opt/runnable/consul
+    state: directory
+    recurse: yes
+
+- name: create server tls certificate directory
+  become: yes
+  file:
+    path: /opt/consul/server
+    state: directory
+    recurse: yes
+
+- name: install server certificates (3)
+  become: yes
+  copy:
+    content: "{{ item.content }}"
+    dest: /opt/consul/server/{{ item.file }}
+    mode: 0400
+    owner: root
+    group: root
+  with_items:
+  - file: ca.pem
+    content: "{{ new_certs.data.issuing_ca }}"
+  - file: cert.pem
+    content: "{{ new_certs.data.certificate }}"
+  - file: key.pem
+    content: "{{ new_certs.data.private_key }}"
+
+- name: copy vault config
+  become: yes
+  template:
+    src: consul.json.j2
+    dest: /opt/runnable/consul/consul.json
+
+- name: add datadog monitoring
+  become: true
+  tags: datadog
+  template:
+    src: datadog-consul.yaml.j2
+    dest: /etc/dd-agent/conf.d/consul.yaml
+    mode: 0444
+    owner: root
+    group: root
+
+- name: restart datadog agent
+  become: true
+  tags: datadog
+  service:
+    name: datadog-agent
+    state: restarted

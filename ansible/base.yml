@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`host` (target host) needs to be defined to run this role"
+    when: host is not defined
+
+  - add_host:
+      name={{ host }}
+      groups=dock
+
+- hosts: "{{ host }}"
+  roles:
+  - { role: apt_update }
+  - { role: package-dock, tags: [ dock, package ] }
+  - { role: package-aws, tags: [ dock, package ] }
+  - { role: package_ntp }
+  - { role: build_essential }
+  - { role: docker, tags: [ docker ] }
+  - { role: datadog, tags: [ datadog ] }
+  - { role: ulimits, tags: [ ulimits ] }
+  - { role: loggly, tags: [ loggly, clean ] }
+  - { role: node }

@@ -1,0 +1,12 @@
+---
+- hosts: optimus
+  vars_files:
+    - group_vars/alpha-optimus.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ optimus_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

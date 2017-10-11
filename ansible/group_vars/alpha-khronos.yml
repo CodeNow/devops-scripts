@@ -1,0 +1,119 @@
+name: khronos
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.4.7"
+npm_version: 2
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
+dockerfile_enviroment: [
+  "NPM_TOKEN {{ npm_token }}"
+]
+dockerfile_pre_install_commands: [
+   'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc'
+]
+
+prod_cron_queues:
+  - cron_queue: canary.build.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.github-branch.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.log.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.network.run
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: metrics.container-status
+    cron_scedule: "*/5 * * * *"
+  - cron_queue: canary.failover.run
+    cron_scedule: "*/30 * * * *"
+
+cron_queues:
+  - cron_queue: containers.image-builder.prune
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_queue: containers.orphan.prune
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_queue: context-versions.prune-expired
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_queue: images.prune
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_queue: instances.cleanup
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_queue: weave.prune
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+
+cron_events:
+  - cron_event: time.one-day.passed
+    cron_scedule: "0 15 * * *"
+  - cron_event: time.four-hours.passed
+    cron_scedule: "13 1,4,7,10,13,16,19,22 * * *"
+  - cron_event: time.one-hour.passsed
+    cron_scedule: "49 * * * *"
+  - cron_event: time.thirty-minutes.passed
+    cron_scedule: "*/30 * * * *"
+  - cron_event: time.five-minutes.passed
+    cron_scedule: "*/5 * * * *"
+
+cron_rabbit_host_address: "{{ rabbit_host_address }}:{{ rabbit_port }}"
+cron_rabbit_auth: --username {{ rabbit_username }} --password {{ rabbit_password }}
+
+container_envs:
+  - name: API_SOCKET_SERVER
+    value: "https://{{ api_socket_server_hostname }}"
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: BIG_POPPA_HOST
+    value: "http://{{ big_poppa_host_address }}:{{ big_poppa_port }}"
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: CANARY_API_TOKEN
+    value: "{{ khronos_canary_token | default('undefined') }}"
+  - name: CANARY_API_FAILOVER_TOKEN
+    value: "{{ khronos_canary_failover_token | default('ansible_undefined')}}"
+  - name: CANARY_GITHUB_BRANCHES_INSTANCE_ID
+    value: "{{ khronos_canary_github_branches_instance_id | default('undefined') }}"
+  - name: CANARY_LOG_INSTANCE_ID
+    value: "{{ khronos_canary_logs_instance_id | default('undefined') }}"
+  - name: CANARY_LOG_TERMINAL_SLEEP
+    value: "10"
+  - name: CANARY_REBUILD_INSTANCE_ID
+    value: "{{ khronos_canary_rebuild_instance_id | default('undefined') }}"
+  - name: CANARY_REBUILD_NAVI_URL
+    value: "{{ khronos_canary_rebuild_navi_url | default('undefined') }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: INTERCOM_API_KEY
+    value: "{{ khronos_intercom_api_key | default('undefined') }}"
+  - name: INTERCOM_APP_ID
+    value: "{{ khronos_intercom_app_id | default('undefined') }}"
+  - name: KHRONOS_MONGO
+    value: "mongodb://{{ api_mongo_auth }}@{{ mongo_hosts }}/{{ api_mongo_database }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: SWARM_HOST
+    value: "http://{{ swarm_host_address }}:{{ swarm_master_port }}"
+  - name: USER_CONTENT_DOMAIN
+    value: "{{ user_content_domain }}"
+  - name: WORKER_MAX_RETRY_DELAY
+    value: "3600000"
+  - name: GITHUB_VARNISH_HOST
+    value: "{{ github_varnish_host }}"
+  - name: GITHUB_VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: GITHUB_PROTOCOL
+    value: "http"
+
+container_run_args: timeout 1h npm start

@@ -1,0 +1,26 @@
+---
+- name: Ensure Tag Deploy For Prod
+  tags: deploy
+  when: node_env=="production-delta" and not git_branch | match("^v([0-9]+)\.([0-9]+)\.([0-9]+)$")
+  fail: msg="only tag can be deployed on prod not {{ git_branch }}"
+
+- name: Display Git Repo Name
+  debug:
+    msg: "application Installed: {{ app_name }}, branch : {{ git_branch }} "
+
+- name: create repository dir
+  become: true
+  file:
+    path=/opt/runnable/{{ app_name }}
+    state=directory
+    owner={{ ansible_env.USER }}
+
+- name: pull the git repository
+  tags: deploy
+  git:
+    repo={{ app_repo }}
+    dest=/opt/runnable/{{ app_name }}
+    version={{ git_branch }}
+    update=yes
+    accept_hostkey=True
+    force=yes

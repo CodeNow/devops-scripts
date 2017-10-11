@@ -1,0 +1,7 @@
+---
+- hosts: consul
+  vars_files:
+    - "group_vars/alpha-consul.yml"
+    - "group_vars/alpha-consul-values.yml"
+  roles:
+    - role: k8-job

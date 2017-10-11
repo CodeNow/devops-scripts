@@ -1,0 +1,6 @@
+DOCKER_OPTS="-H=unix:///var/run/docker.sock -H=0.0.0.0:4242"
+DOCKER_OPTS="$DOCKER_OPTS --tlsverify --tlscacert=/etc/ssl/docker/ca.pem"
+DOCKER_OPTS="$DOCKER_OPTS --tlscert=/etc/ssl/docker/cert.pem --tlskey=/etc/ssl/docker/key.pem"
+DOCKER_OPTS="$DOCKER_OPTS -g /docker --insecure-registry registry.runnable.com --icc=false"
+DOCKER_OPTS="$DOCKER_OPTS --bip 172.17.42.1/16"
+DOCKER_OPTS="$DOCKER_OPTS --dns=172.17.42.1 --dns={{ ansible_dns.nameservers[0] }} --dns=8.8.8.8"

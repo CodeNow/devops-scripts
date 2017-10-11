@@ -1,0 +1,102 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ name }}
+spec:
+  replicas: {% if env == "delta" %} {{ num_replicas | default(1) }} {% else %} 1 {% endif %}
+
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ image_pull_secret_name }}
+      hostname: {{ name }}
+      containers:
+        - image: {{ container_image }}:{{ container_tag }}
+          imagePullPolicy: Always
+          name: {{ name }}
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "500M"
+            limits:
+              cpu: "1550m"
+              memory: {{ memory_hard_limit | default("1500M") }}
+{% if post_start_command is defined %}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/bash", "-c", "{{ post_start_command }}"]
+{% endif %}
+{% if tcp_readiness_probe_port is defined %}
+          readinessProbe:
+            tcpSocket:
+              port: {{ tcp_readiness_probe_port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+{% endif %}
+{% if container_run_args != '' %}
+          args:
+{% if advance_arg is defined and advance_arg == true %}
+            - bash
+            - -c
+            - "{{ container_run_args }}"
+{% else %}
+{% for arg in container_run_args.split(' ') %}
+            - {{ arg }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if container_envs is defined %}
+          env:
+{% for env in container_envs %}
+{% if (env.value is defined and env.value != 'ansible_undefined') or env.valueFrom is defined %}
+            - name: {{ env.name }}
+{% if env.value is defined %}
+              value: "{{ env.value }}"
+{% endif %}
+{% if env.valueFrom is defined %}
+              valueFrom:
+                fieldRef:
+                  fieldPath: {{ env.valueFrom }}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if add_capabilities is defined %}
+          securityContext:
+            capabilities:
+              add:
+{% for cap in add_capabilities %}
+              - {{ cap }}
+{% endfor %}
+{% endif %}
+{% if hosted_ports is defined %}
+          ports:
+{% for port in hosted_ports %}
+            - containerPort: {{ port }}
+{% endfor %}
+{% endif %}
+{% if volume_mounts is defined %}
+          volumeMounts:
+{% for volume in volume_mounts %}
+            - name: {{ volume.name }}
+              mountPath: {{ volume.path }}
+{% endfor %}
+{% endif %}
+{% if volume_mounts is defined %}
+      volumes:
+{% for volume in volume_mounts %}
+        - name: {{ volume.name }}
+{% if volume.kind == "configMap" %}
+          configMap:
+            name: {{ volume.name }}
+{% endif %}
+{% if volume.kind == "persistent" %}
+          persistentVolumeClaim:
+            claimName: {{ volume.name }}
+{% endif %}
+{% endfor %}
+{% endif %}

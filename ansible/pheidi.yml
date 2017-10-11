@@ -1,0 +1,11 @@
+---
+- hosts: pheidi
+  vars_files:
+    - group_vars/alpha-pheidi.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ pheidi_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment

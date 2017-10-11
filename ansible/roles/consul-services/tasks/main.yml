@@ -1,0 +1,34 @@
+---
+- name: make /etc/consul.d folder
+  become: true
+  file:
+    path=/etc/consul.d
+    state=directory
+
+- name: remove all current configs
+  become: true
+  shell: rm -f /etc/consul.d/*.json
+
+- name: put service files in place
+  become: true
+  run_once: true
+  template:
+    dest=/etc/consul.d/{{ item.name }}.json
+    src=service.json
+  with_items:
+    - name: 'datadog'
+      host_address: '{{ datadog_host_address }}'
+      tags: ['master']
+      port: '{{ datadog_port }}'
+    - name: 'rabbitmq'
+      host_address: '{{ rabbit_host_address }}'
+      tags: ['master']
+      port: '{{ rabbit_port }}'
+    - name: 'redis'
+      host_address: '{{ redis_host_address }}'
+      tags: ['master']
+      port: '{{ redis_port }}'
+
+- name: send consul SIGUP to reload services
+  become: true
+  shell: pkill --signal SIGHUP consul

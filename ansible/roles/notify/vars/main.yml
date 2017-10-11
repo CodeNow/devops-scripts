@@ -1,0 +1,4 @@
+# message to say when starting deploy
+notify_start_message: "starting to deploy {{ container_image | default(app_name) }} {{ container_tag | default(git_branch) }} to {{ ansible_hostname }}"
+# message printed when deploy finished
+notify_end_message: "finished deploying {{ container_image | default(app_name) }} {{ container_tag | default(git_branch) }} to {{ ansible_hostname }}"

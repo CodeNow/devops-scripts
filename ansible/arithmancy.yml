@@ -1,0 +1,11 @@
+---
+- hosts: arithmancy
+  vars_files:
+    - group_vars/alpha-arithmancy.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ arithmancy_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment

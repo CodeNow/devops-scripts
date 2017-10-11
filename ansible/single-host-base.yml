@@ -1,0 +1,196 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - fail: msg="`host` (target host) needs to be defined to run this role"
+    when: host is not defined
+  - add_host:
+      name={{ host }}
+      groups=dock
+
+- hosts: "{{ host }}"
+  roles:
+  - { role: git }
+
+# Create an image for each service
+#
+# Each image (unfortunately) needs its own play in order to get variable scope.
+# This is necessary because
+# - Variables cannot be unset in same play
+# - Variables are set globally and cannot be limited to roles: http://stackoverflow.com/questions/43033926/is-it-possible-to-limit-include-vars-scope-to-current-role
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ detention_branch }}"
+  vars_files:
+  - "group_vars/alpha-detention.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ palantiri_branch }}"
+  vars_files:
+  - "group_vars/alpha-palantiri.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ khronos_branch }}"
+  vars_files:
+  - "group_vars/alpha-khronos.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ docker_listener_branch }}"
+  vars_files:
+  - "group_vars/alpha-docker-listener.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ drake_branch }}"
+  vars_files:
+  - "group_vars/alpha-drake-http.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+  - { role: add_image_tags, additional_tags: ['drake-worker']}
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ cream_branch }}"
+  vars_files:
+  - "group_vars/alpha-cream-http.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+  - { role: add_image_tags, additional_tags: ['cream-worker']}
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ link_branch }}"
+  vars_files:
+  - "group_vars/alpha-link.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ navi_branch }}"
+  vars_files:
+  - "group_vars/alpha-navi.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ pheidi_branch }}"
+  vars_files:
+  - "group_vars/alpha-pheidi.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ big_poppa_branch }}"
+  vars_files:
+    - "group_vars/alpha-big-poppa-http.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+  - { role: add_image_tags, additional_tags: ['big-poppa-worker']}
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ api_branch }}"
+  vars_files:
+    - "group_vars/alpha-api-base.yml"
+    - "group_vars/alpha-api.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+  - { role: add_image_tags, additional_tags: ['api-worker', 'api-socket-server']}
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ sauron_branch }}"
+  vars_files:
+    - "group_vars/alpha-sauron.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ optimus_branch }}"
+  vars_files:
+    - "group_vars/alpha-optimus.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ clio_branch }}"
+  vars_files:
+    - "group_vars/alpha-clio.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ egret_branch }}"
+  vars_files:
+    - "group_vars/alpha-agreeable-egret.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ angular_branch }}"
+  vars_files:
+    - "group_vars/alpha-web.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ astral_branch }}"
+  vars_files:
+    - "group_vars/alpha-shiva.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+- hosts: "{{ host }}"
+  vars:
+  - git_branch: "{{ enterprise_sign_in_branch }}"
+  vars_files:
+    - "group_vars/alpha-enterprise-sign-in.yml"
+  roles:
+  - { role: builder }
+  - { role: squash_image }
+
+# End building of images
+
+- hosts: "{{ host }}"
+  tasks:
+  - name: remove all dangling images
+    become: true
+    ignore_errors: true
+    shell: docker rmi $(docker images --quiet --filter "dangling=true")

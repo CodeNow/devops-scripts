@@ -1,0 +1,27 @@
+name: prometheus
+
+container_image: prom/prometheus
+container_tag: v1.4.1
+hosted_ports: ["{{ prometheus_port }}"]
+
+memory_hard_limit: 15G
+
+storage_size_gb: "{{ prometheus_storage_size_gb }}"
+
+volume_id: "{{ prometheus_volume_id }}"
+
+volume_mounts:
+  - name: "{{ name }}-conf"
+    path: /prometheus
+    kind: configMap
+  - name: "{{ name }}-db-claim"
+    path: /data
+    kind: persistent
+
+container_run_args: >
+  -alertmanager.url "{{ prometheus_alert_url }}"
+  -config.file=/prometheus/prometheus.yml
+  -storage.local.path "/data"
+  -storage.local.retention 168h0m0s
+  -web.external-url http://localhost
+  -web.listen-address ":{{ prometheus_port }}"

@@ -1,0 +1,44 @@
+name: consul
+
+# for database role
+db_path: /etc/consul.d
+
+# for container_kill_start
+pause_length_minutes: 3
+
+container_image: "{{ registry_host }}/runnable/consul"
+container_tag: v0.6.3
+
+container_run_opts: >
+  -d
+  -h {{ inventory_hostname }}
+  -v /consul:/data
+  -v /etc/consul.d:/etc/consul.d:ro
+  -v /opt/runnable/consul/consul.json:/consul.json:ro
+  -v /opt/consul/server:/opt/consul/server:ro
+  -p {{ ansible_default_ipv4.address }}:8300:8300
+  -p {{ ansible_default_ipv4.address }}:8301:8301
+  -p {{ ansible_default_ipv4.address }}:8301:8301/udp
+  -p {{ ansible_default_ipv4.address }}:8302:8302
+  -p {{ ansible_default_ipv4.address }}:8302:8302/udp
+  -p {{ ansible_default_ipv4.address }}:8400:8400
+  -p {{ ansible_default_ipv4.address }}:{{ consul_api_port }}:8500
+  -p {{ ansible_default_ipv4.address }}:{{ consul_https_port }}:{{ consul_https_port }}
+  --restart=always
+
+storage_size_gb: "{{ consul_storage_size_gb }}"
+
+container_run_args: >
+  consul agent
+  --config-file /consul.json
+  --config-dir /etc/consul.d
+
+# some seed values
+# pulled 2015/16/11 - Bryan
+consul_seed:
+  - key: node/env
+    value: "{{ node_env }}"
+  - key: api/hostname
+    value: "{{ api_hostname }}"
+  - key: api/url
+    value: "{{ api_url }}"

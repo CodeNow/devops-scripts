@@ -1,0 +1,56 @@
+---
+- name: create folder
+  become: true
+  file:
+    path={{ psad_script_folder }}
+    state=directory
+    recurse=yes
+
+- name: create sysctl config file
+  become: true
+  tags: [ sysctl ]
+  template:
+    src=60-runnable_sysctl.conf.j2
+    dest=/etc/sysctl.d/60-runnable_sysctl.conf
+    mode=644
+    group=root
+    owner=root
+  notify:
+    - apply sysctl by service procps start
+
+- name: installing psad to latest version
+  tags: [ psad ]
+  become: true
+  apt:
+    pkg=psad
+    state=latest
+    update_cache=yes
+    cache_valid_time=3600
+  notify:
+  - restart psad
+
+- name: psad signature update
+  become: true
+  shell: psad --sig-update && psad -H
+  register: command_result
+  failed_when: "'FAILED' in command_result.stderr"
+
+
+- name: copy psad detected script
+  become: true
+  tags: [ psad, psad_script ]
+  template:
+    src=psad-script.sh
+    dest={{ psad_script_folder }}/psad-script.sh
+    mode=u+x
+
+- name: copy pasd config script
+  become: true
+  tags: [ psad, psad_config ]
+  template:
+    dest=/etc/psad/psad.conf
+    src=psad.conf.j2
+    owner=root
+    mode=0644
+  notify:
+  - restart psad

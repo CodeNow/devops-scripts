@@ -1,0 +1,20 @@
+name: "runnable.com"
+
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.3.1"
+npm_version: "3.7.5"
+do_not_push: yes
+
+dockerfile_enviroment: [
+  "API_URL https://{{ api_hostname }}",
+  "AWS_ACCESS_KEY {{ marketing_aws_access_key }}",
+  "AWS_SECRET_KEY {{ marketing_aws_secret_key }}",
+  "ANGULAR_URL {{ angular_url }}",
+  "AWS_BUCKET {{ marketing_bucket }}",
+  "AWS_REGION {{ web_aws_bucket_region | default('us-standard') }}",
+  "NODE_ENV {{ node_env }}"
+]
+
+dockerfile_post_install_commands: [
+  "npm run deploy"
+]

@@ -1,0 +1,21 @@
+name: metabase
+
+container_image: metabase/{{ name }}
+container_tag: v0.19.3
+hosted_ports: ["{{ metabase_port }}"]
+
+memory_hard_limit: 20G
+
+container_envs:
+  - name: MB_DB_TYPE
+    value: "postgres"
+  - name: MB_DB_DBNAME
+    value: "{{ metabase_pg_database }}"
+  - name: MB_DB_PORT
+    value: "{{ pg_port }}"
+  - name: MB_DB_USER
+    value: "{{ metabase_pg_user }}"
+  - name: MB_DB_PASS
+    value: "{{ metabase_pg_pass }}"
+  - name: MB_DB_HOST
+    value: "{{ pg_host }}"

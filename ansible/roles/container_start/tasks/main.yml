@@ -1,0 +1,82 @@
+---
+# get current running container with this image
+- name: "look for running containers running {{ container_image }}"
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: true
+  script: findTagRunning.sh {{ container_image }}
+  register: old_containers_ids
+  changed_when: old_containers_ids.stdout != ''
+
+- name: get latest images
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  when: not do_not_push
+  become: yes
+  command: docker pull {{ container_image }}:{{ container_tag }}
+
+- name: get id of latest image
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  shell: >
+    docker images --no-trunc |
+    grep {{ container_image }}.*{{ container_tag }} |
+    awk '{print $3}'
+  register: new_image_id
+
+- name: default number of containers
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  when: number_of_containers is undefined
+  set_fact:
+    number_of_containers: 1
+
+- name: print number of contaienrs
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  debug:
+    msg: starting this many containers -- {{ number_of_containers }}
+
+- name: login to registry
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  command: docker login -u {{ registry_username }} -p {{ registry_token }} -e "info@runnable.com" {{ registry_host }}
+
+- name: start new container
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  shell: |
+    for i in {{ '{' }}1..{{ number_of_containers }}{{ '}' }}; do
+      docker run \
+        {% if memory_hard_limit is defined %}
+          --memory {{ memory_hard_limit }} \
+        {% endif %}
+        --log-driver={{ log_driver }} \
+        {% if log_driver == "syslog" %}
+          --log-opt syslog-facility={{ log_facility }} \
+          --log-opt tag="{{ log_tag | default ( name ) }}" \
+        {% endif %}
+        -v {{ app_log_dir }}:{{ app_log_dir }}:rw \
+        -v /dev/log:/dev/log:rw \
+        --restart={{ restart_policy | default('no') }} \
+        {{ container_run_opts | trim }} \
+        {{ container_image }}:{{ container_tag }} \
+        {{ container_run_args | trim }}
+    done
+  args:
+    executable: /bin/bash
+  register: new_container_ids
+  notify:
+    - get new container ports
+    - remove all hosts from redis key
+    - put new hosts on redis keys
+    - stop old containers
+
+- name: logout of registry
+  delegate_to: "{{ builder }}"
+  tags: deploy
+  become: yes
+  command: docker logout {{ registry_host }}

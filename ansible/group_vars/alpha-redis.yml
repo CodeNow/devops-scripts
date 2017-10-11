@@ -1,0 +1,15 @@
+name: redis
+hosted_ports: ["{{ redis_port }}"]
+
+storage_size_gb: "{{ redis_storage_size_gb }}"
+
+volume_id: "{{ redis_volume_id }}"
+
+volume_mounts:
+  - name: "{{ name }}-db-claim"
+    path: /data
+    kind: persistent
+
+container_image: redis
+container_tag: "3.0.5"
+container_run_args: ''

@@ -1,0 +1,11 @@
+---
+- hosts: github-varnish
+  vars_files:
+  - group_vars/alpha-github-varnish.yml
+  roles:
+  - role: notify
+
+  - role: build_with_dockerfile
+
+  - role: k8-deployment
+  - role: k8-service

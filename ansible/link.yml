@@ -1,0 +1,10 @@
+---
+- hosts: link
+  vars_files:
+    - group_vars/alpha-link.yml
+  roles:
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment

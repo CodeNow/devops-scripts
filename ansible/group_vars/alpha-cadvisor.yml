@@ -1,0 +1,15 @@
+name: cadvisor
+
+container_image: google/{{ name }}
+container_tag: "v0.24.1"
+
+memory_hard_limit: 100M
+
+container_run_opts: >
+  --name={{ name }}
+  --volume=/:/rootfs:ro
+  --volume=/var/run:/var/run:rw
+  --volume=/sys:/sys:ro
+  --volume=/var/lib/docker/:/var/lib/docker:ro
+  --publish={{ cadvisor_port }}:8080
+  --memory-reservation=50mb

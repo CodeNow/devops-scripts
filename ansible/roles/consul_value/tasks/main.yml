@@ -1,0 +1,24 @@
+---
+- name: Debug role
+  when: debug_info is defined
+  debug:
+    msg="Consul Server {{ consul_host_address }}:{{ consul_api_port }}"
+
+- name: make sure httplib2 is installed
+  run_once: true
+  become: true
+  apt:
+    package=python-httplib2
+    state=present
+    update_cache=yes
+    cache_valid_time=604800
+
+- name: put values into consul
+  tags: deploy, consul_values
+  run_once: true
+  when: consul_host_address is defined and consul_api_port is defined and consul_values is defined and dock is not defined
+  uri:
+    method=PUT
+    url=http://{{ consul_host_address }}:{{ consul_api_port }}/v1/kv/{{ item.key }}
+    body="{{ item.value }}"
+  with_items: "{{ consul_values }}"

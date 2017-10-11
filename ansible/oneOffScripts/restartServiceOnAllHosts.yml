@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - fail: msg="`name` needs to be defined for this role"
+      when: name is not defined
+
+    - name: restart {{ name }}
+      become: true
+      service:
+        name={{ name }}
+        state=restarted

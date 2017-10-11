@@ -1,0 +1,33 @@
+---
+- hosts: vault
+  vars_files:
+    - group_vars/alpha-vault.yml
+  roles:
+  - { role: notify, tags: notify }
+  - { role: database }
+  - { role: vault }
+  - { role: container_kill_start }
+
+  tasks:
+  - name: get seal status
+    tags: [ deploy ]
+    uri:
+      method=GET
+      url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/seal-status
+      HEADER_X-Vault-Token="{{ vault_auth_token }}"
+      return_content=yes
+    register: seal_status
+
+  - name: unseal vault
+    tags: [ deploy ]
+    when: seal_status.json.sealed
+    uri:
+      method=PUT
+      url=http://{{ ansible_default_ipv4.address }}:{{ vault_port }}/v1/sys/unseal
+      HEADER_X-Vault-Token="{{ vault_auth_token }}"
+      body_format=json
+      body='{{ item | to_json }}'
+    with_items:
+    - key: "{{ vault_token_01 }}"
+    - key: "{{ vault_token_02 }}"
+    - key: "{{ vault_token_03 }}"

@@ -1,0 +1,7 @@
+---
+- hosts: marketing
+  vars_files:
+    - "group_vars/alpha-marketing.yml"
+  roles:
+  - { role: notify, tags: "notify" }
+  - { role: builder, tags: "build" }

@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  vars_files:
+    - group_vars/alpha-gke-dock.yml
+  roles:
+  - role: notify
+
+  - role: k8-deployment

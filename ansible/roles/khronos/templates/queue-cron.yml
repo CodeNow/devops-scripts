@@ -1,0 +1,29 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ item.cron_queue }}
+spec:
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 1
+  schedule: "{{ item.cron_scedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: {{ image_pull_secret_name }}
+          restartPolicy: Never
+          containers:
+          - name: {{ item.cron_queue | replace('.', '-') }}
+            image: {{ container_image }}:{{ container_tag }}
+            env:
+              - name: DATADOG_HOST
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: DATADOG_PORT
+                value: "{{ datadog_port }}"
+            args:
+              - bash
+              - -c
+              - /khronos/bin/cli.js --queue {{ item.cron_queue }} --job '{}' --host {{ cron_rabbit_host_address }} {{ cron_rabbit_auth }}

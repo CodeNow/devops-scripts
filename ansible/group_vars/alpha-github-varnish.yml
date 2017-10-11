@@ -1,0 +1,19 @@
+---
+name: github-varnish
+
+inject_ca: false
+repo: git@github.com:CodeNow/{{ name }}.git
+hosted_ports: ["{{ github_varnish_port }}"]
+container_run_args: ''
+
+container_envs:
+  - name: VARNISH_PORT
+    value: "{{ github_varnish_port }}"
+  - name: VARNISH_MALLOC
+    value: "100M"
+  - name: GITHUB_DOMAIN
+    value: "{{ github_domain }}"
+  - name: IS_GITHUB_ENTERPRISE
+    value: "{{ is_github_enterprise }}"
+  - name: GITHUB_PROTOCOL
+    value: "{{ github_protocol }}"

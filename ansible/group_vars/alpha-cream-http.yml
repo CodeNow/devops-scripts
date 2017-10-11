@@ -1,0 +1,14 @@
+name: cream-http
+service_name: cream
+
+hosted_ports: ["{{ cream_port }}"]
+
+envs:
+  - name: ROLLBAR_KEY
+    value: "{{ cream_http_rollbar_token }}"
+  - name: PORT
+    value: "{{ hosted_ports[0] }}"
+
+container_envs: "{{ cream_base_container_envs + envs }}"
+
+container_run_args: npm run start-http

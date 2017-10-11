@@ -1,0 +1,11 @@
+---
+- hosts: agreeable-egret
+  vars_files:
+    - group_vars/alpha-agreeable-egret.yml
+  roles:
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

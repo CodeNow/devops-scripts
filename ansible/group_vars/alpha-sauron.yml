@@ -1,0 +1,49 @@
+name: sauron
+
+inject_ca: false
+repo: "git@github.com:CodeNow/{{ name }}.git"
+node_version: "4.2.2"
+npm_version: "2.14.7"
+
+weave_path: "/bin/weave"
+docker_path: "/bin/docker"
+
+volume_mounts:
+  - name: "{{ name }}-docker-ssl-certs"
+    path: /etc/ssl/docker
+    kind: configMap
+
+dockerfile_pre_install_commands: [
+  "curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.2 -o {{ docker_path }}",
+  "chmod a+x {{ docker_path }}",
+  "curl -L https://github.com/weaveworks/weave/releases/download/v1.5.0/weave -o {{ weave_path }}",
+  "chmod a+x {{ weave_path }}"
+]
+
+container_envs:
+  - name: CONSUL_HOST
+    value: "{{ consul_host_address }}:{{ consul_api_port }}"
+  - name: DATADOG_HOST
+    valueFrom: "spec.nodeName"
+  - name: DATADOG_PORT
+    value: "{{ datadog_port }}"
+  - name: LOGGLY_TOKEN
+    value: "{{ loggly_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: RABBITMQ_HOSTNAME
+    value: "{{ rabbit_host_address }}"
+  - name: RABBITMQ_PASSWORD
+    value: "{{ rabbit_password }}"
+  - name: RABBITMQ_PORT
+    value: "{{ rabbit_port }}"
+  - name: RABBITMQ_USERNAME
+    value: "{{ rabbit_username }}"
+  - name: ROLLBAR_KEY
+    value: "{{ sauron_rollbar_key | default('ansible_undefined') }}"
+  - name: SWARM_HOSTNAME
+    value: "{{ swarm_host_address }}"
+  - name: SWARM_PORT
+    value: "{{ swarm_master_port }}"
+  - name: WEAVE_PATH
+    value: "{{ weave_path }}"

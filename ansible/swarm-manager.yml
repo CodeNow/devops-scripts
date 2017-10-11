@@ -1,0 +1,11 @@
+---
+- hosts: swarm-manager
+  vars_files:
+    - group_vars/alpha-swarm-manager.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ docker_listener_rollbar_key }}"
+
+  - role: docker_client
+  - role: k8-deployment
+  - role: k8-service

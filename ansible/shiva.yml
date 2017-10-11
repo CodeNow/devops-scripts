@@ -1,0 +1,11 @@
+---
+- hosts: shiva
+  vars_files:
+    - group_vars/alpha-shiva.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ shiva_rollbar_token }}"
+
+  - role: builder
+
+  - role: k8-deployment

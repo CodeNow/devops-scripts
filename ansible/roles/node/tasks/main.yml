@@ -1,0 +1,12 @@
+---
+- name: install node.js
+  become: true
+  nodejs:
+    version={{node_version|default('0.10.40')}}
+
+- name: upgrade npm
+  become: true
+  npm:
+    name=npm
+    version={{npm_version|default('2.15.3')}}
+    global=yes

@@ -1,0 +1,24 @@
+---
+- name: create cron folder
+  file:
+    state: directory
+    path: "{{ cron_jobs_path }}"
+
+- name: create cron_queues
+  template:
+    dest: "{{ cron_jobs_path }}/{{ item.cron_queue }}.yml"
+    src: queue-cron.yml
+  with_items: "{{ cron_queues }}"
+
+- name: create cron_queues
+  when: node_env=="production-delta"
+  template:
+    dest: "{{ cron_jobs_path }}/{{ item.cron_queue }}.yml"
+    src: queue-cron.yml
+  with_items: "{{ prod_cron_queues }}"
+
+- name: create cron_events
+  template:
+    dest: "{{ cron_jobs_path }}/{{ item.cron_event }}.yml"
+    src: event-cron.yml
+  with_items: "{{ cron_events }}"

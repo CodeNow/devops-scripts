@@ -1,0 +1,11 @@
+---
+- name: create configMap folder
+  file:
+    state: directory
+    path: "{{ config_maps_path }}"
+
+- name: create prometheus config
+  tags: [ deploy ]
+  template:
+    dest: "{{ config_maps_path }}/{{ name }}.yml"
+    src: prometheus.yml

@@ -1,0 +1,11 @@
+---
+- hosts: eru
+  vars_files:
+  - group_vars/alpha-eru.yml
+  roles:
+  - role: notify
+
+  - role: builder
+
+  - role: k8-deployment
+  - role: k8-service

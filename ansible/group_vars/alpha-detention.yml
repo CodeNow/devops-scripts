@@ -1,0 +1,24 @@
+name: "detention"
+
+repo: "git@github.com:CodeNow/{{ name }}.git"
+hosted_ports: ["{{ detention_port }}"]
+node_version: "0.12.0"
+npm_version: "2.1.18"
+
+dockerfile_post_install_commands: [
+  "wget -nv https://github.com/eSlider/sassc-binaries/raw/develop/dist/sassc -O /usr/bin/sass",
+  "chmod +x /usr/bin/sass",
+  "npm run grunt"
+]
+
+container_envs:
+  - name: ABSOLUTE_URL
+    value: "{{ detention_hostname }}"
+  - name: API_URL
+    value: "{{ api_url }}"
+  - name: HELLO_RUNNABLE_GITHUB_TOKEN
+    value: "{{ api_hello_runnable_github_token }}"
+  - name: NODE_ENV
+    value: "{{ node_env }}"
+  - name: PORT
+    value: "{{ detention_port }}"

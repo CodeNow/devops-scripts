@@ -1,0 +1,89 @@
+---
+- name: create docker cert directory
+  become: true
+  when: dock is defined
+  file:
+    path=/etc/ssl/docker
+    state=directory
+
+- name: copy docker upstart config
+  become: true
+  copy:
+    src=docker.conf
+    dest=/etc/init/docker.conf
+    mode=0444
+    owner=root
+    group=root
+
+- name: install aufs with linux-image-extra-{{ ansible_kernel }}
+  become: true
+  tags: aufs
+  apt:
+    pkg="linux-image-extra-{{ ansible_kernel }}"
+    state=present
+    update_cache=true
+    cache_valid_time=604800
+
+- name: install apt-transport-https
+  become: true
+  apt:
+    pkg="apt-transport-https"
+    state=present
+    update_cache=yes
+    cache_valid_time=604800
+
+- name: add docker repository key
+  become: true
+  apt_key:
+    id: 2C52609D
+    url: https://apt.dockerproject.org/gpg
+    state: present
+
+- name: add docker repository
+  become: true
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
+
+- name: copy docker config file
+  become: true
+  template:
+    src=dock
+    dest=/etc/default/docker
+  register: copied_config
+  tags: genDockerConfig
+
+- name: apt-get update
+  become: true
+  apt:
+     update_cache=yes
+
+- name: install docker
+  become: true
+  when: restart is defined or dock is defined
+  apt:
+    pkg={{ docker_package_name }}
+    state=present
+    force=yes
+    update_cache=yes
+    cache_valid_time=604800
+
+- name: enforce modes on /docker
+  become: true
+  file:
+    path=/docker
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
+- name: restart docker
+  when: (copied_config.changed and restart is defined) or dock is defined
+  command: sudo service docker restart
+
+- name: create docker group
+  become: true
+  group:
+    name: docker
+    state: present

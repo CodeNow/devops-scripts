@@ -1,0 +1,11 @@
+---
+- hosts: worker
+  vars_files:
+    - group_vars/alpha-api-base.yml
+    - group_vars/alpha-workers.yml
+  roles:
+  - role: notify
+    rollbar_token: "{{ api_workers_rollbar_key }}"
+
+  - role: docker_client
+  - role: k8-deployment

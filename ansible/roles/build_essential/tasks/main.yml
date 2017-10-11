@@ -1,0 +1,8 @@
+---
+- name: install build essentials
+  become: yes
+  action: apt
+    pkg=build-essential
+    state=latest
+    update_cache=yes
+    cache_valid_time=604800

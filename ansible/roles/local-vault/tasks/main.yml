@@ -1,0 +1,50 @@
+---
+- name: create vault config
+  run_once: true
+  local_action:
+    template
+      dest=/tmp/vault.hcl
+      src=vault.hcl.j2
+  notify:
+    - remove vault config
+
+- name: start vault daemon
+  run_once: true
+  local_action:
+    shell vault server --config=/tmp/vault.hcl > /tmp/log 2>&1 &
+  notify:
+    - stop vault
+
+- name: pause for start
+  pause:
+    seconds: 5
+
+- name: check vault seal
+  tags: [ unseal ]
+  run_once: true
+  local_action:
+    command vault status
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  ignore_errors: True
+  register: seal_data
+  changed_when: "'Sealed: true' in seal_data.stdout"
+
+- name: unseal vault
+  tags: [ unseal ]
+  run_once: true
+  when: seal_data.changed
+  local_action:
+    command vault unseal {{ item }}
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_root_token }}"
+  with_items:
+  - "{{ vault_unseal_tokens.one }}"
+  - "{{ vault_unseal_tokens.two }}"
+  - "{{ vault_unseal_tokens.three }}"
+
+- name: pause to unseal
+  pause:
+    seconds: 1
